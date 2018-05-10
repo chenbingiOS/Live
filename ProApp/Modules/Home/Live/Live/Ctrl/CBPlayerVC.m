@@ -15,11 +15,8 @@
 @property (nonatomic, strong) PLPlayer      *player;
 @property (nonatomic, assign) BOOL isDisapper;
 
-@property (nonatomic, strong) CBRoomView    *roomView;
 @property (nonatomic, strong) UIImage       *thumbImage;
 @property (nonatomic, strong) UIVisualEffectView *effectView;
-
-@property (nonatomic, strong) UIButton      *closeButton;
 
 @end
 
@@ -45,7 +42,6 @@
     [self setupPlayer];
     
     [self setupThumbImage];
-    
 }
 
 - (void)setupThumbImage {
@@ -89,23 +85,15 @@
     [self.view addSubview:self.player.playerView];
 }
 
-- (void)setupRoom {
-    [self.view addSubview:self.roomView];
-}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-- (void)clickCloseButton {
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-
 - (void)showWaiting {
 //    [self.playButton hide];
 //    [self.view showFullLoading];
-    [self.view bringSubviewToFront:self.closeButton];
 }
 
 - (void)hideWaiting {
@@ -201,14 +189,7 @@
     return _effectView;
 }
 
-- (CBRoomView *)roomView {
-    if (!_roomView) {
-        _roomView = [[CBRoomView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight)];
-    }
-    return _roomView;
-}
-
-#pragma mark - Set & Get
+#pragma mark - Set
 - (void)setThumbImage:(UIImage *)thumbImage {
     _thumbImage = thumbImage;
     self.thumbImageView.image = thumbImage;
