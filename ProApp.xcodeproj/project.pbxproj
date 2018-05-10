@@ -24,6 +24,8 @@
 		072DC59A209183EC00F693E8 /* CBSettingVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 072DC598209183EC00F693E8 /* CBSettingVC.xib */; };
 		072DC5A02091A1B500F693E8 /* CBNotificationsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 072DC59E2091A1B500F693E8 /* CBNotificationsVC.m */; };
 		072DC5A12091A1B600F693E8 /* CBNotificationsVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 072DC59F2091A1B500F693E8 /* CBNotificationsVC.xib */; };
+		07359D8B20A3F96200FEEA4E /* CBRoomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 07359D8A20A3F96200FEEA4E /* CBRoomView.m */; };
+		07359D8F20A419E900FEEA4E /* CBLivePlayerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 07359D8E20A419E900FEEA4E /* CBLivePlayerVC.m */; };
 		073746E1208EBB1400E108E9 /* CBWatchVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 073746DF208EBB1400E108E9 /* CBWatchVC.m */; };
 		073746E2208EBB1400E108E9 /* CBWatchVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 073746E0208EBB1400E108E9 /* CBWatchVC.xib */; };
 		073746E8208EBFAB00E108E9 /* CBWatchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 073746E6208EBFAB00E108E9 /* CBWatchCell.m */; };
@@ -108,13 +110,11 @@
 		07B668A5208DC2B400AA5B62 /* CBFillInfoOKView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 07B668A4208DC2B400AA5B62 /* CBFillInfoOKView.xib */; };
 		07B668AA208DD19700AA5B62 /* CBAccountVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 07B668A8208DD19700AA5B62 /* CBAccountVC.m */; };
 		07B668AB208DD19700AA5B62 /* CBAccountVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 07B668A9208DD19700AA5B62 /* CBAccountVC.xib */; };
-		07B8BD1C20A3E14200DD05B2 /* CBLivePlayerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 07B8BD1B20A3E14200DD05B2 /* CBLivePlayerVC.m */; };
+		07B8BD1C20A3E14200DD05B2 /* CBPlayerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 07B8BD1B20A3E14200DD05B2 /* CBPlayerVC.m */; };
 		07CD47AA209FF78E00A372C7 /* CBGuardRankCCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 07CD47A8209FF78E00A372C7 /* CBGuardRankCCell.m */; };
 		07CD47AB209FF78E00A372C7 /* CBGuardRankCCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 07CD47A9209FF78E00A372C7 /* CBGuardRankCCell.xib */; };
 		07CD47B020A0269600A372C7 /* CBContributionRankVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 07CD47AE20A0269600A372C7 /* CBContributionRankVC.m */; };
 		07CD47B120A0269600A372C7 /* CBContributionRankVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 07CD47AF20A0269600A372C7 /* CBContributionRankVC.xib */; };
-		07CDCAC820902E1800B16FC6 /* CBPlayerScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 07CDCAC720902E1700B16FC6 /* CBPlayerScrollView.m */; };
-		07CDCACC2090522A00B16FC6 /* CBLiveRoomVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 07CDCACB2090522A00B16FC6 /* CBLiveRoomVC.m */; };
 		07CDCAD02090598F00B16FC6 /* CBLiveAnchorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 07CDCACD2090598F00B16FC6 /* CBLiveAnchorView.xib */; };
 		07CDCAD12090598F00B16FC6 /* CBLiveAnchorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 07CDCACE2090598F00B16FC6 /* CBLiveAnchorView.m */; };
 		07CDCAD420907D7900B16FC6 /* CBLiveBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 07CDCAD320907D7900B16FC6 /* CBLiveBottomView.m */; };
@@ -208,6 +208,10 @@
 		072DC59D2091A1B500F693E8 /* CBNotificationsVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBNotificationsVC.h; sourceTree = "<group>"; };
 		072DC59E2091A1B500F693E8 /* CBNotificationsVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBNotificationsVC.m; sourceTree = "<group>"; };
 		072DC59F2091A1B500F693E8 /* CBNotificationsVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CBNotificationsVC.xib; sourceTree = "<group>"; };
+		07359D8920A3F96200FEEA4E /* CBRoomView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBRoomView.h; sourceTree = "<group>"; };
+		07359D8A20A3F96200FEEA4E /* CBRoomView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBRoomView.m; sourceTree = "<group>"; };
+		07359D8D20A419E900FEEA4E /* CBLivePlayerVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBLivePlayerVC.h; sourceTree = "<group>"; };
+		07359D8E20A419E900FEEA4E /* CBLivePlayerVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBLivePlayerVC.m; sourceTree = "<group>"; };
 		073746DE208EBB1400E108E9 /* CBWatchVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBWatchVC.h; sourceTree = "<group>"; };
 		073746DF208EBB1400E108E9 /* CBWatchVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBWatchVC.m; sourceTree = "<group>"; };
 		073746E0208EBB1400E108E9 /* CBWatchVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CBWatchVC.xib; sourceTree = "<group>"; };
@@ -345,18 +349,14 @@
 		07B668A7208DD19700AA5B62 /* CBAccountVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBAccountVC.h; sourceTree = "<group>"; };
 		07B668A8208DD19700AA5B62 /* CBAccountVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBAccountVC.m; sourceTree = "<group>"; };
 		07B668A9208DD19700AA5B62 /* CBAccountVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CBAccountVC.xib; sourceTree = "<group>"; };
-		07B8BD1A20A3E14200DD05B2 /* CBLivePlayerVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBLivePlayerVC.h; sourceTree = "<group>"; };
-		07B8BD1B20A3E14200DD05B2 /* CBLivePlayerVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBLivePlayerVC.m; sourceTree = "<group>"; };
+		07B8BD1A20A3E14200DD05B2 /* CBPlayerVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBPlayerVC.h; sourceTree = "<group>"; };
+		07B8BD1B20A3E14200DD05B2 /* CBPlayerVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBPlayerVC.m; sourceTree = "<group>"; };
 		07CD47A7209FF78E00A372C7 /* CBGuardRankCCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBGuardRankCCell.h; sourceTree = "<group>"; };
 		07CD47A8209FF78E00A372C7 /* CBGuardRankCCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBGuardRankCCell.m; sourceTree = "<group>"; };
 		07CD47A9209FF78E00A372C7 /* CBGuardRankCCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CBGuardRankCCell.xib; sourceTree = "<group>"; };
 		07CD47AD20A0269600A372C7 /* CBContributionRankVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBContributionRankVC.h; sourceTree = "<group>"; };
 		07CD47AE20A0269600A372C7 /* CBContributionRankVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBContributionRankVC.m; sourceTree = "<group>"; };
 		07CD47AF20A0269600A372C7 /* CBContributionRankVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CBContributionRankVC.xib; sourceTree = "<group>"; };
-		07CDCAC620902E1700B16FC6 /* CBPlayerScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBPlayerScrollView.h; sourceTree = "<group>"; };
-		07CDCAC720902E1700B16FC6 /* CBPlayerScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBPlayerScrollView.m; sourceTree = "<group>"; };
-		07CDCACA2090522A00B16FC6 /* CBLiveRoomVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBLiveRoomVC.h; sourceTree = "<group>"; };
-		07CDCACB2090522A00B16FC6 /* CBLiveRoomVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBLiveRoomVC.m; sourceTree = "<group>"; };
 		07CDCACD2090598F00B16FC6 /* CBLiveAnchorView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CBLiveAnchorView.xib; sourceTree = "<group>"; };
 		07CDCACE2090598F00B16FC6 /* CBLiveAnchorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBLiveAnchorView.m; sourceTree = "<group>"; };
 		07CDCACF2090598F00B16FC6 /* CBLiveAnchorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBLiveAnchorView.h; sourceTree = "<group>"; };
@@ -625,6 +625,15 @@
 			path = Notifications;
 			sourceTree = "<group>";
 		};
+		07359D8C20A3F96800FEEA4E /* RoomView */ = {
+			isa = PBXGroup;
+			children = (
+				07359D8920A3F96200FEEA4E /* CBRoomView.h */,
+				07359D8A20A3F96200FEEA4E /* CBRoomView.m */,
+			);
+			path = RoomView;
+			sourceTree = "<group>";
+		};
 		073746DD208EBAF600E108E9 /* Watch */ = {
 			isa = PBXGroup;
 			children = (
@@ -884,8 +893,6 @@
 		07558C12209400F9007E41C2 /* BgScrollView */ = {
 			isa = PBXGroup;
 			children = (
-				07CDCAC620902E1700B16FC6 /* CBPlayerScrollView.h */,
-				07CDCAC720902E1700B16FC6 /* CBPlayerScrollView.m */,
 			);
 			path = BgScrollView;
 			sourceTree = "<group>";
@@ -1005,10 +1012,10 @@
 			children = (
 				077D1F8320886C56003B9E56 /* CBLiveVC.h */,
 				077D1F8420886C56003B9E56 /* CBLiveVC.m */,
-				07B8BD1A20A3E14200DD05B2 /* CBLivePlayerVC.h */,
-				07B8BD1B20A3E14200DD05B2 /* CBLivePlayerVC.m */,
-				07CDCACA2090522A00B16FC6 /* CBLiveRoomVC.h */,
-				07CDCACB2090522A00B16FC6 /* CBLiveRoomVC.m */,
+				07B8BD1A20A3E14200DD05B2 /* CBPlayerVC.h */,
+				07B8BD1B20A3E14200DD05B2 /* CBPlayerVC.m */,
+				07359D8D20A419E900FEEA4E /* CBLivePlayerVC.h */,
+				07359D8E20A419E900FEEA4E /* CBLivePlayerVC.m */,
 			);
 			path = Ctrl;
 			sourceTree = "<group>";
@@ -1257,6 +1264,7 @@
 		07CDCAC9209034CC00B16FC6 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				07359D8C20A3F96800FEEA4E /* RoomView */,
 				07558C12209400F9007E41C2 /* BgScrollView */,
 				07558C10209400E9007E41C2 /* TopAnchorView */,
 				07558C11209400F3007E41C2 /* BottomView */,
@@ -1960,7 +1968,8 @@
 				073746FD208ECF5900E108E9 /* CBRecommendVC.m in Sources */,
 				0750562B2092B0C700F0679B /* CBPackageRecordVC.m in Sources */,
 				07F38C0320994A0000DDBC90 /* JPGiftShowManager.m in Sources */,
-				07B8BD1C20A3E14200DD05B2 /* CBLivePlayerVC.m in Sources */,
+				07359D8F20A419E900FEEA4E /* CBLivePlayerVC.m in Sources */,
+				07B8BD1C20A3E14200DD05B2 /* CBPlayerVC.m in Sources */,
 				077FFD0D2099B3BD00B8680C /* CBGuardRankBCell.m in Sources */,
 				0791588A208849C0007CA2E0 /* CBProfileVC.m in Sources */,
 				073746E1208EBB1400E108E9 /* CBWatchVC.m in Sources */,
@@ -1998,6 +2007,7 @@
 				07F38C0E2099503900DDBC90 /* CBGuardVC.m in Sources */,
 				0791587B20883209007CA2E0 /* CBHotVC.m in Sources */,
 				071D3C102092B35D00A6C5CE /* CBPackageRecordCell.m in Sources */,
+				07359D8B20A3F96200FEEA4E /* CBRoomView.m in Sources */,
 				07CD47AA209FF78E00A372C7 /* CBGuardRankCCell.m in Sources */,
 				07F6EFFC20872E3D0035C6BD /* CBAppLiveCell.m in Sources */,
 				07B66891208D6A8900AA5B62 /* CBRealNameVC.m in Sources */,
@@ -2023,14 +2033,12 @@
 				079AAE7A2079C85000674A92 /* CBNVC.m in Sources */,
 				07F6F00220872E3D0035C6BD /* ALinH264Encoder.m in Sources */,
 				07374705208ECFAC00E108E9 /* CBNearbyVC.m in Sources */,
-				07CDCACC2090522A00B16FC6 /* CBLiveRoomVC.m in Sources */,
 				07374702208ECF9C00E108E9 /* CBNewestVC.m in Sources */,
 				07F6EFE220872E3D0035C6BD /* ALinLive.m in Sources */,
 				077FFD082099AA7300B8680C /* CBGuardRankCell.m in Sources */,
 				073746F8208ECEB600E108E9 /* CBVideoVC.m in Sources */,
 				07F6EFDE20872E3D0035C6BD /* LoginViewController.m in Sources */,
 				07F38C0420994A0000DDBC90 /* JPGiftShowView.m in Sources */,
-				07CDCAC820902E1800B16FC6 /* CBPlayerScrollView.m in Sources */,
 				0737470C208ED3F300E108E9 /* CBTitleSelectView.m in Sources */,
 				07F6F00A20872E3D0035C6BD /* UIViewController+SLExtension.m in Sources */,
 				077C1A9F2091A7C10005CE97 /* CBResetPwdVC.m in Sources */,

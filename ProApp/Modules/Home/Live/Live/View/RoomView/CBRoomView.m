@@ -1,12 +1,12 @@
 //
-//  CBLiveRoomVC.m
+//  CBRoomView.m
 //  ProApp
 //
-//  Created by 陈冰 on 2018/4/25.
+//  Created by 陈冰 on 2018/5/10.
 //  Copyright © 2018年 ChenBing. All rights reserved.
 //
 
-#import "CBLiveRoomVC.h"
+#import "CBRoomView.h"
 #import "CBLiveAnchorView.h"
 #import "CBLiveBottomView.h"
 #import "UILabel+ShadowText.h"
@@ -23,12 +23,13 @@
 #import "UIImageView+WebCache.h"
 #import "NSObject+YYModel.h"
 
-@interface CBLiveRoomVC () <JPGiftViewDelegate>
+
+@interface CBRoomView () <JPGiftViewDelegate>
 
 @property (nonatomic, strong) UIScrollView *scrollView;     ///< 实现左滑清空数据
 @property (nonatomic, strong) UIView *leftView;             ///< 左边控件容器
 @property (nonatomic, strong) UIView *rightView;            ///< 右边控件容器
-@property (nonatomic, strong) CBLiveAnchorView *anchorView; ///< 顶部主播相关视图 
+@property (nonatomic, strong) CBLiveAnchorView *anchorView; ///< 顶部主播相关视图
 @property (nonatomic, strong) CBLiveBottomView *bottomView; ///< 底部主播相关视图
 @property (nonatomic, strong) UIImageView *topGradientView;      ///< 上部渐变
 @property (nonatomic, strong) UIImageView *bottomGradientView;   ///< 下部渐变
@@ -36,18 +37,25 @@
 @property (nonatomic, strong) CBOnlineUserView *onlineUserView; ///< 在线用户
 @property (nonatomic, strong) CBAnchorInfoView *anchorInfoView; ///< 直播用户信息
 
-/** gift */
-@property(nonatomic,strong) JPGiftView *giftView;
-/** gifimage */
-@property(nonatomic,strong) UIImageView *gifImageView;
+
+@property (nonatomic, strong) JPGiftView *giftView;     /** gift */
+
+@property (nonatomic, strong) UIImageView *gifImageView;    /** gifimage */
 
 @end
 
-@implementation CBLiveRoomVC
+@implementation CBRoomView
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    [self.view addSubview:self.scrollView];
+- (instancetype)initWithFrame:(CGRect)frame {
+    self = [super initWithFrame:frame];
+    if (self) {
+        [self setupUI];
+    }
+    return self;
+}
+
+- (void)setupUI {
+    [self addSubview:self.scrollView];
     [self.scrollView addSubview:self.leftView];
     [self.scrollView addSubview:self.rightView];
     [self.leftView addSubview:self.roomCodeLabel];
@@ -55,7 +63,7 @@
     [self.rightView addSubview:self.bottomGradientView];
     [self.rightView addSubview:self.anchorView];
     [self.rightView addSubview:self.bottomView];
-        
+    
     UIWindow *window = [[UIApplication sharedApplication].delegate window];
     @weakify(self);
     [self.anchorView.peopleBtn addBlockForControlEvents:UIControlEventTouchUpInside block:^(id  _Nonnull sender) {
@@ -63,23 +71,23 @@
         [self.onlineUserView showIn:window];
     }];
     [self.anchorView.achorInfoBtn addBlockForControlEvents:UIControlEventTouchUpInside block:^(id  _Nonnull sender) {
-         @strongify(self);
+        @strongify(self);
         [self.anchorInfoView showIn:window];
     }];
     [self.anchorView.gurardBtn addBlockForControlEvents:UIControlEventTouchUpInside block:^(id  _Nonnull sender) {
         @strongify(self);
         CBGuardVC *vc = [CBGuardVC new];
-        [self.navigationController pushViewController:vc animated:YES];
+//        [self.navigationController pushViewController:vc animated:YES];
     }];
     [self.anchorView.guardScrollView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithActionBlock:^(id  _Nonnull sender) {
         @strongify(self);
         CBGuardRankVC *vc = [CBGuardRankVC new];
-        [self.navigationController pushViewController:vc animated:YES];
+//        [self.navigationController pushViewController:vc animated:YES];
     }]];
     [self.anchorView.moneyBtn addBlockForControlEvents:UIControlEventTouchUpInside block:^(id  _Nonnull sender) {
         @strongify(self);
         CBContributionRankVC *vc = [CBContributionRankVC new];
-        [self.navigationController pushViewController:vc animated:YES];
+//        [self.navigationController pushViewController:vc animated:YES];
     }];
     [self.bottomView.giftBtn addBlockForControlEvents:UIControlEventTouchUpInside block:^(id  _Nonnull sender) {
         @strongify(self);
@@ -94,8 +102,6 @@
     self.giftView.dataArray = [NSArray modelArrayWithClass:[JPGiftCellModel class] json:dataArr];
 }
 
-
-
 - (void)giftViewSendGiftInView:(JPGiftView *)giftView data:(JPGiftCellModel *)model {
     NSLog(@"点击-- %@",model.name);
     JPGiftModel *giftModel = [[JPGiftModel alloc] init];
@@ -107,7 +113,7 @@
     giftModel.giftId = model.id;
     giftModel.defaultCount = 0;
     giftModel.sendCount = 1;
-   
+    
     [[JPGiftShowManager sharedManager] showGiftViewWithBackView:self.rightView info:giftModel completeBlock:^(BOOL finished) {
         //结束
     } completeShowGifImageBlock:^(JPGiftModel *giftModel) {
@@ -132,13 +138,7 @@
     NSLog(@"充值");
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 #pragma mark - layz
-
 - (UIScrollView *)scrollView {
     if (!_scrollView) {
         _scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight)];

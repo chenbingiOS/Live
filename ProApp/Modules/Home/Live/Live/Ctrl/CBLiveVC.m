@@ -24,14 +24,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.delegate   = self;
+    self.dataSource = self;
+
     for (UIView *subView in self.view.subviews ) {
         if ([subView isKindOfClass:[UIScrollView class]]) {
             UIScrollView* scrollView = (UIScrollView*)subView;
             scrollView.delaysContentTouches = NO; // 默认值为YES；如果设置为NO，则无论手指移动的多么快，始终都会将触摸事件传递给内部控件；设置为NO可能会影响到UIScrollView的滚动功能。
         }
     }
-    self.delegate       = self;
-    self.dataSource     = self;
     
     [self reloadCtrl];
 }
