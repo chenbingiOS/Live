@@ -80,10 +80,6 @@
         return NO;
     }
     
-    if ([viewCtrl isKindOfClass:NSClassFromString(@"CBProfileVC")]) {
-        return NO;
-    }
-    
     return YES;
 }
 

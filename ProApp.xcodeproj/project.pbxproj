@@ -64,6 +64,8 @@
 		07558C2B2094569C007E41C2 /* CBAnchorInfoXibView.m in Sources */ = {isa = PBXBuildFile; fileRef = 07558C2A2094569C007E41C2 /* CBAnchorInfoXibView.m */; };
 		07558C2D209456A5007E41C2 /* CBAnchorInfoXibView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 07558C2C209456A5007E41C2 /* CBAnchorInfoXibView.xib */; };
 		075DB82C207D974F00891E60 /* UIView+CornerRadius.m in Sources */ = {isa = PBXBuildFile; fileRef = 075DB82B207D974F00891E60 /* UIView+CornerRadius.m */; };
+		07659C1E20A4439700EBE030 /* HcdGuideView.m in Sources */ = {isa = PBXBuildFile; fileRef = 07659C1B20A4439700EBE030 /* HcdGuideView.m */; };
+		07659C1F20A4439700EBE030 /* HcdGuideViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 07659C1C20A4439700EBE030 /* HcdGuideViewCell.m */; };
 		076F52A120750E64004F91E8 /* AppDelegate+AppServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 076F52A020750E64004F91E8 /* AppDelegate+AppServer.m */; };
 		07737DE2208F0150009EB9E6 /* CBMyAttentionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 07737DE0208F0150009EB9E6 /* CBMyAttentionVC.m */; };
 		07737DE3208F0150009EB9E6 /* CBMyAttentionVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 07737DE1208F0150009EB9E6 /* CBMyAttentionVC.xib */; };
@@ -172,7 +174,6 @@
 		07F6F00020872E3D0035C6BD /* ShowTimeViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07F6EFB220872E3C0035C6BD /* ShowTimeViewController.storyboard */; };
 		07F6F00120872E3D0035C6BD /* ShowTimeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07F6EFB320872E3C0035C6BD /* ShowTimeViewController.m */; };
 		07F6F00220872E3D0035C6BD /* ALinH264Encoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 07F6EFB620872E3C0035C6BD /* ALinH264Encoder.m */; };
-		07F6F00320872E3D0035C6BD /* ALinGPUBeautifyFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 07F6EFB820872E3C0035C6BD /* ALinGPUBeautifyFilter.m */; };
 		07F6F00420872E3D0035C6BD /* UIImage+ALinExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 07F6EFBD20872E3C0035C6BD /* UIImage+ALinExtension.m */; };
 		07F6F00520872E3D0035C6BD /* ALinRefreshGifHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 07F6EFC020872E3C0035C6BD /* ALinRefreshGifHeader.m */; };
 		07F6F00620872E3D0035C6BD /* UIImageView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 07F6EFC320872E3C0035C6BD /* UIImageView+Extension.m */; };
@@ -278,6 +279,10 @@
 		07558C2C209456A5007E41C2 /* CBAnchorInfoXibView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CBAnchorInfoXibView.xib; sourceTree = "<group>"; };
 		075DB82A207D974F00891E60 /* UIView+CornerRadius.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+CornerRadius.h"; sourceTree = "<group>"; };
 		075DB82B207D974F00891E60 /* UIView+CornerRadius.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+CornerRadius.m"; sourceTree = "<group>"; };
+		07659C1A20A4439700EBE030 /* HcdGuideViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HcdGuideViewCell.h; sourceTree = "<group>"; };
+		07659C1B20A4439700EBE030 /* HcdGuideView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HcdGuideView.m; sourceTree = "<group>"; };
+		07659C1C20A4439700EBE030 /* HcdGuideViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HcdGuideViewCell.m; sourceTree = "<group>"; };
+		07659C1D20A4439700EBE030 /* HcdGuideView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HcdGuideView.h; sourceTree = "<group>"; };
 		076F529F20750E64004F91E8 /* AppDelegate+AppServer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+AppServer.h"; sourceTree = "<group>"; };
 		076F52A020750E64004F91E8 /* AppDelegate+AppServer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+AppServer.m"; sourceTree = "<group>"; };
 		07737DDF208F0150009EB9E6 /* CBMyAttentionVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBMyAttentionVC.h; sourceTree = "<group>"; };
@@ -461,8 +466,6 @@
 		07F6EFB320872E3C0035C6BD /* ShowTimeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowTimeViewController.m; sourceTree = "<group>"; };
 		07F6EFB520872E3C0035C6BD /* ALinH264Encoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALinH264Encoder.h; sourceTree = "<group>"; };
 		07F6EFB620872E3C0035C6BD /* ALinH264Encoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ALinH264Encoder.m; sourceTree = "<group>"; };
-		07F6EFB820872E3C0035C6BD /* ALinGPUBeautifyFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ALinGPUBeautifyFilter.m; sourceTree = "<group>"; };
-		07F6EFB920872E3C0035C6BD /* ALinGPUBeautifyFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALinGPUBeautifyFilter.h; sourceTree = "<group>"; };
 		07F6EFBC20872E3C0035C6BD /* UIImage+ALinExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ALinExtension.h"; sourceTree = "<group>"; };
 		07F6EFBD20872E3C0035C6BD /* UIImage+ALinExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ALinExtension.m"; sourceTree = "<group>"; };
 		07F6EFBF20872E3C0035C6BD /* ALinRefreshGifHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALinRefreshGifHeader.h; sourceTree = "<group>"; };
@@ -834,6 +837,7 @@
 		0737EDA12074A37600A89CC0 /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				07659C1920A4439700EBE030 /* HcdGuideView */,
 				07F38BEC209949FF00DDBC90 /* JPGiftManager */,
 				07F6EF3820872A9B0035C6BD /* Frameworks */,
 			);
@@ -946,6 +950,17 @@
 				07558C2C209456A5007E41C2 /* CBAnchorInfoXibView.xib */,
 			);
 			path = AnchorInfoView;
+			sourceTree = "<group>";
+		};
+		07659C1920A4439700EBE030 /* HcdGuideView */ = {
+			isa = PBXGroup;
+			children = (
+				07659C1D20A4439700EBE030 /* HcdGuideView.h */,
+				07659C1B20A4439700EBE030 /* HcdGuideView.m */,
+				07659C1A20A4439700EBE030 /* HcdGuideViewCell.h */,
+				07659C1C20A4439700EBE030 /* HcdGuideViewCell.m */,
+			);
+			path = HcdGuideView;
 			sourceTree = "<group>";
 		};
 		07737DDD208F00EF009EB9E6 /* MyFans */ = {
@@ -1617,7 +1632,6 @@
 			children = (
 				07F6EFB020872E3C0035C6BD /* Controller */,
 				07F6EFB420872E3C0035C6BD /* H264Encoder */,
-				07F6EFB720872E3C0035C6BD /* Filter */,
 			);
 			path = ShowTime;
 			sourceTree = "<group>";
@@ -1639,15 +1653,6 @@
 				07F6EFB620872E3C0035C6BD /* ALinH264Encoder.m */,
 			);
 			path = H264Encoder;
-			sourceTree = "<group>";
-		};
-		07F6EFB720872E3C0035C6BD /* Filter */ = {
-			isa = PBXGroup;
-			children = (
-				07F6EFB920872E3C0035C6BD /* ALinGPUBeautifyFilter.h */,
-				07F6EFB820872E3C0035C6BD /* ALinGPUBeautifyFilter.m */,
-			);
-			path = Filter;
 			sourceTree = "<group>";
 		};
 		07F6EFBA20872E3C0035C6BD /* Toos */ = {
@@ -1997,6 +2002,7 @@
 				0791588A208849C0007CA2E0 /* CBProfileVC.m in Sources */,
 				073746E1208EBB1400E108E9 /* CBWatchVC.m in Sources */,
 				07F6EFFF20872E3D0035C6BD /* ALinNetworkTool.m in Sources */,
+				07659C1F20A4439700EBE030 /* HcdGuideViewCell.m in Sources */,
 				07F6EFF920872E3D0035C6BD /* ALinTopAD.m in Sources */,
 				077C1AAA2091A9B20005CE97 /* CBBlackListVC.m in Sources */,
 				07F6EFF320872E3D0035C6BD /* ALinLiveAnchorView.m in Sources */,
@@ -2013,6 +2019,7 @@
 				07F6EFDD20872E3D0035C6BD /* ALinConstant.m in Sources */,
 				07558C2B2094569C007E41C2 /* CBAnchorInfoXibView.m in Sources */,
 				077C1AA42091A7E00005CE97 /* CBPhoneBindVC.m in Sources */,
+				07659C1E20A4439700EBE030 /* HcdGuideView.m in Sources */,
 				077C1AAF2091AA160005CE97 /* CBAboutVC.m in Sources */,
 				07F6EFDF20872E3D0035C6BD /* ThirdLoginView.m in Sources */,
 				073746E8208EBFAB00E108E9 /* CBWatchCell.m in Sources */,
@@ -2038,7 +2045,6 @@
 				07F6EFE320872E3D0035C6BD /* CBSelectedView.m in Sources */,
 				073746F2208EC7C800E108E9 /* CBWatchVO.m in Sources */,
 				07F6EFF820872E3D0035C6BD /* CBAppLiveVC.m in Sources */,
-				07F6F00320872E3D0035C6BD /* ALinGPUBeautifyFilter.m in Sources */,
 				07F6EFEC20872E3D0035C6BD /* ALinBottomToolView.m in Sources */,
 				07737DE7208F0161009EB9E6 /* CBMyFansVC.m in Sources */,
 				07F6EFF420872E3D0035C6BD /* ALinNewStarViewController.m in Sources */,

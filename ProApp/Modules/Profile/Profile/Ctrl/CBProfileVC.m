@@ -16,6 +16,7 @@
 #import "CBAccountVC.h"
 #import "CBGiftPackageVC.h"
 #import "CBSettingVC.h"
+#import "CBLoginVC.h"
 
 @interface CBProfileVC ()
 
@@ -32,6 +33,7 @@
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
 
@@ -45,6 +47,11 @@
 - (void)setupUI {
     // userAvaterImageView 
     [self.userAvaterImageView roundedCornerByDefault];
+}
+
+- (IBAction)actionLogin:(id)sender {
+    CBLoginVC *vc = [CBLoginVC new];
+    [self.navigationController presentViewController:vc animated:YES completion:nil];
 }
 
 - (IBAction)actionMyAttention:(id)sender {

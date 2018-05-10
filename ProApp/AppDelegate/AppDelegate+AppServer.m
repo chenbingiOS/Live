@@ -9,6 +9,7 @@
 #import "AppDelegate+AppServer.h"
 #import "CBTBC.h"
 #import "CBNVC.h"
+#import "HcdGuideView.h"
 
 @implementation AppDelegate (AppServer)
 
@@ -21,8 +22,27 @@
 
 #pragma mark - rootVC
 - (void)initRootVC {
+    
     self.rootVC = [CBTBC new];
     self.window.rootViewController = self.rootVC;
+    
+    NSMutableArray *images = [NSMutableArray new];
+    if (iPhoneX) {
+        [images addObject:[UIImage imageNamed:@"guide_X1"]];
+        [images addObject:[UIImage imageNamed:@"guide_X2"]];
+        [images addObject:[UIImage imageNamed:@"guide_X3"]];
+    } else {
+        [images addObject:[UIImage imageNamed:@"guide_1"]];
+        [images addObject:[UIImage imageNamed:@"guide_2"]];
+        [images addObject:[UIImage imageNamed:@"guide_3"]];
+    }
+    HcdGuideView *guideView = [HcdGuideView sharedInstance];
+    guideView.window = self.window;
+    [guideView showGuideViewWithImages:images
+                        andButtonTitle:@"立即体验"
+                   andButtonTitleColor:[UIColor whiteColor]
+                      andButtonBGColor:[UIColor mainColor]
+                  andButtonBorderColor:[UIColor clearColor]];
 }
 
 #pragma mark - 全局外观
