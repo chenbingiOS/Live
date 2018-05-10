@@ -17,6 +17,7 @@
 #import "CBGiftPackageVC.h"
 #import "CBSettingVC.h"
 #import "CBLoginVC.h"
+#import "CBNVC.h"
 
 @interface CBProfileVC ()
 
@@ -51,7 +52,8 @@
 
 - (IBAction)actionLogin:(id)sender {
     CBLoginVC *vc = [CBLoginVC new];
-    [self.navigationController presentViewController:vc animated:YES completion:nil];
+    CBNVC *navc = [[CBNVC alloc] initWithRootViewController:vc];
+    [self presentViewController:navc animated:YES completion:nil];
 }
 
 - (IBAction)actionMyAttention:(id)sender {

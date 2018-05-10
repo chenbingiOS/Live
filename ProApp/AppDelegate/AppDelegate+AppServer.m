@@ -26,6 +26,7 @@
     self.rootVC = [CBTBC new];
     self.window.rootViewController = self.rootVC;
     
+    // 引导页面
     NSMutableArray *images = [NSMutableArray new];
     if (iPhoneX) {
         [images addObject:[UIImage imageNamed:@"guide_X1"]];
