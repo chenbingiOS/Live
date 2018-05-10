@@ -26,6 +26,9 @@
 		072DC5A12091A1B600F693E8 /* CBNotificationsVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 072DC59F2091A1B500F693E8 /* CBNotificationsVC.xib */; };
 		07359D8B20A3F96200FEEA4E /* CBRoomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 07359D8A20A3F96200FEEA4E /* CBRoomView.m */; };
 		07359D8F20A419E900FEEA4E /* CBLivePlayerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 07359D8E20A419E900FEEA4E /* CBLivePlayerVC.m */; };
+		07359D9320A422DD00FEEA4E /* CBLoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 07359D9120A422DD00FEEA4E /* CBLoginVC.m */; };
+		07359D9420A422DD00FEEA4E /* CBLoginVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 07359D9220A422DD00FEEA4E /* CBLoginVC.xib */; };
+		07359D9820A429AC00FEEA4E /* CBLiveVideoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 07359D9720A429AC00FEEA4E /* CBLiveVideoVC.m */; };
 		073746E1208EBB1400E108E9 /* CBWatchVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 073746DF208EBB1400E108E9 /* CBWatchVC.m */; };
 		073746E2208EBB1400E108E9 /* CBWatchVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 073746E0208EBB1400E108E9 /* CBWatchVC.xib */; };
 		073746E8208EBFAB00E108E9 /* CBWatchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 073746E6208EBFAB00E108E9 /* CBWatchCell.m */; };
@@ -212,6 +215,11 @@
 		07359D8A20A3F96200FEEA4E /* CBRoomView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBRoomView.m; sourceTree = "<group>"; };
 		07359D8D20A419E900FEEA4E /* CBLivePlayerVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBLivePlayerVC.h; sourceTree = "<group>"; };
 		07359D8E20A419E900FEEA4E /* CBLivePlayerVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBLivePlayerVC.m; sourceTree = "<group>"; };
+		07359D9020A422DD00FEEA4E /* CBLoginVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBLoginVC.h; sourceTree = "<group>"; };
+		07359D9120A422DD00FEEA4E /* CBLoginVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBLoginVC.m; sourceTree = "<group>"; };
+		07359D9220A422DD00FEEA4E /* CBLoginVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CBLoginVC.xib; sourceTree = "<group>"; };
+		07359D9620A429AC00FEEA4E /* CBLiveVideoVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBLiveVideoVC.h; sourceTree = "<group>"; };
+		07359D9720A429AC00FEEA4E /* CBLiveVideoVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBLiveVideoVC.m; sourceTree = "<group>"; };
 		073746DE208EBB1400E108E9 /* CBWatchVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBWatchVC.h; sourceTree = "<group>"; };
 		073746DF208EBB1400E108E9 /* CBWatchVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBWatchVC.m; sourceTree = "<group>"; };
 		073746E0208EBB1400E108E9 /* CBWatchVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CBWatchVC.xib; sourceTree = "<group>"; };
@@ -634,6 +642,15 @@
 			path = RoomView;
 			sourceTree = "<group>";
 		};
+		07359D9520A4299400FEEA4E /* LiveVideo */ = {
+			isa = PBXGroup;
+			children = (
+				07359D9620A429AC00FEEA4E /* CBLiveVideoVC.h */,
+				07359D9720A429AC00FEEA4E /* CBLiveVideoVC.m */,
+			);
+			path = LiveVideo;
+			sourceTree = "<group>";
+		};
 		073746DD208EBAF600E108E9 /* Watch */ = {
 			isa = PBXGroup;
 			children = (
@@ -807,6 +824,7 @@
 				07F6EF5A20872E3C0035C6BD /* Login */,
 				07F6EF6120872E3C0035C6BD /* Home */,
 				073746F3208ECD1900E108E9 /* Video */,
+				07359D9520A4299400FEEA4E /* LiveVideo */,
 				0791587C20883900007CA2E0 /* Attention */,
 				07F6EF4620872E3C0035C6BD /* Profile */,
 			);
@@ -1374,19 +1392,22 @@
 		07F6EF5A20872E3C0035C6BD /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				07F6EF5B20872E3C0035C6BD /* Controller */,
+				07F6EF5B20872E3C0035C6BD /* Ctrl */,
 				07F6EF5E20872E3C0035C6BD /* View */,
 			);
 			path = Login;
 			sourceTree = "<group>";
 		};
-		07F6EF5B20872E3C0035C6BD /* Controller */ = {
+		07F6EF5B20872E3C0035C6BD /* Ctrl */ = {
 			isa = PBXGroup;
 			children = (
 				07F6EF5D20872E3C0035C6BD /* LoginViewController.h */,
 				07F6EF5C20872E3C0035C6BD /* LoginViewController.m */,
+				07359D9020A422DD00FEEA4E /* CBLoginVC.h */,
+				07359D9120A422DD00FEEA4E /* CBLoginVC.m */,
+				07359D9220A422DD00FEEA4E /* CBLoginVC.xib */,
 			);
-			path = Controller;
+			path = Ctrl;
 			sourceTree = "<group>";
 		};
 		07F6EF5E20872E3C0035C6BD /* View */ = {
@@ -1833,6 +1854,7 @@
 				077FFD022099A67400B8680C /* CBGuardRankVC.xib in Resources */,
 				07F6EFFA20872E3D0035C6BD /* CBAppLiveCell.xib in Resources */,
 				07B66892208D6A8900AA5B62 /* CBRealNameVC.xib in Resources */,
+				07359D9420A422DD00FEEA4E /* CBLoginVC.xib in Resources */,
 				07558C2D209456A5007E41C2 /* CBAnchorInfoXibView.xib in Resources */,
 				0737ED912074A33600A89CC0 /* Assets.xcassets in Resources */,
 				07F6EFEF20872E3D0035C6BD /* ALinUserView.xib in Resources */,
@@ -1971,6 +1993,7 @@
 				07359D8F20A419E900FEEA4E /* CBLivePlayerVC.m in Sources */,
 				07B8BD1C20A3E14200DD05B2 /* CBPlayerVC.m in Sources */,
 				077FFD0D2099B3BD00B8680C /* CBGuardRankBCell.m in Sources */,
+				07359D9320A422DD00FEEA4E /* CBLoginVC.m in Sources */,
 				0791588A208849C0007CA2E0 /* CBProfileVC.m in Sources */,
 				073746E1208EBB1400E108E9 /* CBWatchVC.m in Sources */,
 				07F6EFFF20872E3D0035C6BD /* ALinNetworkTool.m in Sources */,
@@ -1980,6 +2003,7 @@
 				07CD47B020A0269600A372C7 /* CBContributionRankVC.m in Sources */,
 				07B6689E208D902500AA5B62 /* UIView+DashedLine.m in Sources */,
 				07F6EFFE20872E3D0035C6BD /* Reachability.m in Sources */,
+				07359D9820A429AC00FEEA4E /* CBLiveVideoVC.m in Sources */,
 				07F38C0120994A0000DDBC90 /* JPGiftView.m in Sources */,
 				07F6F00920872E3D0035C6BD /* UIDevice+SLExtension.m in Sources */,
 				07B66896208D71E400AA5B62 /* CBFillInfoViewController.m in Sources */,

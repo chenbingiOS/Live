@@ -9,56 +9,61 @@
 #import "CBTBC.h"
 #import "CBNVC.h"
 
-@interface CBTBC ()
+@interface CBTBC () <UITabBarControllerDelegate>
 
 @end
 
 @implementation CBTBC
 
 - (void)viewDidLoad {
-    [super viewDidLoad];    
+    [super viewDidLoad];
+    self.delegate = self;
+    self.tabBar.translucent = YES;
+    
     [self _PhoneTBC_setupVCs];
-    [self _PhoneTBC_setupViews];
 }
 
+/** 配置底部标签栏 */
 - (void)_PhoneTBC_setupVCs {
-    UIViewController *vc1 = [NSClassFromString(@"CBHomeVC") new];
-    CBNVC *nc1 = [[CBNVC alloc] initWithRootViewController:vc1];
-    UIViewController *vc2 = [NSClassFromString(@"CBVideoVC") new];
-    CBNVC *nc2 = [[CBNVC alloc] initWithRootViewController:vc2];
-    UIViewController *vc3 = [NSClassFromString(@"CBAttentionVC") new];
-    CBNVC *nc3 = [[CBNVC alloc] initWithRootViewController:vc3];
-    UIViewController *vc4 = [NSClassFromString(@"CBProfileVC") new];
-    CBNVC *nc4 = [[CBNVC alloc] initWithRootViewController:vc4];
-    [self setViewControllers:@[nc1, nc2, nc3, nc4] animated:NO];
-}
-
-- (void)_PhoneTBC_setupViews {
+    NSArray *ctrlArr = @[@"CBHomeVC",
+                         @"CBVideoVC",
+                         @"CBLiveVideoVC",
+                         @"CBAttentionVC",
+                         @"CBProfileVC"];
     NSArray *imgOffAry = @[@"home",
                            @"video",
+                           @"liveVideo",
                            @"follow",
                            @"my"];
     NSArray *imgOnAry = @[@"home_pre",
                           @"video_pre",
+                          @"liveVideo",
                           @"follow_pre",
                           @"my_pre"];
-    NSArray *titleAry =  @[@"首页",
+    NSArray *titleAry =  @[@"直播",
                            @"视频",
+                           @"直播&小视频",
                            @"关注",
                            @"我的" ];
-    NSDictionary *titleSelectColor = @{NSForegroundColorAttributeName : [UIColor titleSelectColor]};
-    NSDictionary *titleNormalColor = @{NSForegroundColorAttributeName : [UIColor titleNormalColor]};
-    NSArray *vcAry = self.viewControllers;
-    for (NSInteger i = 0; i < vcAry.count; i++) {
-        UIViewController *vCtrl = (UIViewController *)vcAry[i];
-        vCtrl.tabBarItem.image = [[UIImage imageNamed:imgOffAry[i]] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-        vCtrl.tabBarItem.selectedImage = [[UIImage imageNamed:imgOnAry[i]] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-        vCtrl.tabBarItem.title = titleAry[i];
+    NSMutableArray *array = [NSMutableArray array];
+    for (NSInteger i = 0; i < ctrlArr.count; i++)
+    {
+        Class cls = NSClassFromString(ctrlArr[i]);
+        UIViewController *vCtrl = (UIViewController *)[[cls alloc] init];
         
-        // 选中颜色
-        [vCtrl.tabBarItem setTitleTextAttributes:titleSelectColor forState:UIControlStateSelected];
-        [vCtrl.tabBarItem setTitleTextAttributes:titleNormalColor forState:UIControlStateNormal];
+        vCtrl.tabBarItem.tag = i;
+        vCtrl.tabBarItem.title = titleAry[i];
+        vCtrl.tabBarItem.image = [[UIImage imageNamed:imgOffAry[i]] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        vCtrl.tabBarItem.selectedImage = [[UIImage imageNamed:imgOnAry[i]] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];;
+        if (i == 2) {
+            vCtrl.tabBarItem.title = @"";
+            vCtrl.tabBarItem.imageInsets = UIEdgeInsetsMake(6, 0, -6, 0);
+        }
+        
+        CBNVC *navi = [[CBNVC alloc] initWithRootViewController:vCtrl];
+        [array addObject:navi];
     }
+    self.viewControllers = array;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -66,4 +71,45 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController {
+    
+    CBNVC *naviCtrl = (CBNVC *)viewController;
+    id viewCtrl = [naviCtrl.viewControllers firstObject];
+    
+    if ([viewCtrl isKindOfClass:NSClassFromString(@"CBLiveVideoVC")]) {
+        return NO;
+    }
+    
+    if ([viewCtrl isKindOfClass:NSClassFromString(@"CBProfileVC")]) {
+        return NO;
+    }
+    
+    return YES;
+}
+
 @end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
