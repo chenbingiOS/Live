@@ -132,7 +132,7 @@ static NSString *reuseIdentifier = @"CBAppLiveCell";
 
 #pragma mark - TableView delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    CBLiveVC *liveVC = [CBLiveVC new];
+    CBLiveVC *liveVC = [[CBLiveVC alloc] initWithTransitionStyle:(UIPageViewControllerTransitionStyleScroll) navigationOrientation:(UIPageViewControllerNavigationOrientationVertical) options:@{UIPageViewControllerOptionInterPageSpacingKey:@(0)}];
     liveVC.lives = self.lives;
     liveVC.currentIndex = indexPath.row-1;
     CBNVC *nvc = [[CBNVC alloc] initWithRootViewController:liveVC];

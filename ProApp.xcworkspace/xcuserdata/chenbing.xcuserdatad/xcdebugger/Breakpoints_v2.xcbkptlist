@@ -10,44 +10,44 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ProApp/Modules/Home/Live/Live/Ctrl/CBLiveVC.m"
-            timestampString = "547609131.1902421"
+            timestampString = "547612961.8558151"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "112"
-            endingLineNumber = "112"
-            landmarkName = "-addLiveRoomViewToView:WithLive:"
+            startingLineNumber = "25"
+            endingLineNumber = "25"
+            landmarkName = "-viewDidLoad"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ProApp/Modules/Home/Live/Live/Ctrl/CBLiveVC.m"
-            timestampString = "547609131.1906101"
+            timestampString = "547612961.856187"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "119"
-            endingLineNumber = "119"
-            landmarkName = "-showWaiting"
+            startingLineNumber = "55"
+            endingLineNumber = "55"
+            landmarkName = "-pageViewController:viewControllerBeforeViewController:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ProApp/Modules/Home/Live/Live/Ctrl/CBLiveVC.m"
-            timestampString = "547609131.1908571"
+            timestampString = "547612961.856406"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "133"
-            endingLineNumber = "133"
-            landmarkName = "-playerScrollView:currentPlayerIndex:"
+            startingLineNumber = "72"
+            endingLineNumber = "72"
+            landmarkName = "-pageViewController:viewControllerAfterViewController:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

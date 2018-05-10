@@ -108,6 +108,7 @@
 		07B668A5208DC2B400AA5B62 /* CBFillInfoOKView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 07B668A4208DC2B400AA5B62 /* CBFillInfoOKView.xib */; };
 		07B668AA208DD19700AA5B62 /* CBAccountVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 07B668A8208DD19700AA5B62 /* CBAccountVC.m */; };
 		07B668AB208DD19700AA5B62 /* CBAccountVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 07B668A9208DD19700AA5B62 /* CBAccountVC.xib */; };
+		07B8BD1C20A3E14200DD05B2 /* CBLivePlayerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 07B8BD1B20A3E14200DD05B2 /* CBLivePlayerVC.m */; };
 		07CD47AA209FF78E00A372C7 /* CBGuardRankCCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 07CD47A8209FF78E00A372C7 /* CBGuardRankCCell.m */; };
 		07CD47AB209FF78E00A372C7 /* CBGuardRankCCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 07CD47A9209FF78E00A372C7 /* CBGuardRankCCell.xib */; };
 		07CD47B020A0269600A372C7 /* CBContributionRankVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 07CD47AE20A0269600A372C7 /* CBContributionRankVC.m */; };
@@ -344,6 +345,8 @@
 		07B668A7208DD19700AA5B62 /* CBAccountVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBAccountVC.h; sourceTree = "<group>"; };
 		07B668A8208DD19700AA5B62 /* CBAccountVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBAccountVC.m; sourceTree = "<group>"; };
 		07B668A9208DD19700AA5B62 /* CBAccountVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CBAccountVC.xib; sourceTree = "<group>"; };
+		07B8BD1A20A3E14200DD05B2 /* CBLivePlayerVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBLivePlayerVC.h; sourceTree = "<group>"; };
+		07B8BD1B20A3E14200DD05B2 /* CBLivePlayerVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBLivePlayerVC.m; sourceTree = "<group>"; };
 		07CD47A7209FF78E00A372C7 /* CBGuardRankCCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBGuardRankCCell.h; sourceTree = "<group>"; };
 		07CD47A8209FF78E00A372C7 /* CBGuardRankCCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBGuardRankCCell.m; sourceTree = "<group>"; };
 		07CD47A9209FF78E00A372C7 /* CBGuardRankCCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CBGuardRankCCell.xib; sourceTree = "<group>"; };
@@ -1002,6 +1005,8 @@
 			children = (
 				077D1F8320886C56003B9E56 /* CBLiveVC.h */,
 				077D1F8420886C56003B9E56 /* CBLiveVC.m */,
+				07B8BD1A20A3E14200DD05B2 /* CBLivePlayerVC.h */,
+				07B8BD1B20A3E14200DD05B2 /* CBLivePlayerVC.m */,
 				07CDCACA2090522A00B16FC6 /* CBLiveRoomVC.h */,
 				07CDCACB2090522A00B16FC6 /* CBLiveRoomVC.m */,
 			);
@@ -1955,6 +1960,7 @@
 				073746FD208ECF5900E108E9 /* CBRecommendVC.m in Sources */,
 				0750562B2092B0C700F0679B /* CBPackageRecordVC.m in Sources */,
 				07F38C0320994A0000DDBC90 /* JPGiftShowManager.m in Sources */,
+				07B8BD1C20A3E14200DD05B2 /* CBLivePlayerVC.m in Sources */,
 				077FFD0D2099B3BD00B8680C /* CBGuardRankBCell.m in Sources */,
 				0791588A208849C0007CA2E0 /* CBProfileVC.m in Sources */,
 				073746E1208EBB1400E108E9 /* CBWatchVC.m in Sources */,
