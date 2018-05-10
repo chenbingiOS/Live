@@ -1,0 +1,383 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CBFillInfoViewController">
+            <connections>
+                <outlet property="backIDCardImageView" destination="OgJ-fB-G7M" id="BMl-yu-9FI"/>
+                <outlet property="backIDCardView" destination="fZe-nf-R5T" id="ayZ-nh-W4h"/>
+                <outlet property="positiveIDCardImageView" destination="NgK-XR-B8i" id="ZYy-bO-cl3"/>
+                <outlet property="positiveIDCardView" destination="R3o-6C-dRS" id="HYE-rD-oRo"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="viewHeightConstraint" destination="vHJ-yD-5wn" id="0oI-DR-472"/>
+                <outlet property="viewWidthConstraint" destination="P9C-Be-wDh" id="WN9-gz-zni"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="930"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kIC-RY-dNk">
+                    <rect key="frame" x="0.0" y="20" width="375" height="910"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Etf-ag-gaE">
+                            <rect key="frame" x="0.0" y="0.0" width="374" height="909"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2aK-nz-7AD">
+                                    <rect key="frame" x="0.0" y="12" width="374" height="102"/>
+                                    <subviews>
+                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入真实姓名" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VvB-6d-bPT">
+                                            <rect key="frame" x="16" y="0.0" width="342" height="40"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="40" id="eAD-9t-IUX"/>
+                                            </constraints>
+                                            <nil key="textColor"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                        </textField>
+                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入正确的身份证号码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KCB-g6-Hok">
+                                            <rect key="frame" x="16" y="50" width="342" height="40"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="40" id="WRC-A8-IWR"/>
+                                            </constraints>
+                                            <nil key="textColor"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                        </textField>
+                                    </subviews>
+                                    <color key="backgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.94901960780000005" alpha="1" colorSpace="deviceRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="KCB-g6-Hok" secondAttribute="trailing" constant="16" id="D5s-nc-Zkw"/>
+                                        <constraint firstAttribute="trailing" secondItem="VvB-6d-bPT" secondAttribute="trailing" constant="16" id="IQK-Ds-NU7"/>
+                                        <constraint firstItem="VvB-6d-bPT" firstAttribute="leading" secondItem="2aK-nz-7AD" secondAttribute="leading" constant="16" id="NTW-MG-fOw"/>
+                                        <constraint firstItem="VvB-6d-bPT" firstAttribute="top" secondItem="2aK-nz-7AD" secondAttribute="top" id="OKm-bm-Cs0"/>
+                                        <constraint firstItem="KCB-g6-Hok" firstAttribute="leading" secondItem="2aK-nz-7AD" secondAttribute="leading" constant="16" id="YwD-qg-lJV"/>
+                                        <constraint firstItem="KCB-g6-Hok" firstAttribute="top" secondItem="VvB-6d-bPT" secondAttribute="bottom" constant="10" id="Zm4-Jb-nXd"/>
+                                        <constraint firstAttribute="height" constant="102" id="zje-sr-Ei7"/>
+                                    </constraints>
+                                </view>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R3o-6C-dRS">
+                                    <rect key="frame" x="16" y="114" width="342" height="214"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="uploadphoto" translatesAutoresizingMaskIntoConstraints="NO" id="NgK-XR-B8i">
+                                            <rect key="frame" x="1" y="1" width="340" height="212"/>
+                                        </imageView>
+                                    </subviews>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" secondItem="R3o-6C-dRS" secondAttribute="height" multiplier="16:10" id="0WX-zH-hOj"/>
+                                        <constraint firstAttribute="trailing" secondItem="NgK-XR-B8i" secondAttribute="trailing" constant="1" id="8PT-tX-lU2"/>
+                                        <constraint firstAttribute="bottom" secondItem="NgK-XR-B8i" secondAttribute="bottom" constant="1" id="fGP-dU-7fO"/>
+                                        <constraint firstItem="NgK-XR-B8i" firstAttribute="top" secondItem="R3o-6C-dRS" secondAttribute="top" constant="1" id="kEL-5m-loQ"/>
+                                        <constraint firstItem="NgK-XR-B8i" firstAttribute="leading" secondItem="R3o-6C-dRS" secondAttribute="leading" constant="1" id="wng-Qu-gLR"/>
+                                    </constraints>
+                                </view>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zw7-0m-t0u">
+                                    <rect key="frame" x="0.0" y="340" width="374" height="126"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="示意：上传身份证正面照片" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4AN-Xk-kRu">
+                                            <rect key="frame" x="16" y="0.0" width="144" height="17"/>
+                                            <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="12"/>
+                                            <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="deviceRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pic_example" translatesAutoresizingMaskIntoConstraints="NO" id="dZ6-y6-ty4">
+                                            <rect key="frame" x="16" y="25" width="120" height="90"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="90" id="ejs-Be-rYL"/>
+                                                <constraint firstAttribute="width" constant="120" id="eol-Qc-1zW"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2dg-WW-OPA">
+                                            <rect key="frame" x="152" y="25" width="206" height="38"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="38" id="BlX-Al-yMV"/>
+                                            </constraints>
+                                            <attributedString key="attributedText">
+                                                <fragment content=" ">
+                                                    <attributes>
+                                                        <color key="NSColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="deviceRGB"/>
+                                                        <font key="NSFont" size="12" name=".PingFangSC-Regular"/>
+                                                        <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                    </attributes>
+                                                </fragment>
+                                                <fragment content="•">
+                                                    <attributes>
+                                                        <color key="NSColor" red="0.92156862745098034" green="0.31764705882352939" blue="0.67450980392156867" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <font key="NSFont" size="12" name=".PingFangSC-Regular"/>
+                                                        <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                    </attributes>
+                                                </fragment>
+                                                <fragment content=" 拍摄清晰的本人身份证正面照（照片尺寸不超过20cm）">
+                                                    <attributes>
+                                                        <color key="NSColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="deviceRGB"/>
+                                                        <font key="NSFont" size="12" name=".PingFangSC-Regular"/>
+                                                        <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                    </attributes>
+                                                </fragment>
+                                            </attributedString>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vk3-9h-am4">
+                                            <rect key="frame" x="152" y="67" width="206" height="38"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="38" id="jbj-I0-d1s"/>
+                                            </constraints>
+                                            <attributedString key="attributedText">
+                                                <fragment content=" ">
+                                                    <attributes>
+                                                        <color key="NSColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="deviceRGB"/>
+                                                        <font key="NSFont" size="12" name=".PingFangSC-Regular"/>
+                                                        <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                    </attributes>
+                                                </fragment>
+                                                <fragment content="•">
+                                                    <attributes>
+                                                        <color key="NSColor" red="0.92156862745098034" green="0.31764705882352939" blue="0.67450980392156867" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <font key="NSFont" size="12" name=".PingFangSC-Regular"/>
+                                                        <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                    </attributes>
+                                                </fragment>
+                                                <fragment content=" 请保持手持的身份证与填写的身份信息一致">
+                                                    <attributes>
+                                                        <color key="NSColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="deviceRGB"/>
+                                                        <font key="NSFont" size="12" name=".PingFangSC-Regular"/>
+                                                        <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                    </attributes>
+                                                </fragment>
+                                            </attributedString>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.94901960780000005" alpha="1" colorSpace="deviceRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="2dg-WW-OPA" secondAttribute="trailing" constant="16" id="1RD-68-EjK"/>
+                                        <constraint firstItem="4AN-Xk-kRu" firstAttribute="leading" secondItem="Zw7-0m-t0u" secondAttribute="leading" constant="16" id="9bZ-CH-jXc"/>
+                                        <constraint firstItem="4AN-Xk-kRu" firstAttribute="top" secondItem="Zw7-0m-t0u" secondAttribute="top" id="BJi-Ds-PL7"/>
+                                        <constraint firstItem="vk3-9h-am4" firstAttribute="leading" secondItem="dZ6-y6-ty4" secondAttribute="trailing" constant="16" id="KPE-PE-9xz"/>
+                                        <constraint firstItem="2dg-WW-OPA" firstAttribute="leading" secondItem="dZ6-y6-ty4" secondAttribute="trailing" constant="16" id="OZm-MK-zB5"/>
+                                        <constraint firstItem="dZ6-y6-ty4" firstAttribute="leading" secondItem="Zw7-0m-t0u" secondAttribute="leading" constant="16" id="X0U-gB-zD1"/>
+                                        <constraint firstItem="dZ6-y6-ty4" firstAttribute="top" secondItem="4AN-Xk-kRu" secondAttribute="bottom" constant="8" id="bga-6Y-ucH"/>
+                                        <constraint firstAttribute="trailing" secondItem="vk3-9h-am4" secondAttribute="trailing" constant="16" id="huB-ur-SKm"/>
+                                        <constraint firstAttribute="height" constant="126" id="k9x-vy-dEX"/>
+                                        <constraint firstItem="vk3-9h-am4" firstAttribute="top" secondItem="2dg-WW-OPA" secondAttribute="bottom" constant="4" id="thc-gV-yrx"/>
+                                        <constraint firstItem="2dg-WW-OPA" firstAttribute="top" secondItem="dZ6-y6-ty4" secondAttribute="top" id="y0y-px-0lO"/>
+                                    </constraints>
+                                </view>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xQd-bj-A01">
+                                    <rect key="frame" x="0.0" y="692" width="374" height="126"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="示意：上传身份证背面照片" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Su-OC-xC0">
+                                            <rect key="frame" x="16" y="0.0" width="144" height="17"/>
+                                            <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="12"/>
+                                            <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="deviceRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pic_example2" translatesAutoresizingMaskIntoConstraints="NO" id="ThF-nU-Tbe">
+                                            <rect key="frame" x="16" y="25" width="120" height="90"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="90" id="OyQ-ct-2rN"/>
+                                                <constraint firstAttribute="width" constant="120" id="ak5-ZM-oY6"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BjL-qw-Lvr">
+                                            <rect key="frame" x="152" y="25" width="206" height="38"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="38" id="yQj-h1-Lpb"/>
+                                            </constraints>
+                                            <attributedString key="attributedText">
+                                                <fragment content=" ">
+                                                    <attributes>
+                                                        <color key="NSColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="deviceRGB"/>
+                                                        <font key="NSFont" size="12" name=".PingFangSC-Regular"/>
+                                                        <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                    </attributes>
+                                                </fragment>
+                                                <fragment content="•">
+                                                    <attributes>
+                                                        <color key="NSColor" red="0.92156862745098034" green="0.31764705882352939" blue="0.67450980392156867" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <font key="NSFont" size="12" name=".PingFangSC-Regular"/>
+                                                        <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                    </attributes>
+                                                </fragment>
+                                                <fragment content=" 拍身份证背面需清晰拍摄有效期限位置（照片尺寸不超过20cm）">
+                                                    <attributes>
+                                                        <color key="NSColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="deviceRGB"/>
+                                                        <font key="NSFont" size="12" name=".PingFangSC-Regular"/>
+                                                        <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                    </attributes>
+                                                </fragment>
+                                            </attributedString>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9rX-gg-4Tu">
+                                            <rect key="frame" x="152" y="67" width="206" height="38"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="38" id="jwW-Fr-fKf"/>
+                                            </constraints>
+                                            <attributedString key="attributedText">
+                                                <fragment content=" ">
+                                                    <attributes>
+                                                        <color key="NSColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="deviceRGB"/>
+                                                        <font key="NSFont" size="12" name=".PingFangSC-Regular"/>
+                                                        <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                    </attributes>
+                                                </fragment>
+                                                <fragment content="•">
+                                                    <attributes>
+                                                        <color key="NSColor" red="0.92156862745098034" green="0.31764705882352939" blue="0.67450980392156867" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <font key="NSFont" size="12" name=".PingFangSC-Regular"/>
+                                                        <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                    </attributes>
+                                                </fragment>
+                                                <fragment content=" 身份证有效期需一个月以上">
+                                                    <attributes>
+                                                        <color key="NSColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="deviceRGB"/>
+                                                        <font key="NSFont" size="12" name=".PingFangSC-Regular"/>
+                                                        <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                    </attributes>
+                                                </fragment>
+                                            </attributedString>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.94901960780000005" alpha="1" colorSpace="deviceRGB"/>
+                                    <constraints>
+                                        <constraint firstItem="9rX-gg-4Tu" firstAttribute="leading" secondItem="ThF-nU-Tbe" secondAttribute="trailing" constant="16" id="2X0-8x-FjT"/>
+                                        <constraint firstItem="BjL-qw-Lvr" firstAttribute="leading" secondItem="ThF-nU-Tbe" secondAttribute="trailing" constant="16" id="94Q-5k-Qd6"/>
+                                        <constraint firstItem="6Su-OC-xC0" firstAttribute="leading" secondItem="xQd-bj-A01" secondAttribute="leading" constant="16" id="EHk-DM-oB1"/>
+                                        <constraint firstAttribute="trailing" secondItem="BjL-qw-Lvr" secondAttribute="trailing" constant="16" id="ISU-mU-kaw"/>
+                                        <constraint firstAttribute="trailing" secondItem="9rX-gg-4Tu" secondAttribute="trailing" constant="16" id="LlQ-A3-zdJ"/>
+                                        <constraint firstItem="6Su-OC-xC0" firstAttribute="top" secondItem="xQd-bj-A01" secondAttribute="top" id="QKF-K6-pKk"/>
+                                        <constraint firstItem="9rX-gg-4Tu" firstAttribute="top" secondItem="BjL-qw-Lvr" secondAttribute="bottom" constant="4" id="f6A-g2-ezH"/>
+                                        <constraint firstItem="ThF-nU-Tbe" firstAttribute="leading" secondItem="xQd-bj-A01" secondAttribute="leading" constant="16" id="lY4-2M-zP7"/>
+                                        <constraint firstAttribute="height" constant="126" id="ruT-sx-lfv"/>
+                                        <constraint firstItem="ThF-nU-Tbe" firstAttribute="top" secondItem="6Su-OC-xC0" secondAttribute="bottom" constant="8" id="u3e-sY-ate"/>
+                                        <constraint firstItem="BjL-qw-Lvr" firstAttribute="top" secondItem="ThF-nU-Tbe" secondAttribute="top" id="wgW-ni-r98"/>
+                                    </constraints>
+                                </view>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fZe-nf-R5T">
+                                    <rect key="frame" x="16" y="466" width="342" height="214"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="uploadphoto" translatesAutoresizingMaskIntoConstraints="NO" id="OgJ-fB-G7M">
+                                            <rect key="frame" x="1" y="1" width="340" height="212"/>
+                                        </imageView>
+                                    </subviews>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstItem="OgJ-fB-G7M" firstAttribute="leading" secondItem="fZe-nf-R5T" secondAttribute="leading" constant="1" id="5bR-ft-AwO"/>
+                                        <constraint firstItem="OgJ-fB-G7M" firstAttribute="top" secondItem="fZe-nf-R5T" secondAttribute="top" constant="1" id="93T-cU-zMa"/>
+                                        <constraint firstAttribute="bottom" secondItem="OgJ-fB-G7M" secondAttribute="bottom" constant="1" id="CMd-cy-3w3"/>
+                                        <constraint firstAttribute="width" secondItem="fZe-nf-R5T" secondAttribute="height" multiplier="16:10" id="uqm-Wz-U35"/>
+                                        <constraint firstAttribute="trailing" secondItem="OgJ-fB-G7M" secondAttribute="trailing" constant="1" id="yfl-hu-88Q"/>
+                                    </constraints>
+                                </view>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Anj-nO-g49">
+                                    <rect key="frame" x="53.5" y="830" width="268" height="18"/>
+                                    <state key="normal" image="tips">
+                                        <attributedString key="attributedTitle">
+                                            <fragment content=" ">
+                                                <attributes>
+                                                    <color key="NSColor" red="0.57647058823529407" green="0.57647058823529407" blue="0.57647058823529407" alpha="1" colorSpace="deviceRGB"/>
+                                                    <font key="NSFont" metaFont="system" size="15"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                            <fragment content="我已阅读并同意">
+                                                <attributes>
+                                                    <color key="NSColor" red="0.57647058823529407" green="0.57647058823529407" blue="0.57647058823529407" alpha="1" colorSpace="deviceRGB"/>
+                                                    <font key="NSFont" size="15" name=".PingFangSC-Regular"/>
+                                                    <font key="NSOriginalFont" metaFont="system" size="15"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                            <fragment content="《蜂窝">
+                                                <attributes>
+                                                    <color key="NSColor" red="0.92156862745098034" green="0.31764705882352939" blue="0.67450980392156867" alpha="1" colorSpace="deviceRGB"/>
+                                                    <font key="NSFont" size="15" name=".PingFangSC-Regular"/>
+                                                    <font key="NSOriginalFont" metaFont="system" size="15"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                            <fragment content="TV">
+                                                <attributes>
+                                                    <color key="NSColor" red="0.92156862745098034" green="0.31764705882352939" blue="0.67450980392156867" alpha="1" colorSpace="deviceRGB"/>
+                                                    <font key="NSFont" metaFont="system" size="15"/>
+                                                    <font key="NSOriginalFont" metaFont="system" size="15"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                            <fragment content="用户协议》">
+                                                <attributes>
+                                                    <color key="NSColor" red="0.92156862745098034" green="0.31764705882352939" blue="0.67450980392156867" alpha="1" colorSpace="deviceRGB"/>
+                                                    <font key="NSFont" size="15" name=".PingFangSC-Regular"/>
+                                                    <font key="NSOriginalFont" metaFont="system" size="15"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                        </attributedString>
+                                    </state>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.94901960780000005" alpha="1" colorSpace="deviceRGB"/>
+                            <constraints>
+                                <constraint firstItem="xQd-bj-A01" firstAttribute="top" secondItem="fZe-nf-R5T" secondAttribute="bottom" constant="12" id="5IB-Am-bJi"/>
+                                <constraint firstItem="2aK-nz-7AD" firstAttribute="top" secondItem="Etf-ag-gaE" secondAttribute="top" constant="12" id="6o1-HA-SRz"/>
+                                <constraint firstItem="fZe-nf-R5T" firstAttribute="leading" secondItem="Etf-ag-gaE" secondAttribute="leading" constant="16" id="Bf8-LU-05t"/>
+                                <constraint firstItem="Anj-nO-g49" firstAttribute="top" secondItem="xQd-bj-A01" secondAttribute="bottom" constant="12" id="HeW-m2-NdK"/>
+                                <constraint firstAttribute="width" constant="374" id="P9C-Be-wDh"/>
+                                <constraint firstItem="Zw7-0m-t0u" firstAttribute="top" secondItem="R3o-6C-dRS" secondAttribute="bottom" constant="12" id="Wgi-DE-COS"/>
+                                <constraint firstItem="2aK-nz-7AD" firstAttribute="leading" secondItem="Etf-ag-gaE" secondAttribute="leading" id="alA-g9-nXa"/>
+                                <constraint firstAttribute="trailing" secondItem="2aK-nz-7AD" secondAttribute="trailing" id="c2b-bR-irj"/>
+                                <constraint firstItem="xQd-bj-A01" firstAttribute="leading" secondItem="Etf-ag-gaE" secondAttribute="leading" id="cHb-BA-kGW"/>
+                                <constraint firstItem="Zw7-0m-t0u" firstAttribute="leading" secondItem="Etf-ag-gaE" secondAttribute="leading" id="dQ6-5K-sev"/>
+                                <constraint firstAttribute="trailing" secondItem="fZe-nf-R5T" secondAttribute="trailing" constant="16" id="fff-XB-KCA"/>
+                                <constraint firstItem="Anj-nO-g49" firstAttribute="centerX" secondItem="Etf-ag-gaE" secondAttribute="centerX" id="gSf-AX-cHD"/>
+                                <constraint firstAttribute="trailing" secondItem="Zw7-0m-t0u" secondAttribute="trailing" id="iOK-OW-BNy"/>
+                                <constraint firstAttribute="trailing" secondItem="R3o-6C-dRS" secondAttribute="trailing" constant="16" id="lwQ-8t-Kqi"/>
+                                <constraint firstItem="R3o-6C-dRS" firstAttribute="top" secondItem="2aK-nz-7AD" secondAttribute="bottom" id="vGI-y6-aNF"/>
+                                <constraint firstAttribute="height" constant="909" id="vHJ-yD-5wn"/>
+                                <constraint firstItem="fZe-nf-R5T" firstAttribute="top" secondItem="Zw7-0m-t0u" secondAttribute="bottom" id="vZf-Ce-1wy"/>
+                                <constraint firstAttribute="trailing" secondItem="xQd-bj-A01" secondAttribute="trailing" id="wDF-T7-0xe"/>
+                                <constraint firstItem="R3o-6C-dRS" firstAttribute="leading" secondItem="Etf-ag-gaE" secondAttribute="leading" constant="16" id="yW8-Ca-SDY"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="Etf-ag-gaE" firstAttribute="leading" secondItem="kIC-RY-dNk" secondAttribute="leading" id="7Tp-zm-TIQ"/>
+                        <constraint firstAttribute="bottom" secondItem="Etf-ag-gaE" secondAttribute="bottom" id="7h9-iL-VsQ"/>
+                        <constraint firstAttribute="trailing" secondItem="Etf-ag-gaE" secondAttribute="trailing" id="OJy-A0-kUj"/>
+                        <constraint firstItem="Etf-ag-gaE" firstAttribute="top" secondItem="kIC-RY-dNk" secondAttribute="top" id="Zbs-sp-eVN"/>
+                    </constraints>
+                </scrollView>
+            </subviews>
+            <color key="backgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.94901960780000005" alpha="1" colorSpace="deviceRGB"/>
+            <constraints>
+                <constraint firstItem="kIC-RY-dNk" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" id="0gJ-VV-bg4"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="kIC-RY-dNk" secondAttribute="trailing" id="Ibe-k5-oOH"/>
+                <constraint firstItem="kIC-RY-dNk" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="MxQ-cY-rdG"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="bottom" secondItem="kIC-RY-dNk" secondAttribute="bottom" id="e3p-Xp-IRP"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
+            <point key="canvasLocation" x="77.5" y="185"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="pic_example" width="60" height="45"/>
+        <image name="pic_example2" width="60" height="45"/>
+        <image name="tips" width="15" height="15"/>
+        <image name="uploadphoto" width="50" height="50"/>
+    </resources>
+</document>
