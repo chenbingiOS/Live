@@ -104,9 +104,9 @@ static NSString *reuseIdentifier = @"CBAppLiveCell";
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == 0) {
-        return 100;
+        return 190;
     }
-    return 410;
+    return kScreenWidth;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

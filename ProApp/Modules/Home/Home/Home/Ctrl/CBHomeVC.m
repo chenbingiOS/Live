@@ -24,14 +24,20 @@
 
 @implementation CBHomeVC
 
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:YES animated:animated];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setup_UI];
 }
 
 - (void)setup_UI {
-    [self.view addSubview:self.scrollView];
-    [self.navigationController.navigationBar addSubview:self.selectedView];
+    [self.view addSubview:self.selectedView];
+    [self.view addSubview:self.scrollView];    
     [self setup_childVC];
 }
 
@@ -57,7 +63,11 @@
 #pragma mark - layz
 - (UIScrollView *)scrollView {
     if (!_scrollView) {
-        _scrollView = [[UIScrollView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+        CGRect frame = CGRectMake(0, 108, kScreenWidth, kScreenHeight-49-108);
+        if (iPhoneX) {
+            frame = CGRectMake(0, 108+20, kScreenWidth, kScreenHeight-49-108-20-34);
+        }
+        _scrollView = [[UIScrollView alloc] initWithFrame:frame];
         _scrollView.contentSize = CGSizeMake(kScreenWidth * 2, 0);
         _scrollView.showsVerticalScrollIndicator = NO;
         _scrollView.showsHorizontalScrollIndicator = NO;
@@ -70,11 +80,12 @@
 
 - (CBSelectedView *)selectedView {
     if (!_selectedView) {
-        CGRect frame = self.navigationController.navigationBar.bounds;
-        frame.origin.x = 45;
-        frame.size.width = kScreenWidth - 45*2;
-        _selectedView = [CBSelectedView viewFromXib];
-        _selectedView.frame = frame;
+        _selectedView = [CBSelectedView viewFromXib];        
+        if (iPhoneX) {
+            _selectedView.frame = CGRectMake(0, 0, kScreenWidth, 108+20);
+        } else {
+            _selectedView.frame = CGRectMake(0, 0, kScreenWidth, 108);
+        }
         _selectedView.delegate = self;
     }
     return _selectedView;
@@ -83,8 +94,11 @@
 - (CBAppLiveVC *)appLiveVC {
     if (!_appLiveVC) {
         _appLiveVC = [CBAppLiveVC new];
-        _appLiveVC.view.frame = [UIScreen mainScreen].bounds;
-        _appLiveVC.view.height = kScreenHeight - 49;
+        if (iPhoneX) {
+            _appLiveVC.view.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight-49-108-20-34);
+        } else {
+            _appLiveVC.view.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight-49-108);
+        }
     }
     return _appLiveVC;
 }
@@ -92,9 +106,11 @@
 - (CBHotVC *)hotVC {
     if (!_hotVC) {
         _hotVC = [CBHotVC new];
-        _hotVC.view.frame = [UIScreen mainScreen].bounds;
-        _hotVC.view.height = kScreenHeight - 49;
-        _hotVC.view.left = kScreenWidth;
+        if (iPhoneX) {
+            _hotVC.view.frame = CGRectMake(kScreenWidth, 0, kScreenWidth, kScreenHeight-49-108-20-34);
+        } else {
+            _hotVC.view.frame = CGRectMake(kScreenWidth, 0, kScreenWidth, kScreenHeight-49-108);
+        }
     }
     return _hotVC;
 }
