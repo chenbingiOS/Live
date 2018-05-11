@@ -10,6 +10,9 @@
 
 @interface CBLoginVC ()
 
+@property (weak, nonatomic) IBOutlet UITextField *phoneTextField;
+@property (weak, nonatomic) IBOutlet UITextField *pwdTextField;
+
 @end
 
 @implementation CBLoginVC
@@ -20,7 +23,24 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    [self setupUI];
+}
+
+- (void)setupUI {
+    [self setTextFieldLeftPadding:self.phoneTextField forWidth:44.0f andImageName:@"login_icon_phone"];
+    [self setTextFieldLeftPadding:self.pwdTextField forWidth:44.0f andImageName:@"login_icon_password"];
+}
+
+- (void)setTextFieldLeftPadding:(UITextField *)textField forWidth:(CGFloat)leftWidth andImageName:(NSString *)imgName{
+    CGRect frame = textField.frame;
+    frame.size.width = leftWidth;
+    UIView *leftview = [[UIView alloc] initWithFrame:frame];
+     textField.leftViewMode = UITextFieldViewModeAlways;
+    textField.leftView = leftview;
+    UIImageView *imgV = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, leftWidth, frame.size.height)];
+    imgV.contentMode = UIViewContentModeCenter;
+    imgV.image = [UIImage imageNamed:imgName];
+    [leftview addSubview:imgV];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -28,14 +48,8 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (IBAction)actionClose:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
-*/
 
 @end
