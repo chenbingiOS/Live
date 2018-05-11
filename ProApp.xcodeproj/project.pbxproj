@@ -160,10 +160,6 @@
 		07F6EFF120872E3D0035C6BD /* ALinLiveViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 07F6EF8920872E3C0035C6BD /* ALinLiveViewCell.m */; };
 		07F6EFF220872E3D0035C6BD /* ALinUserView.m in Sources */ = {isa = PBXBuildFile; fileRef = 07F6EF8D20872E3C0035C6BD /* ALinUserView.m */; };
 		07F6EFF320872E3D0035C6BD /* ALinLiveAnchorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 07F6EF8E20872E3C0035C6BD /* ALinLiveAnchorView.m */; };
-		07F6EFF420872E3D0035C6BD /* ALinNewStarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07F6EF9220872E3C0035C6BD /* ALinNewStarViewController.m */; };
-		07F6EFF520872E3D0035C6BD /* ALinHomeFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 07F6EF9520872E3C0035C6BD /* ALinHomeFlowLayout.m */; };
-		07F6EFF620872E3D0035C6BD /* ALinAnchorViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 07F6EF9620872E3C0035C6BD /* ALinAnchorViewCell.m */; };
-		07F6EFF720872E3D0035C6BD /* ALinAnchorViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 07F6EF9920872E3C0035C6BD /* ALinAnchorViewCell.xib */; };
 		07F6EFF820872E3D0035C6BD /* CBAppLiveVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 07F6EF9D20872E3C0035C6BD /* CBAppLiveVC.m */; };
 		07F6EFF920872E3D0035C6BD /* ALinTopAD.m in Sources */ = {isa = PBXBuildFile; fileRef = 07F6EF9F20872E3C0035C6BD /* ALinTopAD.m */; };
 		07F6EFFA20872E3D0035C6BD /* CBAppLiveCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 07F6EFA320872E3C0035C6BD /* CBAppLiveCell.xib */; };
@@ -441,13 +437,6 @@
 		07F6EF8D20872E3C0035C6BD /* ALinUserView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ALinUserView.m; sourceTree = "<group>"; };
 		07F6EF8E20872E3C0035C6BD /* ALinLiveAnchorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ALinLiveAnchorView.m; sourceTree = "<group>"; };
 		07F6EF8F20872E3C0035C6BD /* ALinLiveEndView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALinLiveEndView.h; sourceTree = "<group>"; };
-		07F6EF9220872E3C0035C6BD /* ALinNewStarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ALinNewStarViewController.m; sourceTree = "<group>"; };
-		07F6EF9320872E3C0035C6BD /* ALinNewStarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALinNewStarViewController.h; sourceTree = "<group>"; };
-		07F6EF9520872E3C0035C6BD /* ALinHomeFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ALinHomeFlowLayout.m; sourceTree = "<group>"; };
-		07F6EF9620872E3C0035C6BD /* ALinAnchorViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ALinAnchorViewCell.m; sourceTree = "<group>"; };
-		07F6EF9720872E3C0035C6BD /* ALinAnchorViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALinAnchorViewCell.h; sourceTree = "<group>"; };
-		07F6EF9820872E3C0035C6BD /* ALinHomeFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALinHomeFlowLayout.h; sourceTree = "<group>"; };
-		07F6EF9920872E3C0035C6BD /* ALinAnchorViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ALinAnchorViewCell.xib; sourceTree = "<group>"; };
 		07F6EF9C20872E3C0035C6BD /* CBAppLiveVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBAppLiveVC.h; sourceTree = "<group>"; };
 		07F6EF9D20872E3C0035C6BD /* CBAppLiveVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBAppLiveVC.m; sourceTree = "<group>"; };
 		07F6EF9F20872E3C0035C6BD /* ALinTopAD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ALinTopAD.m; sourceTree = "<group>"; };
@@ -827,7 +816,6 @@
 		0737ED862074A33600A89CC0 /* ProApp */ = {
 			isa = PBXGroup;
 			children = (
-				07F6EF9020872E3C0035C6BD /* New */,
 				07F6EF7620872E3C0035C6BD /* ALive */,
 				07F6EFAA20872E3C0035C6BD /* Network */,
 				07F6EF5720872E3C0035C6BD /* Other */,
@@ -1545,36 +1533,6 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		07F6EF9020872E3C0035C6BD /* New */ = {
-			isa = PBXGroup;
-			children = (
-				07F6EF9120872E3C0035C6BD /* Controller */,
-				07F6EF9420872E3C0035C6BD /* View */,
-			);
-			path = New;
-			sourceTree = "<group>";
-		};
-		07F6EF9120872E3C0035C6BD /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				07F6EF9320872E3C0035C6BD /* ALinNewStarViewController.h */,
-				07F6EF9220872E3C0035C6BD /* ALinNewStarViewController.m */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		07F6EF9420872E3C0035C6BD /* View */ = {
-			isa = PBXGroup;
-			children = (
-				07F6EF9820872E3C0035C6BD /* ALinHomeFlowLayout.h */,
-				07F6EF9520872E3C0035C6BD /* ALinHomeFlowLayout.m */,
-				07F6EF9720872E3C0035C6BD /* ALinAnchorViewCell.h */,
-				07F6EF9620872E3C0035C6BD /* ALinAnchorViewCell.m */,
-				07F6EF9920872E3C0035C6BD /* ALinAnchorViewCell.xib */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
 		07F6EF9A20872E3C0035C6BD /* AppLive */ = {
 			isa = PBXGroup;
 			children = (
@@ -1862,7 +1820,6 @@
 				0791588620883C6D007CA2E0 /* CBAttentionCell.xib in Resources */,
 				07F6EFEA20872E3D0035C6BD /* ALinLiveEndView.xib in Resources */,
 				0737ED942074A33600A89CC0 /* LaunchScreen.storyboard in Resources */,
-				07F6EFF720872E3D0035C6BD /* ALinAnchorViewCell.xib in Resources */,
 				0750562C2092B0C700F0679B /* CBPackageRecordVC.xib in Resources */,
 				072DC585209166A600F693E8 /* loginmovie.mp4 in Resources */,
 				0787704F2092CA7D00A5A42A /* CBAccountRecordVC.xib in Resources */,
@@ -2028,7 +1985,6 @@
 				07B66896208D71E400AA5B62 /* CBFillInfoViewController.m in Sources */,
 				07F6EFEE20872E3D0035C6BD /* ALinLiveFlowLayout.m in Sources */,
 				07F6EFE020872E3D0035C6BD /* CBHomeVC.m in Sources */,
-				07F6EFF520872E3D0035C6BD /* ALinHomeFlowLayout.m in Sources */,
 				07F6EFDD20872E3D0035C6BD /* ALinConstant.m in Sources */,
 				07558C2B2094569C007E41C2 /* CBAnchorInfoXibView.m in Sources */,
 				077C1AA42091A7E00005CE97 /* CBPhoneBindVC.m in Sources */,
@@ -2061,13 +2017,11 @@
 				07F6EFF820872E3D0035C6BD /* CBAppLiveVC.m in Sources */,
 				07F6EFEC20872E3D0035C6BD /* ALinBottomToolView.m in Sources */,
 				07737DE7208F0161009EB9E6 /* CBMyFansVC.m in Sources */,
-				07F6EFF420872E3D0035C6BD /* ALinNewStarViewController.m in Sources */,
 				0791587F2088391B007CA2E0 /* CBAttentionVC.m in Sources */,
 				077D1F8520886C56003B9E56 /* CBLiveVC.m in Sources */,
 				07F38C0520994A0000DDBC90 /* JPGiftCollectionViewCell.m in Sources */,
 				07F6F00420872E3D0035C6BD /* UIImage+ALinExtension.m in Sources */,
 				07558C232094517A007E41C2 /* CBOnlineUserCell.m in Sources */,
-				07F6EFF620872E3D0035C6BD /* ALinAnchorViewCell.m in Sources */,
 				071D3C152092B51700A6C5CE /* CBPackageRecordVO.m in Sources */,
 				07F6EFE120872E3D0035C6BD /* ALinUser.m in Sources */,
 				07558C1F20941F18007E41C2 /* CBPopView.m in Sources */,

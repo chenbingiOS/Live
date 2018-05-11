@@ -8,12 +8,7 @@
 
 #import "CBVideoVC.h"
 #import "CBTitleSelectView.h"
-
-#import "CBSelectedView.h"
 #import "CBAppLiveVC.h"
-#import "CBHotVC.h"
-#import "ALinNewStarViewController.h"
-
 #import "CBVideoHotVC.h"
 #import "CBVideoAttentionVC.h"
 

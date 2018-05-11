@@ -9,7 +9,6 @@
 #import "CBAttentionVC.h"
 #import "ALinUser.h"
 #import "CBAttentionCell.h"
-#import "ALinHomeFlowLayout.h"
 #import "ALinRefreshGifHeader.h"
 #import "ALinLiveCollectionViewController.h"
 #import "ALinLive.h"
