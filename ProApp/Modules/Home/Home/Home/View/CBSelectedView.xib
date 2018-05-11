@@ -86,10 +86,10 @@
                     </constraints>
                 </view>
                 <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="okz-nK-iGv">
-                    <rect key="frame" x="0.0" y="96" width="375" height="44"/>
+                    <rect key="frame" x="50" y="96" width="275" height="44"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rpc-vS-dRD">
-                            <rect key="frame" x="0.0" y="0.0" width="187.5" height="44"/>
+                            <rect key="frame" x="0.0" y="0.0" width="137.5" height="44"/>
                             <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="17"/>
                             <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <state key="normal" title="直播">
@@ -103,7 +103,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IGI-Za-rYH">
-                            <rect key="frame" x="187.5" y="0.0" width="187.5" height="44"/>
+                            <rect key="frame" x="137.5" y="0.0" width="137.5" height="44"/>
                             <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="17"/>
                             <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <state key="normal" title="热门">
@@ -123,7 +123,7 @@
                     </constraints>
                 </stackView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4DB-8M-0k6">
-                    <rect key="frame" x="78.5" y="133" width="30" height="2"/>
+                    <rect key="frame" x="104" y="133" width="30" height="2"/>
                     <color key="backgroundColor" red="0.92156862750000001" green="0.31764705879999999" blue="0.67450980390000004" alpha="1" colorSpace="deviceRGB"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="30" id="Tiz-A2-T6l"/>
@@ -142,8 +142,8 @@
             <constraints>
                 <constraint firstItem="okz-nK-iGv" firstAttribute="top" secondItem="abE-D1-YYN" secondAttribute="bottom" id="3b2-1t-YzT"/>
                 <constraint firstAttribute="bottom" secondItem="okz-nK-iGv" secondAttribute="bottom" id="5Rm-bl-lM1"/>
-                <constraint firstItem="okz-nK-iGv" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="LH1-G7-wC9"/>
-                <constraint firstAttribute="trailing" secondItem="okz-nK-iGv" secondAttribute="trailing" id="N9q-9c-EgP"/>
+                <constraint firstItem="okz-nK-iGv" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="50" id="LH1-G7-wC9"/>
+                <constraint firstAttribute="trailing" secondItem="okz-nK-iGv" secondAttribute="trailing" constant="50" id="N9q-9c-EgP"/>
                 <constraint firstAttribute="bottom" secondItem="4DB-8M-0k6" secondAttribute="bottom" constant="5" id="RxU-jd-ziv"/>
                 <constraint firstAttribute="trailing" secondItem="abE-D1-YYN" secondAttribute="trailing" id="UlZ-xb-fce"/>
                 <constraint firstAttribute="bottom" secondItem="l1B-uI-NS5" secondAttribute="bottom" id="bqr-dL-M69"/>
