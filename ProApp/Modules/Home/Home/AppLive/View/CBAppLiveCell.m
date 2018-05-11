@@ -12,12 +12,14 @@
 #import <UIImageView+WebCache.h>
 
 @interface CBAppLiveCell()
+
 @property (weak, nonatomic) IBOutlet UIImageView *headImageView;
 @property (weak, nonatomic) IBOutlet UIButton    *locationBtn;
 @property (weak, nonatomic) IBOutlet UILabel     *nameLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *startView;
 @property (weak, nonatomic) IBOutlet UILabel     *chaoyangLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *bigPicView;
+
 @end
 
 @implementation CBAppLiveCell

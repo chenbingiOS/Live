@@ -106,7 +106,7 @@ static NSString *reuseIdentifier = @"CBAppLiveCell";
     if (indexPath.row == 0) {
         return 190;
     }
-    return kScreenWidth;
+    return kScreenWidth+5;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
