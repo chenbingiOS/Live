@@ -9,29 +9,29 @@
 #import "CBAttentionCell.h"
 #import "ALinUser.h"
 #import <UIImageView+WebCache.h>
+#import "UIImageView+RoundedCorner.h"
 
 @interface CBAttentionCell()
 
+@property (weak, nonatomic) IBOutlet UILabel *videoCountLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *coverView;
-@property (weak, nonatomic) IBOutlet UIImageView *star;
-@property (weak, nonatomic) IBOutlet UIButton *locationBtn;
-@property (weak, nonatomic) IBOutlet UILabel *nickNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *videoTitleLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *avaterImageView;
+@property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
 
 @end
 
 @implementation CBAttentionCell
 
-- (void)setUser:(ALinUser *)user
-{
+- (void)setUser:(ALinUser *)user {
+    
     _user = user;
-    // 设置封面头像
-    [_coverView sd_setImageWithURL:[NSURL URLWithString:user.photo] placeholderImage:[UIImage imageNamed:@"placeholder_head"]];
-    // 是否是新主播
-    self.star.hidden = !user.newStar;
-    // 地址
-    [self.locationBtn setTitle:user.position forState:UIControlStateNormal];
-    // 主播名
-    self.nickNameLabel.text = user.nickname;
+    
+    [self.coverView sd_setImageWithURL:[NSURL URLWithString:user.photo] placeholderImage:[UIImage imageNamed:@"placeholder_head"]];
+    [self.coverView roundedCornerRadius:8];
+    [self.avaterImageView sd_setImageWithURL:[NSURL URLWithString:user.photo] placeholderImage:[UIImage imageNamed:@"placeholder_head"]];
+    [self.avaterImageView roundedCorner];
+    self.userNameLabel.text = user.nickname;    
 }
 
 @end

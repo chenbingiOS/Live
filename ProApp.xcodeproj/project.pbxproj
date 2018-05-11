@@ -10,6 +10,7 @@
 		0715278920A53F6000D3859D /* CBRegisterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0715278720A53F6000D3859D /* CBRegisterVC.m */; };
 		0715278A20A53F6000D3859D /* CBRegisterVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0715278820A53F6000D3859D /* CBRegisterVC.xib */; };
 		0715278E20A5498A00D3859D /* UITextField+LeftImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0715278D20A5498A00D3859D /* UITextField+LeftImageView.m */; };
+		0715279220A5773C00D3859D /* CBVerticalFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 0715279120A5773C00D3859D /* CBVerticalFlowLayout.m */; };
 		071B70112092F4F000549C18 /* CBAccountRecordSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 071B70102092F4F000549C18 /* CBAccountRecordSelectView.m */; };
 		071B70132092F50100549C18 /* CBAccountRecordSelectView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 071B70122092F50100549C18 /* CBAccountRecordSelectView.xib */; };
 		071D3C102092B35D00A6C5CE /* CBPackageRecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 071D3C0E2092B35D00A6C5CE /* CBPackageRecordCell.m */; };
@@ -192,6 +193,8 @@
 		0715278820A53F6000D3859D /* CBRegisterVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CBRegisterVC.xib; sourceTree = "<group>"; };
 		0715278C20A5498A00D3859D /* UITextField+LeftImageView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITextField+LeftImageView.h"; sourceTree = "<group>"; };
 		0715278D20A5498A00D3859D /* UITextField+LeftImageView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UITextField+LeftImageView.m"; sourceTree = "<group>"; };
+		0715279020A5773C00D3859D /* CBVerticalFlowLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBVerticalFlowLayout.h; sourceTree = "<group>"; };
+		0715279120A5773C00D3859D /* CBVerticalFlowLayout.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBVerticalFlowLayout.m; sourceTree = "<group>"; };
 		071B700F2092F4F000549C18 /* CBAccountRecordSelectView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBAccountRecordSelectView.h; sourceTree = "<group>"; };
 		071B70102092F4F000549C18 /* CBAccountRecordSelectView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBAccountRecordSelectView.m; sourceTree = "<group>"; };
 		071B70122092F50100549C18 /* CBAccountRecordSelectView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CBAccountRecordSelectView.xib; sourceTree = "<group>"; };
@@ -529,6 +532,15 @@
 			path = UITextField;
 			sourceTree = "<group>";
 		};
+		0715278F20A5770F00D3859D /* Layout */ = {
+			isa = PBXGroup;
+			children = (
+				0715279020A5773C00D3859D /* CBVerticalFlowLayout.h */,
+				0715279120A5773C00D3859D /* CBVerticalFlowLayout.m */,
+			);
+			path = Layout;
+			sourceTree = "<group>";
+		};
 		071B700D2092F4B500549C18 /* Ctrl */ = {
 			isa = PBXGroup;
 			children = (
@@ -745,6 +757,7 @@
 		073746F5208ECEA400E108E9 /* Video */ = {
 			isa = PBXGroup;
 			children = (
+				0715278F20A5770F00D3859D /* Layout */,
 				073746F9208ECF1B00E108E9 /* Ctrl */,
 				07374709208ED3C800E108E9 /* View */,
 			);
@@ -1988,6 +2001,7 @@
 				07AB0BB1209300A3007A25A8 /* CBAccountInfoVC.m in Sources */,
 				075DB82C207D974F00891E60 /* UIView+CornerRadius.m in Sources */,
 				07F6EFF220872E3D0035C6BD /* ALinUserView.m in Sources */,
+				0715279220A5773C00D3859D /* CBVerticalFlowLayout.m in Sources */,
 				07F6EFFD20872E3D0035C6BD /* ALinHomeADCell.m in Sources */,
 				072DC58E209170B000F693E8 /* UIImageView+RoundedCorner.m in Sources */,
 				07F38C0620994A0000DDBC90 /* JPGiftCellModel.m in Sources */,

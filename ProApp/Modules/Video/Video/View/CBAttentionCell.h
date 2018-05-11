@@ -9,8 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @class ALinUser;
-
 @interface CBAttentionCell : UICollectionViewCell
 /** 主播 */
 @property(nonatomic, strong) ALinUser *user;
+
 @end

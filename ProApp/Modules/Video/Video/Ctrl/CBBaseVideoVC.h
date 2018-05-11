@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CBBaseVideoVC : UICollectionViewController
+@interface CBBaseVideoVC : UIViewController
 
 @end

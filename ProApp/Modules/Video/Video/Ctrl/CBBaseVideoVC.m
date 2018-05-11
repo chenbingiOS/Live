@@ -13,13 +13,13 @@
 #import "ALinRefreshGifHeader.h"
 #import "ALinLiveCollectionViewController.h"
 #import "ALinLive.h"
+#import "CBVerticalFlowLayout.h"
 
+@interface CBBaseVideoVC () <CBVerticalFlowLayoutDelegate, UICollectionViewDelegate, UICollectionViewDataSource>
 
-@interface CBBaseVideoVC ()
-
+@property (nonatomic, strong) UICollectionView *collectionView;
 @property (nonatomic, strong) NSMutableArray *anchors;   /** 最新主播列表 */
 @property (nonatomic, assign) NSUInteger currentPage;    /** 当前页 */
-@property (nonatomic, strong) NSTimer *timer;            /** NSTimer */
 
 @end
 
@@ -27,42 +27,17 @@
 
 static NSString * const reuseIdentifier = @"CBAttentionCell";
 
-- (instancetype)init {
-    UICollectionViewFlowLayout *layout = [UICollectionViewFlowLayout new];
-    layout.scrollDirection = UICollectionViewScrollDirectionVertical;
-    CGFloat wh = (kScreenWidth - 4) / 2.0;
-    layout.itemSize = CGSizeMake(wh , wh);
-    layout.minimumLineSpacing = 4;
-    layout.minimumInteritemSpacing = 1;
-    return [super initWithCollectionViewLayout:layout];
-}
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    // 首先自动刷新一次
-    [self autoRefresh];
-    // 然后开启每一分钟自动更新
-    _timer = [NSTimer scheduledTimerWithTimeInterval:60 target:self selector:@selector(autoRefresh) userInfo:nil repeats:YES];
-}
-
-- (void)viewDidDisappear:(BOOL)animated {
-    [super viewDidDisappear:animated];
-    [self.timer invalidate];
-    self.timer = nil;
-}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"关注";
-    [self setup_collectionView];
+    [self setupUI];
 }
 
-- (void)setup_collectionView {
-    self.collectionView.showsVerticalScrollIndicator = NO;
-    self.collectionView.showsHorizontalScrollIndicator = NO;
-    self.collectionView.alwaysBounceVertical = YES;
-    self.collectionView.backgroundColor = [UIColor whiteColor];
-    [self.collectionView registerNib:[UINib nibWithNibName:NSStringFromClass([CBAttentionCell class]) bundle:nil] forCellWithReuseIdentifier:reuseIdentifier];
+- (void)setupUI {
+    [self.view addSubview:self.collectionView];
+    
     self.currentPage = 1;
     self.collectionView.mj_header = [ALinRefreshGifHeader headerWithRefreshingBlock:^{
         self.currentPage = 1;
@@ -74,6 +49,7 @@ static NSString * const reuseIdentifier = @"CBAttentionCell";
         [self getAnchorsList];
     }];
     [self.collectionView.mj_header beginRefreshing];
+
 }
 
 - (void)autoRefresh {
@@ -108,7 +84,7 @@ static NSString * const reuseIdentifier = @"CBAttentionCell";
     }];
 }
 
-#pragma mark <UICollectionViewDataSource>
+#pragma mark - UICollectionViewDataSource
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return self.anchors.count;
 }
@@ -119,7 +95,7 @@ static NSString * const reuseIdentifier = @"CBAttentionCell";
     return cell;
 }
 
-#pragma mark <UICollectionViewDelegate>
+#pragma mark - UICollectionViewDelegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     ALinLiveCollectionViewController *liveVc = [[ALinLiveCollectionViewController alloc] init];
@@ -140,11 +116,47 @@ static NSString * const reuseIdentifier = @"CBAttentionCell";
     [self presentViewController:liveVc animated:YES completion:nil];
 }
 
+
+#pragma mark - CBVerticalFlowLayoutDelegate
+/**.
+ * 设置cell的高度
+ @param indexPath 索引
+ @param itemWidth 宽度
+ */
+- (CGFloat)cb_waterflowLayout:(CBVerticalFlowLayout *)waterflowLayout collectionView:(UICollectionView *)collectionView heightForItemAtIndexPath:(NSIndexPath *)indexPath itemWidth:(CGFloat)itemWidth {
+    return itemWidth * 236 / 170;
+}
+
+// 需要显示的列数, 默认3
+- (NSInteger)cb_waterflowLayout:(CBVerticalFlowLayout *)waterflowLayout columnsInCollectionView:(UICollectionView *)collectionView{
+    return 2;
+}
+
 #pragma mark - layz
+- (UICollectionView *)collectionView {
+    if (!_collectionView) {
+        _collectionView = [[UICollectionView alloc]initWithFrame:self.view.bounds collectionViewLayout:[UICollectionViewFlowLayout new]];
+        
+        CBVerticalFlowLayout *layout = [[CBVerticalFlowLayout alloc]initWithDelegate:self];
+        self.collectionView.collectionViewLayout = layout;
+        
+        _collectionView.showsVerticalScrollIndicator = NO;
+        _collectionView.showsHorizontalScrollIndicator = NO;
+        _collectionView.alwaysBounceVertical = YES;
+        _collectionView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        _collectionView.delegate = self;
+        _collectionView.dataSource = self;
+        _collectionView.backgroundColor = [UIColor bgColor];
+
+        [_collectionView registerNib:[UINib nibWithNibName:NSStringFromClass([CBAttentionCell class]) bundle:nil] forCellWithReuseIdentifier:reuseIdentifier];
+    }
+    return _collectionView;
+}
 - (NSMutableArray *)anchors {
     if (!_anchors) {
         _anchors = [NSMutableArray array];
     }
     return _anchors;
 }
+
 @end

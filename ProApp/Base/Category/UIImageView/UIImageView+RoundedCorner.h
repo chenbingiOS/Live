@@ -12,6 +12,8 @@
 
 - (void)roundedCorner;
 - (void)roundedCornerByDefault;
+- (void)roundedCornerRadius:(CGFloat)radius;
 - (void)roundedCornerWithBorderColror:(UIColor *)borderColor borderWidth:(CGFloat)broderWidth;
+- (void)roundedCornerWithBorderColror:(UIColor *)borderColor borderWidth:(CGFloat)broderWidth cornerRadius:(CGFloat)radius;
 
 @end
