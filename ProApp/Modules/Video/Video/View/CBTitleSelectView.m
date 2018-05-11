@@ -17,17 +17,16 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    self.btnAry = @[self.btnA, self.btnB, self.btnC];
+    self.btnAry = @[self.btnA, self.btnB];
 }
 
 - (IBAction)actionBtnClick:(UIButton *)sender {
     self.btnA.selected = NO;
     self.btnB.selected = NO;
-    self.btnC.selected = NO;
     sender.selected = YES;
     
     [UIView animateWithDuration:0.35 animations:^{
-        self.lineView.centerX = sender.centerX;
+        self.lineView.centerX = sender.centerX+50;
     }];
     
     if ([self.delegate respondsToSelector:@selector(titleSelectView:selectIndex:)]) {
@@ -39,11 +38,10 @@
     if (self.tempIndex != index) {
         self.btnA.selected = NO;
         self.btnB.selected = NO;
-        self.btnC.selected = NO;
         UIButton *btn = self.btnAry[index];
         btn.selected = YES;
         [UIView animateWithDuration:0.35 animations:^{
-            self.lineView.centerX = btn.centerX;
+            self.lineView.centerX = btn.centerX+50;
         }];
     }
     self.tempIndex = index;

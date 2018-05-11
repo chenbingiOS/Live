@@ -40,9 +40,8 @@
 		073746EE208EC11D00E108E9 /* CBWatchHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 073746ED208EC11D00E108E9 /* CBWatchHeaderView.xib */; };
 		073746F2208EC7C800E108E9 /* CBWatchVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 073746F1208EC7C800E108E9 /* CBWatchVO.m */; };
 		073746F8208ECEB600E108E9 /* CBVideoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 073746F7208ECEB600E108E9 /* CBVideoVC.m */; };
-		073746FD208ECF5900E108E9 /* CBRecommendVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 073746FC208ECF5900E108E9 /* CBRecommendVC.m */; };
-		07374702208ECF9C00E108E9 /* CBNewestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 07374701208ECF9C00E108E9 /* CBNewestVC.m */; };
-		07374705208ECFAC00E108E9 /* CBNearbyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 07374704208ECFAC00E108E9 /* CBNearbyVC.m */; };
+		073746FD208ECF5900E108E9 /* CBVideoHotVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 073746FC208ECF5900E108E9 /* CBVideoHotVC.m */; };
+		07374702208ECF9C00E108E9 /* CBVideoAttentionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 07374701208ECF9C00E108E9 /* CBVideoAttentionVC.m */; };
 		07374708208ED1E600E108E9 /* CBBaseVideoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 07374707208ED1E600E108E9 /* CBBaseVideoVC.m */; };
 		0737470C208ED3F300E108E9 /* CBTitleSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0737470B208ED3F300E108E9 /* CBTitleSelectView.m */; };
 		0737470E208ED40400E108E9 /* CBTitleSelectView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0737470D208ED40400E108E9 /* CBTitleSelectView.xib */; };
@@ -240,12 +239,10 @@
 		073746F1208EC7C800E108E9 /* CBWatchVO.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBWatchVO.m; sourceTree = "<group>"; };
 		073746F6208ECEB600E108E9 /* CBVideoVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBVideoVC.h; sourceTree = "<group>"; };
 		073746F7208ECEB600E108E9 /* CBVideoVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBVideoVC.m; sourceTree = "<group>"; };
-		073746FB208ECF5900E108E9 /* CBRecommendVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBRecommendVC.h; sourceTree = "<group>"; };
-		073746FC208ECF5900E108E9 /* CBRecommendVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBRecommendVC.m; sourceTree = "<group>"; };
-		07374700208ECF9C00E108E9 /* CBNewestVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBNewestVC.h; sourceTree = "<group>"; };
-		07374701208ECF9C00E108E9 /* CBNewestVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBNewestVC.m; sourceTree = "<group>"; };
-		07374703208ECFAC00E108E9 /* CBNearbyVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBNearbyVC.h; sourceTree = "<group>"; };
-		07374704208ECFAC00E108E9 /* CBNearbyVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBNearbyVC.m; sourceTree = "<group>"; };
+		073746FB208ECF5900E108E9 /* CBVideoHotVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBVideoHotVC.h; sourceTree = "<group>"; };
+		073746FC208ECF5900E108E9 /* CBVideoHotVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBVideoHotVC.m; sourceTree = "<group>"; };
+		07374700208ECF9C00E108E9 /* CBVideoAttentionVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBVideoAttentionVC.h; sourceTree = "<group>"; };
+		07374701208ECF9C00E108E9 /* CBVideoAttentionVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBVideoAttentionVC.m; sourceTree = "<group>"; };
 		07374706208ED1E600E108E9 /* CBBaseVideoVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBBaseVideoVC.h; sourceTree = "<group>"; };
 		07374707208ED1E600E108E9 /* CBBaseVideoVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBBaseVideoVC.m; sourceTree = "<group>"; };
 		0737470A208ED3F300E108E9 /* CBTitleSelectView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBTitleSelectView.h; sourceTree = "<group>"; };
@@ -731,9 +728,8 @@
 			isa = PBXGroup;
 			children = (
 				073746F5208ECEA400E108E9 /* Video */,
-				073746FA208ECF2200E108E9 /* Recommend */,
-				073746FE208ECF7600E108E9 /* Newest */,
-				073746FF208ECF8300E108E9 /* Nearby */,
+				073746FA208ECF2200E108E9 /* VideoHot */,
+				073746FE208ECF7600E108E9 /* VideoAttention */,
 			);
 			path = Video;
 			sourceTree = "<group>";
@@ -742,7 +738,6 @@
 			isa = PBXGroup;
 			children = (
 				0791588020883C35007CA2E0 /* Ctrl */,
-				0791588120883C3B007CA2E0 /* View */,
 			);
 			path = Attention;
 			sourceTree = "<group>";
@@ -767,36 +762,30 @@
 			path = Ctrl;
 			sourceTree = "<group>";
 		};
-		073746FA208ECF2200E108E9 /* Recommend */ = {
+		073746FA208ECF2200E108E9 /* VideoHot */ = {
 			isa = PBXGroup;
 			children = (
-				073746FB208ECF5900E108E9 /* CBRecommendVC.h */,
-				073746FC208ECF5900E108E9 /* CBRecommendVC.m */,
+				073746FB208ECF5900E108E9 /* CBVideoHotVC.h */,
+				073746FC208ECF5900E108E9 /* CBVideoHotVC.m */,
 			);
-			path = Recommend;
+			path = VideoHot;
 			sourceTree = "<group>";
 		};
-		073746FE208ECF7600E108E9 /* Newest */ = {
+		073746FE208ECF7600E108E9 /* VideoAttention */ = {
 			isa = PBXGroup;
 			children = (
-				07374700208ECF9C00E108E9 /* CBNewestVC.h */,
-				07374701208ECF9C00E108E9 /* CBNewestVC.m */,
+				07374700208ECF9C00E108E9 /* CBVideoAttentionVC.h */,
+				07374701208ECF9C00E108E9 /* CBVideoAttentionVC.m */,
 			);
-			path = Newest;
-			sourceTree = "<group>";
-		};
-		073746FF208ECF8300E108E9 /* Nearby */ = {
-			isa = PBXGroup;
-			children = (
-				07374703208ECFAC00E108E9 /* CBNearbyVC.h */,
-				07374704208ECFAC00E108E9 /* CBNearbyVC.m */,
-			);
-			path = Nearby;
+			path = VideoAttention;
 			sourceTree = "<group>";
 		};
 		07374709208ED3C800E108E9 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				0791588220883C6D007CA2E0 /* CBAttentionCell.h */,
+				0791588320883C6D007CA2E0 /* CBAttentionCell.m */,
+				0791588420883C6D007CA2E0 /* CBAttentionCell.xib */,
 				0737470A208ED3F300E108E9 /* CBTitleSelectView.h */,
 				0737470B208ED3F300E108E9 /* CBTitleSelectView.m */,
 				0737470D208ED40400E108E9 /* CBTitleSelectView.xib */,
@@ -1163,16 +1152,6 @@
 				0791587E2088391B007CA2E0 /* CBAttentionVC.m */,
 			);
 			path = Ctrl;
-			sourceTree = "<group>";
-		};
-		0791588120883C3B007CA2E0 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				0791588220883C6D007CA2E0 /* CBAttentionCell.h */,
-				0791588320883C6D007CA2E0 /* CBAttentionCell.m */,
-				0791588420883C6D007CA2E0 /* CBAttentionCell.xib */,
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		07916D5B207CA419002E4D83 /* View */ = {
@@ -2012,7 +1991,7 @@
 				07F6EFFD20872E3D0035C6BD /* ALinHomeADCell.m in Sources */,
 				072DC58E209170B000F693E8 /* UIImageView+RoundedCorner.m in Sources */,
 				07F38C0620994A0000DDBC90 /* JPGiftCellModel.m in Sources */,
-				073746FD208ECF5900E108E9 /* CBRecommendVC.m in Sources */,
+				073746FD208ECF5900E108E9 /* CBVideoHotVC.m in Sources */,
 				0750562B2092B0C700F0679B /* CBPackageRecordVC.m in Sources */,
 				07F38C0320994A0000DDBC90 /* JPGiftShowManager.m in Sources */,
 				07359D8F20A419E900FEEA4E /* CBLivePlayerVC.m in Sources */,
@@ -2083,8 +2062,7 @@
 				07F6F00520872E3D0035C6BD /* ALinRefreshGifHeader.m in Sources */,
 				079AAE7A2079C85000674A92 /* CBNVC.m in Sources */,
 				07F6F00220872E3D0035C6BD /* ALinH264Encoder.m in Sources */,
-				07374705208ECFAC00E108E9 /* CBNearbyVC.m in Sources */,
-				07374702208ECF9C00E108E9 /* CBNewestVC.m in Sources */,
+				07374702208ECF9C00E108E9 /* CBVideoAttentionVC.m in Sources */,
 				07F6EFE220872E3D0035C6BD /* ALinLive.m in Sources */,
 				077FFD082099AA7300B8680C /* CBGuardRankCell.m in Sources */,
 				073746F8208ECEB600E108E9 /* CBVideoVC.m in Sources */,

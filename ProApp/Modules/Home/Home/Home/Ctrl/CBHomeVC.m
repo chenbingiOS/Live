@@ -61,6 +61,19 @@
 }
 
 #pragma mark - layz
+- (CBSelectedView *)selectedView {
+    if (!_selectedView) {
+        _selectedView = [CBSelectedView viewFromXib];
+        if (iPhoneX) {
+            _selectedView.frame = CGRectMake(0, 0, kScreenWidth, 108+20);
+        } else {
+            _selectedView.frame = CGRectMake(0, 0, kScreenWidth, 108);
+        }
+        _selectedView.delegate = self;
+    }
+    return _selectedView;
+}
+
 - (UIScrollView *)scrollView {
     if (!_scrollView) {
         CGRect frame = CGRectMake(0, 108, kScreenWidth, kScreenHeight-49-108);
@@ -76,19 +89,6 @@
         _scrollView.bounces = NO;
     }
     return _scrollView;
-}
-
-- (CBSelectedView *)selectedView {
-    if (!_selectedView) {
-        _selectedView = [CBSelectedView viewFromXib];        
-        if (iPhoneX) {
-            _selectedView.frame = CGRectMake(0, 0, kScreenWidth, 108+20);
-        } else {
-            _selectedView.frame = CGRectMake(0, 0, kScreenWidth, 108);
-        }
-        _selectedView.delegate = self;
-    }
-    return _selectedView;
 }
 
 - (CBAppLiveVC *)appLiveVC {

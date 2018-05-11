@@ -1,5 +1,5 @@
 //
-//  CBNearbyVC.h
+//  CBVideoAttentionVC.h
 //  ProApp
 //
 //  Created by 陈冰 on 2018/4/24.
@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "CBBaseVideoVC.h"
 
-@interface CBNearbyVC : CBBaseVideoVC
+@interface CBVideoAttentionVC : CBBaseVideoVC
 
 @end

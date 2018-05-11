@@ -14,22 +14,25 @@
 #import "CBHotVC.h"
 #import "ALinNewStarViewController.h"
 
-#import "CBRecommendVC.h"
-#import "CBNewestVC.h"
-#import "CBNearbyVC.h"
+#import "CBVideoHotVC.h"
+#import "CBVideoAttentionVC.h"
 
 @interface CBVideoVC() <UIScrollViewDelegate, CBTitleSelectViewDelegate>
 
-@property(nonatomic, strong) UIScrollView *scrollView;      /** UIScrollView */
-@property(nonatomic, strong) CBTitleSelectView *selectedView;  /** 顶部选择视图 */
-@property(nonatomic, strong) CBRecommendVC *recommendVC;    ///< 推荐
-@property(nonatomic, strong) CBNewestVC *newestVC;          ///< 最新
-@property(nonatomic, strong) CBNearbyVC *nearbyVC;          ///< 附近
+@property(nonatomic, strong) UIScrollView *scrollView;          ///< UIScrollView
+@property(nonatomic, strong) CBTitleSelectView *selectedView;   ///< 顶部选择视图
+@property(nonatomic, strong) CBVideoHotVC *videoHotVC;          ///< 推荐
+@property(nonatomic, strong) CBVideoAttentionVC *videoAttentionVC;  ///< 最新
 
 
 @end
 
 @implementation CBVideoVC
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:YES animated:animated];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -38,19 +41,16 @@
 
 - (void)setup_UI {
     [self.view addSubview:self.scrollView];
-    [self.navigationController.navigationBar addSubview:self.selectedView];
+    [self.view addSubview:self.selectedView];
     [self setup_childVC];
 }
 
 - (void)setup_childVC {
-    [self addChildViewController:self.recommendVC];
-    [self.scrollView addSubview:self.recommendVC.view];
+    [self addChildViewController:self.videoHotVC];
+    [self.scrollView addSubview:self.videoHotVC.view];
     
-    [self addChildViewController:self.newestVC];
-    [self.scrollView addSubview:self.newestVC.view];
-    
-    [self addChildViewController:self.nearbyVC];
-    [self.scrollView addSubview:self.nearbyVC.view];
+    [self addChildViewController:self.videoAttentionVC];
+    [self.scrollView addSubview:self.videoAttentionVC.view];
 }
 
 #pragma mark - UIScrollViewDelegate
@@ -65,10 +65,27 @@
 }
 
 #pragma mark - layz
+- (CBTitleSelectView *)selectedView {
+    if (!_selectedView) {
+        _selectedView = [CBTitleSelectView viewFromXib];
+        if (iPhoneX) {
+            _selectedView.frame = CGRectMake(0, 0, kScreenWidth, 64+20);
+        } else {
+            _selectedView.frame = CGRectMake(0, 0, kScreenWidth, 64);
+        }
+        _selectedView.delegate = self;
+    }
+    return _selectedView;
+}
+
 - (UIScrollView *)scrollView {
     if (!_scrollView) {
-        _scrollView = [[UIScrollView alloc] initWithFrame:[UIScreen mainScreen].bounds];
-        _scrollView.contentSize = CGSizeMake(kScreenWidth * 3, 0);
+        CGRect frame = CGRectMake(0, 64, kScreenWidth, kScreenHeight-49-64);
+        if (iPhoneX) {
+            frame = CGRectMake(0, 64+20, kScreenWidth, kScreenHeight-49-64-20-34);
+        }
+        _scrollView = [[UIScrollView alloc] initWithFrame:frame];
+        _scrollView.contentSize = CGSizeMake(kScreenWidth * 2, 0);
         _scrollView.showsVerticalScrollIndicator = NO;
         _scrollView.showsHorizontalScrollIndicator = NO;
         _scrollView.pagingEnabled = YES;
@@ -78,47 +95,29 @@
     return _scrollView;
 }
 
-- (CBTitleSelectView *)selectedView {
-    if (!_selectedView) {
-        CGRect frame = self.navigationController.navigationBar.bounds;
-        frame.origin.x = 45;
-        frame.size.width = kScreenWidth - 45*2;
-        _selectedView = [CBTitleSelectView viewFromXib];
-        _selectedView.frame = frame;
-        _selectedView.delegate = self;
+
+- (CBVideoHotVC *)videoHotVC {
+    if (!_videoHotVC) {
+        _videoHotVC = [CBVideoHotVC new];
+        if (iPhoneX) {
+            _videoHotVC.view.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight-49-64-20-34);
+        } else {
+            _videoHotVC.view.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight-49-64);
+        }
     }
-    return _selectedView;
+    return _videoHotVC;
 }
 
-- (CBRecommendVC *)recommendVC {
-    if (!_recommendVC) {
-        _recommendVC = [CBRecommendVC new];
-        _recommendVC.view.frame = [UIScreen mainScreen].bounds;
-        _recommendVC.view.height = kScreenHeight - 49;
+- (CBVideoAttentionVC *)videoAttentionVC {
+    if (!_videoAttentionVC) {
+        _videoAttentionVC = [CBVideoAttentionVC new];
+        if (iPhoneX) {
+            _videoHotVC.view.frame = CGRectMake(kScreenWidth, 0, kScreenWidth, kScreenHeight-49-64-20-34);
+        } else {
+            _videoHotVC.view.frame = CGRectMake(kScreenWidth, 0, kScreenWidth, kScreenHeight-49-64);
+        }
     }
-    return _recommendVC;
+    return _videoAttentionVC;
 }
-
-- (CBNewestVC *)newestVC {
-    if (!_newestVC) {
-        _newestVC = [CBNewestVC new];
-        _newestVC.view.frame = [UIScreen mainScreen].bounds;
-        _newestVC.view.height = kScreenHeight - 49;
-        _newestVC.view.left = kScreenWidth;
-    }
-    return _newestVC;
-}
-
-- (CBNearbyVC *)nearbyVC {
-    if (!_nearbyVC) {
-        _nearbyVC = [CBNearbyVC new];
-        _nearbyVC.view.frame = [UIScreen mainScreen].bounds;
-        _nearbyVC.view.height = kScreenHeight - 49;
-        _nearbyVC.view.left = kScreenWidth * 2;
-    }
-    return _nearbyVC;
-}
-
-
 
 @end
