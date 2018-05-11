@@ -26,7 +26,7 @@
     sender.selected = YES;
     
     [UIView animateWithDuration:0.35 animations:^{
-        self.lineView.centerX = sender.centerX;
+        self.lineView.centerX = sender.centerX+50;
     }];
     
     if ([self.delegate respondsToSelector:@selector(titleSelectView:selectIndex:)]) {
@@ -41,7 +41,7 @@
         UIButton *btn = self.btnAry[index];
         btn.selected = YES;
         [UIView animateWithDuration:0.35 animations:^{
-            self.lineView.centerX = btn.centerX;
+            self.lineView.centerX = btn.centerX+50;
         }];
     }
     self.tempIndex = index;

@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0715278920A53F6000D3859D /* CBRegisterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0715278720A53F6000D3859D /* CBRegisterVC.m */; };
+		0715278A20A53F6000D3859D /* CBRegisterVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0715278820A53F6000D3859D /* CBRegisterVC.xib */; };
+		0715278E20A5498A00D3859D /* UITextField+LeftImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0715278D20A5498A00D3859D /* UITextField+LeftImageView.m */; };
 		071B70112092F4F000549C18 /* CBAccountRecordSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 071B70102092F4F000549C18 /* CBAccountRecordSelectView.m */; };
 		071B70132092F50100549C18 /* CBAccountRecordSelectView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 071B70122092F50100549C18 /* CBAccountRecordSelectView.xib */; };
 		071D3C102092B35D00A6C5CE /* CBPackageRecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 071D3C0E2092B35D00A6C5CE /* CBPackageRecordCell.m */; };
@@ -140,8 +143,6 @@
 		07F38C0F2099503900DDBC90 /* CBGuardVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 07F38C0D2099503900DDBC90 /* CBGuardVC.xib */; };
 		07F6EF3A20872A9B0035C6BD /* IJKMediaFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07F6EF3920872A9B0035C6BD /* IJKMediaFramework.framework */; };
 		07F6EFDD20872E3D0035C6BD /* ALinConstant.m in Sources */ = {isa = PBXBuildFile; fileRef = 07F6EF5920872E3C0035C6BD /* ALinConstant.m */; };
-		07F6EFDE20872E3D0035C6BD /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07F6EF5C20872E3C0035C6BD /* LoginViewController.m */; };
-		07F6EFDF20872E3D0035C6BD /* ThirdLoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = 07F6EF5F20872E3C0035C6BD /* ThirdLoginView.m */; };
 		07F6EFE020872E3D0035C6BD /* CBHomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 07F6EF6420872E3C0035C6BD /* CBHomeVC.m */; };
 		07F6EFE120872E3D0035C6BD /* ALinUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 07F6EF6720872E3C0035C6BD /* ALinUser.m */; };
 		07F6EFE220872E3D0035C6BD /* ALinLive.m in Sources */ = {isa = PBXBuildFile; fileRef = 07F6EF6820872E3C0035C6BD /* ALinLive.m */; };
@@ -187,6 +188,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0715278620A53F6000D3859D /* CBRegisterVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBRegisterVC.h; sourceTree = "<group>"; };
+		0715278720A53F6000D3859D /* CBRegisterVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBRegisterVC.m; sourceTree = "<group>"; };
+		0715278820A53F6000D3859D /* CBRegisterVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CBRegisterVC.xib; sourceTree = "<group>"; };
+		0715278C20A5498A00D3859D /* UITextField+LeftImageView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITextField+LeftImageView.h"; sourceTree = "<group>"; };
+		0715278D20A5498A00D3859D /* UITextField+LeftImageView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UITextField+LeftImageView.m"; sourceTree = "<group>"; };
 		071B700F2092F4F000549C18 /* CBAccountRecordSelectView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBAccountRecordSelectView.h; sourceTree = "<group>"; };
 		071B70102092F4F000549C18 /* CBAccountRecordSelectView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBAccountRecordSelectView.m; sourceTree = "<group>"; };
 		071B70122092F50100549C18 /* CBAccountRecordSelectView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CBAccountRecordSelectView.xib; sourceTree = "<group>"; };
@@ -405,10 +411,6 @@
 		07F6EF3920872A9B0035C6BD /* IJKMediaFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = IJKMediaFramework.framework; sourceTree = "<group>"; };
 		07F6EF5820872E3C0035C6BD /* ALinConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALinConstant.h; sourceTree = "<group>"; };
 		07F6EF5920872E3C0035C6BD /* ALinConstant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ALinConstant.m; sourceTree = "<group>"; };
-		07F6EF5C20872E3C0035C6BD /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
-		07F6EF5D20872E3C0035C6BD /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
-		07F6EF5F20872E3C0035C6BD /* ThirdLoginView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThirdLoginView.m; sourceTree = "<group>"; };
-		07F6EF6020872E3C0035C6BD /* ThirdLoginView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThirdLoginView.h; sourceTree = "<group>"; };
 		07F6EF6420872E3C0035C6BD /* CBHomeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBHomeVC.m; sourceTree = "<group>"; };
 		07F6EF6520872E3C0035C6BD /* CBHomeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBHomeVC.h; sourceTree = "<group>"; };
 		07F6EF6720872E3C0035C6BD /* ALinUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ALinUser.m; sourceTree = "<group>"; };
@@ -502,6 +504,34 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0715278420A53F3A00D3859D /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				0715278520A53F4300D3859D /* Register */,
+				07F6EF5A20872E3C0035C6BD /* Login */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		0715278520A53F4300D3859D /* Register */ = {
+			isa = PBXGroup;
+			children = (
+				0715278620A53F6000D3859D /* CBRegisterVC.h */,
+				0715278720A53F6000D3859D /* CBRegisterVC.m */,
+				0715278820A53F6000D3859D /* CBRegisterVC.xib */,
+			);
+			path = Register;
+			sourceTree = "<group>";
+		};
+		0715278B20A5496D00D3859D /* UITextField */ = {
+			isa = PBXGroup;
+			children = (
+				0715278C20A5498A00D3859D /* UITextField+LeftImageView.h */,
+				0715278D20A5498A00D3859D /* UITextField+LeftImageView.m */,
+			);
+			path = UITextField;
+			sourceTree = "<group>";
+		};
 		071B700D2092F4B500549C18 /* Ctrl */ = {
 			isa = PBXGroup;
 			children = (
@@ -554,6 +584,7 @@
 		072DC57B2091604600F693E8 /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				0715278B20A5496D00D3859D /* UITextField */,
 				072DC58B2091706300F693E8 /* UIImageView */,
 				072DC57C2091605C00F693E8 /* UILabel */,
 				07CF5FD4207B37410087A5E2 /* CALayer */,
@@ -824,7 +855,7 @@
 		0737ED9E2074A35600A89CC0 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				07F6EF5A20872E3C0035C6BD /* Login */,
+				0715278420A53F3A00D3859D /* Login */,
 				07F6EF6120872E3C0035C6BD /* Home */,
 				073746F3208ECD1900E108E9 /* Video */,
 				07359D9520A4299400FEEA4E /* LiveVideo */,
@@ -1408,7 +1439,6 @@
 			isa = PBXGroup;
 			children = (
 				07F6EF5B20872E3C0035C6BD /* Ctrl */,
-				07F6EF5E20872E3C0035C6BD /* View */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -1416,22 +1446,11 @@
 		07F6EF5B20872E3C0035C6BD /* Ctrl */ = {
 			isa = PBXGroup;
 			children = (
-				07F6EF5D20872E3C0035C6BD /* LoginViewController.h */,
-				07F6EF5C20872E3C0035C6BD /* LoginViewController.m */,
 				07359D9020A422DD00FEEA4E /* CBLoginVC.h */,
 				07359D9120A422DD00FEEA4E /* CBLoginVC.m */,
 				07359D9220A422DD00FEEA4E /* CBLoginVC.xib */,
 			);
 			path = Ctrl;
-			sourceTree = "<group>";
-		};
-		07F6EF5E20872E3C0035C6BD /* View */ = {
-			isa = PBXGroup;
-			children = (
-				07F6EF5F20872E3C0035C6BD /* ThirdLoginView.m */,
-				07F6EF6020872E3C0035C6BD /* ThirdLoginView.h */,
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		07F6EF6120872E3C0035C6BD /* Home */ = {
@@ -1864,6 +1883,7 @@
 				0737ED912074A33600A89CC0 /* Assets.xcassets in Resources */,
 				07F6EFEF20872E3D0035C6BD /* ALinUserView.xib in Resources */,
 				077FFD0E2099B3BD00B8680C /* CBGuardRankBCell.xib in Resources */,
+				0715278A20A53F6000D3859D /* CBRegisterVC.xib in Resources */,
 				07737DE8208F0161009EB9E6 /* CBMyFansVC.xib in Resources */,
 				072DC586209166A600F693E8 /* danmu.plist in Resources */,
 				07B668A5208DC2B400AA5B62 /* CBFillInfoOKView.xib in Resources */,
@@ -2021,7 +2041,6 @@
 				077C1AA42091A7E00005CE97 /* CBPhoneBindVC.m in Sources */,
 				07659C1E20A4439700EBE030 /* HcdGuideView.m in Sources */,
 				077C1AAF2091AA160005CE97 /* CBAboutVC.m in Sources */,
-				07F6EFDF20872E3D0035C6BD /* ThirdLoginView.m in Sources */,
 				073746E8208EBFAB00E108E9 /* CBWatchCell.m in Sources */,
 				071B70112092F4F000549C18 /* CBAccountRecordSelectView.m in Sources */,
 				07374708208ED1E600E108E9 /* CBBaseVideoVC.m in Sources */,
@@ -2029,6 +2048,7 @@
 				0791588520883C6D007CA2E0 /* CBAttentionCell.m in Sources */,
 				07558C16209401A3007E41C2 /* CBOnlineUserView.m in Sources */,
 				072DC57F2091607600F693E8 /* UILabel+ShadowText.m in Sources */,
+				0715278920A53F6000D3859D /* CBRegisterVC.m in Sources */,
 				073746EC208EC08200E108E9 /* CBWatchHeaderView.m in Sources */,
 				079AAE662079C02700674A92 /* UIColor+Color.m in Sources */,
 				077FFD012099A67400B8680C /* CBGuardRankVC.m in Sources */,
@@ -2043,6 +2063,7 @@
 				07F6EFFC20872E3D0035C6BD /* CBAppLiveCell.m in Sources */,
 				07B66891208D6A8900AA5B62 /* CBRealNameVC.m in Sources */,
 				07F6EFE320872E3D0035C6BD /* CBSelectedView.m in Sources */,
+				0715278E20A5498A00D3859D /* UITextField+LeftImageView.m in Sources */,
 				073746F2208EC7C800E108E9 /* CBWatchVO.m in Sources */,
 				07F6EFF820872E3D0035C6BD /* CBAppLiveVC.m in Sources */,
 				07F6EFEC20872E3D0035C6BD /* ALinBottomToolView.m in Sources */,
@@ -2067,7 +2088,6 @@
 				07F6EFE220872E3D0035C6BD /* ALinLive.m in Sources */,
 				077FFD082099AA7300B8680C /* CBGuardRankCell.m in Sources */,
 				073746F8208ECEB600E108E9 /* CBVideoVC.m in Sources */,
-				07F6EFDE20872E3D0035C6BD /* LoginViewController.m in Sources */,
 				07F38C0420994A0000DDBC90 /* JPGiftShowView.m in Sources */,
 				0737470C208ED3F300E108E9 /* CBTitleSelectView.m in Sources */,
 				07F6F00A20872E3D0035C6BD /* UIViewController+SLExtension.m in Sources */,

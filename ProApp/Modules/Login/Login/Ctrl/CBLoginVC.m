@@ -7,6 +7,8 @@
 //
 
 #import "CBLoginVC.h"
+#import "CBRegisterVC.h"
+#import "UITextField+LeftImageView.h"
 
 @interface CBLoginVC ()
 
@@ -27,21 +29,10 @@
 }
 
 - (void)setupUI {
-    [self setTextFieldLeftPadding:self.phoneTextField forWidth:44.0f andImageName:@"login_icon_phone"];
-    [self setTextFieldLeftPadding:self.pwdTextField forWidth:44.0f andImageName:@"login_icon_password"];
+    [self.phoneTextField leftImageViewImageName:@"login_icon_phone"];
+    [self.pwdTextField leftImageViewImageName:@"login_icon_password"];
 }
 
-- (void)setTextFieldLeftPadding:(UITextField *)textField forWidth:(CGFloat)leftWidth andImageName:(NSString *)imgName{
-    CGRect frame = textField.frame;
-    frame.size.width = leftWidth;
-    UIView *leftview = [[UIView alloc] initWithFrame:frame];
-     textField.leftViewMode = UITextFieldViewModeAlways;
-    textField.leftView = leftview;
-    UIImageView *imgV = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, leftWidth, frame.size.height)];
-    imgV.contentMode = UIViewContentModeCenter;
-    imgV.image = [UIImage imageNamed:imgName];
-    [leftview addSubview:imgV];
-}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -51,5 +42,11 @@
 - (IBAction)actionClose:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+
+- (IBAction)actionRegister:(id)sender {
+    CBRegisterVC *vc = [CBRegisterVC new];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
 
 @end

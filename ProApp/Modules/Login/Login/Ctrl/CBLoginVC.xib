@@ -68,7 +68,7 @@
                             <state key="normal" title="登录" backgroundImage="login_btn_register"/>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C8I-X2-eHS">
-                            <rect key="frame" x="0.0" y="324" width="48" height="44"/>
+                            <rect key="frame" x="0.0" y="314" width="48" height="44"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="44" id="6bl-RL-qhg"/>
                             </constraints>
@@ -78,7 +78,7 @@
                             </state>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fqG-GS-lAo">
-                            <rect key="frame" x="265" y="324" width="60" height="44"/>
+                            <rect key="frame" x="265" y="314" width="60" height="44"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="44" id="1LK-1X-Hth"/>
                             </constraints>
@@ -86,6 +86,9 @@
                             <state key="normal" title="手机号注册">
                                 <color key="titleColor" red="0.92156862750000001" green="0.31764705879999999" blue="0.67450980390000004" alpha="1" colorSpace="deviceRGB"/>
                             </state>
+                            <connections>
+                                <action selector="actionRegister:" destination="-1" eventType="touchUpInside" id="hen-jZ-pTQ"/>
+                            </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -96,9 +99,9 @@
                         <constraint firstItem="lcO-pv-1JQ" firstAttribute="top" secondItem="1hC-cf-SzR" secondAttribute="bottom" constant="15" id="FhD-v2-d1I"/>
                         <constraint firstAttribute="trailing" secondItem="erc-TV-wFU" secondAttribute="trailing" id="Jk5-YQ-bVn"/>
                         <constraint firstItem="qu5-8e-YjN" firstAttribute="centerX" secondItem="C7u-B1-rUH" secondAttribute="centerX" id="LfY-nK-wbp"/>
-                        <constraint firstItem="C8I-X2-eHS" firstAttribute="top" secondItem="qu5-8e-YjN" secondAttribute="bottom" constant="20" id="PEU-Va-Nyu"/>
+                        <constraint firstItem="C8I-X2-eHS" firstAttribute="top" secondItem="qu5-8e-YjN" secondAttribute="bottom" constant="10" id="PEU-Va-Nyu"/>
                         <constraint firstItem="C8I-X2-eHS" firstAttribute="leading" secondItem="C7u-B1-rUH" secondAttribute="leading" id="PMe-Pm-lmp"/>
-                        <constraint firstItem="fqG-GS-lAo" firstAttribute="top" secondItem="qu5-8e-YjN" secondAttribute="bottom" constant="20" id="PoP-yD-kAc"/>
+                        <constraint firstItem="fqG-GS-lAo" firstAttribute="top" secondItem="qu5-8e-YjN" secondAttribute="bottom" constant="10" id="PoP-yD-kAc"/>
                         <constraint firstItem="q2e-eL-6As" firstAttribute="centerX" secondItem="C7u-B1-rUH" secondAttribute="centerX" id="RdP-DS-kzN"/>
                         <constraint firstAttribute="trailing" secondItem="1hC-cf-SzR" secondAttribute="trailing" id="TiB-8H-r5z"/>
                         <constraint firstItem="lcO-pv-1JQ" firstAttribute="leading" secondItem="C7u-B1-rUH" secondAttribute="leading" id="dVb-tg-Y6v"/>
