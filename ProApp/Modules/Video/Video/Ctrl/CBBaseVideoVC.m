@@ -22,11 +22,9 @@
 
 @end
 
-@implementation CBBaseVideoVC
-
 static NSString * const reuseIdentifier = @"CBAttentionCell";
 
-
+@implementation CBBaseVideoVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -145,7 +143,7 @@ static NSString * const reuseIdentifier = @"CBAttentionCell";
         _collectionView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         _collectionView.delegate = self;
         _collectionView.dataSource = self;
-        _collectionView.backgroundColor = [UIColor bgColor];
+        _collectionView.backgroundColor = [UIColor whiteColor];
 
         [_collectionView registerNib:[UINib nibWithNibName:NSStringFromClass([CBAttentionCell class]) bundle:nil] forCellWithReuseIdentifier:reuseIdentifier];
     }

@@ -28,7 +28,7 @@
     NSArray *ctrlArr = @[@"CBHomeVC",
                          @"CBVideoVC",
                          @"CBLiveVideoVC",
-                         @"CBAttentionVC",
+                         @"CBAttentionLiveVC",
                          @"CBProfileVC"];
     NSArray *imgOffAry = @[@"home",
                            @"video",

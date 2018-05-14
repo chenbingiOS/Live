@@ -1,18 +1,15 @@
 //
-//  CBAttentionCell.m
-//  MiaowShow
+//  CBAttentionLiveCell.m
+//  ProApp
 //
-//  Created by ALin on 16/6/14.
-//  Copyright © 2016年 ALin. All rights reserved.
+//  Created by 陈冰 on 2018/5/14.
+//  Copyright © 2018年 ChenBing. All rights reserved.
 //
 
-#import "CBAttentionCell.h"
+#import "CBAttentionLiveCell.h"
 #import "ALinUser.h"
-#import <UIImageView+WebCache.h>
-#import "UIImageView+RoundedCorner.h"
-#import "UIView+CornerRadius.h"
 
-@interface CBAttentionCell()
+@interface CBAttentionLiveCell ()
 
 @property (weak, nonatomic) IBOutlet UILabel *videoCountLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *coverView;
@@ -22,16 +19,14 @@
 
 @end
 
-@implementation CBAttentionCell
+@implementation CBAttentionLiveCell
 
 - (void)setUser:(ALinUser *)user {
     
     _user = user;
     
     [self.coverView sd_setImageWithURL:[NSURL URLWithString:user.photo] placeholderImage:[UIImage imageNamed:@"placeholder_head"]];
-    [self.coverView roundedCornerRadius:8];
-    [self.avaterImageView sd_setImageWithURL:[NSURL URLWithString:user.photo] placeholderImage:[UIImage imageNamed:@"placeholder_head"]];
-    [self.avaterImageView roundedCorner];
+    [self.coverView roundedCornerWithBorderColror:[UIColor mainColor] borderWidth:1];
     self.userNameLabel.text = user.nickname;
 }
 

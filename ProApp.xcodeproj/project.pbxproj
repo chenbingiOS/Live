@@ -67,6 +67,7 @@
 		07558C2B2094569C007E41C2 /* CBAnchorInfoXibView.m in Sources */ = {isa = PBXBuildFile; fileRef = 07558C2A2094569C007E41C2 /* CBAnchorInfoXibView.m */; };
 		07558C2D209456A5007E41C2 /* CBAnchorInfoXibView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 07558C2C209456A5007E41C2 /* CBAnchorInfoXibView.xib */; };
 		075DB82C207D974F00891E60 /* UIView+CornerRadius.m in Sources */ = {isa = PBXBuildFile; fileRef = 075DB82B207D974F00891E60 /* UIView+CornerRadius.m */; };
+		0763FC1C20A935020086BFA4 /* CBHorizontalFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 0763FC1B20A935020086BFA4 /* CBHorizontalFlowLayout.m */; };
 		07659C1E20A4439700EBE030 /* HcdGuideView.m in Sources */ = {isa = PBXBuildFile; fileRef = 07659C1B20A4439700EBE030 /* HcdGuideView.m */; };
 		07659C1F20A4439700EBE030 /* HcdGuideViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 07659C1C20A4439700EBE030 /* HcdGuideViewCell.m */; };
 		076F52A120750E64004F91E8 /* AppDelegate+AppServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 076F52A020750E64004F91E8 /* AppDelegate+AppServer.m */; };
@@ -96,7 +97,6 @@
 		0787704E2092CA7D00A5A42A /* CBAccountRecordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0787704C2092CA7D00A5A42A /* CBAccountRecordVC.m */; };
 		0787704F2092CA7D00A5A42A /* CBAccountRecordVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0787704D2092CA7D00A5A42A /* CBAccountRecordVC.xib */; };
 		0791587B20883209007CA2E0 /* CBHotVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0791587A20883209007CA2E0 /* CBHotVC.m */; };
-		0791587F2088391B007CA2E0 /* CBAttentionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0791587E2088391B007CA2E0 /* CBAttentionVC.m */; };
 		0791588520883C6D007CA2E0 /* CBAttentionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0791588320883C6D007CA2E0 /* CBAttentionCell.m */; };
 		0791588620883C6D007CA2E0 /* CBAttentionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0791588420883C6D007CA2E0 /* CBAttentionCell.xib */; };
 		0791588A208849C0007CA2E0 /* CBProfileVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 07915888208849C0007CA2E0 /* CBProfileVC.m */; };
@@ -119,6 +119,10 @@
 		07B668AA208DD19700AA5B62 /* CBAccountVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 07B668A8208DD19700AA5B62 /* CBAccountVC.m */; };
 		07B668AB208DD19700AA5B62 /* CBAccountVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 07B668A9208DD19700AA5B62 /* CBAccountVC.xib */; };
 		07B8BD1C20A3E14200DD05B2 /* CBPlayerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 07B8BD1B20A3E14200DD05B2 /* CBPlayerVC.m */; };
+		07C9734A20A91F1000BB9820 /* CBAttentionLiveVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 07C9734820A91F1000BB9820 /* CBAttentionLiveVC.m */; };
+		07C9734B20A91F1000BB9820 /* CBAttentionLiveVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 07C9734920A91F1000BB9820 /* CBAttentionLiveVC.xib */; };
+		07C9735020A9224000BB9820 /* CBAttentionLiveCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 07C9734E20A9224000BB9820 /* CBAttentionLiveCell.m */; };
+		07C9735120A9224000BB9820 /* CBAttentionLiveCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 07C9734F20A9224000BB9820 /* CBAttentionLiveCell.xib */; };
 		07CD47AA209FF78E00A372C7 /* CBGuardRankCCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 07CD47A8209FF78E00A372C7 /* CBGuardRankCCell.m */; };
 		07CD47AB209FF78E00A372C7 /* CBGuardRankCCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 07CD47A9209FF78E00A372C7 /* CBGuardRankCCell.xib */; };
 		07CD47B020A0269600A372C7 /* CBContributionRankVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 07CD47AE20A0269600A372C7 /* CBContributionRankVC.m */; };
@@ -281,6 +285,8 @@
 		07558C2C209456A5007E41C2 /* CBAnchorInfoXibView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CBAnchorInfoXibView.xib; sourceTree = "<group>"; };
 		075DB82A207D974F00891E60 /* UIView+CornerRadius.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+CornerRadius.h"; sourceTree = "<group>"; };
 		075DB82B207D974F00891E60 /* UIView+CornerRadius.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+CornerRadius.m"; sourceTree = "<group>"; };
+		0763FC1A20A935020086BFA4 /* CBHorizontalFlowLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBHorizontalFlowLayout.h; sourceTree = "<group>"; };
+		0763FC1B20A935020086BFA4 /* CBHorizontalFlowLayout.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBHorizontalFlowLayout.m; sourceTree = "<group>"; };
 		07659C1A20A4439700EBE030 /* HcdGuideViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HcdGuideViewCell.h; sourceTree = "<group>"; };
 		07659C1B20A4439700EBE030 /* HcdGuideView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HcdGuideView.m; sourceTree = "<group>"; };
 		07659C1C20A4439700EBE030 /* HcdGuideViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HcdGuideViewCell.m; sourceTree = "<group>"; };
@@ -327,8 +333,6 @@
 		0787704D2092CA7D00A5A42A /* CBAccountRecordVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CBAccountRecordVC.xib; sourceTree = "<group>"; };
 		0791587920883209007CA2E0 /* CBHotVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBHotVC.h; sourceTree = "<group>"; };
 		0791587A20883209007CA2E0 /* CBHotVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBHotVC.m; sourceTree = "<group>"; };
-		0791587D2088391B007CA2E0 /* CBAttentionVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBAttentionVC.h; sourceTree = "<group>"; };
-		0791587E2088391B007CA2E0 /* CBAttentionVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBAttentionVC.m; sourceTree = "<group>"; };
 		0791588220883C6D007CA2E0 /* CBAttentionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBAttentionCell.h; sourceTree = "<group>"; };
 		0791588320883C6D007CA2E0 /* CBAttentionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBAttentionCell.m; sourceTree = "<group>"; };
 		0791588420883C6D007CA2E0 /* CBAttentionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CBAttentionCell.xib; sourceTree = "<group>"; };
@@ -366,6 +370,12 @@
 		07B668A9208DD19700AA5B62 /* CBAccountVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CBAccountVC.xib; sourceTree = "<group>"; };
 		07B8BD1A20A3E14200DD05B2 /* CBPlayerVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBPlayerVC.h; sourceTree = "<group>"; };
 		07B8BD1B20A3E14200DD05B2 /* CBPlayerVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBPlayerVC.m; sourceTree = "<group>"; };
+		07C9734720A91F1000BB9820 /* CBAttentionLiveVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBAttentionLiveVC.h; sourceTree = "<group>"; };
+		07C9734820A91F1000BB9820 /* CBAttentionLiveVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBAttentionLiveVC.m; sourceTree = "<group>"; };
+		07C9734920A91F1000BB9820 /* CBAttentionLiveVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CBAttentionLiveVC.xib; sourceTree = "<group>"; };
+		07C9734D20A9224000BB9820 /* CBAttentionLiveCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBAttentionLiveCell.h; sourceTree = "<group>"; };
+		07C9734E20A9224000BB9820 /* CBAttentionLiveCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBAttentionLiveCell.m; sourceTree = "<group>"; };
+		07C9734F20A9224000BB9820 /* CBAttentionLiveCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CBAttentionLiveCell.xib; sourceTree = "<group>"; };
 		07CD47A7209FF78E00A372C7 /* CBGuardRankCCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBGuardRankCCell.h; sourceTree = "<group>"; };
 		07CD47A8209FF78E00A372C7 /* CBGuardRankCCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBGuardRankCCell.m; sourceTree = "<group>"; };
 		07CD47A9209FF78E00A372C7 /* CBGuardRankCCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CBGuardRankCCell.xib; sourceTree = "<group>"; };
@@ -738,7 +748,9 @@
 		073746F4208ECE9000E108E9 /* Attention */ = {
 			isa = PBXGroup;
 			children = (
+				0763FC1920A934ED0086BFA4 /* Layout */,
 				0791588020883C35007CA2E0 /* Ctrl */,
+				07C9734C20A9222100BB9820 /* View */,
 			);
 			path = Attention;
 			sourceTree = "<group>";
@@ -973,6 +985,15 @@
 			path = AnchorInfoView;
 			sourceTree = "<group>";
 		};
+		0763FC1920A934ED0086BFA4 /* Layout */ = {
+			isa = PBXGroup;
+			children = (
+				0763FC1A20A935020086BFA4 /* CBHorizontalFlowLayout.h */,
+				0763FC1B20A935020086BFA4 /* CBHorizontalFlowLayout.m */,
+			);
+			path = Layout;
+			sourceTree = "<group>";
+		};
 		07659C1920A4439700EBE030 /* HcdGuideView */ = {
 			isa = PBXGroup;
 			children = (
@@ -1149,8 +1170,9 @@
 		0791588020883C35007CA2E0 /* Ctrl */ = {
 			isa = PBXGroup;
 			children = (
-				0791587D2088391B007CA2E0 /* CBAttentionVC.h */,
-				0791587E2088391B007CA2E0 /* CBAttentionVC.m */,
+				07C9734720A91F1000BB9820 /* CBAttentionLiveVC.h */,
+				07C9734820A91F1000BB9820 /* CBAttentionLiveVC.m */,
+				07C9734920A91F1000BB9820 /* CBAttentionLiveVC.xib */,
 			);
 			path = Ctrl;
 			sourceTree = "<group>";
@@ -1293,6 +1315,16 @@
 				0787704A2092CA6400A5A42A /* AccountRecord */,
 			);
 			path = Account;
+			sourceTree = "<group>";
+		};
+		07C9734C20A9222100BB9820 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				07C9734D20A9224000BB9820 /* CBAttentionLiveCell.h */,
+				07C9734E20A9224000BB9820 /* CBAttentionLiveCell.m */,
+				07C9734F20A9224000BB9820 /* CBAttentionLiveCell.xib */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		07CD47AC20A0265D00A372C7 /* ContributionRank */ = {
@@ -1848,6 +1880,7 @@
 				0791588B208849C0007CA2E0 /* CBProfileVC.xib in Resources */,
 				07737DE3208F0150009EB9E6 /* CBMyAttentionVC.xib in Resources */,
 				071B70132092F50100549C18 /* CBAccountRecordSelectView.xib in Resources */,
+				07C9735120A9224000BB9820 /* CBAttentionLiveCell.xib in Resources */,
 				07AB0BB8209300C9007A25A8 /* CBDiamondInfoVC.xib in Resources */,
 				077C1AAB2091A9B20005CE97 /* CBBlackListVC.xib in Resources */,
 				072DC587209166A600F693E8 /* login_video.mp4 in Resources */,
@@ -1860,6 +1893,7 @@
 				072DC588209166A600F693E8 /* user.plist in Resources */,
 				0737ED8F2074A33600A89CC0 /* Main.storyboard in Resources */,
 				07F6EFED20872E3D0035C6BD /* ALinCatEarView.xib in Resources */,
+				07C9734B20A91F1000BB9820 /* CBAttentionLiveVC.xib in Resources */,
 				073746EE208EC11D00E108E9 /* CBWatchHeaderView.xib in Resources */,
 				072DC5A12091A1B600F693E8 /* CBNotificationsVC.xib in Resources */,
 				073746E2208EBB1400E108E9 /* CBWatchVC.xib in Resources */,
@@ -1934,6 +1968,7 @@
 				07CDCAD12090598F00B16FC6 /* CBLiveAnchorView.m in Sources */,
 				07916D5A207CA415002E4D83 /* UIView+Xib.m in Sources */,
 				07557B8D207CBAD3005C6BC1 /* UIView+Sudoku.m in Sources */,
+				0763FC1C20A935020086BFA4 /* CBHorizontalFlowLayout.m in Sources */,
 				0787704E2092CA7D00A5A42A /* CBAccountRecordVC.m in Sources */,
 				079AAE4A2079AF9E00674A92 /* CBTBC.m in Sources */,
 				0750561C2092AEBD00F0679B /* CBGiftPackageVC.m in Sources */,
@@ -1957,6 +1992,7 @@
 				072DC599209183EC00F693E8 /* CBSettingVC.m in Sources */,
 				07AB0BB1209300A3007A25A8 /* CBAccountInfoVC.m in Sources */,
 				075DB82C207D974F00891E60 /* UIView+CornerRadius.m in Sources */,
+				07C9735020A9224000BB9820 /* CBAttentionLiveCell.m in Sources */,
 				07F6EFF220872E3D0035C6BD /* ALinUserView.m in Sources */,
 				0715279220A5773C00D3859D /* CBVerticalFlowLayout.m in Sources */,
 				07F6EFFD20872E3D0035C6BD /* ALinHomeADCell.m in Sources */,
@@ -1990,6 +2026,7 @@
 				077C1AA42091A7E00005CE97 /* CBPhoneBindVC.m in Sources */,
 				07659C1E20A4439700EBE030 /* HcdGuideView.m in Sources */,
 				077C1AAF2091AA160005CE97 /* CBAboutVC.m in Sources */,
+				07C9734A20A91F1000BB9820 /* CBAttentionLiveVC.m in Sources */,
 				073746E8208EBFAB00E108E9 /* CBWatchCell.m in Sources */,
 				071B70112092F4F000549C18 /* CBAccountRecordSelectView.m in Sources */,
 				07374708208ED1E600E108E9 /* CBBaseVideoVC.m in Sources */,
@@ -2017,7 +2054,6 @@
 				07F6EFF820872E3D0035C6BD /* CBAppLiveVC.m in Sources */,
 				07F6EFEC20872E3D0035C6BD /* ALinBottomToolView.m in Sources */,
 				07737DE7208F0161009EB9E6 /* CBMyFansVC.m in Sources */,
-				0791587F2088391B007CA2E0 /* CBAttentionVC.m in Sources */,
 				077D1F8520886C56003B9E56 /* CBLiveVC.m in Sources */,
 				07F38C0520994A0000DDBC90 /* JPGiftCollectionViewCell.m in Sources */,
 				07F6F00420872E3D0035C6BD /* UIImage+ALinExtension.m in Sources */,
