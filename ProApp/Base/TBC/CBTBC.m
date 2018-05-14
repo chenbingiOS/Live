@@ -8,8 +8,11 @@
 
 #import "CBTBC.h"
 #import "CBNVC.h"
+#import "CBHomeMenuView.h"
 
 @interface CBTBC () <UITabBarControllerDelegate>
+
+@property (nonatomic, strong) CBHomeMenuPopView *homeMenuPopView;
 
 @end
 
@@ -77,10 +80,28 @@
     id viewCtrl = [naviCtrl.viewControllers firstObject];
     
     if ([viewCtrl isKindOfClass:NSClassFromString(@"CBLiveVideoVC")]) {
+        [self.homeMenuPopView showIn:tabBarController.view];
+        @weakify(self);
+        [self.homeMenuPopView.homeMenuView.liveButton addBlockForControlEvents:UIControlEventTouchUpInside block:^(id  _Nonnull sender) {
+            @strongify(self);
+            
+        }];
+        [self.homeMenuPopView.homeMenuView.videoButton addBlockForControlEvents:UIControlEventTouchUpInside block:^(id  _Nonnull sender) {
+            @strongify(self);
+            
+        }];
         return NO;
     }
     
     return YES;
+}
+
+
+- (CBHomeMenuPopView *)homeMenuPopView {
+    if (!_homeMenuPopView) {
+        _homeMenuPopView = [[CBHomeMenuPopView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 180)];
+    }
+    return _homeMenuPopView;
 }
 
 @end

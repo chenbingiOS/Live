@@ -52,6 +52,8 @@
 		0737ED912074A33600A89CC0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0737ED902074A33600A89CC0 /* Assets.xcassets */; };
 		0737ED942074A33600A89CC0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0737ED922074A33600A89CC0 /* LaunchScreen.storyboard */; };
 		0737ED972074A33600A89CC0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0737ED962074A33600A89CC0 /* main.m */; };
+		0745F1EC20A9691000052FF6 /* CBHomeMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0745F1EB20A9691000052FF6 /* CBHomeMenuView.m */; };
+		0745F1EE20A9692200052FF6 /* CBHomeMenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0745F1ED20A9692200052FF6 /* CBHomeMenuView.xib */; };
 		0750561C2092AEBD00F0679B /* CBGiftPackageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0750561A2092AEBD00F0679B /* CBGiftPackageVC.m */; };
 		0750561D2092AEBD00F0679B /* CBGiftPackageVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0750561B2092AEBD00F0679B /* CBGiftPackageVC.xib */; };
 		075056232092B02100F0679B /* CBGiftPackageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 075056212092B02100F0679B /* CBGiftPackageCell.m */; };
@@ -260,6 +262,9 @@
 		0737ED932074A33600A89CC0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0737ED952074A33600A89CC0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0737ED962074A33600A89CC0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		0745F1EA20A9691000052FF6 /* CBHomeMenuView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBHomeMenuView.h; sourceTree = "<group>"; };
+		0745F1EB20A9691000052FF6 /* CBHomeMenuView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBHomeMenuView.m; sourceTree = "<group>"; };
+		0745F1ED20A9692200052FF6 /* CBHomeMenuView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CBHomeMenuView.xib; sourceTree = "<group>"; };
 		075056192092AEBD00F0679B /* CBGiftPackageVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBGiftPackageVC.h; sourceTree = "<group>"; };
 		0750561A2092AEBD00F0679B /* CBGiftPackageVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBGiftPackageVC.m; sourceTree = "<group>"; };
 		0750561B2092AEBD00F0679B /* CBGiftPackageVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CBGiftPackageVC.xib; sourceTree = "<group>"; };
@@ -1508,6 +1513,9 @@
 				07F6EF6C20872E3C0035C6BD /* CBSelectedView.h */,
 				07F6EF6D20872E3C0035C6BD /* CBSelectedView.m */,
 				0737470F208EDF6400E108E9 /* CBSelectedView.xib */,
+				0745F1EA20A9691000052FF6 /* CBHomeMenuView.h */,
+				0745F1EB20A9691000052FF6 /* CBHomeMenuView.m */,
+				0745F1ED20A9692200052FF6 /* CBHomeMenuView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1879,6 +1887,7 @@
 				07B66897208D71E400AA5B62 /* CBFillInfoViewController.xib in Resources */,
 				0791588B208849C0007CA2E0 /* CBProfileVC.xib in Resources */,
 				07737DE3208F0150009EB9E6 /* CBMyAttentionVC.xib in Resources */,
+				0745F1EE20A9692200052FF6 /* CBHomeMenuView.xib in Resources */,
 				071B70132092F50100549C18 /* CBAccountRecordSelectView.xib in Resources */,
 				07C9735120A9224000BB9820 /* CBAttentionLiveCell.xib in Resources */,
 				07AB0BB8209300C9007A25A8 /* CBDiamondInfoVC.xib in Resources */,
@@ -1998,6 +2007,7 @@
 				07F6EFFD20872E3D0035C6BD /* ALinHomeADCell.m in Sources */,
 				072DC58E209170B000F693E8 /* UIImageView+RoundedCorner.m in Sources */,
 				07F38C0620994A0000DDBC90 /* JPGiftCellModel.m in Sources */,
+				0745F1EC20A9691000052FF6 /* CBHomeMenuView.m in Sources */,
 				073746FD208ECF5900E108E9 /* CBVideoHotVC.m in Sources */,
 				0750562B2092B0C700F0679B /* CBPackageRecordVC.m in Sources */,
 				07F38C0320994A0000DDBC90 /* JPGiftShowManager.m in Sources */,

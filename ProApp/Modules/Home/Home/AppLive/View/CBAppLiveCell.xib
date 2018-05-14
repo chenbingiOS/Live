@@ -23,7 +23,7 @@
                         <rect key="frame" x="0.0" y="5" width="375" height="374.5"/>
                     </imageView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="93d-vn-nAU">
-                        <rect key="frame" x="290" y="10" width="70" height="28"/>
+                        <rect key="frame" x="290" y="15" width="70" height="28"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="直播中" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lmv-Jc-4Nk">
                                 <rect key="frame" x="17.5" y="6" width="36" height="17"/>
@@ -32,7 +32,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.29597602739726031" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="70" id="7pf-2G-R74"/>
                             <constraint firstItem="Lmv-Jc-4Nk" firstAttribute="centerX" secondItem="93d-vn-nAU" secondAttribute="centerX" id="ak5-A5-tpi"/>
@@ -47,7 +47,7 @@
                         </userDefinedRuntimeAttributes>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B2p-5o-GPY">
-                        <rect key="frame" x="0.0" y="324.5" width="375" height="55"/>
+                        <rect key="frame" x="0.0" y="329.5" width="375" height="50"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="6789人再看" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DPu-V8-ZYZ">
                                 <rect key="frame" x="288" y="16" width="77" height="17"/>
@@ -55,7 +55,7 @@
                                     <constraint firstAttribute="width" constant="100" id="7JH-1y-APL"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="default">
                                     <mask key="constraints">
@@ -73,7 +73,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="直播名" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CZT-Zh-UoW">
                                 <rect key="frame" x="60" y="5" width="43" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="girl_star1_40x19" translatesAutoresizingMaskIntoConstraints="NO" id="1Xd-ou-YsO">
@@ -88,11 +88,11 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                 <inset key="titleEdgeInsets" minX="5" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <state key="normal" title="上海市" image="home_location_8x8">
-                                    <color key="titleColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="0.50409353599999995" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.50409353595890416" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.29815924657534254" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="DPu-V8-ZYZ" secondAttribute="trailing" constant="10" id="EAW-ss-ccK"/>
                             <constraint firstItem="1Xd-ou-YsO" firstAttribute="centerY" secondItem="CZT-Zh-UoW" secondAttribute="centerY" id="KhL-aM-ea4"/>
@@ -107,7 +107,7 @@
                             <constraint firstItem="1Xd-ou-YsO" firstAttribute="leading" secondItem="CZT-Zh-UoW" secondAttribute="trailing" constant="10" id="eLn-w8-nSs"/>
                             <constraint firstItem="CZT-Zh-UoW" firstAttribute="leading" secondItem="jzg-Bl-81G" secondAttribute="trailing" constant="10" id="n4r-E2-Diq"/>
                             <constraint firstItem="DeX-dQ-MBX" firstAttribute="leading" secondItem="CZT-Zh-UoW" secondAttribute="leading" id="rge-y9-XpJ"/>
-                            <constraint firstAttribute="height" constant="55" id="rto-zI-Haw"/>
+                            <constraint firstAttribute="height" constant="50" id="rto-zI-Haw"/>
                             <constraint firstItem="DeX-dQ-MBX" firstAttribute="top" secondItem="B2p-5o-GPY" secondAttribute="top" constant="5" id="tEe-fq-Pb9"/>
                             <constraint firstItem="jzg-Bl-81G" firstAttribute="leading" secondItem="B2p-5o-GPY" secondAttribute="leading" constant="10" id="uTJ-gL-EeH"/>
                             <constraint firstItem="jzg-Bl-81G" firstAttribute="top" secondItem="B2p-5o-GPY" secondAttribute="top" constant="5" id="wE0-qA-Tfv"/>
@@ -131,7 +131,7 @@
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="jyj-99-zlI" secondAttribute="trailing" id="3cF-Cc-JRv"/>
                     <constraint firstItem="B2p-5o-GPY" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Mal-TR-JuP"/>
-                    <constraint firstItem="93d-vn-nAU" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="SHI-AU-Q6b"/>
+                    <constraint firstItem="93d-vn-nAU" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="SHI-AU-Q6b"/>
                     <constraint firstItem="jyj-99-zlI" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="ava-8K-fMp"/>
                     <constraint firstAttribute="bottom" secondItem="B2p-5o-GPY" secondAttribute="bottom" id="chZ-wO-3JE"/>
                     <constraint firstItem="jyj-99-zlI" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="rLp-d1-kzS"/>
