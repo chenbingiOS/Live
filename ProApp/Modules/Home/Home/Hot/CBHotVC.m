@@ -11,8 +11,6 @@
 #import "ALinRefreshGifHeader.h"
 #import "CBAppLiveCell.h"
 #import "ALinTopAD.h"
-#import "ALinHomeADCell.h"
-#import "ALinLiveCollectionViewController.h"
 
 #import "CBLiveVC.h"
 
@@ -36,7 +34,6 @@ static NSString *reuseIdentifier = @"CBAppLiveCell";
 - (void)setup_tableView {
     self.tableView.tableFooterView = [[UIView alloc] init];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    [self.tableView registerClass:[ALinHomeADCell class] forCellReuseIdentifier:ADReuseIdentifier];
     [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([CBAppLiveCell class]) bundle:[NSBundle mainBundle]] forCellReuseIdentifier:
      reuseIdentifier];
     
@@ -95,15 +92,7 @@ static NSString *reuseIdentifier = @"CBAppLiveCell";
 
 #pragma mark - TableView delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    //    CBLiveVC *liveVC = [CBLiveVC new];
-    //    liveVC.lives = self.lives;
-    //    liveVC.currentIndex = indexPath.row-1;
-    //    [self presentViewController:liveVC animated:YES completion:nil];
     
-    ALinLiveCollectionViewController *liveVc = [[ALinLiveCollectionViewController alloc] init];
-    liveVc.lives = self.lives;
-    liveVc.currentIndex = indexPath.row-1;
-    [self presentViewController:liveVc animated:YES completion:nil];
 }
 
 #pragma mark - layz

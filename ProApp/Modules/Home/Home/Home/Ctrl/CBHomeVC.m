@@ -13,10 +13,10 @@
 
 @interface CBHomeVC() <UIScrollViewDelegate, CBSelectedViewDelegate>
 
-@property(nonatomic, strong) UIScrollView *scrollView;      /** UIScrollView */
-@property(nonatomic, strong) CBSelectedView *selectedView;  /** 顶部选择视图 */
-@property(nonatomic, strong) CBAppLiveVC *appLiveVC;        /** 直播 */
-@property(nonatomic, strong) CBHotVC *hotVC;                /** 热门 */
+@property (nonatomic, strong) UIScrollView *scrollView;      /** UIScrollView */
+@property (nonatomic, strong) CBSelectedView *selectedView;  /** 顶部选择视图 */
+@property (nonatomic, strong) CBAppLiveVC *appLiveVC;        /** 直播 */
+@property (nonatomic, strong) CBHotVC *hotVC;                /** 热门 */
 
 
 @end

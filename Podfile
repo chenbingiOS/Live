@@ -15,6 +15,7 @@ pod 'YYKit'
 
 # 提示
 pod 'MBProgressHUD'
+pod 'LYEmptyView'
 
 # 下拉刷新
 pod 'MJRefresh'
@@ -29,6 +30,9 @@ pod 'PLPlayerKit'
 # 解析
 pod 'MJExtension'
 pod 'BarrageRenderer'
+
+# 轮播图
+pod 'TYCyclePagerView'
 
 end
 

@@ -29,10 +29,10 @@
                         <constraint firstAttribute="height" constant="35" id="2Bg-JV-8eC"/>
                         <constraint firstAttribute="width" constant="35" id="qdt-F4-D33"/>
                     </constraints>
-                    <state key="normal" image="live_notice-board"/>
+                    <state key="normal" image="live_share"/>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bkj-oS-ioJ">
-                    <rect key="frame" x="235" y="12" width="35" height="35"/>
+                    <rect key="frame" x="55" y="13" width="35" height="35"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="35" id="KYG-Xn-d7l"/>
                         <constraint firstAttribute="width" constant="35" id="WJ5-oA-lnJ"/>
@@ -40,34 +40,30 @@
                     <state key="normal" image="live_message"/>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iOz-wk-ZOh">
-                    <rect key="frame" x="190" y="13" width="35" height="35"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="35" id="K4K-j4-gpD"/>
-                        <constraint firstAttribute="width" constant="35" id="RMV-lw-NMg"/>
-                    </constraints>
+                    <rect key="frame" x="162.5" y="5" width="50" height="50"/>
                     <state key="normal" image="live_gift"/>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ygj-eg-6dY">
-                    <rect key="frame" x="145" y="13" width="35" height="35"/>
+                    <rect key="frame" x="235" y="13" width="35" height="35"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="35" id="UtO-yw-tEo"/>
                         <constraint firstAttribute="width" constant="35" id="VmS-Po-fp9"/>
                     </constraints>
-                    <state key="normal" image="live_share"/>
+                    <state key="normal" image="live_notice-board"/>
                 </button>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="ael-Sc-R6u" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="0z2-7E-jh6"/>
-                <constraint firstItem="iOz-wk-ZOh" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="3aC-1t-jp2"/>
-                <constraint firstItem="bkj-oS-ioJ" firstAttribute="leading" secondItem="iOz-wk-ZOh" secondAttribute="trailing" constant="10" id="9r6-J4-tWp"/>
+                <constraint firstItem="iOz-wk-ZOh" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="5Gv-bd-sdW"/>
+                <constraint firstItem="bkj-oS-ioJ" firstAttribute="leading" secondItem="cGU-21-sgQ" secondAttribute="trailing" constant="10" id="5O9-0u-xjP"/>
                 <constraint firstItem="bkj-oS-ioJ" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="Bhg-6L-UPx"/>
+                <constraint firstItem="ael-Sc-R6u" firstAttribute="leading" secondItem="ygj-eg-6dY" secondAttribute="trailing" constant="10" id="EhG-CM-Ret"/>
                 <constraint firstItem="cGU-21-sgQ" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="MEN-r9-FcH"/>
+                <constraint firstItem="iOz-wk-ZOh" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="McG-7f-0gp"/>
                 <constraint firstAttribute="trailing" secondItem="ael-Sc-R6u" secondAttribute="trailing" constant="60" id="amc-iP-log"/>
                 <constraint firstItem="ygj-eg-6dY" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="ctp-9k-IeY"/>
                 <constraint firstItem="cGU-21-sgQ" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="lG9-ny-9iS"/>
-                <constraint firstItem="ael-Sc-R6u" firstAttribute="leading" secondItem="bkj-oS-ioJ" secondAttribute="trailing" constant="10" id="u13-GU-TDL"/>
-                <constraint firstItem="iOz-wk-ZOh" firstAttribute="leading" secondItem="ygj-eg-6dY" secondAttribute="trailing" constant="10" id="vRV-KW-KOz"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
@@ -82,7 +78,7 @@
     </objects>
     <resources>
         <image name="live_barrage" width="34" height="34"/>
-        <image name="live_gift" width="34" height="34"/>
+        <image name="live_gift" width="50" height="50"/>
         <image name="live_message" width="34" height="34"/>
         <image name="live_notice-board" width="34" height="34"/>
         <image name="live_share" width="34" height="34"/>
