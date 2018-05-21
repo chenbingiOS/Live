@@ -20,7 +20,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jyj-99-zlI">
-                        <rect key="frame" x="0.0" y="5" width="375" height="374.5"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="374.5"/>
                     </imageView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="93d-vn-nAU">
                         <rect key="frame" x="290" y="15" width="70" height="28"/>
@@ -47,7 +47,7 @@
                         </userDefinedRuntimeAttributes>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B2p-5o-GPY">
-                        <rect key="frame" x="0.0" y="329.5" width="375" height="50"/>
+                        <rect key="frame" x="0.0" y="324.5" width="375" height="50"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="6789人再看" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DPu-V8-ZYZ">
                                 <rect key="frame" x="288" y="16" width="77" height="17"/>
@@ -132,12 +132,12 @@
                     <constraint firstAttribute="trailing" secondItem="jyj-99-zlI" secondAttribute="trailing" id="3cF-Cc-JRv"/>
                     <constraint firstItem="B2p-5o-GPY" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Mal-TR-JuP"/>
                     <constraint firstItem="93d-vn-nAU" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="SHI-AU-Q6b"/>
-                    <constraint firstItem="jyj-99-zlI" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="ava-8K-fMp"/>
-                    <constraint firstAttribute="bottom" secondItem="B2p-5o-GPY" secondAttribute="bottom" id="chZ-wO-3JE"/>
+                    <constraint firstItem="jyj-99-zlI" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="ava-8K-fMp"/>
+                    <constraint firstAttribute="bottom" secondItem="B2p-5o-GPY" secondAttribute="bottom" constant="5" id="chZ-wO-3JE"/>
                     <constraint firstItem="jyj-99-zlI" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="rLp-d1-kzS"/>
                     <constraint firstAttribute="trailing" secondItem="93d-vn-nAU" secondAttribute="trailing" constant="15" id="wDo-eE-R3M"/>
                     <constraint firstAttribute="trailing" secondItem="B2p-5o-GPY" secondAttribute="trailing" id="wJx-Ym-s1N"/>
-                    <constraint firstAttribute="bottom" secondItem="jyj-99-zlI" secondAttribute="bottom" id="z9L-ss-a1y"/>
+                    <constraint firstAttribute="bottom" secondItem="jyj-99-zlI" secondAttribute="bottom" constant="5" id="z9L-ss-a1y"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>

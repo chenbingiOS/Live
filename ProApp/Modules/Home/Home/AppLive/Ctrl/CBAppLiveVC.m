@@ -45,9 +45,10 @@ static NSString *RIDCBAppADCell = @"RIDCBAppADCell";
 }
 
 - (void)setupUI {
-
+    
     [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([CBAppLiveCell class]) bundle:[NSBundle mainBundle]] forCellReuseIdentifier:RIDCBAppLiveCell];
     
+    self.tableView.backgroundColor = [UIColor bgColor];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     CGFloat height = kScreenWidth / 2;
@@ -81,7 +82,7 @@ static NSString *RIDCBAppADCell = @"RIDCBAppADCell";
     [PPNetworkHelper GET:@"http://live.9158.com/Living/GetAD" parameters:nil success:^(id responseObject) {
         NSArray *result = responseObject[@"data"];
         if ([self isNotEmpty:result]) {
-            self.appADs = [NSArray modelArrayWithClass:[CBAppADVO class] json:result];            
+            self.appADs = [NSArray modelArrayWithClass:[CBAppADVO class] json:result];
             self.pageControl.numberOfPages = self.appADs.count;
             [self.cyclePagerView reloadData];
         } else {
