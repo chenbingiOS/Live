@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+@class CBAppADVO;
 @interface CBAppADCell : UICollectionViewCell
+
+@property (weak, nonatomic) IBOutlet UIImageView *imageView;
+@property (nonatomic, strong) CBAppADVO *appAdVO;
 
 @end

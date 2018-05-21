@@ -111,6 +111,7 @@
 		079AAE4A2079AF9E00674A92 /* CBTBC.m in Sources */ = {isa = PBXBuildFile; fileRef = 079AAE492079AF9E00674A92 /* CBTBC.m */; };
 		079AAE662079C02700674A92 /* UIColor+Color.m in Sources */ = {isa = PBXBuildFile; fileRef = 079AAE652079C02700674A92 /* UIColor+Color.m */; };
 		079AAE7A2079C85000674A92 /* CBNVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 079AAE792079C85000674A92 /* CBNVC.m */; };
+		079B784820B298BA009C68F7 /* CBAppADVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 079B784720B298BA009C68F7 /* CBAppADVO.m */; };
 		07AB0BB1209300A3007A25A8 /* CBAccountInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 07AB0BAF209300A3007A25A8 /* CBAccountInfoVC.m */; };
 		07AB0BB2209300A3007A25A8 /* CBAccountInfoVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 07AB0BB0209300A3007A25A8 /* CBAccountInfoVC.xib */; };
 		07AB0BB7209300C9007A25A8 /* CBDiamondInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 07AB0BB5209300C9007A25A8 /* CBDiamondInfoVC.m */; };
@@ -171,7 +172,6 @@
 		07F6EFF220872E3D0035C6BD /* ALinUserView.m in Sources */ = {isa = PBXBuildFile; fileRef = 07F6EF8D20872E3C0035C6BD /* ALinUserView.m */; };
 		07F6EFF320872E3D0035C6BD /* ALinLiveAnchorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 07F6EF8E20872E3C0035C6BD /* ALinLiveAnchorView.m */; };
 		07F6EFF820872E3D0035C6BD /* CBAppLiveVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 07F6EF9D20872E3C0035C6BD /* CBAppLiveVC.m */; };
-		07F6EFF920872E3D0035C6BD /* ALinTopAD.m in Sources */ = {isa = PBXBuildFile; fileRef = 07F6EF9F20872E3C0035C6BD /* ALinTopAD.m */; };
 		07F6EFFA20872E3D0035C6BD /* CBAppLiveCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 07F6EFA320872E3C0035C6BD /* CBAppLiveCell.xib */; };
 		07F6EFFC20872E3D0035C6BD /* CBAppLiveCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 07F6EFA820872E3C0035C6BD /* CBAppLiveCell.m */; };
 		07F6EFFE20872E3D0035C6BD /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 07F6EFAB20872E3C0035C6BD /* Reachability.m */; };
@@ -362,6 +362,8 @@
 		079AAE652079C02700674A92 /* UIColor+Color.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Color.m"; sourceTree = "<group>"; };
 		079AAE782079C85000674A92 /* CBNVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBNVC.h; sourceTree = "<group>"; };
 		079AAE792079C85000674A92 /* CBNVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBNVC.m; sourceTree = "<group>"; };
+		079B784620B298BA009C68F7 /* CBAppADVO.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBAppADVO.h; sourceTree = "<group>"; };
+		079B784720B298BA009C68F7 /* CBAppADVO.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBAppADVO.m; sourceTree = "<group>"; };
 		07AB0BAE209300A3007A25A8 /* CBAccountInfoVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBAccountInfoVC.h; sourceTree = "<group>"; };
 		07AB0BAF209300A3007A25A8 /* CBAccountInfoVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBAccountInfoVC.m; sourceTree = "<group>"; };
 		07AB0BB0209300A3007A25A8 /* CBAccountInfoVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CBAccountInfoVC.xib; sourceTree = "<group>"; };
@@ -463,8 +465,6 @@
 		07F6EF8F20872E3C0035C6BD /* ALinLiveEndView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALinLiveEndView.h; sourceTree = "<group>"; };
 		07F6EF9C20872E3C0035C6BD /* CBAppLiveVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBAppLiveVC.h; sourceTree = "<group>"; };
 		07F6EF9D20872E3C0035C6BD /* CBAppLiveVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBAppLiveVC.m; sourceTree = "<group>"; };
-		07F6EF9F20872E3C0035C6BD /* ALinTopAD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ALinTopAD.m; sourceTree = "<group>"; };
-		07F6EFA020872E3C0035C6BD /* ALinTopAD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALinTopAD.h; sourceTree = "<group>"; };
 		07F6EFA220872E3C0035C6BD /* CBAppLiveCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBAppLiveCell.h; sourceTree = "<group>"; };
 		07F6EFA320872E3C0035C6BD /* CBAppLiveCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CBAppLiveCell.xib; sourceTree = "<group>"; };
 		07F6EFA820872E3C0035C6BD /* CBAppLiveCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBAppLiveCell.m; sourceTree = "<group>"; };
@@ -1606,8 +1606,8 @@
 			children = (
 				07F6EF6A20872E3C0035C6BD /* ALinLive.h */,
 				07F6EF6820872E3C0035C6BD /* ALinLive.m */,
-				07F6EF9F20872E3C0035C6BD /* ALinTopAD.m */,
-				07F6EFA020872E3C0035C6BD /* ALinTopAD.h */,
+				079B784620B298BA009C68F7 /* CBAppADVO.h */,
+				079B784720B298BA009C68F7 /* CBAppADVO.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2019,9 +2019,9 @@
 				073746E1208EBB1400E108E9 /* CBWatchVC.m in Sources */,
 				07F6EFFF20872E3D0035C6BD /* ALinNetworkTool.m in Sources */,
 				07659C1F20A4439700EBE030 /* HcdGuideViewCell.m in Sources */,
-				07F6EFF920872E3D0035C6BD /* ALinTopAD.m in Sources */,
 				077C1AAA2091A9B20005CE97 /* CBBlackListVC.m in Sources */,
 				07F6EFF320872E3D0035C6BD /* ALinLiveAnchorView.m in Sources */,
+				079B784820B298BA009C68F7 /* CBAppADVO.m in Sources */,
 				07CD47B020A0269600A372C7 /* CBContributionRankVC.m in Sources */,
 				07B6689E208D902500AA5B62 /* UIView+DashedLine.m in Sources */,
 				07F6EFFE20872E3D0035C6BD /* Reachability.m in Sources */,

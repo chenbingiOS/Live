@@ -38,4 +38,8 @@
     return UIColorHex(444444);
 }
 
++ (UIColor *)shadowColor {
+    return UIColorHex(6A6A6A);
+}
+
 @end

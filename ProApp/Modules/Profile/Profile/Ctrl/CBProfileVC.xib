@@ -208,7 +208,7 @@
                             <real key="value" value="0.10000000000000001"/>
                         </userDefinedRuntimeAttribute>
                         <userDefinedRuntimeAttribute type="color" keyPath="layer.shadowColorFromUIColor">
-                            <color key="value" white="0.4948459201388889" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="value" red="0.41568627450980389" green="0.41568627450980389" blue="0.41568627450980389" alpha="1" colorSpace="calibratedRGB"/>
                         </userDefinedRuntimeAttribute>
                         <userDefinedRuntimeAttribute type="number" keyPath="layer.shadowRadius">
                             <integer key="value" value="3"/>

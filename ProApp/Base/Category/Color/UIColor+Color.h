@@ -16,5 +16,6 @@
 + (UIColor *)bgColor;
 + (UIColor *)backColor;
 + (UIColor *)btnSelectColor;
++ (UIColor *)shadowColor;
 
 @end

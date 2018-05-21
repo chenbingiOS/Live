@@ -10,7 +10,6 @@
 #import "ALinLive.h"
 #import "ALinRefreshGifHeader.h"
 #import "CBAppLiveCell.h"
-#import "ALinTopAD.h"
 
 #import "CBLiveVC.h"
 
@@ -56,7 +55,6 @@ static NSString *reuseIdentifier = @"CBAppLiveCell";
         [self.tableView.mj_header endRefreshing];
         [self.tableView.mj_footer endRefreshing];
         NSArray *result = [ALinLive mj_objectArrayWithKeyValuesArray:responseObject[@"data"][@"list"]];
-        NSLog(@"%@",[result modelToJSONString]);
         if ([self isNotEmpty:result]) {
             [self.lives addObjectsFromArray:result];
             [self.tableView reloadData];

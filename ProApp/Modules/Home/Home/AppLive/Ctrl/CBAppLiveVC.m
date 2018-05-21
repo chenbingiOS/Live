@@ -14,20 +14,23 @@
 #import "TYCyclePagerView.h"
 #import "TYPageControl.h"
 #import "CBAppADCell.h"
+#import "CBAppLiveCell.h"
+// Model
+#import "CBAppADVO.h"
 
 #import "ALinLive.h"
 #import "ALinRefreshGifHeader.h"
-#import "CBAppLiveCell.h"
-#import "ALinTopAD.h"
+
 #import "ALinLiveCollectionViewController.h"
 
 
 @interface CBAppLiveVC () <TYCyclePagerViewDataSource, TYCyclePagerViewDelegate>
 
-@property (nonatomic, strong) TYCyclePagerView *cyclePagerView;   ///< 广告UI
-@property (nonatomic, strong) NSMutableArray *lives;    ///< 直播数据
-@property (nonatomic, strong) NSArray *topADS;          ///< 广告数据
-@property (nonatomic, assign) NSUInteger currentPage;   ///< 当前页
+@property (nonatomic, strong) TYCyclePagerView *cyclePagerView;     ///< 广告UI
+@property (nonatomic, strong) TYPageControl *pageControl;           ///< 指示器UI
+@property (nonatomic, strong) NSMutableArray *lives;                ///< 直播数据
+@property (nonatomic, strong) NSArray <CBAppADVO *> *appADs;        ///< 广告数据
+@property (nonatomic, assign) NSUInteger currentPage;               ///< 当前页
 
 @end
 
@@ -47,13 +50,13 @@ static NSString *RIDCBAppADCell = @"RIDCBAppADCell";
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
-    CGFloat height = kScreenWidth * 9 / 16;
+    CGFloat height = kScreenWidth / 2;
     UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, height)];
     [headerView addSubview:self.cyclePagerView];
+    [headerView addSubview:self.pageControl];
     self.tableView.tableHeaderView = headerView;
     self.tableView.tableFooterView = [[UIView alloc] init];
-        
-    self.currentPage = 1;
+    
     self.tableView.mj_header = [ALinRefreshGifHeader headerWithRefreshingBlock:^{
         self.lives = [NSMutableArray array];
         self.currentPage = 1;
@@ -62,6 +65,8 @@ static NSString *RIDCBAppADCell = @"RIDCBAppADCell";
         [self httpLive];
     }];
     [self.tableView.mj_header beginRefreshing];
+    
+    self.currentPage = 1;
     self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
         self.currentPage++;
         [self httpLive];
@@ -75,29 +80,25 @@ static NSString *RIDCBAppADCell = @"RIDCBAppADCell";
 - (void)httpAD {
     [PPNetworkHelper GET:@"http://live.9158.com/Living/GetAD" parameters:nil success:^(id responseObject) {
         NSArray *result = responseObject[@"data"];
-                if ([self isNotEmpty:result]) {
-                    self.topADS = [ALinTopAD mj_objectArrayWithKeyValuesArray:result];
-                    [self.tableView reloadData];
-                }else{
-                    [self showHint:@"网络异常"];
-                }
+        if ([self isNotEmpty:result]) {
+            self.appADs = [NSArray modelArrayWithClass:[CBAppADVO class] json:result];            
+            self.pageControl.numberOfPages = self.appADs.count;
+            [self.cyclePagerView reloadData];
+        } else {
+            [self showHint:@"网络异常"];
+        }
     } failure:^(NSError *error) {
-        
+        [self showHint:@"网络异常"];
     }];
-//    [[ALinNetworkTool shareTool] GET:@"http://live.9158.com/Living/GetAD" parameters:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-//
-//    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-//        [self showHint:@"网络异常"];
-//    }];
 }
 
-- (void)httpLive
-{
-    [[ALinNetworkTool shareTool] GET:[NSString stringWithFormat:@"http://live.9158.com/Fans/GetHotLive?page=%ld", self.currentPage] parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+- (void)httpLive {
+    NSString *url = [NSString stringWithFormat:@"http://live.9158.com/Fans/GetHotLive?page=%ld", self.currentPage];
+    [PPNetworkHelper GET:url parameters:nil success:^(id responseObject) {
         [self.tableView.mj_header endRefreshing];
         [self.tableView.mj_footer endRefreshing];
+        
         NSArray *result = [ALinLive mj_objectArrayWithKeyValuesArray:responseObject[@"data"][@"list"]];
-        NSLog(@"%@",[result modelToJSONString]);
         if ([self isNotEmpty:result]) {
             [self.lives addObjectsFromArray:result];
             [self.tableView reloadData];
@@ -106,13 +107,12 @@ static NSString *RIDCBAppADCell = @"RIDCBAppADCell";
             // 恢复当前页
             self.currentPage--;
         }
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+    } failure:^(NSError *error) {
         [self.tableView.mj_header endRefreshing];
         [self.tableView.mj_footer endRefreshing];
         self.currentPage--;
         [self showHint:@"网络异常"];
     }];
-
 }
 
 #pragma mark - UITableViewDelegate
@@ -142,28 +142,26 @@ static NSString *RIDCBAppADCell = @"RIDCBAppADCell";
 
 #pragma mark - TYCyclePagerViewDelegate
 - (NSInteger)numberOfItemsInPagerView:(TYCyclePagerView *)pageView {
-    return self.topADS.count;
+    return self.appADs.count;
 }
 
 - (UICollectionViewCell *)pagerView:(TYCyclePagerView *)pagerView cellForItemAtIndex:(NSInteger)index {
     CBAppADCell *cell = [pagerView dequeueReusableCellWithReuseIdentifier:RIDCBAppADCell forIndex:index];
-//    cell.backgroundColor = _datas[index];
-//    cell.label.text = [NSString stringWithFormat:@"index->%ld",index];
+    cell.appAdVO = self.appADs[index];
     return cell;
 }
 
 - (TYCyclePagerViewLayout *)layoutForPagerView:(TYCyclePagerView *)pageView {
-    TYCyclePagerViewLayout *layout = [[TYCyclePagerViewLayout alloc]init];
-    layout.itemSize = CGSizeMake(CGRectGetWidth(pageView.frame)*0.8, CGRectGetHeight(pageView.frame)*0.8);
-    layout.itemSpacing = 15;
-    //layout.minimumAlpha = 0.3;
-//    layout.itemHorizontalCenter = _horCenterSwitch.isOn;
+    TYCyclePagerViewLayout *layout = [[TYCyclePagerViewLayout alloc] init];
+    layout.itemSize = CGSizeMake(CGRectGetWidth(pageView.frame)*0.884, CGRectGetHeight(pageView.frame)*0.92);
+    layout.itemSpacing = 1;
+    layout.itemHorizontalCenter = YES;
+    layout.layoutType = TYCyclePagerTransformLayoutLinear;
     return layout;
 }
 
 - (void)pagerView:(TYCyclePagerView *)pageView didScrollFromIndex:(NSInteger)fromIndex toIndex:(NSInteger)toIndex {
-//    _pageControl.currentPage = toIndex;
-    //[_pageControl setCurrentPage:newIndex animate:YES];
+    self.pageControl.currentPage = toIndex;
     NSLog(@"%ld ->  %ld",fromIndex,toIndex);
 }
 
@@ -175,19 +173,36 @@ static NSString *RIDCBAppADCell = @"RIDCBAppADCell";
     return _lives;
 }
 
+- (NSArray<CBAppADVO *> *)appADs {
+    if (!_appADs) {
+        _appADs = [NSArray new];
+    }
+    return _appADs;
+}
+
 - (TYCyclePagerView *)cyclePagerView {
     if (!_cyclePagerView) {
-        _cyclePagerView = [[TYCyclePagerView alloc]init];
-        _cyclePagerView.layer.borderWidth = 1;
-        _cyclePagerView.isInfiniteLoop = YES;
-        _cyclePagerView.autoScrollInterval = 3.0;
+        CGFloat height = kScreenWidth / 2;
+        _cyclePagerView = [[TYCyclePagerView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, height)];
+        _cyclePagerView.backgroundColor = [UIColor bgColor];
         _cyclePagerView.dataSource = self;
         _cyclePagerView.delegate = self;
+        
+        _cyclePagerView.autoScrollInterval = 4;
+        _cyclePagerView.isInfiniteLoop = YES;
+        
         // registerClass or registerNib
-        [_cyclePagerView registerClass:[CBAppADCell class] forCellWithReuseIdentifier:@"cellId"];
+        [_cyclePagerView registerNib:[UINib nibWithNibName:@"CBAppADCell" bundle:[NSBundle mainBundle]] forCellWithReuseIdentifier:RIDCBAppADCell];
     }
     return _cyclePagerView;
 }
 
+- (TYPageControl *)pageControl {
+    if (!_pageControl) {
+        _pageControl = [[TYPageControl alloc] initWithFrame:CGRectMake(0, kScreenWidth/2-35, kScreenWidth, 26)];
+        _pageControl.currentPageIndicatorSize = CGSizeMake(8, 8);
+    }
+    return _pageControl;
+}
 
 @end

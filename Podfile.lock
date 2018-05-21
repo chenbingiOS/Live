@@ -30,6 +30,7 @@ PODS:
   - YYKit (1.0.9):
     - YYKit/no-arc (= 1.0.9)
   - YYKit/no-arc (1.0.9)
+  - ZYCornerRadius (1.0.2)
 
 DEPENDENCIES:
   - AFNetworking
@@ -43,6 +44,7 @@ DEPENDENCIES:
   - SDWebImage
   - TYCyclePagerView
   - YYKit
+  - ZYCornerRadius
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
@@ -57,6 +59,7 @@ SPEC REPOS:
     - SDWebImage
     - TYCyclePagerView
     - YYKit
+    - ZYCornerRadius
 
 SPEC CHECKSUMS:
   AFNetworking: 8ac6017b94ea105479f7776e5288e48ae9c59bb4
@@ -70,7 +73,8 @@ SPEC CHECKSUMS:
   SDWebImage: de4d90b5bff3571eae7bd16202b1f43135409fa5
   TYCyclePagerView: b70858c9b5d0e80e1e3129ff5ceb027eb0f76d44
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
+  ZYCornerRadius: f0af817be7805b5c63d793042ca7a03f81e14069
 
-PODFILE CHECKSUM: 925379634a5b48abdcad7c3efede620d21b25c90
+PODFILE CHECKSUM: 51487bec584718d39c42addeb903b6c72dc2640c
 
 COCOAPODS: 1.5.0
