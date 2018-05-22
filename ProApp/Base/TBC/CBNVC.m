@@ -30,12 +30,12 @@
         viewController.hidesBottomBarWhenPushed = YES;
     }
     
-    [super pushViewController:viewController animated:animated];
-    
     if (animated && self.isAppearingVC) {
         // 避免同一时间push多个界面导致的crash
         return ;
     }
+    
+    [super pushViewController:viewController animated:animated];    
 }
 
 - (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated {

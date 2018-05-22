@@ -49,7 +49,7 @@
                            @"关注",
                            @"我的" ];
     NSMutableArray *array = [NSMutableArray array];
-    for (NSInteger i = 0; i < ctrlArr.count; i++)
+    for (NSUInteger i = 0; i < ctrlArr.count; i++)
     {
         Class cls = NSClassFromString(ctrlArr[i]);
         UIViewController *vCtrl = (UIViewController *)[[cls alloc] init];
