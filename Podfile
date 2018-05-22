@@ -19,8 +19,9 @@ pod 'MJRefresh'
 # 布局
 pod 'Masonry'
 # 直播工具
-#pod 'LFLiveKit'
 pod 'PLPlayerKit'
+pod 'PLShortVideoKit/ex-libMuseProcessor'
+pod 'Qiniu'
 # 解析
 pod 'MJExtension'
 pod 'BarrageRenderer'
