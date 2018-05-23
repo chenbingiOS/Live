@@ -9,6 +9,7 @@
 #import "CBTBC.h"
 #import "CBNVC.h"
 #import "CBHomeMenuView.h"
+#import "CBApplyAnchorVC.h"
 
 @interface CBTBC () <UITabBarControllerDelegate>
 
@@ -84,11 +85,19 @@
         @weakify(self);
         [self.homeMenuPopView.homeMenuView.liveButton addBlockForControlEvents:UIControlEventTouchUpInside block:^(id  _Nonnull sender) {
             @strongify(self);
-            
+            CBApplyAnchorVC *vc = [CBApplyAnchorVC new];
+            CBNVC *nvc = [[CBNVC alloc] initWithRootViewController:vc];
+            [self presentViewController:nvc animated:YES completion:^{
+                
+            }];
         }];
         [self.homeMenuPopView.homeMenuView.videoButton addBlockForControlEvents:UIControlEventTouchUpInside block:^(id  _Nonnull sender) {
             @strongify(self);
-            
+            CBApplyAnchorVC *vc = [CBApplyAnchorVC new];
+            CBNVC *nvc = [[CBNVC alloc] initWithRootViewController:vc];
+            [self presentViewController:nvc animated:YES completion:^{
+                
+            }];
         }];
         return NO;
     }

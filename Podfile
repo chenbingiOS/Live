@@ -1,7 +1,5 @@
 platform :ios, '9.0'
 
-source 'https://github.com/CocoaPods/Specs.git'
-
 def pods
 # 网络
 pod 'AFNetworking'
@@ -20,8 +18,6 @@ pod 'MJRefresh'
 pod 'Masonry'
 # 直播工具
 pod 'PLPlayerKit'
-pod 'PLShortVideoKit/ex-libMuseProcessor'
-pod 'Qiniu'
 # 解析
 pod 'MJExtension'
 pod 'BarrageRenderer'

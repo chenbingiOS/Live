@@ -188,6 +188,8 @@
 		07F6F00A20872E3D0035C6BD /* UIViewController+SLExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 07F6EFCF20872E3C0035C6BD /* UIViewController+SLExtension.m */; };
 		07F6F00B20872E3D0035C6BD /* UIViewController+SLHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 07F6EFD220872E3C0035C6BD /* UIViewController+SLHUD.m */; };
 		07F6F00C20872E3D0035C6BD /* NSObject+ALinHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 07F6EFD320872E3C0035C6BD /* NSObject+ALinHUD.m */; };
+		548C5CA020B4FAD300A6FF53 /* CBApplyAnchorVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 548C5C9E20B4FAD300A6FF53 /* CBApplyAnchorVC.m */; };
+		548C5CA120B4FAD300A6FF53 /* CBApplyAnchorVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 548C5C9F20B4FAD300A6FF53 /* CBApplyAnchorVC.xib */; };
 		7E902906E2CA7AD8D2F3A5A8 /* libPods-ProApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B93D832D0DEF97DA8E7CD09 /* libPods-ProApp.a */; };
 /* End PBXBuildFile section */
 
@@ -495,6 +497,9 @@
 		07F6EFD220872E3C0035C6BD /* UIViewController+SLHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+SLHUD.m"; sourceTree = "<group>"; };
 		07F6EFD320872E3C0035C6BD /* NSObject+ALinHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+ALinHUD.m"; sourceTree = "<group>"; };
 		07F6EFD420872E3C0035C6BD /* UIViewController+SLHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+SLHUD.h"; sourceTree = "<group>"; };
+		548C5C9D20B4FAD300A6FF53 /* CBApplyAnchorVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBApplyAnchorVC.h; sourceTree = "<group>"; };
+		548C5C9E20B4FAD300A6FF53 /* CBApplyAnchorVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBApplyAnchorVC.m; sourceTree = "<group>"; };
+		548C5C9F20B4FAD300A6FF53 /* CBApplyAnchorVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CBApplyAnchorVC.xib; sourceTree = "<group>"; };
 		9B93D832D0DEF97DA8E7CD09 /* libPods-ProApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ProApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D104A5A85520E26A75922659 /* Pods-ProApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-ProApp/Pods-ProApp.release.xcconfig"; sourceTree = "<group>"; };
 		E42F78E1DEE816974A7C9C0C /* Pods-ProApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ProApp/Pods-ProApp.debug.xcconfig"; sourceTree = "<group>"; };
@@ -697,8 +702,9 @@
 		07359D9520A4299400FEEA4E /* LiveVideo */ = {
 			isa = PBXGroup;
 			children = (
-				07359D9620A429AC00FEEA4E /* CBLiveVideoVC.h */,
-				07359D9720A429AC00FEEA4E /* CBLiveVideoVC.m */,
+				548C5C9B20B4FA8500A6FF53 /* LiveVideo */,
+				548C5C9920B4FA7700A6FF53 /* Live */,
+				548C5C9A20B4FA7B00A6FF53 /* Video */,
 			);
 			path = LiveVideo;
 			sourceTree = "<group>";
@@ -1777,6 +1783,48 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		548C5C9820B4FA6C00A6FF53 /* Ctrl */ = {
+			isa = PBXGroup;
+			children = (
+				07359D9620A429AC00FEEA4E /* CBLiveVideoVC.h */,
+				07359D9720A429AC00FEEA4E /* CBLiveVideoVC.m */,
+			);
+			path = Ctrl;
+			sourceTree = "<group>";
+		};
+		548C5C9920B4FA7700A6FF53 /* Live */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Live;
+			sourceTree = "<group>";
+		};
+		548C5C9A20B4FA7B00A6FF53 /* Video */ = {
+			isa = PBXGroup;
+			children = (
+				548C5C9C20B4FAA300A6FF53 /* ApplyAnchor */,
+			);
+			path = Video;
+			sourceTree = "<group>";
+		};
+		548C5C9B20B4FA8500A6FF53 /* LiveVideo */ = {
+			isa = PBXGroup;
+			children = (
+				548C5C9820B4FA6C00A6FF53 /* Ctrl */,
+			);
+			path = LiveVideo;
+			sourceTree = "<group>";
+		};
+		548C5C9C20B4FAA300A6FF53 /* ApplyAnchor */ = {
+			isa = PBXGroup;
+			children = (
+				548C5C9D20B4FAD300A6FF53 /* CBApplyAnchorVC.h */,
+				548C5C9E20B4FAD300A6FF53 /* CBApplyAnchorVC.m */,
+				548C5C9F20B4FAD300A6FF53 /* CBApplyAnchorVC.xib */,
+			);
+			path = ApplyAnchor;
+			sourceTree = "<group>";
+		};
 		E2E021358B1DC84C5135A348 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -1907,6 +1955,7 @@
 				073746EE208EC11D00E108E9 /* CBWatchHeaderView.xib in Resources */,
 				072DC5A12091A1B600F693E8 /* CBNotificationsVC.xib in Resources */,
 				073746E2208EBB1400E108E9 /* CBWatchVC.xib in Resources */,
+				548C5CA120B4FAD300A6FF53 /* CBApplyAnchorVC.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2014,6 +2063,7 @@
 				07359D8F20A419E900FEEA4E /* CBLivePlayerVC.m in Sources */,
 				07B8BD1C20A3E14200DD05B2 /* CBPlayerVC.m in Sources */,
 				077FFD0D2099B3BD00B8680C /* CBGuardRankBCell.m in Sources */,
+				548C5CA020B4FAD300A6FF53 /* CBApplyAnchorVC.m in Sources */,
 				07359D9320A422DD00FEEA4E /* CBLoginVC.m in Sources */,
 				0791588A208849C0007CA2E0 /* CBProfileVC.m in Sources */,
 				073746E1208EBB1400E108E9 /* CBWatchVC.m in Sources */,
