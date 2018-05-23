@@ -54,7 +54,7 @@ DEPENDENCIES:
   - ZYCornerRadius
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  https://github.com/cocoapods/specs.git:
     - AFNetworking
     - BarrageRenderer
     - HappyDNS
@@ -88,6 +88,6 @@ SPEC CHECKSUMS:
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
   ZYCornerRadius: f0af817be7805b5c63d793042ca7a03f81e14069
 
-PODFILE CHECKSUM: c0b7382d32c837a3557f369b30fbcd27083bd88c
+PODFILE CHECKSUM: fa9417c49a83f908ce825bdf6b2676c9df6104a6
 
-COCOAPODS: 1.5.0
+COCOAPODS: 1.5.2

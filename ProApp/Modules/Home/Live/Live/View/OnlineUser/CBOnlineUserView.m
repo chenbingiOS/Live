@@ -61,7 +61,7 @@ static NSString *const CBOnlineUserCellID = @"CBOnlineUserCell";
 - (NSMutableArray <ALinUser *> *)cellDataAry {
     if (!_cellDataAry) {
         NSArray *array = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"user.plist" ofType:nil]];
-        _cellDataAry = [ALinUser mj_objectArrayWithKeyValuesArray:array];
+//        _cellDataAry = [ALinUser mj_objectArrayWithKeyValuesArray:array];
     }
     return _cellDataAry;
 }

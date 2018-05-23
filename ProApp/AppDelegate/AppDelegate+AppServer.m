@@ -10,6 +10,8 @@
 #import "CBTBC.h"
 #import "CBNVC.h"
 #import "HcdGuideView.h"
+#import "CBLiveUserConfig.h"
+#import "CBLoginVC.h"
 
 @implementation AppDelegate (AppServer)
 
@@ -22,11 +24,21 @@
 
 #pragma mark - rootVC
 - (void)initRootVC {
+    if ([CBLiveUserConfig getOwnID]) {
+        self.rootVC = [CBTBC new];
+        self.window.rootViewController = self.rootVC;
+    } else{
+        CBLoginVC *vc = [CBLoginVC new];
+        CBNVC *navc = [[CBNVC alloc] initWithRootViewController:vc];
+        self.window.rootViewController = navc;
+    }
     
-    self.rootVC = [CBTBC new];
-    self.window.rootViewController = self.rootVC;
+    [self initGuide];
+}
+
+#pragma mark - 引导页面
+- (void)initGuide {
     
-    // 引导页面
     NSMutableArray *images = [NSMutableArray new];
     if (iPhoneX) {
         [images addObject:[UIImage imageNamed:@"guide_X1"]];

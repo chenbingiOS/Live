@@ -9,8 +9,8 @@
 #import "CBBaseVideoVC.h"
 #import "ALinUser.h"
 #import "CBAttentionCell.h"
-#import "ALinRefreshGifHeader.h"
-#import "ALinLiveCollectionViewController.h"
+//#import "ALinRefreshGifHeader.h"
+//#import "ALinLiveCollectionViewController.h"
 #import "ALinLive.h"
 #import "CBVerticalFlowLayout.h"
 
@@ -36,49 +36,49 @@ static NSString * const reuseIdentifier = @"CBAttentionCell";
     [self.view addSubview:self.collectionView];
     
     self.currentPage = 1;
-    self.collectionView.mj_header = [ALinRefreshGifHeader headerWithRefreshingBlock:^{
-        self.currentPage = 1;
-        self.anchors = [NSMutableArray array];
-        [self getAnchorsList];
-    }];
-    self.collectionView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
-        self.currentPage++;
-        [self getAnchorsList];
-    }];
-    [self.collectionView.mj_header beginRefreshing];
+//    self.collectionView.mj_header = [ALinRefreshGifHeader headerWithRefreshingBlock:^{
+//        self.currentPage = 1;
+//        self.anchors = [NSMutableArray array];
+//        [self getAnchorsList];
+//    }];
+//    self.collectionView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+//        self.currentPage++;
+//        [self getAnchorsList];
+//    }];
+//    [self.collectionView.mj_header beginRefreshing];
 
 }
 
 - (void)autoRefresh {
-    [self.collectionView.mj_header beginRefreshing];
-    NSLog(@"刷新最新主播界面");
+//    [self.collectionView.mj_header beginRefreshing];
+//    NSLog(@"刷新最新主播界面");
 }
 
 // 获取数据
 - (void)getAnchorsList {
-    [[ALinNetworkTool shareTool] GET:[NSString stringWithFormat:@"http://live.9158.com/Room/GetNewRoomOnline?page=%ld", self.currentPage] parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        [self.collectionView.mj_header endRefreshing];
-        [self.collectionView.mj_footer endRefreshing];
-        NSString *statuMsg = responseObject[@"msg"];
-        if ([statuMsg isEqualToString:@"fail"]) { // 数据已经加载完毕, 没有更多数据了
-            [self.collectionView.mj_footer endRefreshingWithNoMoreData];
-            [self showHint:@"暂时没有更多最新数据"];
-            // 恢复当前页
-            self.currentPage--;
-        } else {
-            [responseObject[@"data"][@"list"] writeToFile:@"/Users/apple/Desktop/user.plist" atomically:YES];
-            NSArray *result = [ALinUser mj_objectArrayWithKeyValuesArray:responseObject[@"data"][@"list"]];
-            if (result.count) {
-                [self.anchors addObjectsFromArray:result];
-                [self.collectionView reloadData];
-            }
-        }
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        [self.collectionView.mj_header endRefreshing];
-        [self.collectionView.mj_footer endRefreshing];
-        self.currentPage--;
-        [self showHint:@"网络异常"];
-    }];
+//    [[ALinNetworkTool shareTool] GET:[NSString stringWithFormat:@"http://live.9158.com/Room/GetNewRoomOnline?page=%ld", self.currentPage] parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+//        [self.collectionView.mj_header endRefreshing];
+//        [self.collectionView.mj_footer endRefreshing];
+//        NSString *statuMsg = responseObject[@"msg"];
+//        if ([statuMsg isEqualToString:@"fail"]) { // 数据已经加载完毕, 没有更多数据了
+//            [self.collectionView.mj_footer endRefreshingWithNoMoreData];
+//            [self showHint:@"暂时没有更多最新数据"];
+//            // 恢复当前页
+//            self.currentPage--;
+//        } else {
+//            [responseObject[@"data"][@"list"] writeToFile:@"/Users/apple/Desktop/user.plist" atomically:YES];
+//            NSArray *result = [ALinUser mj_objectArrayWithKeyValuesArray:responseObject[@"data"][@"list"]];
+//            if (result.count) {
+//                [self.anchors addObjectsFromArray:result];
+//                [self.collectionView reloadData];
+//            }
+//        }
+//    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+//        [self.collectionView.mj_header endRefreshing];
+//        [self.collectionView.mj_footer endRefreshing];
+//        self.currentPage--;
+//        [self showHint:@"网络异常"];
+//    }];
 }
 
 #pragma mark - UICollectionViewDataSource
@@ -95,22 +95,22 @@ static NSString * const reuseIdentifier = @"CBAttentionCell";
 #pragma mark - UICollectionViewDelegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    ALinLiveCollectionViewController *liveVc = [[ALinLiveCollectionViewController alloc] init];
-    NSMutableArray *array = [NSMutableArray array];
-    for (ALinUser *user in self.anchors) {
-        ALinLive *live = [[ALinLive alloc] init];
-        live.bigpic = user.photo;
-        live.myname = user.nickname;
-        live.smallpic = user.photo;
-        live.gps = user.position;
-        live.useridx = user.useridx;
-        live.allnum = arc4random_uniform(2000);
-        live.flv = user.flv;
-        [array addObject:live];
-    }
-    liveVc.lives = array;
-    liveVc.currentIndex = indexPath.item;
-    [self presentViewController:liveVc animated:YES completion:nil];
+//    ALinLiveCollectionViewController *liveVc = [[ALinLiveCollectionViewController alloc] init];
+//    NSMutableArray *array = [NSMutableArray array];
+//    for (ALinUser *user in self.anchors) {
+//        ALinLive *live = [[ALinLive alloc] init];
+//        live.bigpic = user.photo;
+//        live.myname = user.nickname;
+//        live.smallpic = user.photo;
+//        live.gps = user.position;
+//        live.useridx = user.useridx;
+//        live.allnum = arc4random_uniform(2000);
+//        live.flv = user.flv;
+//        [array addObject:live];
+//    }
+//    liveVc.lives = array;
+//    liveVc.currentIndex = indexPath.item;
+//    [self presentViewController:liveVc animated:YES completion:nil];
 }
 
 

@@ -13,7 +13,7 @@
 // View
 #import "CBAppLiveCell.h"
 #import "ALinLive.h"
-#import "ALinRefreshGifHeader.h"
+//#import "ALinRefreshGifHeader.h"
 
 @interface CBHotVC ()
 
@@ -38,19 +38,19 @@ static NSString *RIDCBAppLiveCell = @"RIDCBAppLiveCell";
     self.tableView.backgroundColor = [UIColor bgColor];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 
-    self.tableView.mj_header = [ALinRefreshGifHeader headerWithRefreshingBlock:^{
-        self.lives = [NSMutableArray array];
-        self.currentPage = 1;
-        // 获取顶部的广告
-        [self httpLive];
-    }];
-    [self.tableView.mj_header beginRefreshing];
-    
-    self.currentPage = 1;
-    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
-        self.currentPage++;
-        [self httpLive];
-    }];
+//    self.tableView.mj_header = [ALinRefreshGifHeader headerWithRefreshingBlock:^{
+//        self.lives = [NSMutableArray array];
+//        self.currentPage = 1;
+//        // 获取顶部的广告
+//        [self httpLive];
+//    }];
+//    [self.tableView.mj_header beginRefreshing];
+//    
+//    self.currentPage = 1;
+//    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+//        self.currentPage++;
+//        [self httpLive];
+//    }];
     
     self.tableView.ly_emptyView = [LYEmptyView emptyViewWithImageStr:@"noData"
                                                             titleStr:@"暂无数据，点击重新加载"
@@ -63,20 +63,20 @@ static NSString *RIDCBAppLiveCell = @"RIDCBAppLiveCell";
         [self.tableView.mj_header endRefreshing];
         [self.tableView.mj_footer endRefreshing];
         
-        NSArray *result = [ALinLive mj_objectArrayWithKeyValuesArray:responseObject[@"data"][@"list"]];
-        if ([self isNotEmpty:result]) {
-            [self.lives addObjectsFromArray:result];
-            [self.tableView reloadData];
-        }else{
-            [self showHint:@"暂时没有更多最新数据"];
+//        NSArray *result = [ALinLive mj_objectArrayWithKeyValuesArray:responseObject[@"data"][@"list"]];
+//        if ([self isNotEmpty:result]) {
+//            [self.lives addObjectsFromArray:result];
+//            [self.tableView reloadData];
+//        }else{
+//            [self showHint:@"暂时没有更多最新数据"];
             // 恢复当前页
             self.currentPage--;
-        }
+//        }
     } failure:^(NSError *error) {
         [self.tableView.mj_header endRefreshing];
         [self.tableView.mj_footer endRefreshing];
         self.currentPage--;
-        [self showHint:@"网络异常"];
+//        [self showHint:@"网络异常"];
     }];
 }
 #pragma mark - TableView dataSource

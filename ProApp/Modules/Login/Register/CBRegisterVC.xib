@@ -12,9 +12,12 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CBRegisterVC">
             <connections>
+                <outlet property="agreementBtn" destination="4mG-zp-ukV" id="IfZ-kJ-3o7"/>
+                <outlet property="authCodeBtn" destination="PbC-Fi-sib" id="OsS-qA-Ezy"/>
                 <outlet property="codeTextField" destination="lcO-pv-1JQ" id="co8-x3-L8w"/>
                 <outlet property="phoneTextField" destination="erc-TV-wFU" id="YBm-Tq-sW8"/>
                 <outlet property="pwdTextField" destination="UTV-qc-jC7" id="Xvg-N3-YRz"/>
+                <outlet property="registerBtn" destination="sfM-wc-GQv" id="aK8-m1-fEc"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="XA8-J3-ARQ"/>
             </connections>
         </placeholder>
@@ -32,15 +35,6 @@
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login_logo" translatesAutoresizingMaskIntoConstraints="NO" id="q2e-eL-6As">
                             <rect key="frame" x="125.5" y="0.0" width="74" height="100"/>
                         </imageView>
-                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入手机号" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="erc-TV-wFU">
-                            <rect key="frame" x="0.0" y="135" width="325" height="44"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="44" id="AKO-3a-C1z"/>
-                            </constraints>
-                            <nil key="textColor"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits"/>
-                        </textField>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1hC-cf-SzR">
                             <rect key="frame" x="0.0" y="179" width="325" height="0.5"/>
                             <color key="backgroundColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="0.40354773119999998" colorSpace="deviceRGB"/>
@@ -48,14 +42,14 @@
                                 <constraint firstAttribute="height" constant="0.5" id="058-SN-TvG"/>
                             </constraints>
                         </view>
-                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入6-16位登录密码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lcO-pv-1JQ">
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入验证码" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="lcO-pv-1JQ">
                             <rect key="frame" x="0.0" y="194.5" width="225" height="44"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="44" id="MXq-w0-9F1"/>
                             </constraints>
-                            <nil key="textColor"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                         </textField>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4bz-cB-gqV">
                             <rect key="frame" x="0.0" y="238.5" width="325" height="0.5"/>
@@ -64,14 +58,14 @@
                                 <constraint firstAttribute="height" constant="0.5" id="B39-6W-XTF"/>
                             </constraints>
                         </view>
-                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入6-16位登录密码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UTV-qc-jC7">
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入6-16位登录密码" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="UTV-qc-jC7">
                             <rect key="frame" x="0.0" y="254" width="325" height="44"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="44" id="58C-IY-Q2j"/>
                             </constraints>
-                            <nil key="textColor"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                         </textField>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nUc-6D-Yqt">
                             <rect key="frame" x="0.0" y="298" width="325" height="0.5"/>
@@ -80,7 +74,7 @@
                                 <constraint firstAttribute="height" constant="0.5" id="Sir-2N-SFf"/>
                             </constraints>
                         </view>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sfM-wc-GQv">
+                        <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sfM-wc-GQv">
                             <rect key="frame" x="0.5" y="328.5" width="325" height="35"/>
                             <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="16"/>
                             <state key="normal" title="注册 " backgroundImage="login_btn_register"/>
@@ -88,7 +82,7 @@
                                 <action selector="actionRegister:" destination="-1" eventType="touchUpInside" id="QSq-Re-FZ6"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PbC-Fi-sib">
+                        <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PbC-Fi-sib">
                             <rect key="frame" x="233" y="202" width="80" height="28"/>
                             <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="12"/>
                             <state key="normal" title="获取验证码" backgroundImage="login_btn_verificationcode">
@@ -151,6 +145,15 @@
                                 <constraint firstAttribute="height" constant="44" id="SmP-up-w2G"/>
                             </constraints>
                         </stackView>
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入手机号" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="erc-TV-wFU">
+                            <rect key="frame" x="0.0" y="135" width="325" height="44"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="44" id="AKO-3a-C1z"/>
+                            </constraints>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
+                        </textField>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
@@ -212,7 +215,7 @@
                 <constraint firstAttribute="trailing" secondItem="Dzp-lJ-lmD" secondAttribute="trailing" id="wse-j9-fSE"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
-            <point key="canvasLocation" x="34.5" y="53.5"/>
+            <point key="canvasLocation" x="-202" y="69"/>
         </view>
     </objects>
     <resources>
