@@ -20,6 +20,10 @@ pod 'Masonry'
 pod 'PLPlayerKit'
 # 轮播图
 pod 'TYCyclePagerView'
+# 极光推送
+#pod 'JPush'
+# 腾讯bug管理
+#pod 'Bugly'
 
 end
 

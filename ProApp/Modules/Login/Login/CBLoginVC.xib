@@ -31,14 +31,14 @@
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login_logo" translatesAutoresizingMaskIntoConstraints="NO" id="q2e-eL-6As">
                             <rect key="frame" x="125.5" y="0.0" width="74" height="100"/>
                         </imageView>
-                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入手机号" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="erc-TV-wFU">
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入手机号" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="erc-TV-wFU">
                             <rect key="frame" x="0.0" y="135" width="325" height="44"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="44" id="AKO-3a-C1z"/>
                             </constraints>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                            <textInputTraits key="textInputTraits"/>
+                            <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                         </textField>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1hC-cf-SzR">
                             <rect key="frame" x="0.0" y="179" width="325" height="0.5"/>
@@ -47,14 +47,14 @@
                                 <constraint firstAttribute="height" constant="0.5" id="058-SN-TvG"/>
                             </constraints>
                         </view>
-                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入6-16位登录密码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lcO-pv-1JQ">
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入6-16位登录密码" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="lcO-pv-1JQ">
                             <rect key="frame" x="0.0" y="194.5" width="325" height="44"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="44" id="MXq-w0-9F1"/>
                             </constraints>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                            <textInputTraits key="textInputTraits"/>
+                            <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                         </textField>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4bz-cB-gqV">
                             <rect key="frame" x="0.0" y="238.5" width="325" height="0.5"/>
@@ -63,9 +63,12 @@
                                 <constraint firstAttribute="height" constant="0.5" id="B39-6W-XTF"/>
                             </constraints>
                         </view>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qu5-8e-YjN">
+                        <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qu5-8e-YjN">
                             <rect key="frame" x="0.0" y="269" width="325" height="35"/>
                             <state key="normal" title="登录" backgroundImage="login_btn_register"/>
+                            <connections>
+                                <action selector="actionLogin:" destination="-1" eventType="touchUpInside" id="aZA-06-kMY"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C8I-X2-eHS">
                             <rect key="frame" x="0.0" y="314" width="48" height="44"/>

@@ -16,7 +16,7 @@
 
 #define urlGetCode purl@"?service=Login.getCode"
 #define urlUserReg purl@"?service=Login.userReg"
-
+#define urlUserLogin purl@"/?service=Login.userLogin"
 @interface CBInterface : NSObject
 
 @end
