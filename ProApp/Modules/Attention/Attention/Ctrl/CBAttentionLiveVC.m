@@ -10,7 +10,7 @@
 #import "CBWatchVO.h"
 #import "CBWatchCell.h"
 #import "CBAttentionLiveCell.h"
-#import "ALinRefreshGifHeader.h"
+//#import "ALinRefreshGifHeader.h"
 #import "ALinUser.h"
 #import "CBHorizontalFlowLayout.h"
 
@@ -89,23 +89,23 @@ static NSString * const AttentionLiveReuseIdentifier = @"CBAttentionLiveCell";
 
 // 获取数据
 - (void)getAnchorsList {
-    [[ALinNetworkTool shareTool] GET:[NSString stringWithFormat:@"http://live.9158.com/Room/GetNewRoomOnline?page=1"] parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        NSString *statuMsg = responseObject[@"msg"];
-        if ([statuMsg isEqualToString:@"fail"]) { // 数据已经加载完毕, 没有更多数据了
-            [self.collectionView.mj_footer endRefreshingWithNoMoreData];
-            [self showHint:@"暂时没有更多最新数据"];
-            // 恢复当前页
-        } else {
-            [responseObject[@"data"][@"list"] writeToFile:@"/Users/apple/Desktop/user.plist" atomically:YES];
-            NSArray *result = [ALinUser mj_objectArrayWithKeyValuesArray:responseObject[@"data"][@"list"]];
-            if (result.count) {
-                [self.anchors addObjectsFromArray:result];
-                [self.collectionView reloadData];
-            }
-        }
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        [self showHint:@"网络异常"];
-    }];
+//    [[ALinNetworkTool shareTool] GET:[NSString stringWithFormat:@"http://live.9158.com/Room/GetNewRoomOnline?page=1"] parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+//        NSString *statuMsg = responseObject[@"msg"];
+//        if ([statuMsg isEqualToString:@"fail"]) { // 数据已经加载完毕, 没有更多数据了
+//            [self.collectionView.mj_footer endRefreshingWithNoMoreData];
+//            [self showHint:@"暂时没有更多最新数据"];
+//            // 恢复当前页
+//        } else {
+//            [responseObject[@"data"][@"list"] writeToFile:@"/Users/apple/Desktop/user.plist" atomically:YES];
+//            NSArray *result = [ALinUser mj_objectArrayWithKeyValuesArray:responseObject[@"data"][@"list"]];
+//            if (result.count) {
+//                [self.anchors addObjectsFromArray:result];
+//                [self.collectionView reloadData];
+//            }
+//        }
+//    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+//        [self showHint:@"网络异常"];
+//    }];
 }
 
 #pragma mark - UICollectionViewDataSource

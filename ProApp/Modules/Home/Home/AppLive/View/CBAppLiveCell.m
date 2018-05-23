@@ -8,7 +8,7 @@
 
 #import "CBAppLiveCell.h"
 #import "ALinLive.h"
-#import "UIImage+ALinExtension.h"
+//#import "UIImage+ALinExtension.h"
 #import <UIImageView+WebCache.h>
 
 @interface CBAppLiveCell()
@@ -28,7 +28,7 @@
 {
     _live = live;
     [self.headImageView sd_setImageWithURL:[NSURL URLWithString:live.smallpic] placeholderImage:[UIImage imageNamed:@"placeholder_head"] options:SDWebImageRefreshCached completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-        image = [UIImage  circleImage:image borderColor:[UIColor redColor] borderWidth:1];
+//        image = [UIImage  circleImage:image borderColor:[UIColor redColor] borderWidth:1];
         self.headImageView.image = image;
     }];
     
@@ -47,7 +47,7 @@
     NSRange range = [fullChaoyang rangeOfString:[NSString stringWithFormat:@"%ld", live.allnum]];
     NSMutableAttributedString *attr = [[NSMutableAttributedString alloc] initWithString:fullChaoyang];
     [attr addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:17] range: range];
-    [attr addAttribute:NSForegroundColorAttributeName value:KeyColor range:range];
+//    [attr addAttribute:NSForegroundColorAttributeName value:KeyColor range:range];
     self.chaoyangLabel.attributedText = attr;
 }
 

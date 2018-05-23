@@ -9,7 +9,6 @@
 #import "CBLiveAnchorView.h"
 #import "ALinLive.h"
 #import "ALinUser.h"
-#import "UIImage+ALinExtension.h"
 #import <UIImageView+WebCache.h>
 #import "CBOnlineUserView.h"
 
@@ -33,7 +32,7 @@
 {
     if (!_chaoYangUsers) {
         NSArray *array = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"user.plist" ofType:nil]];
-        _chaoYangUsers = [ALinUser mj_objectArrayWithKeyValuesArray:array];
+//        _chaoYangUsers = [ALinUser mj_objectArrayWithKeyValuesArray:array];
     }
     return _chaoYangUsers;
 }
@@ -50,7 +49,7 @@
     self.headImageView.layer.borderWidth = 1;
     self.headImageView.layer.borderColor = [UIColor whiteColor].CGColor;
     
-    [self.careBtn setBackgroundImage:[UIImage imageWithColor:KeyColor size:self.careBtn.size] forState:UIControlStateNormal];
+//    [self.careBtn setBackgroundImage:[UIImage imageWithColor:KeyColor size:self.careBtn.size] forState:UIControlStateNormal];
     [self.careBtn setBackgroundImage:[UIImage imageWithColor:[UIColor lightGrayColor] size:self.careBtn.size] forState:UIControlStateSelected];
     [self setupChangeyang];
     
@@ -82,18 +81,18 @@ static int randomNum = 0;
 
 - (void)setupChangeyang
 {
-    self.peoplesScrollView.contentSize = CGSizeMake((self.peoplesScrollView.height + DefaultMargin) * self.chaoYangUsers.count + DefaultMargin, 0);
+//    self.peoplesScrollView.contentSize = CGSizeMake((self.peoplesScrollView.height + DefaultMargin) * self.chaoYangUsers.count + DefaultMargin, 0);
     CGFloat width = self.peoplesScrollView.height - 10;
     CGFloat x = 0;
     for (int i = 0; i<self.chaoYangUsers.count; i++) {
-        x = 0 + (DefaultMargin + width) * i;
+//        x = 0 + (DefaultMargin + width) * i;
         UIImageView *userView = [[UIImageView alloc] initWithFrame:CGRectMake(x, 5, width, width)];
         userView.layer.cornerRadius = width * 0.5;
         userView.layer.masksToBounds = YES;
         ALinUser *user = self.chaoYangUsers[i];
         [[SDWebImageDownloader sharedDownloader] downloadImageWithURL:[NSURL URLWithString:user.photo] options:SDWebImageDownloaderUseNSURLCache progress:nil completed:^(UIImage *image, NSData *data, NSError *error, BOOL finished) {
             dispatch_async(dispatch_get_main_queue(), ^{
-                userView.image = [UIImage circleImage:image borderColor:[UIColor whiteColor] borderWidth:1];
+//                userView.image = [UIImage circleImage:image borderColor:[UIColor whiteColor] borderWidth:1];
             });
         }];
         // 设置监听
