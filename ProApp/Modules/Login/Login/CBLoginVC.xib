@@ -36,8 +36,8 @@
                             <constraints>
                                 <constraint firstAttribute="height" constant="44" id="AKO-3a-C1z"/>
                             </constraints>
-                            <nil key="textColor"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <textInputTraits key="textInputTraits"/>
                         </textField>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1hC-cf-SzR">
@@ -52,8 +52,8 @@
                             <constraints>
                                 <constraint firstAttribute="height" constant="44" id="MXq-w0-9F1"/>
                             </constraints>
-                            <nil key="textColor"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <textInputTraits key="textInputTraits"/>
                         </textField>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4bz-cB-gqV">
@@ -215,6 +215,9 @@
                             <state key="normal" title="登录即代表您同意服务和隐私条款">
                                 <color key="titleColor" red="0.78823529410000004" green="0.78823529410000004" blue="0.78823529410000004" alpha="0.40354773119999998" colorSpace="deviceRGB"/>
                             </state>
+                            <connections>
+                                <action selector="actionPolicy:" destination="-1" eventType="touchUpInside" id="gh4-Ah-ChU"/>
+                            </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

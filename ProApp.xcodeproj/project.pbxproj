@@ -168,6 +168,11 @@
 		548C5CB820B50BFE00A6FF53 /* cityDefault.m in Sources */ = {isa = PBXBuildFile; fileRef = 548C5CB020B50BFE00A6FF53 /* cityDefault.m */; };
 		548C5CBE20B50C2400A6FF53 /* CBLiveUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 548C5CBD20B50C2400A6FF53 /* CBLiveUser.m */; };
 		548C5CC120B50CD800A6FF53 /* CBLiveUserConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 548C5CC020B50CD800A6FF53 /* CBLiveUserConfig.m */; };
+		548C5CC720B5193700A6FF53 /* BasicWebViewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 548C5CC320B5193700A6FF53 /* BasicWebViewVC.m */; };
+		548C5CC820B5193700A6FF53 /* LYLWKWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 548C5CC520B5193700A6FF53 /* LYLWKWebView.m */; };
+		548C5CCB20B519CE00A6FF53 /* CBInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 548C5CCA20B519CE00A6FF53 /* CBInterface.m */; };
+		548C5CCF20B51C8400A6FF53 /* CBWebVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 548C5CCE20B51C8400A6FF53 /* CBWebVC.m */; };
+		548C5CDC20B5433900A6FF53 /* MBProgressHUD+HUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 548C5CDB20B5433900A6FF53 /* MBProgressHUD+HUD.m */; };
 		7E902906E2CA7AD8D2F3A5A8 /* libPods-ProApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B93D832D0DEF97DA8E7CD09 /* libPods-ProApp.a */; };
 /* End PBXBuildFile section */
 
@@ -439,6 +444,16 @@
 		548C5CBD20B50C2400A6FF53 /* CBLiveUser.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBLiveUser.m; sourceTree = "<group>"; };
 		548C5CBF20B50CD800A6FF53 /* CBLiveUserConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBLiveUserConfig.h; sourceTree = "<group>"; };
 		548C5CC020B50CD800A6FF53 /* CBLiveUserConfig.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBLiveUserConfig.m; sourceTree = "<group>"; };
+		548C5CC320B5193700A6FF53 /* BasicWebViewVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BasicWebViewVC.m; sourceTree = "<group>"; };
+		548C5CC420B5193700A6FF53 /* LYLWKWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYLWKWebView.h; sourceTree = "<group>"; };
+		548C5CC520B5193700A6FF53 /* LYLWKWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYLWKWebView.m; sourceTree = "<group>"; };
+		548C5CC620B5193700A6FF53 /* BasicWebViewVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicWebViewVC.h; sourceTree = "<group>"; };
+		548C5CC920B519CE00A6FF53 /* CBInterface.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBInterface.h; sourceTree = "<group>"; };
+		548C5CCA20B519CE00A6FF53 /* CBInterface.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBInterface.m; sourceTree = "<group>"; };
+		548C5CCD20B51C8400A6FF53 /* CBWebVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBWebVC.h; sourceTree = "<group>"; };
+		548C5CCE20B51C8400A6FF53 /* CBWebVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBWebVC.m; sourceTree = "<group>"; };
+		548C5CDA20B5433900A6FF53 /* MBProgressHUD+HUD.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+HUD.h"; sourceTree = "<group>"; };
+		548C5CDB20B5433900A6FF53 /* MBProgressHUD+HUD.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+HUD.m"; sourceTree = "<group>"; };
 		9B93D832D0DEF97DA8E7CD09 /* libPods-ProApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ProApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D104A5A85520E26A75922659 /* Pods-ProApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-ProApp/Pods-ProApp.release.xcconfig"; sourceTree = "<group>"; };
 		E42F78E1DEE816974A7C9C0C /* Pods-ProApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ProApp/Pods-ProApp.debug.xcconfig"; sourceTree = "<group>"; };
@@ -460,6 +475,7 @@
 		0715278420A53F3A00D3859D /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				548C5CD020B51D1000A6FF53 /* Web */,
 				0715278520A53F4300D3859D /* Register */,
 				07F6EF5A20872E3C0035C6BD /* Login */,
 			);
@@ -546,12 +562,13 @@
 		072DC57B2091604600F693E8 /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				548C5CD920B5430300A6FF53 /* MBProgressHUD */,
 				0715278B20A5496D00D3859D /* UITextField */,
 				072DC58B2091706300F693E8 /* UIImageView */,
 				072DC57C2091605C00F693E8 /* UILabel */,
 				07CF5FD4207B37410087A5E2 /* CALayer */,
-				079AAE602079BF4A00674A92 /* Color */,
-				07916D5B207CA419002E4D83 /* View */,
+				079AAE602079BF4A00674A92 /* UIColor */,
+				07916D5B207CA419002E4D83 /* UIView */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -820,6 +837,7 @@
 		0737EDA12074A37600A89CC0 /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				548C5CC220B5193700A6FF53 /* WebView */,
 				07691D4420B270F900BF731E /* PPNetworkHelper */,
 				07659C1920A4439700EBE030 /* HcdGuideView */,
 				07F38BEC209949FF00DDBC90 /* JPGiftManager */,
@@ -1132,7 +1150,7 @@
 			path = Ctrl;
 			sourceTree = "<group>";
 		};
-		07916D5B207CA419002E4D83 /* View */ = {
+		07916D5B207CA419002E4D83 /* UIView */ = {
 			isa = PBXGroup;
 			children = (
 				07916D58207CA415002E4D83 /* UIView+Xib.h */,
@@ -1144,12 +1162,13 @@
 				07B6689C208D902500AA5B62 /* UIView+DashedLine.h */,
 				07B6689D208D902500AA5B62 /* UIView+DashedLine.m */,
 			);
-			path = View;
+			path = UIView;
 			sourceTree = "<group>";
 		};
 		079AAE4B2079AFA500674A92 /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				548C5CCC20B519D000A6FF53 /* Interface */,
 				548C5CA820B50BFE00A6FF53 /* Cache */,
 				079AAE4C2079AFC500674A92 /* TBC */,
 				072DC57B2091604600F693E8 /* Category */,
@@ -1169,13 +1188,13 @@
 			path = TBC;
 			sourceTree = "<group>";
 		};
-		079AAE602079BF4A00674A92 /* Color */ = {
+		079AAE602079BF4A00674A92 /* UIColor */ = {
 			isa = PBXGroup;
 			children = (
 				079AAE642079C02700674A92 /* UIColor+Color.h */,
 				079AAE652079C02700674A92 /* UIColor+Color.m */,
 			);
-			path = Color;
+			path = UIColor;
 			sourceTree = "<group>";
 		};
 		07AB0BAD20930087007A25A8 /* AccountInfo */ = {
@@ -1396,19 +1415,11 @@
 		07F6EF5A20872E3C0035C6BD /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				07F6EF5B20872E3C0035C6BD /* Ctrl */,
-			);
-			path = Login;
-			sourceTree = "<group>";
-		};
-		07F6EF5B20872E3C0035C6BD /* Ctrl */ = {
-			isa = PBXGroup;
-			children = (
 				07359D9020A422DD00FEEA4E /* CBLoginVC.h */,
 				07359D9120A422DD00FEEA4E /* CBLoginVC.m */,
 				07359D9220A422DD00FEEA4E /* CBLoginVC.xib */,
 			);
-			path = Ctrl;
+			path = Login;
 			sourceTree = "<group>";
 		};
 		07F6EF6120872E3C0035C6BD /* Home */ = {
@@ -1595,6 +1606,44 @@
 				548C5CC020B50CD800A6FF53 /* CBLiveUserConfig.m */,
 			);
 			path = UserCache;
+			sourceTree = "<group>";
+		};
+		548C5CC220B5193700A6FF53 /* WebView */ = {
+			isa = PBXGroup;
+			children = (
+				548C5CC620B5193700A6FF53 /* BasicWebViewVC.h */,
+				548C5CC320B5193700A6FF53 /* BasicWebViewVC.m */,
+				548C5CC420B5193700A6FF53 /* LYLWKWebView.h */,
+				548C5CC520B5193700A6FF53 /* LYLWKWebView.m */,
+			);
+			path = WebView;
+			sourceTree = "<group>";
+		};
+		548C5CCC20B519D000A6FF53 /* Interface */ = {
+			isa = PBXGroup;
+			children = (
+				548C5CC920B519CE00A6FF53 /* CBInterface.h */,
+				548C5CCA20B519CE00A6FF53 /* CBInterface.m */,
+			);
+			path = Interface;
+			sourceTree = "<group>";
+		};
+		548C5CD020B51D1000A6FF53 /* Web */ = {
+			isa = PBXGroup;
+			children = (
+				548C5CCD20B51C8400A6FF53 /* CBWebVC.h */,
+				548C5CCE20B51C8400A6FF53 /* CBWebVC.m */,
+			);
+			path = Web;
+			sourceTree = "<group>";
+		};
+		548C5CD920B5430300A6FF53 /* MBProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				548C5CDA20B5433900A6FF53 /* MBProgressHUD+HUD.h */,
+				548C5CDB20B5433900A6FF53 /* MBProgressHUD+HUD.m */,
+			);
+			path = MBProgressHUD;
 			sourceTree = "<group>";
 		};
 		E2E021358B1DC84C5135A348 /* Frameworks */ = {
@@ -1797,10 +1846,12 @@
 				0787704E2092CA7D00A5A42A /* CBAccountRecordVC.m in Sources */,
 				079AAE4A2079AF9E00674A92 /* CBTBC.m in Sources */,
 				0750561C2092AEBD00F0679B /* CBGiftPackageVC.m in Sources */,
+				548C5CC720B5193700A6FF53 /* BasicWebViewVC.m in Sources */,
 				07F38C0720994A0000DDBC90 /* JPGiftOperation.m in Sources */,
 				072DC5A02091A1B500F693E8 /* CBNotificationsVC.m in Sources */,
 				07F38C0220994A0000DDBC90 /* JPHorizontalLayout.m in Sources */,
 				077C1A932091A4B50005CE97 /* CBFeedBackVC.m in Sources */,
+				548C5CCF20B51C8400A6FF53 /* CBWebVC.m in Sources */,
 				07F38BFF20994A0000DDBC90 /* JPGiftModel.m in Sources */,
 				07CDCAD420907D7900B16FC6 /* CBLiveBottomView.m in Sources */,
 				07CF5FD3207B37390087A5E2 /* CALayer+Additions.m in Sources */,
@@ -1813,6 +1864,7 @@
 				07C9735020A9224000BB9820 /* CBAttentionLiveCell.m in Sources */,
 				0715279220A5773C00D3859D /* CBVerticalFlowLayout.m in Sources */,
 				072DC58E209170B000F693E8 /* UIImageView+RoundedCorner.m in Sources */,
+				548C5CDC20B5433900A6FF53 /* MBProgressHUD+HUD.m in Sources */,
 				07F38C0620994A0000DDBC90 /* JPGiftCellModel.m in Sources */,
 				548C5CB820B50BFE00A6FF53 /* cityDefault.m in Sources */,
 				548C5CB720B50BFE00A6FF53 /* liveCity.m in Sources */,
@@ -1872,6 +1924,8 @@
 				07737DE7208F0161009EB9E6 /* CBMyFansVC.m in Sources */,
 				07116E9820B267FC007FAEED /* CBAppADCell.m in Sources */,
 				077D1F8520886C56003B9E56 /* CBLiveVC.m in Sources */,
+				548C5CC820B5193700A6FF53 /* LYLWKWebView.m in Sources */,
+				548C5CCB20B519CE00A6FF53 /* CBInterface.m in Sources */,
 				07F38C0520994A0000DDBC90 /* JPGiftCollectionViewCell.m in Sources */,
 				07558C232094517A007E41C2 /* CBOnlineUserCell.m in Sources */,
 				071D3C152092B51700A6C5CE /* CBPackageRecordVO.m in Sources */,

@@ -9,6 +9,8 @@
 #import "CBLoginVC.h"
 #import "CBRegisterVC.h"
 #import "UITextField+LeftImageView.h"
+#import "BasicWebViewVC.h"
+#import "CBWebVC.h"
 
 @interface CBLoginVC ()
 
@@ -23,6 +25,7 @@
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES animated:animated];
 }
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupUI];
@@ -32,7 +35,6 @@
     [self.phoneTextField leftImageViewImageName:@"login_icon_phone"];
     [self.pwdTextField leftImageViewImageName:@"login_icon_password"];
 }
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -48,5 +50,13 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
+- (IBAction)actionPolicy:(id)sender {
+    CBWebVC *vc = [CBWebVC new];
+    [vc webViewloadRequestWithURLString:urlPolicy];
+    [self.navigationController pushViewController:vc animated:YES];
+}
 
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+    [self.view endEditing:YES];
+}
 @end
