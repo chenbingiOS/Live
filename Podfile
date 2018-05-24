@@ -18,6 +18,8 @@ pod 'MJRefresh'
 pod 'Masonry'
 # 直播工具
 pod 'PLPlayerKit'
+pod 'PLShortVideoKit/ex-libMuseProcessor'
+pod 'Qiniu'
 # 轮播图
 pod 'TYCyclePagerView'
 # 极光推送

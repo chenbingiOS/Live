@@ -7,7 +7,7 @@
 //
 
 #import "ALinUser.h"
-#import <MJExtension/MJExtension.h>
+//#import <MJExtension/MJExtension.h>
 
 @implementation ALinUser
 + (NSDictionary *)mj_replacedKeyFromPropertyName
