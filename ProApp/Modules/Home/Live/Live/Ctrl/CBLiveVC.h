@@ -9,10 +9,10 @@
 // 上下滑动切直播控制器
 #import <UIKit/UIKit.h>
 
-@class ALinLive;
+@class CBAppLiveVO;
 @interface CBLiveVC : UIPageViewController
 
-@property (nonatomic, strong) NSArray <ALinLive *> *lives;  /** 直播 */
+@property (nonatomic, strong) NSArray <CBAppLiveVO *> *lives;  /** 直播 */
 @property (nonatomic, assign) NSUInteger currentIndex;      /** 当前的index */
 
 @end

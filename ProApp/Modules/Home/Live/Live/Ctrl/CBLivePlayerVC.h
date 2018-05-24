@@ -9,9 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "CBPlayerVC.h"
 
-@class ALinLive;
+@class CBAppLiveVO;
 @interface CBLivePlayerVC : CBPlayerVC
 
-@property (nonatomic, strong) ALinLive *live;  /** 直播 */
+@property (nonatomic, strong) CBAppLiveVO *live;  /** 直播 */
 
 @end

@@ -10,7 +10,7 @@
 #import "ALinUser.h"
 #import "CBAttentionCell.h"
 #import "CBRefreshGifHeader.h"
-#import "ALinLive.h"
+#import "CBAppLiveVO.h"
 #import "CBVerticalFlowLayout.h"
 
 @interface CBBaseVideoVC () <CBVerticalFlowLayoutDelegate, UICollectionViewDelegate, UICollectionViewDataSource>
@@ -93,10 +93,10 @@ static NSString * const reuseIdentifier = @"CBAttentionCell";
 #pragma mark - UICollectionViewDelegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-//    ALinLiveCollectionViewController *liveVc = [[ALinLiveCollectionViewController alloc] init];
+//    CBAppLiveVOCollectionViewController *liveVc = [[CBAppLiveVOCollectionViewController alloc] init];
 //    NSMutableArray *array = [NSMutableArray array];
 //    for (ALinUser *user in self.anchors) {
-//        ALinLive *live = [[ALinLive alloc] init];
+//        CBAppLiveVO *live = [[CBAppLiveVO alloc] init];
 //        live.bigpic = user.photo;
 //        live.myname = user.nickname;
 //        live.smallpic = user.photo;

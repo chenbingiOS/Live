@@ -7,7 +7,7 @@
 //
 
 #import "CBLiveAnchorView.h"
-#import "ALinLive.h"
+#import "CBAppLiveVO.h"
 #import "ALinUser.h"
 #import <UIImageView+WebCache.h>
 #import "CBOnlineUserView.h"
@@ -64,7 +64,7 @@
 }
 
 static int randomNum = 0;
-- (void)setLive:(ALinLive *)live
+- (void)setLive:(CBAppLiveVO *)live
 {
     _live = live;
     [self.headImageView sd_setImageWithURL:[NSURL URLWithString:live.smallpic] placeholderImage:[UIImage imageNamed:@"placeholder_head"]];

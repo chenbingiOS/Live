@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@class ALinLive;
+@class CBAppLiveVO;
 @class ALinUser;
 
 @interface CBLiveAnchorView : UIView
@@ -16,7 +16,7 @@
 /** 主播 */
 @property(nonatomic, strong) ALinUser *user;
 /** 直播 */
-@property(nonatomic, strong) ALinLive *live;
+@property(nonatomic, strong) CBAppLiveVO *live;
 /** 点击开关  */
 @property(nonatomic, copy)void (^clickDeviceShow)(bool selected);
 

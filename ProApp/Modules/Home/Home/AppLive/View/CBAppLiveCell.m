@@ -7,7 +7,7 @@
 //
 
 #import "CBAppLiveCell.h"
-#import "ALinLive.h"
+#import "CBAppLiveVO.h"
 //#import "UIImage+ALinExtension.h"
 #import <UIImageView+WebCache.h>
 
@@ -24,7 +24,7 @@
 
 @implementation CBAppLiveCell
 
-- (void)setLive:(ALinLive *)live
+- (void)setLive:(CBAppLiveVO *)live
 {
     _live = live;
     [self.headImageView sd_setImageWithURL:[NSURL URLWithString:live.smallpic] placeholderImage:[UIImage imageNamed:@"placeholder_head"] options:SDWebImageRefreshCached completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {

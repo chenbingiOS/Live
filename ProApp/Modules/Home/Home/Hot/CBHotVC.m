@@ -12,7 +12,7 @@
 #import "CBNVC.h"
 // View
 #import "CBAppLiveCell.h"
-#import "ALinLive.h"
+#import "CBAppLiveVO.h"
 #import "CBRefreshGifHeader.h"
 
 @interface CBHotVC ()
@@ -63,7 +63,7 @@ static NSString *RIDCBAppLiveCell = @"RIDCBAppLiveCell";
         [self.tableView.mj_header endRefreshing];
         [self.tableView.mj_footer endRefreshing];
         
-//        NSArray *result = [ALinLive mj_objectArrayWithKeyValuesArray:responseObject[@"data"][@"list"]];
+//        NSArray *result = [CBAppLiveVO mj_objectArrayWithKeyValuesArray:responseObject[@"data"][@"list"]];
 //        if ([self isNotEmpty:result]) {
 //            [self.lives addObjectsFromArray:result];
 //            [self.tableView reloadData];

@@ -7,7 +7,7 @@
 //
 
 #import "CBLivePlayerVC.h"
-#import "ALinLive.h"
+#import "CBAppLiveVO.h"
 #import "CBRoomView.h"
 #import <PLPlayerKit/PLPlayerKit.h>
 
@@ -44,7 +44,7 @@
 }
 
 #pragma mark - Set 
-- (void)setLive:(ALinLive *)live {
+- (void)setLive:(CBAppLiveVO *)live {
     _live = live;
     self.url = [NSURL URLWithString:live.flv];
     self.thumbImageURL = [NSURL URLWithString:live.bigpic];

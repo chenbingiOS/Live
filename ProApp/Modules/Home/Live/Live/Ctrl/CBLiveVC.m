@@ -7,7 +7,7 @@
 //
 
 #import "CBLiveVC.h"
-#import "ALinLive.h"
+#import "CBAppLiveVO.h"
 #import "CBLivePlayerVC.h"
 
 @interface CBLiveVC () <UIPageViewControllerDelegate, UIPageViewControllerDataSource>

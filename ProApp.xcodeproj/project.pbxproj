@@ -155,7 +155,6 @@
 		07F6EF3A20872A9B0035C6BD /* IJKMediaFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07F6EF3920872A9B0035C6BD /* IJKMediaFramework.framework */; };
 		07F6EFE020872E3D0035C6BD /* CBHomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 07F6EF6420872E3C0035C6BD /* CBHomeVC.m */; };
 		07F6EFE120872E3D0035C6BD /* ALinUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 07F6EF6720872E3C0035C6BD /* ALinUser.m */; };
-		07F6EFE220872E3D0035C6BD /* ALinLive.m in Sources */ = {isa = PBXBuildFile; fileRef = 07F6EF6820872E3C0035C6BD /* ALinLive.m */; };
 		07F6EFE320872E3D0035C6BD /* CBSelectedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 07F6EF6D20872E3C0035C6BD /* CBSelectedView.m */; };
 		07F6EFF820872E3D0035C6BD /* CBAppLiveVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 07F6EF9D20872E3C0035C6BD /* CBAppLiveVC.m */; };
 		07F6EFFA20872E3D0035C6BD /* CBAppLiveCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 07F6EFA320872E3C0035C6BD /* CBAppLiveCell.xib */; };
@@ -425,9 +424,7 @@
 		07F6EF6420872E3C0035C6BD /* CBHomeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBHomeVC.m; sourceTree = "<group>"; };
 		07F6EF6520872E3C0035C6BD /* CBHomeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBHomeVC.h; sourceTree = "<group>"; };
 		07F6EF6720872E3C0035C6BD /* ALinUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ALinUser.m; sourceTree = "<group>"; };
-		07F6EF6820872E3C0035C6BD /* ALinLive.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ALinLive.m; sourceTree = "<group>"; };
 		07F6EF6920872E3C0035C6BD /* ALinUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALinUser.h; sourceTree = "<group>"; };
-		07F6EF6A20872E3C0035C6BD /* ALinLive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALinLive.h; sourceTree = "<group>"; };
 		07F6EF6C20872E3C0035C6BD /* CBSelectedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBSelectedView.h; sourceTree = "<group>"; };
 		07F6EF6D20872E3C0035C6BD /* CBSelectedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBSelectedView.m; sourceTree = "<group>"; };
 		07F6EF9C20872E3C0035C6BD /* CBAppLiveVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBAppLiveVC.h; sourceTree = "<group>"; };
@@ -1516,8 +1513,6 @@
 		07F6EF9E20872E3C0035C6BD /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				07F6EF6A20872E3C0035C6BD /* ALinLive.h */,
-				07F6EF6820872E3C0035C6BD /* ALinLive.m */,
 				079B784620B298BA009C68F7 /* CBAppADVO.h */,
 				079B784720B298BA009C68F7 /* CBAppADVO.m */,
 				54130A0920B6A0C000CAE467 /* CBAppLiveVO.h */,
@@ -1990,7 +1985,6 @@
 				077C1A992091A6C10005CE97 /* CBAccountAndSecurityVC.m in Sources */,
 				079AAE7A2079C85000674A92 /* CBNVC.m in Sources */,
 				07374702208ECF9C00E108E9 /* CBVideoAttentionVC.m in Sources */,
-				07F6EFE220872E3D0035C6BD /* ALinLive.m in Sources */,
 				077FFD082099AA7300B8680C /* CBGuardRankCell.m in Sources */,
 				073746F8208ECEB600E108E9 /* CBVideoVC.m in Sources */,
 				07F38C0420994A0000DDBC90 /* JPGiftShowView.m in Sources */,
