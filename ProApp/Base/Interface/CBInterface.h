@@ -14,9 +14,11 @@
 
 #define urlPolicy h5url@"/index.php?g=portal&m=page&a=index&id=4"
 
-#define urlGetCode purl@"?service=Login.getCode"
-#define urlUserReg purl@"?service=Login.userReg"
-#define urlUserLogin purl@"/?service=Login.userLogin"
+#define urlGetCode      purl@"?service=Login.getCode"
+#define urlUserReg      purl@"?service=Login.userReg"
+#define urlUserLogin    purl@"/?service=Login.userLogin"
+#define urlUserLoginByThird purl@"/?service=Login.userLoginByThird"
+
 @interface CBInterface : NSObject
 
 @end

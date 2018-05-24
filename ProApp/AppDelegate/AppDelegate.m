@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "AppDelegate+AppServer.h"
+#import "AppDelegate+ShareSDK.h"
 
 @interface AppDelegate ()
 
@@ -19,6 +20,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
     [self initWindow];
+    [self initThirdPlatform];
     [self initRootVC];
     [self initApperance];    
     

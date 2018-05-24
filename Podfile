@@ -18,7 +18,6 @@ pod 'MJRefresh'
 pod 'Masonry'
 # 直播工具
 pod 'PLPlayerKit'
-pod 'PLShortVideoKit/ex-libMuseProcessor'
 pod 'Qiniu'
 # 轮播图
 pod 'TYCyclePagerView'
@@ -26,6 +25,14 @@ pod 'TYCyclePagerView'
 #pod 'JPush'
 # 腾讯bug管理
 #pod 'Bugly'
+# 第三方登录
+pod 'ShareSDK3/ShareSDKPlatforms/SinaWeibo'
+pod 'ShareSDK3/ShareSDKPlatforms/QQ'
+pod 'ShareSDK3/ShareSDKPlatforms/Twitter'
+pod 'ShareSDK3/ShareSDKPlatforms/Facebook'
+pod 'WeiXinPay'
+# 环信
+#pod 'HyphenateLite'
 
 end
 

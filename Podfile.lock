@@ -1,35 +1,43 @@
 PODS:
-  - AFNetworking (3.2.0):
-    - AFNetworking/NSURLSession (= 3.2.0)
-    - AFNetworking/Reachability (= 3.2.0)
-    - AFNetworking/Security (= 3.2.0)
-    - AFNetworking/Serialization (= 3.2.0)
-    - AFNetworking/UIKit (= 3.2.0)
-  - AFNetworking/NSURLSession (3.2.0):
+  - AFNetworking (3.2.1):
+    - AFNetworking/NSURLSession (= 3.2.1)
+    - AFNetworking/Reachability (= 3.2.1)
+    - AFNetworking/Security (= 3.2.1)
+    - AFNetworking/Serialization (= 3.2.1)
+    - AFNetworking/UIKit (= 3.2.1)
+  - AFNetworking/NSURLSession (3.2.1):
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-  - AFNetworking/Reachability (3.2.0)
-  - AFNetworking/Security (3.2.0)
-  - AFNetworking/Serialization (3.2.0)
-  - AFNetworking/UIKit (3.2.0):
+  - AFNetworking/Reachability (3.2.1)
+  - AFNetworking/Security (3.2.1)
+  - AFNetworking/Serialization (3.2.1)
+  - AFNetworking/UIKit (3.2.1):
     - AFNetworking/NSURLSession
-  - HappyDNS (0.3.13)
-  - LYEmptyView (1.0.3)
+  - HappyDNS (0.3.14)
+  - LYEmptyView (1.1.0)
   - Masonry (1.1.0)
   - MBProgressHUD (1.1.0)
   - MJRefresh (3.1.15.3)
-  - PLPlayerKit (3.3.0):
-    - PLPlayerKit/iphoneos (= 3.3.0)
-  - PLPlayerKit/iphoneos (3.3.0)
-  - PLShortVideoKit/ex-libMuseProcessor (1.10.0):
-    - Qiniu (~> 7.1)
-  - Qiniu (7.2.3):
+  - MOBFoundation (3.1.5)
+  - PLPlayerKit (3.3.1):
+    - PLPlayerKit/iphoneos (= 3.3.1)
+  - PLPlayerKit/iphoneos (3.3.1)
+  - Qiniu (7.2.4):
     - HappyDNS (~> 0.3)
   - SDWebImage (4.3.3):
     - SDWebImage/Core (= 4.3.3)
   - SDWebImage/Core (4.3.3)
+  - ShareSDK3/ShareSDKPlatforms/Facebook (4.0.4):
+    - MOBFoundation
+  - ShareSDK3/ShareSDKPlatforms/QQ (4.0.4):
+    - MOBFoundation
+  - ShareSDK3/ShareSDKPlatforms/SinaWeibo (4.0.4):
+    - MOBFoundation
+  - ShareSDK3/ShareSDKPlatforms/Twitter (4.0.4):
+    - MOBFoundation
   - TYCyclePagerView (1.1.0)
+  - WeiXinPay (1.6.2)
   - YYKit (1.0.9):
     - YYKit/no-arc (= 1.0.9)
   - YYKit/no-arc (1.0.9)
@@ -42,44 +50,52 @@ DEPENDENCIES:
   - MBProgressHUD
   - MJRefresh
   - PLPlayerKit
-  - PLShortVideoKit/ex-libMuseProcessor
   - Qiniu
   - SDWebImage
+  - ShareSDK3/ShareSDKPlatforms/Facebook
+  - ShareSDK3/ShareSDKPlatforms/QQ
+  - ShareSDK3/ShareSDKPlatforms/SinaWeibo
+  - ShareSDK3/ShareSDKPlatforms/Twitter
   - TYCyclePagerView
+  - WeiXinPay
   - YYKit
   - ZYCornerRadius
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  https://github.com/cocoapods/specs.git:
     - AFNetworking
     - HappyDNS
     - LYEmptyView
     - Masonry
     - MBProgressHUD
     - MJRefresh
+    - MOBFoundation
     - PLPlayerKit
-    - PLShortVideoKit
     - Qiniu
     - SDWebImage
+    - ShareSDK3
     - TYCyclePagerView
+    - WeiXinPay
     - YYKit
     - ZYCornerRadius
 
 SPEC CHECKSUMS:
-  AFNetworking: 8ac6017b94ea105479f7776e5288e48ae9c59bb4
-  HappyDNS: 17732b07a75bb9756bd6fe04452609e8da8c663e
-  LYEmptyView: 3a7d1604cff1791d207a498a42101f31e9b12b8c
+  AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
+  HappyDNS: dc6a164ee81979093123c241c6353bcf0218add6
+  LYEmptyView: 893007305370c9c69d7dc71b4b32f9b2ee80a622
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MBProgressHUD: e7baa36a220447d8aeb12769bf0585582f3866d9
   MJRefresh: b48380ae2b927b46c4ef000de9adb8dc748e1df7
-  PLPlayerKit: bf3dcb35b9736c73c20a9a927f131c6bf18614e5
-  PLShortVideoKit: 86099728bc288502de62b37865d479a85a849e15
-  Qiniu: ae0fea1cc379fae1560d8748ac537e0fbeb8626e
+  MOBFoundation: d961251ce6de54917f678dc711962d1385ae7ee1
+  PLPlayerKit: 63a9c6a7661f497591c84121e854e8e6ac003256
+  Qiniu: 65384bca1cdb0480a68d9b9b8f54db53418c0355
   SDWebImage: de4d90b5bff3571eae7bd16202b1f43135409fa5
+  ShareSDK3: 75b57bab0cbe3119e281c7668eaad9d48adf3fde
   TYCyclePagerView: b70858c9b5d0e80e1e3129ff5ceb027eb0f76d44
+  WeiXinPay: e10b3e05845eac0e279c9fc6311a8fcfdb00d883
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
   ZYCornerRadius: f0af817be7805b5c63d793042ca7a03f81e14069
 
-PODFILE CHECKSUM: d5eda794c6257ec23b9ff991f3e85803a0fd37e3
+PODFILE CHECKSUM: 40505ce7ac3a74bba76d008c16640fbd20ab435e
 
-COCOAPODS: 1.5.0
+COCOAPODS: 1.5.2

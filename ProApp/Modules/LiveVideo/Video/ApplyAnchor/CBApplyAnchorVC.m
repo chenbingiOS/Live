@@ -7,6 +7,8 @@
 //
 
 #import "CBApplyAnchorVC.h"
+#import "CBWebVC.h"
+#import "CBSelectGuildVC.h"
 
 @interface CBApplyAnchorVC ()
 
@@ -25,16 +27,19 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)actionUserAgreement:(id)sender {
-    NSLog(@"用户协议");
-}
-
 - (IBAction)actionJoinGuild:(id)sender {
-    NSLog(@"工会");
+    CBSelectGuildVC *vc = [CBSelectGuildVC new];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (IBAction)actionPersonnel:(id)sender {
     NSLog(@"个人入住");
+}
+
+- (IBAction)actionUserAgreement:(id)sender {
+    CBWebVC *vc = [CBWebVC new];
+    [vc webViewloadRequestWithURLString:urlPolicy];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 @end
