@@ -9,8 +9,7 @@
 #import "CBBaseVideoVC.h"
 #import "ALinUser.h"
 #import "CBAttentionCell.h"
-//#import "ALinRefreshGifHeader.h"
-//#import "ALinLiveCollectionViewController.h"
+#import "CBRefreshGifHeader.h"
 #import "ALinLive.h"
 #import "CBVerticalFlowLayout.h"
 
@@ -36,17 +35,16 @@ static NSString * const reuseIdentifier = @"CBAttentionCell";
     [self.view addSubview:self.collectionView];
     
     self.currentPage = 1;
-//    self.collectionView.mj_header = [ALinRefreshGifHeader headerWithRefreshingBlock:^{
-//        self.currentPage = 1;
-//        self.anchors = [NSMutableArray array];
-//        [self getAnchorsList];
-//    }];
-//    self.collectionView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
-//        self.currentPage++;
-//        [self getAnchorsList];
-//    }];
-//    [self.collectionView.mj_header beginRefreshing];
-
+    self.collectionView.mj_header = [CBRefreshGifHeader headerWithRefreshingBlock:^{
+        self.currentPage = 1;
+        self.anchors = [NSMutableArray array];
+        [self getAnchorsList];
+    }];
+    self.collectionView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        self.currentPage++;
+        [self getAnchorsList];
+    }];
+    [self.collectionView.mj_header beginRefreshing];
 }
 
 - (void)autoRefresh {

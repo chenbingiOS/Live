@@ -10,7 +10,7 @@
 #import "CBWatchVO.h"
 #import "CBWatchCell.h"
 #import "CBAttentionLiveCell.h"
-//#import "ALinRefreshGifHeader.h"
+#import "CBRefreshGifHeader.h"
 #import "ALinUser.h"
 #import "CBHorizontalFlowLayout.h"
 

@@ -13,7 +13,7 @@
 // View
 #import "CBAppLiveCell.h"
 #import "ALinLive.h"
-//#import "ALinRefreshGifHeader.h"
+#import "CBRefreshGifHeader.h"
 
 @interface CBHotVC ()
 
@@ -38,19 +38,19 @@ static NSString *RIDCBAppLiveCell = @"RIDCBAppLiveCell";
     self.tableView.backgroundColor = [UIColor bgColor];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 
-//    self.tableView.mj_header = [ALinRefreshGifHeader headerWithRefreshingBlock:^{
-//        self.lives = [NSMutableArray array];
-//        self.currentPage = 1;
-//        // 获取顶部的广告
-//        [self httpLive];
-//    }];
-//    [self.tableView.mj_header beginRefreshing];
-//    
-//    self.currentPage = 1;
-//    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
-//        self.currentPage++;
-//        [self httpLive];
-//    }];
+    self.tableView.mj_header = [CBRefreshGifHeader headerWithRefreshingBlock:^{
+        self.lives = [NSMutableArray array];
+        self.currentPage = 1;
+        // 获取顶部的广告
+        [self httpLive];
+    }];
+    [self.tableView.mj_header beginRefreshing];
+    
+    self.currentPage = 1;
+    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        self.currentPage++;
+        [self httpLive];
+    }];
     
     self.tableView.ly_emptyView = [LYEmptyView emptyViewWithImageStr:@"noData"
                                                             titleStr:@"暂无数据，点击重新加载"

@@ -160,6 +160,8 @@
 		07F6EFF820872E3D0035C6BD /* CBAppLiveVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 07F6EF9D20872E3C0035C6BD /* CBAppLiveVC.m */; };
 		07F6EFFA20872E3D0035C6BD /* CBAppLiveCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 07F6EFA320872E3C0035C6BD /* CBAppLiveCell.xib */; };
 		07F6EFFC20872E3D0035C6BD /* CBAppLiveCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 07F6EFA820872E3C0035C6BD /* CBAppLiveCell.m */; };
+		54130A0820B69DEF00CAE467 /* CBRefreshGifHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 54130A0720B69DEF00CAE467 /* CBRefreshGifHeader.m */; };
+		54130A0B20B6A0C000CAE467 /* CBAppLiveVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 54130A0A20B6A0C000CAE467 /* CBAppLiveVO.m */; };
 		548C5CA020B4FAD300A6FF53 /* CBApplyAnchorVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 548C5C9E20B4FAD300A6FF53 /* CBApplyAnchorVC.m */; };
 		548C5CA120B4FAD300A6FF53 /* CBApplyAnchorVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 548C5C9F20B4FAD300A6FF53 /* CBApplyAnchorVC.xib */; };
 		548C5CB520B50BFE00A6FF53 /* common.m in Sources */ = {isa = PBXBuildFile; fileRef = 548C5CA920B50BFE00A6FF53 /* common.m */; };
@@ -433,6 +435,10 @@
 		07F6EFA220872E3C0035C6BD /* CBAppLiveCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBAppLiveCell.h; sourceTree = "<group>"; };
 		07F6EFA320872E3C0035C6BD /* CBAppLiveCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CBAppLiveCell.xib; sourceTree = "<group>"; };
 		07F6EFA820872E3C0035C6BD /* CBAppLiveCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBAppLiveCell.m; sourceTree = "<group>"; };
+		54130A0620B69DEF00CAE467 /* CBRefreshGifHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBRefreshGifHeader.h; sourceTree = "<group>"; };
+		54130A0720B69DEF00CAE467 /* CBRefreshGifHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBRefreshGifHeader.m; sourceTree = "<group>"; };
+		54130A0920B6A0C000CAE467 /* CBAppLiveVO.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBAppLiveVO.h; sourceTree = "<group>"; };
+		54130A0A20B6A0C000CAE467 /* CBAppLiveVO.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBAppLiveVO.m; sourceTree = "<group>"; };
 		548C5C9D20B4FAD300A6FF53 /* CBApplyAnchorVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBApplyAnchorVC.h; sourceTree = "<group>"; };
 		548C5C9E20B4FAD300A6FF53 /* CBApplyAnchorVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBApplyAnchorVC.m; sourceTree = "<group>"; };
 		548C5C9F20B4FAD300A6FF53 /* CBApplyAnchorVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CBApplyAnchorVC.xib; sourceTree = "<group>"; };
@@ -1183,6 +1189,7 @@
 		079AAE4B2079AFA500674A92 /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				54130A0220B69D9100CAE467 /* Refresh */,
 				548C5CCC20B519D000A6FF53 /* Interface */,
 				548C5CA820B50BFE00A6FF53 /* Cache */,
 				079AAE4C2079AFC500674A92 /* TBC */,
@@ -1513,6 +1520,8 @@
 				07F6EF6820872E3C0035C6BD /* ALinLive.m */,
 				079B784620B298BA009C68F7 /* CBAppADVO.h */,
 				079B784720B298BA009C68F7 /* CBAppADVO.m */,
+				54130A0920B6A0C000CAE467 /* CBAppLiveVO.h */,
+				54130A0A20B6A0C000CAE467 /* CBAppLiveVO.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1552,6 +1561,15 @@
 				D104A5A85520E26A75922659 /* Pods-ProApp.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		54130A0220B69D9100CAE467 /* Refresh */ = {
+			isa = PBXGroup;
+			children = (
+				54130A0620B69DEF00CAE467 /* CBRefreshGifHeader.h */,
+				54130A0720B69DEF00CAE467 /* CBRefreshGifHeader.m */,
+			);
+			path = Refresh;
 			sourceTree = "<group>";
 		};
 		548C5C9820B4FA6C00A6FF53 /* Ctrl */ = {
@@ -1871,6 +1889,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				07CDCAD12090598F00B16FC6 /* CBLiveAnchorView.m in Sources */,
+				54130A0B20B6A0C000CAE467 /* CBAppLiveVO.m in Sources */,
 				07916D5A207CA415002E4D83 /* UIView+Xib.m in Sources */,
 				07557B8D207CBAD3005C6BC1 /* UIView+Sudoku.m in Sources */,
 				0763FC1C20A935020086BFA4 /* CBHorizontalFlowLayout.m in Sources */,
@@ -1959,6 +1978,7 @@
 				077D1F8520886C56003B9E56 /* CBLiveVC.m in Sources */,
 				548C5CC820B5193700A6FF53 /* LYLWKWebView.m in Sources */,
 				548C5CCB20B519CE00A6FF53 /* CBInterface.m in Sources */,
+				54130A0820B69DEF00CAE467 /* CBRefreshGifHeader.m in Sources */,
 				54BD85E720B669F00024B6E7 /* AppDelegate+EMClient.m in Sources */,
 				07F38C0520994A0000DDBC90 /* JPGiftCollectionViewCell.m in Sources */,
 				07558C232094517A007E41C2 /* CBOnlineUserCell.m in Sources */,

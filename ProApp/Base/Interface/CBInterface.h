@@ -19,6 +19,13 @@
 #define urlUserLogin    purl@"/?service=Login.userLogin"
 #define urlUserLoginByThird purl@"/?service=Login.userLoginByThird"
 
+#define urlGetHot purl@"?service=Home.getHot"
+
+//
+#define getAD @"http://live.9158.com/Living/GetAD"
+#define getHostLive @"http://live.9158.com/Fans/GetHotLive?page=%ld"
+
+
 @interface CBInterface : NSObject
 
 @end

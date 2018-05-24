@@ -15,13 +15,10 @@
 #import "TYPageControl.h"
 #import "CBAppADCell.h"
 #import "CBAppLiveCell.h"
+#import "CBRefreshGifHeader.h"
 // Model
 #import "CBAppADVO.h"
-
-#import "ALinLive.h"
-//#import "ALinRefreshGifHeader.h"
-
-//#import "ALinLiveCollectionViewController.h"
+#import "CBAppLiveVO.h"
 
 
 @interface CBAppLiveVC () <TYCyclePagerViewDataSource, TYCyclePagerViewDelegate>
@@ -58,13 +55,13 @@ static NSString *RIDCBAppADCell = @"RIDCBAppADCell";
     self.tableView.tableHeaderView = headerView;
     self.tableView.tableFooterView = [[UIView alloc] init];
     
-//    self.tableView.mj_header = [ALinRefreshGifHeader headerWithRefreshingBlock:^{
-//        self.lives = [NSMutableArray array];
-//        self.currentPage = 1;
-//        // 获取顶部的广告
-//        [self httpAD];
-//        [self httpLive];
-//    }];
+    self.tableView.mj_header = [CBRefreshGifHeader headerWithRefreshingBlock:^{
+        self.lives = [NSMutableArray array];
+        self.currentPage = 1;
+        // 获取顶部的广告
+        [self httpAD];
+        [self httpLive];
+    }];
     [self.tableView.mj_header beginRefreshing];
     
     self.currentPage = 1;
@@ -79,40 +76,36 @@ static NSString *RIDCBAppADCell = @"RIDCBAppADCell";
 }
 
 - (void)httpAD {
-//    [PPNetworkHelper GET:@"http://live.9158.com/Living/GetAD" parameters:nil success:^(id responseObject) {
-//        NSArray *result = responseObject[@"data"];
-//        if ([self isNotEmpty:result]) {
-//            self.appADs = [NSArray modelArrayWithClass:[CBAppADVO class] json:result];
-//            self.pageControl.numberOfPages = self.appADs.count;
-//            [self.cyclePagerView reloadData];
-//        } else {
-//            [self showHint:@"网络异常"];
-//        }
-//    } failure:^(NSError *error) {
-//        [self showHint:@"网络异常"];
-//    }];
+    NSString *url = getAD;
+    [PPNetworkHelper GET:url parameters:nil success:^(id responseObject) {
+        NSArray *result = responseObject[@"data"];
+        self.appADs = [NSArray modelArrayWithClass:[CBAppADVO class] json:result];
+        self.pageControl.numberOfPages = self.appADs.count;
+        [self.cyclePagerView reloadData];
+    } failure:^(NSError *error) {
+        [MBProgressHUD showAutoMessage:@"网络异常"];
+    }];
 }
 
 - (void)httpLive {
-    NSString *url = [NSString stringWithFormat:@"http://live.9158.com/Fans/GetHotLive?page=%ld", self.currentPage];
+    NSString *url = [NSString stringWithFormat:getHostLive, self.currentPage];
     [PPNetworkHelper GET:url parameters:nil success:^(id responseObject) {
         [self.tableView.mj_header endRefreshing];
         [self.tableView.mj_footer endRefreshing];
+        NSArray *listAry = [NSArray modelArrayWithClass:[CBAppLiveVO class] json:responseObject[@"data"][@"list"]];
+        [self.lives addObjectsFromArray:listAry];
+        [self.tableView reloadData];
         
-//        NSArray *result = [ALinLive mj_objectArrayWithKeyValuesArray:responseObject[@"data"][@"list"]];
-//        if ([self isNotEmpty:result]) {
-//            [self.lives addObjectsFromArray:result];
-//            [self.tableView reloadData];
-//        }else{
-//            [self showHint:@"暂时没有更多最新数据"];
-//            // 恢复当前页
-//            self.currentPage--;
-//        }
+        if (listAry.count == 0) {
+            [MBProgressHUD showAutoMessage:@"暂时没有更多最新数据"];
+            // 恢复当前页
+            self.currentPage--;
+        }
     } failure:^(NSError *error) {
         [self.tableView.mj_header endRefreshing];
         [self.tableView.mj_footer endRefreshing];
         self.currentPage--;
-//        [self showHint:@"网络异常"];
+        [MBProgressHUD showAutoMessage:@"网络异常"];
     }];
 }
 
