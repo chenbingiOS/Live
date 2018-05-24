@@ -1,18 +1,18 @@
 //
-//  liveCommon.m
-//  
+//  CBLiveSetting.m
+//  ProApp
 //
-//  Created by 王敏欣 on 2017/1/18.
+//  Created by hxbjt on 2018/5/24.
+//  Copyright © 2018年 ChenBing. All rights reserved.
 //
-//
-#import "liveCommon.h"
-@implementation liveCommon
--(instancetype)initWithDic:(NSDictionary *)dic
-{
+
+#import "CBLiveSetting.h"
+
+@implementation CBLiveSetting
+
+- (instancetype)initWithDic:(NSDictionary *)dic {
     self = [super init];
-    if(self)
-    {
-        
+    if (self) {
         _video_share_title = [dic valueForKey:@"video_share_title"];
         _video_share_des = [dic valueForKey:@"video_share_des"];
         _share_title = [dic valueForKey:@"share_title"];
@@ -39,8 +39,9 @@
     }
     return self;
 }
-+(instancetype)modelWithDic:(NSDictionary *)dic
-{
+
++ (instancetype)modelWithDic:(NSDictionary *)dic {
     return [[self alloc] initWithDic:dic];
 }
+
 @end

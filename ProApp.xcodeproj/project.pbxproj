@@ -161,10 +161,10 @@
 		07F6EFFC20872E3D0035C6BD /* CBAppLiveCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 07F6EFA820872E3C0035C6BD /* CBAppLiveCell.m */; };
 		54130A0820B69DEF00CAE467 /* CBRefreshGifHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 54130A0720B69DEF00CAE467 /* CBRefreshGifHeader.m */; };
 		54130A0B20B6A0C000CAE467 /* CBAppLiveVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 54130A0A20B6A0C000CAE467 /* CBAppLiveVO.m */; };
+		54130A0F20B6B48900CAE467 /* CBLiveSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = 54130A0E20B6B48900CAE467 /* CBLiveSetting.m */; };
+		54130A1220B6B52200CAE467 /* CBLiveSettingConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 54130A1120B6B52200CAE467 /* CBLiveSettingConfig.m */; };
 		548C5CA020B4FAD300A6FF53 /* CBApplyAnchorVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 548C5C9E20B4FAD300A6FF53 /* CBApplyAnchorVC.m */; };
 		548C5CA120B4FAD300A6FF53 /* CBApplyAnchorVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 548C5C9F20B4FAD300A6FF53 /* CBApplyAnchorVC.xib */; };
-		548C5CB520B50BFE00A6FF53 /* common.m in Sources */ = {isa = PBXBuildFile; fileRef = 548C5CA920B50BFE00A6FF53 /* common.m */; };
-		548C5CB620B50BFE00A6FF53 /* liveCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 548C5CAD20B50BFE00A6FF53 /* liveCommon.m */; };
 		548C5CB720B50BFE00A6FF53 /* liveCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 548C5CAF20B50BFE00A6FF53 /* liveCity.m */; };
 		548C5CB820B50BFE00A6FF53 /* cityDefault.m in Sources */ = {isa = PBXBuildFile; fileRef = 548C5CB020B50BFE00A6FF53 /* cityDefault.m */; };
 		548C5CBE20B50C2400A6FF53 /* CBLiveUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 548C5CBD20B50C2400A6FF53 /* CBLiveUser.m */; };
@@ -436,17 +436,17 @@
 		54130A0720B69DEF00CAE467 /* CBRefreshGifHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBRefreshGifHeader.m; sourceTree = "<group>"; };
 		54130A0920B6A0C000CAE467 /* CBAppLiveVO.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBAppLiveVO.h; sourceTree = "<group>"; };
 		54130A0A20B6A0C000CAE467 /* CBAppLiveVO.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBAppLiveVO.m; sourceTree = "<group>"; };
+		54130A0D20B6B48900CAE467 /* CBLiveSetting.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBLiveSetting.h; sourceTree = "<group>"; };
+		54130A0E20B6B48900CAE467 /* CBLiveSetting.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBLiveSetting.m; sourceTree = "<group>"; };
+		54130A1020B6B52200CAE467 /* CBLiveSettingConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBLiveSettingConfig.h; sourceTree = "<group>"; };
+		54130A1120B6B52200CAE467 /* CBLiveSettingConfig.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBLiveSettingConfig.m; sourceTree = "<group>"; };
 		548C5C9D20B4FAD300A6FF53 /* CBApplyAnchorVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBApplyAnchorVC.h; sourceTree = "<group>"; };
 		548C5C9E20B4FAD300A6FF53 /* CBApplyAnchorVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBApplyAnchorVC.m; sourceTree = "<group>"; };
 		548C5C9F20B4FAD300A6FF53 /* CBApplyAnchorVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CBApplyAnchorVC.xib; sourceTree = "<group>"; };
-		548C5CA920B50BFE00A6FF53 /* common.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = common.m; sourceTree = "<group>"; };
 		548C5CAA20B50BFE00A6FF53 /* cityDefault.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cityDefault.h; sourceTree = "<group>"; };
 		548C5CAB20B50BFE00A6FF53 /* liveCity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = liveCity.h; sourceTree = "<group>"; };
-		548C5CAD20B50BFE00A6FF53 /* liveCommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = liveCommon.m; sourceTree = "<group>"; };
 		548C5CAF20B50BFE00A6FF53 /* liveCity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = liveCity.m; sourceTree = "<group>"; };
 		548C5CB020B50BFE00A6FF53 /* cityDefault.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = cityDefault.m; sourceTree = "<group>"; };
-		548C5CB120B50BFE00A6FF53 /* common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = common.h; sourceTree = "<group>"; };
-		548C5CB320B50BFE00A6FF53 /* liveCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = liveCommon.h; sourceTree = "<group>"; };
 		548C5CBC20B50C2400A6FF53 /* CBLiveUser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBLiveUser.h; sourceTree = "<group>"; };
 		548C5CBD20B50C2400A6FF53 /* CBLiveUser.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBLiveUser.m; sourceTree = "<group>"; };
 		548C5CBF20B50CD800A6FF53 /* CBLiveUserConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBLiveUserConfig.h; sourceTree = "<group>"; };
@@ -1258,7 +1258,9 @@
 		07B6688C208D6A0600AA5B62 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				07F6EF4720872E3C0035C6BD /* Ctrl */,
+				07915887208849C0007CA2E0 /* CBProfileVC.h */,
+				07915888208849C0007CA2E0 /* CBProfileVC.m */,
+				07915889208849C0007CA2E0 /* CBProfileVC.xib */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -1421,16 +1423,6 @@
 			path = Profile;
 			sourceTree = "<group>";
 		};
-		07F6EF4720872E3C0035C6BD /* Ctrl */ = {
-			isa = PBXGroup;
-			children = (
-				07915887208849C0007CA2E0 /* CBProfileVC.h */,
-				07915888208849C0007CA2E0 /* CBProfileVC.m */,
-				07915889208849C0007CA2E0 /* CBProfileVC.xib */,
-			);
-			path = Ctrl;
-			sourceTree = "<group>";
-		};
 		07F6EF5A20872E3C0035C6BD /* Login */ = {
 			isa = PBXGroup;
 			children = (
@@ -1567,6 +1559,17 @@
 			path = Refresh;
 			sourceTree = "<group>";
 		};
+		54130A0C20B6B41900CAE467 /* SettingInfo */ = {
+			isa = PBXGroup;
+			children = (
+				54130A0D20B6B48900CAE467 /* CBLiveSetting.h */,
+				54130A0E20B6B48900CAE467 /* CBLiveSetting.m */,
+				54130A1020B6B52200CAE467 /* CBLiveSettingConfig.h */,
+				54130A1120B6B52200CAE467 /* CBLiveSettingConfig.m */,
+			);
+			path = SettingInfo;
+			sourceTree = "<group>";
+		};
 		548C5C9820B4FA6C00A6FF53 /* Ctrl */ = {
 			isa = PBXGroup;
 			children = (
@@ -1614,14 +1617,11 @@
 			isa = PBXGroup;
 			children = (
 				548C5CBB20B50C0A00A6FF53 /* UserCache */,
-				548C5CA920B50BFE00A6FF53 /* common.m */,
+				54130A0C20B6B41900CAE467 /* SettingInfo */,
 				548C5CAA20B50BFE00A6FF53 /* cityDefault.h */,
 				548C5CAB20B50BFE00A6FF53 /* liveCity.h */,
-				548C5CAD20B50BFE00A6FF53 /* liveCommon.m */,
 				548C5CAF20B50BFE00A6FF53 /* liveCity.m */,
 				548C5CB020B50BFE00A6FF53 /* cityDefault.m */,
-				548C5CB120B50BFE00A6FF53 /* common.h */,
-				548C5CB320B50BFE00A6FF53 /* liveCommon.h */,
 			);
 			path = Cache;
 			sourceTree = "<group>";
@@ -1825,10 +1825,12 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-ProApp/Pods-ProApp-frameworks.sh",
+				"${PODS_ROOT}/HyphenateLite/iOS_Pods_IMSDK_V3.4.1/HyphenateLite.framework",
 				"${PODS_ROOT}/PLPlayerKit/Pod/Library/PLPlayerKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HyphenateLite.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PLPlayerKit.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1926,7 +1928,6 @@
 				07359D9320A422DD00FEEA4E /* CBLoginVC.m in Sources */,
 				0791588A208849C0007CA2E0 /* CBProfileVC.m in Sources */,
 				073746E1208EBB1400E108E9 /* CBWatchVC.m in Sources */,
-				548C5CB620B50BFE00A6FF53 /* liveCommon.m in Sources */,
 				07659C1F20A4439700EBE030 /* HcdGuideViewCell.m in Sources */,
 				077C1AAA2091A9B20005CE97 /* CBBlackListVC.m in Sources */,
 				079B784820B298BA009C68F7 /* CBAppADVO.m in Sources */,
@@ -1944,7 +1945,6 @@
 				073746E8208EBFAB00E108E9 /* CBWatchCell.m in Sources */,
 				071B70112092F4F000549C18 /* CBAccountRecordSelectView.m in Sources */,
 				07691D4A20B270F900BF731E /* PPNetworkCache.m in Sources */,
-				548C5CB520B50BFE00A6FF53 /* common.m in Sources */,
 				07374708208ED1E600E108E9 /* CBBaseVideoVC.m in Sources */,
 				076F52A120750E64004F91E8 /* AppDelegate+AppServer.m in Sources */,
 				0791588520883C6D007CA2E0 /* CBAttentionCell.m in Sources */,
@@ -1979,9 +1979,11 @@
 				07558C232094517A007E41C2 /* CBOnlineUserCell.m in Sources */,
 				071D3C152092B51700A6C5CE /* CBPackageRecordVO.m in Sources */,
 				07F6EFE120872E3D0035C6BD /* ALinUser.m in Sources */,
+				54130A1220B6B52200CAE467 /* CBLiveSettingConfig.m in Sources */,
 				07558C1F20941F18007E41C2 /* CBPopView.m in Sources */,
 				548C5CC120B50CD800A6FF53 /* CBLiveUserConfig.m in Sources */,
 				0737ED972074A33600A89CC0 /* main.m in Sources */,
+				54130A0F20B6B48900CAE467 /* CBLiveSetting.m in Sources */,
 				077C1A992091A6C10005CE97 /* CBAccountAndSecurityVC.m in Sources */,
 				079AAE7A2079C85000674A92 /* CBNVC.m in Sources */,
 				07374702208ECF9C00E108E9 /* CBVideoAttentionVC.m in Sources */,

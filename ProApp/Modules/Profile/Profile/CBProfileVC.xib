@@ -12,8 +12,13 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CBProfileVC">
             <connections>
-                <outlet property="realNameLab" destination="nbu-Jm-rTe" id="CUI-5O-MNZ"/>
+                <outlet property="userAttentionLab" destination="BQp-IX-RIE" id="NSz-PQ-OAP"/>
                 <outlet property="userAvaterImageView" destination="oro-jo-ebm" id="zQH-G9-lNp"/>
+                <outlet property="userDescLab" destination="elz-NO-5e7" id="kOV-my-3yi"/>
+                <outlet property="userFansBtn" destination="1KF-R4-ZUN" id="k5Z-Lu-9qt"/>
+                <outlet property="userLevelImageView" destination="tQ2-kL-uKK" id="NNY-ic-tBJ"/>
+                <outlet property="userNameLab" destination="5sn-ZK-Pt5" id="gHW-gx-mCM"/>
+                <outlet property="userSexImageView" destination="Lk2-AM-PiA" id="rRT-pj-ihs"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="JMz-YS-WO2"/>
             </connections>
         </placeholder>
@@ -633,7 +638,7 @@
                 <constraint firstItem="5u5-Sl-Avq" firstAttribute="top" secondItem="Wiv-Hy-Ye3" secondAttribute="bottom" constant="10" id="thf-N2-ZZs"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
-            <point key="canvasLocation" x="33.5" y="53.5"/>
+            <point key="canvasLocation" x="-35" y="33"/>
         </view>
     </objects>
     <resources>

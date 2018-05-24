@@ -7,8 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "CBLiveUser.h"
 
-@class CBLiveUser;
 @interface CBLiveUserConfig : NSObject
 
 + (CBLiveUser *)myProfile;

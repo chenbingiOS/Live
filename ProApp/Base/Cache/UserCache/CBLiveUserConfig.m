@@ -7,7 +7,6 @@
 //
 
 #import "CBLiveUserConfig.h"
-#import "CBLiveUser.h"
 
 static NSString * const KAvatar = @"avatar";
 static NSString * const KBirthday = @"birthday";

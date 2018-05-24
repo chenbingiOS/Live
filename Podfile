@@ -28,11 +28,11 @@ pod 'ShareSDK3/ShareSDKPlatforms/Twitter'
 pod 'ShareSDK3/ShareSDKPlatforms/Facebook'
 pod 'WeiXinPay'
 # 环信
-#pod 'HyphenateLite'
+pod 'HyphenateLite'
 # 极光推送
-#pod 'JPush'
+pod 'JPush'
 # 腾讯bug管理
-#pod 'Bugly'
+pod 'Bugly'
 end
 
 target 'ProApp' do
