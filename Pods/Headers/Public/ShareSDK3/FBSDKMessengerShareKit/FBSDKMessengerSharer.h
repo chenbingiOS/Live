@@ -1,0 +1,1 @@
+../../../../ShareSDK3/SDK/ShareSDK/Support/PlatformSDK/FacebookMessengerSDK/FBSDKMessengerShareKit.framework/Headers/FBSDKMessengerSharer.h
