@@ -19,7 +19,34 @@
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sLq-FT-wNy">
+                    <rect key="frame" x="0.0" y="20" width="375" height="50"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="53w-1d-hQf">
+                            <rect key="frame" x="12" y="8" width="351" height="34"/>
+                            <string key="text">选择公会入驻，需要该公会会长同意。申请前先跟公会会长沟通，成功率更高哦~</string>
+                            <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="12"/>
+                            <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="deviceRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" red="1" green="0.98431372549019602" blue="0.74509803921568629" alpha="1" colorSpace="deviceRGB"/>
+                    <constraints>
+                        <constraint firstItem="53w-1d-hQf" firstAttribute="leading" secondItem="sLq-FT-wNy" secondAttribute="leading" constant="12" id="1jF-ao-C3U"/>
+                        <constraint firstAttribute="trailing" secondItem="53w-1d-hQf" secondAttribute="trailing" constant="12" id="91Q-Ke-TL5"/>
+                        <constraint firstItem="53w-1d-hQf" firstAttribute="centerX" secondItem="sLq-FT-wNy" secondAttribute="centerX" id="N0n-PF-qny"/>
+                        <constraint firstItem="53w-1d-hQf" firstAttribute="centerY" secondItem="sLq-FT-wNy" secondAttribute="centerY" id="aWk-J8-Rkc"/>
+                        <constraint firstAttribute="height" constant="50" id="oEE-7p-XTW"/>
+                    </constraints>
+                </view>
+            </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="sLq-FT-wNy" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" id="DnL-WJ-ZGE"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="sLq-FT-wNy" secondAttribute="trailing" id="YZZ-mK-98D"/>
+                <constraint firstItem="sLq-FT-wNy" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="ri3-uT-irV"/>
+            </constraints>
             <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
             <point key="canvasLocation" x="-98" y="23"/>
         </view>
