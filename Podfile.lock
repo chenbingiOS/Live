@@ -78,7 +78,7 @@ DEPENDENCIES:
   - ZYCornerRadius
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  https://github.com/cocoapods/specs.git:
     - AFNetworking
     - Bugly
     - HappyDNS
@@ -126,4 +126,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 2988186f1baba4f5a2ece2c237ee101b2ce64b8b
 
-COCOAPODS: 1.5.0
+COCOAPODS: 1.5.2
