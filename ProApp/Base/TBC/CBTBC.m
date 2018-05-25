@@ -10,6 +10,7 @@
 #import "CBNVC.h"
 #import "CBHomeMenuView.h"
 #import "CBApplyAnchorVC.h"
+#import "CBRecordVideoVC.h"
 
 @interface CBTBC () <UITabBarControllerDelegate>
 
@@ -88,12 +89,15 @@
             CBApplyAnchorVC *vc = [CBApplyAnchorVC new];
             CBNVC *nvc = [[CBNVC alloc] initWithRootViewController:vc];
             [self presentViewController:nvc animated:YES completion:^{
-                
+               [self.homeMenuPopView hide];
             }];
         }];
         [self.homeMenuPopView.homeMenuView.videoButton addBlockForControlEvents:UIControlEventTouchUpInside block:^(id  _Nonnull sender) {
             @strongify(self);
-           
+            CBRecordVideoVC *recordViewController = [[CBRecordVideoVC alloc] init];
+            [self presentViewController:recordViewController animated:YES completion:^{
+                [self.homeMenuPopView hide];
+            }];            
         }];
         return NO;
     }

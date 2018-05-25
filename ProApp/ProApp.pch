@@ -25,7 +25,7 @@
 #import <LYEmptyView/LYEmptyViewHeader.h>
 #import <HyphenateLite/HyphenateLite.h>
 #import <PLShortVideoKit/PLShortVideoKit.h>
-
+#import <TuSDK/TuSDK.h>
 #import "PPNetworkHelper.h"
 #import "CBInterface.h"
 

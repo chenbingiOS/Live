@@ -16,9 +16,9 @@
     [PLShortVideoKitEnv setLogLevel:PLShortVideoLogLevelDebug];
     [PLShortVideoKitEnv enableFileLogging];
     
-//    // TuSDK mark - 初始化 TuSDK
-//    [TuSDK setLogLevel:lsqLogLevelDEBUG]; // 可选: 设置日志输出级别 (默认不输出)
-//    [TuSDK initSdkWithAppKey:@"3ad4ee3da6c0b41c-03-bshmr1"];
+    // TuSDK mark - 初始化 TuSDK
+    [TuSDK setLogLevel:lsqLogLevelDEBUG]; // 可选: 设置日志输出级别 (默认不输出)
+    [TuSDK initSdkWithAppKey:@"3ad4ee3da6c0b41c-03-bshmr1"];
 }
 
 @end
