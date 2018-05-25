@@ -11,6 +11,7 @@
 #import "CBHomeMenuView.h"
 #import "CBApplyAnchorVC.h"
 #import "CBRecordVideoVC.h"
+#import "RecordViewController.h"
 
 @interface CBTBC () <UITabBarControllerDelegate>
 
@@ -88,16 +89,20 @@
             @strongify(self);
             CBApplyAnchorVC *vc = [CBApplyAnchorVC new];
             CBNVC *nvc = [[CBNVC alloc] initWithRootViewController:vc];
-            [self presentViewController:nvc animated:YES completion:^{
+            [viewController presentViewController:nvc animated:YES completion:^{
                [self.homeMenuPopView hide];
             }];
         }];
         [self.homeMenuPopView.homeMenuView.videoButton addBlockForControlEvents:UIControlEventTouchUpInside block:^(id  _Nonnull sender) {
             @strongify(self);
-            CBRecordVideoVC *recordViewController = [[CBRecordVideoVC alloc] init];
-            [self presentViewController:recordViewController animated:YES completion:^{
+//            CBRecordVideoVC *recordVC = [[CBRecordVideoVC alloc] init];
+//            [self presentViewController:recordVC animated:YES completion:^{
+//                [self.homeMenuPopView hide];
+//            }];
+            RecordViewController *recordVC = [[RecordViewController alloc] init];
+            [viewController presentViewController:recordVC animated:YES completion:^{
                 [self.homeMenuPopView hide];
-            }];            
+            }];
         }];
         return NO;
     }

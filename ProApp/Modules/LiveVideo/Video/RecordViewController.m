@@ -1,13 +1,12 @@
 //
-//  CBRecordVideoVC.m
-//  ProApp
+//  RecordViewController.m
+//  PLShortVideoKitDemo
 //
-//  Created by hxbjt on 2018/5/25.
-//  Copyright © 2018年 ChenBing. All rights reserved.
+//  Created by suntongmian on 17/3/1.
+//  Copyright © 2017年 Pili Engineering, Qiniu Inc. All rights reserved.
 //
 
-#import "CBRecordVideoVC.h"
-
+#import "RecordViewController.h"
 #import "PLShortVideoKit/PLShortVideoKit.h"
 #import "PLSProgressBar.h"
 #import "PLSDeleteButton.h"
@@ -18,6 +17,7 @@
 #import "PLSFilterGroup.h"
 #import "PLSViewRecorderManager.h"
 #import "PLSRateButtonView.h"
+//#import "EasyarARViewController.h"
 
 // TuSDK mark - 导入
 #import "FilterView.h"
@@ -36,7 +36,7 @@
 #define PLS_SCREEN_WIDTH CGRectGetWidth([UIScreen mainScreen].bounds)
 #define PLS_SCREEN_HEIGHT CGRectGetHeight([UIScreen mainScreen].bounds)
 
-@interface CBRecordVideoVC ()
+@interface RecordViewController ()
 <
 PLShortVideoRecorderDelegate,
 UICollectionViewDelegate,
@@ -116,7 +116,7 @@ FilterViewEventDelegate, StickerViewClickDelegate, TuSDKFilterProcessorDelegate
 
 @end
 
-@implementation CBRecordVideoVC
+@implementation RecordViewController
 
 - (instancetype)init {
     self = [super init];
@@ -125,6 +125,7 @@ FilterViewEventDelegate, StickerViewClickDelegate, TuSDKFilterProcessorDelegate
         self.isUseFilterWhenRecording = YES;
         // 录制时默认开启外部滤镜功能
         self.isUseExternalFilterWhenRecording = NO;
+        
         // 录制前默认打开自动检测设备方向调整视频拍摄的角度（竖屏、横屏）
         self.isUseAutoCheckDeviceOrientationBeforeRecording = YES;
         
@@ -136,14 +137,8 @@ FilterViewEventDelegate, StickerViewClickDelegate, TuSDKFilterProcessorDelegate
     return self;
 }
 
-//- (void)loadView{
-//    [super loadView];
-//}
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    
+- (void)loadView{
+    [super loadView];
     self.view.backgroundColor = PLS_RGBCOLOR(25, 24, 36);
     
     // --------------------------
@@ -153,6 +148,11 @@ FilterViewEventDelegate, StickerViewClickDelegate, TuSDKFilterProcessorDelegate
     // --------------------------
     [self setupBaseToolboxView];
     [self setupRecordToolboxView];
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    // Do any additional setup after loading the view.
     
     // --------------------------
     // TuSDK mark - 初始化
@@ -184,7 +184,7 @@ FilterViewEventDelegate, StickerViewClickDelegate, TuSDKFilterProcessorDelegate
     self.videoConfiguration.averageVideoBitRate = 1024*1000;
     self.videoConfiguration.videoSize = CGSizeMake(544, 960);
     self.videoConfiguration.videoOrientation = AVCaptureVideoOrientationPortrait;
-    
+
     self.audioConfiguration = [PLSAudioConfiguration defaultConfiguration];
     
     self.shortVideoRecorder = [[PLShortVideoRecorder alloc] initWithVideoConfiguration:self.videoConfiguration audioConfiguration:self.audioConfiguration];
@@ -206,16 +206,16 @@ FilterViewEventDelegate, StickerViewClickDelegate, TuSDKFilterProcessorDelegate
         self.shortVideoRecorder.adaptationRecording = YES; // 根据设备方向自动确定横屏 or 竖屏拍摄效果
         [self.shortVideoRecorder setDeviceOrientationBlock:^(PLSPreviewOrientation deviceOrientation){
             switch (deviceOrientation) {
-                    case PLSPreviewOrientationPortrait:
+                case PLSPreviewOrientationPortrait:
                     NSLog(@"deviceOrientation : PLSPreviewOrientationPortrait");
                     break;
-                    case PLSPreviewOrientationPortraitUpsideDown:
+                case PLSPreviewOrientationPortraitUpsideDown:
                     NSLog(@"deviceOrientation : PLSPreviewOrientationPortraitUpsideDown");
                     break;
-                    case PLSPreviewOrientationLandscapeRight:
+                case PLSPreviewOrientationLandscapeRight:
                     NSLog(@"deviceOrientation : PLSPreviewOrientationLandscapeRight");
                     break;
-                    case PLSPreviewOrientationLandscapeLeft:
+                case PLSPreviewOrientationLandscapeLeft:
                     NSLog(@"deviceOrientation : PLSPreviewOrientationLandscapeLeft");
                     break;
                 default:
@@ -270,7 +270,7 @@ FilterViewEventDelegate, StickerViewClickDelegate, TuSDKFilterProcessorDelegate
     }
     
     // 本地视频
-    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"loginmovie" ofType:@"mp4"];
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"video_draft_test" ofType:@"mp4"];
     self.URL = [NSURL fileURLWithPath:filePath];
 }
 
@@ -286,7 +286,7 @@ FilterViewEventDelegate, StickerViewClickDelegate, TuSDKFilterProcessorDelegate
     self.activityIndicatorView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
     
     // -------------------------------------------------------
-    
+
     // 返回
     UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
     backButton.frame = CGRectMake(10, 10, 35, 35);
@@ -425,7 +425,7 @@ FilterViewEventDelegate, StickerViewClickDelegate, TuSDKFilterProcessorDelegate
     self.recordToolboxView = [[UIView alloc] initWithFrame:CGRectMake(0, y, PLS_SCREEN_WIDTH, PLS_SCREEN_HEIGHT- y)];
     self.recordToolboxView.backgroundColor = [UIColor clearColor];
     [self.view addSubview:self.recordToolboxView];
-    
+
     
     // 倍数拍摄
     self.titleArray = @[@"极慢", @"慢", @"正常", @"快", @"极快"];
@@ -443,7 +443,7 @@ FilterViewEventDelegate, StickerViewClickDelegate, TuSDKFilterProcessorDelegate
     self.rateButtonView.staticTitleArray = self.titleArray;
     self.rateButtonView.rateDelegate = self;
     [self.recordToolboxView addSubview:_rateButtonView];
-    
+
     
     // 录制视频的操作按钮
     CGFloat buttonWidth = 80.0f;
@@ -542,7 +542,9 @@ FilterViewEventDelegate, StickerViewClickDelegate, TuSDKFilterProcessorDelegate
                 // 设置的 options 可能会导致该回调调用两次，第一次返回你指定尺寸的图片，第二次将会返回原尺寸图片
                 if ([[info valueForKey:@"PHImageResultIsDegradedKey"] integerValue] == 0){
                     // Do something with the FULL SIZED image
-                    [self.importMovieButton setBackgroundImage:result forState:UIControlStateNormal];                    
+                    
+                    [self.importMovieButton setBackgroundImage:result forState:UIControlStateNormal];
+                    
                 } else {
                     // Do something with the regraded image
                     
@@ -686,7 +688,7 @@ FilterViewEventDelegate, StickerViewClickDelegate, TuSDKFilterProcessorDelegate
 // 拍照
 -(void)snapshotButtonOnClick:(UIButton *)sender {
     sender.enabled = NO;
-    
+
     [self.shortVideoRecorder getScreenShotWithCompletionHandler:^(UIImage * _Nullable image) {
         sender.enabled = YES;
         if (image) {
@@ -732,7 +734,7 @@ FilterViewEventDelegate, StickerViewClickDelegate, TuSDKFilterProcessorDelegate
         if (self.useSDKInternalPath) {
             // 方式1
             // 录制的视频的存放地址由 SDK 内部自动生成
-            [self.shortVideoRecorder startRecording];
+             [self.shortVideoRecorder startRecording];
         } else {
             // 方式2
             // fileURL 录制的视频的存放地址，该参数可以在外部设置，录制的视频会保存到该位置
@@ -788,7 +790,7 @@ FilterViewEventDelegate, StickerViewClickDelegate, TuSDKFilterProcessorDelegate
 - (void)applicationWillResignActive:(NSNotification *)notification {
     if (self.viewRecordButton.selected) {
         [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationWillResignActiveNotification object:nil];
-        self.viewRecordButton.selected = NO;
+        self.viewRecordButton.selected = NO;        
         [self.viewRecorderManager cancelRecording];
     }
 }
@@ -796,13 +798,13 @@ FilterViewEventDelegate, StickerViewClickDelegate, TuSDKFilterProcessorDelegate
 #pragma mark - UIAlertViewDelegate
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     switch (alertView.tag) {
-            case PLS_CLOSE_CONTROLLER_ALERTVIEW_TAG:
+        case PLS_CLOSE_CONTROLLER_ALERTVIEW_TAG:
         {
             switch (buttonIndex) {
-                    case 0:
+                case 0:
                     
                     break;
-                    case 1:
+                case 1:
                 {
                     [self discardRecord];
                 }
@@ -821,19 +823,19 @@ FilterViewEventDelegate, StickerViewClickDelegate, TuSDKFilterProcessorDelegate
 - (void)rateButtonView:(PLSRateButtonView *)rateButtonView didSelectedTitleIndex:(NSInteger)titleIndex{
     self.titleIndex = titleIndex;
     switch (titleIndex) {
-            case 0:
+        case 0:
             self.shortVideoRecorder.recoderRate = PLSVideoRecoderRateTopSlow;
             break;
-            case 1:
+        case 1:
             self.shortVideoRecorder.recoderRate = PLSVideoRecoderRateSlow;
             break;
-            case 2:
+        case 2:
             self.shortVideoRecorder.recoderRate = PLSVideoRecoderRateNormal;
             break;
-            case 3:
+        case 3:
             self.shortVideoRecorder.recoderRate = PLSVideoRecoderRateFast;
             break;
-            case 4:
+        case 4:
             self.shortVideoRecorder.recoderRate = PLSVideoRecoderRateTopFast;
             break;
         default:
@@ -907,7 +909,7 @@ FilterViewEventDelegate, StickerViewClickDelegate, TuSDKFilterProcessorDelegate
 // 开始录制一段视频时
 - (void)shortVideoRecorder:(PLShortVideoRecorder *)recorder didStartRecordingToOutputFileAtURL:(NSURL *)fileURL {
     NSLog(@"start recording fileURL: %@", fileURL);
-    
+
     [self.progressBar addProgressView];
     [_progressBar startShining];
 }
@@ -931,9 +933,9 @@ FilterViewEventDelegate, StickerViewClickDelegate, TuSDKFilterProcessorDelegate
 // 删除了某一段视频
 - (void)shortVideoRecorder:(PLShortVideoRecorder *)recorder didDeleteFileAtURL:(NSURL *)fileURL fileDuration:(CGFloat)fileDuration totalDuration:(CGFloat)totalDuration {
     NSLog(@"delete fileURL: %@, fileDuration: %f, totalDuration: %f", fileURL, fileDuration, totalDuration);
-    
+
     self.endButton.enabled = totalDuration >= self.shortVideoRecorder.minDuration;
-    
+
     if (totalDuration <= 0.0000001f) {
         self.squareRecordButton.hidden = NO;
         self.deleteButton.hidden = YES;
@@ -946,7 +948,7 @@ FilterViewEventDelegate, StickerViewClickDelegate, TuSDKFilterProcessorDelegate
     AVAsset *asset = [AVAsset assetWithURL:_URL];
     CGFloat duration = CMTimeGetSeconds(asset.duration);
     self.draftButton.hidden = (totalDuration +  duration) >= self.shortVideoRecorder.maxDuration;
-    
+
     self.durationLabel.text = [NSString stringWithFormat:@"%.2fs", totalDuration];
 }
 
@@ -955,10 +957,10 @@ FilterViewEventDelegate, StickerViewClickDelegate, TuSDKFilterProcessorDelegate
     NSLog(@"finish recording fileURL: %@, fileDuration: %f, totalDuration: %f", fileURL, fileDuration, totalDuration);
     
     [_progressBar stopShining];
-    
+
     self.deleteButton.hidden = NO;
     self.endButton.hidden = NO;
-    
+
     AVAsset *asset = [AVAsset assetWithURL:_URL];
     CGFloat duration = CMTimeGetSeconds(asset.duration);
     self.draftButton.hidden = (totalDuration +  duration) >= self.shortVideoRecorder.maxDuration;
@@ -971,7 +973,7 @@ FilterViewEventDelegate, StickerViewClickDelegate, TuSDKFilterProcessorDelegate
 // 在达到指定的视频录制时间 maxDuration 后，如果再调用 [PLShortVideoRecorder startRecording]，直接执行该回调
 - (void)shortVideoRecorder:(PLShortVideoRecorder *)recorder didFinishRecordingMaxDuration:(CGFloat)maxDuration {
     NSLog(@"finish recording maxDuration: %f", maxDuration);
-    
+
     AVAsset *asset = self.shortVideoRecorder.assetRepresentingAllFiles;
     [self playEvent:asset];
     [self.viewRecorderManager cancelRecording];
@@ -983,7 +985,7 @@ FilterViewEventDelegate, StickerViewClickDelegate, TuSDKFilterProcessorDelegate
     // 获取当前会话的所有的视频段文件
     NSArray *filesURLArray = [self.shortVideoRecorder getAllFilesURL];
     NSLog(@"filesURLArray:%@", filesURLArray);
-    
+
     __block AVAsset *movieAsset = asset;
     if (self.musicButton.selected) {
         dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
@@ -998,17 +1000,17 @@ FilterViewEventDelegate, StickerViewClickDelegate, TuSDKFilterProcessorDelegate
             exporter.audioMix = audioMix;
             [exporter exportAsynchronouslyWithCompletionHandler:^{
                 switch ([exporter status]) {
-                        case AVAssetExportSessionStatusFailed: {
-                            NSLog(@"audio mix failed：%@", [[exporter error] description]);
-                            AlertViewShow([[exporter error] description]);
-                        } break;
-                        case AVAssetExportSessionStatusCancelled: {
-                            NSLog(@"audio mix canceled");
-                        } break;
-                        case AVAssetExportSessionStatusCompleted: {
-                            NSLog(@"audio mix success");
-                            movieAsset = [AVAsset assetWithURL:outputPath];
-                        } break;
+                    case AVAssetExportSessionStatusFailed: {
+                        NSLog(@"audio mix failed：%@", [[exporter error] description]);
+                        AlertViewShow([[exporter error] description]);
+                    } break;
+                    case AVAssetExportSessionStatusCancelled: {
+                        NSLog(@"audio mix canceled");
+                    } break;
+                    case AVAssetExportSessionStatusCompleted: {
+                        NSLog(@"audio mix success");
+                        movieAsset = [AVAsset assetWithURL:outputPath];
+                    } break;
                     default: {
                         
                     } break;
@@ -1293,4 +1295,6 @@ FilterViewEventDelegate, StickerViewClickDelegate, TuSDKFilterProcessorDelegate
     _currentFilter = newFilter;
     [_filterView refreshAdjustParameterViewWith:newFilter.code filterArgs:newFilter.filterParameter.args];
 }
+
 @end
+

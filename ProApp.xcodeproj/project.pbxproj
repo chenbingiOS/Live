@@ -165,6 +165,8 @@
 		54130A1220B6B52200CAE467 /* CBLiveSettingConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 54130A1120B6B52200CAE467 /* CBLiveSettingConfig.m */; };
 		5436E9EB20B7E2F800011BF0 /* PLShortVideoKit.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5436E9EA20B7E2F800011BF0 /* PLShortVideoKit.bundle */; };
 		5436EA9720B7E53600011BF0 /* libGPUImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5436EA1D20B7E53600011BF0 /* libGPUImage.a */; };
+		5436EA9A20B7EDCF00011BF0 /* RecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5436EA9820B7EDCF00011BF0 /* RecordViewController.m */; };
+		5436EA9B20B7EF0E00011BF0 /* video_draft_test.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 5436E9EC20B7E34300011BF0 /* video_draft_test.mp4 */; };
 		548C5CA020B4FAD300A6FF53 /* CBApplyAnchorVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 548C5C9E20B4FAD300A6FF53 /* CBApplyAnchorVC.m */; };
 		548C5CA120B4FAD300A6FF53 /* CBApplyAnchorVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 548C5C9F20B4FAD300A6FF53 /* CBApplyAnchorVC.xib */; };
 		548C5CB720B50BFE00A6FF53 /* liveCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 548C5CAF20B50BFE00A6FF53 /* liveCity.m */; };
@@ -953,6 +955,8 @@
 		5436EA9420B7E53600011BF0 /* GPUImageDivideBlendFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPUImageDivideBlendFilter.h; sourceTree = "<group>"; };
 		5436EA9520B7E53600011BF0 /* GPUImageStretchDistortionFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPUImageStretchDistortionFilter.h; sourceTree = "<group>"; };
 		5436EA9620B7E53600011BF0 /* GLProgram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLProgram.h; sourceTree = "<group>"; };
+		5436EA9820B7EDCF00011BF0 /* RecordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordViewController.m; sourceTree = "<group>"; };
+		5436EA9920B7EDCF00011BF0 /* RecordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordViewController.h; sourceTree = "<group>"; };
 		548C5C9D20B4FAD300A6FF53 /* CBApplyAnchorVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBApplyAnchorVC.h; sourceTree = "<group>"; };
 		548C5C9E20B4FAD300A6FF53 /* CBApplyAnchorVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBApplyAnchorVC.m; sourceTree = "<group>"; };
 		548C5C9F20B4FAD300A6FF53 /* CBApplyAnchorVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CBApplyAnchorVC.xib; sourceTree = "<group>"; };
@@ -2703,6 +2707,8 @@
 				54A76AB020B7DEDE0034D5A2 /* UI+Tools */,
 				54A76AAD20B7DE830034D5A2 /* CBRecordVideoVC.h */,
 				54A76AAE20B7DE830034D5A2 /* CBRecordVideoVC.m */,
+				5436EA9920B7EDCF00011BF0 /* RecordViewController.h */,
+				5436EA9820B7EDCF00011BF0 /* RecordViewController.m */,
 				54A76AF420B7DEF00034D5A2 /* EditViewController.h */,
 				54A76AF520B7DEF00034D5A2 /* EditViewController.m */,
 				54A76AF720B7DEF90034D5A2 /* PhotoAlbumViewController.h */,
@@ -3336,6 +3342,7 @@
 				54A76C6120B7E0E10034D5A2 /* style_default_btn_sticker@2x.png in Resources */,
 				54A76CD020B7E0E10034D5A2 /* style_default_1.6.0_homepage_bg@3x.png in Resources */,
 				54A76D3020B7E0E10034D5A2 /* style_default_1.11_btn_filter_selected_w@3x.png in Resources */,
+				5436EA9B20B7EF0E00011BF0 /* video_draft_test.mp4 in Resources */,
 				54A76D4C20B7E0E10034D5A2 /* lsq_filter_thumb_EdgeMagic01.jpg in Resources */,
 				54A76C8220B7E0E10034D5A2 /* style_default_1.7.0_soundreco_selected@2x.png in Resources */,
 				075056242092B02100F0679B /* CBGiftPackageCell.xib in Resources */,
@@ -3844,6 +3851,7 @@
 				07558C16209401A3007E41C2 /* CBOnlineUserView.m in Sources */,
 				54A76AEB20B7DEDE0034D5A2 /* PLSEditToolbar.m in Sources */,
 				54A76AF220B7DEDE0034D5A2 /* PLSColumnListView.m in Sources */,
+				5436EA9A20B7EDCF00011BF0 /* RecordViewController.m in Sources */,
 				072DC57F2091607600F693E8 /* UILabel+ShadowText.m in Sources */,
 				0715278920A53F6000D3859D /* CBRegisterVC.m in Sources */,
 				073746EC208EC08200E108E9 /* CBWatchHeaderView.m in Sources */,
