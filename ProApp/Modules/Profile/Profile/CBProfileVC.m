@@ -122,6 +122,7 @@
     }];
 }
 
+// 加载头部信息
 - (void)loadDataByProfile {
     [self.userAvaterImageView sd_setImageWithURL:[NSURL URLWithString:[CBLiveUserConfig getavatar]]];
     self.userNameLab.text = [CBLiveUserConfig getOwnNicename];
@@ -140,41 +141,53 @@
     [self presentViewController:navc animated:YES completion:nil];
 }
 
+// 我的关注
 - (IBAction)actionMyAttention:(id)sender {
     CBMyAttentionVC *vc = [CBMyAttentionVC new];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
+
+
+
+
+// 我的粉丝
 - (IBAction)actionMyFans:(id)sender {
     CBMyFansVC *vc = [CBMyFansVC new];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
-- (IBAction)actionCurrency:(id)sender {
-    CBCurrencyVC *vc = [CBCurrencyVC new];
-    [self.navigationController pushViewController:vc animated:YES];
-}
-
+// 观看记录
 - (IBAction)actionWatch:(id)sender {
     CBWatchVC *vc = [CBWatchVC new];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
+// 贡献币
+- (IBAction)actionCurrency:(id)sender {
+    CBCurrencyVC *vc = [CBCurrencyVC new];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+// 实名认证
 - (IBAction)actionRealName:(id)sender {
     CBRealNameVC *vc = [CBRealNameVC new];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
+// 账户
 - (IBAction)actionAccount:(id)sender {    
     CBAccountVC *vc = [CBAccountVC new];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
+// 礼包
 - (IBAction)actionGiftPackage:(id)sender {
     CBGiftPackageVC *vc = [CBGiftPackageVC new];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
+// 设置
 - (IBAction)actionSetting:(id)sender {
     CBSettingVC *vc = [CBSettingVC new];
     [self.navigationController pushViewController:vc animated:YES];

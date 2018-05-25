@@ -101,16 +101,13 @@
                 NSDictionary *info = [[MsgData valueForKey:@"info"] objectAtIndex:0];
                 CBLiveUser *userInfo = [[CBLiveUser alloc] initWithDic:info];
                 [CBLiveUserConfig saveProfile:userInfo];
-                
-//                NSString *aliasStr = [NSString stringWithFormat:@"%@PUSH",[CBLiveUserConfig getOwnID]];
-//                [JPUSHService setAlias:aliasStr callbackSelector:nil object:nil];
-                
-//                [self HYLOgin];
                 //判断第一次登陆
 //                NSString *isreg = minstr([info valueForKey:@"isreg"]);
 //                _isreg = isreg;
                 
-                [self login];
+                [self loginENClient];
+                [self loginJPUSH];
+                [self loginUI];
             } else {
                 [MBProgressHUD showAutoMessage:msg];
             }
@@ -182,16 +179,13 @@
                 NSDictionary *info = [[MsgData valueForKey:@"info"] objectAtIndex:0];
                 CBLiveUser *userInfo = [[CBLiveUser alloc] initWithDic:info];
                 [CBLiveUserConfig saveProfile:userInfo];
-                
-//                NSString *aliasStr = [NSString stringWithFormat:@"%@PUSH",[CBLiveUserConfig getOwnID]];
-//                [JPUSHService setAlias:aliasStr callbackSelector:nil object:nil];
-
-//                [self HYLOgin];
+                [self loginENClient];
+                [self loginJPUSH];
+                [self loginUI];
 //判断第一次登陆
 //                NSString *isreg = minstr([info valueForKey:@"isreg"]);
 //                _isreg = isreg;
                 
-                [self login];
             } else {
                 [MBProgressHUD showAutoMessage:msg];
             }
@@ -204,16 +198,22 @@
     }];
 }
 
-////注册环信
-//-(void)HYLOgin{
-//    NSString *passWord = [@"fmscms" stringByAppendingFormat:@"%@",[Config getOwnID]];
-//    [[EMClient sharedClient] registerWithUsername:[Config getOwnID] password:passWord completion:^(NSString *aUsername, EMError *aError) {
-//        NSLog(@"NewLoginController---%@",aError.errorDescription);
-//    }];
-//}
-//
+// 环信登录
+-(void)loginENClient{
+    NSString *passWord = [@"fmscms" stringByAppendingFormat:@"%@",[CBLiveUserConfig getOwnID]];
+    [[EMClient sharedClient] registerWithUsername:[CBLiveUserConfig getOwnID] password:passWord completion:^(NSString *aUsername, EMError *aError) {
+        NSLog(@"环信登录错误--%@",aError.errorDescription);
+    }];
+}
 
-- (void)login {
+// 登录极光
+- (void)loginJPUSH {
+    NSString *aliasStr = [NSString stringWithFormat:@"%@PUSH", [CBLiveUserConfig getOwnID]];
+//    [JPUSHService setAlias:aliasStr callbackSelector:nil object:nil];
+}
+
+// 本地UI登录
+- (void)loginUI {
     CBTBC *tbc = [CBTBC new];
     UIWindow *window = [UIApplication sharedApplication].keyWindow;
     window.rootViewController = tbc;

@@ -24,7 +24,7 @@
 #import "PPNetworkHelper.h"
 #import <LYEmptyView/LYEmptyViewHeader.h>
 #import <MJRefresh.h>
-//#import <HyphenateLite/HyphenateLite.h>
+#import <HyphenateLite/HyphenateLite.h>
 #import "UIColor+Color.h"
 #import "UIView+Xib.h"
 #import "UIImageView+RoundedCorner.h"
