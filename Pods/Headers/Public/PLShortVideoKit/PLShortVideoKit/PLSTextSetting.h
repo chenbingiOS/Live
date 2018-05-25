@@ -1,0 +1,1 @@
+../../../../PLShortVideoKit/Pod/Library/PLShortVideoKit.framework/Headers/PLSTextSetting.h

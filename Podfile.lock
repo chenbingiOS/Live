@@ -31,6 +31,8 @@ PODS:
   - PLRTCStreamingKit (3.1.0):
     - PLRTCStreamingKit/iphoneos (= 3.1.0)
   - PLRTCStreamingKit/iphoneos (3.1.0)
+  - PLShortVideoKit/ex-libMuseProcessor (1.10.0):
+    - Qiniu (~> 7.1)
   - Qiniu (7.2.3):
     - HappyDNS (~> 0.3)
   - SDWebImage (4.3.3):
@@ -63,6 +65,7 @@ DEPENDENCIES:
   - MJRefresh
   - PLPlayerKit
   - PLRTCStreamingKit
+  - PLShortVideoKit/ex-libMuseProcessor
   - Qiniu
   - SDWebImage
   - ShareSDK3/ShareSDKPlatforms/Facebook
@@ -89,6 +92,7 @@ SPEC REPOS:
     - MOBFoundation
     - PLPlayerKit
     - PLRTCStreamingKit
+    - PLShortVideoKit
     - Qiniu
     - SDWebImage
     - ShareSDK3
@@ -111,6 +115,7 @@ SPEC CHECKSUMS:
   MOBFoundation: fcaed93566814b662dc51459e5712ae559a3ac9c
   PLPlayerKit: bf3dcb35b9736c73c20a9a927f131c6bf18614e5
   PLRTCStreamingKit: d7b9caf243782e0be6cb01f9cf8956229e32dbb1
+  PLShortVideoKit: 86099728bc288502de62b37865d479a85a849e15
   Qiniu: ae0fea1cc379fae1560d8748ac537e0fbeb8626e
   SDWebImage: de4d90b5bff3571eae7bd16202b1f43135409fa5
   ShareSDK3: 75b57bab0cbe3119e281c7668eaad9d48adf3fde
@@ -119,6 +124,6 @@ SPEC CHECKSUMS:
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
   ZYCornerRadius: f0af817be7805b5c63d793042ca7a03f81e14069
 
-PODFILE CHECKSUM: 1ca5f940408a373ca5535a6911609f073e5ab7ef
+PODFILE CHECKSUM: 2988186f1baba4f5a2ece2c237ee101b2ce64b8b
 
 COCOAPODS: 1.5.0
