@@ -26,6 +26,23 @@
     self.delegate = self;
     self.tabBar.translucent = YES;
     
+    @weakify(self);
+    [self.homeMenuPopView.homeMenuView.liveButton addBlockForControlEvents:UIControlEventTouchUpInside block:^(id  _Nonnull sender) {
+        @strongify(self);
+        CBApplyAnchorVC *vc = [CBApplyAnchorVC new];
+        CBNVC *nvc = [[CBNVC alloc] initWithRootViewController:vc];
+        [self.selectedViewController presentViewController:nvc animated:YES completion:^{
+            [self.homeMenuPopView hide];
+        }];
+    }];
+    [self.homeMenuPopView.homeMenuView.videoButton addBlockForControlEvents:UIControlEventTouchUpInside block:^(id  _Nonnull sender) {
+        @strongify(self);
+        CBRecordVideoVC *recordVC = [[CBRecordVideoVC alloc] init];
+        [self.selectedViewController presentViewController:recordVC animated:YES completion:^{
+            [self.homeMenuPopView hide];
+        }];
+    }];
+    
     [self _PhoneTBC_setupVCs];
 }
 
@@ -79,31 +96,11 @@
 
 - (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController {
     
-    CBNVC *naviCtrl = (CBNVC *)viewController;
+    __block CBNVC *naviCtrl = (CBNVC *)viewController;
     id viewCtrl = [naviCtrl.viewControllers firstObject];
     
     if ([viewCtrl isKindOfClass:NSClassFromString(@"CBLiveVideoVC")]) {
         [self.homeMenuPopView showIn:tabBarController.view];
-        @weakify(self);
-        [self.homeMenuPopView.homeMenuView.liveButton addBlockForControlEvents:UIControlEventTouchUpInside block:^(id  _Nonnull sender) {
-            @strongify(self);
-            CBApplyAnchorVC *vc = [CBApplyAnchorVC new];
-            CBNVC *nvc = [[CBNVC alloc] initWithRootViewController:vc];
-            [viewController presentViewController:nvc animated:YES completion:^{
-               [self.homeMenuPopView hide];
-            }];
-        }];
-        [self.homeMenuPopView.homeMenuView.videoButton addBlockForControlEvents:UIControlEventTouchUpInside block:^(id  _Nonnull sender) {
-            @strongify(self);
-//            CBRecordVideoVC *recordVC = [[CBRecordVideoVC alloc] init];
-//            [self presentViewController:recordVC animated:YES completion:^{
-//                [self.homeMenuPopView hide];
-//            }];
-            RecordViewController *recordVC = [[RecordViewController alloc] init];
-            [viewController presentViewController:recordVC animated:YES completion:^{
-                [self.homeMenuPopView hide];
-            }];
-        }];
         return NO;
     }
     

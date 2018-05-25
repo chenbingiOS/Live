@@ -19,10 +19,6 @@
 		071D3C112092B35D00A6C5CE /* CBPackageRecordCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 071D3C0F2092B35D00A6C5CE /* CBPackageRecordCell.xib */; };
 		071D3C152092B51700A6C5CE /* CBPackageRecordVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 071D3C142092B51700A6C5CE /* CBPackageRecordVO.m */; };
 		072DC57F2091607600F693E8 /* UILabel+ShadowText.m in Sources */ = {isa = PBXBuildFile; fileRef = 072DC57E2091607600F693E8 /* UILabel+ShadowText.m */; };
-		072DC585209166A600F693E8 /* loginmovie.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 072DC581209166A600F693E8 /* loginmovie.mp4 */; };
-		072DC586209166A600F693E8 /* danmu.plist in Resources */ = {isa = PBXBuildFile; fileRef = 072DC582209166A600F693E8 /* danmu.plist */; };
-		072DC587209166A600F693E8 /* login_video.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 072DC583209166A600F693E8 /* login_video.mp4 */; };
-		072DC588209166A600F693E8 /* user.plist in Resources */ = {isa = PBXBuildFile; fileRef = 072DC584209166A600F693E8 /* user.plist */; };
 		072DC58E209170B000F693E8 /* UIImageView+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = 072DC58D209170B000F693E8 /* UIImageView+RoundedCorner.m */; };
 		072DC593209176B000F693E8 /* CBCurrencyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 072DC591209176B000F693E8 /* CBCurrencyVC.m */; };
 		072DC594209176B000F693E8 /* CBCurrencyVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 072DC592209176B000F693E8 /* CBCurrencyVC.xib */; };
@@ -149,7 +145,6 @@
 		07F38C0520994A0000DDBC90 /* JPGiftCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 07F38BFB209949FF00DDBC90 /* JPGiftCollectionViewCell.m */; };
 		07F38C0620994A0000DDBC90 /* JPGiftCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 07F38BFC209949FF00DDBC90 /* JPGiftCellModel.m */; };
 		07F38C0720994A0000DDBC90 /* JPGiftOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 07F38BFD209949FF00DDBC90 /* JPGiftOperation.m */; };
-		07F38C0920994AF600DDBC90 /* data.json in Resources */ = {isa = PBXBuildFile; fileRef = 07F38C0820994AF600DDBC90 /* data.json */; };
 		07F38C0E2099503900DDBC90 /* CBGuardVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 07F38C0C2099503900DDBC90 /* CBGuardVC.m */; };
 		07F38C0F2099503900DDBC90 /* CBGuardVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 07F38C0D2099503900DDBC90 /* CBGuardVC.xib */; };
 		07F6EF3A20872A9B0035C6BD /* IJKMediaFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07F6EF3920872A9B0035C6BD /* IJKMediaFramework.framework */; };
@@ -548,10 +543,6 @@
 		071D3C142092B51700A6C5CE /* CBPackageRecordVO.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBPackageRecordVO.m; sourceTree = "<group>"; };
 		072DC57D2091607600F693E8 /* UILabel+ShadowText.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UILabel+ShadowText.h"; sourceTree = "<group>"; };
 		072DC57E2091607600F693E8 /* UILabel+ShadowText.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UILabel+ShadowText.m"; sourceTree = "<group>"; };
-		072DC581209166A600F693E8 /* loginmovie.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = loginmovie.mp4; sourceTree = "<group>"; };
-		072DC582209166A600F693E8 /* danmu.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = danmu.plist; sourceTree = "<group>"; };
-		072DC583209166A600F693E8 /* login_video.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = login_video.mp4; sourceTree = "<group>"; };
-		072DC584209166A600F693E8 /* user.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = user.plist; sourceTree = "<group>"; };
 		072DC58C209170B000F693E8 /* UIImageView+RoundedCorner.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImageView+RoundedCorner.h"; sourceTree = "<group>"; };
 		072DC58D209170B000F693E8 /* UIImageView+RoundedCorner.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+RoundedCorner.m"; sourceTree = "<group>"; };
 		072DC590209176B000F693E8 /* CBCurrencyVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBCurrencyVC.h; sourceTree = "<group>"; };
@@ -762,7 +753,6 @@
 		07F38BFC209949FF00DDBC90 /* JPGiftCellModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPGiftCellModel.m; sourceTree = "<group>"; };
 		07F38BFD209949FF00DDBC90 /* JPGiftOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPGiftOperation.m; sourceTree = "<group>"; };
 		07F38BFE209949FF00DDBC90 /* JPGiftView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPGiftView.h; sourceTree = "<group>"; };
-		07F38C0820994AF600DDBC90 /* data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data.json; sourceTree = "<group>"; };
 		07F38C0B2099503900DDBC90 /* CBGuardVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBGuardVC.h; sourceTree = "<group>"; };
 		07F38C0C2099503900DDBC90 /* CBGuardVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBGuardVC.m; sourceTree = "<group>"; };
 		07F38C0D2099503900DDBC90 /* CBGuardVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CBGuardVC.xib; sourceTree = "<group>"; };
@@ -1509,11 +1499,6 @@
 			isa = PBXGroup;
 			children = (
 				5436E9EC20B7E34300011BF0 /* video_draft_test.mp4 */,
-				07F38C0820994AF600DDBC90 /* data.json */,
-				072DC581209166A600F693E8 /* loginmovie.mp4 */,
-				072DC582209166A600F693E8 /* danmu.plist */,
-				072DC583209166A600F693E8 /* login_video.mp4 */,
-				072DC584209166A600F693E8 /* user.plist */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -2683,6 +2668,29 @@
 			path = Framework;
 			sourceTree = "<group>";
 		};
+		5436EA9C20B7F9FA00011BF0 /* PLShortVidewVC */ = {
+			isa = PBXGroup;
+			children = (
+				5436EA9920B7EDCF00011BF0 /* RecordViewController.h */,
+				5436EA9820B7EDCF00011BF0 /* RecordViewController.m */,
+				54A76AF420B7DEF00034D5A2 /* EditViewController.h */,
+				54A76AF520B7DEF00034D5A2 /* EditViewController.m */,
+				54A76AF720B7DEF90034D5A2 /* PhotoAlbumViewController.h */,
+				54A76AF820B7DEFA0034D5A2 /* PhotoAlbumViewController.m */,
+				54A76D8120B7E1310034D5A2 /* MovieTransCodeViewController.h */,
+				54A76D8220B7E1320034D5A2 /* MovieTransCodeViewController.m */,
+				54A76D8420B7E1490034D5A2 /* ClipMovieViewController.h */,
+				54A76D8520B7E14A0034D5A2 /* ClipMovieViewController.m */,
+				54A76D8820B7E1600034D5A2 /* GifFormatViewController.h */,
+				54A76D8720B7E15D0034D5A2 /* GifFormatViewController.m */,
+				54A76D8B20B7E17B0034D5A2 /* DubViewController.h */,
+				54A76D8A20B7E1780034D5A2 /* DubViewController.m */,
+				54A76D8E20B7E1BF0034D5A2 /* PlayViewController.h */,
+				54A76D8D20B7E1BE0034D5A2 /* PlayViewController.m */,
+			);
+			path = PLShortVidewVC;
+			sourceTree = "<group>";
+		};
 		548C5C9820B4FA6C00A6FF53 /* Ctrl */ = {
 			isa = PBXGroup;
 			children = (
@@ -2704,25 +2712,10 @@
 		548C5C9A20B4FA7B00A6FF53 /* Video */ = {
 			isa = PBXGroup;
 			children = (
-				54A76AB020B7DEDE0034D5A2 /* UI+Tools */,
 				54A76AAD20B7DE830034D5A2 /* CBRecordVideoVC.h */,
 				54A76AAE20B7DE830034D5A2 /* CBRecordVideoVC.m */,
-				5436EA9920B7EDCF00011BF0 /* RecordViewController.h */,
-				5436EA9820B7EDCF00011BF0 /* RecordViewController.m */,
-				54A76AF420B7DEF00034D5A2 /* EditViewController.h */,
-				54A76AF520B7DEF00034D5A2 /* EditViewController.m */,
-				54A76AF720B7DEF90034D5A2 /* PhotoAlbumViewController.h */,
-				54A76AF820B7DEFA0034D5A2 /* PhotoAlbumViewController.m */,
-				54A76D8120B7E1310034D5A2 /* MovieTransCodeViewController.h */,
-				54A76D8220B7E1320034D5A2 /* MovieTransCodeViewController.m */,
-				54A76D8420B7E1490034D5A2 /* ClipMovieViewController.h */,
-				54A76D8520B7E14A0034D5A2 /* ClipMovieViewController.m */,
-				54A76D8820B7E1600034D5A2 /* GifFormatViewController.h */,
-				54A76D8720B7E15D0034D5A2 /* GifFormatViewController.m */,
-				54A76D8B20B7E17B0034D5A2 /* DubViewController.h */,
-				54A76D8A20B7E1780034D5A2 /* DubViewController.m */,
-				54A76D8E20B7E1BF0034D5A2 /* PlayViewController.h */,
-				54A76D8D20B7E1BE0034D5A2 /* PlayViewController.m */,
+				54A76AB020B7DEDE0034D5A2 /* UI+Tools */,
+				5436EA9C20B7F9FA00011BF0 /* PLShortVidewVC */,
 			);
 			path = Video;
 			sourceTree = "<group>";
@@ -3337,7 +3330,6 @@
 				54A76C8720B7E0E10034D5A2 /* style_default_1.6.0_homepage_import_icon@3x.png in Resources */,
 				0750561D2092AEBD00F0679B /* CBGiftPackageVC.xib in Resources */,
 				54A76CDA20B7E0E10034D5A2 /* style_default_1.11_btn_filter_unselected3x.png in Resources */,
-				07F38C0920994AF600DDBC90 /* data.json in Resources */,
 				54A76C8020B7E0E10034D5A2 /* style_default_1.11_btn_mv@3x.png in Resources */,
 				54A76C6120B7E0E10034D5A2 /* style_default_btn_sticker@2x.png in Resources */,
 				54A76CD020B7E0E10034D5A2 /* style_default_1.6.0_homepage_bg@3x.png in Resources */,
@@ -3416,7 +3408,6 @@
 				0750562C2092B0C700F0679B /* CBPackageRecordVC.xib in Resources */,
 				54A76CCF20B7E0E10034D5A2 /* style_default_btn_finish_selected@2x.png in Resources */,
 				54A76D2E20B7E0E10034D5A2 /* style_default_preview_btn_record@2x.png in Resources */,
-				072DC585209166A600F693E8 /* loginmovie.mp4 in Resources */,
 				54A76D3E20B7E0E10034D5A2 /* style_default_1.5.0_btn_beauty@3x.png in Resources */,
 				54A76C9F20B7E0E10034D5A2 /* style_default_btn_sticker@3x.png in Resources */,
 				54A76D5720B7E0E10034D5A2 /* style_default_btn_sticker_w_1.11@3x.png in Resources */,
@@ -3476,7 +3467,6 @@
 				54A76D1F20B7E0E10034D5A2 /* style_default_1.6.0_homepage_video_icon@2x.png in Resources */,
 				54A76D1820B7E0E10034D5A2 /* style_default_1.5.0_btn_mv_bg@3x.jpg in Resources */,
 				54A76D1120B7E0E10034D5A2 /* style_default_2.0_moviEditor_changeSize@2x.png in Resources */,
-				072DC586209166A600F693E8 /* danmu.plist in Resources */,
 				54A76CD920B7E0E10034D5A2 /* lsq_filter_thumb_Leica_1.jpg in Resources */,
 				54A76C6820B7E0E10034D5A2 /* lsq_filter_thumb_Music.jpg in Resources */,
 				54A76D0920B7E0E10034D5A2 /* video_style_default_crop_btn_triangle@2x.png in Resources */,
@@ -3591,7 +3581,6 @@
 				54A76D7620B7E0E10034D5A2 /* style_default_2.0_flash_closed@3x.png in Resources */,
 				54A76C7F20B7E0E10034D5A2 /* style_default_2.0_btn_magic@3x.png in Resources */,
 				54A76D1220B7E0E10034D5A2 /* style_default_2.0_moviEditor_changeSize@3x.png in Resources */,
-				072DC587209166A600F693E8 /* login_video.mp4 in Resources */,
 				54A76D6720B7E0E10034D5A2 /* lsq_filter_thumb_SkinPink011.jpg in Resources */,
 				07CDCAD620907D8400B16FC6 /* CBLiveBottomView.xib in Resources */,
 				54A76CA420B7E0E10034D5A2 /* style_default_1.11_btn_mv_unselected@3x.png in Resources */,
@@ -3647,7 +3636,6 @@
 				54A76C8C20B7E0E10034D5A2 /* style_default_2.0_btn_magic_unselected@3x.png in Resources */,
 				54A76C8920B7E0E10034D5A2 /* style_default_1.11_btn_effect_unselect@3x.png in Resources */,
 				54A76D4F20B7E0E10034D5A2 /* video_style_default_btn_filter@3x.png in Resources */,
-				072DC588209166A600F693E8 /* user.plist in Resources */,
 				0737ED8F2074A33600A89CC0 /* Main.storyboard in Resources */,
 				07C9734B20A91F1000BB9820 /* CBAttentionLiveVC.xib in Resources */,
 				073746EE208EC11D00E108E9 /* CBWatchHeaderView.xib in Resources */,

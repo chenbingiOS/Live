@@ -94,12 +94,12 @@
         [self.giftView showGiftView];
     }];
     
-    NSString *filePath=[[NSBundle mainBundle]pathForResource:@"data" ofType:@"json"];
-    NSData *jsonData = [NSData dataWithContentsOfFile:filePath];
-    NSDictionary *responseObject = [NSJSONSerialization JSONObjectWithData:jsonData options:kNilOptions error:nil];
-    NSArray *data = [responseObject objectForKey:@"data"];
-    NSMutableArray *dataArr = [NSMutableArray arrayWithArray:data];
-    self.giftView.dataArray = [NSArray modelArrayWithClass:[JPGiftCellModel class] json:dataArr];
+//    NSString *filePath=[[NSBundle mainBundle]pathForResource:@"data" ofType:@"json"];
+//    NSData *jsonData = [NSData dataWithContentsOfFile:filePath];
+//    NSDictionary *responseObject = [NSJSONSerialization JSONObjectWithData:jsonData options:kNilOptions error:nil];
+//    NSArray *data = [responseObject objectForKey:@"data"];
+//    NSMutableArray *dataArr = [NSMutableArray arrayWithArray:data];
+//    self.giftView.dataArray = [NSArray modelArrayWithClass:[JPGiftCellModel class] json:dataArr];
 }
 
 - (void)giftViewSendGiftInView:(JPGiftView *)giftView data:(JPGiftCellModel *)model {

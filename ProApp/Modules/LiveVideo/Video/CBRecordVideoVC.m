@@ -53,7 +53,7 @@ FilterViewEventDelegate, StickerViewClickDelegate, TuSDKFilterProcessorDelegate
 @property (strong, nonatomic) PLSViewRecorderManager *viewRecorderManager;
 @property (strong, nonatomic) PLSProgressBar *progressBar;
 @property (strong, nonatomic) UIButton *recordButton;
-@property (strong, nonatomic) UIButton *viewRecordButton;
+
 @property (strong, nonatomic) PLSDeleteButton *deleteButton;
 @property (strong, nonatomic) UIButton *endButton;
 @property (strong, nonatomic) PLSRateButtonView *rateButtonView;
@@ -63,15 +63,12 @@ FilterViewEventDelegate, StickerViewClickDelegate, TuSDKFilterProcessorDelegate
 @property (strong, nonatomic) UIView *baseToolboxView;
 @property (strong, nonatomic) UIView *recordToolboxView;
 @property (strong, nonatomic) UIImageView *indicator;
-@property (strong, nonatomic) UIButton *squareRecordButton;
+
 @property (strong, nonatomic) UILabel *durationLabel;
 @property (strong, nonatomic) UIAlertView *alertView;
 
-@property (strong, nonatomic) UIView *importMovieView;
-@property (strong, nonatomic) UIButton *importMovieButton;
 
 // 录制的视频文件的存储路径设置
-@property (strong, nonatomic) UIButton *filePathButton;
 @property (assign, nonatomic) BOOL useSDKInternalPath;
 
 // 录制时是否使用SDK内部滤镜
@@ -86,14 +83,8 @@ FilterViewEventDelegate, StickerViewClickDelegate, TuSDKFilterProcessorDelegate
 @property (strong, nonatomic) NSMutableArray<NSDictionary *> *filtersArray;
 @property (assign, nonatomic) NSInteger filterIndex;
 
-@property (strong, nonatomic) UIButton *draftButton;
-@property (strong, nonatomic) NSURL *URL;
-
-@property (strong, nonatomic) UIButton *musicButton;
 @property (strong, nonatomic) UIActivityIndicatorView *activityIndicatorView;
 
-// 实时截图按钮
-@property (strong, nonatomic) UIButton *snapshotButton;
 
 // 录制前是否开启自动检测设备方向调整视频拍摄的角度（竖屏、横屏）
 @property (assign, nonatomic) BOOL isUseAutoCheckDeviceOrientationBeforeRecording;
@@ -197,12 +188,6 @@ FilterViewEventDelegate, StickerViewClickDelegate, TuSDKFilterProcessorDelegate
     
     // 录制前是否开启自动检测设备方向调整视频拍摄的角度（竖屏、横屏）
     if (self.isUseAutoCheckDeviceOrientationBeforeRecording) {
-        UIView *deviceOrientationView = [[UIView alloc] init];
-        deviceOrientationView.frame = CGRectMake(0, 0, PLS_SCREEN_WIDTH/2, 22);
-        deviceOrientationView.center = CGPointMake(PLS_SCREEN_WIDTH/2, 22/2);
-        deviceOrientationView.backgroundColor = [UIColor grayColor];
-        deviceOrientationView.alpha = 0.7;
-        [self.view addSubview:deviceOrientationView];
         self.shortVideoRecorder.adaptationRecording = YES; // 根据设备方向自动确定横屏 or 竖屏拍摄效果
         [self.shortVideoRecorder setDeviceOrientationBlock:^(PLSPreviewOrientation deviceOrientation){
             switch (deviceOrientation) {
@@ -220,23 +205,6 @@ FilterViewEventDelegate, StickerViewClickDelegate, TuSDKFilterProcessorDelegate
                     break;
                 default:
                     break;
-            }
-            
-            if (deviceOrientation == PLSPreviewOrientationPortrait) {
-                deviceOrientationView.frame = CGRectMake(0, 0, PLS_SCREEN_WIDTH/2, 22);
-                deviceOrientationView.center = CGPointMake(PLS_SCREEN_WIDTH/2, 22/2);
-                
-            } else if (deviceOrientation == PLSPreviewOrientationPortraitUpsideDown) {
-                deviceOrientationView.frame = CGRectMake(0, 0, PLS_SCREEN_WIDTH/2, 22);
-                deviceOrientationView.center = CGPointMake(PLS_SCREEN_WIDTH/2, PLS_SCREEN_HEIGHT - 22/2);
-                
-            } else if (deviceOrientation == PLSPreviewOrientationLandscapeRight) {
-                deviceOrientationView.frame = CGRectMake(0, 0, 22, PLS_SCREEN_HEIGHT/2);
-                deviceOrientationView.center = CGPointMake(PLS_SCREEN_WIDTH - 22/2, PLS_SCREEN_HEIGHT/2);
-                
-            } else if (deviceOrientation == PLSPreviewOrientationLandscapeLeft) {
-                deviceOrientationView.frame = CGRectMake(0, 0, 22, PLS_SCREEN_HEIGHT/2);
-                deviceOrientationView.center = CGPointMake(22/2, PLS_SCREEN_HEIGHT/2);
             }
         }];
     }
@@ -268,10 +236,6 @@ FilterViewEventDelegate, StickerViewClickDelegate, TuSDKFilterProcessorDelegate
         [self.editVideoCollectionView reloadData];
         self.editVideoCollectionView.hidden = YES;
     }
-    
-    // 本地视频
-    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"loginmovie" ofType:@"mp4"];
-    self.URL = [NSURL fileURLWithPath:filePath];
 }
 
 - (void)setupBaseToolboxView {
@@ -304,36 +268,6 @@ FilterViewEventDelegate, StickerViewClickDelegate, TuSDKFilterProcessorDelegate
     [filterButton addTarget:self action:@selector(filterButtonEvent:) forControlEvents:UIControlEventTouchUpInside];
     [self.baseToolboxView addSubview:filterButton];
     
-    // 录屏按钮
-    self.viewRecordButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.viewRecordButton.frame = CGRectMake(10, 100, 35, 35);
-    [self.viewRecordButton setTitle:@"录屏" forState:UIControlStateNormal];
-    [self.viewRecordButton setTitle:@"完成" forState:UIControlStateSelected];
-    self.viewRecordButton.selected = NO;
-    [self.viewRecordButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    self.viewRecordButton.titleLabel.font = [UIFont systemFontOfSize:14];
-    [self.viewRecordButton addTarget:self action:@selector(viewRecorderButtonClick:) forControlEvents:UIControlEventTouchUpInside];
-    [self.baseToolboxView addSubview:self.viewRecordButton];
-    
-    // 全屏／正方形录制模式
-    self.squareRecordButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.squareRecordButton.frame = CGRectMake(10, 145, 35, 35);
-    [self.squareRecordButton setTitle:@"1:1" forState:UIControlStateNormal];
-    [self.squareRecordButton setTitle:@"全屏" forState:UIControlStateSelected];
-    self.squareRecordButton.selected = NO;
-    [self.squareRecordButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    self.squareRecordButton.titleLabel.font = [UIFont systemFontOfSize:14];
-    [self.squareRecordButton addTarget:self action:@selector(squareRecordButtonEvent:) forControlEvents:UIControlEventTouchUpInside];
-    [self.baseToolboxView addSubview:self.squareRecordButton];
-    
-    // 闪光灯
-    UIButton *flashButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    flashButton.frame = CGRectMake(10, 190, 35, 35);
-    [flashButton setBackgroundImage:[UIImage imageNamed:@"flash_close"] forState:UIControlStateNormal];
-    [flashButton setBackgroundImage:[UIImage imageNamed:@"flash_open"] forState:UIControlStateSelected];
-    [flashButton addTarget:self action:@selector(flashButtonEvent:) forControlEvents:UIControlEventTouchUpInside];
-    [self.baseToolboxView addSubview:flashButton];
-    
     // 美颜
     UIButton *beautyFaceButton = [UIButton buttonWithType:UIButtonTypeCustom];
     beautyFaceButton.frame = CGRectMake(10, 235, 30, 30);
@@ -350,64 +284,7 @@ FilterViewEventDelegate, StickerViewClickDelegate, TuSDKFilterProcessorDelegate
     [toggleCameraButton addTarget:self action:@selector(toggleCameraButtonEvent:) forControlEvents:UIControlEventTouchUpInside];
     [self.baseToolboxView addSubview:toggleCameraButton];
     
-    // 录制的视频文件的存储路径设置
-    self.filePathButton = [[UIButton alloc] init];
-    self.filePathButton.frame = CGRectMake(10, 325, 35, 35);
-    [self.filePathButton setImage:[UIImage imageNamed:@"file_path"] forState:UIControlStateNormal];
-    [self.filePathButton addTarget:self action:@selector(filePathButtonClickedEvent:) forControlEvents:UIControlEventTouchUpInside];
-    [self.baseToolboxView addSubview:self.filePathButton];
-    
-    self.filePathButton.selected = NO;
     self.useSDKInternalPath = YES;
-    
-    // -------------------------------------------------------
-    
-    // 拍照
-    self.snapshotButton = [[UIButton alloc] initWithFrame:CGRectMake(PLS_SCREEN_WIDTH - 60, 10, 46, 46)];
-    self.snapshotButton.layer.cornerRadius = 23;
-    self.snapshotButton.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.55];
-    [self.snapshotButton setImage:[UIImage imageNamed:@"icon_trim"] forState:UIControlStateNormal];
-    self.snapshotButton.imageEdgeInsets = UIEdgeInsetsMake(6, 6, 6, 6);
-    [self.snapshotButton addTarget:self action:@selector(snapshotButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:_snapshotButton];
-    
-    // AR
-    UIButton *ARButton = [[UIButton alloc] initWithFrame:CGRectMake(PLS_SCREEN_WIDTH - 60, 70, 46, 46)];
-    ARButton.layer.cornerRadius = 23;
-    ARButton.backgroundColor = [UIColor colorWithRed:116/255 green:116/255 blue:116/255 alpha:0.55];
-    [ARButton setImage:[UIImage imageNamed:@"easyar_AR"] forState:UIControlStateNormal];
-    ARButton.imageEdgeInsets = UIEdgeInsetsMake(6, 6, 6, 6);
-    [ARButton addTarget:self action:@selector(ARButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:ARButton];
-    
-    // 加载草稿视频
-    self.draftButton = [[UIButton alloc] initWithFrame:CGRectMake(PLS_SCREEN_WIDTH - 60, 130, 46, 46)];
-    self.draftButton.layer.cornerRadius = 23;
-    self.draftButton.backgroundColor = [UIColor colorWithRed:116/255 green:116/255 blue:116/255 alpha:0.55];
-    [self.draftButton setImage:[UIImage imageNamed:@"draft_video"] forState:UIControlStateNormal];
-    self.draftButton.imageEdgeInsets = UIEdgeInsetsMake(6, 6, 6, 6);
-    [self.draftButton addTarget:self action:@selector(draftVideoButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:self.draftButton];
-    
-    // 是否使用背景音乐
-    self.musicButton = [[UIButton alloc] initWithFrame:CGRectMake(PLS_SCREEN_WIDTH - 60, 190, 46, 46)];
-    self.musicButton.layer.cornerRadius = 23;
-    self.musicButton.backgroundColor = [UIColor colorWithRed:116/255 green:116/255 blue:116/255 alpha:0.55];
-    [self.musicButton setImage:[UIImage imageNamed:@"music_no_selected"] forState:UIControlStateNormal];
-    [self.musicButton setImage:[UIImage imageNamed:@"music_selected"] forState:UIControlStateSelected];
-    self.musicButton.imageEdgeInsets = UIEdgeInsetsMake(6, 6, 6, 6);
-    [self.musicButton addTarget:self action:@selector(musicButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:self.musicButton];
-    
-    // 外部滤镜
-    UIButton *externalFilterButton = [[UIButton alloc] initWithFrame:CGRectMake(PLS_SCREEN_WIDTH - 60, 250, 46, 46)];
-    externalFilterButton.layer.cornerRadius = 23;
-    externalFilterButton.backgroundColor = [UIColor colorWithRed:116/255 green:116/255 blue:116/255 alpha:0.55];
-    [externalFilterButton setTitle:@"美化" forState:UIControlStateNormal];
-    [externalFilterButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    externalFilterButton.titleLabel.font = [UIFont systemFontOfSize:14];
-    [externalFilterButton addTarget:self action:@selector(externalFilterButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:externalFilterButton];
     
     // 外部人脸识别加贴纸
     UIButton *externalStickerButton = [[UIButton alloc] initWithFrame:CGRectMake(PLS_SCREEN_WIDTH - 60, 310, 46, 46)];
@@ -492,30 +369,6 @@ FilterViewEventDelegate, StickerViewClickDelegate, TuSDKFilterProcessorDelegate
     // 导入视频的操作按钮
     center = self.recordButton.center;
     center.x = CGRectGetWidth([UIScreen mainScreen].bounds) - 60;
-    self.importMovieView = [[UIView alloc] init];
-    self.importMovieView.backgroundColor = [UIColor clearColor];
-    self.importMovieView.frame = CGRectMake(PLS_SCREEN_WIDTH - 60, PLS_SCREEN_HEIGHT - 80, 80, 80);
-    self.importMovieView.center = center;
-    [self.recordToolboxView addSubview:self.importMovieView];
-    self.importMovieButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.importMovieButton.frame = CGRectMake(15, 10, 50, 50);
-    [self.importMovieButton setBackgroundImage:[UIImage imageNamed:@"movie"] forState:UIControlStateNormal];
-    [self.importMovieButton addTarget:self action:@selector(importMovieButtonEvent:) forControlEvents:UIControlEventTouchUpInside];
-    [self.importMovieView addSubview:self.importMovieButton];
-    UILabel *importMovieLabel = [[UILabel alloc] init];
-    importMovieLabel.frame = CGRectMake(0, 60, 80, 20);
-    importMovieLabel.text = @"导入视频";
-    importMovieLabel.textColor = [UIColor whiteColor];
-    importMovieLabel.textAlignment = NSTextAlignmentCenter;
-    importMovieLabel.font = [UIFont systemFontOfSize:14.0];
-    [self.importMovieView addSubview:importMovieLabel];
-}
-
-#pragma mark - EasyarSDK AR 入口
-- (void)ARButtonOnClick:(id)sender {
-//    EasyarARViewController *easyerARViewController = [[EasyarARViewController alloc]init];
-//    [easyerARViewController loadARID:@"287e6520eff14884be463d61efb40ba8"];
-//    [self presentViewController:easyerARViewController animated:NO completion:nil];
 }
 
 #pragma mark -- Button event
@@ -542,7 +395,7 @@ FilterViewEventDelegate, StickerViewClickDelegate, TuSDKFilterProcessorDelegate
                 // 设置的 options 可能会导致该回调调用两次，第一次返回你指定尺寸的图片，第二次将会返回原尺寸图片
                 if ([[info valueForKey:@"PHImageResultIsDegradedKey"] integerValue] == 0){
                     // Do something with the FULL SIZED image
-                    [self.importMovieButton setBackgroundImage:result forState:UIControlStateNormal];                    
+                  
                 } else {
                     // Do something with the regraded image
                     
@@ -554,9 +407,8 @@ FilterViewEventDelegate, StickerViewClickDelegate, TuSDKFilterProcessorDelegate
 
 // 返回上一层
 - (void)backButtonEvent:(id)sender {
-    if (self.viewRecordButton.isSelected) {
-        [self.viewRecorderManager cancelRecording];
-    }
+
+    
     if ([self.shortVideoRecorder getFilesCount] > 0) {
         self.alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:[NSString stringWithFormat:@"放弃这个视频(共%ld个视频段)?", (long)[self.shortVideoRecorder getFilesCount]] delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
         self.alertView.tag = PLS_CLOSE_CONTROLLER_ALERTVIEW_TAG;
@@ -566,67 +418,6 @@ FilterViewEventDelegate, StickerViewClickDelegate, TuSDKFilterProcessorDelegate
     }
 }
 
-// 全屏录制／正方形录制
-- (void)squareRecordButtonEvent:(id)sender {
-    UIButton *button = (UIButton *)sender;
-    button.selected = !button.selected;
-    if (button.selected) {
-        self.videoConfiguration.videoSize = CGSizeMake(480, 480);
-        [self.shortVideoRecorder reloadvideoConfiguration:self.videoConfiguration];
-        
-        self.shortVideoRecorder.maxDuration = 10.0f;
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            self.shortVideoRecorder.previewView.frame = CGRectMake(0, PLS_BaseToolboxView_HEIGHT, PLS_SCREEN_WIDTH, PLS_SCREEN_WIDTH);
-            self.progressBar.frame = CGRectMake(0, 0, PLS_SCREEN_WIDTH, 10);
-            
-        });
-        
-    } else {
-        self.videoConfiguration.videoSize = CGSizeMake(544, 960);
-        [self.shortVideoRecorder reloadvideoConfiguration:self.videoConfiguration];
-        
-        self.shortVideoRecorder.maxDuration = 10.0f;
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            self.shortVideoRecorder.previewView.frame = CGRectMake(0, 0, PLS_SCREEN_WIDTH, PLS_SCREEN_HEIGHT);
-            self.progressBar.frame = CGRectMake(0, CGRectGetHeight(self.recordToolboxView.frame) - 10, PLS_SCREEN_WIDTH, 10);
-        });
-    }
-}
-
-//录制 self.view
-- (void)viewRecorderButtonClick:(id)sender {
-    if (!self.viewRecorderManager) {
-        self.viewRecorderManager = [[PLSViewRecorderManager alloc] initWithRecordedView:self.view];
-        self.viewRecorderManager.delegate = self;
-    }
-    
-    if (self.viewRecordButton.isSelected) {
-        self.viewRecordButton.selected = NO;
-        [self.viewRecorderManager stopRecording];
-        
-        [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationWillResignActiveNotification object:nil];
-    }
-    else {
-        self.viewRecordButton.selected = YES;
-        [self.viewRecorderManager startRecording];
-        
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(applicationWillResignActive:)
-                                                     name:UIApplicationWillResignActiveNotification
-                                                   object:nil];
-    }
-}
-
-// 打开／关闭闪光灯
-- (void)flashButtonEvent:(id)sender {
-    if (self.shortVideoRecorder.torchOn) {
-        self.shortVideoRecorder.torchOn = NO;
-    } else {
-        self.shortVideoRecorder.torchOn = YES;
-    }
-}
 
 // 打开／关闭美颜
 - (void)beautyFaceButtonEvent:(id)sender {
@@ -648,64 +439,9 @@ FilterViewEventDelegate, StickerViewClickDelegate, TuSDKFilterProcessorDelegate
     self.editVideoCollectionView.hidden = !button.selected;
 }
 
-// 加载草稿视频
-- (void)draftVideoButtonOnClick:(id)sender{
-    AVAsset *asset = [AVAsset assetWithURL:_URL];
-    CGFloat duration = CMTimeGetSeconds(asset.duration);
-    if ((self.shortVideoRecorder.getTotalDuration + duration) < self.shortVideoRecorder.maxDuration) {
-        [self.shortVideoRecorder insertVideo:_URL];
-        if (self.shortVideoRecorder.getTotalDuration != 0) {
-            _deleteButton.style = PLSDeleteButtonStyleNormal;
-            _deleteButton.hidden = NO;
-            
-            [_progressBar addProgressView];
-            [_progressBar startShining];
-            [_progressBar setLastProgressToWidth:duration / self.shortVideoRecorder.maxDuration * _progressBar.frame.size.width];
-            [_progressBar stopShining];
-        }
-        self.durationLabel.text = [NSString stringWithFormat:@"%.2fs", self.shortVideoRecorder.getTotalDuration];
-        if (self.shortVideoRecorder.getTotalDuration >= self.shortVideoRecorder.maxDuration) {
-            self.importMovieButton.hidden = YES;
-            [self endButtonEvent:nil];
-        }
-    }
-}
 
-// 是否使用背景音乐
-- (void)musicButtonOnClick:(id)sender {
-    self.musicButton.selected = !self.musicButton.selected;
-    if (self.musicButton.selected) {
-        // 背景音乐
-        NSURL *audioURL = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"counter-35s" ofType:@"m4a"]];
-        [self.shortVideoRecorder mixAudio:audioURL];
-    } else{
-        [self.shortVideoRecorder mixAudio:nil];
-    }
-}
 
-// 拍照
--(void)snapshotButtonOnClick:(UIButton *)sender {
-    sender.enabled = NO;
-    
-    [self.shortVideoRecorder getScreenShotWithCompletionHandler:^(UIImage * _Nullable image) {
-        sender.enabled = YES;
-        if (image) {
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
-            });
-        }
-    }];
-}
 
-//
-- (void)filePathButtonClickedEvent:(id)sender {
-    self.filePathButton.selected = !self.filePathButton.selected;
-    if (self.filePathButton.selected) {
-        self.useSDKInternalPath = NO;
-    } else {
-        self.useSDKInternalPath = YES;
-    }
-}
 
 // 删除上一段视频
 - (void)deleteButtonEvent:(id)sender {
@@ -769,7 +505,7 @@ FilterViewEventDelegate, StickerViewClickDelegate, TuSDKFilterProcessorDelegate
     AVAsset *asset = self.shortVideoRecorder.assetRepresentingAllFiles;
     [self playEvent:asset];
     [self.viewRecorderManager cancelRecording];
-    self.viewRecordButton.selected = NO;
+    
 }
 
 // 取消录制
@@ -778,20 +514,6 @@ FilterViewEventDelegate, StickerViewClickDelegate, TuSDKFilterProcessorDelegate
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-// 导入视频
-- (void)importMovieButtonEvent:(id)sender {
-    PhotoAlbumViewController *photoAlbumViewController = [[PhotoAlbumViewController alloc] init];
-    [self presentViewController:photoAlbumViewController animated:YES completion:nil];
-}
-
-#pragma mark - Notification
-- (void)applicationWillResignActive:(NSNotification *)notification {
-    if (self.viewRecordButton.selected) {
-        [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationWillResignActiveNotification object:nil];
-        self.viewRecordButton.selected = NO;
-        [self.viewRecorderManager cancelRecording];
-    }
-}
 
 #pragma mark - UIAlertViewDelegate
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
@@ -843,7 +565,6 @@ FilterViewEventDelegate, StickerViewClickDelegate, TuSDKFilterProcessorDelegate
 
 #pragma mark - PLSViewRecorderManagerDelegate
 - (void)viewRecorderManager:(PLSViewRecorderManager *)manager didFinishRecordingToAsset:(AVAsset *)asset totalDuration:(CGFloat)totalDuration {
-    self.viewRecordButton.selected = NO;
     // 设置音视频、水印等编辑信息
     NSMutableDictionary *outputSettings = [[NSMutableDictionary alloc] init];
     // 待编辑的原始视频素材
@@ -918,12 +639,8 @@ FilterViewEventDelegate, StickerViewClickDelegate, TuSDKFilterProcessorDelegate
     
     self.endButton.enabled = (totalDuration >= self.shortVideoRecorder.minDuration);
     
-    self.squareRecordButton.hidden = YES; // 录制过程中不允许切换分辨率（1:1 <--> 全屏）
     self.deleteButton.hidden = YES;
     self.endButton.hidden = YES;
-    self.importMovieView.hidden = YES;
-    self.musicButton.hidden = YES;
-    self.filePathButton.hidden = YES;
     
     self.durationLabel.text = [NSString stringWithFormat:@"%.2fs", totalDuration];
 }
@@ -935,17 +652,9 @@ FilterViewEventDelegate, StickerViewClickDelegate, TuSDKFilterProcessorDelegate
     self.endButton.enabled = totalDuration >= self.shortVideoRecorder.minDuration;
     
     if (totalDuration <= 0.0000001f) {
-        self.squareRecordButton.hidden = NO;
         self.deleteButton.hidden = YES;
         self.endButton.hidden = YES;
-        self.importMovieView.hidden = NO;
-        self.musicButton.hidden = NO;
-        self.filePathButton.hidden = NO;
     }
-    
-    AVAsset *asset = [AVAsset assetWithURL:_URL];
-    CGFloat duration = CMTimeGetSeconds(asset.duration);
-    self.draftButton.hidden = (totalDuration +  duration) >= self.shortVideoRecorder.maxDuration;
     
     self.durationLabel.text = [NSString stringWithFormat:@"%.2fs", totalDuration];
 }
@@ -958,11 +667,7 @@ FilterViewEventDelegate, StickerViewClickDelegate, TuSDKFilterProcessorDelegate
     
     self.deleteButton.hidden = NO;
     self.endButton.hidden = NO;
-    
-    AVAsset *asset = [AVAsset assetWithURL:_URL];
-    CGFloat duration = CMTimeGetSeconds(asset.duration);
-    self.draftButton.hidden = (totalDuration +  duration) >= self.shortVideoRecorder.maxDuration;
-    
+
     if (totalDuration >= self.shortVideoRecorder.maxDuration) {
         [self endButtonEvent:nil];
     }
@@ -975,7 +680,6 @@ FilterViewEventDelegate, StickerViewClickDelegate, TuSDKFilterProcessorDelegate
     AVAsset *asset = self.shortVideoRecorder.assetRepresentingAllFiles;
     [self playEvent:asset];
     [self.viewRecorderManager cancelRecording];
-    self.viewRecordButton.selected = NO;
 }
 
 #pragma mark -- 下一步
@@ -985,40 +689,7 @@ FilterViewEventDelegate, StickerViewClickDelegate, TuSDKFilterProcessorDelegate
     NSLog(@"filesURLArray:%@", filesURLArray);
     
     __block AVAsset *movieAsset = asset;
-    if (self.musicButton.selected) {
-        dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
-        [self loadActivityIndicatorView];
-        // MusicVolume：1.0，videoVolume:0.0 即完全丢弃掉拍摄时的所有声音，只保留背景音乐的声音
-        [self.shortVideoRecorder mixWithMusicVolume:1.0 videoVolume:0.0 completionHandler:^(AVMutableComposition * _Nullable composition, AVAudioMix * _Nullable audioMix, NSError * _Nullable error) {
-            AVAssetExportSession *exporter = [[AVAssetExportSession alloc]initWithAsset:composition presetName:AVAssetExportPresetHighestQuality];
-            NSURL *outputPath = [self exportAudioMixPath];
-            exporter.outputURL = outputPath;
-            exporter.outputFileType = AVFileTypeMPEG4;
-            exporter.shouldOptimizeForNetworkUse= YES;
-            exporter.audioMix = audioMix;
-            [exporter exportAsynchronouslyWithCompletionHandler:^{
-                switch ([exporter status]) {
-                        case AVAssetExportSessionStatusFailed: {
-                            NSLog(@"audio mix failed：%@", [[exporter error] description]);
-                            AlertViewShow([[exporter error] description]);
-                        } break;
-                        case AVAssetExportSessionStatusCancelled: {
-                            NSLog(@"audio mix canceled");
-                        } break;
-                        case AVAssetExportSessionStatusCompleted: {
-                            NSLog(@"audio mix success");
-                            movieAsset = [AVAsset assetWithURL:outputPath];
-                        } break;
-                    default: {
-                        
-                    } break;
-                }
-                dispatch_semaphore_signal(semaphore);
-            }];
-        }];
-        [self removeActivityIndicatorView];
-        dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
-    }
+  
     // 设置音视频、水印等编辑信息
     NSMutableDictionary *outputSettings = [[NSMutableDictionary alloc] init];
     // 待编辑的原始视频素材
@@ -1150,18 +821,6 @@ FilterViewEventDelegate, StickerViewClickDelegate, TuSDKFilterProcessorDelegate
     AlertViewShow(@"使用高级滤镜和人脸贴纸特效，请联系七牛销售！");
 }
 
-- (void)externalFilterButtonOnClick:(UIButton *)button {
-    [self checkBundleId];
-    
-    if (!_filterView) {
-        [self initFilterView];
-    }
-    
-    _filterView.hidden = !_filterView.hidden;
-    if (!_filterView.hidden) {
-        _stickerView.hidden = YES;
-    }
-}
 
 - (void)externalStickerButtonOnClick:(UIButton *)button {
     [self checkBundleId];
