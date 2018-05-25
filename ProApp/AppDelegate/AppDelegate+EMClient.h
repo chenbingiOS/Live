@@ -10,4 +10,6 @@
 
 @interface AppDelegate (EMClient)
 
+- (void)initEMClient;
+
 @end

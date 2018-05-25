@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "AppDelegate+AppServer.h"
 #import "AppDelegate+ShareSDK.h"
+#import "AppDelegate+EMClient.h"
 
 @interface AppDelegate ()
 
@@ -18,9 +19,10 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-
-    [self initWindow];
+    
     [self initThirdPlatform];
+    [self initEMClient];
+    [self initWindow];
     [self initRootVC];
     [self initApperance];    
     
@@ -41,7 +43,9 @@
 
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
-    // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
+    [[EMClient sharedClient] applicationWillEnterForeground:application];
+//    [JPUSHService setBadge:0];
+    [application setApplicationIconBadgeNumber:0];
 }
 
 

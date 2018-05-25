@@ -8,11 +8,16 @@
 
 #import "AppDelegate+EMClient.h"
 
+//环信
+#define IMkey @"1101171020178343#duomi"
+
 @implementation AppDelegate (EMClient)
 
 - (void)initEMClient {
-//    NSLog(@"环信 版本号====%@",[[EMClient sharedClient] version]);
-    
+    NSLog(@"环信 版本号====%@",[[EMClient sharedClient] version]);
+    //注册环信 advance1989#yunbaolive
+    EMOptions *options = [EMOptions optionsWithAppkey:IMkey];
+    [[EMClient sharedClient] initializeSDKWithOptions:options];
 }
 
 @end
