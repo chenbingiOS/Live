@@ -1,0 +1,1 @@
+../../../WeiXinPay/SDKExport/WXApi.h
