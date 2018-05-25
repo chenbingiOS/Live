@@ -93,11 +93,7 @@
         }];
         [self.homeMenuPopView.homeMenuView.videoButton addBlockForControlEvents:UIControlEventTouchUpInside block:^(id  _Nonnull sender) {
             @strongify(self);
-            CBApplyAnchorVC *vc = [CBApplyAnchorVC new];
-            CBNVC *nvc = [[CBNVC alloc] initWithRootViewController:vc];
-            [self presentViewController:nvc animated:YES completion:^{
-                
-            }];
+           
         }];
         return NO;
     }

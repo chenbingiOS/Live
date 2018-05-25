@@ -22,6 +22,8 @@ pod 'PLShortVideoKit/ex-libMuseProcessor'	# 短视频
 pod 'PLRTCStreamingKit'						# 连麦
 pod 'Qiniu'									# 七牛
 pod 'HappyDNS'								# 七牛DNS
+# 图像处理
+pod 'TuSDK'
 # 轮播图
 pod 'TYCyclePagerView'
 # 第三方登录

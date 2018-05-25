@@ -174,6 +174,7 @@
 		548C5CCB20B519CE00A6FF53 /* CBInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 548C5CCA20B519CE00A6FF53 /* CBInterface.m */; };
 		548C5CCF20B51C8400A6FF53 /* CBWebVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 548C5CCE20B51C8400A6FF53 /* CBWebVC.m */; };
 		548C5CDC20B5433900A6FF53 /* MBProgressHUD+HUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 548C5CDB20B5433900A6FF53 /* MBProgressHUD+HUD.m */; };
+		54A4457E20B7BCF700D65F0A /* AppDelegate+PLKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 54A4457D20B7BCF700D65F0A /* AppDelegate+PLKit.m */; };
 		54BD85E420B65A890024B6E7 /* AppDelegate+ShareSDK.m in Sources */ = {isa = PBXBuildFile; fileRef = 54BD85E320B65A890024B6E7 /* AppDelegate+ShareSDK.m */; };
 		54BD85E720B669F00024B6E7 /* AppDelegate+EMClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 54BD85E620B669F00024B6E7 /* AppDelegate+EMClient.m */; };
 		54BD85EB20B66F410024B6E7 /* CBSelectGuildVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 54BD85E920B66F410024B6E7 /* CBSelectGuildVC.m */; };
@@ -461,6 +462,8 @@
 		548C5CCE20B51C8400A6FF53 /* CBWebVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBWebVC.m; sourceTree = "<group>"; };
 		548C5CDA20B5433900A6FF53 /* MBProgressHUD+HUD.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+HUD.h"; sourceTree = "<group>"; };
 		548C5CDB20B5433900A6FF53 /* MBProgressHUD+HUD.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+HUD.m"; sourceTree = "<group>"; };
+		54A4457C20B7BCF700D65F0A /* AppDelegate+PLKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+PLKit.h"; sourceTree = "<group>"; };
+		54A4457D20B7BCF700D65F0A /* AppDelegate+PLKit.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+PLKit.m"; sourceTree = "<group>"; };
 		54BD85E220B65A890024B6E7 /* AppDelegate+ShareSDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+ShareSDK.h"; sourceTree = "<group>"; };
 		54BD85E320B65A890024B6E7 /* AppDelegate+ShareSDK.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+ShareSDK.m"; sourceTree = "<group>"; };
 		54BD85E520B669F00024B6E7 /* AppDelegate+EMClient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+EMClient.h"; sourceTree = "<group>"; };
@@ -835,6 +838,8 @@
 				54BD85E320B65A890024B6E7 /* AppDelegate+ShareSDK.m */,
 				54BD85E520B669F00024B6E7 /* AppDelegate+EMClient.h */,
 				54BD85E620B669F00024B6E7 /* AppDelegate+EMClient.m */,
+				54A4457C20B7BCF700D65F0A /* AppDelegate+PLKit.h */,
+				54A4457D20B7BCF700D65F0A /* AppDelegate+PLKit.m */,
 			);
 			path = AppDelegate;
 			sourceTree = "<group>";
@@ -1582,6 +1587,8 @@
 		548C5C9920B4FA7700A6FF53 /* Live */ = {
 			isa = PBXGroup;
 			children = (
+				548C5C9C20B4FAA300A6FF53 /* ApplyAnchor */,
+				54BD85ED20B66F480024B6E7 /* SelectGuild */,
 			);
 			path = Live;
 			sourceTree = "<group>";
@@ -1589,8 +1596,6 @@
 		548C5C9A20B4FA7B00A6FF53 /* Video */ = {
 			isa = PBXGroup;
 			children = (
-				548C5C9C20B4FAA300A6FF53 /* ApplyAnchor */,
-				54BD85ED20B66F480024B6E7 /* SelectGuild */,
 			);
 			path = Video;
 			sourceTree = "<group>";
@@ -1739,6 +1744,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hant",
 			);
 			mainGroup = 0737ED7B2074A33600A89CC0;
 			productRefGroup = 0737ED852074A33600A89CC0 /* Products */;
@@ -1982,6 +1988,7 @@
 				07F38C0520994A0000DDBC90 /* JPGiftCollectionViewCell.m in Sources */,
 				07558C232094517A007E41C2 /* CBOnlineUserCell.m in Sources */,
 				071D3C152092B51700A6C5CE /* CBPackageRecordVO.m in Sources */,
+				54A4457E20B7BCF700D65F0A /* AppDelegate+PLKit.m in Sources */,
 				07F6EFE120872E3D0035C6BD /* ALinUser.m in Sources */,
 				54130A1220B6B52200CAE467 /* CBLiveSettingConfig.m in Sources */,
 				07558C1F20941F18007E41C2 /* CBPopView.m in Sources */,
@@ -2149,11 +2156,18 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/ProApp/ThirdParty/Frameworks",
 					"$(PROJECT_DIR)/ProApp/Modules/Frameworks",
+					"$(PROJECT_DIR)/ProApp/TuSDK/TuSDK-framework",
+					"$(PROJECT_DIR)/ProApp/ThirdParty/TuSDK/TuSDK-framework",
 				);
 				GCC_PREFIX_HEADER = ProApp/ProApp.pch;
 				INFOPLIST_FILE = ProApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/ProApp/TuSDK/GPUImage",
+					"$(PROJECT_DIR)/ProApp/ThirdParty/TuSDK/GPUImage",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.fengwo.ProApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2176,11 +2190,18 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/ProApp/ThirdParty/Frameworks",
 					"$(PROJECT_DIR)/ProApp/Modules/Frameworks",
+					"$(PROJECT_DIR)/ProApp/TuSDK/TuSDK-framework",
+					"$(PROJECT_DIR)/ProApp/ThirdParty/TuSDK/TuSDK-framework",
 				);
 				GCC_PREFIX_HEADER = ProApp/ProApp.pch;
 				INFOPLIST_FILE = ProApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/ProApp/TuSDK/GPUImage",
+					"$(PROJECT_DIR)/ProApp/ThirdParty/TuSDK/GPUImage",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.fengwo.ProApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
