@@ -17,8 +17,8 @@
 + (void)clearProfile;
 
 + (NSString *)getOwnID;
-+ (NSString *)getOwnNicename;
-+ (NSString *)getOwnToken;
++ (NSString *)getOwnNicename;  ///< 昵称
++ (NSString *)getOwnToken;  
 + (NSString *)getOwnSignature;
 + (NSString *)getavatar;
 + (NSString *)getavatarThumb;
