@@ -1,0 +1,1 @@
+../../../../PLRTCStreamingKit/Pod/Library/HappyDNS.framework/Headers/QNRecord.h

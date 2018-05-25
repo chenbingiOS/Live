@@ -18,7 +18,9 @@ pod 'MJRefresh'
 pod 'Masonry'
 # 直播工具
 pod 'PLPlayerKit'
+pod 'PLRTCStreamingKit'
 pod 'Qiniu'
+pod 'HappyDNS'
 # 轮播图
 pod 'TYCyclePagerView'
 # 第三方登录

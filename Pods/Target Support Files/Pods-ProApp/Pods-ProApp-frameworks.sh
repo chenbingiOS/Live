@@ -145,10 +145,14 @@ strip_invalid_archs() {
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${PODS_ROOT}/HyphenateLite/iOS_IM_SDK_V3.4.0/HyphenateSDK/HyphenateLite.framework"
   install_framework "${PODS_ROOT}/PLPlayerKit/Pod/Library/PLPlayerKit.framework"
+  install_framework "${PODS_ROOT}/PLRTCStreamingKit/Pod/Library/PLRTCStreamingKit.framework"
+  install_framework "${PODS_ROOT}/PLRTCStreamingKit/Pod/Library/HappyDNS.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${PODS_ROOT}/HyphenateLite/iOS_IM_SDK_V3.4.0/HyphenateSDK/HyphenateLite.framework"
   install_framework "${PODS_ROOT}/PLPlayerKit/Pod/Library/PLPlayerKit.framework"
+  install_framework "${PODS_ROOT}/PLRTCStreamingKit/Pod/Library/PLRTCStreamingKit.framework"
+  install_framework "${PODS_ROOT}/PLRTCStreamingKit/Pod/Library/HappyDNS.framework"
 fi
 if [ "${COCOAPODS_PARALLEL_CODE_SIGN}" == "true" ]; then
   wait
