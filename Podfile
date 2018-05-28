@@ -7,6 +7,7 @@ pod 'AFNetworking'
 pod 'SDWebImage'
 # UI框架
 pod 'YYKit'
+pod 'LXMButtonImagePosition'
 # 圆角
 pod 'ZYCornerRadius'
 # 提示

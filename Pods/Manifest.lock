@@ -20,6 +20,7 @@ PODS:
   - JCore (1.1.7)
   - JPush (3.0.8):
     - JCore (~> 1.1.7)
+  - LXMButtonImagePosition (1.1.1)
   - LYEmptyView (1.0.3)
   - Masonry (1.1.0)
   - MBProgressHUD (1.1.0)
@@ -59,6 +60,7 @@ DEPENDENCIES:
   - HappyDNS
   - HyphenateLite
   - JPush
+  - LXMButtonImagePosition
   - LYEmptyView
   - Masonry
   - MBProgressHUD
@@ -85,6 +87,7 @@ SPEC REPOS:
     - HyphenateLite
     - JCore
     - JPush
+    - LXMButtonImagePosition
     - LYEmptyView
     - Masonry
     - MBProgressHUD
@@ -108,6 +111,7 @@ SPEC CHECKSUMS:
   HyphenateLite: ada71aa3aba581cd486bce10f2c0fa66c11ad30f
   JCore: f7459c81c135281a874a6beafdd321666adcc834
   JPush: 9574d072cc37e93fa293ba69b43ce763c440943a
+  LXMButtonImagePosition: bbbe4fceb2f6011cf02add36750acbeddd161c3e
   LYEmptyView: 3a7d1604cff1791d207a498a42101f31e9b12b8c
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MBProgressHUD: e7baa36a220447d8aeb12769bf0585582f3866d9
@@ -124,6 +128,6 @@ SPEC CHECKSUMS:
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
   ZYCornerRadius: f0af817be7805b5c63d793042ca7a03f81e14069
 
-PODFILE CHECKSUM: 2988186f1baba4f5a2ece2c237ee101b2ce64b8b
+PODFILE CHECKSUM: 698ff343da97caaaa6f65c821f4bd76e3854747b
 
 COCOAPODS: 1.5.2
