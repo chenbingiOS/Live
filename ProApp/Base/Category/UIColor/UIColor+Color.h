@@ -17,5 +17,6 @@
 + (UIColor *)backColor;
 + (UIColor *)btnSelectColor;
 + (UIColor *)shadowColor;
++ (UIColor *)shortVideoSelectBtnColor;
 
 @end

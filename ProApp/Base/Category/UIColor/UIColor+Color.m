@@ -42,4 +42,8 @@
     return UIColorHex(6A6A6A);
 }
 
++ (UIColor *)shortVideoSelectBtnColor {
+    return UIColorHex(333333);
+}
+
 @end

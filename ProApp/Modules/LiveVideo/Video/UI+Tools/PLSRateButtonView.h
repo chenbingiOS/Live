@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+
 @class PLSRateButtonView;
 @protocol PLSRateButtonViewDelegate <NSObject>
 
@@ -18,13 +19,12 @@
 
 @property (nonatomic, strong) NSArray *staticTitleArray;
 @property (nonatomic, strong) NSArray *scrollTitleArr;
-
-@property (nonatomic, strong) NSMutableArray *totalLabelArray;
-
-@property (nonatomic, assign) id<PLSRateButtonViewDelegate> rateDelegate;
+@property (nonatomic, strong) NSMutableArray <UILabel *> *totalLabelArray;
 @property (nonatomic, assign) NSInteger index;
 @property (nonatomic, assign) CGFloat space;
 
+@property (nonatomic, assign) id<PLSRateButtonViewDelegate> rateDelegate;
 
 - (instancetype)initWithFrame:(CGRect)frame defaultIndex:(NSInteger)defaultIndex;
+
 @end

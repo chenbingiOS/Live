@@ -7,6 +7,7 @@
 //
 
 #import "CBRecordVideoVC.h"
+#import "UIButton+LXMImagePosition.h"
 
 #import "PLShortVideoKit/PLShortVideoKit.h"
 #import "PLSProgressBar.h"
@@ -63,8 +64,8 @@ FilterViewEventDelegate, StickerViewClickDelegate, TuSDKFilterProcessorDelegate
 @property (strong, nonatomic) UIView *baseToolboxView;
 @property (strong, nonatomic) UIView *recordToolboxView;
 @property (strong, nonatomic) UIImageView *indicator;
-
 @property (strong, nonatomic) UILabel *durationLabel;
+
 @property (strong, nonatomic) UIAlertView *alertView;
 
 
@@ -82,9 +83,6 @@ FilterViewEventDelegate, StickerViewClickDelegate, TuSDKFilterProcessorDelegate
 @property (strong, nonatomic) UICollectionView *editVideoCollectionView;
 @property (strong, nonatomic) NSMutableArray<NSDictionary *> *filtersArray;
 @property (assign, nonatomic) NSInteger filterIndex;
-
-@property (strong, nonatomic) UIActivityIndicatorView *activityIndicatorView;
-
 
 // 录制前是否开启自动检测设备方向调整视频拍摄的角度（竖屏、横屏）
 @property (assign, nonatomic) BOOL isUseAutoCheckDeviceOrientationBeforeRecording;
@@ -109,6 +107,17 @@ FilterViewEventDelegate, StickerViewClickDelegate, TuSDKFilterProcessorDelegate
 
 @implementation CBRecordVideoVC
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.shortVideoRecorder startCaptureSession];
+    [self getFirstMovieFromPhotoAlbum];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [self.shortVideoRecorder stopCaptureSession];
+}
+
 - (instancetype)init {
     self = [super init];
     if (self) {
@@ -127,41 +136,16 @@ FilterViewEventDelegate, StickerViewClickDelegate, TuSDKFilterProcessorDelegate
     return self;
 }
 
-//- (void)loadView{
-//    [super loadView];
-//}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    
-    self.view.backgroundColor = PLS_RGBCOLOR(25, 24, 36);
-    
-    // --------------------------
+    self.view.backgroundColor = [UIColor blackColor];
     // 短视频录制核心类设置
     [self setupShortVideoRecorder];
-    
-    // --------------------------
+    // UI
     [self setupBaseToolboxView];
     [self setupRecordToolboxView];
-    
-    // --------------------------
     // TuSDK mark - 初始化
     [self initTUSDK];
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    
-    [self.shortVideoRecorder startCaptureSession];
-    
-    [self getFirstMovieFromPhotoAlbum];
-}
-
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-    
-    [self.shortVideoRecorder stopCaptureSession];
 }
 
 // 短视频录制核心类设置
@@ -186,21 +170,24 @@ FilterViewEventDelegate, StickerViewClickDelegate, TuSDKFilterProcessorDelegate
     self.shortVideoRecorder.previewView.frame = CGRectMake(0, 0, PLS_SCREEN_WIDTH, PLS_SCREEN_HEIGHT);
     [self.view addSubview:self.shortVideoRecorder.previewView];
     
+    // 默认开启美颜功能
+    [self.shortVideoRecorder setBeautifyModeOn:YES];
+    
     // 录制前是否开启自动检测设备方向调整视频拍摄的角度（竖屏、横屏）
     if (self.isUseAutoCheckDeviceOrientationBeforeRecording) {
         self.shortVideoRecorder.adaptationRecording = YES; // 根据设备方向自动确定横屏 or 竖屏拍摄效果
         [self.shortVideoRecorder setDeviceOrientationBlock:^(PLSPreviewOrientation deviceOrientation){
             switch (deviceOrientation) {
-                    case PLSPreviewOrientationPortrait:
+                case PLSPreviewOrientationPortrait:
                     NSLog(@"deviceOrientation : PLSPreviewOrientationPortrait");
                     break;
-                    case PLSPreviewOrientationPortraitUpsideDown:
+                case PLSPreviewOrientationPortraitUpsideDown:
                     NSLog(@"deviceOrientation : PLSPreviewOrientationPortraitUpsideDown");
                     break;
-                    case PLSPreviewOrientationLandscapeRight:
+                case PLSPreviewOrientationLandscapeRight:
                     NSLog(@"deviceOrientation : PLSPreviewOrientationLandscapeRight");
                     break;
-                    case PLSPreviewOrientationLandscapeLeft:
+                case PLSPreviewOrientationLandscapeLeft:
                     NSLog(@"deviceOrientation : PLSPreviewOrientationLandscapeLeft");
                     break;
                 default:
@@ -216,12 +203,8 @@ FilterViewEventDelegate, StickerViewClickDelegate, TuSDKFilterProcessorDelegate
         for (NSDictionary *filterInfoDic in self.filterGroup.filtersInfo) {
             NSString *name = [filterInfoDic objectForKey:@"name"];
             NSString *coverImagePath = [filterInfoDic objectForKey:@"coverImagePath"];
-            
-            NSDictionary *dic = @{
-                                  @"name"            : name,
-                                  @"coverImagePath"  : coverImagePath
-                                  };
-            
+            NSDictionary *dic = @{ @"name"            : name,
+                                   @"coverImagePath"  : coverImagePath };
             [self.filtersArray addObject:dic];
         }
         
@@ -238,119 +221,115 @@ FilterViewEventDelegate, StickerViewClickDelegate, TuSDKFilterProcessorDelegate
     }
 }
 
+// 基本工具栏
 - (void)setupBaseToolboxView {
-    self.baseToolboxView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, PLS_BaseToolboxView_HEIGHT, PLS_BaseToolboxView_HEIGHT + PLS_SCREEN_WIDTH)];
-    self.baseToolboxView.backgroundColor = [UIColor clearColor];
-    [self.view addSubview:self.baseToolboxView];
-    
-    // 展示拼接视频的动画
-    self.activityIndicatorView = [[UIActivityIndicatorView alloc] initWithFrame:self.view.bounds];
-    self.activityIndicatorView.center = self.view.center;
-    [self.activityIndicatorView setActivityIndicatorViewStyle:UIActivityIndicatorViewStyleWhiteLarge];
-    self.activityIndicatorView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
-    
-    // -------------------------------------------------------
     
     // 返回
     UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    backButton.frame = CGRectMake(10, 10, 35, 35);
-    [backButton setBackgroundImage:[UIImage imageNamed:@"btn_camera_cancel_a"] forState:UIControlStateNormal];
-    [backButton setBackgroundImage:[UIImage imageNamed:@"btn_camera_cancel_b"] forState:UIControlStateHighlighted];
+    backButton.frame = CGRectMake(10, 35, 44, 44);
+    [backButton setImage:[UIImage imageNamed:@"ShortVideo_close"] forState:UIControlStateNormal];
     [backButton addTarget:self action:@selector(backButtonEvent:) forControlEvents:UIControlEventTouchUpInside];
-    [self.baseToolboxView addSubview:backButton];
+    [self.view addSubview:backButton];
+    
+    // 左边工具条
+    self.baseToolboxView = [[UIView alloc] initWithFrame:CGRectMake(kScreenWidth-64, 35, 64, kScreenWidth+64)];
+    self.baseToolboxView.backgroundColor = [UIColor clearColor];
+    [self.view addSubview:self.baseToolboxView];
+    // 切换摄像头
+    UIButton *toggleCameraButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    toggleCameraButton.frame = CGRectMake(0, 0, 64, 64);
+    [toggleCameraButton setTitle:@"切镜头" forState:UIControlStateNormal];
+    toggleCameraButton.titleLabel.font = [UIFont fontWithName:@"PingFang-SC-Medium" size:12];
+    [toggleCameraButton setImage:[UIImage imageNamed:@"ShortVideo_lens"] forState:UIControlStateNormal];
+    [toggleCameraButton addTarget:self action:@selector(toggleCameraButtonEvent:) forControlEvents:UIControlEventTouchUpInside];
+    [toggleCameraButton setImagePosition:LXMImagePositionTop spacing:4];
+    [self.baseToolboxView addSubview:toggleCameraButton];
+    
+    // 倒计时
+    UIButton *countdownButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    countdownButton.frame = CGRectMake(0, 64+15, 64, 64);
+    [countdownButton setTitle:@"倒计时" forState:UIControlStateNormal];
+    countdownButton.titleLabel.font = [UIFont fontWithName:@"PingFang-SC-Medium" size:12];
+    [countdownButton setImage:[UIImage imageNamed:@"ShortVideo_countdown"] forState:UIControlStateNormal];
+    [countdownButton addTarget:self action:@selector(toggleCameraButtonEvent:) forControlEvents:UIControlEventTouchUpInside];
+    [countdownButton setImagePosition:LXMImagePositionTop spacing:4];
+    [self.baseToolboxView addSubview:countdownButton];
     
     // 七牛滤镜
     UIButton *filterButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    filterButton.frame = CGRectMake(10, 55, 35, 35);
+    filterButton.frame = CGRectMake(0, 128+15+15, 64, 64);
     [filterButton setTitle:@"滤镜" forState:UIControlStateNormal];
-    [filterButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    filterButton.titleLabel.font = [UIFont systemFontOfSize:14];
+    filterButton.titleLabel.font = [UIFont fontWithName:@"PingFang-SC-Medium" size:12];
+    [filterButton setImage:[UIImage imageNamed:@"ShortVideo_filter"] forState:UIControlStateNormal];
+    [filterButton setImagePosition:LXMImagePositionTop spacing:4];
     [filterButton addTarget:self action:@selector(filterButtonEvent:) forControlEvents:UIControlEventTouchUpInside];
     [self.baseToolboxView addSubview:filterButton];
     
-    // 美颜
-    UIButton *beautyFaceButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    beautyFaceButton.frame = CGRectMake(10, 235, 30, 30);
-    [beautyFaceButton setTitle:@"美颜" forState:UIControlStateNormal];
-    [beautyFaceButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    beautyFaceButton.titleLabel.font = [UIFont systemFontOfSize:14];
-    [beautyFaceButton addTarget:self action:@selector(beautyFaceButtonEvent:) forControlEvents:UIControlEventTouchUpInside];
-    [self.baseToolboxView addSubview:beautyFaceButton];
-    
-    // 切换摄像头
-    UIButton *toggleCameraButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    toggleCameraButton.frame = CGRectMake(10, 280, 35, 35);
-    [toggleCameraButton setBackgroundImage:[UIImage imageNamed:@"toggle_camera"] forState:UIControlStateNormal];
-    [toggleCameraButton addTarget:self action:@selector(toggleCameraButtonEvent:) forControlEvents:UIControlEventTouchUpInside];
-    [self.baseToolboxView addSubview:toggleCameraButton];
+    // 外部人脸识别加贴纸
+    UIButton *externalStickerButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    externalStickerButton.frame = CGRectMake(0, 192+15+15+15, 64, 64);
+    [externalStickerButton setTitle:@"贴纸" forState:UIControlStateNormal];
+    externalStickerButton.titleLabel.font = [UIFont fontWithName:@"PingFang-SC-Medium" size:12];
+    [externalStickerButton setImage:[UIImage imageNamed:@"ShortVideo_meme"] forState:UIControlStateNormal];
+    [externalStickerButton setImagePosition:LXMImagePositionTop spacing:4];
+    [externalStickerButton addTarget:self action:@selector(externalStickerButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
+    [self.baseToolboxView addSubview:externalStickerButton];
     
     self.useSDKInternalPath = YES;
-    
-    // 外部人脸识别加贴纸
-    UIButton *externalStickerButton = [[UIButton alloc] initWithFrame:CGRectMake(PLS_SCREEN_WIDTH - 60, 310, 46, 46)];
-    externalStickerButton.layer.cornerRadius = 23;
-    externalStickerButton.backgroundColor = [UIColor colorWithRed:116/255 green:116/255 blue:116/255 alpha:0.55];
-    [externalStickerButton setTitle:@"贴纸" forState:UIControlStateNormal];
-    externalStickerButton.titleLabel.font = [UIFont systemFontOfSize:14];
-    [externalStickerButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [externalStickerButton addTarget:self action:@selector(externalStickerButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:externalStickerButton];
 }
 
+// 录制工具栏
 - (void)setupRecordToolboxView {
     CGFloat y = PLS_BaseToolboxView_HEIGHT + PLS_SCREEN_WIDTH;
     self.recordToolboxView = [[UIView alloc] initWithFrame:CGRectMake(0, y, PLS_SCREEN_WIDTH, PLS_SCREEN_HEIGHT- y)];
     self.recordToolboxView.backgroundColor = [UIColor clearColor];
     [self.view addSubview:self.recordToolboxView];
     
-    
     // 倍数拍摄
     self.titleArray = @[@"极慢", @"慢", @"正常", @"快", @"极快"];
     CGFloat rateTopSapce;
     if (PLS_SCREEN_HEIGHT > 568) {
-        rateTopSapce = 35;
-    } else{
-        rateTopSapce = 30;
+        rateTopSapce = 50;
+    } else {
+        rateTopSapce = 45;
     }
-    self.rateButtonView = [[PLSRateButtonView alloc] initWithFrame:CGRectMake(PLS_SCREEN_WIDTH/2 - 130, rateTopSapce, 260, 34) defaultIndex:2];
+    self.rateButtonView = [[PLSRateButtonView alloc] initWithFrame:CGRectMake(PLS_SCREEN_WIDTH/2 - 150, rateTopSapce, 300, 28) defaultIndex:2];
     self.rateButtonView.hidden = NO;
     self.titleIndex = 2;
     CGFloat countSpace = 200 /self.titleArray.count / 6;
     self.rateButtonView.space = countSpace;
     self.rateButtonView.staticTitleArray = self.titleArray;
     self.rateButtonView.rateDelegate = self;
-    [self.recordToolboxView addSubview:_rateButtonView];
-    
+    [self.recordToolboxView addSubview:self.rateButtonView];
     
     // 录制视频的操作按钮
     CGFloat buttonWidth = 80.0f;
     self.recordButton = [UIButton buttonWithType:UIButtonTypeCustom];
     self.recordButton.frame = CGRectMake(0, 0, buttonWidth, buttonWidth);
-    self.recordButton.center = CGPointMake(PLS_SCREEN_WIDTH / 2, self.recordToolboxView.frame.size.height - 80);
-    [self.recordButton setImage:[UIImage imageNamed:@"btn_record_a"] forState:UIControlStateNormal];
+    self.recordButton.center = CGPointMake(PLS_SCREEN_WIDTH / 2, self.recordToolboxView.frame.size.height - 100);
+    [self.recordButton setImage:[UIImage imageNamed:@"shortVideo_end_video"] forState:UIControlStateNormal];
     [self.recordButton addTarget:self action:@selector(recordButtonEvent:) forControlEvents:UIControlEventTouchUpInside];
     [self.recordToolboxView addSubview:self.recordButton];
     
     // 删除视频片段的按钮
     CGPoint center = self.recordButton.center;
-    center.x = 40;
+    center.x = 100;
     self.deleteButton = [PLSDeleteButton getInstance];
     self.deleteButton.style = PLSDeleteButtonStyleNormal;
-    self.deleteButton.frame = CGRectMake(15, PLS_SCREEN_HEIGHT - 80, 50, 50);
+    self.deleteButton.frame = CGRectMake(0, 0, 40, 40);
     self.deleteButton.center = center;
-    [self.deleteButton setImage:[UIImage imageNamed:@"btn_del_a"] forState:UIControlStateNormal];
+    [self.deleteButton setImage:[UIImage imageNamed:@"ShortVideo_cancel_video"] forState:UIControlStateNormal];
     [self.deleteButton addTarget:self action:@selector(deleteButtonEvent:) forControlEvents:UIControlEventTouchUpInside];
     [self.recordToolboxView addSubview:self.deleteButton];
     self.deleteButton.hidden = YES;
     
     // 结束录制的按钮
     center = self.recordButton.center;
-    center.x = CGRectGetWidth([UIScreen mainScreen].bounds) - 60;
+    center.x = kScreenWidth - 100;
     self.endButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.endButton.frame = CGRectMake(PLS_SCREEN_WIDTH - 60, PLS_SCREEN_HEIGHT - 80, 50, 50);
+    self.endButton.frame = CGRectMake(0, 0, 40, 40);
     self.endButton.center = center;
-    [self.endButton setBackgroundImage:[UIImage imageNamed:@"end_normal"] forState:UIControlStateNormal];
-    [self.endButton setBackgroundImage:[UIImage imageNamed:@"end_disable"] forState:UIControlStateDisabled];
+    [self.endButton setImage:[UIImage imageNamed:@"ShortVideo_finish_video"] forState:UIControlStateNormal];
     [self.endButton addTarget:self action:@selector(endButtonEvent:) forControlEvents:UIControlEventTouchUpInside];
     self.endButton.enabled = NO;
     [self.recordToolboxView addSubview:self.endButton];
@@ -360,10 +339,10 @@ FilterViewEventDelegate, StickerViewClickDelegate, TuSDKFilterProcessorDelegate
     self.progressBar = [[PLSProgressBar alloc] initWithFrame:CGRectMake(0, CGRectGetHeight(self.recordToolboxView.frame) - 10, PLS_SCREEN_WIDTH, 10)];
     [self.recordToolboxView addSubview:self.progressBar];
     
-    self.durationLabel = [[UILabel alloc] initWithFrame:CGRectMake(PLS_SCREEN_WIDTH - 150, CGRectGetHeight(self.recordToolboxView.frame) - 45, 130, 40)];
+    self.durationLabel = [[UILabel alloc] initWithFrame:CGRectMake((PLS_SCREEN_WIDTH - 130)/2, CGRectGetHeight(self.recordToolboxView.frame) - 45, 130, 40)];
     self.durationLabel.textColor = [UIColor whiteColor];
     self.durationLabel.text = [NSString stringWithFormat:@"%.2fs", self.shortVideoRecorder.getTotalDuration];
-    self.durationLabel.textAlignment = NSTextAlignmentRight;
+    self.durationLabel.textAlignment = NSTextAlignmentCenter;
     [self.recordToolboxView addSubview:self.durationLabel];
     
     // 导入视频的操作按钮
@@ -395,7 +374,7 @@ FilterViewEventDelegate, StickerViewClickDelegate, TuSDKFilterProcessorDelegate
                 // 设置的 options 可能会导致该回调调用两次，第一次返回你指定尺寸的图片，第二次将会返回原尺寸图片
                 if ([[info valueForKey:@"PHImageResultIsDegradedKey"] integerValue] == 0){
                     // Do something with the FULL SIZED image
-                  
+                    
                 } else {
                     // Do something with the regraded image
                     
@@ -407,8 +386,6 @@ FilterViewEventDelegate, StickerViewClickDelegate, TuSDKFilterProcessorDelegate
 
 // 返回上一层
 - (void)backButtonEvent:(id)sender {
-
-    
     if ([self.shortVideoRecorder getFilesCount] > 0) {
         self.alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:[NSString stringWithFormat:@"放弃这个视频(共%ld个视频段)?", (long)[self.shortVideoRecorder getFilesCount]] delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
         self.alertView.tag = PLS_CLOSE_CONTROLLER_ALERTVIEW_TAG;
@@ -416,16 +393,6 @@ FilterViewEventDelegate, StickerViewClickDelegate, TuSDKFilterProcessorDelegate
     } else {
         [self discardRecord];
     }
-}
-
-
-// 打开／关闭美颜
-- (void)beautyFaceButtonEvent:(id)sender {
-    UIButton *button = (UIButton *)sender;
-    
-    [self.shortVideoRecorder setBeautifyModeOn:!button.selected];
-    
-    button.selected = !button.selected;
 }
 
 // 切换前后置摄像头
@@ -439,14 +406,9 @@ FilterViewEventDelegate, StickerViewClickDelegate, TuSDKFilterProcessorDelegate
     self.editVideoCollectionView.hidden = !button.selected;
 }
 
-
-
-
-
 // 删除上一段视频
 - (void)deleteButtonEvent:(id)sender {
     if (_deleteButton.style == PLSDeleteButtonStyleNormal) {
-        
         [_progressBar setLastProgressToStyle:PLSProgressBarProgressStyleDelete];
         _deleteButton.style = PLSDeleteButtonStyleDelete;
         
@@ -514,17 +476,16 @@ FilterViewEventDelegate, StickerViewClickDelegate, TuSDKFilterProcessorDelegate
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-
 #pragma mark - UIAlertViewDelegate
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     switch (alertView.tag) {
-            case PLS_CLOSE_CONTROLLER_ALERTVIEW_TAG:
+        case PLS_CLOSE_CONTROLLER_ALERTVIEW_TAG:
         {
             switch (buttonIndex) {
-                    case 0:
+                case 0:
                     
                     break;
-                    case 1:
+                case 1:
                 {
                     [self discardRecord];
                 }
@@ -543,19 +504,19 @@ FilterViewEventDelegate, StickerViewClickDelegate, TuSDKFilterProcessorDelegate
 - (void)rateButtonView:(PLSRateButtonView *)rateButtonView didSelectedTitleIndex:(NSInteger)titleIndex{
     self.titleIndex = titleIndex;
     switch (titleIndex) {
-            case 0:
+        case 0:
             self.shortVideoRecorder.recoderRate = PLSVideoRecoderRateTopSlow;
             break;
-            case 1:
+        case 1:
             self.shortVideoRecorder.recoderRate = PLSVideoRecoderRateSlow;
             break;
-            case 2:
+        case 2:
             self.shortVideoRecorder.recoderRate = PLSVideoRecoderRateNormal;
             break;
-            case 3:
+        case 3:
             self.shortVideoRecorder.recoderRate = PLSVideoRecoderRateFast;
             break;
-            case 4:
+        case 4:
             self.shortVideoRecorder.recoderRate = PLSVideoRecoderRateTopFast;
             break;
         default:
@@ -624,7 +585,6 @@ FilterViewEventDelegate, StickerViewClickDelegate, TuSDKFilterProcessorDelegate
 }
 
 #pragma mark -- PLShortVideoRecorderDelegate 视频录制回调
-
 // 开始录制一段视频时
 - (void)shortVideoRecorder:(PLShortVideoRecorder *)recorder didStartRecordingToOutputFileAtURL:(NSURL *)fileURL {
     NSLog(@"start recording fileURL: %@", fileURL);
@@ -667,7 +627,7 @@ FilterViewEventDelegate, StickerViewClickDelegate, TuSDKFilterProcessorDelegate
     
     self.deleteButton.hidden = NO;
     self.endButton.hidden = NO;
-
+    
     if (totalDuration >= self.shortVideoRecorder.maxDuration) {
         [self endButtonEvent:nil];
     }
@@ -689,7 +649,7 @@ FilterViewEventDelegate, StickerViewClickDelegate, TuSDKFilterProcessorDelegate
     NSLog(@"filesURLArray:%@", filesURLArray);
     
     __block AVAsset *movieAsset = asset;
-  
+    
     // 设置音视频、水印等编辑信息
     NSMutableDictionary *outputSettings = [[NSMutableDictionary alloc] init];
     // 待编辑的原始视频素材
@@ -720,23 +680,6 @@ FilterViewEventDelegate, StickerViewClickDelegate, TuSDKFilterProcessorDelegate
     return [NSURL fileURLWithPath:fileName];
 }
 
-// 加载拼接视频的动画
-- (void)loadActivityIndicatorView {
-    if ([self.activityIndicatorView isAnimating]) {
-        [self.activityIndicatorView stopAnimating];
-        [self.activityIndicatorView removeFromSuperview];
-    }
-    
-    [self.view addSubview:self.activityIndicatorView];
-    [self.activityIndicatorView startAnimating];
-}
-
-// 移除拼接视频的动画
-- (void)removeActivityIndicatorView {
-    [self.activityIndicatorView removeFromSuperview];
-    [self.activityIndicatorView stopAnimating];
-}
-
 #pragma mark -- 隐藏状态栏
 - (BOOL)prefersStatusBarHidden {
     return YES;
@@ -751,15 +694,8 @@ FilterViewEventDelegate, StickerViewClickDelegate, TuSDKFilterProcessorDelegate
 - (void)dealloc {
     self.shortVideoRecorder.delegate = nil;
     self.shortVideoRecorder = nil;
-    
     self.filtersArray = nil;
-    
     self.alertView = nil;
-    if ([self.activityIndicatorView isAnimating]) {
-        [self.activityIndicatorView stopAnimating];
-        self.activityIndicatorView = nil;
-    }
-    
     NSLog(@"dealloc: %@", [[self class] description]);
 }
 
@@ -820,7 +756,6 @@ FilterViewEventDelegate, StickerViewClickDelegate, TuSDKFilterProcessorDelegate
     // 获取到对应包名的资源之后，设置 self.isUseExternalFilterWhenRecording = YES; 即可使用
     AlertViewShow(@"使用高级滤镜和人脸贴纸特效，请联系七牛销售！");
 }
-
 
 - (void)externalStickerButtonOnClick:(UIButton *)button {
     [self checkBundleId];

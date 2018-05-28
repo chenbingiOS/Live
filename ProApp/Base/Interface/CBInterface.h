@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 
 //域名
+#define domainName @"http://fengwo.gttead.cn"
+
 #define purl @"http://api.et4p.top/api/public/"
 #define h5url @"http://api.et4p.top"
 
