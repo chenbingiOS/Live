@@ -76,7 +76,7 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="girl_star1_40x19" translatesAutoresizingMaskIntoConstraints="NO" id="1Xd-ou-YsO">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1Xd-ou-YsO">
                                 <rect key="frame" x="113" y="4" width="40" height="19"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="Eet-jU-hRo"/>
@@ -84,10 +84,10 @@
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DeX-dQ-MBX">
-                                <rect key="frame" x="60" y="27" width="188" height="14"/>
+                                <rect key="frame" x="60" y="27" width="188" height="26"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                 <inset key="titleEdgeInsets" minX="5" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                <state key="normal" title="上海市" image="home_location_8x8">
+                                <state key="normal" title="上海市">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="0.50409353599999995" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                             </button>
@@ -152,8 +152,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="girl_star1_40x19" width="40" height="19"/>
-        <image name="home_location_8x8" width="8" height="8"/>
         <image name="placeholder_head" width="100" height="100"/>
     </resources>
 </document>
