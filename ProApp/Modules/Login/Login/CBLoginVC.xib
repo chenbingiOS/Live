@@ -83,6 +83,9 @@
                             <state key="normal" title="忘记密码">
                                 <color key="titleColor" red="0.92156862750000001" green="0.31764705879999999" blue="0.67450980390000004" alpha="1" colorSpace="deviceRGB"/>
                             </state>
+                            <connections>
+                                <action selector="actionForgetPwd:" destination="-1" eventType="touchUpInside" id="fMC-m4-oXN"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fqG-GS-lAo">
                             <rect key="frame" x="265" y="314" width="60" height="44"/>
@@ -269,7 +272,7 @@
                 <constraint firstAttribute="trailing" secondItem="Dzp-lJ-lmD" secondAttribute="trailing" id="wse-j9-fSE"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
-            <point key="canvasLocation" x="-217" y="-28"/>
+            <point key="canvasLocation" x="-241" y="-29"/>
         </view>
     </objects>
     <resources>

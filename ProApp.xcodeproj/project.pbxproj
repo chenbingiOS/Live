@@ -163,6 +163,8 @@
 		5436EA9A20B7EDCF00011BF0 /* RecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5436EA9820B7EDCF00011BF0 /* RecordViewController.m */; };
 		5436EA9B20B7EF0E00011BF0 /* video_draft_test.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 5436E9EC20B7E34300011BF0 /* video_draft_test.mp4 */; };
 		54375D1320BC049000F09CAA /* WZBCountDownButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 54375D1120BC049000F09CAA /* WZBCountDownButton.m */; };
+		5465AE0320BD31A3006E24BB /* CBEditVideoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5465AE0220BD31A3006E24BB /* CBEditVideoVC.m */; };
+		5465AE0720BD4A10006E24BB /* CBUploadVideoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5465AE0520BD4A10006E24BB /* CBUploadVideoVC.m */; };
 		548C5CA020B4FAD300A6FF53 /* CBApplyAnchorVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 548C5C9E20B4FAD300A6FF53 /* CBApplyAnchorVC.m */; };
 		548C5CA120B4FAD300A6FF53 /* CBApplyAnchorVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 548C5C9F20B4FAD300A6FF53 /* CBApplyAnchorVC.xib */; };
 		548C5CB720B50BFE00A6FF53 /* liveCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 548C5CAF20B50BFE00A6FF53 /* liveCity.m */; };
@@ -520,6 +522,8 @@
 		54BD85E720B669F00024B6E7 /* AppDelegate+EMClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 54BD85E620B669F00024B6E7 /* AppDelegate+EMClient.m */; };
 		54BD85EB20B66F410024B6E7 /* CBSelectGuildVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 54BD85E920B66F410024B6E7 /* CBSelectGuildVC.m */; };
 		54BD85EC20B66F410024B6E7 /* CBSelectGuildVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 54BD85EA20B66F410024B6E7 /* CBSelectGuildVC.xib */; };
+		54F7828E20BD56C500EE6821 /* CBForgetPwdVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 54F7828C20BD56C500EE6821 /* CBForgetPwdVC.m */; };
+		54F7828F20BD56C500EE6821 /* CBForgetPwdVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 54F7828D20BD56C500EE6821 /* CBForgetPwdVC.xib */; };
 		7E902906E2CA7AD8D2F3A5A8 /* libPods-ProApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B93D832D0DEF97DA8E7CD09 /* libPods-ProApp.a */; };
 /* End PBXBuildFile section */
 
@@ -950,6 +954,10 @@
 		5436EA9920B7EDCF00011BF0 /* RecordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordViewController.h; sourceTree = "<group>"; };
 		54375D1120BC049000F09CAA /* WZBCountDownButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WZBCountDownButton.m; sourceTree = "<group>"; };
 		54375D1220BC049000F09CAA /* WZBCountDownButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WZBCountDownButton.h; sourceTree = "<group>"; };
+		5465AE0120BD31A3006E24BB /* CBEditVideoVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBEditVideoVC.h; sourceTree = "<group>"; };
+		5465AE0220BD31A3006E24BB /* CBEditVideoVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBEditVideoVC.m; sourceTree = "<group>"; };
+		5465AE0420BD4A10006E24BB /* CBUploadVideoVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBUploadVideoVC.h; sourceTree = "<group>"; };
+		5465AE0520BD4A10006E24BB /* CBUploadVideoVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBUploadVideoVC.m; sourceTree = "<group>"; };
 		548C5C9D20B4FAD300A6FF53 /* CBApplyAnchorVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBApplyAnchorVC.h; sourceTree = "<group>"; };
 		548C5C9E20B4FAD300A6FF53 /* CBApplyAnchorVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBApplyAnchorVC.m; sourceTree = "<group>"; };
 		548C5C9F20B4FAD300A6FF53 /* CBApplyAnchorVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CBApplyAnchorVC.xib; sourceTree = "<group>"; };
@@ -1365,6 +1373,9 @@
 		54BD85E820B66F410024B6E7 /* CBSelectGuildVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBSelectGuildVC.h; sourceTree = "<group>"; };
 		54BD85E920B66F410024B6E7 /* CBSelectGuildVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBSelectGuildVC.m; sourceTree = "<group>"; };
 		54BD85EA20B66F410024B6E7 /* CBSelectGuildVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CBSelectGuildVC.xib; sourceTree = "<group>"; };
+		54F7828B20BD56C500EE6821 /* CBForgetPwdVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBForgetPwdVC.h; sourceTree = "<group>"; };
+		54F7828C20BD56C500EE6821 /* CBForgetPwdVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBForgetPwdVC.m; sourceTree = "<group>"; };
+		54F7828D20BD56C500EE6821 /* CBForgetPwdVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CBForgetPwdVC.xib; sourceTree = "<group>"; };
 		9B93D832D0DEF97DA8E7CD09 /* libPods-ProApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ProApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D104A5A85520E26A75922659 /* Pods-ProApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-ProApp/Pods-ProApp.release.xcconfig"; sourceTree = "<group>"; };
 		E42F78E1DEE816974A7C9C0C /* Pods-ProApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ProApp/Pods-ProApp.debug.xcconfig"; sourceTree = "<group>"; };
@@ -1391,6 +1402,7 @@
 		0715278420A53F3A00D3859D /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				54F7828A20BD569600EE6821 /* Forget */,
 				548C5CD020B51D1000A6FF53 /* Web */,
 				0715278520A53F4300D3859D /* Register */,
 				07F6EF5A20872E3C0035C6BD /* Login */,
@@ -2727,6 +2739,10 @@
 			children = (
 				54A76AAD20B7DE830034D5A2 /* CBRecordVideoVC.h */,
 				54A76AAE20B7DE830034D5A2 /* CBRecordVideoVC.m */,
+				5465AE0120BD31A3006E24BB /* CBEditVideoVC.h */,
+				5465AE0220BD31A3006E24BB /* CBEditVideoVC.m */,
+				5465AE0420BD4A10006E24BB /* CBUploadVideoVC.h */,
+				5465AE0520BD4A10006E24BB /* CBUploadVideoVC.m */,
 				54A76AB020B7DEDE0034D5A2 /* UI+Tools */,
 				5436EA9C20B7F9FA00011BF0 /* PLShortVidewVC */,
 			);
@@ -3264,6 +3280,16 @@
 			path = SelectGuild;
 			sourceTree = "<group>";
 		};
+		54F7828A20BD569600EE6821 /* Forget */ = {
+			isa = PBXGroup;
+			children = (
+				54F7828B20BD56C500EE6821 /* CBForgetPwdVC.h */,
+				54F7828C20BD56C500EE6821 /* CBForgetPwdVC.m */,
+				54F7828D20BD56C500EE6821 /* CBForgetPwdVC.xib */,
+			);
+			path = Forget;
+			sourceTree = "<group>";
+		};
 		E2E021358B1DC84C5135A348 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -3537,6 +3563,7 @@
 				54A76C6320B7E0E10034D5A2 /* style_default_1.6.0_homepage_next_icon@3x.png in Resources */,
 				54A76D3D20B7E0E10034D5A2 /* lsq_filter_thumb_LiveFancy01_1.jpg in Resources */,
 				54A76CDD20B7E0E10034D5A2 /* video_style_default_btn_back@2x.png in Resources */,
+				54F7828F20BD56C500EE6821 /* CBForgetPwdVC.xib in Resources */,
 				54A76CC120B7E0E10034D5A2 /* style_default_1.7.1_btn_filter_w@2x.png in Resources */,
 				54A76C5920B7E0E10034D5A2 /* video_style_default_crop_btn_triangle_right@3x.png in Resources */,
 				54A76CFD20B7E0E10034D5A2 /* lsq_filter_thumb_s1950_1.jpg in Resources */,
@@ -3771,10 +3798,12 @@
 				54A76D8320B7E1320034D5A2 /* MovieTransCodeViewController.m in Sources */,
 				07916D5A207CA415002E4D83 /* UIView+Xib.m in Sources */,
 				07557B8D207CBAD3005C6BC1 /* UIView+Sudoku.m in Sources */,
+				54F7828E20BD56C500EE6821 /* CBForgetPwdVC.m in Sources */,
 				54A76B1520B7DF7E0034D5A2 /* EffectsTimeLineModel.m in Sources */,
 				0763FC1C20A935020086BFA4 /* CBHorizontalFlowLayout.m in Sources */,
 				0787704E2092CA7D00A5A42A /* CBAccountRecordVC.m in Sources */,
 				079AAE4A2079AF9E00674A92 /* CBTBC.m in Sources */,
+				5465AE0720BD4A10006E24BB /* CBUploadVideoVC.m in Sources */,
 				0750561C2092AEBD00F0679B /* CBGiftPackageVC.m in Sources */,
 				54A76AE320B7DEDE0034D5A2 /* PLSRateButtonView.m in Sources */,
 				548C5CC720B5193700A6FF53 /* BasicWebViewVC.m in Sources */,
@@ -3892,6 +3921,7 @@
 				54A76ADF20B7DEDE0034D5A2 /* PLSViewRecorderManager.m in Sources */,
 				54A76AE520B7DEDE0034D5A2 /* PLSAudioVolumeView.m in Sources */,
 				54A4457E20B7BCF700D65F0A /* AppDelegate+PLKit.m in Sources */,
+				5465AE0320BD31A3006E24BB /* CBEditVideoVC.m in Sources */,
 				07F6EFE120872E3D0035C6BD /* ALinUser.m in Sources */,
 				54130A1220B6B52200CAE467 /* CBLiveSettingConfig.m in Sources */,
 				07558C1F20941F18007E41C2 /* CBPopView.m in Sources */,

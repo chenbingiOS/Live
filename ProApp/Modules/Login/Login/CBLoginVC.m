@@ -11,6 +11,7 @@
 #import "CBRegisterVC.h"
 #import "CBWebVC.h"
 #import "CBTBC.h"
+#import "CBForgetPwdVC.h"
 // User
 #import "CBLiveUser.h"
 #import "CBLiveUserConfig.h"
@@ -70,6 +71,11 @@
 
 - (IBAction)actionClose:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (IBAction)actionForgetPwd:(id)sender {
+    CBForgetPwdVC *vc = [CBForgetPwdVC new];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (IBAction)actionRegister:(id)sender {

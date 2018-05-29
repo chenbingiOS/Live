@@ -9,6 +9,7 @@
 #import "CBRecordVideoVC.h"
 #import "UIButton+LXMImagePosition.h"
 #import "WZBCountDownButton.h"
+#import "CBEditVideoVC.h"
 
 #import "PLShortVideoKit/PLShortVideoKit.h"
 #import "PLSProgressBar.h"
@@ -569,9 +570,13 @@ FilterViewEventDelegate, StickerViewClickDelegate, TuSDKFilterProcessorDelegate
     plsMovieSettings[PLSVolumeKey] = [NSNumber numberWithFloat:1.0f];
     outputSettings[PLSMovieSettingsKey] = plsMovieSettings;
     
-    EditViewController *videoEditViewController = [[EditViewController alloc] init];
-    videoEditViewController.settings = outputSettings;
-    [self presentViewController:videoEditViewController animated:YES completion:nil];
+//    EditViewController *videoEditViewController = [[EditViewController alloc] init];
+//    videoEditViewController.settings = outputSettings;
+//    [self presentViewController:videoEditViewController animated:YES completion:nil];
+    
+    CBEditVideoVC *editVC = [CBEditVideoVC new];
+    editVC.settings = outputSettings;
+    [self presentViewController:editVC animated:YES completion:nil];
 }
 
 #pragma mark -- PLShortVideoRecorderDelegate 摄像头／麦克风鉴权的回调
@@ -693,11 +698,17 @@ FilterViewEventDelegate, StickerViewClickDelegate, TuSDKFilterProcessorDelegate
     plsMovieSettings[PLSVolumeKey] = [NSNumber numberWithFloat:1.0f];
     outputSettings[PLSMovieSettingsKey] = plsMovieSettings;
     
-    EditViewController *videoEditViewController = [[EditViewController alloc] init];
-    videoEditViewController.settings = outputSettings;
-    videoEditViewController.filesURLArray = filesURLArray;
-    [self presentViewController:videoEditViewController animated:YES completion:nil];
+//    EditViewController *videoEditViewController = [[EditViewController alloc] init];
+//    videoEditViewController.settings = outputSettings;
+//    videoEditViewController.filesURLArray = filesURLArray;
+//    [self presentViewController:videoEditViewController animated:YES completion:nil];
+    
+    CBEditVideoVC *editVC = [CBEditVideoVC new];
+    editVC.settings = outputSettings;
+    editVC.filesURLArray = filesURLArray;
+    [self presentViewController:editVC animated:YES completion:nil];
 }
+
 #pragma mark - 输出路径
 - (NSURL *)exportAudioMixPath {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
