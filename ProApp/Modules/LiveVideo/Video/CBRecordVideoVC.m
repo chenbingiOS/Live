@@ -8,6 +8,7 @@
 
 #import "CBRecordVideoVC.h"
 #import "UIButton+LXMImagePosition.h"
+#import "WZBCountDownButton.h"
 
 #import "PLShortVideoKit/PLShortVideoKit.h"
 #import "PLSProgressBar.h"
@@ -251,7 +252,7 @@ FilterViewEventDelegate, StickerViewClickDelegate, TuSDKFilterProcessorDelegate
     [countdownButton setTitle:@"倒计时" forState:UIControlStateNormal];
     countdownButton.titleLabel.font = [UIFont fontWithName:@"PingFang-SC-Medium" size:12];
     [countdownButton setImage:[UIImage imageNamed:@"ShortVideo_countdown"] forState:UIControlStateNormal];
-    [countdownButton addTarget:self action:@selector(toggleCameraButtonEvent:) forControlEvents:UIControlEventTouchUpInside];
+    [countdownButton addTarget:self action:@selector(countDownLabelEvent:) forControlEvents:UIControlEventTouchUpInside];
     [countdownButton setImagePosition:LXMImagePositionTop spacing:4];
     [self.baseToolboxView addSubview:countdownButton];
     
@@ -274,6 +275,18 @@ FilterViewEventDelegate, StickerViewClickDelegate, TuSDKFilterProcessorDelegate
     [externalStickerButton setImagePosition:LXMImagePositionTop spacing:4];
     [externalStickerButton addTarget:self action:@selector(externalStickerButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.baseToolboxView addSubview:externalStickerButton];
+    
+    
+    // 美颜
+    UIButton *beautyFaceButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    beautyFaceButton.frame = CGRectMake(0, 256+15+15+15+15, 64, 64);
+    [beautyFaceButton setTitle:@"美颜" forState:UIControlStateNormal];
+    beautyFaceButton.titleLabel.font = [UIFont fontWithName:@"PingFang-SC-Medium" size:12];
+    [beautyFaceButton setImage:[UIImage imageNamed:@"shortVideo_meiyan"] forState:UIControlStateNormal];
+    [beautyFaceButton setImagePosition:LXMImagePositionTop spacing:4];
+    [beautyFaceButton addTarget:self action:@selector(beautyFaceButtonEvent:) forControlEvents:UIControlEventTouchUpInside];
+    [self.baseToolboxView addSubview:beautyFaceButton];
+
     
     self.useSDKInternalPath = YES;
 }
@@ -395,9 +408,29 @@ FilterViewEventDelegate, StickerViewClickDelegate, TuSDKFilterProcessorDelegate
     }
 }
 
+- (void)countDownLabelEvent:(id)sender {
+    NSMutableArray *imageNames = [NSMutableArray array];
+    for (NSInteger i = 5; i > 0; i--) {
+        [imageNames addObject:[NSString stringWithFormat:@"ShortVideo_%zd", i]];
+    }
+    // Do any additional setup after loading the view, typically from a nib.
+    [WZBCountDownButton playWithImages:imageNames begin:^(WZBCountDownButton *button) {
+        NSLog(@"倒计时开始");
+    } success:^(WZBCountDownButton *button) {
+        [self recordButtonEvent:nil];
+    }];
+}
+
 // 切换前后置摄像头
 - (void)toggleCameraButtonEvent:(id)sender {
     [self.shortVideoRecorder toggleCamera];
+}
+
+// 打开／关闭美颜
+- (void)beautyFaceButtonEvent:(id)sender {
+    UIButton *button = (UIButton *)sender;    
+    [self.shortVideoRecorder setBeautifyModeOn:!button.selected];
+    button.selected = !button.selected;
 }
 
 // 七牛滤镜
@@ -758,7 +791,7 @@ FilterViewEventDelegate, StickerViewClickDelegate, TuSDKFilterProcessorDelegate
 }
 
 - (void)externalStickerButtonOnClick:(UIButton *)button {
-    [self checkBundleId];
+//    [self checkBundleId];
     
     if (!_stickerView) {
         [self initStickerView];
