@@ -3752,12 +3752,14 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-ProApp/Pods-ProApp-resources.sh",
+				"${PODS_ROOT}/IQKeyboardManager/IQKeyboardManager/Resources/IQKeyboardManager.bundle",
 				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
 				"${PODS_ROOT}/ShareSDK3/SDK/ShareSDK/Support/Required/ShareSDK.bundle",
 				"${PODS_ROOT}/ShareSDK3/SDK/ShareSDK/Support/PlatformSDK/SinaWeiboSDK/WeiboSDK.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/IQKeyboardManager.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MJRefresh.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ShareSDK.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/WeiboSDK.bundle",
@@ -4139,7 +4141,7 @@
 					"$(PROJECT_DIR)/ProApp/ThirdParty/TuSDK/GPUImage",
 					"$(PROJECT_DIR)/ProApp/ThirdParty/GPUImage",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.fengwo.ProApp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.fengwo.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -4174,7 +4176,7 @@
 					"$(PROJECT_DIR)/ProApp/ThirdParty/TuSDK/GPUImage",
 					"$(PROJECT_DIR)/ProApp/ThirdParty/GPUImage",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.fengwo.ProApp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.fengwo.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";

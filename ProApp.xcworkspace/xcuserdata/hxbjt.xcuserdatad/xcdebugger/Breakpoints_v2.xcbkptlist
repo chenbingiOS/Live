@@ -51,13 +51,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "ProApp/ThirdParty/HcdGuideView/HcdGuideViewCell.m"
-            timestampString = "549336473.049997"
+            filePath = "ProApp/Modules/Login/Login/CBLoginVC.m"
+            timestampString = "549338790.0147001"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "54"
-            endingLineNumber = "54"
-            landmarkName = "-initView"
+            startingLineNumber = "160"
+            endingLineNumber = "160"
+            landmarkName = "-requestLogin:loginType:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
