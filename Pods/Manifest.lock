@@ -17,6 +17,7 @@ PODS:
   - Bugly (2.5.0)
   - HappyDNS (0.3.14)
   - HyphenateLite (3.4.0)
+  - IQKeyboardManager (6.0.3)
   - JCore (1.1.7)
   - JPush (3.0.8):
     - JCore (~> 1.1.7)
@@ -58,6 +59,7 @@ DEPENDENCIES:
   - AFNetworking
   - Bugly
   - HyphenateLite
+  - IQKeyboardManager
   - JPush
   - LXMButtonImagePosition
   - LYEmptyView
@@ -83,6 +85,7 @@ SPEC REPOS:
     - Bugly
     - HappyDNS
     - HyphenateLite
+    - IQKeyboardManager
     - JCore
     - JPush
     - LXMButtonImagePosition
@@ -107,6 +110,7 @@ SPEC CHECKSUMS:
   Bugly: 3ca9f255c01025582df26f9222893b383c7e4b4e
   HappyDNS: dc6a164ee81979093123c241c6353bcf0218add6
   HyphenateLite: ada71aa3aba581cd486bce10f2c0fa66c11ad30f
+  IQKeyboardManager: c390e612f4b98c8fd748016470138537dc163ead
   JCore: f7459c81c135281a874a6beafdd321666adcc834
   JPush: 9574d072cc37e93fa293ba69b43ce763c440943a
   LXMButtonImagePosition: bbbe4fceb2f6011cf02add36750acbeddd161c3e
@@ -126,6 +130,6 @@ SPEC CHECKSUMS:
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
   ZYCornerRadius: f0af817be7805b5c63d793042ca7a03f81e14069
 
-PODFILE CHECKSUM: 58ff880c32cd37aea5e11266567d49911dc8d9a6
+PODFILE CHECKSUM: ba71de3db49c7515279f834f716cd8f8639fe330
 
 COCOAPODS: 1.5.2

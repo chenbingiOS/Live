@@ -32,8 +32,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self setupUI];
-    
+    [self setupUI];    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(actionChangeBtnState) name:UITextFieldTextDidChangeNotification object:nil];
 }
 

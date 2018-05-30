@@ -37,7 +37,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"忘记密码";
-    [self.phoneTextField becomeFirstResponder];
     self.authCodeTime = 60;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(actionChangeBtnState) name:UITextFieldTextDidChangeNotification object:nil];
 }
