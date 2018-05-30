@@ -71,7 +71,7 @@
         _pageControl = [[UIPageControl alloc] init];
         _pageControl.frame = CGRectMake(0, 0, kHcdGuideViewBounds.size.width, 44.0f);
         if (iPhoneX) {
-            [_pageControl setCenter:CGPointMake(kHcdGuideViewBounds.size.width / 2, kHcdGuideViewBounds.size.height - 50+22)];
+            [_pageControl setCenter:CGPointMake(kHcdGuideViewBounds.size.width / 2, kHcdGuideViewBounds.size.height - 140+22)];
         } else {
             [_pageControl setCenter:CGPointMake(kHcdGuideViewBounds.size.width / 2, kHcdGuideViewBounds.size.height - 98+22)];
         }

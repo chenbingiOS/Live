@@ -51,7 +51,7 @@
     [self.contentView addSubview:self.button];
     
     if (iPhoneX) {
-        [self.button setCenter:CGPointMake(kHcdGuideViewBounds.size.width / 2, kHcdGuideViewBounds.size.height - 50+22)];
+        [self.button setCenter:CGPointMake(kHcdGuideViewBounds.size.width / 2, kHcdGuideViewBounds.size.height - 140+22)];
     } else {
         [self.button setCenter:CGPointMake(kHcdGuideViewBounds.size.width / 2, kHcdGuideViewBounds.size.height - 98+22)];
     }
