@@ -29,16 +29,20 @@
     [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
 
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"忘记密码";
     [self.phoneTextField becomeFirstResponder];
-//    messageIssssss = 60;
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(ChangeBtnBackground) name:UITextFieldTextDidChangeNotification object:nil];
+    self.authCodeTime = 60;
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(actionChangeBtnState) name:UITextFieldTextDidChangeNotification object:nil];
 }
 
--(void)actionChangeBtnState
-{
+- (void)actionChangeBtnState {
     if (self.phoneTextField.text.length == 11) {
         self.codeButton.enabled = YES;
     } else {
@@ -67,7 +71,6 @@
 
 
 - (IBAction)actionGetCode:(id)sender {
-    
     if (self.phoneTextField.text.length!=11){
         [MBProgressHUD showAutoMessage:@"手机号输入错误"];
         return;
@@ -104,6 +107,7 @@
 }
 
 - (IBAction)actionOKPwd:(id)sender {
+    [self.view endEditing:YES];
     if (self.phoneTextField.text.length == 0){
         [MBProgressHUD showAutoMessage:@"请输入手机号"];
         return;
@@ -126,10 +130,11 @@
     }
     
     {
-        NSString *url = urlUserReg;
+        NSString *url = urlUserForget;
         NSDictionary *regDict = @{@"mobile_num":self.phoneTextField.text,
+                                  @"varcode":self.codeTextField.text,
                                   @"password":self.pwdTextField.text,
-                                  @"varcode":self.codeTextField.text };
+                                  @"repassword":self.checkPwdTextField.text};
         [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         [PPNetworkHelper POST:url parameters:regDict success:^(id responseObject) {
             [MBProgressHUD hideHUDForView:self.view animated:YES];
@@ -139,7 +144,7 @@
             [MBProgressHUD showAutoMessage:descrp];
             if ([code isEqualToNumber:@200]) {
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    
+                    [self.navigationController popViewControllerAnimated:YES];
                 });
             }
         } failure:^(NSError *error) {

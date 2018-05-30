@@ -24,7 +24,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.delegate = self;
-    self.tabBar.translucent = YES;
+    self.tabBar.barTintColor = [UIColor whiteColor];
     
     @weakify(self);
     [self.homeMenuPopView.homeMenuView.liveButton addBlockForControlEvents:UIControlEventTouchUpInside block:^(id  _Nonnull sender) {
@@ -110,7 +110,11 @@
 
 - (CBHomeMenuPopView *)homeMenuPopView {
     if (!_homeMenuPopView) {
-        _homeMenuPopView = [[CBHomeMenuPopView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 180)];
+        CGFloat height = 180;
+        if (iPhoneX) {
+            height += 35;
+        }
+        _homeMenuPopView = [[CBHomeMenuPopView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, height)];
     }
     return _homeMenuPopView;
 }

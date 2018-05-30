@@ -74,27 +74,31 @@
 }
 
 - (IBAction)actionClose:(id)sender {
+    [self.view endEditing:YES];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)actionForgetPwd:(id)sender {
+    [self.view endEditing:YES];
     CBForgetPwdVC *vc = [CBForgetPwdVC new];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (IBAction)actionRegister:(id)sender {
+    [self.view endEditing:YES];
     CBRegisterVC *vc = [CBRegisterVC new];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (IBAction)actionPolicy:(id)sender {
+    [self.view endEditing:YES];
     CBWebVC *vc = [CBWebVC new];
     [vc webViewloadRequestWithURLString:urlPolicy];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (IBAction)actionLogin:(id)sender {
-    
+    [self.view endEditing:YES];
     NSString *url = urlUserLogin;
     NSDictionary *param = @{@"mobile_num": self.phoneTextField.text,
                             @"password": self.pwdTextField.text};
@@ -130,6 +134,7 @@
 }
 
 - (IBAction)actionThirdLogin:(UIButton *)sender {
+    [self.view endEditing:YES];
     if (sender.tag == 11) {
         [self thirdLogin:@"wx" platforms:SSDKPlatformTypeWechat];
     } else if (sender.tag == 22) {

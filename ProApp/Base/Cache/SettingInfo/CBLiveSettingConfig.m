@@ -187,6 +187,7 @@ NSString *const pravitelive_switch = @"pravitelive_switch";
     NSString* wx_siteurls = [userDefaults objectForKey: wx_siteurl];
     return wx_siteurls;
 }
+
 + (NSString *)ipa_ver {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     NSString* ipa_vers = [userDefaults objectForKey: ipa_ver];

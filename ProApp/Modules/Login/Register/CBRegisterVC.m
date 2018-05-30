@@ -49,6 +49,7 @@
 }
 
 - (IBAction)actionCode:(id)sender {
+    [self.view endEditing:YES];
     if (self.phoneTextField.text.length!=11){
         [MBProgressHUD showAutoMessage:@"手机号输入错误"];
         return;
@@ -85,7 +86,7 @@
 }
 
 - (IBAction)actionRegister:(id)sender {
-    
+    [self.view endEditing:YES];
     if (self.phoneTextField.text.length == 0){
         [MBProgressHUD showAutoMessage:@"请输入手机号"];
         return;
@@ -132,20 +133,24 @@
 }
 
 - (IBAction)actionUserAgreement:(id)sender {
+    [self.view endEditing:YES];
     CBWebVC *vc = [CBWebVC new];
     [vc webViewloadRequestWithURLString:urlPolicy];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (IBAction)actionUserAgreementCheck:(UIButton *)sender {
+    [self.view endEditing:YES];
     sender.selected = !sender.selected;
 }
 
 - (IBAction)actionLogin:(id)sender {
+    [self.view endEditing:YES];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (IBAction)actoinClose:(id)sender {
+    [self.view endEditing:YES];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

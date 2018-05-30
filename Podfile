@@ -8,7 +8,6 @@ pod 'SDWebImage'
 # UI框架
 pod 'YYKit'
 pod 'LXMButtonImagePosition'
-pod 'IQKeyboardManager'
 # 圆角
 pod 'ZYCornerRadius'
 # 提示

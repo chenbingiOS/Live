@@ -42,6 +42,8 @@
 #define urlUserReg      purl@"Api/User/register"
 // 用户登录
 #define urlUserLogin    purl@"Api/User/login"
+// 用户忘记密码
+#define urlUserForget   purl@"Api/User/retrievePassword"
 // 用户登录第三方
 #define urlUserLoginByThird purl@"/?service=Login.userLoginByThird"
 // 主页直播列表
