@@ -207,9 +207,12 @@
 
 // 环信登录
 -(void)loginENClient{
-    NSString *passWord = [@"fmscms" stringByAppendingFormat:@"%@",[CBLiveUserConfig getOwnID]];
-    [[EMClient sharedClient] registerWithUsername:[CBLiveUserConfig getOwnID] password:passWord completion:^(NSString *aUsername, EMError *aError) {
-        NSLog(@"环信登录错误--%@",aError.errorDescription);
+    [[EMClient sharedClient] loginWithUsername:[CBLiveUserConfig getHXuid] password:[CBLiveUserConfig getHXpwd] completion:^(NSString *aUsername, EMError *aError) {        
+        if (aError) {
+            NSLog(@"环信登录错误--%@",aError.errorDescription);
+        } else {
+            NSLog(@"环信登录成功--%@",aUsername);
+        }
     }];
 }
 

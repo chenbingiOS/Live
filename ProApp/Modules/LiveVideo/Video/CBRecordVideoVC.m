@@ -228,13 +228,13 @@ FilterViewEventDelegate, StickerViewClickDelegate, TuSDKFilterProcessorDelegate
     
     // 返回
     UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    backButton.frame = CGRectMake(10, 35, 44, 44);
+    backButton.frame = CGRectMake(10, 40, 44, 44);
     [backButton setImage:[UIImage imageNamed:@"ShortVideo_close"] forState:UIControlStateNormal];
     [backButton addTarget:self action:@selector(backButtonEvent:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:backButton];
     
     // 左边工具条
-    self.baseToolboxView = [[UIView alloc] initWithFrame:CGRectMake(kScreenWidth-64, 35, 64, kScreenWidth+64)];
+    self.baseToolboxView = [[UIView alloc] initWithFrame:CGRectMake(kScreenWidth-64, 40, 64, kScreenWidth+64)];
     self.baseToolboxView.backgroundColor = [UIColor clearColor];
     [self.view addSubview:self.baseToolboxView];
     // 切换摄像头
@@ -287,15 +287,15 @@ FilterViewEventDelegate, StickerViewClickDelegate, TuSDKFilterProcessorDelegate
     [beautyFaceButton setImagePosition:LXMImagePositionTop spacing:4];
     [beautyFaceButton addTarget:self action:@selector(beautyFaceButtonEvent:) forControlEvents:UIControlEventTouchUpInside];
     [self.baseToolboxView addSubview:beautyFaceButton];
-
     
     self.useSDKInternalPath = YES;
 }
 
 // 录制工具栏
 - (void)setupRecordToolboxView {
-    CGFloat y = PLS_BaseToolboxView_HEIGHT + PLS_SCREEN_WIDTH;
-    self.recordToolboxView = [[UIView alloc] initWithFrame:CGRectMake(0, y, PLS_SCREEN_WIDTH, PLS_SCREEN_HEIGHT- y)];
+    
+    CGFloat y = kScreenHeight;    
+    self.recordToolboxView = [[UIView alloc] initWithFrame:CGRectMake(0, y, PLS_SCREEN_WIDTH, 185)];
     self.recordToolboxView.backgroundColor = [UIColor clearColor];
     [self.view addSubview:self.recordToolboxView];
     
@@ -358,10 +358,6 @@ FilterViewEventDelegate, StickerViewClickDelegate, TuSDKFilterProcessorDelegate
     self.durationLabel.text = [NSString stringWithFormat:@"%.2fs", self.shortVideoRecorder.getTotalDuration];
     self.durationLabel.textAlignment = NSTextAlignmentCenter;
     [self.recordToolboxView addSubview:self.durationLabel];
-    
-    // 导入视频的操作按钮
-    center = self.recordButton.center;
-    center.x = CGRectGetWidth([UIScreen mainScreen].bounds) - 60;
 }
 
 #pragma mark -- Button event

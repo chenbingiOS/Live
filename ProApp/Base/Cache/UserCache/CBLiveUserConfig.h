@@ -16,15 +16,17 @@
 + (void)updateProfile:(CBLiveUser *)user;
 + (void)clearProfile;
 
++ (NSString *)getOwnToken;
 + (NSString *)getOwnID;
-+ (NSString *)getOwnNicename;  ///< 昵称
-+ (NSString *)getOwnToken;  
++ (NSString *)getOwnNicename;
 + (NSString *)getOwnSignature;
++ (NSString *)getHXuid;
++ (NSString *)getHXpwd;
+
 + (NSString *)getavatar;
 + (NSString *)getavatarThumb;
 + (NSString *)getLevel;
 + (NSString *)getSex;
-
 + (NSString *)level_anchor;//主播等级
 + (void)saveVipandliang:(NSDictionary *)subdic;//保存靓号和vip
 + (NSString *)getVip_type;
