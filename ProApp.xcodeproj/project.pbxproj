@@ -158,6 +158,8 @@
 		54130A0B20B6A0C000CAE467 /* CBAppLiveVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 54130A0A20B6A0C000CAE467 /* CBAppLiveVO.m */; };
 		54130A0F20B6B48900CAE467 /* CBLiveSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = 54130A0E20B6B48900CAE467 /* CBLiveSetting.m */; };
 		54130A1220B6B52200CAE467 /* CBLiveSettingConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 54130A1120B6B52200CAE467 /* CBLiveSettingConfig.m */; };
+		5422E9E020BEAB810087FB91 /* CBUploadVideoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5422E9DF20BEAB810087FB91 /* CBUploadVideoView.m */; };
+		5422E9E520BEABC40087FB91 /* CBUploadVideoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5422E9E420BEABC40087FB91 /* CBUploadVideoView.xib */; };
 		5436E9EB20B7E2F800011BF0 /* PLShortVideoKit.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5436E9EA20B7E2F800011BF0 /* PLShortVideoKit.bundle */; };
 		5436EA9720B7E53600011BF0 /* libGPUImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5436EA1D20B7E53600011BF0 /* libGPUImage.a */; };
 		5436EA9A20B7EDCF00011BF0 /* RecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5436EA9820B7EDCF00011BF0 /* RecordViewController.m */; };
@@ -781,6 +783,9 @@
 		54130A0E20B6B48900CAE467 /* CBLiveSetting.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBLiveSetting.m; sourceTree = "<group>"; };
 		54130A1020B6B52200CAE467 /* CBLiveSettingConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBLiveSettingConfig.h; sourceTree = "<group>"; };
 		54130A1120B6B52200CAE467 /* CBLiveSettingConfig.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBLiveSettingConfig.m; sourceTree = "<group>"; };
+		5422E9DE20BEAB810087FB91 /* CBUploadVideoView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBUploadVideoView.h; sourceTree = "<group>"; };
+		5422E9DF20BEAB810087FB91 /* CBUploadVideoView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBUploadVideoView.m; sourceTree = "<group>"; };
+		5422E9E420BEABC40087FB91 /* CBUploadVideoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CBUploadVideoView.xib; sourceTree = "<group>"; };
 		5436E9EA20B7E2F800011BF0 /* PLShortVideoKit.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = PLShortVideoKit.bundle; sourceTree = "<group>"; };
 		5436E9EC20B7E34300011BF0 /* video_draft_test.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = video_draft_test.mp4; sourceTree = "<group>"; };
 		5436E9EE20B7E53600011BF0 /* GPUImageBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPUImageBuffer.h; sourceTree = "<group>"; };
@@ -2486,6 +2491,16 @@
 			path = SettingInfo;
 			sourceTree = "<group>";
 		};
+		5422E9DD20BEAB5F0087FB91 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				5422E9DE20BEAB810087FB91 /* CBUploadVideoView.h */,
+				5422E9DF20BEAB810087FB91 /* CBUploadVideoView.m */,
+				5422E9E420BEABC40087FB91 /* CBUploadVideoView.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		5436E9E920B7E2F100011BF0 /* PLShortVideoKit */ = {
 			isa = PBXGroup;
 			children = (
@@ -2743,6 +2758,7 @@
 				5465AE0220BD31A3006E24BB /* CBEditVideoVC.m */,
 				5465AE0420BD4A10006E24BB /* CBUploadVideoVC.h */,
 				5465AE0520BD4A10006E24BB /* CBUploadVideoVC.m */,
+				5422E9DD20BEAB5F0087FB91 /* View */,
 				54A76AB020B7DEDE0034D5A2 /* UI+Tools */,
 				5436EA9C20B7F9FA00011BF0 /* PLShortVidewVC */,
 			);
@@ -3505,6 +3521,7 @@
 				07737DE8208F0161009EB9E6 /* CBMyFansVC.xib in Resources */,
 				54A76D1F20B7E0E10034D5A2 /* style_default_1.6.0_homepage_video_icon@2x.png in Resources */,
 				54A76D1820B7E0E10034D5A2 /* style_default_1.5.0_btn_mv_bg@3x.jpg in Resources */,
+				5422E9E520BEABC40087FB91 /* CBUploadVideoView.xib in Resources */,
 				54A76D1120B7E0E10034D5A2 /* style_default_2.0_moviEditor_changeSize@2x.png in Resources */,
 				54A76CD920B7E0E10034D5A2 /* lsq_filter_thumb_Leica_1.jpg in Resources */,
 				54A76C6820B7E0E10034D5A2 /* lsq_filter_thumb_Music.jpg in Resources */,
@@ -3822,6 +3839,7 @@
 				07F38C0020994A0000DDBC90 /* JPGiftCountLabel.m in Sources */,
 				07AB0BB7209300C9007A25A8 /* CBDiamondInfoVC.m in Sources */,
 				07558C2820945675007E41C2 /* CBAnchorInfoView.m in Sources */,
+				5422E9E020BEAB810087FB91 /* CBUploadVideoView.m in Sources */,
 				072DC599209183EC00F693E8 /* CBSettingVC.m in Sources */,
 				07AB0BB1209300A3007A25A8 /* CBAccountInfoVC.m in Sources */,
 				54A76AEA20B7DEDE0034D5A2 /* PLSEditVideoCell.m in Sources */,

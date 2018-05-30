@@ -117,11 +117,11 @@
             [MBProgressHUD hideHUDForView:self.view animated:YES];
             NSNumber *code = [responseObject valueForKey:@"code"];
             NSString *descrp = [responseObject valueForKey:@"descrp"];
-            NSString *token = [responseObject valueForKey:@"token"];
+//            NSString *token = [responseObject valueForKey:@"token"];
             [MBProgressHUD showAutoMessage:descrp];
             if ([code isEqualToNumber:@200]) {
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    
+                    [self.navigationController popViewControllerAnimated:YES];
                 });
             }
         } failure:^(NSError *error) {

@@ -786,7 +786,7 @@
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="76t-0V-SLP" secondAttribute="trailing" constant="8" id="r0D-0w-big"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
-            <point key="canvasLocation" x="-337" y="-29"/>
+            <point key="canvasLocation" x="-36" y="-38"/>
         </view>
     </objects>
     <resources>

@@ -7,7 +7,7 @@
 //
 
 #import "CBUploadVideoVC.h"
-
+#import "CBUploadVideoView.h"
 #import <AVFoundation/AVFoundation.h>
 #import "PLShortVideoKit/PLShortVideoKit.h"
 #import <PLPlayerKit/PLPlayerKit.h>
@@ -25,7 +25,7 @@ static NSString *const kURLPrefix = @"http://shortvideo.pdex-service.com";
 @property (strong, nonatomic) PLPlayer *player; ///< 视频播放
 @property (strong, nonatomic) PLShortVideoUploader *shortVideoUploader; ///< 上传视频到云端
 @property (nonatomic, strong) UIProgressView *progressView;
-
+@property (strong, nonatomic) CBUploadVideoView *uploadVideoView;
 
 @end
 
@@ -47,6 +47,8 @@ static NSString *const kURLPrefix = @"http://shortvideo.pdex-service.com";
     
     // 文件上传（可上传视频、Gif 等）
     [self setupFileUpload];
+    
+    [self.view addSubview:self.uploadVideoView];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -57,6 +59,18 @@ static NSString *const kURLPrefix = @"http://shortvideo.pdex-service.com";
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
     [self.player stop];
+}
+
+- (CBUploadVideoView *)uploadVideoView {
+    if (!_uploadVideoView) {
+        _uploadVideoView = [CBUploadVideoView viewFromXib];
+        CGFloat y = kScreenHeight-150;
+        if (iPhoneX) {
+            y -= 55;
+        }
+        _uploadVideoView.frame = CGRectMake(0, y, kScreenWidth, 150);
+    }
+    return _uploadVideoView;
 }
 
 #pragma mark -- 播放器初始化

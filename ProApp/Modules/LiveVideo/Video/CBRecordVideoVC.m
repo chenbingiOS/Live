@@ -294,20 +294,17 @@ FilterViewEventDelegate, StickerViewClickDelegate, TuSDKFilterProcessorDelegate
 // 录制工具栏
 - (void)setupRecordToolboxView {
     
-    CGFloat y = kScreenHeight;    
-    self.recordToolboxView = [[UIView alloc] initWithFrame:CGRectMake(0, y, PLS_SCREEN_WIDTH, 185)];
+    CGFloat y = kScreenHeight - 185;
+    if (iPhoneX) {
+        y -= 35;
+    }
+    self.recordToolboxView = [[UIView alloc] initWithFrame:CGRectMake(0, y, kScreenWidth, 185)];
     self.recordToolboxView.backgroundColor = [UIColor clearColor];
     [self.view addSubview:self.recordToolboxView];
     
     // 倍数拍摄
     self.titleArray = @[@"极慢", @"慢", @"正常", @"快", @"极快"];
-    CGFloat rateTopSapce;
-    if (PLS_SCREEN_HEIGHT > 568) {
-        rateTopSapce = 50;
-    } else {
-        rateTopSapce = 45;
-    }
-    self.rateButtonView = [[PLSRateButtonView alloc] initWithFrame:CGRectMake(PLS_SCREEN_WIDTH/2 - 150, rateTopSapce, 300, 28) defaultIndex:2];
+    self.rateButtonView = [[PLSRateButtonView alloc] initWithFrame:CGRectMake(PLS_SCREEN_WIDTH/2 - 150, 0, 300, 28) defaultIndex:2];
     self.rateButtonView.hidden = NO;
     self.titleIndex = 2;
     CGFloat countSpace = 200 /self.titleArray.count / 6;
@@ -317,17 +314,16 @@ FilterViewEventDelegate, StickerViewClickDelegate, TuSDKFilterProcessorDelegate
     [self.recordToolboxView addSubview:self.rateButtonView];
     
     // 录制视频的操作按钮
-    CGFloat buttonWidth = 80.0f;
     self.recordButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.recordButton.frame = CGRectMake(0, 0, buttonWidth, buttonWidth);
-    self.recordButton.center = CGPointMake(PLS_SCREEN_WIDTH / 2, self.recordToolboxView.frame.size.height - 100);
+    self.recordButton.frame = CGRectMake(0, 0, 80.0f, 80.0f);
+    self.recordButton.center = CGPointMake(PLS_SCREEN_WIDTH / 2, self.recordToolboxView.frame.size.height - 90);
     [self.recordButton setImage:[UIImage imageNamed:@"shortVideo_end_video"] forState:UIControlStateNormal];
     [self.recordButton addTarget:self action:@selector(recordButtonEvent:) forControlEvents:UIControlEventTouchUpInside];
     [self.recordToolboxView addSubview:self.recordButton];
     
     // 删除视频片段的按钮
     CGPoint center = self.recordButton.center;
-    center.x = 100;
+    center.x = 80;
     self.deleteButton = [PLSDeleteButton getInstance];
     self.deleteButton.style = PLSDeleteButtonStyleNormal;
     self.deleteButton.frame = CGRectMake(0, 0, 40, 40);
@@ -339,7 +335,7 @@ FilterViewEventDelegate, StickerViewClickDelegate, TuSDKFilterProcessorDelegate
     
     // 结束录制的按钮
     center = self.recordButton.center;
-    center.x = kScreenWidth - 100;
+    center.x = kScreenWidth - 80;
     self.endButton = [UIButton buttonWithType:UIButtonTypeCustom];
     self.endButton.frame = CGRectMake(0, 0, 40, 40);
     self.endButton.center = center;
