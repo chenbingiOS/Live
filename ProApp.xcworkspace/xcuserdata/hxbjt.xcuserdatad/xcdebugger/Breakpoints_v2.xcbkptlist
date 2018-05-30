@@ -51,13 +51,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "ProApp/Modules/Login/Login/CBLoginVC.m"
-            timestampString = "549338790.0147001"
+            filePath = "ProApp/Base/Cache/UserCache/CBLiveUserConfig.m"
+            timestampString = "549356830.3167011"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "160"
-            endingLineNumber = "160"
-            landmarkName = "-requestLogin:loginType:"
+            startingLineNumber = "73"
+            endingLineNumber = "73"
+            landmarkName = "+saveProfile:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

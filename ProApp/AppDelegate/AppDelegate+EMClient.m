@@ -9,7 +9,8 @@
 #import "AppDelegate+EMClient.h"
 
 //环信
-#define IMkey @"1101171020178343#duomi"
+//#define IMkey @"1101171020178343#duomi"
+#define IMkey @"1172171012115524#fengwotest"
 
 @implementation AppDelegate (EMClient)
 

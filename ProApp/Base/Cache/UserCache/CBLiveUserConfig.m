@@ -66,44 +66,64 @@ static NSString * const liang = @"liang";
     [userDefaults synchronize];
     
     //传递大s头像
-    UIPasteboard *pasteavatar = [UIPasteboard pasteboardWithName:[NSString stringWithFormat:@"%@avatar",connectname] create:YES];
-    pasteavatar.string = user.avatar;
+    if (user.avatar) {
+        UIPasteboard *pasteavatar = [UIPasteboard pasteboardWithName:[NSString stringWithFormat:@"%@avatar",connectname] create:YES];
+        pasteavatar.string = user.avatar;
+    }
     
     //传递小头像
-    UIPasteboard *pasteaavatar_thumb = [UIPasteboard pasteboardWithName:[NSString stringWithFormat:@"%@avatar_thumb",connectname] create:YES];
-    pasteaavatar_thumb.string = user.avatar_thumb;
+    if (user.avatar_thumb) {
+        UIPasteboard *pasteaavatar_thumb = [UIPasteboard pasteboardWithName:[NSString stringWithFormat:@"%@avatar_thumb",connectname] create:YES];
+        pasteaavatar_thumb.string = user.avatar_thumb;
+    }
     
     //传递id
-    UIPasteboard *pasteaID = [UIPasteboard pasteboardWithName:[NSString stringWithFormat:@"%@ID",connectname] create:YES];
-    pasteaID.string = user.ID;
+    if (user.ID) {
+        UIPasteboard *pasteaID = [UIPasteboard pasteboardWithName:[NSString stringWithFormat:@"%@ID",connectname] create:YES];
+        pasteaID.string = user.ID;
+    }
     
     //传递name
-    UIPasteboard *pasteauser_nicename = [UIPasteboard pasteboardWithName:[NSString stringWithFormat:@"%@user_nicename",connectname] create:YES];
-    pasteauser_nicename.string = user.user_nicename;
+    if (user.user_nicename) {
+        UIPasteboard *pasteauser_nicename = [UIPasteboard pasteboardWithName:[NSString stringWithFormat:@"%@user_nicename",connectname] create:YES];
+        pasteauser_nicename.string = user.user_nicename;
+    }
     
     //传递token
-    UIPasteboard *pastetoken= [UIPasteboard pasteboardWithName:[NSString stringWithFormat:@"%@token",connectname] create:YES];
-    pastetoken.string = user.token;
+    if (user.token) {
+        UIPasteboard *pastetoken= [UIPasteboard pasteboardWithName:[NSString stringWithFormat:@"%@token",connectname] create:YES];
+        pastetoken.string = user.token;
+    }
     
     //传递余额
-    UIPasteboard *pastecoin = [UIPasteboard pasteboardWithName:[NSString stringWithFormat:@"%@coin",connectname] create:YES];
-    pastecoin.string = user.coin;
+    if (user.coin) {
+        UIPasteboard *pastecoin = [UIPasteboard pasteboardWithName:[NSString stringWithFormat:@"%@coin",connectname] create:YES];
+        pastecoin.string = user.coin;
+    }
     
     //传递性别
-    UIPasteboard *pastesex = [UIPasteboard pasteboardWithName:[NSString stringWithFormat:@"%@sex",connectname] create:YES];
-    pastesex.string = user.sex;
+    if (user.sex) {
+        UIPasteboard *pastesex = [UIPasteboard pasteboardWithName:[NSString stringWithFormat:@"%@sex",connectname] create:YES];
+        pastesex.string = user.sex;
+    }
     
     //传递个签
-    UIPasteboard *pastesignature = [UIPasteboard pasteboardWithName:[NSString stringWithFormat:@"%@signature",connectname] create:YES];
-    pastesignature.string = user.signature;
+    if (user.signature) {
+        UIPasteboard *pastesignature = [UIPasteboard pasteboardWithName:[NSString stringWithFormat:@"%@signature",connectname] create:YES];
+        pastesignature.string = user.signature;
+    }
     
     //传递等级
-    UIPasteboard *pastelevel = [UIPasteboard pasteboardWithName:[NSString stringWithFormat:@"%@level",connectname] create:YES];
-    pastelevel.string = user.level;
+    if (user.level) {
+        UIPasteboard *pastelevel = [UIPasteboard pasteboardWithName:[NSString stringWithFormat:@"%@level",connectname] create:YES];
+        pastelevel.string = user.level;
+    }
     
     //传递城市
-    UIPasteboard *pastecity = [UIPasteboard pasteboardWithName:[NSString stringWithFormat:@"%@city",connectname] create:YES];
-    pastecity.string = user.city;
+    if (user.city) {
+        UIPasteboard *pastecity = [UIPasteboard pasteboardWithName:[NSString stringWithFormat:@"%@city",connectname] create:YES];
+        pastecity.string = user.city;
+    }
 }
 
 + (void)updateProfile:(CBLiveUser *)user {

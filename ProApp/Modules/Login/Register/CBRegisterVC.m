@@ -10,9 +10,6 @@
 #import "UITextField+LeftImageView.h"
 #import "CBWebVC.h"
 
-//渠道ID
-#define registerFlag @"11343"
-
 @interface CBRegisterVC ()
 
 @property (weak, nonatomic) IBOutlet UITextField *phoneTextField;
@@ -65,26 +62,22 @@
         self.authCodeTime = 60;
         self.authCodeBtn.userInteractionEnabled = NO;
         NSString *url = urlGetCode;
-        NSDictionary *getcode = @{ @"mobile": self.phoneTextField.text};
+        NSDictionary *getcode = @{ @"mobile_num": self.phoneTextField.text,
+                                   @"status": @"register0" };
         [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         [PPNetworkHelper POST:url parameters:getcode success:^(id responseObject) {
             [MBProgressHUD hideHUDForView:self.view animated:YES];
-            NSNumber *number = [responseObject valueForKey:@"ret"] ;
-            if([number isEqualToNumber:[NSNumber numberWithInt:200]]) {
-                NSArray *data = [responseObject valueForKey:@"data"];
-                NSString *code = [NSString stringWithFormat:@"%@",[data valueForKey:@"code"]];
-                NSString *msg = [data valueForKey:@"msg"];
-                if([code isEqual:@"0"]) {
-                    if (self.messsageTimer == nil) {
-                        self.messsageTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(actionTimeCountDown) userInfo:nil repeats:YES];
-                    }
-                    [MBProgressHUD showAutoMessage:@"发送成功"];
-                } else {
-                    [MBProgressHUD showAutoMessage:msg];
+            NSNumber *code = [responseObject valueForKey:@"code"];
+            NSString *descrp = [responseObject valueForKey:@"descrp"];
+            [MBProgressHUD showAutoMessage:descrp];
+            if ([code isEqualToNumber:@200]) {
+                if (self.messsageTimer == nil) {
+                    self.messsageTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(actionTimeCountDown) userInfo:nil repeats:YES];
                 }
             }
             self.authCodeBtn.userInteractionEnabled = YES;
         } failure:^(NSError *error) {
+            [MBProgressHUD showAutoMessage:@"验证码获取失败"];
             [MBProgressHUD hideHUDForView:self.view animated:YES];
             self.authCodeBtn.userInteractionEnabled = YES;
         }];
@@ -116,32 +109,24 @@
     
     {
         NSString *url = urlUserReg;
-        NSDictionary *regDict = @{@"user_login":self.phoneTextField.text,
-                                  @"user_pass":self.pwdTextField.text,
-                                  @"user_pass2":self.pwdTextField.text,
-                                  @"code":self.codeTextField.text,
-                                  @"upper":registerFlag };
+        NSDictionary *regDict = @{@"mobile_num":self.phoneTextField.text,
+                                  @"password":self.pwdTextField.text,
+                                  @"varcode":self.codeTextField.text };
         [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         [PPNetworkHelper POST:url parameters:regDict success:^(id responseObject) {
             [MBProgressHUD hideHUDForView:self.view animated:YES];
-            NSNumber *number = [responseObject valueForKey:@"ret"] ;
-            if([number isEqualToNumber:[NSNumber numberWithInt:200]]) {
-                NSArray *data = [responseObject valueForKey:@"data"];
-                NSNumber *code = [data valueForKey:@"code"];
-                NSString *msg = [data valueForKey:@"msg"];
-                if([code isEqualToNumber:[NSNumber numberWithInt:0]]){
-                    [MBProgressHUD showAutoMessage:@"注册成功"];
-                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                        [self.navigationController popViewControllerAnimated:YES];
-                    });
-                } else{
-                    [MBProgressHUD showAutoMessage:msg];
-                }
-            } else{
-                [MBProgressHUD showAutoMessage:[responseObject valueForKey:@"msg"]];
+            NSNumber *code = [responseObject valueForKey:@"code"];
+            NSString *descrp = [responseObject valueForKey:@"descrp"];
+            NSString *token = [responseObject valueForKey:@"token"];
+            [MBProgressHUD showAutoMessage:descrp];
+            if ([code isEqualToNumber:@200]) {
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    
+                });
             }
         } failure:^(NSError *error) {
             [MBProgressHUD hideHUDForView:self.view animated:YES];
+            [MBProgressHUD showAutoMessage:@"注册失败"];
         }];
     }
 }

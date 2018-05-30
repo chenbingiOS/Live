@@ -62,6 +62,10 @@
     if ([ShareSDK isClientInstalled:SSDKPlatformTypeQQ]) {
         self.qqBtn.hidden = NO;
     }
+    
+    self.wxBtn.hidden = YES;
+    self.wbBtn.hidden = YES;
+    self.qqBtn.hidden = YES;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -92,37 +96,28 @@
 - (IBAction)actionLogin:(id)sender {
     
     NSString *url = urlUserLogin;
-    NSDictionary *param = @{@"user_login": self.phoneTextField.text,
-                            @"user_pass": self.pwdTextField.text};
+    NSDictionary *param = @{@"mobile_num": self.phoneTextField.text,
+                            @"password": self.pwdTextField.text};
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [PPNetworkHelper POST:url parameters:param success:^(id responseObject) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
-        NSNumber *number = [responseObject valueForKey:@"ret"] ;
-        if([number isEqualToNumber:[NSNumber numberWithInt:200]])
-        {
-            NSArray *MsgData = [responseObject valueForKey:@"data"];
-            NSString *code = [NSString stringWithFormat:@"%@",[MsgData valueForKey:@"code"]];
-            NSString *msg = [MsgData valueForKey:@"msg"];
-            if([code isEqual:@"0"]) {
-                NSDictionary *info = [[MsgData valueForKey:@"info"] objectAtIndex:0];
-                CBLiveUser *userInfo = [[CBLiveUser alloc] initWithDic:info];
-                [CBLiveUserConfig saveProfile:userInfo];
-                //判断第一次登陆
-//                NSString *isreg = minstr([info valueForKey:@"isreg"]);
-//                _isreg = isreg;
-                
-                [self loginENClient];
-                [self loginJPUSH];
-                [self loginUI];
-            } else {
-                [MBProgressHUD showAutoMessage:msg];
-            }
-        }
-        else{
-            [MBProgressHUD showAutoMessage:[responseObject valueForKey:@"msg"]];
+        NSNumber *code = [responseObject valueForKey:@"code"];
+        NSString *descrp = [responseObject valueForKey:@"descrp"];        
+        [MBProgressHUD showAutoMessage:descrp];
+        if ([code isEqualToNumber:@200]) {
+            NSString *token = [responseObject valueForKey:@"token"];
+            NSDictionary *info = [responseObject valueForKey:@"info"];
+            CBLiveUser *userInfo = [[CBLiveUser alloc] initWithDic:info];
+            userInfo.token = token;
+            [CBLiveUserConfig saveProfile:userInfo];
+            
+            [self loginENClient];
+            [self loginJPUSH];
+            [self loginUI];
         }
     } failure:^(NSError *error) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [MBProgressHUD showAutoMessage:@"登录失败"];
     }];
 }
 
@@ -149,8 +144,9 @@
     [SSEThirdPartyLoginHelper loginByPlatform:platform onUserSync:^(SSDKUser *user, SSEUserAssociateHandler associateHandler) {
         [self requestLogin:user loginType:types];
     } onLoginResult:^(SSDKResponseState state, SSEBaseUser *user, NSError *error) {
-        if (state == 2 || state == 3) {
-            [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        if (error) {
+            [MBProgressHUD showAutoMessage:@"登录失败"];
         }
     }];
 }

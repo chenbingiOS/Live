@@ -17,7 +17,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0.6</string>
+	<string>1.0</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -27,7 +27,7 @@
 			<string>defalut-header-icon</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>tencent</string>
+				<string>tencent100371282</string>
 			</array>
 		</dict>
 		<dict>

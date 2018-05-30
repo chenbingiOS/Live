@@ -1402,8 +1402,8 @@
 		0715278420A53F3A00D3859D /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				54F7828A20BD569600EE6821 /* Forget */,
 				548C5CD020B51D1000A6FF53 /* Web */,
+				54F7828A20BD569600EE6821 /* Forget */,
 				0715278520A53F4300D3859D /* Register */,
 				07F6EF5A20872E3C0035C6BD /* Login */,
 			);

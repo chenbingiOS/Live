@@ -24,7 +24,9 @@
     [self initEMClient];
     [self initWindow];
     [self initRootVC];
-    [self initApperance];    
+    [self initApperance];
+        
+    [PPNetworkHelper openLog];
     
     return YES;
 }

@@ -8,18 +8,17 @@
 
 #import "CBLiveUser.h"
 
+
 @implementation CBLiveUser
 
-- (void)setValue:(id)value forUndefinedKey:(NSString *)key {
-    if ([key isEqualToString:@"id"]) {
-        self.ID = value;
-    }
++ (NSDictionary *)modelCustomPropertyMapper {
+    return @{@"ID" : @"id"};
 }
 
 - (instancetype)initWithDic:(NSDictionary *)dic {
     self = [super init];
-    if(self) {
-        [self setValuesForKeysWithDictionary:dic];
+    if (self) {
+        self = [CBLiveUser modelWithDictionary:dic];
     }
     return self;
 }
