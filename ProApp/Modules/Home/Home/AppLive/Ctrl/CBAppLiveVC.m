@@ -48,7 +48,7 @@ static NSString *RIDCBAppADCell = @"RIDCBAppADCell";
     self.tableView.backgroundColor = [UIColor bgColor];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
-    CGFloat height = kScreenWidth / 2;
+    CGFloat height = kScreenWidth * 6 / 15;
     UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, height)];
     [headerView addSubview:self.cyclePagerView];
     [headerView addSubview:self.pageControl];
@@ -115,7 +115,11 @@ static NSString *RIDCBAppADCell = @"RIDCBAppADCell";
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return kScreenWidth+5;
+    if (iPhoneX) {
+        return kScreenWidth+5;
+    } else {
+        return kScreenWidth*7/8+5;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -147,10 +151,11 @@ static NSString *RIDCBAppADCell = @"RIDCBAppADCell";
 
 - (TYCyclePagerViewLayout *)layoutForPagerView:(TYCyclePagerView *)pageView {
     TYCyclePagerViewLayout *layout = [[TYCyclePagerViewLayout alloc] init];
-    layout.itemSize = CGSizeMake(CGRectGetWidth(pageView.frame)*0.884, CGRectGetHeight(pageView.frame)*0.92);
-    layout.itemSpacing = 1;
+//    layout.itemSize = CGSizeMake(CGRectGetWidth(pageView.frame)*0.884, CGRectGetHeight(pageView.frame)*0.92);
+    layout.itemSize = CGSizeMake(CGRectGetWidth(pageView.frame)*0.9, CGRectGetHeight(pageView.frame)*0.935);
+    layout.itemSpacing = 4;
     layout.itemHorizontalCenter = YES;
-    layout.layoutType = TYCyclePagerTransformLayoutLinear;
+    layout.layoutType = TYCyclePagerTransformLayoutNormal;
     return layout;
 }
 
@@ -176,7 +181,7 @@ static NSString *RIDCBAppADCell = @"RIDCBAppADCell";
 
 - (TYCyclePagerView *)cyclePagerView {
     if (!_cyclePagerView) {
-        CGFloat height = kScreenWidth / 2;
+        CGFloat height = kScreenWidth * 6 / 15;
         _cyclePagerView = [[TYCyclePagerView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, height)];
         _cyclePagerView.backgroundColor = [UIColor bgColor];
         _cyclePagerView.dataSource = self;
@@ -193,7 +198,8 @@ static NSString *RIDCBAppADCell = @"RIDCBAppADCell";
 
 - (TYPageControl *)pageControl {
     if (!_pageControl) {
-        _pageControl = [[TYPageControl alloc] initWithFrame:CGRectMake(0, kScreenWidth/2-35, kScreenWidth, 26)];
+        CGFloat height = kScreenWidth * 6 / 15;
+        _pageControl = [[TYPageControl alloc] initWithFrame:CGRectMake(0, height - 35, kScreenWidth, 26)];
         _pageControl.currentPageIndicatorSize = CGSizeMake(8, 8);
     }
     return _pageControl;

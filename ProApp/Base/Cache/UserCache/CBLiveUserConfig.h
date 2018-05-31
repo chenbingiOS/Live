@@ -19,9 +19,5 @@
 + (NSString *)getHXpwd;
 + (NSString *)getOwnToken;
 + (NSString *)getOwnID;
-+ (NSString *)getavatar;
-+ (NSString *)getSex;
-+ (NSString *)getLevel;
-+ (NSString *)getOwnNicename;
 
 @end

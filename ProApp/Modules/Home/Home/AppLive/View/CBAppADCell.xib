@@ -20,10 +20,10 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XZh-VR-Cpc">
-                        <rect key="frame" x="2" y="4" width="168" height="42"/>
+                        <rect key="frame" x="3" y="5" width="166" height="40"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeHolder_ad_414x100" translatesAutoresizingMaskIntoConstraints="NO" id="syM-a6-nTJ">
-                                <rect key="frame" x="0.0" y="0.0" width="168" height="42"/>
+                                <rect key="frame" x="0.0" y="0.0" width="166" height="40"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -55,17 +55,17 @@
                 </subviews>
             </view>
             <constraints>
-                <constraint firstItem="XZh-VR-Cpc" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="4" id="2Mw-me-5uw"/>
-                <constraint firstAttribute="bottom" secondItem="XZh-VR-Cpc" secondAttribute="bottom" constant="4" id="UyI-oh-V6D"/>
-                <constraint firstAttribute="trailing" secondItem="XZh-VR-Cpc" secondAttribute="trailing" constant="2" id="glR-bm-BB3"/>
-                <constraint firstItem="XZh-VR-Cpc" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="2" id="zME-6B-Yq4"/>
+                <constraint firstItem="XZh-VR-Cpc" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="5" id="2Mw-me-5uw"/>
+                <constraint firstAttribute="bottom" secondItem="XZh-VR-Cpc" secondAttribute="bottom" constant="5" id="UyI-oh-V6D"/>
+                <constraint firstAttribute="trailing" secondItem="XZh-VR-Cpc" secondAttribute="trailing" constant="3" id="glR-bm-BB3"/>
+                <constraint firstItem="XZh-VR-Cpc" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="3" id="zME-6B-Yq4"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="SEy-5g-ep8"/>
             <size key="customSize" width="172" height="50"/>
             <connections>
                 <outlet property="imageView" destination="syM-a6-nTJ" id="Uba-SM-JuO"/>
             </connections>
-            <point key="canvasLocation" x="-50" y="57"/>
+            <point key="canvasLocation" x="13" y="36"/>
         </collectionViewCell>
     </objects>
     <resources>

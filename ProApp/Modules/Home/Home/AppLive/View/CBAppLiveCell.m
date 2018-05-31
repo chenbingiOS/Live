@@ -39,6 +39,7 @@
     }
     [self.locationBtn setTitle:live.gps forState:UIControlStateNormal];
     [self.bigPicView sd_setImageWithURL:[NSURL URLWithString:live.bigpic] placeholderImage:[UIImage imageNamed:@"profile_user_414x414"]];
+    self.bigPicView.layer.masksToBounds = YES;
     self.startView.image  = live.starImage;
     self.startView.hidden = !live.starlevel;
     

@@ -14,7 +14,8 @@
 DWObjectCodingImplmentation
 
 + (NSDictionary *)modelCustomPropertyMapper {
-    return @{@"ID" : @"id"};
+    return @{@"ID" : @"id",
+             @"token" : @"api_token"};
 }
 
 - (instancetype)initWithDic:(NSDictionary *)dic {

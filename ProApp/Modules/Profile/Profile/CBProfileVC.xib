@@ -16,7 +16,7 @@
                 <outlet property="userAttentionLab" destination="BQp-IX-RIE" id="NSz-PQ-OAP"/>
                 <outlet property="userAvaterImageView" destination="oro-jo-ebm" id="zQH-G9-lNp"/>
                 <outlet property="userDescLab" destination="elz-NO-5e7" id="kOV-my-3yi"/>
-                <outlet property="userFansBtn" destination="1KF-R4-ZUN" id="k5Z-Lu-9qt"/>
+                <outlet property="userFansLab" destination="1KF-R4-ZUN" id="SIG-nh-fYP"/>
                 <outlet property="userLevelImageView" destination="eaw-rv-Ehp" id="Q6J-dh-6kr"/>
                 <outlet property="userNameLab" destination="5sn-ZK-Pt5" id="gHW-gx-mCM"/>
                 <outlet property="userSexImageView" destination="WyN-C1-iXe" id="Cln-9r-cUy"/>
@@ -110,7 +110,7 @@
                                                         <constraint firstAttribute="width" constant="0.5" id="CWw-uB-a1G"/>
                                                     </constraints>
                                                 </view>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="16" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BQp-IX-RIE">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BQp-IX-RIE">
                                                     <rect key="frame" x="0.0" y="4" width="171.5" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="bzX-fn-Mef"/>
@@ -128,7 +128,7 @@
                                                     <color key="textColor" red="0.57647058823529407" green="0.57647058823529407" blue="0.57647058823529407" alpha="1" colorSpace="deviceRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1KF-R4-ZUN">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1KF-R4-ZUN">
                                                     <rect key="frame" x="172" y="4" width="171" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="Rfb-hM-2WE"/>
@@ -968,7 +968,7 @@
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
-            <point key="canvasLocation" x="-738" y="168"/>
+            <point key="canvasLocation" x="-1127" y="80"/>
         </view>
     </objects>
     <resources>

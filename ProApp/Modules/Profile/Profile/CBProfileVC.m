@@ -27,15 +27,12 @@
 // 用户信息 UI
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *contentHeightConstraint;
 @property (weak, nonatomic) IBOutlet UIImageView *userAvaterImageView;
-@property (weak, nonatomic) IBOutlet UIImageView *userLevelImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *userSexImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *userLevelImageView;
 @property (weak, nonatomic) IBOutlet UILabel *userNameLab;
 @property (weak, nonatomic) IBOutlet UILabel *userDescLab;
 @property (weak, nonatomic) IBOutlet UILabel *userAttentionLab;
-@property (weak, nonatomic) IBOutlet UILabel *userFansBtn;
-
-@property (nonatomic, strong) NSArray *listArr;
-@property (nonatomic, strong) NSDictionary *infoArray;//个人信息
+@property (weak, nonatomic) IBOutlet UILabel *userFansLab;
 
 @end
 
@@ -49,13 +46,13 @@
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:animated];
+    [self httpGetUserInfo];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.navigationController setNavigationBarHidden:YES];
     
-    self.listArr = [NSArray arrayWithArray:[CBLiveSettingConfig getpersonc]];
     [self setupUI];
 }
 
@@ -63,9 +60,18 @@
     NSString *url = urlGetUserInfo;
     NSDictionary *param = @{@"token": [CBLiveUserConfig getOwnToken]};
     [PPNetworkHelper POST:url parameters:param success:^(id responseObject) {
+        NSNumber *code = [responseObject valueForKey:@"code"];
+//        NSString *descrp = [responseObject valueForKey:@"descrp"];
+//        [MBProgressHUD showAutoMessage:descrp];
+        if ([code isEqualToNumber:@200]) {
+            NSDictionary *info = [responseObject valueForKey:@"info"];
+            CBLiveUser *userInfo = [[CBLiveUser alloc] initWithDic:info];
+            [CBLiveUserConfig saveProfile:userInfo];
         
+            [self reloadByProfile];
+        }
     } failure:^(NSError *error) {
-        
+        [self reloadByProfile];
     }];
 }
 
@@ -76,20 +82,24 @@
 
 - (void)setupUI {
     [self.userAvaterImageView roundedCornerByDefault];
-    [self loadDataByProfile];
+    [self reloadByProfile];
 }
 
 // 加载头部信息
-- (void)loadDataByProfile {
-    [self.userAvaterImageView sd_setImageWithURL:[NSURL URLWithString:[CBLiveUserConfig getavatar]]];
-    self.userNameLab.text = [CBLiveUserConfig getOwnNicename];
-    if ([[CBLiveUserConfig getSex] isEqualToString:@"0"]) {
-        [self.userSexImageView setImage:[UIImage imageNamed:@"female"]];        
-    } else {
+- (void)reloadByProfile {
+    CBLiveUser *user = [CBLiveUserConfig myProfile];
+    [self.userAvaterImageView sd_setImageWithURL:[NSURL URLWithString:user.avatar]];
+    if ([user.sex isEqualToString:@"0"]) {
+        self.userSexImageView.hidden = YES;
+    } else if ([user.sex isEqualToString:@"2"]) {
+        [self.userSexImageView setImage:[UIImage imageNamed:@"female"]];
+    } else if ([user.sex isEqualToString:@"1"]) {
         [self.userSexImageView setImage:[UIImage imageNamed:@"men"]];
     }
-    [self.userLevelImageView setImage:[UIImage imageNamed:[NSString stringWithFormat:@"v%@", [CBLiveUserConfig getLevel]]]];
-//    [cell.level_anchorView setImage:[UIImage imageNamed:[NSString stringWithFormat:@"host_%@",[Config level_anchor]]]];
+    self.userNameLab.text = user.user_nicename;
+    [self.userLevelImageView setImage:[UIImage imageNamed:[NSString stringWithFormat:@"v%@", user.user_level]]];
+    self.userAttentionLab.text = user.attention_num ? user.attention_num : @"0";
+    self.userFansLab.text = user.fans_num ? user.fans_num : @"0";
 }
 
 - (IBAction)actionPlayVideoTime:(id)sender {
@@ -155,12 +165,6 @@
 }
 
 
-
-
-
-
-
-
 - (void)httpPersonSettingInfo{
     // 这个地方传版本号，做上架隐藏，只有版本号跟后台一致，才会隐藏部分上架限制功能，不会影响其他正常使用客户(后台位置：私密设置-基本设置 -IOS上架版本号)
     NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
@@ -173,9 +177,9 @@
             NSArray *data = [responseObject valueForKey:@"data"];
             NSString *code = [NSString stringWithFormat:@"%@",[data valueForKey:@"code"]];
             if([code isEqual:@"0"]) {
-                CBLiveUser *user = [CBLiveUserConfig myProfile];
-                NSDictionary *info = [[data valueForKey:@"info"] firstObject];
-                self.infoArray = info;
+//                CBLiveUser *user = [CBLiveUserConfig myProfile];
+//                NSDictionary *info = [[data valueForKey:@"info"] firstObject];
+//                self.infoArray = info;
 //                user.user_nicename = [NSString stringWithFormat:@"%@",[info valueForKey:@"user_nicename"]];
 //                user.ID = [NSString stringWithFormat:@"%@", [info valueForKey:@"id"]];
 //                user.sex = [NSString stringWithFormat:@"%@", [info valueForKey:@"sex"]];
@@ -192,10 +196,10 @@
 //                NSDictionary *subdic = [NSDictionary dictionaryWithObjects:@[type,liangnum] forKeys:@[@"vip_type",@"liang"]];
 //                [CBLiveUserConfig saveVipandliang:subdic];
                 //                _model = [YBPersonTableViewModel modelWithDic:info];
-                NSArray *list = [info valueForKey:@"list"];
-                self.listArr = list;
-                [CBLiveSettingConfig savepersoncontroller:self.listArr]; //保存在本地，防止没网的时候不显示
-                [self loadDataByProfile];
+//                NSArray *list = [info valueForKey:@"list"];
+//                self.listArr = list;
+//                [CBLiveSettingConfig savepersoncontroller:self.listArr]; //保存在本地，防止没网的时候不显示
+//                [self loadDataByProfile];
             }
             
             if ([code isEqual:@"700"]) {
@@ -203,17 +207,17 @@
                 //                [self quitLogin];
             }
             else{
-                self.listArr = [NSArray arrayWithArray:[CBLiveSettingConfig getpersonc]];
-                [self loadDataByProfile];
+//                self.listArr = [NSArray arrayWithArray:[CBLiveSettingConfig getpersonc]];
+//                [self loadDataByProfile];
             }
         }
         else{
-            self.listArr = [NSArray arrayWithArray:[CBLiveSettingConfig getpersonc]];
-            [self loadDataByProfile];
+//            self.listArr = [NSArray arrayWithArray:[CBLiveSettingConfig getpersonc]];
+//            [self loadDataByProfile];
         }
     } failure:^(NSError *error) {
-        self.listArr = [NSArray arrayWithArray:[CBLiveSettingConfig getpersonc]];
-        [self loadDataByProfile];
+//        self.listArr = [NSArray arrayWithArray:[CBLiveSettingConfig getpersonc]];
+//        [self loadDataByProfile];
     }];
 }
 

@@ -33,13 +33,14 @@
 @property (nonatomic, copy) NSString *latitude;         ///< 纬度
 
 @property (nonatomic, copy) NSString *balance;          ///< 钻石余额
-@property (nonatomic, copy) NSString *sidou;            ///< 用户收益       钻石,可兑换金币或提现
+@property (nonatomic, copy) NSString *sidou;            ///< 用户收益        钻石,可兑换金币或提现
 @property (nonatomic, copy) NSString *total_earn;       ///< 用户总收益      钻石
 @property (nonatomic, copy) NSString *total_spend;      ///< 用户总消费贡献(金币)
 @property (nonatomic, copy) NSString *vip_deadline;     ///< vip截至日期
 
 @property (nonatomic, copy) NSString *user_status;      ///< 用户状态             0:禁用 1:正常 2:未验证
 @property (nonatomic, copy) NSString *user_level;       ///< vip等级             默认1，普通用户等级（财富）
+
 @property (nonatomic, copy) NSString *is_host;          ///< 是否是主播           0：不是主播 ，1：是主播
 @property (nonatomic, copy) NSString *family_id;        ///< 所属家族id           0代表没有所属家族
 @property (nonatomic, copy) NSString *superior;         ///< 用户从属的上级用户ID   默认0
@@ -47,6 +48,8 @@
 @property (nonatomic, copy) NSString *subordinate_count;///< 直属下级的个数
 @property (nonatomic, copy) NSString *advanced_administrator;   ///< 超管         默认0 ，1是超管
 @property (nonatomic, copy) NSString *minute_charge_timestamp;  ///< 分钟扣费时间
+@property (nonatomic, copy) NSString *attention_num;    ///< 我的关注
+@property (nonatomic, copy) NSString *fans_num;         ///< 我的粉丝
 
 
 - (instancetype)initWithDic:(NSDictionary *)dic;
