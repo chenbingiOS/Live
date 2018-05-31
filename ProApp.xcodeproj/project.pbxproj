@@ -165,6 +165,10 @@
 		5436EA9A20B7EDCF00011BF0 /* RecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5436EA9820B7EDCF00011BF0 /* RecordViewController.m */; };
 		5436EA9B20B7EF0E00011BF0 /* video_draft_test.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 5436E9EC20B7E34300011BF0 /* video_draft_test.mp4 */; };
 		54375D1320BC049000F09CAA /* WZBCountDownButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 54375D1120BC049000F09CAA /* WZBCountDownButton.m */; };
+		54520AF020BFD2BB005B787E /* NSObject+Copy.m in Sources */ = {isa = PBXBuildFile; fileRef = 54520AEB20BFD2BA005B787E /* NSObject+Copy.m */; };
+		54520AF120BFD2BB005B787E /* NSObject+Coding.m in Sources */ = {isa = PBXBuildFile; fileRef = 54520AEC20BFD2BA005B787E /* NSObject+Coding.m */; };
+		54520AF320BFD2BB005B787E /* NSObject+Class.m in Sources */ = {isa = PBXBuildFile; fileRef = 54520AEE20BFD2BA005B787E /* NSObject+Class.m */; };
+		54520AF620BFD83D005B787E /* CBArchiverTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 54520AF520BFD83D005B787E /* CBArchiverTool.m */; };
 		5465AE0320BD31A3006E24BB /* CBEditVideoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5465AE0220BD31A3006E24BB /* CBEditVideoVC.m */; };
 		5465AE0720BD4A10006E24BB /* CBUploadVideoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5465AE0520BD4A10006E24BB /* CBUploadVideoVC.m */; };
 		548C5CA020B4FAD300A6FF53 /* CBApplyAnchorVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 548C5C9E20B4FAD300A6FF53 /* CBApplyAnchorVC.m */; };
@@ -959,6 +963,14 @@
 		5436EA9920B7EDCF00011BF0 /* RecordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordViewController.h; sourceTree = "<group>"; };
 		54375D1120BC049000F09CAA /* WZBCountDownButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WZBCountDownButton.m; sourceTree = "<group>"; };
 		54375D1220BC049000F09CAA /* WZBCountDownButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WZBCountDownButton.h; sourceTree = "<group>"; };
+		54520AE720BFD2BA005B787E /* NSObject+Class.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Class.h"; sourceTree = "<group>"; };
+		54520AE920BFD2BA005B787E /* NSObject+Coding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Coding.h"; sourceTree = "<group>"; };
+		54520AEB20BFD2BA005B787E /* NSObject+Copy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Copy.m"; sourceTree = "<group>"; };
+		54520AEC20BFD2BA005B787E /* NSObject+Coding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Coding.m"; sourceTree = "<group>"; };
+		54520AEE20BFD2BA005B787E /* NSObject+Class.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Class.m"; sourceTree = "<group>"; };
+		54520AEF20BFD2BA005B787E /* NSObject+Copy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Copy.h"; sourceTree = "<group>"; };
+		54520AF420BFD83D005B787E /* CBArchiverTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBArchiverTool.h; sourceTree = "<group>"; };
+		54520AF520BFD83D005B787E /* CBArchiverTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBArchiverTool.m; sourceTree = "<group>"; };
 		5465AE0120BD31A3006E24BB /* CBEditVideoVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBEditVideoVC.h; sourceTree = "<group>"; };
 		5465AE0220BD31A3006E24BB /* CBEditVideoVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBEditVideoVC.m; sourceTree = "<group>"; };
 		5465AE0420BD4A10006E24BB /* CBUploadVideoVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBUploadVideoVC.h; sourceTree = "<group>"; };
@@ -1407,10 +1419,10 @@
 		0715278420A53F3A00D3859D /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				548C5CD020B51D1000A6FF53 /* Web */,
-				54F7828A20BD569600EE6821 /* Forget */,
-				0715278520A53F4300D3859D /* Register */,
 				07F6EF5A20872E3C0035C6BD /* Login */,
+				0715278520A53F4300D3859D /* Register */,
+				54F7828A20BD569600EE6821 /* Forget */,
+				548C5CD020B51D1000A6FF53 /* Web */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -1495,6 +1507,7 @@
 		072DC57B2091604600F693E8 /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				54520AE620BFD2BA005B787E /* NSObject */,
 				548C5CD920B5430300A6FF53 /* MBProgressHUD */,
 				0715278B20A5496D00D3859D /* UITextField */,
 				072DC58B2091706300F693E8 /* UIImageView */,
@@ -1865,13 +1878,15 @@
 			path = OnlineUser;
 			sourceTree = "<group>";
 		};
-		07558C1920941289007E41C2 /* Subclass */ = {
+		07558C1920941289007E41C2 /* Tool Class */ = {
 			isa = PBXGroup;
 			children = (
 				07558C1D20941F18007E41C2 /* CBPopView.h */,
 				07558C1E20941F18007E41C2 /* CBPopView.m */,
+				54520AF420BFD83D005B787E /* CBArchiverTool.h */,
+				54520AF520BFD83D005B787E /* CBArchiverTool.m */,
 			);
-			path = Subclass;
+			path = "Tool Class";
 			sourceTree = "<group>";
 		};
 		07558C2520945633007E41C2 /* AnchorInfoView */ = {
@@ -2112,7 +2127,7 @@
 				548C5CA820B50BFE00A6FF53 /* Cache */,
 				079AAE4C2079AFC500674A92 /* TBC */,
 				072DC57B2091604600F693E8 /* Category */,
-				07558C1920941289007E41C2 /* Subclass */,
+				07558C1920941289007E41C2 /* Tool Class */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -2729,6 +2744,19 @@
 				54375D1220BC049000F09CAA /* WZBCountDownButton.h */,
 			);
 			path = WZBCountdownLabel;
+			sourceTree = "<group>";
+		};
+		54520AE620BFD2BA005B787E /* NSObject */ = {
+			isa = PBXGroup;
+			children = (
+				54520AE720BFD2BA005B787E /* NSObject+Class.h */,
+				54520AEE20BFD2BA005B787E /* NSObject+Class.m */,
+				54520AE920BFD2BA005B787E /* NSObject+Coding.h */,
+				54520AEC20BFD2BA005B787E /* NSObject+Coding.m */,
+				54520AEB20BFD2BA005B787E /* NSObject+Copy.m */,
+				54520AEF20BFD2BA005B787E /* NSObject+Copy.h */,
+			);
+			path = NSObject;
 			sourceTree = "<group>";
 		};
 		548C5C9820B4FA6C00A6FF53 /* Ctrl */ = {
@@ -3827,6 +3855,7 @@
 				54A76AE320B7DEDE0034D5A2 /* PLSRateButtonView.m in Sources */,
 				548C5CC720B5193700A6FF53 /* BasicWebViewVC.m in Sources */,
 				07F38C0720994A0000DDBC90 /* JPGiftOperation.m in Sources */,
+				54520AF020BFD2BB005B787E /* NSObject+Copy.m in Sources */,
 				072DC5A02091A1B500F693E8 /* CBNotificationsVC.m in Sources */,
 				07F38C0220994A0000DDBC90 /* JPHorizontalLayout.m in Sources */,
 				54BD85E420B65A890024B6E7 /* AppDelegate+ShareSDK.m in Sources */,
@@ -3898,6 +3927,7 @@
 				54A76AE920B7DEDE0034D5A2 /* PLSSelectionView.m in Sources */,
 				076F52A120750E64004F91E8 /* AppDelegate+AppServer.m in Sources */,
 				0791588520883C6D007CA2E0 /* CBAttentionCell.m in Sources */,
+				54520AF620BFD83D005B787E /* CBArchiverTool.m in Sources */,
 				07558C16209401A3007E41C2 /* CBOnlineUserView.m in Sources */,
 				54A76AEB20B7DEDE0034D5A2 /* PLSEditToolbar.m in Sources */,
 				54A76AF220B7DEDE0034D5A2 /* PLSColumnListView.m in Sources */,
@@ -3909,6 +3939,7 @@
 				077FFD012099A67400B8680C /* CBGuardRankVC.m in Sources */,
 				54375D1320BC049000F09CAA /* WZBCountDownButton.m in Sources */,
 				072DC593209176B000F693E8 /* CBCurrencyVC.m in Sources */,
+				54520AF120BFD2BB005B787E /* NSObject+Coding.m in Sources */,
 				075056232092B02100F0679B /* CBGiftPackageCell.m in Sources */,
 				07F38C0E2099503900DDBC90 /* CBGuardVC.m in Sources */,
 				0791587B20883209007CA2E0 /* CBHotVC.m in Sources */,
@@ -3950,6 +3981,7 @@
 				54130A0F20B6B48900CAE467 /* CBLiveSetting.m in Sources */,
 				077C1A992091A6C10005CE97 /* CBAccountAndSecurityVC.m in Sources */,
 				079AAE7A2079C85000674A92 /* CBNVC.m in Sources */,
+				54520AF320BFD2BB005B787E /* NSObject+Class.m in Sources */,
 				07374702208ECF9C00E108E9 /* CBVideoAttentionVC.m in Sources */,
 				54A76D8920B7E1600034D5A2 /* GifFormatViewController.m in Sources */,
 				54A76B1220B7DF7E0034D5A2 /* FilterItemView.m in Sources */,

@@ -7,9 +7,11 @@
 //
 
 #import "CBLiveUser.h"
-
+#import "NSObject+Coding.h"
 
 @implementation CBLiveUser
+
+DWObjectCodingImplmentation
 
 + (NSDictionary *)modelCustomPropertyMapper {
     return @{@"ID" : @"id"};

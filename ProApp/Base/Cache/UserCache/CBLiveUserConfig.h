@@ -13,23 +13,15 @@
 
 + (CBLiveUser *)myProfile;
 + (void)saveProfile:(CBLiveUser *)user;
-+ (void)updateProfile:(CBLiveUser *)user;
 + (void)clearProfile;
 
-+ (NSString *)getOwnToken;
-+ (NSString *)getOwnID;
-+ (NSString *)getOwnNicename;
-+ (NSString *)getOwnSignature;
 + (NSString *)getHXuid;
 + (NSString *)getHXpwd;
-
++ (NSString *)getOwnToken;
++ (NSString *)getOwnID;
 + (NSString *)getavatar;
-+ (NSString *)getavatarThumb;
-+ (NSString *)getLevel;
 + (NSString *)getSex;
-+ (NSString *)level_anchor;//主播等级
-+ (void)saveVipandliang:(NSDictionary *)subdic;//保存靓号和vip
-+ (NSString *)getVip_type;
-+ (NSString *)getliang;
++ (NSString *)getLevel;
++ (NSString *)getOwnNicename;
 
 @end

@@ -46,6 +46,16 @@
 #define urlUserForget   purl@"Api/User/retrievePassword"
 // 用户登录第三方
 #define urlUserLoginByThird purl@"/?service=Login.userLoginByThird"
+// 获取我的信息
+#define urlGetUserInfo  purl@"Api/User/get_userinfo0"
+
+
+
+
+
+
+
+
 // 主页直播列表
 #define urlGetHot       purl@"?service=Home.getHot"
 // 获取基本配置信息

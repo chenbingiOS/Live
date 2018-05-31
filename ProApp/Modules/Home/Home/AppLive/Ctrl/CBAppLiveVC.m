@@ -156,7 +156,7 @@ static NSString *RIDCBAppADCell = @"RIDCBAppADCell";
 
 - (void)pagerView:(TYCyclePagerView *)pageView didScrollFromIndex:(NSInteger)fromIndex toIndex:(NSInteger)toIndex {
     self.pageControl.currentPage = toIndex;
-    NSLog(@"%ld ->  %ld",fromIndex,toIndex);
+//    NSLog(@"%ld ->  %ld",fromIndex,toIndex);
 }
 
 #pragma mark - layz
