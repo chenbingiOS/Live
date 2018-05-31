@@ -38,7 +38,8 @@
     [self.homeMenuPopView.homeMenuView.videoButton addBlockForControlEvents:UIControlEventTouchUpInside block:^(id  _Nonnull sender) {
         @strongify(self);
         CBRecordVideoVC *recordVC = [[CBRecordVideoVC alloc] init];
-        [self.selectedViewController presentViewController:recordVC animated:YES completion:^{
+        CBNVC *nvc = [[CBNVC alloc] initWithRootViewController:recordVC];
+        [self.selectedViewController presentViewController:nvc animated:YES completion:^{
             [self.homeMenuPopView hide];
         }];
     }];

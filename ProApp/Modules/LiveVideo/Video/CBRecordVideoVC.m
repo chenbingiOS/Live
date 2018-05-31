@@ -70,7 +70,6 @@ FilterViewEventDelegate, StickerViewClickDelegate, TuSDKFilterProcessorDelegate
 
 @property (strong, nonatomic) UIAlertView *alertView;
 
-
 // 录制的视频文件的存储路径设置
 @property (assign, nonatomic) BOOL useSDKInternalPath;
 
@@ -111,6 +110,7 @@ FilterViewEventDelegate, StickerViewClickDelegate, TuSDKFilterProcessorDelegate
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:YES animated:animated];
     [self.shortVideoRecorder startCaptureSession];
     [self getFirstMovieFromPhotoAlbum];
 }
@@ -568,7 +568,8 @@ FilterViewEventDelegate, StickerViewClickDelegate, TuSDKFilterProcessorDelegate
     
     CBEditVideoVC *editVC = [CBEditVideoVC new];
     editVC.settings = outputSettings;
-    [self presentViewController:editVC animated:YES completion:nil];
+//    [self presentViewController:editVC animated:YES completion:nil];
+    [self.navigationController pushViewController:editVC animated:YES];
 }
 
 #pragma mark -- PLShortVideoRecorderDelegate 摄像头／麦克风鉴权的回调
@@ -698,7 +699,8 @@ FilterViewEventDelegate, StickerViewClickDelegate, TuSDKFilterProcessorDelegate
     CBEditVideoVC *editVC = [CBEditVideoVC new];
     editVC.settings = outputSettings;
     editVC.filesURLArray = filesURLArray;
-    [self presentViewController:editVC animated:YES completion:nil];
+//    [self presentViewController:editVC animated:YES completion:nil];
+    [self.navigationController pushViewController:editVC animated:YES];
 }
 
 #pragma mark - 输出路径

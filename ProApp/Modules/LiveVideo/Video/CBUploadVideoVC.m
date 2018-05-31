@@ -31,6 +31,16 @@ static NSString *const kURLPrefix = @"http://shortvideo.pdex-service.com";
 
 @implementation CBUploadVideoVC
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self.player play];
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    [self.player stop];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -48,29 +58,50 @@ static NSString *const kURLPrefix = @"http://shortvideo.pdex-service.com";
     // 文件上传（可上传视频、Gif 等）
     [self setupFileUpload];
     
+    [self setupUI];
+}
+
+- (void)setupUI {
+    // 返回
+    UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    CGFloat y = 30;
+    if (iPhoneX) y += 50;
+    backButton.frame = CGRectMake(10, y, 44, 44);
+    [backButton setImage:[UIImage imageNamed:@"ShortVideo_back"] forState:UIControlStateNormal];
+    [backButton addTarget:self action:@selector(backButtonEvent:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:backButton];
+    
+    UIButton *closeButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    closeButton.frame = CGRectMake(kScreenWidth-44-10, y, 44, 44);
+    [closeButton setImage:[UIImage imageNamed:@"ShortVideo_close"] forState:UIControlStateNormal];
+    [closeButton addTarget:self action:@selector(closeButtonEvent:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:closeButton];
+    
     [self.view addSubview:self.uploadVideoView];
-}
-
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-    [self.player play];
-}
-
-- (void)viewDidDisappear:(BOOL)animated {
-    [super viewDidDisappear:animated];
-    [self.player stop];
+    @weakify(self);
+    [self.uploadVideoView.uploadVideoButton addBlockForControlEvents:UIControlEventTouchUpInside block:^(id  _Nonnull sender) {
+        @strongify(self);
+        [self uploadButtonClick:sender];
+    }];
+    
 }
 
 - (CBUploadVideoView *)uploadVideoView {
     if (!_uploadVideoView) {
         _uploadVideoView = [CBUploadVideoView viewFromXib];
-        CGFloat y = kScreenHeight-150;
-        if (iPhoneX) {
-            y -= 55;
-        }
-        _uploadVideoView.frame = CGRectMake(0, y, kScreenWidth, 150);
+        CGFloat y = kScreenHeight-165;
+        if (iPhoneX) y -= 60;
+        _uploadVideoView.frame = CGRectMake(0, y, kScreenWidth, 165);
     }
     return _uploadVideoView;
+}
+
+- (void)backButtonEvent:(UIButton *)sender {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)closeButtonEvent:(UIButton *)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark -- 播放器初始化
@@ -134,7 +165,8 @@ static NSString *const kURLPrefix = @"http://shortvideo.pdex-service.com";
 #pragma mark -- 本地视频上传到云端
 - (void)uploadButtonClick:(id)sender {
     NSString *filePath = _url.path;
-    if (1) {
+    self.uploadVideoView.uploadVideoButton.selected = !self.uploadVideoView.uploadVideoButton.selected;
+    if (self.uploadVideoView.uploadVideoButton.isSelected) {
         self.progressView.hidden = NO;
         [self.shortVideoUploader uploadVideoFile:filePath];
     } else {

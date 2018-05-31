@@ -19,7 +19,7 @@ pod 'MJRefresh'
 # 布局
 pod 'Masonry'
 # 直播工具
-pod 'PLPlayerKit'                            # 播放
+pod 'PLPlayerKit'                           # 播放
 pod 'PLShortVideoKit/ex-libMuseProcessor'	# 短视频
 pod 'PLRTCStreamingKit'						# 连麦
 # 轮播图

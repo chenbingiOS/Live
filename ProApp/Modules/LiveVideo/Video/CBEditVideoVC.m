@@ -1327,7 +1327,8 @@ PLSVideoEditingControllerDelegate
     
     CBUploadVideoVC *uploadVideoVC = [CBUploadVideoVC new];
     uploadVideoVC.url = url;
-    [self presentViewController:uploadVideoVC animated:YES completion:nil];
+//    [self presentViewController:uploadVideoVC animated:YES completion:nil];
+    [self.navigationController pushViewController:uploadVideoVC animated:YES];
 }
 
 #pragma mark -- 程序的状态监听

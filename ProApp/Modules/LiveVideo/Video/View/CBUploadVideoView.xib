@@ -12,8 +12,8 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="CBUploadVideoView">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="150"/>
-            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="165"/>
+            <autoresizingMask key="autoresizingMask"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dkW-Tn-ElR">
                     <rect key="frame" x="25" y="85" width="325" height="30"/>
@@ -75,7 +75,7 @@
                 <constraint firstItem="6Kh-ZN-qr0" firstAttribute="top" secondItem="acN-Ut-HhN" secondAttribute="bottom" id="AvM-g7-Tl5"/>
                 <constraint firstItem="dkW-Tn-ElR" firstAttribute="top" secondItem="XDp-kf-nGW" secondAttribute="bottom" id="Gyx-Yy-eAN"/>
                 <constraint firstAttribute="trailing" secondItem="dkW-Tn-ElR" secondAttribute="trailing" constant="25" id="Lsb-GF-crq"/>
-                <constraint firstAttribute="bottom" secondItem="dkW-Tn-ElR" secondAttribute="bottom" constant="35" id="Ovf-8u-Ere"/>
+                <constraint firstAttribute="bottom" secondItem="dkW-Tn-ElR" secondAttribute="bottom" constant="50" id="Ovf-8u-Ere"/>
                 <constraint firstItem="acN-Ut-HhN" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="25" id="P0W-xF-swR"/>
                 <constraint firstItem="dkW-Tn-ElR" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="25" id="P7j-E0-XSd"/>
                 <constraint firstItem="XDp-kf-nGW" firstAttribute="top" secondItem="6Kh-ZN-qr0" secondAttribute="bottom" id="cXb-yx-xmc"/>
@@ -86,6 +86,11 @@
                 <constraint firstAttribute="trailing" secondItem="6Kh-ZN-qr0" secondAttribute="trailing" constant="25" id="y2C-Sb-UGf"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="savePhoneButton" destination="vNc-O0-sN8" id="Apv-fh-rdy"/>
+                <outlet property="titleTextField" destination="acN-Ut-HhN" id="Crr-sd-si0"/>
+                <outlet property="uploadVideoButton" destination="dkW-Tn-ElR" id="4hZ-J9-SPk"/>
+            </connections>
             <point key="canvasLocation" x="-355.5" y="1574.5"/>
         </view>
     </objects>

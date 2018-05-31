@@ -10,4 +10,8 @@
 
 @interface CBUploadVideoView : UIView
 
+@property (weak, nonatomic) IBOutlet UITextField *titleTextField;
+@property (weak, nonatomic) IBOutlet UIButton *savePhoneButton;
+@property (weak, nonatomic) IBOutlet UIButton *uploadVideoButton;
+
 @end
