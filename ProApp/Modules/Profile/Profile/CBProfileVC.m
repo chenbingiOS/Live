@@ -53,8 +53,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.navigationController setNavigationBarHidden:YES];
-    
+    [self.navigationController setNavigationBarHidden:YES];    
     [self setupUI];
 }
 

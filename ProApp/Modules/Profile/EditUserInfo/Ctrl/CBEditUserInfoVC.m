@@ -126,7 +126,9 @@
     } failure:^(NSError *error) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         self.navigationItem.rightBarButtonItem.enabled = YES;
-    }];    
+    }];
+    
+//    PPNetworkHelper uploadImagesWithURL:url parameters:param name:<#(NSString *)#> images:<#(NSArray<UIImage *> *)#> fileNames:<#(NSArray<NSString *> *)#> imageScale:<#(CGFloat)#> imageType:<#(NSString *)#> progress:<#^(NSProgress *progress)progress#> success:<#^(id responseObject)success#> failure:<#^(NSError *error)failure#>
 }
 
 - (void)reloadByUserInfo {
