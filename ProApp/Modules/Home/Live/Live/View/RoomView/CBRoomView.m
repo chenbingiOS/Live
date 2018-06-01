@@ -198,7 +198,9 @@
 - (CBLiveAnchorView *)anchorView {
     if (!_anchorView) {
         _anchorView = [CBLiveAnchorView viewFromXib];
-        _anchorView.frame = CGRectMake(0, 0, kScreenWidth, 130);
+        CGFloat y = 0;
+        if (iPhoneX) y += 10;
+        _anchorView.frame = CGRectMake(0, y, kScreenWidth, 130);
     }
     return _anchorView;
 }
@@ -206,7 +208,9 @@
 - (CBLiveBottomView *)bottomView {
     if (!_bottomView) {
         _bottomView = [CBLiveBottomView viewFromXib];
-        _bottomView.frame = CGRectMake(0, kScreenHeight-60, kScreenWidth, 60);
+        CGFloat y = kScreenHeight - 60;
+        if (iPhoneX) y -= 35;
+        _bottomView.frame = CGRectMake(0, y, kScreenWidth, 60);
     }
     return _bottomView;
 }

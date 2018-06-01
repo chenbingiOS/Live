@@ -171,6 +171,7 @@
 		54520AF620BFD83D005B787E /* CBArchiverTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 54520AF520BFD83D005B787E /* CBArchiverTool.m */; };
 		5465AE0320BD31A3006E24BB /* CBEditVideoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5465AE0220BD31A3006E24BB /* CBEditVideoVC.m */; };
 		5465AE0720BD4A10006E24BB /* CBUploadVideoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5465AE0520BD4A10006E24BB /* CBUploadVideoVC.m */; };
+		5467015920C0D47D00519860 /* CBAttentionVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5467015820C0D47D00519860 /* CBAttentionVO.m */; };
 		548C5CA020B4FAD300A6FF53 /* CBApplyAnchorVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 548C5C9E20B4FAD300A6FF53 /* CBApplyAnchorVC.m */; };
 		548C5CA120B4FAD300A6FF53 /* CBApplyAnchorVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 548C5C9F20B4FAD300A6FF53 /* CBApplyAnchorVC.xib */; };
 		548C5CB720B50BFE00A6FF53 /* liveCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 548C5CAF20B50BFE00A6FF53 /* liveCity.m */; };
@@ -975,6 +976,8 @@
 		5465AE0220BD31A3006E24BB /* CBEditVideoVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBEditVideoVC.m; sourceTree = "<group>"; };
 		5465AE0420BD4A10006E24BB /* CBUploadVideoVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBUploadVideoVC.h; sourceTree = "<group>"; };
 		5465AE0520BD4A10006E24BB /* CBUploadVideoVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBUploadVideoVC.m; sourceTree = "<group>"; };
+		5467015720C0D47D00519860 /* CBAttentionVO.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBAttentionVO.h; sourceTree = "<group>"; };
+		5467015820C0D47D00519860 /* CBAttentionVO.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBAttentionVO.m; sourceTree = "<group>"; };
 		548C5C9D20B4FAD300A6FF53 /* CBApplyAnchorVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBApplyAnchorVC.h; sourceTree = "<group>"; };
 		548C5C9E20B4FAD300A6FF53 /* CBApplyAnchorVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBApplyAnchorVC.m; sourceTree = "<group>"; };
 		548C5C9F20B4FAD300A6FF53 /* CBApplyAnchorVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CBApplyAnchorVC.xib; sourceTree = "<group>"; };
@@ -1945,9 +1948,8 @@
 		07737DDE208F012A009EB9E6 /* MyAttention */ = {
 			isa = PBXGroup;
 			children = (
-				07737DDF208F0150009EB9E6 /* CBMyAttentionVC.h */,
-				07737DE0208F0150009EB9E6 /* CBMyAttentionVC.m */,
-				07737DE1208F0150009EB9E6 /* CBMyAttentionVC.xib */,
+				5467015520C0D46100519860 /* Ctrl */,
+				5467015620C0D46B00519860 /* Model */,
 			);
 			path = MyAttention;
 			sourceTree = "<group>";
@@ -2757,6 +2759,25 @@
 				54520AEF20BFD2BA005B787E /* NSObject+Copy.h */,
 			);
 			path = NSObject;
+			sourceTree = "<group>";
+		};
+		5467015520C0D46100519860 /* Ctrl */ = {
+			isa = PBXGroup;
+			children = (
+				07737DDF208F0150009EB9E6 /* CBMyAttentionVC.h */,
+				07737DE0208F0150009EB9E6 /* CBMyAttentionVC.m */,
+				07737DE1208F0150009EB9E6 /* CBMyAttentionVC.xib */,
+			);
+			path = Ctrl;
+			sourceTree = "<group>";
+		};
+		5467015620C0D46B00519860 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				5467015720C0D47D00519860 /* CBAttentionVO.h */,
+				5467015820C0D47D00519860 /* CBAttentionVO.m */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		548C5C9820B4FA6C00A6FF53 /* Ctrl */ = {
@@ -3940,6 +3961,7 @@
 				54375D1320BC049000F09CAA /* WZBCountDownButton.m in Sources */,
 				072DC593209176B000F693E8 /* CBCurrencyVC.m in Sources */,
 				54520AF120BFD2BB005B787E /* NSObject+Coding.m in Sources */,
+				5467015920C0D47D00519860 /* CBAttentionVO.m in Sources */,
 				075056232092B02100F0679B /* CBGiftPackageCell.m in Sources */,
 				07F38C0E2099503900DDBC90 /* CBGuardVC.m in Sources */,
 				0791587B20883209007CA2E0 /* CBHotVC.m in Sources */,

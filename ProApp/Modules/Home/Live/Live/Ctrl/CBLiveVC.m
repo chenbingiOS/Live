@@ -98,7 +98,9 @@
 - (UIButton *)closeButton {
     if (!_closeButton) {
         _closeButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _closeButton.frame = CGRectMake(kScreenWidth - 60, kScreenHeight - 60, 60, 60);
+        CGFloat y = kScreenHeight-60;
+        if (iPhoneX) y -= 35;
+        _closeButton.frame = CGRectMake(kScreenWidth - 60, y, 60, 60);
         [_closeButton setImage:[UIImage imageNamed:@"live_close"] forState:UIControlStateNormal];
         [_closeButton addTarget:self action:@selector(closeAction:) forControlEvents:UIControlEventTouchUpInside];
     }

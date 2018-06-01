@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@class CBWatchVO;
+@class CBAttentionVO;
 @interface CBWatchCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UIImageView *userAvaterImageView;
@@ -20,6 +20,6 @@
 @property (weak, nonatomic) IBOutlet UIView *liveView;
 @property (weak, nonatomic) IBOutlet UIButton *attentionBtn;
 
-- (void)loadData:(CBWatchVO *)data;
+- (void)loadData:(CBAttentionVO *)data;
 
 @end

@@ -28,7 +28,7 @@
 #import <TuSDK/TuSDK.h>
 #import "PPNetworkHelper.h"
 #import "CBInterface.h"
-
+#import "CBLiveUserConfig.h"
 #import "UIColor+Color.h"
 #import "UIView+Xib.h"
 #import "UIImageView+RoundedCorner.h"

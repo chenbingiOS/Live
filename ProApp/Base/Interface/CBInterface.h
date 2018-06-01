@@ -48,7 +48,8 @@
 #define urlUserLoginByThird purl@"/?service=Login.userLoginByThird"
 // 获取我的信息
 #define urlGetUserInfo  purl@"Api/User/get_userinfo0"
-
+// 我的关注
+#define urlGetAttentionList  purl@"Api/Anchor/getUserAttentionList"
 
 
 

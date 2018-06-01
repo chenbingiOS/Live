@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface CBLiveUser : NSObject <NSCoding, NSCopying>
+@interface CBLiveUser : NSObject <NSCoding>
 
 
 @property (nonatomic, copy) NSString *token;            ///< APP登录Token

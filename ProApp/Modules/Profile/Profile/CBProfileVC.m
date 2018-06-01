@@ -70,6 +70,13 @@
         
             [self reloadByProfile];
         }
+#warning 强制退出逻辑有问题
+        else if ([code isEqualToNumber:@504]) {
+            CBLoginVC *vc = [CBLoginVC new];
+            CBNVC *navc = [[CBNVC alloc] initWithRootViewController:vc];
+            UIWindow *keyWindow = [UIApplication sharedApplication].keyWindow;
+            keyWindow.rootViewController = navc;
+        }
     } failure:^(NSError *error) {
         [self reloadByProfile];
     }];

@@ -127,7 +127,7 @@
                 <outlet property="titleLabel" destination="awX-6e-3OJ" id="adF-9X-wNz"/>
                 <outlet property="userAvaterImageView" destination="6bh-j6-j94" id="1rV-jF-eLW"/>
             </connections>
-            <point key="canvasLocation" x="41" y="66.5"/>
+            <point key="canvasLocation" x="-74" y="56"/>
         </tableViewCell>
     </objects>
     <resources>
