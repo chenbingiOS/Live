@@ -12,7 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="PPC-FQ-car" customClass="CBHomeMenuView">
+        <view contentMode="scaleToFill" id="PPC-FQ-car" customClass="CBSexMenuView">
             <rect key="frame" x="0.0" y="0.0" width="375" height="180"/>
             <autoresizingMask key="autoresizingMask"/>
             <subviews>

@@ -24,10 +24,10 @@
         self.moveAppearCenterY = kScreenHeight - self.height/2;
         self.moveAppearDirection = MoveAppearDirectionFromBottom;
         self.moveDisappearDirection = MoveDisappearDirectionToBottom;
-        self.shadowColor = [UIColor colorWithWhite:1 alpha:0.3];
+        self.shadowColor = [UIColor colorWithWhite:0 alpha:0.5];
         self.animateDuration = 0.35;
         self.radius = 0;
-        self.backgroundColor = [UIColor clearColor];
+        self.backgroundColor = [UIColor whiteColor];
         [self addSubview:self.homeMenuView];
         
         @weakify(self);

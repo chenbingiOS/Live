@@ -35,24 +35,25 @@
 #define h5url @"http://api.et4p.top"
 
 // 用户协议
-#define urlPolicy       h5url@"/index.php?g=portal&m=page&a=index&id=4"
+#define urlPolicy               h5url@"/index.php?g=portal&m=page&a=index&id=4"
 // 获取验证码
-#define urlGetCode      purl@"Api/User/get_phone_varcode"
+#define urlGetCode              purl@"Api/User/get_phone_varcode"
 // 用户注册
-#define urlUserReg      purl@"Api/User/register"
+#define urlUserReg              purl@"Api/User/register"
 // 用户登录
-#define urlUserLogin    purl@"Api/User/login"
+#define urlUserLogin            purl@"Api/User/login"
 // 用户忘记密码
-#define urlUserForget   purl@"Api/User/retrievePassword"
+#define urlUserForget           purl@"Api/User/retrievePassword"
 // 用户登录第三方
-#define urlUserLoginByThird purl@"/?service=Login.userLoginByThird"
+#define urlUserLoginByThird     purl@"/?service=Login.userLoginByThird"
 // 获取我的信息
-#define urlGetUserInfo  purl@"Api/User/get_userinfo0"
+#define urlGetUserInfo          purl@"Api/User/get_userinfo0"
 // 我的关注
-#define urlGetAttentionList  purl@"Api/Anchor/getUserAttentionList"
+#define urlGetAttentionList     purl@"Api/Anchor/getUserAttentionList"
 // 我的关注
-#define urlGetUserFansList   purl@"Api/Anchor/getUserFansList"
-
+#define urlGetUserFansList      purl@"Api/Anchor/getUserFansList"
+// 修改个人资料
+#define urlChangeUserinfo       purl@"Api/UserInfo/change_userinfo"
 
 
 

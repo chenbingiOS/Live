@@ -43,12 +43,12 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES animated:animated];
+    [self httpGetUserInfo];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:animated];
-    [self httpGetUserInfo];
 }
 
 - (void)viewDidLoad {
@@ -63,8 +63,6 @@
     NSDictionary *param = @{@"token": [CBLiveUserConfig getOwnToken]};
     [PPNetworkHelper POST:url parameters:param success:^(id responseObject) {
         NSNumber *code = [responseObject valueForKey:@"code"];
-//        NSString *descrp = [responseObject valueForKey:@"descrp"];
-//        [MBProgressHUD showAutoMessage:descrp];
         if ([code isEqualToNumber:@200]) {
             NSDictionary *info = [responseObject valueForKey:@"info"];
             CBLiveUser *userInfo = [[CBLiveUser alloc] initWithDic:info];
@@ -107,6 +105,7 @@
     }
     self.userNameLab.text = user.user_nicename;
     [self.userLevelImageView setImage:[UIImage imageNamed:[NSString stringWithFormat:@"v%@", user.user_level]]];
+    self.userDescLab.text = user.signature;
     self.userAttentionLab.text = user.attention_num ? user.attention_num : @"0";
     self.userFansLab.text = user.fans_num ? user.fans_num : @"0";
 }
