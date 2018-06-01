@@ -55,7 +55,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aHH-Hz-rME">
-                        <rect key="frame" x="150" y="12" width="45" height="20"/>
+                        <rect key="frame" x="259" y="12" width="45" height="20"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="直播中" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="33a-Ph-dXU">
                                 <rect key="frame" x="0.0" y="0.0" width="45" height="20"/>
@@ -103,7 +103,7 @@
                     <constraint firstItem="awX-6e-3OJ" firstAttribute="top" secondItem="6bh-j6-j94" secondAttribute="top" id="1rY-JH-CRZ"/>
                     <constraint firstItem="SpL-hv-uLh" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" constant="-15" id="69j-ep-Fn2"/>
                     <constraint firstItem="B4W-tH-iKJ" firstAttribute="bottom" secondItem="6bh-j6-j94" secondAttribute="bottom" id="GRy-Zw-dsX"/>
-                    <constraint firstItem="aHH-Hz-rME" firstAttribute="leading" secondItem="93d-Yo-9vX" secondAttribute="trailing" constant="8" id="MRk-Vf-whk"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="aHH-Hz-rME" secondAttribute="trailing" id="HgM-Ig-xuW"/>
                     <constraint firstItem="awX-6e-3OJ" firstAttribute="leading" secondItem="6bh-j6-j94" secondAttribute="trailing" constant="8" id="PYN-Xb-ahh"/>
                     <constraint firstAttribute="trailingMargin" secondItem="P4v-xT-xty" secondAttribute="trailing" id="QUK-0c-jml"/>
                     <constraint firstItem="6bh-j6-j94" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="ipE-l2-IQd"/>
@@ -127,7 +127,7 @@
                 <outlet property="titleLabel" destination="awX-6e-3OJ" id="adF-9X-wNz"/>
                 <outlet property="userAvaterImageView" destination="6bh-j6-j94" id="1rV-jF-eLW"/>
             </connections>
-            <point key="canvasLocation" x="-74" y="56"/>
+            <point key="canvasLocation" x="-18" y="-215"/>
         </tableViewCell>
     </objects>
     <resources>

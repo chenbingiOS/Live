@@ -18,6 +18,8 @@
 #import "CBSettingVC.h"
 #import "CBLoginVC.h"
 #import "CBNVC.h"
+#import "CBEditUserInfoVC.h"
+
 // config
 #import "CBLiveSettingConfig.h"
 #import "CBLiveUserConfig.h"
@@ -162,7 +164,8 @@
 }
 
 - (IBAction)actionEditUserInfo:(id)sender {
-    NSLog(@"修改资料");
+    CBEditUserInfoVC *vc = [CBEditUserInfoVC new];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 // 设置
