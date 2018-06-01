@@ -918,6 +918,16 @@
                                         <constraint firstAttribute="height" constant="24" id="ufj-Xl-xS6"/>
                                     </constraints>
                                 </imageView>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s2M-CW-70u">
+                                    <rect key="frame" x="125" y="0.0" width="125" height="125"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="125" id="MhP-af-R88"/>
+                                        <constraint firstAttribute="height" constant="125" id="bIh-bw-Qmh"/>
+                                    </constraints>
+                                    <connections>
+                                        <action selector="actionEditUserInfo:" destination="-1" eventType="touchUpInside" id="J8h-UW-3Qm"/>
+                                    </connections>
+                                </button>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
@@ -925,6 +935,7 @@
                                 <constraint firstItem="E7p-Me-D0D" firstAttribute="leading" secondItem="D9Y-Xe-2JN" secondAttribute="leading" constant="16" id="6L6-PH-AuX"/>
                                 <constraint firstAttribute="trailing" secondItem="Wiv-Hy-Ye3" secondAttribute="trailing" constant="16" id="8I3-J2-VDS"/>
                                 <constraint firstAttribute="trailing" secondItem="k4n-rC-nBs" secondAttribute="trailing" constant="16" id="8fI-vL-xeV"/>
+                                <constraint firstItem="s2M-CW-70u" firstAttribute="top" secondItem="D9Y-Xe-2JN" secondAttribute="top" id="96u-ET-2DI"/>
                                 <constraint firstItem="ktM-h7-sQW" firstAttribute="top" secondItem="D9Y-Xe-2JN" secondAttribute="top" constant="45" id="Efl-6j-ITN"/>
                                 <constraint firstAttribute="trailing" secondItem="E7p-Me-D0D" secondAttribute="trailing" constant="16" id="GWZ-ZY-RgR"/>
                                 <constraint firstItem="k4n-rC-nBs" firstAttribute="top" secondItem="E7p-Me-D0D" secondAttribute="bottom" constant="10" id="HJK-5P-nJ9"/>
@@ -938,6 +949,7 @@
                                 <constraint firstAttribute="height" constant="750" id="ovU-wd-93S"/>
                                 <constraint firstItem="Wiv-Hy-Ye3" firstAttribute="leading" secondItem="D9Y-Xe-2JN" secondAttribute="leading" constant="16" id="sN6-Kb-1j6"/>
                                 <constraint firstItem="oro-jo-ebm" firstAttribute="centerX" secondItem="D9Y-Xe-2JN" secondAttribute="centerX" id="vdY-3C-y4x"/>
+                                <constraint firstItem="s2M-CW-70u" firstAttribute="centerX" secondItem="D9Y-Xe-2JN" secondAttribute="centerX" id="wVJ-Vk-508"/>
                             </constraints>
                         </view>
                     </subviews>
@@ -968,7 +980,7 @@
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
-            <point key="canvasLocation" x="-1127" y="80"/>
+            <point key="canvasLocation" x="-1470" y="75"/>
         </view>
     </objects>
     <resources>
