@@ -13,12 +13,12 @@
 
 @interface CBMyAttentionVC () <UITableViewDelegate, UITableViewDataSource>
 
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray <CBAttentionVO *> *cellDataAry;
 
 @end
 
-static NSString *const WatchCellIdentifier = @"WatchCellIdentifier";
+static NSString *const AttentionCellID = @"AttentionCellID";
 
 @implementation CBMyAttentionVC
 
@@ -30,31 +30,30 @@ static NSString *const WatchCellIdentifier = @"WatchCellIdentifier";
 }
 
 - (void)httpAttentionList {
+    [self.tableView ly_startLoading];
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
     NSString *url = urlGetAttentionList;
     NSDictionary *param = @{@"token":[CBLiveUserConfig getOwnToken],
                             @"id":[CBLiveUserConfig getOwnID]};
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [PPNetworkHelper POST:url parameters:param success:^(id responseObject) {
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
         NSNumber *code = [responseObject valueForKey:@"code"];
-        //        NSString *descrp = [responseObject valueForKey:@"descrp"];
-        //        [MBProgressHUD showAutoMessage:descrp];
         if ([code isEqualToNumber:@200]) {
             NSDictionary *data = [responseObject valueForKey:@"data"];
             self.cellDataAry = [NSArray modelArrayWithClass:[CBAttentionVO class] json:data].mutableCopy;
             [self.tableView reloadData];
         }
+        
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [self.tableView ly_endLoading];
     } failure:^(NSError *error) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [self.tableView ly_endLoading];
     }];
 }
 
 - (void)setupUI {
-    @weakify(self);
-    self.tableView.ly_emptyView = [LYEmptyView emptyActionViewWithImageStr:@"placeholder_head" titleStr:@"暂无数据" detailStr:@"" btnTitleStr:@"点击重新加载" btnClickBlock:^{
-        @strongify(self);
-        [self httpAttentionList];
-    }];
+    [self.view addSubview:self.tableView];
 }
 
 #pragma mark - UITableViewDataSource
@@ -63,7 +62,7 @@ static NSString *const WatchCellIdentifier = @"WatchCellIdentifier";
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    CBWatchCell *cell = [tableView dequeueReusableCellWithIdentifier:WatchCellIdentifier];
+    CBWatchCell *cell = [tableView dequeueReusableCellWithIdentifier:AttentionCellID];
     [cell loadData:self.cellDataAry[indexPath.row]];
     return cell;
 }
@@ -74,6 +73,23 @@ static NSString *const WatchCellIdentifier = @"WatchCellIdentifier";
         _cellDataAry = [NSMutableArray new];
     }
     return _cellDataAry;
+}
+
+- (UITableView *)tableView {
+    if (!_tableView) {
+        CGFloat height = kScreenHeight - 64;
+        if (iPhoneX) height -= 20;
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, height) style:UITableViewStylePlain];
+        _tableView.rowHeight = 70;
+        _tableView.dataSource = self;
+        _tableView.delegate = self;
+        _tableView.tableFooterView = [[UIView alloc] init];
+        _tableView.backgroundColor = [UIColor bgColor];
+        
+        [_tableView registerNib:[UINib nibWithNibName:@"CBWatchCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:AttentionCellID];        
+        _tableView.ly_emptyView = [CBEmptyView diyEmptyActionViewWithTarget:self action:@selector(httpAttentionList)];
+    }
+    return _tableView;
 }
 
 @end

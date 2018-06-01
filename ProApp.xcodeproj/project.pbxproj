@@ -74,9 +74,7 @@
 		07691D4A20B270F900BF731E /* PPNetworkCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 07691D4820B270F900BF731E /* PPNetworkCache.m */; };
 		076F52A120750E64004F91E8 /* AppDelegate+AppServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 076F52A020750E64004F91E8 /* AppDelegate+AppServer.m */; };
 		07737DE2208F0150009EB9E6 /* CBMyAttentionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 07737DE0208F0150009EB9E6 /* CBMyAttentionVC.m */; };
-		07737DE3208F0150009EB9E6 /* CBMyAttentionVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 07737DE1208F0150009EB9E6 /* CBMyAttentionVC.xib */; };
 		07737DE7208F0161009EB9E6 /* CBMyFansVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 07737DE5208F0161009EB9E6 /* CBMyFansVC.m */; };
-		07737DE8208F0161009EB9E6 /* CBMyFansVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 07737DE6208F0161009EB9E6 /* CBMyFansVC.xib */; };
 		077C1A932091A4B50005CE97 /* CBFeedBackVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 077C1A912091A4B50005CE97 /* CBFeedBackVC.m */; };
 		077C1A942091A4B50005CE97 /* CBFeedBackVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 077C1A922091A4B50005CE97 /* CBFeedBackVC.xib */; };
 		077C1A992091A6C10005CE97 /* CBAccountAndSecurityVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 077C1A972091A6C10005CE97 /* CBAccountAndSecurityVC.m */; };
@@ -172,6 +170,7 @@
 		5465AE0320BD31A3006E24BB /* CBEditVideoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5465AE0220BD31A3006E24BB /* CBEditVideoVC.m */; };
 		5465AE0720BD4A10006E24BB /* CBUploadVideoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5465AE0520BD4A10006E24BB /* CBUploadVideoVC.m */; };
 		5467015920C0D47D00519860 /* CBAttentionVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5467015820C0D47D00519860 /* CBAttentionVO.m */; };
+		5467015C20C0E1EF00519860 /* CBEmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5467015B20C0E1EF00519860 /* CBEmptyView.m */; };
 		548C5CA020B4FAD300A6FF53 /* CBApplyAnchorVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 548C5C9E20B4FAD300A6FF53 /* CBApplyAnchorVC.m */; };
 		548C5CA120B4FAD300A6FF53 /* CBApplyAnchorVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 548C5C9F20B4FAD300A6FF53 /* CBApplyAnchorVC.xib */; };
 		548C5CB720B50BFE00A6FF53 /* liveCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 548C5CAF20B50BFE00A6FF53 /* liveCity.m */; };
@@ -648,10 +647,8 @@
 		076F52A020750E64004F91E8 /* AppDelegate+AppServer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+AppServer.m"; sourceTree = "<group>"; };
 		07737DDF208F0150009EB9E6 /* CBMyAttentionVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBMyAttentionVC.h; sourceTree = "<group>"; };
 		07737DE0208F0150009EB9E6 /* CBMyAttentionVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBMyAttentionVC.m; sourceTree = "<group>"; };
-		07737DE1208F0150009EB9E6 /* CBMyAttentionVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CBMyAttentionVC.xib; sourceTree = "<group>"; };
 		07737DE4208F0161009EB9E6 /* CBMyFansVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBMyFansVC.h; sourceTree = "<group>"; };
 		07737DE5208F0161009EB9E6 /* CBMyFansVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBMyFansVC.m; sourceTree = "<group>"; };
-		07737DE6208F0161009EB9E6 /* CBMyFansVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CBMyFansVC.xib; sourceTree = "<group>"; };
 		077C1A902091A4B50005CE97 /* CBFeedBackVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBFeedBackVC.h; sourceTree = "<group>"; };
 		077C1A912091A4B50005CE97 /* CBFeedBackVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBFeedBackVC.m; sourceTree = "<group>"; };
 		077C1A922091A4B50005CE97 /* CBFeedBackVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CBFeedBackVC.xib; sourceTree = "<group>"; };
@@ -978,6 +975,8 @@
 		5465AE0520BD4A10006E24BB /* CBUploadVideoVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBUploadVideoVC.m; sourceTree = "<group>"; };
 		5467015720C0D47D00519860 /* CBAttentionVO.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBAttentionVO.h; sourceTree = "<group>"; };
 		5467015820C0D47D00519860 /* CBAttentionVO.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBAttentionVO.m; sourceTree = "<group>"; };
+		5467015A20C0E1EF00519860 /* CBEmptyView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBEmptyView.h; sourceTree = "<group>"; };
+		5467015B20C0E1EF00519860 /* CBEmptyView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBEmptyView.m; sourceTree = "<group>"; };
 		548C5C9D20B4FAD300A6FF53 /* CBApplyAnchorVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBApplyAnchorVC.h; sourceTree = "<group>"; };
 		548C5C9E20B4FAD300A6FF53 /* CBApplyAnchorVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBApplyAnchorVC.m; sourceTree = "<group>"; };
 		548C5C9F20B4FAD300A6FF53 /* CBApplyAnchorVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CBApplyAnchorVC.xib; sourceTree = "<group>"; };
@@ -1888,6 +1887,8 @@
 				07558C1E20941F18007E41C2 /* CBPopView.m */,
 				54520AF420BFD83D005B787E /* CBArchiverTool.h */,
 				54520AF520BFD83D005B787E /* CBArchiverTool.m */,
+				5467015A20C0E1EF00519860 /* CBEmptyView.h */,
+				5467015B20C0E1EF00519860 /* CBEmptyView.m */,
 			);
 			path = "Tool Class";
 			sourceTree = "<group>";
@@ -1940,7 +1941,6 @@
 			children = (
 				07737DE4208F0161009EB9E6 /* CBMyFansVC.h */,
 				07737DE5208F0161009EB9E6 /* CBMyFansVC.m */,
-				07737DE6208F0161009EB9E6 /* CBMyFansVC.xib */,
 			);
 			path = MyFans;
 			sourceTree = "<group>";
@@ -2766,7 +2766,6 @@
 			children = (
 				07737DDF208F0150009EB9E6 /* CBMyAttentionVC.h */,
 				07737DE0208F0150009EB9E6 /* CBMyAttentionVC.m */,
-				07737DE1208F0150009EB9E6 /* CBMyAttentionVC.xib */,
 			);
 			path = Ctrl;
 			sourceTree = "<group>";
@@ -3567,7 +3566,6 @@
 				54BD85EC20B66F410024B6E7 /* CBSelectGuildVC.xib in Resources */,
 				54A76D4720B7E0E10034D5A2 /* video_style_default_btn_switch@3x.png in Resources */,
 				0715278A20A53F6000D3859D /* CBRegisterVC.xib in Resources */,
-				07737DE8208F0161009EB9E6 /* CBMyFansVC.xib in Resources */,
 				54A76D1F20B7E0E10034D5A2 /* style_default_1.6.0_homepage_video_icon@2x.png in Resources */,
 				54A76D1820B7E0E10034D5A2 /* style_default_1.5.0_btn_mv_bg@3x.jpg in Resources */,
 				5422E9E520BEABC40087FB91 /* CBUploadVideoView.xib in Resources */,
@@ -3653,7 +3651,6 @@
 				54A76C6720B7E0E10034D5A2 /* video_style_default_btn_sticker_off@3x.png in Resources */,
 				54A76CF020B7E0E10034D5A2 /* style_default_btn_back_selected@3x.png in Resources */,
 				0791588B208849C0007CA2E0 /* CBProfileVC.xib in Resources */,
-				07737DE3208F0150009EB9E6 /* CBMyAttentionVC.xib in Resources */,
 				0745F1EE20A9692200052FF6 /* CBHomeMenuView.xib in Resources */,
 				54A76CD320B7E0E10034D5A2 /* lsq_filter_thumb_ruddy.jpg in Resources */,
 				54A76D2920B7E0E10034D5A2 /* lsq_filter_thumb_porcelain.jpg in Resources */,
@@ -4007,6 +4004,7 @@
 				07374702208ECF9C00E108E9 /* CBVideoAttentionVC.m in Sources */,
 				54A76D8920B7E1600034D5A2 /* GifFormatViewController.m in Sources */,
 				54A76B1220B7DF7E0034D5A2 /* FilterItemView.m in Sources */,
+				5467015C20C0E1EF00519860 /* CBEmptyView.m in Sources */,
 				077FFD082099AA7300B8680C /* CBGuardRankCell.m in Sources */,
 				54A76AE020B7DEDE0034D5A2 /* UIView+PLSLightFrame.m in Sources */,
 				54A76AF920B7DEFA0034D5A2 /* PhotoAlbumViewController.m in Sources */,

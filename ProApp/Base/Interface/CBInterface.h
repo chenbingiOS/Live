@@ -50,6 +50,8 @@
 #define urlGetUserInfo  purl@"Api/User/get_userinfo0"
 // 我的关注
 #define urlGetAttentionList  purl@"Api/Anchor/getUserAttentionList"
+// 我的关注
+#define urlGetUserFansList   purl@"Api/Anchor/getUserFansList"
 
 
 
