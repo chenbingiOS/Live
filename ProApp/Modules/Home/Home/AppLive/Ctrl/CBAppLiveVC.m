@@ -87,6 +87,16 @@ static NSString *RIDCBAppADCell = @"RIDCBAppADCell";
     }];
 }
 
+//- (void)httpAD {
+//    NSString *url = @"http://fengwo.gttead.cn/Api/Qiniu/getPullAddress?stream_key=waETPOgmtFx2bFj0jWH8mSGRLiw9yV1T";
+//    [PPNetworkHelper GET:url parameters:nil success:^(id responseObject) {
+//        NSLog(@"%@", [responseObject modelToJSONString]);
+//        NSLog(@"%@", responseObject[@"data"]);
+//    } failure:^(NSError *error) {
+//        [MBProgressHUD showAutoMessage:@"网络异常"];
+//    }];
+//}
+
 - (void)httpLive {
     NSString *url = [NSString stringWithFormat:getHostLive, self.currentPage];
     [PPNetworkHelper GET:url parameters:nil success:^(id responseObject) {

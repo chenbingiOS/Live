@@ -173,6 +173,7 @@
 		5467015C20C0E1EF00519860 /* CBEmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5467015B20C0E1EF00519860 /* CBEmptyView.m */; };
 		5467016C20C1300900519860 /* CBSexMenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5467016920C1300900519860 /* CBSexMenuView.xib */; };
 		5467016D20C1300900519860 /* CBSexMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5467016B20C1300900519860 /* CBSexMenuView.m */; };
+		5469A56420C4D195004E06F1 /* CBCircularAvatarTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 5469A56320C4D195004E06F1 /* CBCircularAvatarTool.m */; };
 		548C5CA020B4FAD300A6FF53 /* CBApplyAnchorVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 548C5C9E20B4FAD300A6FF53 /* CBApplyAnchorVC.m */; };
 		548C5CA120B4FAD300A6FF53 /* CBApplyAnchorVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 548C5C9F20B4FAD300A6FF53 /* CBApplyAnchorVC.xib */; };
 		548C5CB720B50BFE00A6FF53 /* liveCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 548C5CAF20B50BFE00A6FF53 /* liveCity.m */; };
@@ -984,6 +985,8 @@
 		5467016920C1300900519860 /* CBSexMenuView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CBSexMenuView.xib; sourceTree = "<group>"; };
 		5467016A20C1300900519860 /* CBSexMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBSexMenuView.h; sourceTree = "<group>"; };
 		5467016B20C1300900519860 /* CBSexMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBSexMenuView.m; sourceTree = "<group>"; };
+		5469A56220C4D195004E06F1 /* CBCircularAvatarTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBCircularAvatarTool.h; sourceTree = "<group>"; };
+		5469A56320C4D195004E06F1 /* CBCircularAvatarTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBCircularAvatarTool.m; sourceTree = "<group>"; };
 		548C5C9D20B4FAD300A6FF53 /* CBApplyAnchorVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBApplyAnchorVC.h; sourceTree = "<group>"; };
 		548C5C9E20B4FAD300A6FF53 /* CBApplyAnchorVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBApplyAnchorVC.m; sourceTree = "<group>"; };
 		548C5C9F20B4FAD300A6FF53 /* CBApplyAnchorVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CBApplyAnchorVC.xib; sourceTree = "<group>"; };
@@ -1896,6 +1899,8 @@
 				54520AF520BFD83D005B787E /* CBArchiverTool.m */,
 				5467015A20C0E1EF00519860 /* CBEmptyView.h */,
 				5467015B20C0E1EF00519860 /* CBEmptyView.m */,
+				5469A56220C4D195004E06F1 /* CBCircularAvatarTool.h */,
+				5469A56320C4D195004E06F1 /* CBCircularAvatarTool.m */,
 			);
 			path = "Tool Class";
 			sourceTree = "<group>";
@@ -3976,6 +3981,7 @@
 				54A0D8E520C13C1A0056554D /* CBEditUserInfoVC.m in Sources */,
 				07359D9820A429AC00FEEA4E /* CBLiveVideoVC.m in Sources */,
 				54A76AE620B7DEDE0034D5A2 /* PLSProgressBar.m in Sources */,
+				5469A56420C4D195004E06F1 /* CBCircularAvatarTool.m in Sources */,
 				07F38C0120994A0000DDBC90 /* JPGiftView.m in Sources */,
 				07B66896208D71E400AA5B62 /* CBFillInfoViewController.m in Sources */,
 				07F6EFE020872E3D0035C6BD /* CBHomeVC.m in Sources */,

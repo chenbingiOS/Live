@@ -66,6 +66,9 @@
                                             <state key="normal" title="点击更换头像">
                                                 <color key="titleColor" red="0.57647058819999997" green="0.57647058819999997" blue="0.57647058819999997" alpha="0.40354773119999998" colorSpace="deviceRGB"/>
                                             </state>
+                                            <connections>
+                                                <action selector="actionChangeAvatar:" destination="-1" eventType="touchUpInside" id="AcI-kg-hmF"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -375,7 +378,7 @@
                 <constraint firstItem="8uj-z2-2DI" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" id="ofg-G3-3Od"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
-            <point key="canvasLocation" x="77.5" y="-200.5"/>
+            <point key="canvasLocation" x="-277" y="-185"/>
         </view>
     </objects>
     <resources>

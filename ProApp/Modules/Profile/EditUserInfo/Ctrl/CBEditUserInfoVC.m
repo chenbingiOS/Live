@@ -8,8 +8,9 @@
 
 #import "CBEditUserInfoVC.h"
 #import "CBSexMenuView.h"
+#import "CBCircularAvatarTool.h"
 
-@interface CBEditUserInfoVC ()
+@interface CBEditUserInfoVC () 
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *contentHeightConstraint;
 @property (weak, nonatomic) IBOutlet UIButton *exchangeAvaterBtn;
@@ -111,8 +112,11 @@
                             @"sex": [self.sexTextField.text isEqualToString:@"男"] ? @"1":@"2",
                             @"signature":self.signatureTextField.text,
                             @"location":self.coordinatesTextField.text
-                            };
-    [PPNetworkHelper POST:url parameters:param success:^(id responseObject) {
+                            };    
+    UIImage *uploadImage = self.avaterImageView.image;
+    [PPNetworkHelper uploadImagesWithURL:url parameters:param name:@"avatar" images:@[uploadImage] fileNames:nil imageScale:0.5 imageType:@"jpeg" progress:^(NSProgress *progress) {
+        
+    } success:^(id responseObject) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         self.navigationItem.rightBarButtonItem.enabled = YES;
         NSNumber *code = [responseObject valueForKey:@"code"];
@@ -127,8 +131,6 @@
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         self.navigationItem.rightBarButtonItem.enabled = YES;
     }];
-    
-//    PPNetworkHelper uploadImagesWithURL:url parameters:param name:<#(NSString *)#> images:<#(NSArray<UIImage *> *)#> fileNames:<#(NSArray<NSString *> *)#> imageScale:<#(CGFloat)#> imageType:<#(NSString *)#> progress:<#^(NSProgress *progress)progress#> success:<#^(id responseObject)success#> failure:<#^(NSError *error)failure#>
 }
 
 - (void)reloadByUserInfo {
@@ -168,6 +170,17 @@
     [self.view endEditing:YES];
     [self.sexMenuPopView showIn:self.view];
 }
+
+- (IBAction)actionChangeAvatar:(id)sender {
+    CBCircularAvatarTool *tool = [CBCircularAvatarTool new];
+    @weakify(self);
+    tool.finishBlock = ^(CBCircularAvatarTool *circularAvatarTool, NSDictionary *mediaInfo) {
+        @strongify(self);
+        self.avaterImageView.image = mediaInfo.circularEditedImage;
+    };
+    [tool showFromView:self.view];
+}
+
 
 - (CBSexMenuPopView *)sexMenuPopView {
     if (!_sexMenuPopView) {
