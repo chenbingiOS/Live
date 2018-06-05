@@ -44,6 +44,8 @@
 #define urlUserLogin            purl@"Api/User/login"
 // 用户忘记密码
 #define urlUserForget           purl@"Api/User/retrievePassword"
+// 退出登陆
+#define urlOutlogin             purl@"Api/User/outlogin"
 // 用户登录第三方
 #define urlUserLoginByThird     purl@"/?service=Login.userLoginByThird"
 // 获取我的信息

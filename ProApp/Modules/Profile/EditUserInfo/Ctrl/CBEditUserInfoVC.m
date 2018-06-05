@@ -171,6 +171,12 @@
 - (IBAction)actionLocation:(id)sender {
     [self.view endEditing:YES];
     [self.cityMenuPopView showIn:self.navigationController.view];
+    @weakify(self);
+    self.cityMenuPopView.homeMenuView.selectBlock = ^(CBCityMenuView *cityMenuView, NSString *province, NSString *city, NSString *area) {
+        @strongify(self);
+        self.coordinatesTextField.text = [NSString stringWithFormat:@"%@-%@-%@", province, city, area];
+        [self.cityMenuPopView hide];
+    };
 }
 
 - (IBAction)actionChangeAvatar:(id)sender {

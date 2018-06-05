@@ -12,6 +12,8 @@
 #import "CBFeedBackVC.h"
 #import "CBBlackListVC.h"
 #import "CBAboutVC.h"
+#import "CBTBC.h"
+#import "CBLoginVC.h"
 
 @interface CBSettingVC ()
 
@@ -67,7 +69,28 @@
 }
 
 - (IBAction)actionLogout:(id)sender {
-    
+    NSString *url = urlOutlogin;
+    NSDictionary *param = @{@"token": [CBLiveUserConfig getOwnToken]};
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [PPNetworkHelper POST:url parameters:param success:^(id responseObject) {
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self.navigationController popViewControllerAnimated:YES];
+        });
+        [CBLiveUserConfig clearProfile];
+        [self logoutUI];
+    } failure:^(NSError *error) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [MBProgressHUD showAutoMessage:@"退出登录失败"];
+    }];
 }
+
+// 本地UI登录
+- (void)logoutUI {
+    CBLoginVC *vc = [CBLoginVC new];
+    UIWindow *window = [UIApplication sharedApplication].keyWindow;
+    window.rootViewController = vc;
+}
+
 
 @end
