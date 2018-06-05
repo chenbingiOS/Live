@@ -38,7 +38,7 @@
 
 - (IBAction)actionUserAgreement:(id)sender {
     CBWebVC *vc = [CBWebVC new];
-    [vc webViewloadRequestWithURLString:urlPolicy];
+    [vc webViewloadRequestWithURLString:urlH5Policy];
     [self.navigationController pushViewController:vc animated:YES];
 }
 

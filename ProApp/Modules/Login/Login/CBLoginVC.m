@@ -93,7 +93,8 @@
 - (IBAction)actionPolicy:(id)sender {
     [self.view endEditing:YES];
     CBWebVC *vc = [CBWebVC new];
-    [vc webViewloadRequestWithURLString:urlPolicy];
+    vc.title = @"服务和隐私条款";
+    [vc webViewloadRequestWithURLString:urlH5Policy];
     [self.navigationController pushViewController:vc animated:YES];
 }
 

@@ -7,7 +7,7 @@
 //
 
 #import "CBRealNameVC.h"
-#import "CBFillInfoViewController.h"
+#import "CBFillInfoWebVC.h"
 
 @interface CBRealNameVC ()
 
@@ -24,8 +24,6 @@
     [super viewDidLoad];
     self.title = @"实名认证";
     self.notYetRealNameView.hidden = NO;
-//    self.inTheAuthenticationView.hidden = NO;
-//    self.alreadyRealNameView.hidden = NO;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -34,8 +32,10 @@
 }
 
 - (IBAction)startCertification:(id)sender {
-    CBFillInfoViewController *fillInfoVC = [CBFillInfoViewController new];
-    [self.navigationController pushViewController:fillInfoVC animated:YES];
+    CBFillInfoWebVC *vc = [CBFillInfoWebVC new];
+    vc.title = @"实名认证";
+    [vc webViewloadRequestWithURLString:urlH5PresonCer];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 @end

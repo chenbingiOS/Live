@@ -20,8 +20,7 @@
 }
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
-    self.title = @"服务和隐私条款";
+    [super viewDidLoad];    
 }
 
 - (void)didReceiveMemoryWarning {

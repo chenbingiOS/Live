@@ -151,7 +151,7 @@
     
     self.accountLab.text = [NSString stringWithFormat:@"fengwotv%@",user.ID];
     self.phoneLab.text = user.mobile;
-    self.fengwoNumLab.text = user.ID;
+    self.fengwoNumLab.text = user.ID;    
 }
 
 - (BOOL)canBecomeFirstResponder {

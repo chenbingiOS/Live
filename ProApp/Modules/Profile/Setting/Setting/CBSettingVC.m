@@ -11,9 +11,9 @@
 #import "CBNotificationsVC.h"
 #import "CBFeedBackVC.h"
 #import "CBBlackListVC.h"
-#import "CBAboutVC.h"
-#import "CBTBC.h"
 #import "CBLoginVC.h"
+#import "CBWebVC.h"
+#import "CBNVC.h"
 
 @interface CBSettingVC ()
 
@@ -64,7 +64,9 @@
 }
 
 - (IBAction)actionAbout:(id)sender {
-    CBAboutVC *vc = [CBAboutVC new];
+    CBWebVC *vc = [CBWebVC new];
+    vc.title = @"关于蜂窝TV";
+    [vc webViewloadRequestWithURLString:urlH5AboutUs];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -88,8 +90,9 @@
 // 本地UI登录
 - (void)logoutUI {
     CBLoginVC *vc = [CBLoginVC new];
+    CBNVC *navc = [[CBNVC alloc] initWithRootViewController:vc];
     UIWindow *window = [UIApplication sharedApplication].keyWindow;
-    window.rootViewController = vc;
+    window.rootViewController = navc;
 }
 
 

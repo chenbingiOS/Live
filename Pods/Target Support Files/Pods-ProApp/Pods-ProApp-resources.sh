@@ -96,12 +96,18 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_resource "${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle"
   install_resource "${PODS_ROOT}/ShareSDK3/SDK/ShareSDK/Support/Required/ShareSDK.bundle"
   install_resource "${PODS_ROOT}/ShareSDK3/SDK/ShareSDK/Support/PlatformSDK/SinaWeiboSDK/WeiboSDK.bundle"
+  install_resource "${PODS_ROOT}/ZWAppStore/ZWAppStore/Resources/Asset.xcassets"
+  install_resource "${PODS_ROOT}/ZWAppStore/ZWAppStore/ZWActionReview/ZWRequestReview.xib"
+  install_resource "${PODS_ROOT}/ZWAppStore/ZWAppStore/ZWCheckVersion/ZWUpdateAppView.xib"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_resource "${PODS_ROOT}/IQKeyboardManager/IQKeyboardManager/Resources/IQKeyboardManager.bundle"
   install_resource "${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle"
   install_resource "${PODS_ROOT}/ShareSDK3/SDK/ShareSDK/Support/Required/ShareSDK.bundle"
   install_resource "${PODS_ROOT}/ShareSDK3/SDK/ShareSDK/Support/PlatformSDK/SinaWeiboSDK/WeiboSDK.bundle"
+  install_resource "${PODS_ROOT}/ZWAppStore/ZWAppStore/Resources/Asset.xcassets"
+  install_resource "${PODS_ROOT}/ZWAppStore/ZWAppStore/ZWActionReview/ZWRequestReview.xib"
+  install_resource "${PODS_ROOT}/ZWAppStore/ZWAppStore/ZWCheckVersion/ZWUpdateAppView.xib"
 fi
 
 mkdir -p "${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}"

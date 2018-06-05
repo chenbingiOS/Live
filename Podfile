@@ -25,6 +25,10 @@ pod 'TYCyclePagerView'
 pod 'MJRefresh'
 # 布局
 pod 'Masonry'
+# APP检测更新、提醒应用评价、前往App Store给予好评
+pod 'ZWAppStore'
+# 网页和原生交互
+pod 'WebViewJavascriptBridge'
 ##########################################################
 # 直播工具
 pod 'PLPlayerKit'                           # 播放

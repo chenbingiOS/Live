@@ -1,22 +1,27 @@
 //
-//  CBAboutVC.m
+//  CBFillInfoWebVC.m
 //  ProApp
 //
-//  Created by 陈冰 on 2018/4/26.
+//  Created by hxbjt on 2018/6/5.
 //  Copyright © 2018年 ChenBing. All rights reserved.
 //
 
-#import "CBAboutVC.h"
+#import "CBFillInfoWebVC.h"
+#import "WebViewJavascriptBridge.h"
 
-@interface CBAboutVC ()
+@interface CBFillInfoWebVC ()
+
+@property (nonatomic, strong) WebViewJavascriptBridge* bridge;
 
 @end
 
-@implementation CBAboutVC
+@implementation CBFillInfoWebVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"关于蜂窝TV";
+    
+    [WebViewJavascriptBridge enableLogging];
+    self.bridge = [WebViewJavascriptBridge bridgeForWebView:self.webViewManager.webView];
 }
 
 - (void)didReceiveMemoryWarning {

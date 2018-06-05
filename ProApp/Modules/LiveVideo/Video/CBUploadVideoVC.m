@@ -17,7 +17,7 @@
 #define PLS_BaseToolboxView_HEIGHT 64
 #define PLS_RGBCOLOR(r,g,b) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1]
 
-static NSString *const kUploadToken = @"MqF35-H32j1PH8igh-am7aEkduP511g-5-F7j47Z:clOQ5Y4gJ15PnfZciswh7mQbBJ4=:eyJkZWxldGVBZnRlckRheXMiOjMwLCJzY29wZSI6InNob3J0LXZpZGVvIiwiZGVhZGxpbmUiOjE2NTUyNjAzNTd9";
+static NSString *const kUploadToken = @"6oUTpKAsIk0zxG4WrPwBlKjcpgc8mWAmD4xPUcwu:2AmGAMtOuIUE6VqTbQ3zPs9Rc9Q=:eyJjYWxsYmFja1VybCI6Imh0dHA6XC9cL2Zlbmd3by5ndHRlYWQuY25cL0FwaVwvU2hvcnRWaWRlb1wvcWluaXVfY2FsbGJhY2siLCJjYWxsYmFja0JvZHkiOiJ7XCJma2V5XCI6XCIkKGtleSlcIixcImlkXCI6NTF9IiwiY2FsbGJhY2tCb2R5VHlwZSI6ImFwcGxpY2F0aW9uXC9qc29uIiwic2NvcGUiOiJmZW5nd28iLCJkZWFkbGluZSI6MTUyODE3MTE3N30=";
 static NSString *const kURLPrefix = @"http://shortvideo.pdex-service.com";
 
 @interface CBUploadVideoVC () <PLShortVideoUploaderDelegate, PLPlayerDelegate, UIGestureRecognizerDelegate>
