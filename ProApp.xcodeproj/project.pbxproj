@@ -174,6 +174,8 @@
 		5467016C20C1300900519860 /* CBSexMenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5467016920C1300900519860 /* CBSexMenuView.xib */; };
 		5467016D20C1300900519860 /* CBSexMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5467016B20C1300900519860 /* CBSexMenuView.m */; };
 		5469A56420C4D195004E06F1 /* CBCircularAvatarTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 5469A56320C4D195004E06F1 /* CBCircularAvatarTool.m */; };
+		5469A58120C54587004E06F1 /* CBCityMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5469A58020C54587004E06F1 /* CBCityMenuView.m */; };
+		5469A58320C54591004E06F1 /* CBCityMenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5469A58220C54591004E06F1 /* CBCityMenuView.xib */; };
 		548C5CA020B4FAD300A6FF53 /* CBApplyAnchorVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 548C5C9E20B4FAD300A6FF53 /* CBApplyAnchorVC.m */; };
 		548C5CA120B4FAD300A6FF53 /* CBApplyAnchorVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 548C5C9F20B4FAD300A6FF53 /* CBApplyAnchorVC.xib */; };
 		548C5CB720B50BFE00A6FF53 /* liveCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 548C5CAF20B50BFE00A6FF53 /* liveCity.m */; };
@@ -987,6 +989,9 @@
 		5467016B20C1300900519860 /* CBSexMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBSexMenuView.m; sourceTree = "<group>"; };
 		5469A56220C4D195004E06F1 /* CBCircularAvatarTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBCircularAvatarTool.h; sourceTree = "<group>"; };
 		5469A56320C4D195004E06F1 /* CBCircularAvatarTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBCircularAvatarTool.m; sourceTree = "<group>"; };
+		5469A57F20C54587004E06F1 /* CBCityMenuView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBCityMenuView.h; sourceTree = "<group>"; };
+		5469A58020C54587004E06F1 /* CBCityMenuView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBCityMenuView.m; sourceTree = "<group>"; };
+		5469A58220C54591004E06F1 /* CBCityMenuView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CBCityMenuView.xib; sourceTree = "<group>"; };
 		548C5C9D20B4FAD300A6FF53 /* CBApplyAnchorVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBApplyAnchorVC.h; sourceTree = "<group>"; };
 		548C5C9E20B4FAD300A6FF53 /* CBApplyAnchorVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBApplyAnchorVC.m; sourceTree = "<group>"; };
 		548C5C9F20B4FAD300A6FF53 /* CBApplyAnchorVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CBApplyAnchorVC.xib; sourceTree = "<group>"; };
@@ -2818,6 +2823,9 @@
 				5467016A20C1300900519860 /* CBSexMenuView.h */,
 				5467016B20C1300900519860 /* CBSexMenuView.m */,
 				5467016920C1300900519860 /* CBSexMenuView.xib */,
+				5469A57F20C54587004E06F1 /* CBCityMenuView.h */,
+				5469A58020C54587004E06F1 /* CBCityMenuView.m */,
+				5469A58220C54591004E06F1 /* CBCityMenuView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -3507,6 +3515,7 @@
 				072DC59A209183EC00F693E8 /* CBSettingVC.xib in Resources */,
 				54A76CEA20B7E0E10034D5A2 /* lsq_filter_thumb_Pink01.jpg in Resources */,
 				54A76D2320B7E0E10034D5A2 /* style_default_1.8.0_homepage_video_icon@2x.png in Resources */,
+				5469A58320C54591004E06F1 /* CBCityMenuView.xib in Resources */,
 				54A76CA620B7E0E10034D5A2 /* style_default_btn_back_w_1.11@2x.png in Resources */,
 				54A76C9420B7E0E10034D5A2 /* style_default_btn_finish_unselected@3x.png in Resources */,
 				54A76CF820B7E0E10034D5A2 /* style_default_1.7.1_btn_filter_selected@2x.png in Resources */,
@@ -4073,6 +4082,7 @@
 				077C1A9F2091A7C10005CE97 /* CBResetPwdVC.m in Sources */,
 				07B668A3208DC2A600AA5B62 /* CBFillInfoOKView.m in Sources */,
 				07737DE2208F0150009EB9E6 /* CBMyAttentionVC.m in Sources */,
+				5469A58120C54587004E06F1 /* CBCityMenuView.m in Sources */,
 				0737ED892074A33600A89CC0 /* AppDelegate.m in Sources */,
 				54A76AF620B7DEF00034D5A2 /* EditViewController.m in Sources */,
 				07CF5FC0207AFDB10087A5E2 /* ViewController.m in Sources */,

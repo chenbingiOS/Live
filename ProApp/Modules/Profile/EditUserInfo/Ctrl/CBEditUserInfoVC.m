@@ -9,6 +9,7 @@
 #import "CBEditUserInfoVC.h"
 #import "CBSexMenuView.h"
 #import "CBCircularAvatarTool.h"
+#import "CBCityMenuView.h"
 
 @interface CBEditUserInfoVC () 
 
@@ -27,6 +28,7 @@
 
 @property (nonatomic, assign) BOOL isEditing;   ///< 是否处于编辑状态
 @property (nonatomic, strong) CBSexMenuPopView *sexMenuPopView;
+@property (nonatomic, strong) CBCityMenuPopView *cityMenuPopView;
 
 @end
 
@@ -168,7 +170,7 @@
 
 - (IBAction)actionLocation:(id)sender {
     [self.view endEditing:YES];
-    [self.sexMenuPopView showIn:self.view];
+    [self.cityMenuPopView showIn:self.navigationController.view];
 }
 
 - (IBAction)actionChangeAvatar:(id)sender {
@@ -181,7 +183,6 @@
     [tool showFromView:self.view];
 }
 
-
 - (CBSexMenuPopView *)sexMenuPopView {
     if (!_sexMenuPopView) {
         CGFloat height = 180;
@@ -193,5 +194,15 @@
     return _sexMenuPopView;
 }
 
+- (CBCityMenuPopView *)cityMenuPopView {
+    if (!_cityMenuPopView) {
+        CGFloat height = 244;
+        if (iPhoneX) {
+            height += 35;
+        }
+        _cityMenuPopView = [[CBCityMenuPopView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, height)];
+    }
+    return _cityMenuPopView;
+}
 
 @end

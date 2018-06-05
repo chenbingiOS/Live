@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="CBCityMenuView">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="244"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hsP-rX-sFu">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="200" id="a8c-AR-fsO"/>
+                    </constraints>
+                </pickerView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a9K-qU-Qtm">
+                    <rect key="frame" x="0.0" y="200.5" width="375" height="0.5"/>
+                    <color key="backgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.94901960780000005" alpha="1" colorSpace="deviceRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="0.5" id="RHN-wR-6Qp"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GpZ-JL-a6W">
+                    <rect key="frame" x="188" y="200" width="187" height="44"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="BA9-Oa-Pic"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="15"/>
+                    <state key="normal" title="确定">
+                        <color key="titleColor" red="0.2666666667" green="0.2666666667" blue="0.2666666667" alpha="1" colorSpace="deviceRGB"/>
+                    </state>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wsf-pz-qL0">
+                    <rect key="frame" x="0.0" y="201" width="187.5" height="44"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="omO-yE-Yzs"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="15"/>
+                    <state key="normal" title="取消">
+                        <color key="titleColor" red="0.2666666667" green="0.2666666667" blue="0.2666666667" alpha="1" colorSpace="deviceRGB"/>
+                    </state>
+                </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Top-UO-E5O">
+                    <rect key="frame" x="187.5" y="201" width="0.5" height="44"/>
+                    <color key="backgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.94901960780000005" alpha="1" colorSpace="deviceRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="0.5" id="HHv-Sq-xfv"/>
+                        <constraint firstAttribute="height" constant="44" id="vgZ-Ij-s2U"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="GpZ-JL-a6W" firstAttribute="top" secondItem="hsP-rX-sFu" secondAttribute="bottom" id="AvG-91-TYl"/>
+                <constraint firstItem="hsP-rX-sFu" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="BS4-7Y-tvV"/>
+                <constraint firstItem="Wsf-pz-qL0" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="IRs-R9-Nbh"/>
+                <constraint firstItem="a9K-qU-Qtm" firstAttribute="top" secondItem="hsP-rX-sFu" secondAttribute="bottom" id="LXn-O4-uZy"/>
+                <constraint firstItem="Top-UO-E5O" firstAttribute="leading" secondItem="Wsf-pz-qL0" secondAttribute="trailing" id="Qwn-6O-9BD"/>
+                <constraint firstItem="hsP-rX-sFu" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="TFW-bH-rnp"/>
+                <constraint firstItem="GpZ-JL-a6W" firstAttribute="leading" secondItem="Top-UO-E5O" secondAttribute="trailing" id="V1H-vh-kQb"/>
+                <constraint firstItem="Wsf-pz-qL0" firstAttribute="top" secondItem="a9K-qU-Qtm" secondAttribute="bottom" id="WfQ-W3-vUf"/>
+                <constraint firstItem="hsP-rX-sFu" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="YCd-xW-6vf"/>
+                <constraint firstItem="Top-UO-E5O" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="ZK7-yQ-aee"/>
+                <constraint firstAttribute="trailing" secondItem="GpZ-JL-a6W" secondAttribute="trailing" id="btz-20-j2D"/>
+                <constraint firstAttribute="trailing" secondItem="a9K-qU-Qtm" secondAttribute="trailing" id="l6n-nw-3xM"/>
+                <constraint firstItem="Top-UO-E5O" firstAttribute="top" secondItem="a9K-qU-Qtm" secondAttribute="bottom" id="lPb-bc-SEx"/>
+                <constraint firstItem="a9K-qU-Qtm" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="zGh-Ln-ryj"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="-59.5" y="73"/>
+        </view>
+    </objects>
+</document>
