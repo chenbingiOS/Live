@@ -104,16 +104,26 @@
     NSDictionary *param = @{@"mobile_num": self.phoneTextField.text,
                             @"password": self.pwdTextField.text};
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    @weakify(self);
+    [PPNetworkHelper POST:url parameters:param success:^(id responseObject) {
+        @strongify(self);
+        NSString *token = [responseObject valueForKey:@"token"];
+        [self httpGetUserInfoWithToken:token];
+    } failure:^(NSError *error) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [MBProgressHUD showAutoMessage:@"登录失败"];
+    }];
+}
+
+- (void)httpGetUserInfoWithToken:(NSString *)token {
+    NSString *url = urlGetUserInfo;
+    NSDictionary *param = @{@"token": token};
     [PPNetworkHelper POST:url parameters:param success:^(id responseObject) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         NSNumber *code = [responseObject valueForKey:@"code"];
-        NSString *descrp = [responseObject valueForKey:@"descrp"];        
-        [MBProgressHUD showAutoMessage:descrp];
         if ([code isEqualToNumber:@200]) {
-            NSString *token = [responseObject valueForKey:@"token"];
             NSDictionary *info = [responseObject valueForKey:@"info"];
             CBLiveUser *userInfo = [[CBLiveUser alloc] initWithDic:info];
-            userInfo.token = token;
             [CBLiveUserConfig saveProfile:userInfo];
             
             [self loginENClient];

@@ -9,6 +9,7 @@
 #import "CBRegisterVC.h"
 #import "UITextField+LeftImageView.h"
 #import "CBWebVC.h"
+#import "CBTBC.h"
 
 @interface CBRegisterVC ()
 
@@ -113,22 +114,61 @@
                                   @"password":self.pwdTextField.text,
                                   @"varcode":self.codeTextField.text };
         [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        @weakify(self);
         [PPNetworkHelper POST:url parameters:regDict success:^(id responseObject) {
-            [MBProgressHUD hideHUDForView:self.view animated:YES];
-            NSNumber *code = [responseObject valueForKey:@"code"];
-            NSString *descrp = [responseObject valueForKey:@"descrp"];
-//            NSString *token = [responseObject valueForKey:@"token"];
-            [MBProgressHUD showAutoMessage:descrp];
-            if ([code isEqualToNumber:@200]) {
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    [self.navigationController popViewControllerAnimated:YES];
-                });
-            }
+            @strongify(self);
+            NSString *token = [responseObject valueForKey:@"token"];
+            [self httpGetUserInfoWithToken:token];
         } failure:^(NSError *error) {
             [MBProgressHUD hideHUDForView:self.view animated:YES];
             [MBProgressHUD showAutoMessage:@"注册失败"];
         }];
     }
+}
+
+- (void)httpGetUserInfoWithToken:(NSString *)token {
+    NSString *url = urlGetUserInfo;
+    NSDictionary *param = @{@"token": token};
+    [PPNetworkHelper POST:url parameters:param success:^(id responseObject) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        NSNumber *code = [responseObject valueForKey:@"code"];
+        if ([code isEqualToNumber:@200]) {
+            NSDictionary *info = [responseObject valueForKey:@"info"];
+            CBLiveUser *userInfo = [[CBLiveUser alloc] initWithDic:info];
+            [CBLiveUserConfig saveProfile:userInfo];
+            
+            [self loginENClient];
+            [self loginJPUSH];
+            [self loginUI];
+        }
+    } failure:^(NSError *error) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [MBProgressHUD showAutoMessage:@"登录失败"];
+    }];
+}
+
+// 环信登录
+-(void)loginENClient{
+    [[EMClient sharedClient] loginWithUsername:[CBLiveUserConfig getHXuid] password:[CBLiveUserConfig getHXpwd] completion:^(NSString *aUsername, EMError *aError) {
+        if (aError) {
+            NSLog(@"环信登录错误--%@",aError.errorDescription);
+        } else {
+            NSLog(@"环信登录成功--%@",aUsername);
+        }
+    }];
+}
+
+// 登录极光
+- (void)loginJPUSH {
+    NSString *aliasStr = [NSString stringWithFormat:@"%@PUSH", [CBLiveUserConfig getOwnID]];
+    //    [JPUSHService setAlias:aliasStr callbackSelector:nil object:nil];
+}
+
+// 本地UI登录
+- (void)loginUI {
+    CBTBC *tbc = [CBTBC new];
+    UIWindow *window = [UIApplication sharedApplication].keyWindow;
+    window.rootViewController = tbc;
 }
 
 - (IBAction)actionUserAgreement:(id)sender {

@@ -43,6 +43,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES animated:animated];
+    [self reloadByProfile];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -54,7 +55,6 @@
     [super viewDidLoad];
     [self.navigationController setNavigationBarHidden:YES];    
     [self setupUI];
-    [self reloadByProfile];
 }
 
 - (void)updateViewConstraints {

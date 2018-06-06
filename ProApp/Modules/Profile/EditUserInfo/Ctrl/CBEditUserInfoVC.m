@@ -135,11 +135,12 @@
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         self.navigationItem.rightBarButtonItem.enabled = YES;
         NSNumber *code = [responseObject valueForKey:@"code"];
+        [MBProgressHUD showAutoMessage:@"修改成功"];
         if ([code isEqualToNumber:@200]) {
             NSDictionary *info = [responseObject valueForKey:@"info"];
             CBLiveUser *userInfo = [[CBLiveUser alloc] initWithDic:info];
             [CBLiveUserConfig saveProfile:userInfo];
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 [self.navigationController popViewControllerAnimated:YES];
             });
         }
@@ -151,7 +152,7 @@
 
 - (void)reloadByUserInfo {
     CBLiveUser *user = [CBLiveUserConfig myProfile];
-    [self.avaterImageView sd_setImageWithURL:[NSURL URLWithString:user.avatar]];
+    [self.avaterImageView sd_setImageWithURL:[NSURL URLWithString:user.avatar] placeholderImage:[UIImage imageNamed:@"placeholder_head"]];
     self.userNickTextField.text = user.user_nicename;
     if ([user.sex isEqualToString:@"0"]) {
         self.sexTextField.text = @"保密";
