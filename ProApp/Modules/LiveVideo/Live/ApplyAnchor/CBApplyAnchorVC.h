@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CBBaseWebViewVC.h"
 
-@interface CBApplyAnchorVC : UIViewController
+@interface CBApplyAnchorVC : CBBaseWebViewVC
 
 @end

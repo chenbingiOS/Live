@@ -110,8 +110,6 @@
 		07AB0BB8209300C9007A25A8 /* CBDiamondInfoVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 07AB0BB6209300C9007A25A8 /* CBDiamondInfoVC.xib */; };
 		07B66891208D6A8900AA5B62 /* CBRealNameVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 07B6688F208D6A8900AA5B62 /* CBRealNameVC.m */; };
 		07B66892208D6A8900AA5B62 /* CBRealNameVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 07B66890208D6A8900AA5B62 /* CBRealNameVC.xib */; };
-		07B66896208D71E400AA5B62 /* CBFillInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07B66894208D71E400AA5B62 /* CBFillInfoViewController.m */; };
-		07B66897208D71E400AA5B62 /* CBFillInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 07B66895208D71E400AA5B62 /* CBFillInfoViewController.xib */; };
 		07B6689E208D902500AA5B62 /* UIView+DashedLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 07B6689D208D902500AA5B62 /* UIView+DashedLine.m */; };
 		07B668A3208DC2A600AA5B62 /* CBFillInfoOKView.m in Sources */ = {isa = PBXBuildFile; fileRef = 07B668A2208DC2A600AA5B62 /* CBFillInfoOKView.m */; };
 		07B668A5208DC2B400AA5B62 /* CBFillInfoOKView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 07B668A4208DC2B400AA5B62 /* CBFillInfoOKView.xib */; };
@@ -167,6 +165,7 @@
 		54520AF120BFD2BB005B787E /* NSObject+Coding.m in Sources */ = {isa = PBXBuildFile; fileRef = 54520AEC20BFD2BA005B787E /* NSObject+Coding.m */; };
 		54520AF320BFD2BB005B787E /* NSObject+Class.m in Sources */ = {isa = PBXBuildFile; fileRef = 54520AEE20BFD2BA005B787E /* NSObject+Class.m */; };
 		54520AF620BFD83D005B787E /* CBArchiverTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 54520AF520BFD83D005B787E /* CBArchiverTool.m */; };
+		5454946720C76BF000E96C0A /* CBBaseWebViewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5454946620C76BF000E96C0A /* CBBaseWebViewVC.m */; };
 		5465AE0320BD31A3006E24BB /* CBEditVideoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5465AE0220BD31A3006E24BB /* CBEditVideoVC.m */; };
 		5465AE0720BD4A10006E24BB /* CBUploadVideoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5465AE0520BD4A10006E24BB /* CBUploadVideoVC.m */; };
 		5467015920C0D47D00519860 /* CBAttentionVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5467015820C0D47D00519860 /* CBAttentionVO.m */; };
@@ -177,13 +176,10 @@
 		5469A58120C54587004E06F1 /* CBCityMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5469A58020C54587004E06F1 /* CBCityMenuView.m */; };
 		5469A58320C54591004E06F1 /* CBCityMenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5469A58220C54591004E06F1 /* CBCityMenuView.xib */; };
 		548C5CA020B4FAD300A6FF53 /* CBApplyAnchorVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 548C5C9E20B4FAD300A6FF53 /* CBApplyAnchorVC.m */; };
-		548C5CA120B4FAD300A6FF53 /* CBApplyAnchorVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 548C5C9F20B4FAD300A6FF53 /* CBApplyAnchorVC.xib */; };
 		548C5CB720B50BFE00A6FF53 /* liveCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 548C5CAF20B50BFE00A6FF53 /* liveCity.m */; };
 		548C5CB820B50BFE00A6FF53 /* cityDefault.m in Sources */ = {isa = PBXBuildFile; fileRef = 548C5CB020B50BFE00A6FF53 /* cityDefault.m */; };
 		548C5CBE20B50C2400A6FF53 /* CBLiveUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 548C5CBD20B50C2400A6FF53 /* CBLiveUser.m */; };
 		548C5CC120B50CD800A6FF53 /* CBLiveUserConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 548C5CC020B50CD800A6FF53 /* CBLiveUserConfig.m */; };
-		548C5CC720B5193700A6FF53 /* BasicWebViewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 548C5CC320B5193700A6FF53 /* BasicWebViewVC.m */; };
-		548C5CC820B5193700A6FF53 /* CBWKWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 548C5CC520B5193700A6FF53 /* CBWKWebView.m */; };
 		548C5CCB20B519CE00A6FF53 /* CBInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 548C5CCA20B519CE00A6FF53 /* CBInterface.m */; };
 		548C5CCF20B51C8400A6FF53 /* CBWebVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 548C5CCE20B51C8400A6FF53 /* CBWebVC.m */; };
 		548C5CDC20B5433900A6FF53 /* MBProgressHUD+HUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 548C5CDB20B5433900A6FF53 /* MBProgressHUD+HUD.m */; };
@@ -533,8 +529,6 @@
 		54A76D8F20B7E1C00034D5A2 /* PlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 54A76D8D20B7E1BE0034D5A2 /* PlayViewController.m */; };
 		54BD85E420B65A890024B6E7 /* AppDelegate+ShareSDK.m in Sources */ = {isa = PBXBuildFile; fileRef = 54BD85E320B65A890024B6E7 /* AppDelegate+ShareSDK.m */; };
 		54BD85E720B669F00024B6E7 /* AppDelegate+EMClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 54BD85E620B669F00024B6E7 /* AppDelegate+EMClient.m */; };
-		54BD85EB20B66F410024B6E7 /* CBSelectGuildVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 54BD85E920B66F410024B6E7 /* CBSelectGuildVC.m */; };
-		54BD85EC20B66F410024B6E7 /* CBSelectGuildVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 54BD85EA20B66F410024B6E7 /* CBSelectGuildVC.xib */; };
 		54F7828E20BD56C500EE6821 /* CBForgetPwdVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 54F7828C20BD56C500EE6821 /* CBForgetPwdVC.m */; };
 		54F7828F20BD56C500EE6821 /* CBForgetPwdVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 54F7828D20BD56C500EE6821 /* CBForgetPwdVC.xib */; };
 		7E902906E2CA7AD8D2F3A5A8 /* libPods-ProApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B93D832D0DEF97DA8E7CD09 /* libPods-ProApp.a */; };
@@ -713,9 +707,6 @@
 		07B6688E208D6A8900AA5B62 /* CBRealNameVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBRealNameVC.h; sourceTree = "<group>"; };
 		07B6688F208D6A8900AA5B62 /* CBRealNameVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBRealNameVC.m; sourceTree = "<group>"; };
 		07B66890208D6A8900AA5B62 /* CBRealNameVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CBRealNameVC.xib; sourceTree = "<group>"; };
-		07B66893208D71E400AA5B62 /* CBFillInfoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBFillInfoViewController.h; sourceTree = "<group>"; };
-		07B66894208D71E400AA5B62 /* CBFillInfoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBFillInfoViewController.m; sourceTree = "<group>"; };
-		07B66895208D71E400AA5B62 /* CBFillInfoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CBFillInfoViewController.xib; sourceTree = "<group>"; };
 		07B6689C208D902500AA5B62 /* UIView+DashedLine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+DashedLine.h"; sourceTree = "<group>"; };
 		07B6689D208D902500AA5B62 /* UIView+DashedLine.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+DashedLine.m"; sourceTree = "<group>"; };
 		07B668A1208DC2A600AA5B62 /* CBFillInfoOKView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBFillInfoOKView.h; sourceTree = "<group>"; };
@@ -976,6 +967,8 @@
 		54520AEF20BFD2BA005B787E /* NSObject+Copy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Copy.h"; sourceTree = "<group>"; };
 		54520AF420BFD83D005B787E /* CBArchiverTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBArchiverTool.h; sourceTree = "<group>"; };
 		54520AF520BFD83D005B787E /* CBArchiverTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBArchiverTool.m; sourceTree = "<group>"; };
+		5454946520C76BF000E96C0A /* CBBaseWebViewVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBBaseWebViewVC.h; sourceTree = "<group>"; };
+		5454946620C76BF000E96C0A /* CBBaseWebViewVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBBaseWebViewVC.m; sourceTree = "<group>"; };
 		5465AE0120BD31A3006E24BB /* CBEditVideoVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBEditVideoVC.h; sourceTree = "<group>"; };
 		5465AE0220BD31A3006E24BB /* CBEditVideoVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBEditVideoVC.m; sourceTree = "<group>"; };
 		5465AE0420BD4A10006E24BB /* CBUploadVideoVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBUploadVideoVC.h; sourceTree = "<group>"; };
@@ -994,7 +987,6 @@
 		5469A58220C54591004E06F1 /* CBCityMenuView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CBCityMenuView.xib; sourceTree = "<group>"; };
 		548C5C9D20B4FAD300A6FF53 /* CBApplyAnchorVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBApplyAnchorVC.h; sourceTree = "<group>"; };
 		548C5C9E20B4FAD300A6FF53 /* CBApplyAnchorVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBApplyAnchorVC.m; sourceTree = "<group>"; };
-		548C5C9F20B4FAD300A6FF53 /* CBApplyAnchorVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CBApplyAnchorVC.xib; sourceTree = "<group>"; };
 		548C5CAA20B50BFE00A6FF53 /* cityDefault.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cityDefault.h; sourceTree = "<group>"; };
 		548C5CAB20B50BFE00A6FF53 /* liveCity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = liveCity.h; sourceTree = "<group>"; };
 		548C5CAF20B50BFE00A6FF53 /* liveCity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = liveCity.m; sourceTree = "<group>"; };
@@ -1003,10 +995,6 @@
 		548C5CBD20B50C2400A6FF53 /* CBLiveUser.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBLiveUser.m; sourceTree = "<group>"; };
 		548C5CBF20B50CD800A6FF53 /* CBLiveUserConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBLiveUserConfig.h; sourceTree = "<group>"; };
 		548C5CC020B50CD800A6FF53 /* CBLiveUserConfig.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBLiveUserConfig.m; sourceTree = "<group>"; };
-		548C5CC320B5193700A6FF53 /* BasicWebViewVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BasicWebViewVC.m; sourceTree = "<group>"; };
-		548C5CC420B5193700A6FF53 /* CBWKWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBWKWebView.h; sourceTree = "<group>"; };
-		548C5CC520B5193700A6FF53 /* CBWKWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBWKWebView.m; sourceTree = "<group>"; };
-		548C5CC620B5193700A6FF53 /* BasicWebViewVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicWebViewVC.h; sourceTree = "<group>"; };
 		548C5CC920B519CE00A6FF53 /* CBInterface.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBInterface.h; sourceTree = "<group>"; };
 		548C5CCA20B519CE00A6FF53 /* CBInterface.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBInterface.m; sourceTree = "<group>"; };
 		548C5CCD20B51C8400A6FF53 /* CBWebVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBWebVC.h; sourceTree = "<group>"; };
@@ -1407,9 +1395,6 @@
 		54BD85E320B65A890024B6E7 /* AppDelegate+ShareSDK.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+ShareSDK.m"; sourceTree = "<group>"; };
 		54BD85E520B669F00024B6E7 /* AppDelegate+EMClient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+EMClient.h"; sourceTree = "<group>"; };
 		54BD85E620B669F00024B6E7 /* AppDelegate+EMClient.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+EMClient.m"; sourceTree = "<group>"; };
-		54BD85E820B66F410024B6E7 /* CBSelectGuildVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBSelectGuildVC.h; sourceTree = "<group>"; };
-		54BD85E920B66F410024B6E7 /* CBSelectGuildVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBSelectGuildVC.m; sourceTree = "<group>"; };
-		54BD85EA20B66F410024B6E7 /* CBSelectGuildVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CBSelectGuildVC.xib; sourceTree = "<group>"; };
 		54F7828B20BD56C500EE6821 /* CBForgetPwdVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBForgetPwdVC.h; sourceTree = "<group>"; };
 		54F7828C20BD56C500EE6821 /* CBForgetPwdVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBForgetPwdVC.m; sourceTree = "<group>"; };
 		54F7828D20BD56C500EE6821 /* CBForgetPwdVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CBForgetPwdVC.xib; sourceTree = "<group>"; };
@@ -1897,7 +1882,8 @@
 		07558C1920941289007E41C2 /* Tool Class */ = {
 			isa = PBXGroup;
 			children = (
-				548C5CC220B5193700A6FF53 /* WebView */,
+				5454946520C76BF000E96C0A /* CBBaseWebViewVC.h */,
+				5454946620C76BF000E96C0A /* CBBaseWebViewVC.m */,
 				07558C1D20941F18007E41C2 /* CBPopView.h */,
 				07558C1E20941F18007E41C2 /* CBPopView.m */,
 				54520AF420BFD83D005B787E /* CBArchiverTool.h */,
@@ -2233,9 +2219,6 @@
 		07B6689F208DC1AF00AA5B62 /* Ctrl */ = {
 			isa = PBXGroup;
 			children = (
-				07B66893208D71E400AA5B62 /* CBFillInfoViewController.h */,
-				07B66894208D71E400AA5B62 /* CBFillInfoViewController.m */,
-				07B66895208D71E400AA5B62 /* CBFillInfoViewController.xib */,
 				544B96E120C67E81004D0DB0 /* CBFillInfoWebVC.h */,
 				544B96E220C67E81004D0DB0 /* CBFillInfoWebVC.m */,
 			);
@@ -2845,7 +2828,6 @@
 			isa = PBXGroup;
 			children = (
 				548C5C9C20B4FAA300A6FF53 /* ApplyAnchor */,
-				54BD85ED20B66F480024B6E7 /* SelectGuild */,
 			);
 			path = Live;
 			sourceTree = "<group>";
@@ -2879,7 +2861,6 @@
 			children = (
 				548C5C9D20B4FAD300A6FF53 /* CBApplyAnchorVC.h */,
 				548C5C9E20B4FAD300A6FF53 /* CBApplyAnchorVC.m */,
-				548C5C9F20B4FAD300A6FF53 /* CBApplyAnchorVC.xib */,
 			);
 			path = ApplyAnchor;
 			sourceTree = "<group>";
@@ -2906,17 +2887,6 @@
 				548C5CC020B50CD800A6FF53 /* CBLiveUserConfig.m */,
 			);
 			path = UserCache;
-			sourceTree = "<group>";
-		};
-		548C5CC220B5193700A6FF53 /* WebView */ = {
-			isa = PBXGroup;
-			children = (
-				548C5CC620B5193700A6FF53 /* BasicWebViewVC.h */,
-				548C5CC320B5193700A6FF53 /* BasicWebViewVC.m */,
-				548C5CC420B5193700A6FF53 /* CBWKWebView.h */,
-				548C5CC520B5193700A6FF53 /* CBWKWebView.m */,
-			);
-			path = WebView;
 			sourceTree = "<group>";
 		};
 		548C5CCC20B519D000A6FF53 /* Interface */ = {
@@ -3387,16 +3357,6 @@
 			path = Assets;
 			sourceTree = "<group>";
 		};
-		54BD85ED20B66F480024B6E7 /* SelectGuild */ = {
-			isa = PBXGroup;
-			children = (
-				54BD85E820B66F410024B6E7 /* CBSelectGuildVC.h */,
-				54BD85E920B66F410024B6E7 /* CBSelectGuildVC.m */,
-				54BD85EA20B66F410024B6E7 /* CBSelectGuildVC.xib */,
-			);
-			path = SelectGuild;
-			sourceTree = "<group>";
-		};
 		54F7828A20BD569600EE6821 /* Forget */ = {
 			isa = PBXGroup;
 			children = (
@@ -3620,7 +3580,6 @@
 				54A76D4320B7E0E10034D5A2 /* style_default_btn_back_unselected@3x.png in Resources */,
 				54A76CFB20B7E0E10034D5A2 /* style_default_1.11_btn_finish_selected_w@2x.png in Resources */,
 				54A76CB320B7E0E10034D5A2 /* video_style_default_btn_sticker_online@3x.png in Resources */,
-				54BD85EC20B66F410024B6E7 /* CBSelectGuildVC.xib in Resources */,
 				54A76D4720B7E0E10034D5A2 /* video_style_default_btn_switch@3x.png in Resources */,
 				0715278A20A53F6000D3859D /* CBRegisterVC.xib in Resources */,
 				54A76D1F20B7E0E10034D5A2 /* style_default_1.6.0_homepage_video_icon@2x.png in Resources */,
@@ -3702,7 +3661,6 @@
 				077C1AA02091A7C10005CE97 /* CBResetPwdVC.xib in Resources */,
 				54A76CA020B7E0E10034D5A2 /* style_default_1.7.1_btn_beauty_default@2x.png in Resources */,
 				54A76D6520B7E0E10034D5A2 /* video_style_default_btn_switch@2x.png in Resources */,
-				07B66897208D71E400AA5B62 /* CBFillInfoViewController.xib in Resources */,
 				54A76CA520B7E0E10034D5A2 /* video_style_default_btn_flash_off@2x.png in Resources */,
 				54A76C6720B7E0E10034D5A2 /* video_style_default_btn_sticker_off@3x.png in Resources */,
 				54A76CF020B7E0E10034D5A2 /* style_default_btn_back_selected@3x.png in Resources */,
@@ -3827,7 +3785,6 @@
 				54A76C6B20B7E0E10034D5A2 /* style_default_2.0_moviEditor_stopPreview@2x.png in Resources */,
 				54A76CD120B7E0E10034D5A2 /* style_default_1.5.0_btn_back@3x.png in Resources */,
 				54A76C9120B7E0E10034D5A2 /* style_default_2.0_edit_effect_back@3x.png in Resources */,
-				548C5CA120B4FAD300A6FF53 /* CBApplyAnchorVC.xib in Resources */,
 				54A76D3A20B7E0E10034D5A2 /* lsq_filter_thumb_nature0001_1.jpg in Resources */,
 				54A76CB520B7E0E10034D5A2 /* video_style_default_btn_sticker@2x.png in Resources */,
 				54A76D5620B7E0E10034D5A2 /* style_default_2.0_moviEditor_gradientColor.png in Resources */,
@@ -3923,6 +3880,7 @@
 				07CDCAD12090598F00B16FC6 /* CBLiveAnchorView.m in Sources */,
 				54130A0B20B6A0C000CAE467 /* CBAppLiveVO.m in Sources */,
 				54A76D8320B7E1320034D5A2 /* MovieTransCodeViewController.m in Sources */,
+				5454946720C76BF000E96C0A /* CBBaseWebViewVC.m in Sources */,
 				07916D5A207CA415002E4D83 /* UIView+Xib.m in Sources */,
 				07557B8D207CBAD3005C6BC1 /* UIView+Sudoku.m in Sources */,
 				54F7828E20BD56C500EE6821 /* CBForgetPwdVC.m in Sources */,
@@ -3933,7 +3891,6 @@
 				5465AE0720BD4A10006E24BB /* CBUploadVideoVC.m in Sources */,
 				0750561C2092AEBD00F0679B /* CBGiftPackageVC.m in Sources */,
 				54A76AE320B7DEDE0034D5A2 /* PLSRateButtonView.m in Sources */,
-				548C5CC720B5193700A6FF53 /* BasicWebViewVC.m in Sources */,
 				07F38C0720994A0000DDBC90 /* JPGiftOperation.m in Sources */,
 				54520AF020BFD2BB005B787E /* NSObject+Copy.m in Sources */,
 				072DC5A02091A1B500F693E8 /* CBNotificationsVC.m in Sources */,
@@ -3990,7 +3947,6 @@
 				54A76AE620B7DEDE0034D5A2 /* PLSProgressBar.m in Sources */,
 				5469A56420C4D195004E06F1 /* CBCircularAvatarTool.m in Sources */,
 				07F38C0120994A0000DDBC90 /* JPGiftView.m in Sources */,
-				07B66896208D71E400AA5B62 /* CBFillInfoViewController.m in Sources */,
 				07F6EFE020872E3D0035C6BD /* CBHomeVC.m in Sources */,
 				07558C2B2094569C007E41C2 /* CBAnchorInfoXibView.m in Sources */,
 				077C1AA42091A7E00005CE97 /* CBPhoneBindVC.m in Sources */,
@@ -4033,7 +3989,6 @@
 				54A76B1020B7DF7E0034D5A2 /* StickerScrollView.m in Sources */,
 				07B66891208D6A8900AA5B62 /* CBRealNameVC.m in Sources */,
 				54A76AEE20B7DEDE0034D5A2 /* PLSColorPicker.m in Sources */,
-				54BD85EB20B66F410024B6E7 /* CBSelectGuildVC.m in Sources */,
 				07F6EFE320872E3D0035C6BD /* CBSelectedView.m in Sources */,
 				0715278E20A5498A00D3859D /* UITextField+LeftImageView.m in Sources */,
 				073746F2208EC7C800E108E9 /* CBWatchVO.m in Sources */,
@@ -4041,7 +3996,6 @@
 				07737DE7208F0161009EB9E6 /* CBMyFansVC.m in Sources */,
 				07116E9820B267FC007FAEED /* CBAppADCell.m in Sources */,
 				077D1F8520886C56003B9E56 /* CBLiveVC.m in Sources */,
-				548C5CC820B5193700A6FF53 /* CBWKWebView.m in Sources */,
 				544B96E320C67E81004D0DB0 /* CBFillInfoWebVC.m in Sources */,
 				54A76AF320B7DEDE0034D5A2 /* PLSClipMovieView.m in Sources */,
 				54A76B1620B7DF7E0034D5A2 /* SceneEffectTools.m in Sources */,

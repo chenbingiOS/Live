@@ -6,8 +6,8 @@
 //  Copyright © 2018年 ChenBing. All rights reserved.
 //
 
-#import "BasicWebViewVC.h"
+#import "CBBaseWebViewVC.h"
 
-@interface CBFillInfoWebVC : BasicWebViewVC
+@interface CBFillInfoWebVC : CBBaseWebViewVC
 
 @end

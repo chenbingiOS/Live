@@ -116,15 +116,29 @@
                             @"location":self.coordinatesTextField.text
                             };    
     UIImage *uploadImage = self.avaterImageView.image;
+    @weakify(self);
     [PPNetworkHelper uploadImagesWithURL:url parameters:param name:@"avatar" images:@[uploadImage] fileNames:nil imageScale:0.5 imageType:@"jpeg" progress:^(NSProgress *progress) {
         
     } success:^(id responseObject) {
+        @strongify(self);
+        [self httpGetUserInfo];
+    } failure:^(NSError *error) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        self.navigationItem.rightBarButtonItem.enabled = YES;
+    }];
+}
+
+- (void)httpGetUserInfo {
+    NSString *url = urlGetUserInfo;
+    NSDictionary *param = @{@"token": [CBLiveUserConfig getOwnToken]};
+    [PPNetworkHelper POST:url parameters:param success:^(id responseObject) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         self.navigationItem.rightBarButtonItem.enabled = YES;
         NSNumber *code = [responseObject valueForKey:@"code"];
-        NSString *descrp = [responseObject valueForKey:@"descrp"];
-        [MBProgressHUD showAutoMessage:descrp];
         if ([code isEqualToNumber:@200]) {
+            NSDictionary *info = [responseObject valueForKey:@"info"];
+            CBLiveUser *userInfo = [[CBLiveUser alloc] initWithDic:info];
+            [CBLiveUserConfig saveProfile:userInfo];
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 [self.navigationController popViewControllerAnimated:YES];
             });

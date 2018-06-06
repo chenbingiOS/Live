@@ -7,8 +7,6 @@
 //
 
 #import "CBApplyAnchorVC.h"
-#import "CBWebVC.h"
-#import "CBSelectGuildVC.h"
 
 @interface CBApplyAnchorVC ()
 
@@ -18,8 +16,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"申请成为主播";
-    
+    self.title = @"申请成为主播";    
+    [self webViewloadRequestWithURLString:urlH5Guild];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -27,19 +25,8 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)actionJoinGuild:(id)sender {
-    CBSelectGuildVC *vc = [CBSelectGuildVC new];
-    [self.navigationController pushViewController:vc animated:YES];
-}
-
-- (IBAction)actionPersonnel:(id)sender {
-    NSLog(@"个人入住");
-}
-
-- (IBAction)actionUserAgreement:(id)sender {
-    CBWebVC *vc = [CBWebVC new];
-    [vc webViewloadRequestWithURLString:urlH5Policy];
-    [self.navigationController pushViewController:vc animated:YES];
+- (void)backViewCtrl {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

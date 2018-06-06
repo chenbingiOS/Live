@@ -7,11 +7,8 @@
 //
 
 #import "CBFillInfoWebVC.h"
-#import "WebViewJavascriptBridge.h"
 
 @interface CBFillInfoWebVC ()
-
-@property (nonatomic, strong) WebViewJavascriptBridge* bridge;
 
 @end
 
@@ -19,9 +16,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    [WebViewJavascriptBridge enableLogging];
-    self.bridge = [WebViewJavascriptBridge bridgeForWebView:self.webViewManager.webView];
 }
 
 - (void)didReceiveMemoryWarning {

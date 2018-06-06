@@ -41,6 +41,13 @@
 #define urlGetUserFansList      purl@"Api/Anchor/getUserFansList"
 // 修改个人资料
 #define urlChangeUserinfo       purl@"Api/UserInfo/change_userinfo"
+// 获取全部视频列表
+#define urlGetVideos            purl@"Api/ShortVideo/getVideos"
+
+
+
+
+
 
 // 主页直播列表
 #define urlGetHot       purl@"?service=Home.getHot"

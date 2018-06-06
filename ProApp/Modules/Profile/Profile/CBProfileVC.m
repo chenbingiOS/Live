@@ -43,7 +43,6 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES animated:animated];
-    [self httpGetUserInfo];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -55,23 +54,7 @@
     [super viewDidLoad];
     [self.navigationController setNavigationBarHidden:YES];    
     [self setupUI];
-}
-
-- (void)httpGetUserInfo {
-    NSString *url = urlGetUserInfo;
-    NSDictionary *param = @{@"token": [CBLiveUserConfig getOwnToken]};
-    [PPNetworkHelper POST:url parameters:param success:^(id responseObject) {
-        NSNumber *code = [responseObject valueForKey:@"code"];
-        if ([code isEqualToNumber:@200]) {
-            NSDictionary *info = [responseObject valueForKey:@"info"];
-            CBLiveUser *userInfo = [[CBLiveUser alloc] initWithDic:info];
-            [CBLiveUserConfig saveProfile:userInfo];
-        
-            [self reloadByProfile];
-        }
-    } failure:^(NSError *error) {
-        [self reloadByProfile];
-    }];
+    [self reloadByProfile];
 }
 
 - (void)updateViewConstraints {
