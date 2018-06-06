@@ -10,8 +10,6 @@
 #import "liveCity.h"
 @interface cityDefault : NSObject
 
-
-
 + (void)saveProfile:(liveCity *)city;
 + (void)clearProfile;
 +(void) updateProfile:(liveCity *)city;

@@ -16,32 +16,32 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "ProApp/Base/Tool Class/WebView/BasicWebViewVC.m"
-            timestampString = "549941889.800863"
+            filePath = "ProApp/Modules/LiveVideo/Live/PLRTCStreamingDemo/PLRTCStreamingChiefViewController.m"
+            timestampString = "549964307.074513"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "123"
-            endingLineNumber = "123"
-            landmarkName = "-webView:decidePolicyForNavigationAction:decisionHandler:"
+            startingLineNumber = "223"
+            endingLineNumber = "223"
+            landmarkName = "-initStreamingSession"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "ProApp/Base/Tool Class/WebView/BasicWebViewVC.m"
-            timestampString = "549941889.8009371"
+            filePath = "ProApp/Modules/LiveVideo/Live/PLRTCStreamingDemo/PLRTCStreamingChiefViewController.m"
+            timestampString = "549964307.075231"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "119"
-            endingLineNumber = "119"
-            landmarkName = "-webView:decidePolicyForNavigationAction:decisionHandler:"
+            startingLineNumber = "226"
+            endingLineNumber = "226"
+            landmarkName = "-initStreamingSession"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

@@ -13,6 +13,8 @@
 #import "CBRecordVideoVC.h"
 #import "RecordViewController.h"
 
+#import "PLRTCStreamingMasterViewController.h"
+
 @interface CBTBC () <UITabBarControllerDelegate>
 
 @property (nonatomic, strong) CBHomeMenuPopView *homeMenuPopView;
@@ -29,7 +31,8 @@
     @weakify(self);
     [self.homeMenuPopView.homeMenuView.liveButton addBlockForControlEvents:UIControlEventTouchUpInside block:^(id  _Nonnull sender) {
         @strongify(self);
-        CBApplyAnchorVC *vc = [CBApplyAnchorVC new];
+//        CBApplyAnchorVC *vc = [CBApplyAnchorVC new];
+        PLRTCStreamingMasterViewController *vc = [[PLRTCStreamingMasterViewController alloc] init];
         CBNVC *nvc = [[CBNVC alloc] initWithRootViewController:vc];
         [self.selectedViewController presentViewController:nvc animated:YES completion:^{
             [self.homeMenuPopView hide];

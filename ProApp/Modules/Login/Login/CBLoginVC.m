@@ -107,8 +107,16 @@
     @weakify(self);
     [PPNetworkHelper POST:url parameters:param success:^(id responseObject) {
         @strongify(self);
-        NSString *token = [responseObject valueForKey:@"token"];
-        [self httpGetUserInfoWithToken:token];
+        NSNumber *code = [responseObject valueForKey:@"code"];
+        if ([code isEqualToNumber:@200]) {
+            NSDictionary *rdata = responseObject[@"data"];
+            NSString *token = rdata[@"token"];
+            [self httpGetUserInfoWithToken:token];
+        } else {
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            NSString *descrp = responseObject[@"descrp"];
+            [MBProgressHUD showAutoMessage:descrp];
+        }
     } failure:^(NSError *error) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         [MBProgressHUD showAutoMessage:@"登录失败"];
@@ -129,6 +137,10 @@
             [self loginENClient];
             [self loginJPUSH];
             [self loginUI];
+        } else {
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            NSString *descrp = responseObject[@"descrp"];
+            [MBProgressHUD showAutoMessage:descrp];
         }
     } failure:^(NSError *error) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];

@@ -33,7 +33,8 @@
     [super viewDidLoad];
     
     //eg:微信
-    [ZWCheckVersion zw_checkVersionItunesId:@"414478124"];
+//    [ZWCheckVersion zw_checkVersionItunesId:@"414478124"];
+    [ZWCheckVersion zw_autoCheckVersion];
     
     [self setup_UI];
 }

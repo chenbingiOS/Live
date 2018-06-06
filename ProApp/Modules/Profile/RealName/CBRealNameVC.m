@@ -34,7 +34,8 @@
 - (IBAction)startCertification:(id)sender {
     CBFillInfoWebVC *vc = [CBFillInfoWebVC new];
     vc.title = @"实名认证";
-    [vc webViewloadRequestWithURLString:urlH5PresonCer];
+    NSString *url = [urlH5PresonCer stringByAppendingFormat:@"?token=%@", [CBLiveUserConfig getOwnToken]];
+    [vc webViewloadRequestWithURLString:url];
     [self.navigationController pushViewController:vc animated:YES];
 }
 

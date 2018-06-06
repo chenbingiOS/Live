@@ -118,8 +118,16 @@
         @weakify(self);
         [PPNetworkHelper POST:url parameters:regDict success:^(id responseObject) {
             @strongify(self);
-            NSString *token = [responseObject valueForKey:@"token"];
-            [self httpGetUserInfoWithToken:token];
+            NSNumber *code = [responseObject valueForKey:@"code"];
+            if ([code isEqualToNumber:@200]) {
+                NSDictionary *rdata = responseObject[@"data"];
+                NSString *token = rdata[@"token"];
+                [self httpGetUserInfoWithToken:token];
+            } else {
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
+                NSString *descrp = responseObject[@"descrp"];
+                [MBProgressHUD showAutoMessage:descrp];
+            }
         } failure:^(NSError *error) {
             [MBProgressHUD hideHUDForView:self.view animated:YES];
             [MBProgressHUD showAutoMessage:@"注册失败"];
@@ -134,13 +142,17 @@
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         NSNumber *code = [responseObject valueForKey:@"code"];
         if ([code isEqualToNumber:@200]) {
-            NSDictionary *info = [responseObject valueForKey:@"info"];
+            NSDictionary *info = [responseObject valueForKey:@"data"];
             CBLiveUser *userInfo = [[CBLiveUser alloc] initWithDic:info];
             [CBLiveUserConfig saveProfile:userInfo];
             
             [self loginENClient];
             [self loginJPUSH];
             [self loginUI];
+        } else {
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            NSString *descrp = responseObject[@"descrp"];
+            [MBProgressHUD showAutoMessage:descrp];
         }
     } failure:^(NSError *error) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];

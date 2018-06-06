@@ -137,7 +137,7 @@
         NSNumber *code = [responseObject valueForKey:@"code"];
         [MBProgressHUD showAutoMessage:@"修改成功"];
         if ([code isEqualToNumber:@200]) {
-            NSDictionary *info = [responseObject valueForKey:@"info"];
+            NSDictionary *info = [responseObject valueForKey:@"data"];
             CBLiveUser *userInfo = [[CBLiveUser alloc] initWithDic:info];
             [CBLiveUserConfig saveProfile:userInfo];
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{

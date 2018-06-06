@@ -126,7 +126,7 @@
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         NSNumber *code = [responseObject valueForKey:@"code"];
         if ([code isEqualToNumber:@200]) {
-            NSDictionary *info = [responseObject valueForKey:@"info"];
+            NSDictionary *info = [responseObject valueForKey:@"data"];
             CBLiveUser *userInfo = [[CBLiveUser alloc] initWithDic:info];
             [CBLiveUserConfig saveProfile:userInfo];
             
