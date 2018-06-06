@@ -14,6 +14,7 @@
 #import "CBLoginVC.h"
 #import "CBWebVC.h"
 #import "CBNVC.h"
+#import "ZWAppStore.h"
 
 @interface CBSettingVC ()
 
@@ -61,6 +62,10 @@
 }
 
 - (IBAction)actionToScore:(id)sender {
+    [ZWActionReview instanceReview].probabilityDaliy = 1.f;
+    [ZWActionReview instanceReview].maxNumDaliy = 3;
+    [ZWActionReview instanceReview].maxTotalNum = 100;
+    [[ZWActionReview instanceReview] zw_actionRequestReview:@"414478124"];
 }
 
 - (IBAction)actionAbout:(id)sender {

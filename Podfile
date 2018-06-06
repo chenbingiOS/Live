@@ -29,6 +29,8 @@ pod 'Masonry'
 pod 'ZWAppStore'
 # 网页和原生交互
 pod 'WebViewJavascriptBridge'
+# 文本提示框
+pod 'UITextView+Placeholder'
 ##########################################################
 # 直播工具
 pod 'PLPlayerKit'                           # 播放

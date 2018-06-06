@@ -19,7 +19,7 @@
 
 @property (nonatomic, copy) NSString *ID;               ///< 登陆用户id
 @property (nonatomic, copy) NSString *user_nicename;    ///< 用户昵称
-@property (nonatomic, copy) NSString *is_truename;      ///< 真实姓名
+@property (nonatomic, copy) NSString *is_truename;      ///< 真实姓名        是否是真实姓名：0：不是 1：是
 @property (nonatomic, copy) NSString *user_email;       ///< 登陆邮箱
 @property (nonatomic, copy) NSString *mobile;           ///< 电话号码
 @property (nonatomic, copy) NSString *mobile_status;    ///< 是否绑定手机     0: 未绑定 1:绑定

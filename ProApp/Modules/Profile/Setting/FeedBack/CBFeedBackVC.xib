@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -12,6 +12,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CBFeedBackVC">
             <connections>
+                <outlet property="statusLabel" destination="fY0-xa-cSE" id="VUx-am-meA"/>
+                <outlet property="textView" destination="rS4-NW-SR3" id="9aw-vx-Nif"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -23,12 +25,6 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EFG-l0-DwH">
                     <rect key="frame" x="0.0" y="28" width="375" height="164"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="请输入反馈信息，140个字以内" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7hp-1x-Zex">
-                            <rect key="frame" x="16" y="8" width="163.5" height="17"/>
-                            <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="12"/>
-                            <color key="textColor" red="0.57647058819999997" green="0.57647058819999997" blue="0.57647058819999997" alpha="1" colorSpace="deviceRGB"/>
-                            <nil key="highlightedColor"/>
-                        </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0/140" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fY0-xa-cSE">
                             <rect key="frame" x="326.5" y="139" width="32.5" height="17"/>
                             <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="12"/>
@@ -45,20 +41,18 @@
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="bottom" secondItem="fY0-xa-cSE" secondAttribute="bottom" constant="8" id="7Pc-um-nqM"/>
-                        <constraint firstItem="7hp-1x-Zex" firstAttribute="top" secondItem="EFG-l0-DwH" secondAttribute="top" constant="8" id="JGI-WK-MzU"/>
                         <constraint firstItem="rS4-NW-SR3" firstAttribute="leading" secondItem="EFG-l0-DwH" secondAttribute="leading" constant="16" id="KHl-SB-Wsy"/>
                         <constraint firstAttribute="trailing" secondItem="fY0-xa-cSE" secondAttribute="trailing" constant="16" id="Wd4-Du-zxn"/>
                         <constraint firstItem="rS4-NW-SR3" firstAttribute="top" secondItem="EFG-l0-DwH" secondAttribute="top" constant="8" id="aFn-J5-Btk"/>
                         <constraint firstAttribute="bottom" secondItem="rS4-NW-SR3" secondAttribute="bottom" constant="8" id="fVt-Um-AaL"/>
                         <constraint firstAttribute="height" constant="164" id="m92-wQ-MlJ"/>
                         <constraint firstAttribute="trailing" secondItem="rS4-NW-SR3" secondAttribute="trailing" constant="16" id="qI4-u7-UKa"/>
-                        <constraint firstItem="7hp-1x-Zex" firstAttribute="leading" secondItem="EFG-l0-DwH" secondAttribute="leading" constant="16" id="seP-El-dbe"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e7y-SK-3jF">
                     <rect key="frame" x="0.0" y="200" width="375" height="40"/>
                     <subviews>
-                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入您的手机号码/QQ/邮箱" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1g4-qC-FIq">
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入您的手机号码/QQ/邮箱" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="1g4-qC-FIq">
                             <rect key="frame" x="16" y="0.0" width="343" height="40"/>
                             <nil key="textColor"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -84,6 +78,9 @@
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RN3-Q1-dti">
                     <rect key="frame" x="15.5" y="289" width="345" height="35"/>
                     <state key="normal" title="提交" backgroundImage="btn_pre"/>
+                    <connections>
+                        <action selector="actionSubmitFeedBack:" destination="-1" eventType="touchUpInside" id="Fhr-Il-tb4"/>
+                    </connections>
                 </button>
             </subviews>
             <color key="backgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.94901960780000005" alpha="1" colorSpace="deviceRGB"/>
@@ -101,7 +98,7 @@
                 <constraint firstItem="EFG-l0-DwH" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="xKs-Ea-0qR"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
-            <point key="canvasLocation" x="33.5" y="53.5"/>
+            <point key="canvasLocation" x="143" y="22"/>
         </view>
     </objects>
     <resources>

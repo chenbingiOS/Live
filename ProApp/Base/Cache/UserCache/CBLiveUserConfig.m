@@ -44,21 +44,4 @@ static NSString * const KLiveUser = @"KLiveUser";
     return [self myProfile].ID;
 }
 
-+ (NSString *)getavatar {
-    return [self myProfile].avatar;
-}
-
-+ (NSString *)getSex {
-    return [self myProfile].sex;
-}
-
-+ (NSString *)getLevel {
-    return [self myProfile].user_level;
-}
-
-+ (NSString *)getOwnNicename {
-    return [self myProfile].user_nicename;
-}
-
-
 @end

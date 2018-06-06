@@ -22,6 +22,7 @@
 
 @property (nonatomic, assign) NSInteger authCodeTime;
 @property (nonatomic, strong) NSTimer *messsageTimer;
+
 @end
 
 @implementation CBRegisterVC

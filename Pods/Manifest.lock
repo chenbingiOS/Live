@@ -49,6 +49,7 @@ PODS:
   - ShareSDK3/ShareSDKPlatforms/Twitter (4.0.4):
     - MOBFoundation
   - TYCyclePagerView (1.1.0)
+  - "UITextView+Placeholder (1.2.1)"
   - WebViewJavascriptBridge (6.0.3)
   - WeiXinPay (1.6.2)
   - YYKit (1.0.9):
@@ -82,6 +83,7 @@ DEPENDENCIES:
   - ShareSDK3/ShareSDKPlatforms/SinaWeibo
   - ShareSDK3/ShareSDKPlatforms/Twitter
   - TYCyclePagerView
+  - "UITextView+Placeholder"
   - WebViewJavascriptBridge
   - WeiXinPay
   - YYKit
@@ -110,6 +112,7 @@ SPEC REPOS:
     - SDWebImage
     - ShareSDK3
     - TYCyclePagerView
+    - "UITextView+Placeholder"
     - WebViewJavascriptBridge
     - WeiXinPay
     - YYKit
@@ -137,12 +140,13 @@ SPEC CHECKSUMS:
   SDWebImage: de4d90b5bff3571eae7bd16202b1f43135409fa5
   ShareSDK3: 75b57bab0cbe3119e281c7668eaad9d48adf3fde
   TYCyclePagerView: b70858c9b5d0e80e1e3129ff5ceb027eb0f76d44
+  "UITextView+Placeholder": 0c3efd97f37ea64bde7f34cc6e90fe02e87b3909
   WebViewJavascriptBridge: 7f5bc4d3581e672e8f32bd0f812d54bc69bb8e29
   WeiXinPay: e10b3e05845eac0e279c9fc6311a8fcfdb00d883
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
   ZWAppStore: 396b081870b308193315be011555d063b08278b4
   ZYCornerRadius: f0af817be7805b5c63d793042ca7a03f81e14069
 
-PODFILE CHECKSUM: eb9f626b7a54a7f418f1f76cd87b02591f43311e
+PODFILE CHECKSUM: a3d7b88c417b604fb3ce9874af61e41dce39c4f0
 
 COCOAPODS: 1.5.2

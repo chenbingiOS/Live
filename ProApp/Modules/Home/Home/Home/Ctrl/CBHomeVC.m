@@ -10,6 +10,7 @@
 #import "CBSelectedView.h"
 #import "CBAppLiveVC.h"
 #import "CBHotVC.h"
+#import "ZWAppStore.h"
 
 @interface CBHomeVC() <UIScrollViewDelegate, CBSelectedViewDelegate>
 
@@ -23,7 +24,6 @@
 
 @implementation CBHomeVC
 
-
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES animated:animated];
@@ -31,6 +31,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    //eg:微信
+    [ZWCheckVersion zw_checkVersionItunesId:@"414478124"];
+    
     [self setup_UI];
 }
 

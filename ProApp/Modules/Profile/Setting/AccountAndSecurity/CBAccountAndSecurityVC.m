@@ -12,6 +12,8 @@
 
 @interface CBAccountAndSecurityVC ()
 
+@property (weak, nonatomic) IBOutlet UILabel *isBindingLab;
+
 @end
 
 @implementation CBAccountAndSecurityVC
@@ -19,6 +21,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"账号与安全";
+    if ([[CBLiveUserConfig myProfile].mobile_status isEqualToString:@"0"]) {
+        self.isBindingLab.text = @"未绑定";
+    } else {
+        self.isBindingLab.text = @"已绑定";
+    }
 }
 
 - (void)didReceiveMemoryWarning {
