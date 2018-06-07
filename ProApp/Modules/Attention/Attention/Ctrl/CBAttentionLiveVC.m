@@ -7,7 +7,6 @@
 //
 
 #import "CBAttentionLiveVC.h"
-#import "CBWatchVO.h"
 #import "CBWatchCell.h"
 #import "CBAttentionLiveCell.h"
 #import "CBRefreshGifHeader.h"
@@ -19,7 +18,7 @@
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
-@property (nonatomic, strong) NSMutableArray <CBWatchVO * >*cellDataAry;
+@property (nonatomic, strong) NSMutableArray *cellDataAry;
 @property (nonatomic, strong) NSMutableArray *anchors;   /** 最新主播列表 */
 
 @end
@@ -31,12 +30,12 @@ static NSString * const AttentionLiveReuseIdentifier = @"CBAttentionLiveCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    CBWatchVO *vo = [CBWatchVO new];
-    vo.userAvater = @"test_avater";
-    vo.title = @"我是标题";
-    vo.desc = @"我是描述";
-    vo.gender = @"1";
-    vo.attention = @"2";
+    NSObject *vo = [NSObject new];
+//    vo.userAvater = @"test_avater";
+//    vo.title = @"我是标题";
+//    vo.desc = @"我是描述";
+//    vo.gender = @"1";
+//    vo.attention = @"2";
     
     [self.cellDataAry addObject:vo];
     [self.cellDataAry addObject:vo];

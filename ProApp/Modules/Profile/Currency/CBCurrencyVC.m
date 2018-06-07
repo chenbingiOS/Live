@@ -8,12 +8,11 @@
 
 #import "CBCurrencyVC.h"
 #import "CBWatchCell.h"
-#import "CBWatchVO.h"
 
 @interface CBCurrencyVC () <UITableViewDelegate, UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (nonatomic, strong) NSMutableArray <CBWatchVO *> *cellDataAry;
+@property (nonatomic, strong) NSMutableArray *cellDataAry;
 
 @end
 
@@ -24,13 +23,13 @@ static NSString *const WatchCellIdentifier = @"WatchCellIdentifier";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    CBWatchVO *vo = [CBWatchVO new];
-    vo.userAvater = @"test_avater";
-    vo.title = @"我是标题";
-    vo.desc = @"我是描述";
-    vo.gender = @"1";
-    vo.liveing = @"2";
-    vo.attention = @"2";
+    NSObject *vo = [NSObject new];
+//    vo.userAvater = @"test_avater";
+//    vo.title = @"我是标题";
+//    vo.desc = @"我是描述";
+//    vo.gender = @"1";
+//    vo.liveing = @"2";
+//    vo.attention = @"2";
     
     [self.cellDataAry addObject:vo];
     [self.cellDataAry addObject:vo];

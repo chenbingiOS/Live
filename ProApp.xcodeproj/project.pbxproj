@@ -31,13 +31,8 @@
 		07359D9320A422DD00FEEA4E /* CBLoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 07359D9120A422DD00FEEA4E /* CBLoginVC.m */; };
 		07359D9420A422DD00FEEA4E /* CBLoginVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 07359D9220A422DD00FEEA4E /* CBLoginVC.xib */; };
 		07359D9820A429AC00FEEA4E /* CBLiveVideoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 07359D9720A429AC00FEEA4E /* CBLiveVideoVC.m */; };
-		073746E1208EBB1400E108E9 /* CBWatchVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 073746DF208EBB1400E108E9 /* CBWatchVC.m */; };
-		073746E2208EBB1400E108E9 /* CBWatchVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 073746E0208EBB1400E108E9 /* CBWatchVC.xib */; };
 		073746E8208EBFAB00E108E9 /* CBWatchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 073746E6208EBFAB00E108E9 /* CBWatchCell.m */; };
 		073746E9208EBFAB00E108E9 /* CBWatchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 073746E7208EBFAB00E108E9 /* CBWatchCell.xib */; };
-		073746EC208EC08200E108E9 /* CBWatchHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 073746EB208EC08200E108E9 /* CBWatchHeaderView.m */; };
-		073746EE208EC11D00E108E9 /* CBWatchHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 073746ED208EC11D00E108E9 /* CBWatchHeaderView.xib */; };
-		073746F2208EC7C800E108E9 /* CBWatchVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 073746F1208EC7C800E108E9 /* CBWatchVO.m */; };
 		073746F8208ECEB600E108E9 /* CBVideoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 073746F7208ECEB600E108E9 /* CBVideoVC.m */; };
 		073746FD208ECF5900E108E9 /* CBVideoHotVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 073746FC208ECF5900E108E9 /* CBVideoHotVC.m */; };
 		07374702208ECF9C00E108E9 /* CBVideoAttentionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 07374701208ECF9C00E108E9 /* CBVideoAttentionVC.m */; };
@@ -172,6 +167,10 @@
 		545494AC20C7EA0B00E96C0A /* CBProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 545494AA20C7EA0A00E96C0A /* CBProgressView.m */; };
 		545494AF20C8C2F500E96C0A /* CBUploadSuccessView.m in Sources */ = {isa = PBXBuildFile; fileRef = 545494AE20C8C2F500E96C0A /* CBUploadSuccessView.m */; };
 		545494B120C8C30000E96C0A /* CBUploadSuccessView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 545494B020C8C30000E96C0A /* CBUploadSuccessView.xib */; };
+		545494B620C8D06E00E96C0A /* CBMyVideoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 545494B520C8D06E00E96C0A /* CBMyVideoVC.m */; };
+		545494BB20C8D52900E96C0A /* CBShortVideoVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 545494BA20C8D52900E96C0A /* CBShortVideoVO.m */; };
+		545494C020C8DA8E00E96C0A /* CBMyVideoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 545494BF20C8DA8E00E96C0A /* CBMyVideoCell.m */; };
+		545494C220C8DAA400E96C0A /* CBMyVideoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 545494C120C8DAA400E96C0A /* CBMyVideoCell.xib */; };
 		5465AE0320BD31A3006E24BB /* CBEditVideoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5465AE0220BD31A3006E24BB /* CBEditVideoVC.m */; };
 		5465AE0720BD4A10006E24BB /* CBUploadVideoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5465AE0520BD4A10006E24BB /* CBUploadVideoVC.m */; };
 		5467015920C0D47D00519860 /* CBAttentionVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5467015820C0D47D00519860 /* CBAttentionVO.m */; };
@@ -581,17 +580,9 @@
 		07359D9220A422DD00FEEA4E /* CBLoginVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CBLoginVC.xib; sourceTree = "<group>"; };
 		07359D9620A429AC00FEEA4E /* CBLiveVideoVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBLiveVideoVC.h; sourceTree = "<group>"; };
 		07359D9720A429AC00FEEA4E /* CBLiveVideoVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBLiveVideoVC.m; sourceTree = "<group>"; };
-		073746DE208EBB1400E108E9 /* CBWatchVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBWatchVC.h; sourceTree = "<group>"; };
-		073746DF208EBB1400E108E9 /* CBWatchVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBWatchVC.m; sourceTree = "<group>"; };
-		073746E0208EBB1400E108E9 /* CBWatchVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CBWatchVC.xib; sourceTree = "<group>"; };
 		073746E5208EBFAB00E108E9 /* CBWatchCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBWatchCell.h; sourceTree = "<group>"; };
 		073746E6208EBFAB00E108E9 /* CBWatchCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBWatchCell.m; sourceTree = "<group>"; };
 		073746E7208EBFAB00E108E9 /* CBWatchCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CBWatchCell.xib; sourceTree = "<group>"; };
-		073746EA208EC08200E108E9 /* CBWatchHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBWatchHeaderView.h; sourceTree = "<group>"; };
-		073746EB208EC08200E108E9 /* CBWatchHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBWatchHeaderView.m; sourceTree = "<group>"; };
-		073746ED208EC11D00E108E9 /* CBWatchHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CBWatchHeaderView.xib; sourceTree = "<group>"; };
-		073746F0208EC7C800E108E9 /* CBWatchVO.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBWatchVO.h; sourceTree = "<group>"; };
-		073746F1208EC7C800E108E9 /* CBWatchVO.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBWatchVO.m; sourceTree = "<group>"; };
 		073746F6208ECEB600E108E9 /* CBVideoVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBVideoVC.h; sourceTree = "<group>"; };
 		073746F7208ECEB600E108E9 /* CBVideoVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBVideoVC.m; sourceTree = "<group>"; };
 		073746FB208ECF5900E108E9 /* CBVideoHotVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBVideoHotVC.h; sourceTree = "<group>"; };
@@ -985,6 +976,13 @@
 		545494AD20C8C2F500E96C0A /* CBUploadSuccessView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBUploadSuccessView.h; sourceTree = "<group>"; };
 		545494AE20C8C2F500E96C0A /* CBUploadSuccessView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBUploadSuccessView.m; sourceTree = "<group>"; };
 		545494B020C8C30000E96C0A /* CBUploadSuccessView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CBUploadSuccessView.xib; sourceTree = "<group>"; };
+		545494B420C8D06E00E96C0A /* CBMyVideoVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBMyVideoVC.h; sourceTree = "<group>"; };
+		545494B520C8D06E00E96C0A /* CBMyVideoVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBMyVideoVC.m; sourceTree = "<group>"; };
+		545494B920C8D52900E96C0A /* CBShortVideoVO.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBShortVideoVO.h; sourceTree = "<group>"; };
+		545494BA20C8D52900E96C0A /* CBShortVideoVO.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBShortVideoVO.m; sourceTree = "<group>"; };
+		545494BE20C8DA8E00E96C0A /* CBMyVideoCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBMyVideoCell.h; sourceTree = "<group>"; };
+		545494BF20C8DA8E00E96C0A /* CBMyVideoCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBMyVideoCell.m; sourceTree = "<group>"; };
+		545494C120C8DAA400E96C0A /* CBMyVideoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CBMyVideoCell.xib; sourceTree = "<group>"; };
 		5465AE0120BD31A3006E24BB /* CBEditVideoVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBEditVideoVC.h; sourceTree = "<group>"; };
 		5465AE0220BD31A3006E24BB /* CBEditVideoVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBEditVideoVC.m; sourceTree = "<group>"; };
 		5465AE0420BD4A10006E24BB /* CBUploadVideoVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBUploadVideoVC.h; sourceTree = "<group>"; };
@@ -1627,45 +1625,6 @@
 			path = LiveVideo;
 			sourceTree = "<group>";
 		};
-		073746DD208EBAF600E108E9 /* Watch */ = {
-			isa = PBXGroup;
-			children = (
-				073746E3208EBF8800E108E9 /* Ctrl */,
-				073746E4208EBF8D00E108E9 /* View */,
-				073746EF208EC7A100E108E9 /* Model */,
-			);
-			path = Watch;
-			sourceTree = "<group>";
-		};
-		073746E3208EBF8800E108E9 /* Ctrl */ = {
-			isa = PBXGroup;
-			children = (
-				073746DE208EBB1400E108E9 /* CBWatchVC.h */,
-				073746DF208EBB1400E108E9 /* CBWatchVC.m */,
-				073746E0208EBB1400E108E9 /* CBWatchVC.xib */,
-			);
-			path = Ctrl;
-			sourceTree = "<group>";
-		};
-		073746E4208EBF8D00E108E9 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				073746EA208EC08200E108E9 /* CBWatchHeaderView.h */,
-				073746EB208EC08200E108E9 /* CBWatchHeaderView.m */,
-				073746ED208EC11D00E108E9 /* CBWatchHeaderView.xib */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		073746EF208EC7A100E108E9 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				073746F0208EC7C800E108E9 /* CBWatchVO.h */,
-				073746F1208EC7C800E108E9 /* CBWatchVO.m */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
 		073746F3208ECD1900E108E9 /* Video */ = {
 			isa = PBXGroup;
 			children = (
@@ -2217,9 +2176,8 @@
 		07B6688D208D6A5500AA5B62 /* RealName */ = {
 			isa = PBXGroup;
 			children = (
-				07B6688E208D6A8900AA5B62 /* CBRealNameVC.h */,
-				07B6688F208D6A8900AA5B62 /* CBRealNameVC.m */,
-				07B66890208D6A8900AA5B62 /* CBRealNameVC.xib */,
+				545494B220C8CFFF00E96C0A /* Ctrl */,
+				07B66898208D71E900AA5B62 /* FillInfo */,
 			);
 			path = RealName;
 			sourceTree = "<group>";
@@ -2357,15 +2315,14 @@
 		07F6EF4620872E3C0035C6BD /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				07B668A6208DD16A00AA5B62 /* Account */,
+				0750561E2092AEE400F0679B /* GiftPackage */,
 				07B6688C208D6A0600AA5B62 /* Profile */,
 				07737DDE208F012A009EB9E6 /* MyAttention */,
 				07737DDD208F00EF009EB9E6 /* MyFans */,
-				073746DD208EBAF600E108E9 /* Watch */,
 				072DC58F2091766A00F693E8 /* Currency */,
+				545494B320C8D01900E96C0A /* MyVideo */,
 				07B6688D208D6A5500AA5B62 /* RealName */,
-				07B66898208D71E900AA5B62 /* FillInfo */,
-				07B668A6208DD16A00AA5B62 /* Account */,
-				0750561E2092AEE400F0679B /* GiftPackage */,
 				5467016120C0F6AF00519860 /* EditUserInfo */,
 				072DC595209183CD00F693E8 /* Setting */,
 			);
@@ -2792,6 +2749,54 @@
 				545494A820C7E4B400E96C0A /* CBBeginLiveVC.m */,
 			);
 			path = BeginLive;
+			sourceTree = "<group>";
+		};
+		545494B220C8CFFF00E96C0A /* Ctrl */ = {
+			isa = PBXGroup;
+			children = (
+				07B6688E208D6A8900AA5B62 /* CBRealNameVC.h */,
+				07B6688F208D6A8900AA5B62 /* CBRealNameVC.m */,
+				07B66890208D6A8900AA5B62 /* CBRealNameVC.xib */,
+			);
+			path = Ctrl;
+			sourceTree = "<group>";
+		};
+		545494B320C8D01900E96C0A /* MyVideo */ = {
+			isa = PBXGroup;
+			children = (
+				545494B720C8D50D00E96C0A /* Ctrl */,
+				545494B820C8D51700E96C0A /* Model */,
+				545494BD20C8DA7200E96C0A /* Videw */,
+			);
+			path = MyVideo;
+			sourceTree = "<group>";
+		};
+		545494B720C8D50D00E96C0A /* Ctrl */ = {
+			isa = PBXGroup;
+			children = (
+				545494B420C8D06E00E96C0A /* CBMyVideoVC.h */,
+				545494B520C8D06E00E96C0A /* CBMyVideoVC.m */,
+			);
+			path = Ctrl;
+			sourceTree = "<group>";
+		};
+		545494B820C8D51700E96C0A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				545494B920C8D52900E96C0A /* CBShortVideoVO.h */,
+				545494BA20C8D52900E96C0A /* CBShortVideoVO.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		545494BD20C8DA7200E96C0A /* Videw */ = {
+			isa = PBXGroup;
+			children = (
+				545494BE20C8DA8E00E96C0A /* CBMyVideoCell.h */,
+				545494BF20C8DA8E00E96C0A /* CBMyVideoCell.m */,
+				545494C120C8DAA400E96C0A /* CBMyVideoCell.xib */,
+			);
+			path = Videw;
 			sourceTree = "<group>";
 		};
 		5467015520C0D46100519860 /* Ctrl */ = {
@@ -3799,7 +3804,6 @@
 				54A76D4F20B7E0E10034D5A2 /* video_style_default_btn_filter@3x.png in Resources */,
 				0737ED8F2074A33600A89CC0 /* Main.storyboard in Resources */,
 				07C9734B20A91F1000BB9820 /* CBAttentionLiveVC.xib in Resources */,
-				073746EE208EC11D00E108E9 /* CBWatchHeaderView.xib in Resources */,
 				54A76D4B20B7E0E10034D5A2 /* style_default_2.0_moviEditor_startPreview@3x.png in Resources */,
 				54A76CAF20B7E0E10034D5A2 /* nav_ic_turn_w_1.11@2x.png in Resources */,
 				54A76CF320B7E0E10034D5A2 /* style_default_btn_flash_on@3x.png in Resources */,
@@ -3819,9 +3823,9 @@
 				54A76D2820B7E0E10034D5A2 /* style_default_btn_record_s@2x.png in Resources */,
 				54A76D4420B7E0E10034D5A2 /* style_default_1.11_btn_sticker_w@3x.png in Resources */,
 				072DC5A12091A1B600F693E8 /* CBNotificationsVC.xib in Resources */,
-				073746E2208EBB1400E108E9 /* CBWatchVC.xib in Resources */,
 				54A76CDE20B7E0E10034D5A2 /* style_default_1.11_edit_effect_default@3x.png in Resources */,
 				54A76C5820B7E0E10034D5A2 /* style_default_2.0_moviEditor_changeColor@2x.png in Resources */,
+				545494C220C8DAA400E96C0A /* CBMyVideoCell.xib in Resources */,
 				54A76C6420B7E0E10034D5A2 /* style_default_1.6.0_del_btn_default@2x.png in Resources */,
 				54A76CDF20B7E0E10034D5A2 /* style_default_btn_sticker_off@3x.png in Resources */,
 				54A76D0720B7E0E10034D5A2 /* style_default_1.7.0_nosound_selected@3x.png in Resources */,
@@ -3981,7 +3985,6 @@
 				07359D9320A422DD00FEEA4E /* CBLoginVC.m in Sources */,
 				0791588A208849C0007CA2E0 /* CBProfileVC.m in Sources */,
 				54A76AE420B7DEDE0034D5A2 /* PLSDeleteButton.m in Sources */,
-				073746E1208EBB1400E108E9 /* CBWatchVC.m in Sources */,
 				07659C1F20A4439700EBE030 /* HcdGuideViewCell.m in Sources */,
 				077C1AAA2091A9B20005CE97 /* CBBlackListVC.m in Sources */,
 				54A76B1320B7DF7E0034D5A2 /* EffectsView.m in Sources */,
@@ -4002,6 +4005,7 @@
 				07659C1E20A4439700EBE030 /* HcdGuideView.m in Sources */,
 				07C9734A20A91F1000BB9820 /* CBAttentionLiveVC.m in Sources */,
 				54A76AEC20B7DEDE0034D5A2 /* PLSToolBarCommon.m in Sources */,
+				545494B620C8D06E00E96C0A /* CBMyVideoVC.m in Sources */,
 				073746E8208EBFAB00E108E9 /* CBWatchCell.m in Sources */,
 				071B70112092F4F000549C18 /* CBAccountRecordSelectView.m in Sources */,
 				54A76D8F20B7E1C00034D5A2 /* PlayViewController.m in Sources */,
@@ -4019,7 +4023,6 @@
 				5436EA9A20B7EDCF00011BF0 /* RecordViewController.m in Sources */,
 				072DC57F2091607600F693E8 /* UILabel+ShadowText.m in Sources */,
 				0715278920A53F6000D3859D /* CBRegisterVC.m in Sources */,
-				073746EC208EC08200E108E9 /* CBWatchHeaderView.m in Sources */,
 				079AAE662079C02700674A92 /* UIColor+Color.m in Sources */,
 				077FFD012099A67400B8680C /* CBGuardRankVC.m in Sources */,
 				54375D1320BC049000F09CAA /* WZBCountDownButton.m in Sources */,
@@ -4029,6 +4032,7 @@
 				075056232092B02100F0679B /* CBGiftPackageCell.m in Sources */,
 				07F38C0E2099503900DDBC90 /* CBGuardVC.m in Sources */,
 				0791587B20883209007CA2E0 /* CBHotVC.m in Sources */,
+				545494BB20C8D52900E96C0A /* CBShortVideoVO.m in Sources */,
 				071D3C102092B35D00A6C5CE /* CBPackageRecordCell.m in Sources */,
 				07359D8B20A3F96200FEEA4E /* CBRoomView.m in Sources */,
 				07CD47AA209FF78E00A372C7 /* CBGuardRankCCell.m in Sources */,
@@ -4038,7 +4042,6 @@
 				54A76AEE20B7DEDE0034D5A2 /* PLSColorPicker.m in Sources */,
 				07F6EFE320872E3D0035C6BD /* CBSelectedView.m in Sources */,
 				0715278E20A5498A00D3859D /* UITextField+LeftImageView.m in Sources */,
-				073746F2208EC7C800E108E9 /* CBWatchVO.m in Sources */,
 				07F6EFF820872E3D0035C6BD /* CBAppLiveVC.m in Sources */,
 				07737DE7208F0161009EB9E6 /* CBMyFansVC.m in Sources */,
 				07116E9820B267FC007FAEED /* CBAppADCell.m in Sources */,
@@ -4048,6 +4051,7 @@
 				54A76B1620B7DF7E0034D5A2 /* SceneEffectTools.m in Sources */,
 				548C5CCB20B519CE00A6FF53 /* CBInterface.m in Sources */,
 				54A76D8620B7E14A0034D5A2 /* ClipMovieViewController.m in Sources */,
+				545494C020C8DA8E00E96C0A /* CBMyVideoCell.m in Sources */,
 				54130A0820B69DEF00CAE467 /* CBRefreshGifHeader.m in Sources */,
 				54BD85E720B669F00024B6E7 /* AppDelegate+EMClient.m in Sources */,
 				07F38C0520994A0000DDBC90 /* JPGiftCollectionViewCell.m in Sources */,

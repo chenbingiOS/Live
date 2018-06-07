@@ -45,7 +45,7 @@
 - (CBUploadSuccessView *)homeMenuView {
     if (!_homeMenuView) {
         _homeMenuView = [CBUploadSuccessView viewFromXib];
-        _homeMenuView.frame = CGRectMake(0, 0, kScreenWidth, 120);
+        _homeMenuView.frame = CGRectMake(0, 0, 300, 120);
     }
     return _homeMenuView;
 }

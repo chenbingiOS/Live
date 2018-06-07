@@ -10,15 +10,14 @@
 #import "CBProfileVC.h"
 #import "CBMyAttentionVC.h"
 #import "CBMyFansVC.h"
-#import "CBWatchVC.h"
 #import "CBCurrencyVC.h"
 #import "CBRealNameVC.h"
 #import "CBAccountVC.h"
 #import "CBGiftPackageVC.h"
 #import "CBSettingVC.h"
-#import "CBLoginVC.h"
 #import "CBNVC.h"
 #import "CBEditUserInfoVC.h"
+#import "CBMyVideoVC.h"
 
 // config
 #import "CBLiveSettingConfig.h"
@@ -124,7 +123,8 @@
 }
 
 - (IBAction)actionMyVideo:(id)sender {
-    NSLog(@"我的视频");
+    CBMyVideoVC *vc = [CBMyVideoVC new];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (IBAction)actionLiveTime:(id)sender {
@@ -148,84 +148,4 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
-
-- (void)httpPersonSettingInfo{
-    // 这个地方传版本号，做上架隐藏，只有版本号跟后台一致，才会隐藏部分上架限制功能，不会影响其他正常使用客户(后台位置：私密设置-基本设置 -IOS上架版本号)
-    NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
-    NSNumber *app_build = [infoDictionary objectForKey:@"CFBundleVersion"]; //本地 build
-    NSString *build = [NSString stringWithFormat:@"%@",app_build];
-    NSString *url = [NSString stringWithFormat:urlGetBaseInfo, [CBLiveUserConfig getOwnID], [CBLiveUserConfig getOwnToken], build];
-    [PPNetworkHelper GET:url parameters:nil success:^(id responseObject) {
-        NSNumber *number = [responseObject valueForKey:@"ret"] ;
-        if([number isEqualToNumber:[NSNumber numberWithInt:200]]) {
-            NSArray *data = [responseObject valueForKey:@"data"];
-            NSString *code = [NSString stringWithFormat:@"%@",[data valueForKey:@"code"]];
-            if([code isEqual:@"0"]) {
-//                CBLiveUser *user = [CBLiveUserConfig myProfile];
-//                NSDictionary *info = [[data valueForKey:@"info"] firstObject];
-//                self.infoArray = info;
-//                user.user_nicename = [NSString stringWithFormat:@"%@",[info valueForKey:@"user_nicename"]];
-//                user.ID = [NSString stringWithFormat:@"%@", [info valueForKey:@"id"]];
-//                user.sex = [NSString stringWithFormat:@"%@", [info valueForKey:@"sex"]];
-//                user.level =[NSString stringWithFormat:@"%@", [info valueForKey:@"level"]];
-//                user.avatar = [NSString stringWithFormat:@"%@", [info valueForKey:@"avatar"]];
-//                user.city = [NSString stringWithFormat:@"%@", [info valueForKey:@"city"]];
-//                user.level_anchor = [NSString stringWithFormat:@"%@", [info valueForKey:@"level_anchor"]];
-//                [CBLiveUserConfig updateProfile:user];
-                //保存靓号和vip信息
-//                NSDictionary *liang = [info valueForKey:@"liang"];
-//                NSString *liangnum = [NSString stringWithFormat:@"%@", [liang valueForKey:@"name"]];
-//                NSDictionary *vip = [info valueForKey:@"vip"];
-//                NSString *type = [NSString stringWithFormat:@"%@", [vip valueForKey:@"type"]];
-//                NSDictionary *subdic = [NSDictionary dictionaryWithObjects:@[type,liangnum] forKeys:@[@"vip_type",@"liang"]];
-//                [CBLiveUserConfig saveVipandliang:subdic];
-                //                _model = [YBPersonTableViewModel modelWithDic:info];
-//                NSArray *list = [info valueForKey:@"list"];
-//                self.listArr = list;
-//                [CBLiveSettingConfig savepersoncontroller:self.listArr]; //保存在本地，防止没网的时候不显示
-//                [self loadDataByProfile];
-            }
-            
-            if ([code isEqual:@"700"]) {
-                // 退出登录
-                //                [self quitLogin];
-            }
-            else{
-//                self.listArr = [NSArray arrayWithArray:[CBLiveSettingConfig getpersonc]];
-//                [self loadDataByProfile];
-            }
-        }
-        else{
-//            self.listArr = [NSArray arrayWithArray:[CBLiveSettingConfig getpersonc]];
-//            [self loadDataByProfile];
-        }
-    } failure:^(NSError *error) {
-//        self.listArr = [NSArray arrayWithArray:[CBLiveSettingConfig getpersonc]];
-//        [self loadDataByProfile];
-    }];
-}
-
-// 观看记录
-- (IBAction)actionWatch:(id)sender {
-    CBWatchVC *vc = [CBWatchVC new];
-    [self.navigationController pushViewController:vc animated:YES];
-}
-
-// 账户
-- (IBAction)actionAccount:(id)sender {
-    CBAccountVC *vc = [CBAccountVC new];
-    [self.navigationController pushViewController:vc animated:YES];
-}
-
-// 礼包
-- (IBAction)actionGiftPackage:(id)sender {
-    CBGiftPackageVC *vc = [CBGiftPackageVC new];
-    [self.navigationController pushViewController:vc animated:YES];
-}
-
-- (IBAction)actionLogin:(id)sender {
-    CBLoginVC *vc = [CBLoginVC new];
-    CBNVC *navc = [[CBNVC alloc] initWithRootViewController:vc];
-    [self presentViewController:navc animated:YES completion:nil];
-}
 @end

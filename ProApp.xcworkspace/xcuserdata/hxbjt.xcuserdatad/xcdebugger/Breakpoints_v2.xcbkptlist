@@ -52,11 +52,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ProApp/Modules/LiveVideo/Video/CBUploadVideoVC.m"
-            timestampString = "550030964.597572"
+            timestampString = "550052304.158813"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "281"
-            endingLineNumber = "281"
+            startingLineNumber = "282"
+            endingLineNumber = "282"
             landmarkName = "-httpGetUploadToken"
             landmarkType = "7">
          </BreakpointContent>
