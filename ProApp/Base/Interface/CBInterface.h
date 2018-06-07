@@ -47,10 +47,14 @@
 #define urlUserLoginByThird     purl@"/?service=Login.userLoginByThird"
 //------------------------------------------------------------------
 // 短视频模块
-//http://fengwo.gttead.cn/Api/ShortVideo/getCurrentUserVideos
-
+// 获取上传token
+#define urlGetUploadToken       purl@"Api/ShortVideo/getUploadToken"
+// 获取当前用户视频列表
+#define urlGetCurrentUserVideos purl@"Api/ShortVideo/getCurrentUserVideos"
 // 获取全部视频列表
 #define urlGetVideos            purl@"Api/ShortVideo/getVideos"
+// 获取关注的视频列表
+#define urlGetFavoriteUserVideos purl@"Api/ShortVideo/getFavoriteUserVideos"
 //------------------------------------------------------------------
 // 我的
 // 获取我的信息

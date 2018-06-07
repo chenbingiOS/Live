@@ -46,9 +46,6 @@
 #pragma mark - Set 
 - (void)setLive:(CBAppLiveVO *)live {
     _live = live;
-    
-    live.flv = @"rtmp://pili-live-rtmp.xmhxb.com/fengwo/ddd";
-    
     self.url = [NSURL URLWithString:live.flv];
     self.thumbImageURL = [NSURL URLWithString:live.bigpic];
 }

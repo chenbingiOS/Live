@@ -11,21 +11,26 @@
 #import <AVFoundation/AVFoundation.h>
 #import "PLShortVideoKit/PLShortVideoKit.h"
 #import <PLPlayerKit/PLPlayerKit.h>
+#import "CBProgressView.h"
+#import "CBUploadSuccessView.h"
 
 #define PLS_SCREEN_WIDTH CGRectGetWidth([UIScreen mainScreen].bounds)
 #define PLS_SCREEN_HEIGHT CGRectGetHeight([UIScreen mainScreen].bounds)
 #define PLS_BaseToolboxView_HEIGHT 64
 #define PLS_RGBCOLOR(r,g,b) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1]
-
-static NSString *const kUploadToken = @"6oUTpKAsIk0zxG4WrPwBlKjcpgc8mWAmD4xPUcwu:2AmGAMtOuIUE6VqTbQ3zPs9Rc9Q=:eyJjYWxsYmFja1VybCI6Imh0dHA6XC9cL2Zlbmd3by5ndHRlYWQuY25cL0FwaVwvU2hvcnRWaWRlb1wvcWluaXVfY2FsbGJhY2siLCJjYWxsYmFja0JvZHkiOiJ7XCJma2V5XCI6XCIkKGtleSlcIixcImlkXCI6NTF9IiwiY2FsbGJhY2tCb2R5VHlwZSI6ImFwcGxpY2F0aW9uXC9qc29uIiwic2NvcGUiOiJmZW5nd28iLCJkZWFkbGluZSI6MTUyODE3MTE3N30=";
+//static NSString *const kUploadToken = @"6oUTpKAsIk0zxG4WrPwBlKjcpgc8mWAmD4xPUcwu:2AmGAMtOuIUE6VqTbQ3zPs9Rc9Q=:eyJjYWxsYmFja1VybCI6Imh0dHA6XC9cL2Zlbmd3by5ndHRlYWQuY25cL0FwaVwvU2hvcnRWaWRlb1wvcWluaXVfY2FsbGJhY2siLCJjYWxsYmFja0JvZHkiOiJ7XCJma2V5XCI6XCIkKGtleSlcIixcImlkXCI6NTF9IiwiY2FsbGJhY2tCb2R5VHlwZSI6ImFwcGxpY2F0aW9uXC9qc29uIiwic2NvcGUiOiJmZW5nd28iLCJkZWFkbGluZSI6MTUyODE3MTE3N30=";
 static NSString *const kURLPrefix = @"http://shortvideo.pdex-service.com";
 
 @interface CBUploadVideoVC () <PLShortVideoUploaderDelegate, PLPlayerDelegate, UIGestureRecognizerDelegate>
 
 @property (strong, nonatomic) PLPlayer *player; ///< 视频播放
 @property (strong, nonatomic) PLShortVideoUploader *shortVideoUploader; ///< 上传视频到云端
-@property (nonatomic, strong) UIProgressView *progressView;
-@property (strong, nonatomic) CBUploadVideoView *uploadVideoView;
+//@property (nonatomic, strong) UIProgressView *progressView;
+
+@property (nonatomic, assign) NSString *kUploadToken;
+@property (nonatomic, strong) CBProgressView *progressView;
+@property (nonatomic, strong) CBUploadVideoView *uploadVideoView;
+@property (nonatomic, strong) CBUploadSuccessPopView *uploadSuccessView;
 
 @end
 
@@ -81,9 +86,12 @@ static NSString *const kURLPrefix = @"http://shortvideo.pdex-service.com";
     @weakify(self);
     [self.uploadVideoView.uploadVideoButton addBlockForControlEvents:UIControlEventTouchUpInside block:^(id  _Nonnull sender) {
         @strongify(self);
-        [self uploadButtonClick:sender];
+        [self httpGetUploadToken];
     }];
-    
+    [self.uploadSuccessView.homeMenuView.okButton addBlockForControlEvents:UIControlEventTouchUpInside block:^(id  _Nonnull sender) {
+        @strongify(self);
+        [self.uploadSuccessView hide];
+    }];
 }
 
 - (CBUploadVideoView *)uploadVideoView {
@@ -94,6 +102,14 @@ static NSString *const kURLPrefix = @"http://shortvideo.pdex-service.com";
         _uploadVideoView.frame = CGRectMake(0, y, kScreenWidth, 165);
     }
     return _uploadVideoView;
+}
+
+- (CBUploadSuccessPopView *)uploadSuccessView {
+    if (!_uploadSuccessView) {
+        CGFloat height = 120;
+        _uploadSuccessView = [[CBUploadSuccessPopView alloc] initWithFrame:CGRectMake(0, 0, 300, height)];
+    }
+    return _uploadSuccessView;
 }
 
 - (void)backButtonEvent:(UIButton *)sender {
@@ -134,25 +150,26 @@ static NSString *const kURLPrefix = @"http://shortvideo.pdex-service.com";
 
 #pragma mark -- 视频上传准备
 - (void)setupFileUpload {
-    self.progressView = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleBar];
+    self.progressView = [[CBProgressView alloc] initWithFrame:CGRectMake(30, 100, 250, 20)];
+//    self.progressView = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleBar];
     self.progressView.progress = 0.0;
     self.progressView.hidden = YES;
-    self.progressView.trackTintColor = [UIColor blackColor];
-    self.progressView.progressTintColor = [UIColor whiteColor];
+//    self.progressView.trackTintColor = [UIColor blackColor];
+//    self.progressView.progressTintColor = [UIColor whiteColor];
     self.progressView.center = self.view.center;
     [self.view addSubview:self.progressView];
     
-    [self prepareUpload];
+    self.progressView.hidden = YES;
+    self.progressView.progress = 0;
+
+//    [self prepareUpload];
 }
 
 - (void)prepareUpload {
-    self.progressView.hidden = YES;
-    self.progressView.progress = 0;
-    
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     formatter.dateFormat = @"yyyyMMddHHmmss";
     NSString *key = [NSString stringWithFormat:@"short_video_%@.mp4", [formatter stringFromDate:[NSDate date]]];
-    PLSUploaderConfiguration * uploadConfig = [[PLSUploaderConfiguration alloc] initWithToken:kUploadToken videoKey:key https:YES recorder:nil];
+    PLSUploaderConfiguration * uploadConfig = [[PLSUploaderConfiguration alloc] initWithToken:self.kUploadToken videoKey:key https:YES recorder:nil];
     self.shortVideoUploader = [[PLShortVideoUploader alloc] initWithConfiguration:uploadConfig];
     self.shortVideoUploader.delegate = self;
 }
@@ -185,16 +202,18 @@ static NSString *const kURLPrefix = @"http://shortvideo.pdex-service.com";
 - (void)shortVideoUploader:(PLShortVideoUploader *)uploader completeInfo:(PLSUploaderResponseInfo *)info uploadKey:(NSString *)uploadKey resp:(NSDictionary *)resp {
     self.progressView.hidden = YES;
     if(info.error){
-        [MBProgressHUD showAutoMessage:[NSString stringWithFormat:@"上传失败，error: %@", info.error]];
+//        [MBProgressHUD showAutoMessage:[NSString stringWithFormat:@"上传失败，error: %@", info.error]];
         return ;
     }
     NSString *urlString = [NSString stringWithFormat:@"%@/%@", kURLPrefix, uploadKey];
     UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
     pasteboard.string = urlString;
-    [MBProgressHUD showAutoMessage:[NSString stringWithFormat:@"上传成功，地址：%@ 已复制到系统剪贴板", urlString]];
+//    [MBProgressHUD showAutoMessage:[NSString stringWithFormat:@"上传成功，地址：%@ 已复制到系统剪贴板", urlString]];
     NSLog(@"uploadInfo: %@",info);
     NSLog(@"uploadKey:%@",uploadKey);
     NSLog(@"resp: %@",resp);
+    
+    [self.uploadSuccessView showIn:self.view];
 }
 
 - (void)shortVideoUploader:(PLShortVideoUploader *)uploader uploadKey:(NSString *)uploadKey uploadPercent:(float)uploadPercent {
@@ -240,6 +259,35 @@ static NSString *const kURLPrefix = @"http://shortvideo.pdex-service.com";
     self.player = nil;
     self.shortVideoUploader = nil;
     NSLog(@"dealloc: %@", [[self class] description]);
+}
+
+//-------------------------------------------------------------------------------------
+#pragma mark - get upload token
+
+- (void)httpGetUploadToken {
+    NSString *url = urlGetUploadToken;
+    NSDictionary *param = @{@"title": self.uploadVideoView.titleTextField.text,
+                            @"token": [CBLiveUserConfig getOwnToken]};
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    @weakify(self);
+    [PPNetworkHelper POST:url parameters:param success:^(id responseObject) {
+        @strongify(self);
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        NSNumber *code = [responseObject valueForKey:@"code"];
+        if ([code isEqualToNumber:@200]) {
+            NSDictionary *rdata = responseObject[@"data"];
+            NSString *uploadToken = rdata[@"uploadToken"];
+            self.kUploadToken = uploadToken;
+            [self prepareUpload];
+            [self uploadButtonClick:nil];            
+        } else {            
+            NSString *descrp = responseObject[@"descrp"];
+            [MBProgressHUD showAutoMessage:descrp];
+        }
+    } failure:^(NSError *error) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [MBProgressHUD showAutoMessage:@"上传小视频失败"];
+    }];
 }
 
 @end

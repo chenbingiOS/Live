@@ -12,8 +12,8 @@
 #import "CBApplyAnchorVC.h"
 #import "CBRecordVideoVC.h"
 #import "RecordViewController.h"
-
-#import "PLRTCStreamingMasterViewController.h"
+#import "CBOpenLiveVC.h"
+#import "CBRealNameVC.h"
 
 @interface CBTBC () <UITabBarControllerDelegate>
 
@@ -31,8 +31,20 @@
     @weakify(self);
     [self.homeMenuPopView.homeMenuView.liveButton addBlockForControlEvents:UIControlEventTouchUpInside block:^(id  _Nonnull sender) {
         @strongify(self);
-//        CBApplyAnchorVC *vc = [CBApplyAnchorVC new];
-        PLRTCStreamingMasterViewController *vc = [[PLRTCStreamingMasterViewController alloc] init];
+        UIViewController *vc = nil;
+//        // 实名认证
+//        if ([[CBLiveUserConfig myProfile].is_truename isEqualToString:@"0"]) {
+//            vc = [CBRealNameVC new];
+//            [(CBRealNameVC *)vc setupUICloseItem];
+//        } else {
+//            // 是否主播
+//            if ([[CBLiveUserConfig myProfile].is_host isEqualToString:@"0"]) {
+//                vc = [CBApplyAnchorVC new];
+//            } else {
+//                vc = [CBOpenLiveVC new];
+//            }
+//        }
+        vc = [CBOpenLiveVC new];
         CBNVC *nvc = [[CBNVC alloc] initWithRootViewController:vc];
         [self.selectedViewController presentViewController:nvc animated:YES completion:^{
             [self.homeMenuPopView hide];

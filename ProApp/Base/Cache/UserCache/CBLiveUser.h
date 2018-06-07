@@ -33,8 +33,8 @@
 @property (nonatomic, copy) NSString *latitude;         ///< 纬度
 
 @property (nonatomic, copy) NSString *balance;          ///< 钻石余额
-@property (nonatomic, copy) NSString *sidou;            ///< 用户收益        钻石,可兑换金币或提现
-@property (nonatomic, copy) NSString *total_earn;       ///< 用户总收益      钻石
+@property (nonatomic, copy) NSString *sidou;            ///< 用户收益         钻石,可兑换金币或提现
+@property (nonatomic, copy) NSString *total_earn;       ///< 用户总收益       钻石
 @property (nonatomic, copy) NSString *total_spend;      ///< 用户总消费贡献(金币)
 @property (nonatomic, copy) NSString *vip_deadline;     ///< vip截至日期
 

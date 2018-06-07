@@ -14,7 +14,8 @@
 @property (weak, nonatomic) IBOutlet UIView *notYetRealNameView;        ///< 未实名认证
 @property (weak, nonatomic) IBOutlet UIView *inTheAuthenticationView;   ///< 实名认证中
 @property (weak, nonatomic) IBOutlet UIView *alreadyRealNameView;       ///< 已经实名认证
-
+//返回按钮
+@property (nonatomic) UIBarButtonItem* customBackBarItem;
 
 @end
 
@@ -23,7 +24,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"实名认证";
-    self.notYetRealNameView.hidden = NO;
+    
+    if ([[CBLiveUserConfig myProfile].is_truename isEqualToString:@"0"]) {
+        self.notYetRealNameView.hidden = NO;
+    } else if ([[CBLiveUserConfig myProfile].is_truename isEqualToString:@"1"]) {
+        self.alreadyRealNameView.hidden = NO;
+    } else if ([[CBLiveUserConfig myProfile].is_truename isEqualToString:@"2"]) {
+        self.inTheAuthenticationView.hidden = NO;
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -37,6 +45,26 @@
     NSString *url = [urlH5PresonCer stringByAppendingFormat:@"?token=%@", [CBLiveUserConfig getOwnToken]];
     [vc webViewloadRequestWithURLString:url];
     [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)setupUICloseItem {
+    [self.navigationItem setLeftBarButtonItems:@[self.customBackBarItem]];
+}
+
+- (void)customBackItemClicked {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (UIBarButtonItem*)customBackBarItem{
+    if (!_customBackBarItem) {
+        UIImage* backItemImage = [[UIImage imageNamed:@"login_close"] imageWithRenderingMode:UIImageRenderingModeAutomatic];
+        UIButton *backButton = [[UIButton alloc] init];
+        backButton.size = CGSizeMake(44, 44);
+        [backButton setImage:backItemImage forState:UIControlStateNormal];
+        [backButton addTarget:self action:@selector(customBackItemClicked) forControlEvents:UIControlEventTouchUpInside];
+        _customBackBarItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
+    }
+    return _customBackBarItem;
 }
 
 @end

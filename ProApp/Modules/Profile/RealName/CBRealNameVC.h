@@ -10,4 +10,6 @@
 
 @interface CBRealNameVC : UIViewController
 
+- (void)setupUICloseItem;
+
 @end

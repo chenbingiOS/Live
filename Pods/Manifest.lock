@@ -1,32 +1,32 @@
 PODS:
-  - AFNetworking (3.2.0):
-    - AFNetworking/NSURLSession (= 3.2.0)
-    - AFNetworking/Reachability (= 3.2.0)
-    - AFNetworking/Security (= 3.2.0)
-    - AFNetworking/Serialization (= 3.2.0)
-    - AFNetworking/UIKit (= 3.2.0)
-  - AFNetworking/NSURLSession (3.2.0):
+  - AFNetworking (3.2.1):
+    - AFNetworking/NSURLSession (= 3.2.1)
+    - AFNetworking/Reachability (= 3.2.1)
+    - AFNetworking/Security (= 3.2.1)
+    - AFNetworking/Serialization (= 3.2.1)
+    - AFNetworking/UIKit (= 3.2.1)
+  - AFNetworking/NSURLSession (3.2.1):
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-  - AFNetworking/Reachability (3.2.0)
-  - AFNetworking/Security (3.2.0)
-  - AFNetworking/Serialization (3.2.0)
-  - AFNetworking/UIKit (3.2.0):
+  - AFNetworking/Reachability (3.2.1)
+  - AFNetworking/Security (3.2.1)
+  - AFNetworking/Serialization (3.2.1)
+  - AFNetworking/UIKit (3.2.1):
     - AFNetworking/NSURLSession
   - Bugly (2.5.0)
   - HappyDNS (0.3.14)
-  - HyphenateLite (3.4.0)
+  - HyphenateLite (3.4.1)
   - IQKeyboardManager (6.0.3)
-  - JCore (1.1.7)
-  - JPush (3.0.8):
-    - JCore (~> 1.1.7)
+  - JCore (1.2.0)
+  - JPush (3.0.9):
+    - JCore (~> 1.2.0)
   - LXMButtonImagePosition (1.1.1)
-  - LYEmptyView (1.0.3)
+  - LYEmptyView (1.1.0)
   - Masonry (1.1.0)
   - MBProgressHUD (1.1.0)
   - MJRefresh (3.1.15.3)
-  - MOBFoundation (3.1.3)
+  - MOBFoundation (3.1.6)
   - PLPlayerKit (3.3.1):
     - PLPlayerKit/iphoneos (= 3.3.1)
   - PLPlayerKit/iphoneos (3.3.1)
@@ -37,9 +37,9 @@ PODS:
     - Qiniu (~> 7.1)
   - Qiniu (7.2.4):
     - HappyDNS (~> 0.3)
-  - SDWebImage (4.3.3):
-    - SDWebImage/Core (= 4.3.3)
-  - SDWebImage/Core (4.3.3)
+  - SDWebImage (4.4.0):
+    - SDWebImage/Core (= 4.4.0)
+  - SDWebImage/Core (4.4.0)
   - ShareSDK3/ShareSDKPlatforms/Facebook (4.0.4):
     - MOBFoundation
   - ShareSDK3/ShareSDKPlatforms/QQ (4.0.4):
@@ -120,24 +120,24 @@ SPEC REPOS:
     - ZYCornerRadius
 
 SPEC CHECKSUMS:
-  AFNetworking: 8ac6017b94ea105479f7776e5288e48ae9c59bb4
+  AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
   Bugly: 3ca9f255c01025582df26f9222893b383c7e4b4e
   HappyDNS: dc6a164ee81979093123c241c6353bcf0218add6
-  HyphenateLite: ada71aa3aba581cd486bce10f2c0fa66c11ad30f
+  HyphenateLite: 78ade2be82aa9c00f923dc370f16f63e6fcdf42d
   IQKeyboardManager: c390e612f4b98c8fd748016470138537dc163ead
-  JCore: f7459c81c135281a874a6beafdd321666adcc834
-  JPush: 9574d072cc37e93fa293ba69b43ce763c440943a
+  JCore: b52e3dd73625eec70afd1244bb9c41038aa06087
+  JPush: 48041e8c5ad2ef9b48709eb0888af9640b36e9b0
   LXMButtonImagePosition: bbbe4fceb2f6011cf02add36750acbeddd161c3e
-  LYEmptyView: 3a7d1604cff1791d207a498a42101f31e9b12b8c
+  LYEmptyView: 893007305370c9c69d7dc71b4b32f9b2ee80a622
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MBProgressHUD: e7baa36a220447d8aeb12769bf0585582f3866d9
   MJRefresh: b48380ae2b927b46c4ef000de9adb8dc748e1df7
-  MOBFoundation: fcaed93566814b662dc51459e5712ae559a3ac9c
+  MOBFoundation: a87c5f11fb87f873337189c3ec0add4d3ec6221a
   PLPlayerKit: 63a9c6a7661f497591c84121e854e8e6ac003256
   PLRTCStreamingKit: d7b9caf243782e0be6cb01f9cf8956229e32dbb1
   PLShortVideoKit: 86099728bc288502de62b37865d479a85a849e15
   Qiniu: 65384bca1cdb0480a68d9b9b8f54db53418c0355
-  SDWebImage: de4d90b5bff3571eae7bd16202b1f43135409fa5
+  SDWebImage: b534502786e43dde36dfcaee89356fe6df30e203
   ShareSDK3: 75b57bab0cbe3119e281c7668eaad9d48adf3fde
   TYCyclePagerView: b70858c9b5d0e80e1e3129ff5ceb027eb0f76d44
   "UITextView+Placeholder": 0c3efd97f37ea64bde7f34cc6e90fe02e87b3909

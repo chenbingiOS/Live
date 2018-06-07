@@ -8,7 +8,7 @@
 
 #import "CBEditUserInfoVC.h"
 #import "CBSexMenuView.h"
-#import "CBCircularAvatarTool.h"
+#import "CBImagePickerTool.h"
 #import "CBCityMenuView.h"
 
 @interface CBEditUserInfoVC () 
@@ -195,9 +195,9 @@
 }
 
 - (IBAction)actionChangeAvatar:(id)sender {
-    CBCircularAvatarTool *tool = [CBCircularAvatarTool new];
+    CBImagePickerTool *tool = [CBImagePickerTool new];
     @weakify(self);
-    tool.finishBlock = ^(CBCircularAvatarTool *circularAvatarTool, NSDictionary *mediaInfo) {
+    tool.finishBlock = ^(CBImagePickerTool *circularAvatarTool, NSDictionary *mediaInfo) {
         @strongify(self);
         self.avaterImageView.image = mediaInfo.circularEditedImage;
     };

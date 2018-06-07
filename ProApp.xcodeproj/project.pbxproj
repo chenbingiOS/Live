@@ -166,13 +166,19 @@
 		54520AF320BFD2BB005B787E /* NSObject+Class.m in Sources */ = {isa = PBXBuildFile; fileRef = 54520AEE20BFD2BA005B787E /* NSObject+Class.m */; };
 		54520AF620BFD83D005B787E /* CBArchiverTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 54520AF520BFD83D005B787E /* CBArchiverTool.m */; };
 		5454946720C76BF000E96C0A /* CBBaseWebViewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5454946620C76BF000E96C0A /* CBBaseWebViewVC.m */; };
+		545494A320C7CC2500E96C0A /* CBOpenLiveVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 545494A120C7CC2500E96C0A /* CBOpenLiveVC.m */; };
+		545494A420C7CC2500E96C0A /* CBOpenLiveVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 545494A220C7CC2500E96C0A /* CBOpenLiveVC.xib */; };
+		545494A920C7E4B400E96C0A /* CBBeginLiveVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 545494A820C7E4B400E96C0A /* CBBeginLiveVC.m */; };
+		545494AC20C7EA0B00E96C0A /* CBProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 545494AA20C7EA0A00E96C0A /* CBProgressView.m */; };
+		545494AF20C8C2F500E96C0A /* CBUploadSuccessView.m in Sources */ = {isa = PBXBuildFile; fileRef = 545494AE20C8C2F500E96C0A /* CBUploadSuccessView.m */; };
+		545494B120C8C30000E96C0A /* CBUploadSuccessView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 545494B020C8C30000E96C0A /* CBUploadSuccessView.xib */; };
 		5465AE0320BD31A3006E24BB /* CBEditVideoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5465AE0220BD31A3006E24BB /* CBEditVideoVC.m */; };
 		5465AE0720BD4A10006E24BB /* CBUploadVideoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5465AE0520BD4A10006E24BB /* CBUploadVideoVC.m */; };
 		5467015920C0D47D00519860 /* CBAttentionVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5467015820C0D47D00519860 /* CBAttentionVO.m */; };
 		5467015C20C0E1EF00519860 /* CBEmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5467015B20C0E1EF00519860 /* CBEmptyView.m */; };
 		5467016C20C1300900519860 /* CBSexMenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5467016920C1300900519860 /* CBSexMenuView.xib */; };
 		5467016D20C1300900519860 /* CBSexMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5467016B20C1300900519860 /* CBSexMenuView.m */; };
-		5469A56420C4D195004E06F1 /* CBCircularAvatarTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 5469A56320C4D195004E06F1 /* CBCircularAvatarTool.m */; };
+		5469A56420C4D195004E06F1 /* CBImagePickerTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 5469A56320C4D195004E06F1 /* CBImagePickerTool.m */; };
 		5469A58120C54587004E06F1 /* CBCityMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5469A58020C54587004E06F1 /* CBCityMenuView.m */; };
 		5469A58320C54591004E06F1 /* CBCityMenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5469A58220C54591004E06F1 /* CBCityMenuView.xib */; };
 		548C5CA020B4FAD300A6FF53 /* CBApplyAnchorVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 548C5C9E20B4FAD300A6FF53 /* CBApplyAnchorVC.m */; };
@@ -969,6 +975,16 @@
 		54520AF520BFD83D005B787E /* CBArchiverTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBArchiverTool.m; sourceTree = "<group>"; };
 		5454946520C76BF000E96C0A /* CBBaseWebViewVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBBaseWebViewVC.h; sourceTree = "<group>"; };
 		5454946620C76BF000E96C0A /* CBBaseWebViewVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBBaseWebViewVC.m; sourceTree = "<group>"; };
+		545494A020C7CC2500E96C0A /* CBOpenLiveVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBOpenLiveVC.h; sourceTree = "<group>"; };
+		545494A120C7CC2500E96C0A /* CBOpenLiveVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBOpenLiveVC.m; sourceTree = "<group>"; };
+		545494A220C7CC2500E96C0A /* CBOpenLiveVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CBOpenLiveVC.xib; sourceTree = "<group>"; };
+		545494A720C7E4B400E96C0A /* CBBeginLiveVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBBeginLiveVC.h; sourceTree = "<group>"; };
+		545494A820C7E4B400E96C0A /* CBBeginLiveVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBBeginLiveVC.m; sourceTree = "<group>"; };
+		545494AA20C7EA0A00E96C0A /* CBProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBProgressView.m; sourceTree = "<group>"; };
+		545494AB20C7EA0B00E96C0A /* CBProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBProgressView.h; sourceTree = "<group>"; };
+		545494AD20C8C2F500E96C0A /* CBUploadSuccessView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBUploadSuccessView.h; sourceTree = "<group>"; };
+		545494AE20C8C2F500E96C0A /* CBUploadSuccessView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBUploadSuccessView.m; sourceTree = "<group>"; };
+		545494B020C8C30000E96C0A /* CBUploadSuccessView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CBUploadSuccessView.xib; sourceTree = "<group>"; };
 		5465AE0120BD31A3006E24BB /* CBEditVideoVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBEditVideoVC.h; sourceTree = "<group>"; };
 		5465AE0220BD31A3006E24BB /* CBEditVideoVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBEditVideoVC.m; sourceTree = "<group>"; };
 		5465AE0420BD4A10006E24BB /* CBUploadVideoVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBUploadVideoVC.h; sourceTree = "<group>"; };
@@ -980,8 +996,8 @@
 		5467016920C1300900519860 /* CBSexMenuView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CBSexMenuView.xib; sourceTree = "<group>"; };
 		5467016A20C1300900519860 /* CBSexMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBSexMenuView.h; sourceTree = "<group>"; };
 		5467016B20C1300900519860 /* CBSexMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBSexMenuView.m; sourceTree = "<group>"; };
-		5469A56220C4D195004E06F1 /* CBCircularAvatarTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBCircularAvatarTool.h; sourceTree = "<group>"; };
-		5469A56320C4D195004E06F1 /* CBCircularAvatarTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBCircularAvatarTool.m; sourceTree = "<group>"; };
+		5469A56220C4D195004E06F1 /* CBImagePickerTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBImagePickerTool.h; sourceTree = "<group>"; };
+		5469A56320C4D195004E06F1 /* CBImagePickerTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBImagePickerTool.m; sourceTree = "<group>"; };
 		5469A57F20C54587004E06F1 /* CBCityMenuView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBCityMenuView.h; sourceTree = "<group>"; };
 		5469A58020C54587004E06F1 /* CBCityMenuView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBCityMenuView.m; sourceTree = "<group>"; };
 		5469A58220C54591004E06F1 /* CBCityMenuView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CBCityMenuView.xib; sourceTree = "<group>"; };
@@ -1606,7 +1622,6 @@
 			isa = PBXGroup;
 			children = (
 				548C5C9B20B4FA8500A6FF53 /* LiveVideo */,
-				548C5C9920B4FA7700A6FF53 /* Live */,
 				548C5C9A20B4FA7B00A6FF53 /* Video */,
 			);
 			path = LiveVideo;
@@ -1882,6 +1897,8 @@
 		07558C1920941289007E41C2 /* Tool Class */ = {
 			isa = PBXGroup;
 			children = (
+				545494AB20C7EA0B00E96C0A /* CBProgressView.h */,
+				545494AA20C7EA0A00E96C0A /* CBProgressView.m */,
 				5454946520C76BF000E96C0A /* CBBaseWebViewVC.h */,
 				5454946620C76BF000E96C0A /* CBBaseWebViewVC.m */,
 				07558C1D20941F18007E41C2 /* CBPopView.h */,
@@ -1890,8 +1907,8 @@
 				54520AF520BFD83D005B787E /* CBArchiverTool.m */,
 				5467015A20C0E1EF00519860 /* CBEmptyView.h */,
 				5467015B20C0E1EF00519860 /* CBEmptyView.m */,
-				5469A56220C4D195004E06F1 /* CBCircularAvatarTool.h */,
-				5469A56320C4D195004E06F1 /* CBCircularAvatarTool.m */,
+				5469A56220C4D195004E06F1 /* CBImagePickerTool.h */,
+				5469A56320C4D195004E06F1 /* CBImagePickerTool.m */,
 			);
 			path = "Tool Class";
 			sourceTree = "<group>";
@@ -2508,6 +2525,9 @@
 				5422E9DE20BEAB810087FB91 /* CBUploadVideoView.h */,
 				5422E9DF20BEAB810087FB91 /* CBUploadVideoView.m */,
 				5422E9E420BEABC40087FB91 /* CBUploadVideoView.xib */,
+				545494AD20C8C2F500E96C0A /* CBUploadSuccessView.h */,
+				545494AE20C8C2F500E96C0A /* CBUploadSuccessView.m */,
+				545494B020C8C30000E96C0A /* CBUploadSuccessView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2755,6 +2775,25 @@
 			path = NSObject;
 			sourceTree = "<group>";
 		};
+		545494A520C7CCDF00E96C0A /* OpenLive */ = {
+			isa = PBXGroup;
+			children = (
+				545494A020C7CC2500E96C0A /* CBOpenLiveVC.h */,
+				545494A120C7CC2500E96C0A /* CBOpenLiveVC.m */,
+				545494A220C7CC2500E96C0A /* CBOpenLiveVC.xib */,
+			);
+			path = OpenLive;
+			sourceTree = "<group>";
+		};
+		545494A620C7E3C100E96C0A /* BeginLive */ = {
+			isa = PBXGroup;
+			children = (
+				545494A720C7E4B400E96C0A /* CBBeginLiveVC.h */,
+				545494A820C7E4B400E96C0A /* CBBeginLiveVC.m */,
+			);
+			path = BeginLive;
+			sourceTree = "<group>";
+		};
 		5467015520C0D46100519860 /* Ctrl */ = {
 			isa = PBXGroup;
 			children = (
@@ -2828,6 +2867,8 @@
 			isa = PBXGroup;
 			children = (
 				548C5C9C20B4FAA300A6FF53 /* ApplyAnchor */,
+				545494A520C7CCDF00E96C0A /* OpenLive */,
+				545494A620C7E3C100E96C0A /* BeginLive */,
 			);
 			path = Live;
 			sourceTree = "<group>";
@@ -2852,6 +2893,7 @@
 			isa = PBXGroup;
 			children = (
 				548C5C9820B4FA6C00A6FF53 /* Ctrl */,
+				548C5C9920B4FA7700A6FF53 /* Live */,
 			);
 			path = LiveVideo;
 			sourceTree = "<group>";
@@ -3386,8 +3428,8 @@
 				0737ED802074A33600A89CC0 /* Sources */,
 				0737ED812074A33600A89CC0 /* Frameworks */,
 				0737ED822074A33600A89CC0 /* Resources */,
-				0AF4E743FCBC409C99E30C95 /* [CP] Embed Pods Frameworks */,
-				356F840CC95D10CE2ADFA838 /* [CP] Copy Pods Resources */,
+				240B809F96843B5A76F5DDF1 /* [CP] Embed Pods Frameworks */,
+				55638134CDB7372B6502E951 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -3645,6 +3687,7 @@
 				54F7828F20BD56C500EE6821 /* CBForgetPwdVC.xib in Resources */,
 				54A76CC120B7E0E10034D5A2 /* style_default_1.7.1_btn_filter_w@2x.png in Resources */,
 				54A76C5920B7E0E10034D5A2 /* video_style_default_crop_btn_triangle_right@3x.png in Resources */,
+				545494A420C7CC2500E96C0A /* CBOpenLiveVC.xib in Resources */,
 				54A76CFD20B7E0E10034D5A2 /* lsq_filter_thumb_s1950_1.jpg in Resources */,
 				07AB0BB2209300A3007A25A8 /* CBAccountInfoVC.xib in Resources */,
 				54A76D7720B7E0E10034D5A2 /* lsq_filter_thumb_SkinPink010.jpg in Resources */,
@@ -3739,6 +3782,7 @@
 				54A76CFA20B7E0E10034D5A2 /* lsq_filter_thumb_Paul01.jpg in Resources */,
 				54A76CBF20B7E0E10034D5A2 /* lsq_filter_thumb_White_1.jpg in Resources */,
 				54A76CEF20B7E0E10034D5A2 /* lsq_filter_thumb_Surprise.jpg in Resources */,
+				545494B120C8C30000E96C0A /* CBUploadSuccessView.xib in Resources */,
 				54A76CB820B7E0E10034D5A2 /* style_default_1.7.0_download_icon@2x.png in Resources */,
 				54A76CD820B7E0E10034D5A2 /* style_default_1.7.1_btn_filter_w@3x.png in Resources */,
 				54A76CC420B7E0E10034D5A2 /* lsq_filter_thumb_timber.jpg in Resources */,
@@ -3797,14 +3841,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0AF4E743FCBC409C99E30C95 /* [CP] Embed Pods Frameworks */ = {
+		240B809F96843B5A76F5DDF1 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-ProApp/Pods-ProApp-frameworks.sh",
-				"${PODS_ROOT}/HyphenateLite/iOS_IM_SDK_V3.4.0/HyphenateSDK/HyphenateLite.framework",
+				"${PODS_ROOT}/HyphenateLite/iOS_Pods_IMSDK_V3.4.1/HyphenateLite.framework",
 				"${PODS_ROOT}/PLPlayerKit/Pod/Library/PLPlayerKit.framework",
 				"${PODS_ROOT}/PLRTCStreamingKit/Pod/Library/PLRTCStreamingKit.framework",
 				"${PODS_ROOT}/PLRTCStreamingKit/Pod/Library/HappyDNS.framework",
@@ -3821,7 +3865,7 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ProApp/Pods-ProApp-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		356F840CC95D10CE2ADFA838 /* [CP] Copy Pods Resources */ = {
+		55638134CDB7372B6502E951 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -3876,6 +3920,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				545494AC20C7EA0B00E96C0A /* CBProgressView.m in Sources */,
 				54A76B1420B7DF7E0034D5A2 /* EffectsDisplayView.m in Sources */,
 				07CDCAD12090598F00B16FC6 /* CBLiveAnchorView.m in Sources */,
 				54130A0B20B6A0C000CAE467 /* CBAppLiveVO.m in Sources */,
@@ -3929,6 +3974,7 @@
 				54A76AE720B7DEDE0034D5A2 /* PLSFilterGroup.m in Sources */,
 				5467016D20C1300900519860 /* CBSexMenuView.m in Sources */,
 				07359D8F20A419E900FEEA4E /* CBLivePlayerVC.m in Sources */,
+				545494A320C7CC2500E96C0A /* CBOpenLiveVC.m in Sources */,
 				07B8BD1C20A3E14200DD05B2 /* CBPlayerVC.m in Sources */,
 				077FFD0D2099B3BD00B8680C /* CBGuardRankBCell.m in Sources */,
 				548C5CA020B4FAD300A6FF53 /* CBApplyAnchorVC.m in Sources */,
@@ -3942,10 +3988,11 @@
 				079B784820B298BA009C68F7 /* CBAppADVO.m in Sources */,
 				07CD47B020A0269600A372C7 /* CBContributionRankVC.m in Sources */,
 				07B6689E208D902500AA5B62 /* UIView+DashedLine.m in Sources */,
+				545494AF20C8C2F500E96C0A /* CBUploadSuccessView.m in Sources */,
 				54A0D8E520C13C1A0056554D /* CBEditUserInfoVC.m in Sources */,
 				07359D9820A429AC00FEEA4E /* CBLiveVideoVC.m in Sources */,
 				54A76AE620B7DEDE0034D5A2 /* PLSProgressBar.m in Sources */,
-				5469A56420C4D195004E06F1 /* CBCircularAvatarTool.m in Sources */,
+				5469A56420C4D195004E06F1 /* CBImagePickerTool.m in Sources */,
 				07F38C0120994A0000DDBC90 /* JPGiftView.m in Sources */,
 				07F6EFE020872E3D0035C6BD /* CBHomeVC.m in Sources */,
 				07558C2B2094569C007E41C2 /* CBAnchorInfoXibView.m in Sources */,
@@ -4014,6 +4061,7 @@
 				07F6EFE120872E3D0035C6BD /* ALinUser.m in Sources */,
 				54130A1220B6B52200CAE467 /* CBLiveSettingConfig.m in Sources */,
 				07558C1F20941F18007E41C2 /* CBPopView.m in Sources */,
+				545494A920C7E4B400E96C0A /* CBBeginLiveVC.m in Sources */,
 				548C5CC120B50CD800A6FF53 /* CBLiveUserConfig.m in Sources */,
 				0737ED972074A33600A89CC0 /* main.m in Sources */,
 				54130A0F20B6B48900CAE467 /* CBLiveSetting.m in Sources */,
