@@ -30,7 +30,6 @@
         self.popType = PopTypeScale;
         self.shadowColor = [UIColor colorWithWhite:0 alpha:0.5];
         self.animateDuration = 0.35;
-        self.radius = 0;
         self.backgroundColor = [UIColor whiteColor];
         [self addSubview:self.homeMenuView];
         
