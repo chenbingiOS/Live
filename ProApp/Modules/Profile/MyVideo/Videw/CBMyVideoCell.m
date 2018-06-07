@@ -24,12 +24,15 @@
 
 @implementation CBMyVideoCell
 
-- (void)setVideo:(CBShortVideoVO *)video {
-    _video = video;
-    
-    [self.coverView sd_setImageWithURL:[NSURL URLWithString:video.thumb] placeholderImage:[UIImage imageNamed:@"placeholder_head"]];
+- (void)awakeFromNib {
+    [super awakeFromNib];
     [self.coverView zy_cornerRadiusAdvance:8 rectCornerType:UIRectCornerTopLeft|UIRectCornerTopRight];
     self.coverView.layer.masksToBounds = YES;
+}
+
+- (void)setVideo:(CBShortVideoVO *)video {
+    _video = video;    
+    [self.coverView sd_setImageWithURL:[NSURL URLWithString:video.thumb] placeholderImage:[UIImage imageNamed:@"placeholder_head"]];
     self.videoTitleLabel.text = video.title;
     self.viewsLab.text = video.views;
     self.likesLab.text = video.likes;

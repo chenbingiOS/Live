@@ -36,6 +36,7 @@
 #import "UIImageView+RoundedCorner.h"
 #import "MBProgressHUD+HUD.h"
 #import "CBEmptyView.h"
+#import "CBRefreshGifHeader.h"
 
 
 #endif /* ProApp_h */

@@ -30,8 +30,7 @@ static NSString *const FansCellID = @"FansCellID";
 
 - (void)httpFansList {
     [self.tableView ly_startLoading];
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    
+
     NSString *url = urlGetUserFansList;
     NSDictionary *param = @{@"token":[CBLiveUserConfig getOwnToken],
                             @"id":[CBLiveUserConfig getOwnID]};
@@ -43,16 +42,22 @@ static NSString *const FansCellID = @"FansCellID";
             [self.tableView reloadData];
         }
         
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [self.tableView.mj_header endRefreshing];
+        [self.tableView.mj_footer endRefreshing];
         [self.tableView ly_endLoading];
     } failure:^(NSError *error) {
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [self.tableView.mj_header endRefreshing];
+        [self.tableView.mj_footer endRefreshing];
         [self.tableView ly_endLoading];
     }];
 }
 
 - (void)setupUI {
     [self.view addSubview:self.tableView];
+    self.tableView.mj_header = [CBRefreshGifHeader headerWithRefreshingBlock:^{
+        [self httpFansList];
+    }];
+    [self.tableView.mj_header beginRefreshing];
 }
 
 #pragma mark - UITableViewDataSource

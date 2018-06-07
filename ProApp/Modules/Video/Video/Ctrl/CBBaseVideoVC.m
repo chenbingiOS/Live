@@ -7,17 +7,17 @@
 //
 
 #import "CBBaseVideoVC.h"
-#import "ALinUser.h"
 #import "CBAttentionCell.h"
 #import "CBRefreshGifHeader.h"
 #import "CBAppLiveVO.h"
 #import "CBVerticalFlowLayout.h"
+#import "CBShortVideoVO.h"
 
 @interface CBBaseVideoVC () <CBVerticalFlowLayoutDelegate, UICollectionViewDelegate, UICollectionViewDataSource>
 
 @property (nonatomic, strong) UICollectionView *collectionView;
-@property (nonatomic, strong) NSMutableArray *anchors;   /** 最新主播列表 */
-@property (nonatomic, assign) NSUInteger currentPage;    /** 当前页 */
+@property (nonatomic, strong) NSMutableArray *cellDataAry;
+@property (nonatomic, assign) NSUInteger currentPage;
 
 @end
 
@@ -27,104 +27,96 @@ static NSString * const reuseIdentifier = @"CBAttentionCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"关注";
-    [self setupUI];
 }
 
 - (void)setupUI {
     [self.view addSubview:self.collectionView];
-    
     self.currentPage = 1;
     self.collectionView.mj_header = [CBRefreshGifHeader headerWithRefreshingBlock:^{
-        self.currentPage = 1;
-        self.anchors = [NSMutableArray array];
-        [self getAnchorsList];
+        [self reloadAllData];
     }];
     self.collectionView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
         self.currentPage++;
-        [self getAnchorsList];
+        [self httpGetVideos];
     }];
     [self.collectionView.mj_header beginRefreshing];
 }
 
-- (void)autoRefresh {
-//    [self.collectionView.mj_header beginRefreshing];
-//    NSLog(@"刷新最新主播界面");
+- (void)httpGetVideos {
+    [self.collectionView ly_startLoading];
+    NSString *url = self.url;
+    NSDictionary *param = @{ @"token": [CBLiveUserConfig getOwnToken],
+                             @"page": @(self.currentPage) };
+    [PPNetworkHelper POST:url parameters:param success:^(id responseObject) {
+        NSNumber *code = [responseObject valueForKey:@"code"];
+        if ([code isEqualToNumber:@200]) {
+            NSDictionary *data = [responseObject valueForKey:@"data"];
+            NSArray *resultList = [NSArray modelArrayWithClass:[CBShortVideoVO class] json:data];
+            if (resultList.count < 20 && self.currentPage > 1) {
+                [self.collectionView.mj_footer endRefreshingWithNoMoreData];
+                self.currentPage--;
+            } else {
+                [self.cellDataAry addObjectsFromArray:resultList];
+                [self.collectionView reloadData];
+            }
+        } else {
+            NSString *descrp = responseObject[@"descrp"];
+            [MBProgressHUD showAutoMessage:descrp];
+        }
+        [self.collectionView.mj_header endRefreshing];
+        [self.collectionView.mj_footer endRefreshing];
+        [self.collectionView ly_endLoading];
+    } failure:^(NSError *error) {
+        [self.collectionView.mj_header endRefreshing];
+        [self.collectionView.mj_footer endRefreshing];
+        self.currentPage--;
+    }];
 }
 
-// 获取数据
-- (void)getAnchorsList {
-//    [[ALinNetworkTool shareTool] GET:[NSString stringWithFormat:@"http://live.9158.com/Room/GetNewRoomOnline?page=%ld", self.currentPage] parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-//        [self.collectionView.mj_header endRefreshing];
-//        [self.collectionView.mj_footer endRefreshing];
-//        NSString *statuMsg = responseObject[@"msg"];
-//        if ([statuMsg isEqualToString:@"fail"]) { // 数据已经加载完毕, 没有更多数据了
-//            [self.collectionView.mj_footer endRefreshingWithNoMoreData];
-//            [self showHint:@"暂时没有更多最新数据"];
-//            // 恢复当前页
-//            self.currentPage--;
-//        } else {
-//            [responseObject[@"data"][@"list"] writeToFile:@"/Users/apple/Desktop/user.plist" atomically:YES];
-//            NSArray *result = [ALinUser mj_objectArrayWithKeyValuesArray:responseObject[@"data"][@"list"]];
-//            if (result.count) {
-//                [self.anchors addObjectsFromArray:result];
-//                [self.collectionView reloadData];
-//            }
-//        }
-//    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-//        [self.collectionView.mj_header endRefreshing];
-//        [self.collectionView.mj_footer endRefreshing];
-//        self.currentPage--;
-//        [self showHint:@"网络异常"];
-//    }];
+- (void)reloadAllData {
+    self.currentPage = 1;
+    self.cellDataAry = [NSMutableArray array];
+    [self httpGetVideos];
 }
 
 #pragma mark - UICollectionViewDataSource
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return self.anchors.count;
+    return self.cellDataAry.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     CBAttentionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
-    cell.user = self.anchors[indexPath.item];
+    cell.video = self.cellDataAry[indexPath.item];
     return cell;
 }
 
 #pragma mark - UICollectionViewDelegate
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
-{
-//    CBAppLiveVOCollectionViewController *liveVc = [[CBAppLiveVOCollectionViewController alloc] init];
-//    NSMutableArray *array = [NSMutableArray array];
-//    for (ALinUser *user in self.anchors) {
-//        CBAppLiveVO *live = [[CBAppLiveVO alloc] init];
-//        live.bigpic = user.photo;
-//        live.myname = user.nickname;
-//        live.smallpic = user.photo;
-//        live.gps = user.position;
-//        live.useridx = user.useridx;
-//        live.allnum = arc4random_uniform(2000);
-//        live.flv = user.flv;
-//        [array addObject:live];
-//    }
-//    liveVc.lives = array;
-//    liveVc.currentIndex = indexPath.item;
-//    [self presentViewController:liveVc animated:YES completion:nil];
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+
 }
 
 
 #pragma mark - CBVerticalFlowLayoutDelegate
-/**.
- * 设置cell的高度
- @param indexPath 索引
- @param itemWidth 宽度
- */
+
 - (CGFloat)cb_waterflowLayout:(CBVerticalFlowLayout *)waterflowLayout collectionView:(UICollectionView *)collectionView heightForItemAtIndexPath:(NSIndexPath *)indexPath itemWidth:(CGFloat)itemWidth {
     return itemWidth * 236 / 170;
 }
 
-// 需要显示的列数, 默认3
 - (NSInteger)cb_waterflowLayout:(CBVerticalFlowLayout *)waterflowLayout columnsInCollectionView:(UICollectionView *)collectionView{
     return 2;
+}
+
+
+- (UIEdgeInsets)cb_waterflowLayout:(CBVerticalFlowLayout *)waterflowLayout edgeInsetsInCollectionView:(UICollectionView *)collectionView {
+    return  UIEdgeInsetsMake(12, 8, 8, 8);
+}
+
+- (CGFloat)cb_waterflowLayout:(CBVerticalFlowLayout *)waterflowLayout columnsMarginInCollectionView:(UICollectionView *)collectionView {
+    return 8;
+}
+
+- (CGFloat)cb_waterflowLayout:(CBVerticalFlowLayout *)waterflowLayout collectionView:(UICollectionView *)collectionView linesMarginForItemAtIndexPath:(NSIndexPath *)indexPath {
+    return 8;
 }
 
 #pragma mark - layz
@@ -144,14 +136,20 @@ static NSString * const reuseIdentifier = @"CBAttentionCell";
         _collectionView.backgroundColor = [UIColor whiteColor];
 
         [_collectionView registerNib:[UINib nibWithNibName:NSStringFromClass([CBAttentionCell class]) bundle:nil] forCellWithReuseIdentifier:reuseIdentifier];
+        
+        _collectionView.ly_emptyView = [CBEmptyView diyEmptyActionViewWithTarget:self action:@selector(reloadAllData)];
     }
     return _collectionView;
 }
-- (NSMutableArray *)anchors {
-    if (!_anchors) {
-        _anchors = [NSMutableArray array];
+- (NSMutableArray *)cellDataAry {
+    if (!_cellDataAry) {
+        _cellDataAry = [NSMutableArray array];
     }
-    return _anchors;
+    return _cellDataAry;
 }
 
+- (void)setUrl:(NSString *)url {
+    _url = url;
+    [self setupUI];
+}
 @end

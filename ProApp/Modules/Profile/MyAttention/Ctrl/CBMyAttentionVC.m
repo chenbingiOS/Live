@@ -26,12 +26,10 @@ static NSString *const AttentionCellID = @"AttentionCellID";
     [super viewDidLoad];
     self.title = @"我的关注";
     [self setupUI];
-    [self httpAttentionList];
 }
 
 - (void)httpAttentionList {
     [self.tableView ly_startLoading];
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
     NSString *url = urlGetAttentionList;
     NSDictionary *param = @{@"token":[CBLiveUserConfig getOwnToken],
@@ -43,17 +41,22 @@ static NSString *const AttentionCellID = @"AttentionCellID";
             self.cellDataAry = [NSArray modelArrayWithClass:[CBAttentionVO class] json:data].mutableCopy;
             [self.tableView reloadData];
         }
-        
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [self.tableView.mj_header endRefreshing];
+        [self.tableView.mj_footer endRefreshing];
         [self.tableView ly_endLoading];
     } failure:^(NSError *error) {
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [self.tableView.mj_header endRefreshing];
+        [self.tableView.mj_footer endRefreshing];
         [self.tableView ly_endLoading];
     }];
 }
 
 - (void)setupUI {
     [self.view addSubview:self.tableView];
+    self.tableView.mj_header = [CBRefreshGifHeader headerWithRefreshingBlock:^{
+        [self httpAttentionList];
+    }];
+    [self.tableView.mj_header beginRefreshing];
 }
 
 #pragma mark - UITableViewDataSource

@@ -7,32 +7,40 @@
 //
 
 #import "CBAttentionCell.h"
-#import "ALinUser.h"
-#import <UIImageView+WebCache.h>
-#import "UIImageView+RoundedCorner.h"
+#import "UIImageView+CornerRadius.h"
 #import "UIView+CornerRadius.h"
+#import "CBShortVideoVO.h"
 
 @interface CBAttentionCell()
 
-@property (weak, nonatomic) IBOutlet UILabel *videoCountLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *coverView;
 @property (weak, nonatomic) IBOutlet UILabel *videoTitleLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *avaterImageView;
 @property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *viewsLab;
+@property (weak, nonatomic) IBOutlet UILabel *likesLab;
 
 @end
 
 @implementation CBAttentionCell
 
-- (void)setUser:(ALinUser *)user {
-    
-    _user = user;
-    
-    [self.coverView sd_setImageWithURL:[NSURL URLWithString:user.photo] placeholderImage:[UIImage imageNamed:@"placeholder_head"]];
-    [self.coverView roundedCornerRadius:8];
-    [self.avaterImageView sd_setImageWithURL:[NSURL URLWithString:user.photo] placeholderImage:[UIImage imageNamed:@"placeholder_head"]];
-    [self.avaterImageView roundedCorner];
-    self.userNameLabel.text = user.nickname;
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    [self.coverView zy_cornerRadiusAdvance:8 rectCornerType:UIRectCornerTopLeft|UIRectCornerTopRight];
+    self.coverView.layer.masksToBounds = YES;
+    [self.avaterImageView zy_cornerRadiusRoundingRect];
+    self.avaterImageView.layer.masksToBounds = YES;
 }
+
+- (void)setVideo:(CBShortVideoVO *)video {
+    _video = video;
+    [self.coverView sd_setImageWithURL:[NSURL URLWithString:video.thumb] placeholderImage:[UIImage imageNamed:@"placeholder_head"]];
+    self.videoTitleLabel.text = video.title;
+    self.viewsLab.text = video.views;
+    self.likesLab.text = video.likes;
+    [self.avaterImageView sd_setImageWithURL:[NSURL URLWithString:video.avatar] placeholderImage:[UIImage imageNamed:@"placeholder_head"]];
+    self.userNameLabel.text = video.user_nicename;
+}
+
 
 @end

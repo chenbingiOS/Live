@@ -8,9 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@class ALinUser;
+@class CBShortVideoVO;
 @interface CBAttentionCell : UICollectionViewCell
-/** 主播 */
-@property(nonatomic, strong) ALinUser *user;
+
+@property(nonatomic, strong) CBShortVideoVO *video;
 
 @end

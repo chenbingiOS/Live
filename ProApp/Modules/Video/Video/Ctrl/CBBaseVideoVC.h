@@ -10,4 +10,6 @@
 
 @interface CBBaseVideoVC : UIViewController
 
+@property (nonatomic, copy) NSString *url;
+
 @end

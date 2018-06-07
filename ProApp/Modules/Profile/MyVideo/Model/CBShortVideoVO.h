@@ -20,5 +20,6 @@
 @property (nonatomic, copy) NSString *shares;   ///< 分享数    数字(number)
 @property (nonatomic, copy) NSString *addtime;  ///< 视频上传时间    数字(number)
 @property (nonatomic, copy) NSString *uid;      ///< 视频上传者id    数字(number)
-
+@property (nonatomic, copy) NSString *avatar;           ///< 作者头像
+@property (nonatomic, copy) NSString *user_nicename;    ///< 作者名称
 @end

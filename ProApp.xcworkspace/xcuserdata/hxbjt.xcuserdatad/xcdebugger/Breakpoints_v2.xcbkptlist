@@ -52,12 +52,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ProApp/Modules/LiveVideo/Video/CBUploadVideoVC.m"
-            timestampString = "550052304.158813"
+            timestampString = "550055334.14924"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "282"
             endingLineNumber = "282"
             landmarkName = "-httpGetUploadToken"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ProApp/Modules/Video/Video/Ctrl/CBBaseVideoVC.m"
+            timestampString = "550055334.149366"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "46"
+            endingLineNumber = "46"
+            landmarkName = "-httpGetVideos"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

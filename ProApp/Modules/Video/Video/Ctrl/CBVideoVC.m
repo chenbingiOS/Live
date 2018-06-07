@@ -63,11 +63,8 @@
 - (CBTitleSelectView *)selectedView {
     if (!_selectedView) {
         _selectedView = [CBTitleSelectView viewFromXib];
-        if (iPhoneX) {
-            _selectedView.frame = CGRectMake(0, 0, kScreenWidth, 64+20);
-        } else {
-            _selectedView.frame = CGRectMake(0, 0, kScreenWidth, 64);
-        }
+        CGFloat height = SafeAreaTopHeight;
+        _selectedView.frame = CGRectMake(0, 0, kScreenWidth, height);
         _selectedView.delegate = self;
     }
     return _selectedView;
@@ -75,10 +72,8 @@
 
 - (UIScrollView *)scrollView {
     if (!_scrollView) {
-        CGRect frame = CGRectMake(0, 64, kScreenWidth, kScreenHeight-49-64);
-        if (iPhoneX) {
-            frame = CGRectMake(0, 64+20, kScreenWidth, kScreenHeight-49-64-20-34);
-        }
+        CGFloat height = kScreenHeight - SafeAreaTopHeight - SafeAreaBottomHeight - 49;
+        CGRect frame = CGRectMake(0, SafeAreaTopHeight, kScreenWidth, height);
         _scrollView = [[UIScrollView alloc] initWithFrame:frame];
         _scrollView.contentSize = CGSizeMake(kScreenWidth * 2, 0);
         _scrollView.showsVerticalScrollIndicator = NO;
@@ -94,11 +89,8 @@
 - (CBVideoHotVC *)videoHotVC {
     if (!_videoHotVC) {
         _videoHotVC = [CBVideoHotVC new];
-        if (iPhoneX) {
-            _videoHotVC.view.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight-49-64-20-34);
-        } else {
-            _videoHotVC.view.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight-49-64);
-        }
+        CGFloat height = kScreenHeight - SafeAreaTopHeight - SafeAreaBottomHeight - 49;
+        _videoHotVC.view.frame = CGRectMake(0, 0, kScreenWidth, height);
     }
     return _videoHotVC;
 }
@@ -106,11 +98,8 @@
 - (CBVideoAttentionVC *)videoAttentionVC {
     if (!_videoAttentionVC) {
         _videoAttentionVC = [CBVideoAttentionVC new];
-        if (iPhoneX) {
-            _videoHotVC.view.frame = CGRectMake(kScreenWidth, 0, kScreenWidth, kScreenHeight-49-64-20-34);
-        } else {
-            _videoHotVC.view.frame = CGRectMake(kScreenWidth, 0, kScreenWidth, kScreenHeight-49-64);
-        }
+        CGFloat height = kScreenHeight - SafeAreaTopHeight - SafeAreaBottomHeight - 49;
+        _videoAttentionVC.view.frame = CGRectMake(kScreenWidth, 0, kScreenWidth, height);
     }
     return _videoAttentionVC;
 }

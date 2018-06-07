@@ -52,10 +52,7 @@ static NSString * const CBMyVideoCellID = @"CBMyVideoCellID";
 
 // 获取数据
 - (void)httpGetCurrentUserVideos {
-    
-    [self.collectionView ly_startLoading];
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    
+    [self.collectionView ly_startLoading];    
     NSString *url = urlGetCurrentUserVideos;
     NSDictionary *param = @{ @"token": [CBLiveUserConfig getOwnToken],
                              @"page": @(self.currentPage) };
@@ -77,7 +74,6 @@ static NSString * const CBMyVideoCellID = @"CBMyVideoCellID";
         }
         [self.collectionView.mj_header endRefreshing];
         [self.collectionView.mj_footer endRefreshing];
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
         [self.collectionView ly_endLoading];
     } failure:^(NSError *error) {
         [self.collectionView.mj_header endRefreshing];
@@ -98,24 +94,8 @@ static NSString * const CBMyVideoCellID = @"CBMyVideoCellID";
 }
 
 #pragma mark - UICollectionViewDelegate
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    //    CBAppLiveVOCollectionViewController *liveVc = [[CBAppLiveVOCollectionViewController alloc] init];
-    //    NSMutableArray *array = [NSMutableArray array];
-    //    for (ALinUser *user in self.anchors) {
-    //        CBAppLiveVO *live = [[CBAppLiveVO alloc] init];
-    //        live.bigpic = user.photo;
-    //        live.myname = user.nickname;
-    //        live.smallpic = user.photo;
-    //        live.gps = user.position;
-    //        live.useridx = user.useridx;
-    //        live.allnum = arc4random_uniform(2000);
-    //        live.flv = user.flv;
-    //        [array addObject:live];
-    //    }
-    //    liveVc.lives = array;
-    //    liveVc.currentIndex = indexPath.item;
-    //    [self presentViewController:liveVc animated:YES completion:nil];
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+
 }
 
 
@@ -170,4 +150,5 @@ static NSString * const CBMyVideoCellID = @"CBMyVideoCellID";
     }
     return _cellDataAry;
 }
+
 @end
