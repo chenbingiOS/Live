@@ -1,18 +1,18 @@
 //
-//  CBCircularAvatarTool.m
+//  CBImagePickerTool.m
 //  ProApp
 //
 //  Created by hxbjt on 2018/6/4.
 //  Copyright © 2018年 ChenBing. All rights reserved.
 //
 
-#import "CBCircularAvatarTool.h"
+#import "CBImagePickerTool.h"
 #import <MobileCoreServices/MobileCoreServices.h>
 #import <objc/runtime.h>
 
 NSString const * UIImagePickerControllerCircularEditedImage = @" UIImagePickerControllerCircularEditedImage;";
 
-@interface CBCircularAvatarTool ()<UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+@interface CBImagePickerTool ()<UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 - (UIWindow *)currentVisibleWindow;
 - (UIViewController *)currentVisibleController;
@@ -30,11 +30,11 @@ NSString const * UIImagePickerControllerCircularEditedImage = @" UIImagePickerCo
 @end
 
 
-@implementation CBCircularAvatarTool
+@implementation CBImagePickerTool
 
 #pragma mark - Life Cycle
 
-- (instancetype)initWithDelegate:(id<CBCircularAvatarDelegate>)delegate {
+- (instancetype)initWithDelegate:(id<CBImagePickerToolDelegate>)delegate {
     self = [super init];
     if (self) {
         self.delegate = delegate;
@@ -97,16 +97,16 @@ NSString const * UIImagePickerControllerCircularEditedImage = @" UIImagePickerCo
     }
     if (_finishBlock) {
         _finishBlock(self,mediaInfo);
-    } else if (_delegate && [_delegate respondsToSelector:@selector(cb_circularAvatar:didFinishWithMediaInfo:)]) {
-        [_delegate cb_circularAvatar:self didFinishWithMediaInfo:mediaInfo];
+    } else if (_delegate && [_delegate respondsToSelector:@selector(cb_imagePickerTool:didFinishWithMediaInfo:)]) {
+        [_delegate cb_imagePickerTool:self didFinishWithMediaInfo:mediaInfo];
     }
 }
 
 - (void)delegatePerformWillPresentImagePicker:(UIImagePickerController *)imagePicker {
     if (_willPresentImagePickerBlock) {
         _willPresentImagePickerBlock(self,imagePicker);
-    } else if (_delegate && [_delegate respondsToSelector:@selector(cb_circularAvatar:willPresentImagePickerController:)]) {
-        [_delegate cb_circularAvatar:self willPresentImagePickerController:imagePicker];
+    } else if (_delegate && [_delegate respondsToSelector:@selector(cb_imagePickerTool:willPresentImagePickerController:)]) {
+        [_delegate cb_imagePickerTool:self willPresentImagePickerController:imagePicker];
     }
 }
 
@@ -114,13 +114,13 @@ NSString const * UIImagePickerControllerCircularEditedImage = @" UIImagePickerCo
     if (_cancelBlock) {
         _cancelBlock(self);
     } else if (_delegate && [_delegate respondsToSelector:@selector(mediaPickerDidCancel:)]) {
-        [_delegate cb_circularAvatarDidCancel:self];
+        [_delegate cb_imagePickerToolDidCancel:self];
     }
 }
 
 - (void)showActionSheet:(UIView *)view {
     UIActionSheet *actionSheet = [[UIActionSheet alloc] init];
-    actionSheet.circularAvatarTool = self;
+    actionSheet.imagePickerTool = self;
     [actionSheet addButtonWithTitle:@"拍照"];
     [actionSheet addButtonWithTitle:@"选取照片"];
     [actionSheet addButtonWithTitle:@"取消"];
@@ -131,7 +131,7 @@ NSString const * UIImagePickerControllerCircularEditedImage = @" UIImagePickerCo
 
 - (void)showAlertController:(UIView *)view {
     UIAlertController *alertController = [[UIAlertController alloc] init];
-    alertController.circularAvatarTool = self;
+    alertController.imagePickerTool = self;
     [alertController addAction:[UIAlertAction actionWithTitle:@"拍照" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
         [self takePhotoFromCamera];
     }]];
@@ -153,7 +153,7 @@ NSString const * UIImagePickerControllerCircularEditedImage = @" UIImagePickerCo
         imagePicker.delegate = self;
         imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
         imagePicker.mediaTypes = @[(NSString *)kUTTypeImage];
-        imagePicker.circularAvatarTool = self;        
+        imagePicker.imagePickerTool = self;
         [self delegatePerformWillPresentImagePicker:imagePicker];
         [self.currentVisibleController presentViewController:imagePicker animated:YES completion:nil];
     }
@@ -166,7 +166,7 @@ NSString const * UIImagePickerControllerCircularEditedImage = @" UIImagePickerCo
         imagePicker.delegate = self;
         imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
         imagePicker.mediaTypes = @[(NSString *)kUTTypeImage];
-        imagePicker.circularAvatarTool = self;
+        imagePicker.imagePickerTool = self;
         [self delegatePerformWillPresentImagePicker:imagePicker];
         [self.currentVisibleController presentViewController:imagePicker animated:YES completion:nil];
     }
@@ -197,7 +197,7 @@ NSString const * UIImagePickerControllerCircularEditedImage = @" UIImagePickerCo
 
 @end
 
-@implementation NSDictionary (CBCircularAvatarTool)
+@implementation NSDictionary (CBImagePickerTool)
 
 - (UIImage *)originalImage {
     if ([self.allKeys containsObject:UIImagePickerControllerOriginalImage]) {
@@ -237,7 +237,7 @@ NSString const * UIImagePickerControllerCircularEditedImage = @" UIImagePickerCo
 @end
 
 
-@implementation UIImage (CBCircularAvatarTool)
+@implementation UIImage (CBImagePickerTool)
 
 - (UIImage *)circularImage {
     // This function returns a newImage, based on image, that has been:
@@ -286,40 +286,40 @@ NSString const * UIImagePickerControllerCircularEditedImage = @" UIImagePickerCo
 
 @end
 
-const char * circularAvatarToolKey;
+const char *imagePickerToolKey;
 
-@implementation UIActionSheet (CBCircularAvatarTool)
+@implementation UIActionSheet (CBImagePickerTool)
 
-- (void)setCircularAvatarTool:(CBCircularAvatarTool *)circularAvatarTool {
-    objc_setAssociatedObject(self, &circularAvatarToolKey, circularAvatarTool, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+- (void)setImagePickerTool:(CBImagePickerTool *)imagePickerTool {
+    objc_setAssociatedObject(self, &imagePickerToolKey, imagePickerTool, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
-- (CBCircularAvatarTool *)circularAvatarTool {
-    return objc_getAssociatedObject(self, &circularAvatarToolKey);
-}
-
-@end
-
-@implementation UIAlertController (CBCircularAvatarTool)
-
-- (void)setCircularAvatarTool:(CBCircularAvatarTool *)circularAvatarTool {
-    objc_setAssociatedObject(self, &circularAvatarToolKey, circularAvatarTool, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-}
-
-- (CBCircularAvatarTool *)circularAvatarTool {
-    return objc_getAssociatedObject(self, &circularAvatarToolKey);
+- (CBImagePickerTool *)imagePickerTool {
+    return objc_getAssociatedObject(self, &imagePickerToolKey);
 }
 
 @end
 
-@implementation UIImagePickerController (CBCircularAvatarTool)
+@implementation UIAlertController (CBImagePickerTool)
 
-- (void)setCircularAvatarTool:(CBCircularAvatarTool *)circularAvatarTool {
-    objc_setAssociatedObject(self, &circularAvatarToolKey, circularAvatarTool, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+- (void)setImagePickerTool:(CBImagePickerTool *)imagePickerTool {
+    objc_setAssociatedObject(self, &imagePickerToolKey, imagePickerTool, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
-- (CBCircularAvatarTool *)circularAvatarTool {
-    return objc_getAssociatedObject(self, &circularAvatarToolKey);
+- (CBImagePickerTool *)imagePickerTool {
+    return objc_getAssociatedObject(self, &imagePickerToolKey);
+}
+
+@end
+
+@implementation UIImagePickerController (CBImagePickerTool)
+
+- (void)setImagePickerTool:(CBImagePickerTool *)imagePickerTool {
+    objc_setAssociatedObject(self, &imagePickerToolKey, imagePickerTool, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (CBImagePickerTool *)imagePickerTool {
+    return objc_getAssociatedObject(self, &imagePickerToolKey);
 }
 
 @end

@@ -1,21 +1,22 @@
 //
-//  CBFillInfoWebVC.m
+//  CBBeginLiveVC.m
 //  ProApp
 //
-//  Created by hxbjt on 2018/6/5.
+//  Created by hxbjt on 2018/6/6.
 //  Copyright © 2018年 ChenBing. All rights reserved.
 //
 
-#import "CBFillInfoWebVC.h"
+#import "CBBeginLiveVC.h"
 
-@interface CBFillInfoWebVC ()
+@interface CBBeginLiveVC ()
 
 @end
 
-@implementation CBFillInfoWebVC
+@implementation CBBeginLiveVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    // Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning {

@@ -54,3 +54,29 @@ typedef enum : NSUInteger {
 - (void)hide;
 
 @end
+
+
+//        // 设置参数 (否则用默认值)
+//        self.popType = PopTypeScale;
+//        self.shadowColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0];
+//        self.animateDuration = 0.5;
+//        self.backgroundColor = [UIColor purpleColor];
+
+//      // 设置参数 (否则用默认值)
+//      self.popType = PopTypeMove;
+//      self.moveAppearCenterY = [UIApplication sharedApplication].keyWindow.centerY;
+//      self.moveAppearDirection = MoveAppearDirectionFromBottom;
+//      self.moveDisappearDirection = MoveDisappearDirectionToBottom;
+//      self.shadowColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
+//      self.animateDuration = 0.5;
+//      self.backgroundColor = [UIColor purpleColor];
+
+//        // 设置参数 (否则用默认值)
+//        self.popType = PopTypeMove;
+//        self.moveAppearCenterY = SCREEN_HEIGHT - self.height/2;
+//        self.moveAppearDirection = MoveAppearDirectionFromBottom;
+//        self.moveDisappearDirection = MoveDisappearDirectionToBottom;
+//        self.shadowColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
+//        self.animateDuration = 0.5;
+//        self.radius = 0;
+//        self.backgroundColor = [UIColor purpleColor];

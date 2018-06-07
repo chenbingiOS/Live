@@ -108,6 +108,7 @@ static NSString *const kURLPrefix = @"http://shortvideo.pdex-service.com";
     if (!_uploadSuccessView) {
         CGFloat height = 120;
         _uploadSuccessView = [[CBUploadSuccessPopView alloc] initWithFrame:CGRectMake(0, 0, 300, height)];
+        _uploadSuccessView.center = CGPointMake(kScreenWidth/2, kScreenHeight/2);
     }
     return _uploadSuccessView;
 }

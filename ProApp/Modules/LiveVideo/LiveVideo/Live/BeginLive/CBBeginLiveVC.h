@@ -1,13 +1,13 @@
 //
-//  CBFillInfoOKView.h
+//  CBBeginLiveVC.h
 //  ProApp
 //
-//  Created by 陈冰 on 2018/4/23.
+//  Created by hxbjt on 2018/6/6.
 //  Copyright © 2018年 ChenBing. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-@interface CBFillInfoOKView : UIView
+@interface CBBeginLiveVC : UIViewController
 
 @end
