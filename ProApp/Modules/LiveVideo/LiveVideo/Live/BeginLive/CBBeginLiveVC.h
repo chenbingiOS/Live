@@ -10,4 +10,6 @@
 
 @interface CBBeginLiveVC : UIViewController
 
+@property (nonatomic, strong) UIImage *coverImage;
+
 @end

@@ -11,6 +11,7 @@
 #import "CBRefreshGifHeader.h"
 #import "CBShortVideoVO.h"
 #import "CBVerticalFlowLayout.h"
+#import "CBShortVideoVC.h"
 
 @interface CBMyVideoVC () <CBVerticalFlowLayoutDelegate, UICollectionViewDelegate, UICollectionViewDataSource>
 
@@ -23,6 +24,11 @@
 static NSString * const CBMyVideoCellID = @"CBMyVideoCellID";
 
 @implementation CBMyVideoVC
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:animated];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -52,7 +58,7 @@ static NSString * const CBMyVideoCellID = @"CBMyVideoCellID";
 
 // 获取数据
 - (void)httpGetCurrentUserVideos {
-    [self.collectionView ly_startLoading];    
+    [self.collectionView ly_startLoading];
     NSString *url = urlGetCurrentUserVideos;
     NSDictionary *param = @{ @"token": [CBLiveUserConfig getOwnToken],
                              @"page": @(self.currentPage) };
@@ -95,7 +101,11 @@ static NSString * const CBMyVideoCellID = @"CBMyVideoCellID";
 
 #pragma mark - UICollectionViewDelegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-
+    // 跳转播放器
+    CBShortVideoVC *shortVideoVC = [[CBShortVideoVC alloc] initWithTransitionStyle:(UIPageViewControllerTransitionStyleScroll) navigationOrientation:(UIPageViewControllerNavigationOrientationVertical) options:@{UIPageViewControllerOptionInterPageSpacingKey:@(0)}];
+    shortVideoVC.videos = self.cellDataAry;
+    shortVideoVC.currentIndex = indexPath.row;
+    [self.navigationController pushViewController:shortVideoVC animated:YES];
 }
 
 

@@ -91,6 +91,9 @@ static NSString *const kURLPrefix = @"http://shortvideo.pdex-service.com";
     [self.uploadSuccessView.homeMenuView.okButton addBlockForControlEvents:UIControlEventTouchUpInside block:^(id  _Nonnull sender) {
         @strongify(self);
         [self.uploadSuccessView hide];
+        [self dismissViewControllerAnimated:YES completion:^{
+           
+        }];
     }];
 }
 
@@ -203,13 +206,13 @@ static NSString *const kURLPrefix = @"http://shortvideo.pdex-service.com";
 - (void)shortVideoUploader:(PLShortVideoUploader *)uploader completeInfo:(PLSUploaderResponseInfo *)info uploadKey:(NSString *)uploadKey resp:(NSDictionary *)resp {
     self.progressView.hidden = YES;
     if(info.error){
-//        [MBProgressHUD showAutoMessage:[NSString stringWithFormat:@"上传失败，error: %@", info.error]];
+        NSLog(@"%@", [NSString stringWithFormat:@"上传失败，error: %@", info.error]);
         return ;
     }
     NSString *urlString = [NSString stringWithFormat:@"%@/%@", kURLPrefix, uploadKey];
     UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
     pasteboard.string = urlString;
-//    [MBProgressHUD showAutoMessage:[NSString stringWithFormat:@"上传成功，地址：%@ 已复制到系统剪贴板", urlString]];
+    NSLog(@"%@", [NSString stringWithFormat:@"上传成功，地址：%@ 已复制到系统剪贴板", urlString]);
     NSLog(@"uploadInfo: %@",info);
     NSLog(@"uploadKey:%@",uploadKey);
     NSLog(@"resp: %@",resp);

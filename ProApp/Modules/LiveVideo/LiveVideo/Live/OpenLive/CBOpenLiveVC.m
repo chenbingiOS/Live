@@ -8,6 +8,9 @@
 
 #import "CBOpenLiveVC.h"
 #import "CBImagePickerTool.h"
+#import "CBBeginLiveVC.h"
+#import "AppDelegate.h"
+#import "CBTBC.h"
 
 @interface CBOpenLiveVC ()
 
@@ -64,8 +67,14 @@
 }
 
 - (IBAction)actionOKBtn:(id)sender {
+    @weakify(self);
     [self dismissViewControllerAnimated:YES completion:^{
-        
+        @strongify(self);
+        AppDelegate *delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+        CBTBC *tbc = (CBTBC *)(delegate.rootVC);
+        CBBeginLiveVC *vc = [CBBeginLiveVC new];
+        vc.coverImage = self.coverImageView.image;
+        [tbc.selectedViewController presentViewController:vc animated:YES completion:nil];
     }];
 }
 
