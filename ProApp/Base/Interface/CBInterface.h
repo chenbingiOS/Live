@@ -23,7 +23,7 @@
 // 分享网页
 #define urlH5Share          @"http://dl.zhibo.gttead.cn"
 // 加入公会
-#define urlH5Guild          @"http://app.zhibo.gttead.cn"
+#define urlH5Guild          @"http://app.zhibo.gttead.cn/index.html"
 // 实名认证
 #define urlH5PresonCer      @"http://app.zhibo.gttead.cn/certification.html"
 

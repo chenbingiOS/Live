@@ -10,6 +10,7 @@
 #import "AppDelegate+AppServer.h"
 #import "AppDelegate+ShareSDK.h"
 #import "AppDelegate+EMClient.h"
+#import "AppDelegate+PLKit.h"
 
 @interface AppDelegate ()
 
@@ -25,7 +26,8 @@
     [self initWindow];
     [self initRootVC];
     [self initApperance];
-        
+    [self initPLKit];
+    
     [PPNetworkHelper openLog];
     
     return YES;

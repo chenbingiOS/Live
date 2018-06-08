@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PLMainTabBarController.h"
 
-@interface CBBeginLiveVC : UIViewController
+@interface CBBeginLiveVC : PLMainTabBarController
 
 @property (nonatomic, strong) UIImage *coverImage;
 

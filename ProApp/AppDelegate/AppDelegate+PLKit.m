@@ -11,10 +11,16 @@
 @implementation AppDelegate (PLKit)
 
 - (void)initPLKit {
-    // pili 短视频日志系统
+    // 短视频
     [PLShortVideoKitEnv initEnv];
     [PLShortVideoKitEnv setLogLevel:PLShortVideoLogLevelDebug];
     [PLShortVideoKitEnv enableFileLogging];
+    
+    // 直播
+    [PLStreamingEnv initEnv];
+    [PLStreamingEnv setLogLevel:PLStreamLogLevelDebug];
+    [PLStreamingEnv enableFileLogging];    
+    NSLog(@"version is %@", [PLMediaStreamingSession versionInfo]);
     
     // TuSDK mark - 初始化 TuSDK
     [TuSDK setLogLevel:lsqLogLevelDEBUG]; // 可选: 设置日志输出级别 (默认不输出)

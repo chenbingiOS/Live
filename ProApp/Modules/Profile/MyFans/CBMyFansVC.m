@@ -40,8 +40,7 @@ static NSString *const FansCellID = @"FansCellID";
             NSDictionary *data = [responseObject valueForKey:@"data"];
             self.cellDataAry = [NSArray modelArrayWithClass:[CBAttentionVO class] json:data].mutableCopy;
             [self.tableView reloadData];
-        }
-        
+        }        
         [self.tableView.mj_header endRefreshing];
         [self.tableView.mj_footer endRefreshing];
         [self.tableView ly_endLoading];

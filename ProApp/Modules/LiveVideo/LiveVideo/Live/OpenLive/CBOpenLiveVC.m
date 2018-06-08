@@ -70,12 +70,13 @@
     @weakify(self);
     [self dismissViewControllerAnimated:YES completion:^{
         @strongify(self);
-        AppDelegate *delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-        CBTBC *tbc = (CBTBC *)(delegate.rootVC);
-        CBBeginLiveVC *vc = [CBBeginLiveVC new];
-        vc.coverImage = self.coverImageView.image;
-        [tbc.selectedViewController presentViewController:vc animated:YES completion:nil];
+        
     }];
+    AppDelegate *delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    CBTBC *tbc = (CBTBC *)(delegate.rootVC);
+    CBBeginLiveVC *vc = [CBBeginLiveVC new];
+    vc.coverImage = self.coverImageView.image;
+    [tbc.selectedViewController presentViewController:vc animated:YES completion:nil];
 }
 
 @end
