@@ -31,6 +31,8 @@ pod 'ZWAppStore'
 pod 'WebViewJavascriptBridge'
 # 文本提示框
 pod 'UITextView+Placeholder'
+# 添加空间block
+pod 'BlocksKit'
 ##########################################################
 # 直播工具
 pod 'PLPlayerKit'                           # 播放

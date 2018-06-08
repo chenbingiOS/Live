@@ -14,6 +14,21 @@ PODS:
   - AFNetworking/Serialization (3.2.1)
   - AFNetworking/UIKit (3.2.1):
     - AFNetworking/NSURLSession
+  - BlocksKit (2.2.5):
+    - BlocksKit/All (= 2.2.5)
+  - BlocksKit/All (2.2.5):
+    - BlocksKit/Core
+    - BlocksKit/DynamicDelegate
+    - BlocksKit/MessageUI
+    - BlocksKit/UIKit
+  - BlocksKit/Core (2.2.5)
+  - BlocksKit/DynamicDelegate (2.2.5)
+  - BlocksKit/MessageUI (2.2.5):
+    - BlocksKit/Core
+    - BlocksKit/DynamicDelegate
+  - BlocksKit/UIKit (2.2.5):
+    - BlocksKit/Core
+    - BlocksKit/DynamicDelegate
   - Bugly (2.5.0)
   - HappyDNS (0.3.14)
   - HyphenateLite (3.4.1)
@@ -65,6 +80,7 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking
+  - BlocksKit
   - Bugly
   - HyphenateLite
   - IQKeyboardManager
@@ -93,6 +109,7 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - AFNetworking
+    - BlocksKit
     - Bugly
     - HappyDNS
     - HyphenateLite
@@ -121,6 +138,7 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
+  BlocksKit: 7f422b971407001178d181a43b99014ea2591fe6
   Bugly: 3ca9f255c01025582df26f9222893b383c7e4b4e
   HappyDNS: dc6a164ee81979093123c241c6353bcf0218add6
   HyphenateLite: 78ade2be82aa9c00f923dc370f16f63e6fcdf42d
@@ -147,6 +165,6 @@ SPEC CHECKSUMS:
   ZWAppStore: 396b081870b308193315be011555d063b08278b4
   ZYCornerRadius: f0af817be7805b5c63d793042ca7a03f81e14069
 
-PODFILE CHECKSUM: a3d7b88c417b604fb3ce9874af61e41dce39c4f0
+PODFILE CHECKSUM: 1801ab82a5dcc803c8616eb345874992930e679d
 
 COCOAPODS: 1.5.2
