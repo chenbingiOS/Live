@@ -37,7 +37,7 @@
             vc = [CBRealNameVC new];
             [(CBRealNameVC *)vc setupUICloseItem];
         } else {
-               // 是否主播
+            // 是否主播
             if ([[CBLiveUserConfig myProfile].is_host isEqualToString:@"0"]) {
                 vc = [CBApplyAnchorVC new];
             } else {
