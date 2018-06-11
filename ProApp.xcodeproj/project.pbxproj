@@ -169,6 +169,7 @@
 		544B8F8C20CA118E00FC9CFE /* PLPermissionRequestor.m in Sources */ = {isa = PBXBuildFile; fileRef = 544B8F8720CA118D00FC9CFE /* PLPermissionRequestor.m */; };
 		544B8F9020CA220800FC9CFE /* CBBeginLiveView.m in Sources */ = {isa = PBXBuildFile; fileRef = 544B8F8F20CA220800FC9CFE /* CBBeginLiveView.m */; };
 		544B8F9220CA221300FC9CFE /* CBBeginLiveView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 544B8F9120CA221300FC9CFE /* CBBeginLiveView.xib */; };
+		544B8F9F20CA813C00FC9CFE /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 544B8F9E20CA813B00FC9CFE /* Info.plist */; };
 		544B96E320C67E81004D0DB0 /* CBFillInfoWebVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 544B96E220C67E81004D0DB0 /* CBFillInfoWebVC.m */; };
 		54520AF020BFD2BB005B787E /* NSObject+Copy.m in Sources */ = {isa = PBXBuildFile; fileRef = 54520AEB20BFD2BA005B787E /* NSObject+Copy.m */; };
 		54520AF120BFD2BB005B787E /* NSObject+Coding.m in Sources */ = {isa = PBXBuildFile; fileRef = 54520AEC20BFD2BA005B787E /* NSObject+Coding.m */; };
@@ -617,7 +618,6 @@
 		0737ED8E2074A33600A89CC0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0737ED902074A33600A89CC0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0737ED932074A33600A89CC0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		0737ED952074A33600A89CC0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0737ED962074A33600A89CC0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		0745F1EA20A9691000052FF6 /* CBHomeMenuView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBHomeMenuView.h; sourceTree = "<group>"; };
 		0745F1EB20A9691000052FF6 /* CBHomeMenuView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBHomeMenuView.m; sourceTree = "<group>"; };
@@ -998,6 +998,7 @@
 		544B8F8E20CA220800FC9CFE /* CBBeginLiveView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBBeginLiveView.h; sourceTree = "<group>"; };
 		544B8F8F20CA220800FC9CFE /* CBBeginLiveView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBBeginLiveView.m; sourceTree = "<group>"; };
 		544B8F9120CA221300FC9CFE /* CBBeginLiveView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CBBeginLiveView.xib; sourceTree = "<group>"; };
+		544B8F9E20CA813B00FC9CFE /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		544B96E120C67E81004D0DB0 /* CBFillInfoWebVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBFillInfoWebVC.h; sourceTree = "<group>"; };
 		544B96E220C67E81004D0DB0 /* CBFillInfoWebVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBFillInfoWebVC.m; sourceTree = "<group>"; };
 		54520AE720BFD2BA005B787E /* NSObject+Class.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Class.h"; sourceTree = "<group>"; };
@@ -2369,8 +2370,8 @@
 				07B6688C208D6A0600AA5B62 /* Profile */,
 				07737DDE208F012A009EB9E6 /* MyAttention */,
 				07737DDD208F00EF009EB9E6 /* MyFans */,
-				072DC58F2091766A00F693E8 /* Currency */,
 				545494B320C8D01900E96C0A /* MyVideo */,
+				072DC58F2091766A00F693E8 /* Currency */,
 				07B6688D208D6A5500AA5B62 /* RealName */,
 				5467016120C0F6AF00519860 /* EditUserInfo */,
 				072DC595209183CD00F693E8 /* Setting */,
@@ -2488,10 +2489,10 @@
 				07CF5FBF207AFDB10087A5E2 /* ViewController.m */,
 				0737ED8D2074A33600A89CC0 /* Main.storyboard */,
 				0737ED902074A33600A89CC0 /* Assets.xcassets */,
-				0737ED922074A33600A89CC0 /* LaunchScreen.storyboard */,
-				0737ED952074A33600A89CC0 /* Info.plist */,
-				0737ED962074A33600A89CC0 /* main.m */,
 				079AAE5F2079BE3C00674A92 /* ProApp.pch */,
+				0737ED922074A33600A89CC0 /* LaunchScreen.storyboard */,
+				544B8F9E20CA813B00FC9CFE /* Info.plist */,
+				0737ED962074A33600A89CC0 /* main.m */,
 			);
 			name = "Supporting File";
 			sourceTree = "<group>";
@@ -2819,6 +2820,24 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		544B8F9320CA718E00FC9CFE /* Ctrl */ = {
+			isa = PBXGroup;
+			children = (
+				545494C720C9322700E96C0A /* CBShortVideoVC.h */,
+				545494C820C9322700E96C0A /* CBShortVideoVC.m */,
+				545494C420C931A800E96C0A /* CBPlayVideoVC.h */,
+				545494C520C931A800E96C0A /* CBPlayVideoVC.m */,
+			);
+			path = Ctrl;
+			sourceTree = "<group>";
+		};
+		544B8F9420CA719900FC9CFE /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		54520AE620BFD2BA005B787E /* NSObject */ = {
 			isa = PBXGroup;
 			children = (
@@ -2904,10 +2923,8 @@
 		545494C320C9300D00E96C0A /* PlayVideo */ = {
 			isa = PBXGroup;
 			children = (
-				545494C720C9322700E96C0A /* CBShortVideoVC.h */,
-				545494C820C9322700E96C0A /* CBShortVideoVC.m */,
-				545494C420C931A800E96C0A /* CBPlayVideoVC.h */,
-				545494C520C931A800E96C0A /* CBPlayVideoVC.m */,
+				544B8F9320CA718E00FC9CFE /* Ctrl */,
+				544B8F9420CA719900FC9CFE /* View */,
 			);
 			path = PlayVideo;
 			sourceTree = "<group>";
@@ -3546,8 +3563,8 @@
 				0737ED802074A33600A89CC0 /* Sources */,
 				0737ED812074A33600A89CC0 /* Frameworks */,
 				0737ED822074A33600A89CC0 /* Resources */,
-				240B809F96843B5A76F5DDF1 /* [CP] Embed Pods Frameworks */,
-				55638134CDB7372B6502E951 /* [CP] Copy Pods Resources */,
+				8DF1A79AC6B4BC50CD772762 /* [CP] Embed Pods Frameworks */,
+				DE78282A624D10752DF55D1C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -3826,6 +3843,7 @@
 				54A76CA520B7E0E10034D5A2 /* video_style_default_btn_flash_off@2x.png in Resources */,
 				54A76C6720B7E0E10034D5A2 /* video_style_default_btn_sticker_off@3x.png in Resources */,
 				54A76CF020B7E0E10034D5A2 /* style_default_btn_back_selected@3x.png in Resources */,
+				544B8F9F20CA813C00FC9CFE /* Info.plist in Resources */,
 				0791588B208849C0007CA2E0 /* CBProfileVC.xib in Resources */,
 				0745F1EE20A9692200052FF6 /* CBHomeMenuView.xib in Resources */,
 				54A76CD320B7E0E10034D5A2 /* lsq_filter_thumb_ruddy.jpg in Resources */,
@@ -3959,7 +3977,25 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		240B809F96843B5A76F5DDF1 /* [CP] Embed Pods Frameworks */ = {
+		5C16E77A136DF7D80F361A3E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ProApp-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8DF1A79AC6B4BC50CD772762 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -3983,14 +4019,13 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ProApp/Pods-ProApp-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		55638134CDB7372B6502E951 /* [CP] Copy Pods Resources */ = {
+		DE78282A624D10752DF55D1C /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-ProApp/Pods-ProApp-resources.sh",
-				"${PODS_ROOT}/IQKeyboardManager/IQKeyboardManager/Resources/IQKeyboardManager.bundle",
 				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
 				"${PODS_ROOT}/ShareSDK3/SDK/ShareSDK/Support/Required/ShareSDK.bundle",
 				"${PODS_ROOT}/ShareSDK3/SDK/ShareSDK/Support/PlatformSDK/SinaWeiboSDK/WeiboSDK.bundle",
@@ -4000,7 +4035,6 @@
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/IQKeyboardManager.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MJRefresh.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ShareSDK.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/WeiboSDK.bundle",
@@ -4011,24 +4045,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ProApp/Pods-ProApp-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		5C16E77A136DF7D80F361A3E /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-ProApp-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
