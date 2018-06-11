@@ -7,30 +7,42 @@
 //
 
 #import "CBFillInfoWebVC.h"
+#import "WebViewJavascriptBridge.h"
+#import <WebKit/WebKit.h>
 
-@interface CBFillInfoWebVC ()
-
+@interface CBFillInfoWebVC () <WKNavigationDelegate>
+@property WebViewJavascriptBridge* bridge;
 @end
 
 @implementation CBFillInfoWebVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = @"实名认证";
+    self.bridge = [WebViewJavascriptBridge bridgeForWebView:self.wkWebView];
+    [self.bridge setWebViewDelegate:self];
+    @weakify(self);
+    [self.bridge registerHandler:@"realNameCallBack" handler:^(id data, WVJBResponseCallback responseCallback) {
+        @strongify(self);
+        NSDictionary *dictData = data;
+        NSNumber *code = dictData[@"code"];
+        if ([code isEqualToNumber:@200]) {
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [self.navigationController popViewControllerAnimated:YES];
+            });
+        } else {
+            NSString *descrp = dictData[@"descrp"];
+            [MBProgressHUD showAutoMessage:descrp];
+        }
+        responseCallback(data);
+    }];
+    NSString *url = [urlH5PresonCer stringByAppendingFormat:@"?token=%@", [CBLiveUserConfig getOwnToken]];
+    [self webViewloadRequestWithURLString:url];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

@@ -21,10 +21,21 @@
 
 @implementation CBRealNameVC
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self httpGetUserInfoWithToken:[CBLiveUserConfig getOwnToken]];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"实名认证";
     
+    [self relaodData];
+    
+    self.notYetRealNameView.hidden = NO;
+}
+
+- (void)relaodData {
     if ([[CBLiveUserConfig myProfile].is_truename isEqualToString:@"0"]) {
         self.notYetRealNameView.hidden = NO;
     } else if ([[CBLiveUserConfig myProfile].is_truename isEqualToString:@"1"]) {
@@ -40,10 +51,7 @@
 }
 
 - (IBAction)startCertification:(id)sender {
-    CBFillInfoWebVC *vc = [CBFillInfoWebVC new];
-    vc.title = @"实名认证";
-    NSString *url = [urlH5PresonCer stringByAppendingFormat:@"?token=%@", [CBLiveUserConfig getOwnToken]];
-    [vc webViewloadRequestWithURLString:url];
+    CBFillInfoWebVC *vc = [CBFillInfoWebVC new];    
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -65,6 +73,22 @@
         _customBackBarItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
     }
     return _customBackBarItem;
+}
+
+- (void)httpGetUserInfoWithToken:(NSString *)token {
+    NSString *url = urlGetUserInfo;
+    NSDictionary *param = @{@"token": token};
+    [PPNetworkHelper POST:url parameters:param success:^(id responseObject) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        NSNumber *code = [responseObject valueForKey:@"code"];
+        if ([code isEqualToNumber:@200]) {
+            NSDictionary *info = [responseObject valueForKey:@"data"];
+            CBLiveUser *userInfo = [[CBLiveUser alloc] initWithDic:info];
+            [CBLiveUserConfig saveProfile:userInfo];
+            [self relaodData];
+        }
+    } failure:^(NSError *error) {
+    }];
 }
 
 @end

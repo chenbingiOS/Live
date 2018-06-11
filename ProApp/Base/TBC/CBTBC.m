@@ -32,19 +32,18 @@
     [self.homeMenuPopView.homeMenuView.liveButton addBlockForControlEvents:UIControlEventTouchUpInside block:^(id  _Nonnull sender) {
         @strongify(self);
         UIViewController *vc = nil;
-//        // 实名认证
-//        if ([[CBLiveUserConfig myProfile].is_truename isEqualToString:@"0"]) {
-//            vc = [CBRealNameVC new];
-//            [(CBRealNameVC *)vc setupUICloseItem];
-//        } else {
-//               // 是否主播
-//            if ([[CBLiveUserConfig myProfile].is_host isEqualToString:@"0"]) {
-//                vc = [CBApplyAnchorVC new];
-//            } else {
-//                vc = [CBOpenLiveVC new];
-//            }
-//        }
-        vc = [CBOpenLiveVC new];
+        // 实名认证
+        if ([[CBLiveUserConfig myProfile].is_truename isEqualToString:@"0"]) {
+            vc = [CBRealNameVC new];
+            [(CBRealNameVC *)vc setupUICloseItem];
+        } else {
+               // 是否主播
+            if ([[CBLiveUserConfig myProfile].is_host isEqualToString:@"0"]) {
+                vc = [CBApplyAnchorVC new];
+            } else {
+                vc = [CBOpenLiveVC new];
+            }
+        }
         CBNVC *nvc = [[CBNVC alloc] initWithRootViewController:vc];
         [self.selectedViewController presentViewController:nvc animated:YES completion:^{
             [self.homeMenuPopView hide];

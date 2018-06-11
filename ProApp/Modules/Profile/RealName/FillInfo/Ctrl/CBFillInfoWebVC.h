@@ -6,6 +6,7 @@
 //  Copyright © 2018年 ChenBing. All rights reserved.
 //
 
+#import <UIKit/UIKit.h>
 #import "CBBaseWebViewVC.h"
 
 @interface CBFillInfoWebVC : CBBaseWebViewVC

@@ -17,7 +17,7 @@
 #define getHostLive @"http://live.9158.com/Fans/GetHotLive?page=%ld"
 
 // 用户协议
-#define urlH5Policy         @"http://protocol.gttead.cn"
+#define urlH5Policy         @"http://app.zhibo.gttead.cn/protocol.html"
 // 关于我们
 #define urlH5AboutUs        @"http://zhibo.gttead.cn"
 // 分享网页

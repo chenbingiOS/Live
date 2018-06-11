@@ -10,7 +10,6 @@
 #import "CBProfileVC.h"
 #import "CBMyAttentionVC.h"
 #import "CBMyFansVC.h"
-#import "CBCurrencyVC.h"
 #import "CBRealNameVC.h"
 #import "CBAccountVC.h"
 #import "CBGiftPackageVC.h"
@@ -18,6 +17,7 @@
 #import "CBNVC.h"
 #import "CBEditUserInfoVC.h"
 #import "CBMyVideoVC.h"
+#import "CBCurrencyVC.h"
 
 // config
 #import "CBLiveSettingConfig.h"

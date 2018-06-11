@@ -7,14 +7,11 @@
 //
 
 #import "CBBaseWebViewVC.h"
-#import <WebKit/WKWebView.h>
-#import <WebKit/WebKit.h>
 
 static void *XFWkwebBrowserContext = &XFWkwebBrowserContext;
 
-@interface CBBaseWebViewVC ()<WKNavigationDelegate,WKUIDelegate,WKScriptMessageHandler,UINavigationControllerDelegate,UINavigationBarDelegate>
+@interface CBBaseWebViewVC ()<WKNavigationDelegate, WKUIDelegate, UINavigationControllerDelegate, UINavigationBarDelegate>
 
-@property (nonatomic, strong) WKWebView *wkWebView;
 //设置加载进度条
 @property (nonatomic, strong) UIProgressView *progressView;
 @property (nonatomic, assign) CGFloat progress;
@@ -31,17 +28,18 @@ static void *XFWkwebBrowserContext = &XFWkwebBrowserContext;
 
 @implementation CBBaseWebViewVC
 
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [self deleteWebCache];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     self.view.backgroundColor = [UIColor bgColor];
-    
     //添加到主控制器上
     [self.view addSubview:self.wkWebView];
-
     //添加进度条
     [self.view insertSubview:self.progressView aboveSubview:self.wkWebView];
-    
     //添加右边刷新按钮
     UIBarButtonItem *roadLoad = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(roadLoadClicked)];
     self.navigationItem.rightBarButtonItem = roadLoad;
@@ -69,13 +67,10 @@ static void *XFWkwebBrowserContext = &XFWkwebBrowserContext;
 
 - (void)webViewloadRequestWithURLString:(NSString *)URLSting {
     self.URLString = URLSting;
-//    NSURLRequest * Request_zsj = [NSURLRequest requestWithURL:[NSURL URLWithString:URLSting] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
-    NSURLRequest *Request_zsj = [NSURLRequest requestWithURL:[NSURL URLWithString:URLSting]];
+    NSURLRequest * Request_zsj = [NSURLRequest requestWithURL:[NSURL URLWithString:URLSting] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
     //加载网页
     [self.wkWebView loadRequest:Request_zsj];
 }
-
-#pragma mark ================ 自定义返回/关闭按钮 ================
 
 - (void)updateNavigationItems{
     if (self.wkWebView.canGoBack) {
@@ -88,11 +83,47 @@ static void *XFWkwebBrowserContext = &XFWkwebBrowserContext;
     }
 }
 
+- (void)deleteWebCache {
+    if ([[UIDevice currentDevice].systemVersion floatValue] >= 9.0) {
+        NSSet *websiteDataTypes = [NSSet setWithArray:@[
+                                                        WKWebsiteDataTypeDiskCache,
+                                                        WKWebsiteDataTypeOfflineWebApplicationCache,
+                                                        WKWebsiteDataTypeMemoryCache,
+                                                        WKWebsiteDataTypeLocalStorage,
+                                                        WKWebsiteDataTypeCookies,
+                                                        WKWebsiteDataTypeSessionStorage,
+                                                        WKWebsiteDataTypeIndexedDBDatabases,
+                                                        WKWebsiteDataTypeWebSQLDatabases
+                                                        ]];
+        //你可以选择性的删除一些你需要删除的文件 or 也可以直接全部删除所有缓存的type
+        //NSSet *websiteDataTypes = [WKWebsiteDataStore allWebsiteDataTypes];
+        NSDate *dateFrom = [NSDate dateWithTimeIntervalSince1970:0];
+        [[WKWebsiteDataStore defaultDataStore] removeDataOfTypes:websiteDataTypes
+                                                   modifiedSince:dateFrom completionHandler:^{
+                                                       // code
+                                                   }];
+    } else {
+        NSString *libraryDir = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory,
+                                                                   NSUserDomainMask, YES)[0];
+        NSString *bundleId  =  [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleIdentifier"];
+        NSString *webkitFolderInLib = [NSString stringWithFormat:@"%@/WebKit",libraryDir];
+        NSString *webKitFolderInCaches = [NSString stringWithFormat:@"%@/Caches/%@/WebKit",libraryDir,bundleId];
+        NSString *webKitFolderInCachesfs = [NSString stringWithFormat:@"%@/Caches/%@/fsCachedData",libraryDir,bundleId];
+        
+        NSError *error;
+        /* iOS8.0 WebView Cache的存放路径 */
+        [[NSFileManager defaultManager] removeItemAtPath:webKitFolderInCaches error:&error];
+        [[NSFileManager defaultManager] removeItemAtPath:webkitFolderInLib error:nil];
+        
+        /* iOS7.0 WebView Cache的存放路径 */
+        [[NSFileManager defaultManager] removeItemAtPath:webKitFolderInCachesfs error:&error];
+    }
+}
+
 //请求链接处理
 - (void)pushCurrentSnapshotViewWithRequest:(NSURLRequest*)request{
     //    NSLog(@"push with request %@",request);
-    NSURLRequest* lastRequest = (NSURLRequest*)[[self.snapShotsArray lastObject] objectForKey:@"request"];
-    
+    NSURLRequest *lastRequest = (NSURLRequest*)[[self.snapShotsArray lastObject] objectForKey:@"request"];
     //如果url是很奇怪的就不push
     if ([request.URL.absoluteString isEqualToString:@"about:blank"]) {
         //        NSLog(@"about blank!! return");
@@ -103,10 +134,17 @@ static void *XFWkwebBrowserContext = &XFWkwebBrowserContext;
         return;
     }
     UIView* currentSnapShotView = [self.wkWebView snapshotViewAfterScreenUpdates:YES];
-    [self.snapShotsArray addObject:@{@"request":request,@"snapShotView":currentSnapShotView}];
+    [self.snapShotsArray addObject:@{@"request":request, @"snapShotView":currentSnapShotView}];
 }
 
 #pragma mark ================ WKNavigationDelegate ================
+
+//开始加载
+- (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(WKNavigation *)navigation{
+    //开始加载的时候，让加载进度条显示
+    self.progressView.hidden = NO;
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+}
 
 //这个是网页加载完成，导航的变化
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation{
@@ -119,24 +157,27 @@ static void *XFWkwebBrowserContext = &XFWkwebBrowserContext;
     [self updateNavigationItems];
 }
 
-//开始加载
-- (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(WKNavigation *)navigation{
-    //开始加载的时候，让加载进度条显示
-    self.progressView.hidden = NO;
+// 内容加载失败时候调用
+- (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(WKNavigation *)navigation withError:(NSError *)error{
+
+}
+
+- (void)webView:(WKWebView *)webView decidePolicyForNavigationResponse:(WKNavigationResponse *)navigationResponse decisionHandler:(void (^)(WKNavigationResponsePolicy))decisionHandler {
+    decisionHandler(WKNavigationResponsePolicyAllow);
+}
+
+- (void)webView:(WKWebView *)webView didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition, NSURLCredential *))completionHandler {
+    completionHandler(NSURLSessionAuthChallengePerformDefaultHandling , nil);
 }
 
 //内容返回时调用
-- (void)webView:(WKWebView *)webView didCommitNavigation:(WKNavigation *)navigation{}
+- (void)webView:(WKWebView *)webView didCommitNavigation:(WKNavigation *)navigation {}
 
 //服务器请求跳转的时候调用
-- (void)webView:(WKWebView *)webView didReceiveServerRedirectForProvisionalNavigation:(WKNavigation *)navigation{}
+- (void)webView:(WKWebView *)webView didReceiveServerRedirectForProvisionalNavigation:(WKNavigation *)navigation {}
 
 //服务器开始请求的时候调用
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler {
-    //    NSString* orderInfo = [[AlipaySDK defaultService]fetchOrderInfoFromH5PayUrl:[navigationAction.request.URL absoluteString]];
-    //    if (orderInfo.length > 0) {
-    //        [self payWithUrlOrder:orderInfo];
-    //    }
     switch (navigationAction.navigationType) {
         case WKNavigationTypeLinkActivated: {
             [self pushCurrentSnapshotViewWithRequest:navigationAction.request];
@@ -167,30 +208,22 @@ static void *XFWkwebBrowserContext = &XFWkwebBrowserContext;
     decisionHandler(WKNavigationActionPolicyAllow);
 }
 
-// 内容加载失败时候调用
-- (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(WKNavigation *)navigation withError:(NSError *)error{
-    NSLog(@"页面加载超时");
-}
-
 //跳转失败的时候调用
 - (void)webView:(WKWebView *)webView didFailNavigation:(WKNavigation *)navigation withError:(NSError *)error{}
 
 //进度条
 - (void)webViewWebContentProcessDidTerminate:(WKWebView *)webView{}
 
-#pragma mark ================ WKUIDelegate ================
-
-// 获取js 里面的提示
-- (void)webView:(WKWebView *)webView runJavaScriptAlertPanelWithMessage:(NSString *)message initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(void))completionHandler{
+#pragma mark - <WKUIDelegate>
+- (void)webView:(WKWebView *)webView runJavaScriptAlertPanelWithMessage:(NSString *)message initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(void))completionHandler {
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:message preferredStyle:UIAlertControllerStyleAlert];
     [alert addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         completionHandler();
     }]];
-    [self presentViewController:alert animated:YES completion:NULL];
+    [[self viewController] presentViewController:alert animated:YES completion:NULL];
 }
 
-// js 信息的交流
-- (void)webView:(WKWebView *)webView runJavaScriptConfirmPanelWithMessage:(NSString *)message initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completionHandler{
+- (void)webView:(WKWebView *)webView runJavaScriptConfirmPanelWithMessage:(NSString *)message initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL result))completionHandler {
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:message preferredStyle:UIAlertControllerStyleAlert];
     [alert addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         completionHandler(YES);
@@ -198,19 +231,19 @@ static void *XFWkwebBrowserContext = &XFWkwebBrowserContext;
     [alert addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
         completionHandler(NO);
     }]];
-    [self presentViewController:alert animated:YES completion:NULL];
+    [[self viewController] presentViewController:alert animated:YES completion:NULL];
 }
 
-// 交互。可输入的文本。
-- (void)webView:(WKWebView *)webView runJavaScriptTextInputPanelWithPrompt:(NSString *)prompt defaultText:(NSString *)defaultText initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(NSString * _Nullable))completionHandler{
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"textinput" message:@"JS调用输入框" preferredStyle:UIAlertControllerStyleAlert];
+- (void)webView:(WKWebView *)webView runJavaScriptTextInputPanelWithPrompt:(NSString *)prompt defaultText:(nullable NSString *)defaultText initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(NSString * __nullable result))completionHandler {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:prompt message:nil preferredStyle:UIAlertControllerStyleAlert];
     [alert addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
-        textField.textColor = [UIColor redColor];
+        textField.textColor = [UIColor blackColor];
+        textField.placeholder = defaultText;
     }];
     [alert addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         completionHandler([[alert.textFields lastObject] text]);
     }]];
-    [self presentViewController:alert animated:YES completion:NULL];
+    [[self viewController] presentViewController:alert animated:YES completion:NULL];
 }
 
 // KVO监听进度条
@@ -221,21 +254,6 @@ static void *XFWkwebBrowserContext = &XFWkwebBrowserContext;
         [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
     }
 }
-
-#pragma mark ================ WKScriptMessageHandler ================
-
-//拦截执行网页中的JS方法
-- (void)userContentController:(WKUserContentController *)userContentController didReceiveScriptMessage:(WKScriptMessage *)message{
-    //服务器固定格式写法 window.webkit.messageHandlers.名字.postMessage(内容);
-    //客户端写法 message.name isEqualToString:@"名字"]
-    if ([message.name isEqualToString:@"WXPay"]) {
-        NSLog(@"%@", message.body);
-        //调用微信支付方法
-        //        [self WXPayWithParam:message.body];
-    }
-}
-
-#pragma mark ================ 懒加载 ================
 
 - (void)setProgress:(CGFloat)progress {
     _progress = progress;
@@ -248,6 +266,16 @@ static void *XFWkwebBrowserContext = &XFWkwebBrowserContext;
             self.progressView.progress = 0;
         }];
     }
+}
+
+- (UIViewController*)viewController {
+    for (UIView* next = [self.view superview]; next; next = next.superview) {
+        UIResponder* nextResponder = [next nextResponder];
+        if ([nextResponder isKindOfClass:[UIViewController class]]) {
+            return (UIViewController*)nextResponder;
+        }
+    }
+    return nil;
 }
 
 - (NSString *)javascriptOfCSS {
@@ -263,50 +291,40 @@ static void *XFWkwebBrowserContext = &XFWkwebBrowserContext;
 
 - (WKWebView *)wkWebView{
     if (!_wkWebView) {
-        //设置网页的配置文件
-        WKWebViewConfiguration * Configuration = [[WKWebViewConfiguration alloc]init];
-        //允许视频播放
-        Configuration.allowsAirPlayForMediaPlayback = YES;
-        // 允许在线播放
-        Configuration.allowsInlineMediaPlayback = YES;
-        // 允许可以与网页交互，选择视图
-        Configuration.selectionGranularity = YES;
-        // web内容处理池
-        Configuration.processPool = [[WKProcessPool alloc] init];
+        WKWebViewConfiguration *configuration = [[WKWebViewConfiguration alloc] init];  //设置网页的配置文件
+        configuration.allowsAirPlayForMediaPlayback = YES;              //允许视频播放
+        configuration.allowsInlineMediaPlayback = YES;                  // 允许在线播放
+        configuration.suppressesIncrementalRendering = YES;             // 是否支持记忆读取
+        configuration.selectionGranularity = YES;                       // 允许可以与网页交互，选择视图
+        configuration.processPool = [[WKProcessPool alloc] init]; // web内容处理池
+        
+        WKUserScript *noneSelectScript = [[WKUserScript alloc] initWithSource:[self javascriptOfCSS] injectionTime:WKUserScriptInjectionTimeAtDocumentEnd forMainFrameOnly:YES];    //自定义配置,一般用于 js调用oc方法(OC拦截URL中的数据做自定义操作)
+        
+        WKUserContentController *userContentController = [[WKUserContentController alloc] init];
+        [userContentController addUserScript:noneSelectScript];
+        configuration.userContentController = userContentController;    // 允许用户更改网页的设置
         
         // 配置
         WKPreferences *preferences = [WKPreferences new];
         preferences.javaScriptCanOpenWindowsAutomatically = YES;
         preferences.minimumFontSize = 13; // 最小字好
-        Configuration.preferences = preferences;
-
-        //自定义配置,一般用于 js调用oc方法(OC拦截URL中的数据做自定义操作)
-        WKUserContentController * UserContentController = [[WKUserContentController alloc]init];
-        WKUserScript *noneSelectScript = [[WKUserScript alloc] initWithSource:[self javascriptOfCSS] injectionTime:WKUserScriptInjectionTimeAtDocumentEnd forMainFrameOnly:YES];
-        [UserContentController addUserScript:noneSelectScript];
-        // 添加消息处理，注意：self指代的对象需要遵守WKScriptMessageHandler协议，结束时需要移除
-        [UserContentController addScriptMessageHandler:self name:@"WXPay"];
-        // 是否支持记忆读取
-        Configuration.suppressesIncrementalRendering = YES;
-        // 允许用户更改网页的设置
-        Configuration.userContentController = UserContentController;
+        configuration.preferences = preferences;
         
         // WebView
         CGFloat height = kScreenHeight - SafeAreaTopHeight;
-        if (iPhoneX) height -= SafeAreaBottomHeight;        
-        _wkWebView = [[WKWebView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, height) configuration:Configuration];
+        if (iPhoneX) height -= SafeAreaBottomHeight;
+        _wkWebView = [[WKWebView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, height) configuration:configuration];
         _wkWebView.backgroundColor = [UIColor bgColor];
         _wkWebView.scrollView.bounces = NO;
+        _wkWebView.allowsBackForwardNavigationGestures = YES;   //开启手势触摸 // 设置 可以前进 和 后退
         // 设置代理
         _wkWebView.navigationDelegate = self;
-        _wkWebView.UIDelegate = self;        
+        _wkWebView.UIDelegate = self;
+        
         //kvo 添加进度监控
         [_wkWebView addObserver:self forKeyPath:NSStringFromSelector(@selector(estimatedProgress)) options:0 context:XFWkwebBrowserContext];
-        //开启手势触摸
-        _wkWebView.allowsBackForwardNavigationGestures = YES;
-        // 设置 可以前进 和 后退
-        //适应你设定的尺寸
-        [_wkWebView sizeToFit];
+        
+        [_wkWebView sizeToFit]; //适应你设定的尺寸
     }
     return _wkWebView;
 }
@@ -356,15 +374,12 @@ static void *XFWkwebBrowserContext = &XFWkwebBrowserContext;
     return _snapShotsArray;
 }
 
-- (void)viewWillDisappear:(BOOL)animated{
-    [self.wkWebView.configuration.userContentController removeScriptMessageHandlerForName:@"WXPay"];
-    [self.wkWebView setNavigationDelegate:nil];
-    [self.wkWebView setUIDelegate:nil];
-}
-
 //注意，观察的移除
 - (void)dealloc{
+    [self.wkWebView setNavigationDelegate:nil];
+    [self.wkWebView setUIDelegate:nil];
     [self.wkWebView removeObserver:self forKeyPath:NSStringFromSelector(@selector(estimatedProgress))];
+    [self deleteWebCache];
 }
 
 @end

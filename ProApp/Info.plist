@@ -259,7 +259,7 @@
 	<key>Privacy - Calendars Usage Description </key>
 	<string>访问日历</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>蜂窝TV初见需要使用相册来获取所需的照片</string>
+	<string>蜂窝TV需要使用相册来获取所需的照片</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>audio</string>

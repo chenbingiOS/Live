@@ -7,9 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <WebKit/WKWebView.h>
+#import <WebKit/WebKit.h>
 
 @interface CBBaseWebViewVC : UIViewController
 
+@property (nonatomic, strong) WKWebView *wkWebView;
 - (void)webViewloadRequestWithURLString:(NSString *)URLSting;
 - (void)backViewCtrl;
 
