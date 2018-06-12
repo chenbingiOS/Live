@@ -62,10 +62,6 @@
     if ([ShareSDK isClientInstalled:SSDKPlatformTypeQQ]) {
         self.qqBtn.hidden = NO;
     }
-    
-    self.wxBtn.hidden = YES;
-    self.wbBtn.hidden = YES;
-    self.qqBtn.hidden = YES;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -159,74 +155,82 @@
 - (IBAction)actionThirdLogin:(UIButton *)sender {
     [self.view endEditing:YES];
     if (sender.tag == 11) {
-        [self thirdLogin:@"wx" platforms:SSDKPlatformTypeWechat];
+        [self thirdLoginByPlatforms:SSDKPlatformTypeWechat];
     } else if (sender.tag == 22) {
-        [self thirdLogin:@"wb" platforms:SSDKPlatformTypeSinaWeibo];
+        [self thirdLoginByPlatforms:SSDKPlatformTypeSinaWeibo];
     } else if (sender.tag == 33) {
-        [self thirdLogin:@"qq" platforms:SSDKPlatformTypeQQ];
+        [self thirdLoginByPlatforms:SSDKPlatformTypeQQ];
     }
 }
 
-- (void)thirdLogin:(NSString *)types platforms:(SSDKPlatformType)platform{
+- (void)thirdLoginByPlatforms:(SSDKPlatformType)platform{
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [SSEThirdPartyLoginHelper loginByPlatform:platform onUserSync:^(SSDKUser *user, SSEUserAssociateHandler associateHandler) {
-        [self requestLogin:user loginType:types];
+        [self requestLogin:user loginType:platform];
     } onLoginResult:^(SSDKResponseState state, SSEBaseUser *user, NSError *error) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
-        if (error) {
-            [MBProgressHUD showAutoMessage:@"登录失败"];
-        }
+        [MBProgressHUD showAutoMessage:@"登录失败"];
     }];
 }
 
-- (void)requestLogin:(SSDKUser *)user loginType:(NSString *)LoginType {
-    NSString *icon = nil;
-    if ([LoginType isEqualToString:@"qq"]) {
-        icon = [user.rawData valueForKey:@"figureurl_qq_2"];
-    } else {
-        icon = user.icon;
-    }
-    if (!icon) {
-        [MBProgressHUD showAutoMessage:@"未获取到授权，请重试"];
-        return;
-    }
-    
-    NSString *url = urlUserLoginByThird;
-    NSDictionary *parma = @{ @"openid": [user.uid stringByURLEncode],
-                             @"type": [LoginType stringByURLEncode],
-                             @"nicename": [user.nickname stringByURLEncode],
-                             @"avatar": [icon stringByURLEncode],
-                             @"upper": registerFlag};
-    [PPNetworkHelper POST:url parameters:parma success:^(id responseObject) {
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
-        NSNumber *number = [responseObject valueForKey:@"ret"] ;
-        if([number isEqualToNumber:[NSNumber numberWithInt:200]])
-        {
-            NSArray *MsgData = [responseObject valueForKey:@"data"];
-            NSString *code = [NSString stringWithFormat:@"%@",[MsgData valueForKey:@"code"]];
-            NSString *msg = [MsgData valueForKey:@"msg"];
-            if([code isEqual:@"0"]) {
-                NSDictionary *info = [[MsgData valueForKey:@"info"] objectAtIndex:0];
-                CBLiveUser *userInfo = [[CBLiveUser alloc] initWithDic:info];
-                [CBLiveUserConfig saveProfile:userInfo];
-                [self loginENClient];
-                [self loginJPUSH];
-                [self loginUI];
-//判断第一次登陆
-//                NSString *isreg = minstr([info valueForKey:@"isreg"]);
-//                _isreg = isreg;
-                
-            } else {
-                [MBProgressHUD showAutoMessage:msg];
-            }
-        }
-        else{
-            [MBProgressHUD showAutoMessage:[responseObject valueForKey:@"msg"]];
+- (void)requestLogin:(SSDKUser *)user loginType:(SSDKPlatformType)loginType {
+    NSString *url = urlSendOauthUserInfo;
+    NSDictionary *param = [self paramWithUser:user loginType:loginType];
+    [PPNetworkHelper POST:url parameters:param success:^(id responseObject) {
+        NSNumber *code = [responseObject valueForKey:@"code"];
+        if ([code isEqualToNumber:@200]) {
+            NSDictionary *rdata = responseObject[@"data"];
+            NSString *token = rdata[@"token"];
+            [self httpGetUserInfoWithToken:token];
+        } else {
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            NSString *descrp = responseObject[@"descrp"];
+            [MBProgressHUD showAutoMessage:descrp];
         }
     } failure:^(NSError *error) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [MBProgressHUD showAutoMessage:@"登录失败"];
     }];
 }
+
+- (NSMutableDictionary *)paramWithUser:(SSDKUser *)user loginType:(SSDKPlatformType)loginType {
+    NSMutableDictionary *paramDict = [NSMutableDictionary dictionary];
+    NSString *logAuthTypeType = nil;
+    switch (loginType) {
+        case SSDKPlatformTypeWechat: logAuthTypeType = @"Wechat"; break;
+        case SSDKPlatformTypeQQ: logAuthTypeType = @"QQ"; break;
+        case SSDKPlatformTypeSinaWeibo: logAuthTypeType = @"SinaWeibo"; break;
+        default: break;
+    }
+    
+    switch (user.gender) {
+        case SSDKGenderMale: [paramDict setObject:@"1" forKey:@"userSex"]; break;
+        case SSDKGenderFemale: [paramDict setObject:@"2" forKey:@"userSex"]; break;
+        case SSDKGenderUnknown: [paramDict setObject:@"0" forKey:@"userSex"]; break;
+        default: break;
+    }
+    
+    //生日
+    //    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    //    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    //    NSString *dateStr = [dateFormatter stringFromDate:user.birthday];
+    
+    [paramDict setObject:user.uid ? : @"" forKey:@"openid"];                                       //openid
+    [paramDict setObject:logAuthTypeType ? : @"" forKey:@"from"];                                  //authorType
+    //    [paramDict setObject:[user.rawData objectForKey:@"unionid"] ? : @"" forKey:@"authUnionid"];        //authUnionid
+    //    [paramDict setObject:[user.rawData objectForKey:@"age"] ? : @"" forKey:@"userAge"];                //userAge
+    [paramDict setObject:user.icon ? : @"" forKey:@"head_img"];                                      //userAvatar
+    //    [paramDict setObject:dateStr ? : @"" forKey:@"userBirthday"];                                      //userBirthday
+    //    [paramDict setObject:[user.rawData objectForKey:@"city"]?:@"" forKey:@"userCity"];              //userCity
+    [paramDict setObject:user.nickname ? : @"" forKey:@"name"];                                //userNickname
+    //    [paramDict setObject:[user.rawData objectForKey:@"province"]?:@"" forKey:@"userProvince"];      //userProvince
+    //    [paramDict setObject:user.verifyReason?:@"" forKey:@"verifiedReason"];                          //verifiedReason
+    [paramDict setObject:user.credential.token ? : @"" forKey:@"access_token"];                          //access_token
+    [paramDict setObject:user.credential.expired ? : @"" forKey:@"expires_date"];                          //expires_date
+    return paramDict;
+}
+
+
 
 // 环信登录
 -(void)loginENClient{

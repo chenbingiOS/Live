@@ -44,7 +44,7 @@
 // 密码重置
 #define rulRetrievePassword     purl@"Api/User/retrievePassword"
 // 用户登录第三方
-#define urlUserLoginByThird     purl@"/?service=Login.userLoginByThird"
+#define urlSendOauthUserInfo    purl@"Api/User/sendOauthUserInfo"
 //------------------------------------------------------------------
 // 短视频模块
 // 获取上传token

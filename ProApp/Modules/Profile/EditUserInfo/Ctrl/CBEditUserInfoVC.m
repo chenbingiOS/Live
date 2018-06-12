@@ -10,6 +10,7 @@
 #import "CBSexMenuView.h"
 #import "CBImagePickerTool.h"
 #import "CBCityMenuView.h"
+#import "UIImageView+RoundedCorner.h"
 
 @interface CBEditUserInfoVC () 
 
@@ -89,6 +90,7 @@
 }
 
 - (void)updateUI {
+    [self.avaterImageView roundedCornerByDefault];
     if (self.isEditing) {
         self.exchangeAvaterBtn.userInteractionEnabled = YES;
         self.userNickTextField.userInteractionEnabled = YES;
