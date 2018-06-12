@@ -20,6 +20,7 @@
 //#import <WeiboSDK/WeiboSDK.h>
 #import <WeiboSDK.h>
 #import "WXApi.h"
+#import "CBBeginLiveVO.h"
 
 #import "CBBeginLiveView.h"
 #import "CBImagePickerTool.h"
@@ -33,7 +34,7 @@
 @interface CBBeginLiveVC () <PLMediaStreamingSessionDelegate, PLPanelDelegateGeneratorDelegate, PLStreamingSessionConstructorDelegate>
 
 @property (nonatomic, strong) CBBeginLiveView *beginLiveView;
-
+@property (nonatomic, strong) NSURL *streamURL;
 @end
 
 @implementation CBBeginLiveVC
@@ -44,7 +45,6 @@
     PLStreamingSessionConstructor *_sessionConstructor;
     UIButton *_startButton;
     UISlider *_zoomSlider;
-    NSURL *_streamURL;
     UIView *_inputURLView;
     UITextView *_inputURLTextView;
 }
@@ -442,7 +442,7 @@
         @strongify(self);
         CBImagePickerTool *tool = [CBImagePickerTool new];
         tool.finishBlock = ^(CBImagePickerTool *imagePickerTool, NSDictionary *mediaInfo) {
-            self.beginLiveView.coverImageView.image = mediaInfo.editedImage;
+            self.coverImage = mediaInfo.editedImage;
         };
         [tool showFromView:self.view];
     }];
@@ -455,21 +455,28 @@
 - (void)httpGetPushAddress:(UIButton *)btn {
     if (self.beginLiveView.titleTextField.text.length == 0) {
         [MBProgressHUD showAutoMessage:@"填写主题吸引观众"];
+        return ;
     }
-    
-    NSString *url = urlGetPushAddress;
-    NSDictionary *param = @{@"stream_key": self.beginLiveView.titleTextField.text,
-                            @"token": [CBLiveUserConfig getOwnToken]};
+
+    NSString *url = urlStartLive;
+    NSDictionary *param = @{
+                            @"token":[CBLiveUserConfig getOwnToken],
+                            @"title": self.beginLiveView.titleTextField.text,
+                            };
+    UIImage *uploadImage = self.coverImage;
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     @weakify(self);
-    [PPNetworkHelper POST:url parameters:param success:^(id responseObject) {
+    [PPNetworkHelper uploadImagesWithURL:url parameters:param name:@"photo" images:@[uploadImage] fileNames:nil imageScale:0.5 imageType:@"jpeg" progress:^(NSProgress *progress) {
+        
+    } success:^(id responseObject) {
         @strongify(self);
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         NSNumber *code = responseObject[@"code"];
         if ([code isEqualToNumber:@200]) {
             NSString *pushURL = responseObject[@"data"];
-            _streamURL = [NSURL URLWithString:pushURL];
+            self.streamURL = [NSURL URLWithString:pushURL];
             [self _pressedStartButton:btn];
+            [self liveUIReload];
         } else {
             NSString *descrp = responseObject[@"descrp"];
             [MBProgressHUD showAutoMessage:descrp];
@@ -477,6 +484,15 @@
     } failure:^(NSError *error) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         [MBProgressHUD showAutoMessage:@"直播失败"];
+    }];
+}
+
+- (void)liveUIReload {
+    [UIView animateWithDuration:0.35 animations:^{
+        self.beginLiveView.hidden = YES;
+    } completion:^(BOOL finished) {
+        [self.beginLiveView removeFromSuperview];
+        self.beginLiveView = nil;
     }];
 }
 

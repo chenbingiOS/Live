@@ -8,27 +8,32 @@
 
 #import <Foundation/Foundation.h>
 
-// 主页直播列表
-#define urlGetHot       purl@"?service=Home.getHot"
-// 获取基本配置信息
-#define urlGetBaseInfo  purl@"?service=User.getBaseInfo&uid=%@&token=%@&version_ios=%@"
-//
-#define getAD @"http://live.9158.com/Living/GetAD"
-#define getHostLive @"http://live.9158.com/Fans/GetHotLive?page=%ld"
-
 // 用户协议
 #define urlH5Policy         @"http://app.zhibo.gttead.cn/protocol.html"
 // 关于我们
 #define urlH5AboutUs        @"http://zhibo.gttead.cn"
-// 分享网页
-#define urlH5Share          @"http://dl.zhibo.gttead.cn"
 // 加入公会
 #define urlH5Guild          @"http://app.zhibo.gttead.cn/index.html"
 // 实名认证
 #define urlH5PresonCer      @"http://app.zhibo.gttead.cn/certification.html"
+// 网页分享
+#define urlH5Share          @"http://dl.zhibo.gttead.cn/index.html"
 
 // 域名
 #define purl @"http://fengwo.gttead.cn/"
+//------------------------------------------------------------------
+// 直播模块
+// 在线直播列表
+// 关注主播
+// 实名认证
+// 获取守护套餐详情
+// 开始直播接口
+#define urlStartLive            purl@"Api/Anchor/startLive"
+// 推流成功回调接口
+#define urlStartLivePushCallback purl@"Api/Anchor/startLivePushCallback"
+// 关闭直播接口
+// 进入直播间接口
+// 离开直播间接口
 //------------------------------------------------------------------
 // 用户操作
 // 用户注册
@@ -45,6 +50,10 @@
 #define rulRetrievePassword     purl@"Api/User/retrievePassword"
 // 用户登录第三方
 #define urlSendOauthUserInfo    purl@"Api/User/sendOauthUserInfo"
+// 添加黑名单
+#define urlGetGuardPrices       purl@"Api/Anchor/get_guard_prices"
+// 我的黑名单列表
+#define urlBlacklist            purl@"Api/user/blacklist"
 //------------------------------------------------------------------
 // 短视频模块
 // 获取上传token
@@ -55,6 +64,22 @@
 #define urlGetVideos            purl@"Api/ShortVideo/getVideos"
 // 获取关注的视频列表
 #define urlGetFavoriteUserVideos purl@"Api/ShortVideo/getFavoriteUserVideos"
+// 单个视频信息查询
+#define urlGetVideo             purl@"Api/ShortVideo/getVideo"
+// 视频点赞接口
+#define urlLikeVideo            purl@"Api/ShortVideo/likeVideo"
+// 获取点赞人列表
+#define urlGetLikeUsers         purl@"Api/ShortVideo/getLikeUsers"
+// 视频观看回调接口
+#define urlViewVideo            purl@"Api/ShortVideo/viewVideo"
+// 视频评论接口
+#define urlCommentVideo         purl@"Api/ShortVideo/commentVideo"
+// 获取视频评论列表
+#define urlGetComments          purl@"Api/ShortVideo/getComments"
+// 视频评论的点赞功能
+#define urlLikeComment          purl@"Api/ShortVideo/likeComment"
+// 视频分享回调接口
+#define urlShareVideo           purl@"Api/ShortVideo/shareVideo"
 //------------------------------------------------------------------
 // 我的
 // 获取我的信息
@@ -85,6 +110,13 @@
 #define urlDeleteRoomUser       purl@"Api/qiniu/deleteRoomUser"
 // 获取连麦Token
 #define urlRoomToken            purl@"Api/qiniu/roomToken"
+//------------------------------------------------------------------
+// VIP/钻石模块
+// 获取钻石充值套餐详情
+#define urlGetRechargePackage   purl@"Api/Anchor/get_recharge_package"
+
+
+
 
 
 @interface CBInterface : NSObject
@@ -118,3 +150,12 @@
 
 
 @end
+
+
+// 主页直播列表
+#define urlGetHot       purl@"?service=Home.getHot"
+// 获取基本配置信息
+#define urlGetBaseInfo  purl@"?service=User.getBaseInfo&uid=%@&token=%@&version_ios=%@"
+
+#define getAD @"http://live.9158.com/Living/GetAD"
+#define getHostLive @"http://live.9158.com/Fans/GetHotLive?page=%ld"
