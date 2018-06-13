@@ -9,7 +9,7 @@
 #import "AppDelegate.h"
 #import "AppDelegate+AppServer.h"
 #import "AppDelegate+ShareSDK.h"
-#import "AppDelegate+EMClient.h"
+#import "AppDelegate+Hyphenate.h"
 #import "AppDelegate+PLKit.h"
 
 @interface AppDelegate ()
@@ -22,13 +22,13 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     [self initThirdPlatform];
-    [self initEMClient];
+    [self initHyphenateSDK];
     [self initWindow];
     [self initRootVC];
     [self initApperance];
     [self initPLKit];
 
-    [PPNetworkHelper openLog];
+//    [PPNetworkHelper openLog];
     
     return YES;
 }

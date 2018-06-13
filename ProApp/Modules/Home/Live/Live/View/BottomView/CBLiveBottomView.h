@@ -10,10 +10,10 @@
 
 @interface CBLiveBottomView : UIView
 
-@property (weak, nonatomic) IBOutlet UIButton *barrageBtn;
-@property (weak, nonatomic) IBOutlet UIButton *shareBtn;
-@property (weak, nonatomic) IBOutlet UIButton *giftBtn;
-@property (weak, nonatomic) IBOutlet UIButton *noticeBoardBtn;
-@property (weak, nonatomic) IBOutlet UIButton *messageBtn;
+@property (weak, nonatomic) IBOutlet UIButton *barrageBtn;      ///< 普通消息
+@property (weak, nonatomic) IBOutlet UIButton *shareBtn;        ///< 分享按钮
+@property (weak, nonatomic) IBOutlet UIButton *giftBtn;         ///< 礼物功能
+@property (weak, nonatomic) IBOutlet UIButton *noticeBoardBtn;  ///< 侧边功能
+@property (weak, nonatomic) IBOutlet UIButton *messageBtn;      ///< 私信功能
 
 @end

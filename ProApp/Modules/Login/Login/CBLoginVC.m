@@ -230,15 +230,14 @@
     return paramDict;
 }
 
-
-
 // 环信登录
 -(void)loginENClient{
     [[EMClient sharedClient] loginWithUsername:[CBLiveUserConfig getHXuid] password:[CBLiveUserConfig getHXpwd] completion:^(NSString *aUsername, EMError *aError) {        
         if (aError) {
             NSLog(@"环信登录错误--%@",aError.errorDescription);
-        } else {
+        } else {            
             NSLog(@"环信登录成功--%@",aUsername);
+            [[EMClient sharedClient].options setIsAutoLogin:YES];
         }
     }];
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -70,10 +70,10 @@
                 <outlet property="barrageBtn" destination="cGU-21-sgQ" id="XZr-SB-Xde"/>
                 <outlet property="giftBtn" destination="iOz-wk-ZOh" id="J5C-pe-Xkr"/>
                 <outlet property="messageBtn" destination="bkj-oS-ioJ" id="i1W-PF-IjK"/>
-                <outlet property="noticeBoardBtn" destination="ael-Sc-R6u" id="Ho6-Ph-7DC"/>
-                <outlet property="shareBtn" destination="ygj-eg-6dY" id="4ri-hg-fwf"/>
+                <outlet property="noticeBoardBtn" destination="ygj-eg-6dY" id="fq6-eZ-aeb"/>
+                <outlet property="shareBtn" destination="ael-Sc-R6u" id="tA4-yp-kg9"/>
             </connections>
-            <point key="canvasLocation" x="33.5" y="255"/>
+            <point key="canvasLocation" x="-241" y="-122"/>
         </view>
     </objects>
     <resources>

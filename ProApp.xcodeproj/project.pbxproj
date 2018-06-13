@@ -168,6 +168,7 @@
 		544B8F9220CA221300FC9CFE /* CBBeginLiveView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 544B8F9120CA221300FC9CFE /* CBBeginLiveView.xib */; };
 		544B8F9F20CA813C00FC9CFE /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 544B8F9E20CA813B00FC9CFE /* Info.plist */; };
 		544B96E320C67E81004D0DB0 /* CBFillInfoWebVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 544B96E220C67E81004D0DB0 /* CBFillInfoWebVC.m */; };
+		544F800F20D0AECC00F492AE /* AppDelegate+Hyphenate.m in Sources */ = {isa = PBXBuildFile; fileRef = 544F800E20D0AECB00F492AE /* AppDelegate+Hyphenate.m */; };
 		54520AF020BFD2BB005B787E /* NSObject+Copy.m in Sources */ = {isa = PBXBuildFile; fileRef = 54520AEB20BFD2BA005B787E /* NSObject+Copy.m */; };
 		54520AF120BFD2BB005B787E /* NSObject+Coding.m in Sources */ = {isa = PBXBuildFile; fileRef = 54520AEC20BFD2BA005B787E /* NSObject+Coding.m */; };
 		54520AF320BFD2BB005B787E /* NSObject+Class.m in Sources */ = {isa = PBXBuildFile; fileRef = 54520AEE20BFD2BA005B787E /* NSObject+Class.m */; };
@@ -552,7 +553,6 @@
 		54A76D8C20B7E17B0034D5A2 /* DubViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 54A76D8A20B7E1780034D5A2 /* DubViewController.m */; };
 		54A76D8F20B7E1C00034D5A2 /* PlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 54A76D8D20B7E1BE0034D5A2 /* PlayViewController.m */; };
 		54BD85E420B65A890024B6E7 /* AppDelegate+ShareSDK.m in Sources */ = {isa = PBXBuildFile; fileRef = 54BD85E320B65A890024B6E7 /* AppDelegate+ShareSDK.m */; };
-		54BD85E720B669F00024B6E7 /* AppDelegate+EMClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 54BD85E620B669F00024B6E7 /* AppDelegate+EMClient.m */; };
 		54F7828E20BD56C500EE6821 /* CBForgetPwdVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 54F7828C20BD56C500EE6821 /* CBForgetPwdVC.m */; };
 		54F7828F20BD56C500EE6821 /* CBForgetPwdVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 54F7828D20BD56C500EE6821 /* CBForgetPwdVC.xib */; };
 		7E902906E2CA7AD8D2F3A5A8 /* libPods-ProApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B93D832D0DEF97DA8E7CD09 /* libPods-ProApp.a */; };
@@ -995,6 +995,8 @@
 		544B8F9E20CA813B00FC9CFE /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		544B96E120C67E81004D0DB0 /* CBFillInfoWebVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBFillInfoWebVC.h; sourceTree = "<group>"; };
 		544B96E220C67E81004D0DB0 /* CBFillInfoWebVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBFillInfoWebVC.m; sourceTree = "<group>"; };
+		544F800D20D0AECA00F492AE /* AppDelegate+Hyphenate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+Hyphenate.h"; sourceTree = "<group>"; };
+		544F800E20D0AECB00F492AE /* AppDelegate+Hyphenate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+Hyphenate.m"; sourceTree = "<group>"; };
 		54520AE720BFD2BA005B787E /* NSObject+Class.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Class.h"; sourceTree = "<group>"; };
 		54520AE920BFD2BA005B787E /* NSObject+Coding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Coding.h"; sourceTree = "<group>"; };
 		54520AEB20BFD2BA005B787E /* NSObject+Copy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Copy.m"; sourceTree = "<group>"; };
@@ -1461,8 +1463,6 @@
 		54A76D8E20B7E1BF0034D5A2 /* PlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayViewController.h; sourceTree = "<group>"; };
 		54BD85E220B65A890024B6E7 /* AppDelegate+ShareSDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+ShareSDK.h"; sourceTree = "<group>"; };
 		54BD85E320B65A890024B6E7 /* AppDelegate+ShareSDK.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+ShareSDK.m"; sourceTree = "<group>"; };
-		54BD85E520B669F00024B6E7 /* AppDelegate+EMClient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+EMClient.h"; sourceTree = "<group>"; };
-		54BD85E620B669F00024B6E7 /* AppDelegate+EMClient.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+EMClient.m"; sourceTree = "<group>"; };
 		54F7828B20BD56C500EE6821 /* CBForgetPwdVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBForgetPwdVC.h; sourceTree = "<group>"; };
 		54F7828C20BD56C500EE6821 /* CBForgetPwdVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBForgetPwdVC.m; sourceTree = "<group>"; };
 		54F7828D20BD56C500EE6821 /* CBForgetPwdVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CBForgetPwdVC.xib; sourceTree = "<group>"; };
@@ -1792,8 +1792,8 @@
 				076F52A020750E64004F91E8 /* AppDelegate+AppServer.m */,
 				54BD85E220B65A890024B6E7 /* AppDelegate+ShareSDK.h */,
 				54BD85E320B65A890024B6E7 /* AppDelegate+ShareSDK.m */,
-				54BD85E520B669F00024B6E7 /* AppDelegate+EMClient.h */,
-				54BD85E620B669F00024B6E7 /* AppDelegate+EMClient.m */,
+				544F800D20D0AECA00F492AE /* AppDelegate+Hyphenate.h */,
+				544F800E20D0AECB00F492AE /* AppDelegate+Hyphenate.m */,
 				54A4457C20B7BCF700D65F0A /* AppDelegate+PLKit.h */,
 				54A4457D20B7BCF700D65F0A /* AppDelegate+PLKit.m */,
 			);
@@ -4218,7 +4218,6 @@
 				54A76D8620B7E14A0034D5A2 /* ClipMovieViewController.m in Sources */,
 				545494C020C8DA8E00E96C0A /* CBMyVideoCell.m in Sources */,
 				54130A0820B69DEF00CAE467 /* CBRefreshGifHeader.m in Sources */,
-				54BD85E720B669F00024B6E7 /* AppDelegate+EMClient.m in Sources */,
 				07F38C0520994A0000DDBC90 /* JPGiftCollectionViewCell.m in Sources */,
 				07558C232094517A007E41C2 /* CBOnlineUserCell.m in Sources */,
 				544B8F8920CA118E00FC9CFE /* PLPanelDelegateGenerator.m in Sources */,
@@ -4233,6 +4232,7 @@
 				07F6EFE120872E3D0035C6BD /* ALinUser.m in Sources */,
 				54130A1220B6B52200CAE467 /* CBLiveSettingConfig.m in Sources */,
 				07558C1F20941F18007E41C2 /* CBPopView.m in Sources */,
+				544F800F20D0AECC00F492AE /* AppDelegate+Hyphenate.m in Sources */,
 				545494A920C7E4B400E96C0A /* CBBeginLiveVC.m in Sources */,
 				548C5CC120B50CD800A6FF53 /* CBLiveUserConfig.m in Sources */,
 				0737ED972074A33600A89CC0 /* main.m in Sources */,
