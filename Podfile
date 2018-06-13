@@ -6,23 +6,23 @@ def pods
 pod 'AFNetworking'
 ##########################################################
 # 图片
-pod 'SDWebImage'
+#pod 'SDWebImage'
 # UI框架
 pod 'YYKit'
 # 按钮文字和图片位置
 pod 'LXMButtonImagePosition'
 # 智能键盘
-pod 'IQKeyboardManager'
+#pod 'IQKeyboardManager'
 # 圆角处理
 pod 'ZYCornerRadius'
 # 提示
-pod 'MBProgressHUD'
+#pod 'MBProgressHUD'
 # 表格数据为空时界面UI
 pod 'LYEmptyView'
 # 轮播图
 pod 'TYCyclePagerView'
 # 下拉刷新
-pod 'MJRefresh'
+#pod 'MJRefresh'
 # 布局
 pod 'Masonry'
 # APP检测更新、提醒应用评价、前往App Store给予好评
@@ -46,6 +46,7 @@ pod 'ShareSDK3/ShareSDKPlatforms/Facebook'
 pod 'WeiXinPay'
 # 环信
 pod 'HyphenateLite'
+pod 'EaseUILite', :git => 'https://github.com/easemob/easeui-ios-hyphenate-cocoapods.git'
 # 极光推送
 pod 'JPush'
 # 腾讯bug管理
