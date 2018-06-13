@@ -1,0 +1,1 @@
+../../../EaseUILite/EaseUI/EMUIKit/3rdparty/DeviceHelper/VoiceConvert/amrwapper/wav.h
