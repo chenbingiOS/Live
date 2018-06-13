@@ -27,8 +27,8 @@
 #endif
     options.apnsCertName = apnsCertName;
     options.isAutoAcceptGroupInvitation = NO;
-    options.enableConsoleLog = YES;
-    options.logLevel = EMLogLevelDebug;
+//    options.enableConsoleLog = YES;
+//    options.logLevel = EMLogLevelDebug;
     
     [[EMClient sharedClient] initializeSDKWithOptions:options];
     

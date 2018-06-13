@@ -30,7 +30,6 @@
     [self.rightView addSubview:self.topGradientView];
     [self.rightView addSubview:self.bottomGradientView];
     [self.rightView addSubview:self.anchorView];
-    [self.rightView addSubview:self.bottomView];
 }
 
 - (void)giftViewSendGiftInView:(JPGiftView *)giftView data:(JPGiftCellModel *)model {
@@ -136,16 +135,6 @@
     return _anchorView;
 }
 
-- (CBLiveBottomView *)bottomView {
-    if (!_bottomView) {
-        _bottomView = [CBLiveBottomView viewFromXib];
-        CGFloat y = kScreenHeight - 60;
-        if (iPhoneX) y -= 35;
-        _bottomView.frame = CGRectMake(0, y, kScreenWidth, 60);
-    }
-    return _bottomView;
-}
-
 - (CBOnlineUserView *)onlineUserView {
     if (!_onlineUserView) {
         _onlineUserView = [[CBOnlineUserView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight/2)];
@@ -166,15 +155,6 @@
         _gifImageView.hidden = YES;
     }
     return _gifImageView;
-}
-
-- (CBSharePopView *)sharePopView {
-    if (!_sharePopView) {
-        CGFloat height = 180;
-        if (iPhoneX) { height += 35; }
-        _sharePopView = [[CBSharePopView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, height)];
-    }
-    return _sharePopView;
 }
 
 - (JPGiftView *)giftView{

@@ -19,7 +19,6 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES animated:NO];
-    
     [self.view addSubview:self.closeButton];
     [self.view insertSubview:self.closeButton atIndex:999];
 }

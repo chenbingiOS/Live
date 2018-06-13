@@ -55,24 +55,57 @@ static NSString *RIDCBAppADCell = @"RIDCBAppADCell";
     self.tableView.tableHeaderView = headerView;
     self.tableView.tableFooterView = [[UIView alloc] init];
     
+    self.currentPage = 1;
     self.tableView.mj_header = [CBRefreshGifHeader headerWithRefreshingBlock:^{
-        self.lives = [NSMutableArray array];
-        self.currentPage = 1;
-        // 获取顶部的广告
-        [self httpAD];
-        [self httpLive];
+        [self reloadAllData];
     }];
     [self.tableView.mj_header beginRefreshing];
     
-    self.currentPage = 1;
     self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
         self.currentPage++;
         [self httpLive];
     }];
     
-    self.tableView.ly_emptyView = [LYEmptyView emptyViewWithImageStr:@"noData"
-                                                            titleStr:@"暂无数据，点击重新加载"
-                                                           detailStr:@""];
+    self.tableView.ly_emptyView = [CBEmptyView diyEmptyActionViewWithTarget:self action:@selector(reloadAllData)];
+}
+
+- (void)reloadAllData {
+    self.currentPage = 1;
+    self.lives = [NSMutableArray array];
+    // 获取顶部的广告
+    [self httpAD];
+    [self httpLive];
+}
+
+- (void)httpLive {
+    [self.tableView ly_startLoading];
+    NSString *url = urlGetLive;
+    NSDictionary *param = @{@"page":@(self.currentPage),
+                            @"token":[CBLiveUserConfig getOwnToken],
+                            @"type":@1};
+    [PPNetworkHelper POST:url parameters:param success:^(id responseObject) {
+        NSNumber *code = [responseObject valueForKey:@"code"];
+        if ([code isEqualToNumber:@200]) {
+            NSArray *resultList = [NSArray modelArrayWithClass:[CBAppLiveVO class] json:responseObject[@"data"]];
+            if (resultList.count < 20 && self.currentPage > 1) {
+                [self.tableView.mj_footer endRefreshingWithNoMoreData];
+                self.currentPage--;
+            } else {
+                [self.lives addObjectsFromArray:resultList];
+                [self.tableView reloadData];
+            }
+        } else {
+            NSString *descrp = responseObject[@"descrp"];
+            [MBProgressHUD showAutoMessage:descrp];
+        }
+        [self.tableView.mj_header endRefreshing];
+        [self.tableView.mj_footer endRefreshing];
+        [self.tableView ly_endLoading];
+    } failure:^(NSError *error) {
+        [self.tableView.mj_header endRefreshing];
+        [self.tableView.mj_footer endRefreshing];
+        self.currentPage--;
+    }];
 }
 
 - (void)httpAD {
@@ -83,38 +116,6 @@ static NSString *RIDCBAppADCell = @"RIDCBAppADCell";
         self.pageControl.numberOfPages = self.appADs.count;
         [self.cyclePagerView reloadData];
     } failure:^(NSError *error) {
-        [MBProgressHUD showAutoMessage:@"网络异常"];
-    }];
-}
-
-//- (void)httpAD {
-//    NSString *url = @"http://fengwo.gttead.cn/Api/Qiniu/getPullAddress?stream_key=waETPOgmtFx2bFj0jWH8mSGRLiw9yV1T";
-//    [PPNetworkHelper GET:url parameters:nil success:^(id responseObject) {
-//        NSLog(@"%@", [responseObject modelToJSONString]);
-//        NSLog(@"%@", responseObject[@"data"]);
-//    } failure:^(NSError *error) {
-//        [MBProgressHUD showAutoMessage:@"网络异常"];
-//    }];
-//}
-
-- (void)httpLive {
-    NSString *url = [NSString stringWithFormat:getHostLive, self.currentPage];
-    [PPNetworkHelper GET:url parameters:nil success:^(id responseObject) {
-        [self.tableView.mj_header endRefreshing];
-        [self.tableView.mj_footer endRefreshing];
-        NSArray *listAry = [NSArray modelArrayWithClass:[CBAppLiveVO class] json:responseObject[@"data"][@"list"]];
-        [self.lives addObjectsFromArray:listAry];
-        [self.tableView reloadData];
-        
-        if (listAry.count == 0) {
-            [MBProgressHUD showAutoMessage:@"暂时没有更多最新数据"];
-            // 恢复当前页
-            self.currentPage--;
-        }
-    } failure:^(NSError *error) {
-        [self.tableView.mj_header endRefreshing];
-        [self.tableView.mj_footer endRefreshing];
-        self.currentPage--;
         [MBProgressHUD showAutoMessage:@"网络异常"];
     }];
 }

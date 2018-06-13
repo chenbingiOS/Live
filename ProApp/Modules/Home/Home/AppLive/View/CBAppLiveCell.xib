@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -83,48 +83,27 @@
                                     <constraint firstAttribute="height" constant="19" id="kEm-lH-B7F"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DeX-dQ-MBX">
-                                <rect key="frame" x="60" y="27" width="188" height="26"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                <inset key="titleEdgeInsets" minX="5" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                <state key="normal" title="上海市">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="0.50409353599999995" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BhW-l6-O86">
+                                <rect key="frame" x="60" y="28" width="30.5" height="17"/>
+                                <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="12"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.29815924657534254" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="DPu-V8-ZYZ" secondAttribute="trailing" constant="10" id="EAW-ss-ccK"/>
+                            <constraint firstItem="BhW-l6-O86" firstAttribute="bottom" secondItem="jzg-Bl-81G" secondAttribute="bottom" id="H72-6j-Te0"/>
                             <constraint firstItem="1Xd-ou-YsO" firstAttribute="centerY" secondItem="CZT-Zh-UoW" secondAttribute="centerY" id="KhL-aM-ea4"/>
-                            <constraint firstItem="1Xd-ou-YsO" firstAttribute="centerY" secondItem="CZT-Zh-UoW" secondAttribute="centerY" id="MNo-n0-QyN"/>
-                            <constraint firstItem="1Xd-ou-YsO" firstAttribute="baseline" secondItem="CZT-Zh-UoW" secondAttribute="baseline" id="NeD-Zf-oml"/>
-                            <constraint firstItem="DPu-V8-ZYZ" firstAttribute="leading" secondItem="DeX-dQ-MBX" secondAttribute="trailing" constant="40" id="PBg-xW-MCq"/>
                             <constraint firstItem="DPu-V8-ZYZ" firstAttribute="centerY" secondItem="jzg-Bl-81G" secondAttribute="centerY" id="RtY-aN-otP"/>
-                            <constraint firstItem="CZT-Zh-UoW" firstAttribute="leading" secondItem="jzg-Bl-81G" secondAttribute="trailing" constant="10" id="VJ0-cy-gGY"/>
-                            <constraint firstItem="CZT-Zh-UoW" firstAttribute="top" secondItem="jzg-Bl-81G" secondAttribute="top" id="XQB-D9-hch"/>
                             <constraint firstItem="jzg-Bl-81G" firstAttribute="top" secondItem="B2p-5o-GPY" secondAttribute="top" constant="5" id="a6W-3C-XrF"/>
+                            <constraint firstItem="BhW-l6-O86" firstAttribute="leading" secondItem="jzg-Bl-81G" secondAttribute="trailing" constant="10" id="dY2-vh-eSE"/>
                             <constraint firstItem="CZT-Zh-UoW" firstAttribute="top" secondItem="jzg-Bl-81G" secondAttribute="top" id="dfQ-fE-KYS"/>
                             <constraint firstItem="1Xd-ou-YsO" firstAttribute="leading" secondItem="CZT-Zh-UoW" secondAttribute="trailing" constant="10" id="eLn-w8-nSs"/>
                             <constraint firstItem="CZT-Zh-UoW" firstAttribute="leading" secondItem="jzg-Bl-81G" secondAttribute="trailing" constant="10" id="n4r-E2-Diq"/>
-                            <constraint firstItem="DeX-dQ-MBX" firstAttribute="leading" secondItem="CZT-Zh-UoW" secondAttribute="leading" id="rge-y9-XpJ"/>
                             <constraint firstAttribute="height" constant="50" id="rto-zI-Haw"/>
-                            <constraint firstItem="DeX-dQ-MBX" firstAttribute="top" secondItem="B2p-5o-GPY" secondAttribute="top" constant="5" id="tEe-fq-Pb9"/>
                             <constraint firstItem="jzg-Bl-81G" firstAttribute="leading" secondItem="B2p-5o-GPY" secondAttribute="leading" constant="10" id="uTJ-gL-EeH"/>
-                            <constraint firstItem="jzg-Bl-81G" firstAttribute="top" secondItem="B2p-5o-GPY" secondAttribute="top" constant="5" id="wE0-qA-Tfv"/>
-                            <constraint firstItem="1Xd-ou-YsO" firstAttribute="leading" secondItem="CZT-Zh-UoW" secondAttribute="trailing" constant="10" id="z6D-kq-sMt"/>
-                            <constraint firstItem="DeX-dQ-MBX" firstAttribute="top" secondItem="CZT-Zh-UoW" secondAttribute="bottom" constant="5" id="ztO-pt-sNj"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="wE0-qA-Tfv"/>
-                                <exclude reference="VJ0-cy-gGY"/>
-                                <exclude reference="XQB-D9-hch"/>
-                                <exclude reference="tEe-fq-Pb9"/>
-                                <exclude reference="MNo-n0-QyN"/>
-                                <exclude reference="NeD-Zf-oml"/>
-                                <exclude reference="z6D-kq-sMt"/>
-                            </mask>
-                        </variation>
                     </view>
                 </subviews>
                 <color key="backgroundColor" red="0.96470588235294119" green="0.94901960784313721" blue="0.95686274509803915" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -144,11 +123,12 @@
                 <outlet property="bigPicView" destination="jyj-99-zlI" id="kXf-a6-oz5"/>
                 <outlet property="chaoyangLabel" destination="DPu-V8-ZYZ" id="Tke-gl-Wal"/>
                 <outlet property="headImageView" destination="jzg-Bl-81G" id="Pfm-Y4-0zB"/>
-                <outlet property="locationBtn" destination="DeX-dQ-MBX" id="SY1-kN-QZP"/>
+                <outlet property="liveStateView" destination="93d-vn-nAU" id="NaE-Ed-RXx"/>
                 <outlet property="nameLabel" destination="CZT-Zh-UoW" id="J5v-IL-z6w"/>
+                <outlet property="roomIDLab" destination="BhW-l6-O86" id="HHt-j9-qs1"/>
                 <outlet property="startView" destination="1Xd-ou-YsO" id="xOb-13-SRh"/>
             </connections>
-            <point key="canvasLocation" x="17" y="111"/>
+            <point key="canvasLocation" x="330" y="26"/>
         </tableViewCell>
     </objects>
     <resources>

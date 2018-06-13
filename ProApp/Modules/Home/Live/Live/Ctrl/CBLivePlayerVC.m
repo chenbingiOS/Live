@@ -10,8 +10,16 @@
 #import "CBAppLiveVO.h"
 #import "CBRoomView.h"
 #import <PLPlayerKit/PLPlayerKit.h>
+#import "EaseChatView.h"
 
-@interface CBLivePlayerVC () <UIGestureRecognizerDelegate>
+@interface CBLivePlayerVC () <UIGestureRecognizerDelegate, EaseChatViewDelegate>
+{
+    EaseLiveRoom *_room;
+}
+
+@property (nonatomic, strong) EaseChatView *chatview;
+
+@property (nonatomic, strong) CBRoomView *roomView;
 //--------------------------------------------------------
 // 点亮功能
 @property (nonatomic, strong) UITapGestureRecognizer *starTap;// 点亮手势
@@ -21,9 +29,6 @@
 @property (nonatomic, assign) NSInteger starisok;
 @property (nonatomic, strong) UITableView *tableView;
 //--------------------------------------------------------
-
-@property (nonatomic, strong) CBRoomView *roomView;
-
 
 @end
 
@@ -36,6 +41,7 @@
 - (void)setupRoom {
     [self.view addSubview:self.roomView];
     [self setup_starTap];
+    [self.roomView.rightView addSubview:self.chatview];
 }
 
 #pragma mark - 重写父类方法
@@ -46,52 +52,15 @@
     }
 }
 
+- (void)player:(PLPlayer *)player stoppedWithError:(NSError *)error {
+    NSString *info = [NSString stringWithFormat:@"发生错误,error = %@, code = %ld", error.description, (long)error.code];
+    NSLog(@"%@",info);
+}
+
 #pragma mark - layz
 - (CBRoomView *)roomView {
     if (!_roomView) {
         _roomView = [[CBRoomView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight)];
-        
-        UIWindow *window = [[UIApplication sharedApplication].delegate window];
-        @weakify(self);
-        // 分享
-        [_roomView.bottomView.shareBtn addBlockForControlEvents:UIControlEventTouchUpInside block:^(id  _Nonnull sender) {
-            @strongify(self);
-            [self.roomView.sharePopView showIn:window];
-        }];
-        //    [self.anchorView.peopleBtn addBlockForControlEvents:UIControlEventTouchUpInside block:^(id  _Nonnull sender) {
-        //        @strongify(self);
-        //        [self.onlineUserView showIn:window];
-        //    }];
-        //    [self.anchorView.achorInfoBtn addBlockForControlEvents:UIControlEventTouchUpInside block:^(id  _Nonnull sender) {
-        //        @strongify(self);
-        //        [self.anchorInfoView showIn:window];
-        //    }];
-        //    [self.anchorView.gurardBtn addBlockForControlEvents:UIControlEventTouchUpInside block:^(id  _Nonnull sender) {
-        //        @strongify(self);
-        //        CBGuardVC *vc = [CBGuardVC new];
-        ////        [self.navigationController pushViewController:vc animated:YES];
-        //    }];
-        //    [self.anchorView.guardScrollView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithActionBlock:^(id  _Nonnull sender) {
-        //        @strongify(self);
-        //        CBGuardRankVC *vc = [CBGuardRankVC new];
-        ////        [self.navigationController pushViewController:vc animated:YES];
-        //    }]];
-        //    [self.anchorView.moneyBtn addBlockForControlEvents:UIControlEventTouchUpInside block:^(id  _Nonnull sender) {
-        //        @strongify(self);
-        //        CBContributionRankVC *vc = [CBContributionRankVC new];
-        ////        [self.navigationController pushViewController:vc animated:YES];
-        //    }];
-        //    [self.bottomView.giftBtn addBlockForControlEvents:UIControlEventTouchUpInside block:^(id  _Nonnull sender) {
-        //        @strongify(self);
-        //        [self.giftView showGiftView];
-        //    }];
-        
-        //    NSString *filePath=[[NSBundle mainBundle]pathForResource:@"data" ofType:@"json"];
-        //    NSData *jsonData = [NSData dataWithContentsOfFile:filePath];
-        //    NSDictionary *responseObject = [NSJSONSerialization JSONObjectWithData:jsonData options:kNilOptions error:nil];
-        //    NSArray *data = [responseObject objectForKey:@"data"];
-        //    NSMutableArray *dataArr = [NSMutableArray arrayWithArray:data];
-        //    self.giftView.dataArray = [NSArray modelArrayWithClass:[JPGiftCellModel class] json:dataArr];
     }
     return _roomView;
 }
@@ -99,10 +68,21 @@
 #pragma mark - Set 
 - (void)setLive:(CBAppLiveVO *)live {
     _live = live;
-    self.url = [NSURL URLWithString:live.flv];
-    self.thumbImageURL = [NSURL URLWithString:live.bigpic];
+    self.url = [NSURL URLWithString:live.channel_source];
+    self.thumbImageURL = [NSURL URLWithString:live.thumb];
 }
 
+//--------------------------------------------------------
+- (EaseChatView*)chatview {
+    if (!_chatview) {
+        CGFloat y = KScreenHeight - 250 - SafeAreaBottomHeight;
+        CGRect frame = CGRectMake(0, y, kScreenWidth, 250);
+        _chatview = [[EaseChatView alloc] initWithFrame:frame room:_room isPublish:NO];
+        _chatview.delegate = self;
+    }
+    return _chatview;
+}
+// 以上聊天功能
 //--------------------------------------------------------
 // 点亮功能
 - (void)setup_starTap {
@@ -131,8 +111,8 @@
 }
 
 - (void)staredMove {
-    CGFloat starX = self.roomView.bottomView.centerX-15;
-    CGFloat starY = self.roomView.bottomView.centerY-15;
+    CGFloat starX = self.chatview.bottomView.centerX-15;
+    CGFloat starY = self.chatview.bottomView.centerY-15;
     NSInteger random = arc4random()%4;
     self.starImage = [[UIImageView alloc]initWithFrame:CGRectMake(starX+random,starY-random,30,30)];
     self.starImage.alpha = 0;
@@ -179,7 +159,7 @@
     [imageViewsss removeFromSuperview];
     imageViewsss = nil;
 }
-// 以上是点亮
+// 以上是点亮功能
 //--------------------------------------------------------
 
 @end

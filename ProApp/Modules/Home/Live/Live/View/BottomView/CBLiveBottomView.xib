@@ -73,7 +73,7 @@
                 <outlet property="noticeBoardBtn" destination="ygj-eg-6dY" id="fq6-eZ-aeb"/>
                 <outlet property="shareBtn" destination="ael-Sc-R6u" id="tA4-yp-kg9"/>
             </connections>
-            <point key="canvasLocation" x="-241" y="-122"/>
+            <point key="canvasLocation" x="-149.5" y="-127"/>
         </view>
     </objects>
     <resources>

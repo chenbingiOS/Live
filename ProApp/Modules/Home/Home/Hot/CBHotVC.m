@@ -38,47 +38,57 @@ static NSString *RIDCBAppLiveCell = @"RIDCBAppLiveCell";
     self.tableView.backgroundColor = [UIColor bgColor];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 
+    self.currentPage = 1;
     self.tableView.mj_header = [CBRefreshGifHeader headerWithRefreshingBlock:^{
-        self.lives = [NSMutableArray array];
-        self.currentPage = 1;
-        // 获取顶部的广告
-        [self httpLive];
+        [self reloadAllData];
     }];
     [self.tableView.mj_header beginRefreshing];
     
-    self.currentPage = 1;
     self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
         self.currentPage++;
         [self httpLive];
     }];
     
-    self.tableView.ly_emptyView = [LYEmptyView emptyViewWithImageStr:@"noData"
-                                                            titleStr:@"暂无数据，点击重新加载"
-                                                           detailStr:@""];
+    self.tableView.ly_emptyView = [CBEmptyView diyEmptyActionViewWithTarget:self action:@selector(reloadAllData)];
+}
+
+- (void)reloadAllData {
+    self.currentPage = 1;
+    self.lives = [NSMutableArray array];
+    [self httpLive];
 }
 
 - (void)httpLive {
-    NSString *url = [NSString stringWithFormat:@"http://live.9158.com/Fans/GetHotLive?page=%ld", self.currentPage];
-    [PPNetworkHelper GET:url parameters:nil success:^(id responseObject) {
+    [self.tableView ly_startLoading];
+    NSString *url = urlGetLive;
+    NSDictionary *param = @{@"page":@(self.currentPage),
+                            @"token":[CBLiveUserConfig getOwnToken],
+                            @"type":@2};
+    [PPNetworkHelper POST:url parameters:param success:^(id responseObject) {
+        NSNumber *code = [responseObject valueForKey:@"code"];
+        if ([code isEqualToNumber:@200]) {
+            NSArray *resultList = [NSArray modelArrayWithClass:[CBAppLiveVO class] json:responseObject[@"data"]];
+            if (resultList.count < 20 && self.currentPage > 1) {
+                [self.tableView.mj_footer endRefreshingWithNoMoreData];
+                self.currentPage--;
+            } else {
+                [self.lives addObjectsFromArray:resultList];
+                [self.tableView reloadData];
+            }
+        } else {
+            NSString *descrp = responseObject[@"descrp"];
+            [MBProgressHUD showAutoMessage:descrp];
+        }
         [self.tableView.mj_header endRefreshing];
         [self.tableView.mj_footer endRefreshing];
-        
-//        NSArray *result = [CBAppLiveVO mj_objectArrayWithKeyValuesArray:responseObject[@"data"][@"list"]];
-//        if ([self isNotEmpty:result]) {
-//            [self.lives addObjectsFromArray:result];
-//            [self.tableView reloadData];
-//        }else{
-//            [self showHint:@"暂时没有更多最新数据"];
-            // 恢复当前页
-            self.currentPage--;
-//        }
+        [self.tableView ly_endLoading];
     } failure:^(NSError *error) {
         [self.tableView.mj_header endRefreshing];
         [self.tableView.mj_footer endRefreshing];
         self.currentPage--;
-//        [self showHint:@"网络异常"];
     }];
 }
+
 #pragma mark - TableView dataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.lives.count;

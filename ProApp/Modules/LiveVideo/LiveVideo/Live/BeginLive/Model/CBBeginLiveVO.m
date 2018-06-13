@@ -14,4 +14,8 @@
 
 @implementation CBBeginLiveVO
 
++ (NSDictionary *)modelCustomPropertyMapper {
+    return @{};
+}
+
 @end

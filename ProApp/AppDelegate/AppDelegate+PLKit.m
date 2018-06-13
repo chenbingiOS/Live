@@ -18,8 +18,9 @@
     
     // 直播
     [PLStreamingEnv initEnv];
+    [PLStreamingEnv setLogLevel:PLStreamLogLevelOff];
 //    [PLStreamingEnv setLogLevel:PLStreamLogLevelDebug];
-//    [PLStreamingEnv enableFileLogging];    
+//    [PLStreamingEnv enableFileLogging];
     NSLog(@"直播SDK版本 PLStreamingEnv version is %@", [PLMediaStreamingSession versionInfo]);
     
 //    // TuSDK mark - 初始化 TuSDK

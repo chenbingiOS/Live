@@ -20,8 +20,8 @@
 //#import <WeiboSDK/WeiboSDK.h>
 #import <WeiboSDK.h>
 #import "WXApi.h"
-#import "CBBeginLiveVO.h"
 
+#import "CBBeginLiveVO.h"
 #import "CBBeginLiveView.h"
 #import "CBImagePickerTool.h"
 
@@ -35,6 +35,8 @@
 
 @property (nonatomic, strong) CBBeginLiveView *beginLiveView;
 @property (nonatomic, strong) NSURL *streamURL;
+@property (nonatomic, strong) CBBeginLiveVO *beginLiveVO;
+
 @end
 
 @implementation CBBeginLiveVC
@@ -473,8 +475,8 @@
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         NSNumber *code = responseObject[@"code"];
         if ([code isEqualToNumber:@200]) {
-            NSString *pushURL = responseObject[@"data"];
-            self.streamURL = [NSURL URLWithString:pushURL];
+            self.beginLiveVO = [CBBeginLiveVO modelWithDictionary:responseObject[@"data"]];
+            self.streamURL = [NSURL URLWithString:self.beginLiveVO.push_rtmp];
             [self _pressedStartButton:btn];
             [self liveUIReload];
         } else {

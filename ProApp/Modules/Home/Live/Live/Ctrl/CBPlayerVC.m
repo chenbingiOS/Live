@@ -30,6 +30,11 @@
     }
 }
 
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    
+}
+
 - (void)viewDidDisappear:(BOOL)animated {
     self.isDisapper = YES;
     [self.player stop];

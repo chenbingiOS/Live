@@ -10,6 +10,7 @@
 
 @class CBAppLiveVO;
 @interface CBAppLiveCell : UITableViewCell
-/** 直播 */
+
 @property (nonatomic, strong) CBAppLiveVO *live;
+
 @end
