@@ -1,0 +1,12 @@
+CONFIGURATION_BUILD_DIR = ${PODS_CONFIGURATION_BUILD_DIR}/EaseUILite
+FRAMEWORK_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/HyphenateLite/iOS_Pods_IMSDK_V3.4.1"
+GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1 ENABLE_LITE=1
+HEADER_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/Headers/Private" "${PODS_ROOT}/Headers/Private/EaseUILite" "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/DACircularProgress" "${PODS_ROOT}/Headers/Public/EaseUILite" "${PODS_ROOT}/Headers/Public/HyphenateLite" "${PODS_ROOT}/Headers/Public/MBProgressHUD" "${PODS_ROOT}/Headers/Public/MJRefresh" "${PODS_ROOT}/Headers/Public/MWPhotoBrowser" "${PODS_ROOT}/Headers/Public/SDWebImage"
+LIBRARY_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/EaseUILite/EaseUI/EMUIKit/3rdparty/DeviceHelper/VoiceConvert/opencore-amrnb" "${PODS_ROOT}/EaseUILite/EaseUI/EMUIKit/3rdparty/DeviceHelper/VoiceConvert/opencore-amrwb" "${PODS_CONFIGURATION_BUILD_DIR}/DACircularProgress" "${PODS_CONFIGURATION_BUILD_DIR}/MBProgressHUD" "${PODS_CONFIGURATION_BUILD_DIR}/MJRefresh" "${PODS_CONFIGURATION_BUILD_DIR}/MWPhotoBrowser" "${PODS_CONFIGURATION_BUILD_DIR}/SDWebImage"
+OTHER_LDFLAGS = -ObjC -l"opencore-amrnb" -l"opencore-amrwb" -l"stdc++" -framework "Foundation" -framework "UIKit"
+PODS_BUILD_DIR = ${BUILD_DIR}
+PODS_CONFIGURATION_BUILD_DIR = ${PODS_BUILD_DIR}/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)
+PODS_ROOT = ${SRCROOT}
+PODS_TARGET_SRCROOT = ${PODS_ROOT}/EaseUILite
+PRODUCT_BUNDLE_IDENTIFIER = org.cocoapods.${PRODUCT_NAME:rfc1034identifier}
+SKIP_INSTALL = YES
