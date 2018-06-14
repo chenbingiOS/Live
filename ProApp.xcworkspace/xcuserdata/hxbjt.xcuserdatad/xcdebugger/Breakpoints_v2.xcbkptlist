@@ -216,13 +216,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "ProApp/Modules/LiveVideo/LiveVideo/Live/BeginLive/CBBeginLiveVC.m"
-            timestampString = "550565920.2841409"
+            filePath = "ProApp/Modules/Home/Live/Live/Ctrl/CBPlayerVC.m"
+            timestampString = "550569248.681632"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "478"
-            endingLineNumber = "478"
-            landmarkName = "-httpGetPushAddress:"
+            startingLineNumber = "168"
+            endingLineNumber = "168"
+            landmarkName = "-player:codecError:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -232,13 +232,77 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "ProApp/Modules/Home/Live/Live/Ctrl/CBPlayerVC.m"
-            timestampString = "550569248.681632"
+            filePath = "ProApp/Modules/Home/Live/Live/View/EaseChat/EaseChatView.m"
+            timestampString = "550577825.838165"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "168"
-            endingLineNumber = "168"
-            landmarkName = "-player:codecError:"
+            startingLineNumber = "439"
+            endingLineNumber = "439"
+            landmarkName = "-chatKeyboardWillChangeFrame:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ProApp/Modules/Home/Live/Live/Ctrl/CBLivePlayerVC.m"
+            timestampString = "550577825.838239"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "229"
+            endingLineNumber = "229"
+            landmarkName = "-easeChatViewDidChangeFrameToHeight:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ProApp/Modules/Home/Live/Live/View/EaseChat/EaseChatView.m"
+            timestampString = "550577825.8382961"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "448"
+            endingLineNumber = "448"
+            landmarkName = "-chatKeyboardWillChangeFrame:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ProApp/Modules/Home/Live/Live/Ctrl/CBLivePlayerVC.m"
+            timestampString = "550577825.838346"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "290"
+            endingLineNumber = "290"
+            landmarkName = "-tapAnywhereToDismissKeyboard:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ProApp/Modules/Home/Live/Live/Ctrl/CBLivePlayerVC.m"
+            timestampString = "550577825.838394"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "286"
+            endingLineNumber = "286"
+            landmarkName = "-setupForDismissKeyboard"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

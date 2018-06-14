@@ -33,6 +33,8 @@
 // 推流成功回调接口
 #define urlStartLivePushCallback purl@"Api/Anchor/startLivePushCallback"
 // 关闭直播接口
+#define urlStopLive             purl@"Api/Anchor/stopLive"
+
 // 进入直播间接口
 // 离开直播间接口
 //------------------------------------------------------------------

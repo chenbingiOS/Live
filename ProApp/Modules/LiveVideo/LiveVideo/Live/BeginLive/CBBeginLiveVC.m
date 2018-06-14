@@ -257,9 +257,12 @@
         [_streamingSession startStreamingWithPushURL:_streamURL feedback:^(PLStreamStartStateFeedback feedback) {
             NSString *log = [NSString stringWithFormat:@"session start state %lu",(unsigned long)feedback];
             dispatch_async(dispatch_get_main_queue(), ^{
-                NSLog(@"%@", log);
+//                NSLog(@"---------%@", log);
                 button.enabled = YES;
                 if (PLStreamStartStateSuccess == feedback) {
+                    // 成功直播推流
+                    [self httpStartLivePushCallback];
+                    // 关闭按钮
                     [button setTitle:@"stop" forState:UIControlStateNormal];
                 } else {
                     [[[UIAlertView alloc] initWithTitle:@"错误" message:@"推流失败了" delegate:nil cancelButtonTitle:@"知道啦" otherButtonTitles:nil] show];
@@ -413,9 +416,9 @@
     }
 }
 
-- (void)PLStreamingSessionConstructor:(PLStreamingSessionConstructor *)constructor didGetStreamURL:(NSURL *)streamURL {
-    _streamURL = streamURL;
-}
+//- (void)PLStreamingSessionConstructor:(PLStreamingSessionConstructor *)constructor didGetStreamURL:(NSURL *)streamURL {
+//    _streamURL = streamURL;
+//}
 
 - (CBBeginLiveView *)beginLiveView {
     if (!_beginLiveView) {
@@ -479,6 +482,47 @@
             self.streamURL = [NSURL URLWithString:self.beginLiveVO.push_rtmp];
             [self _pressedStartButton:btn];
             [self liveUIReload];
+            [self httpStartLivePushCallback];
+        } else if ([code isEqualToNumber:@511]) {
+            [self httpStopLive:btn];
+        } else {
+            NSString *descrp = responseObject[@"descrp"];
+            [MBProgressHUD showAutoMessage:descrp];
+        }
+    } failure:^(NSError *error) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [MBProgressHUD showAutoMessage:@"直播失败"];
+    }];
+}
+
+- (void)httpStopLive:(UIButton *)btn {
+    NSString *url = urlStopLive;
+    NSDictionary *param = @{ @"token":[CBLiveUserConfig getOwnToken]};
+    @weakify(self);
+    [PPNetworkHelper POST:url parameters:param success:^(id responseObject) {
+        @strongify(self);
+        NSNumber *code = responseObject[@"code"];
+        if ([code isEqualToNumber:@200]) {
+            [self httpGetPushAddress:btn];
+        } else {
+            NSString *descrp = responseObject[@"descrp"];
+            [MBProgressHUD showAutoMessage:descrp];
+        }
+    } failure:^(NSError *error) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [MBProgressHUD showAutoMessage:@"直播失败"];
+    }];
+}
+
+- (void)httpStartLivePushCallback {
+    NSString *url = urlStartLivePushCallback;
+    NSDictionary *param = @{ @"token":[CBLiveUserConfig getOwnToken],
+                             @"action": @"push" };
+    @weakify(self);
+    [PPNetworkHelper POST:url parameters:param success:^(id responseObject) {
+        @strongify(self);
+        NSNumber *code = responseObject[@"code"];
+        if ([code isEqualToNumber:@200]) {
         } else {
             NSString *descrp = responseObject[@"descrp"];
             [MBProgressHUD showAutoMessage:descrp];
@@ -501,6 +545,10 @@
 - (void)setCoverImage:(UIImage *)coverImage {
     _coverImage = coverImage;
     self.beginLiveView.coverImageView.image = _coverImage;
+}
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    [self.view endEditing:YES];
 }
 
 @end

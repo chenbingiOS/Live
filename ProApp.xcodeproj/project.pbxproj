@@ -176,6 +176,8 @@
 		544F802020D0B97100F492AE /* EaseLiveSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 544F801F20D0B97100F492AE /* EaseLiveSession.m */; };
 		544F802420D0B9A300F492AE /* NSDictionary+SafeValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 544F802220D0B9A300F492AE /* NSDictionary+SafeValue.m */; };
 		544F802820D0BDA100F492AE /* EaseHttpManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 544F802720D0BDA100F492AE /* EaseHttpManager.m */; };
+		544F802B20D10CE500F492AE /* CBLivePlayerVCUI.m in Sources */ = {isa = PBXBuildFile; fileRef = 544F802A20D10CE500F492AE /* CBLivePlayerVCUI.m */; };
+		544F802E20D1114500F492AE /* EaseHeartFlyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 544F802C20D1114400F492AE /* EaseHeartFlyView.m */; };
 		54520AF020BFD2BB005B787E /* NSObject+Copy.m in Sources */ = {isa = PBXBuildFile; fileRef = 54520AEB20BFD2BA005B787E /* NSObject+Copy.m */; };
 		54520AF120BFD2BB005B787E /* NSObject+Coding.m in Sources */ = {isa = PBXBuildFile; fileRef = 54520AEC20BFD2BA005B787E /* NSObject+Coding.m */; };
 		54520AF320BFD2BB005B787E /* NSObject+Class.m in Sources */ = {isa = PBXBuildFile; fileRef = 54520AEE20BFD2BA005B787E /* NSObject+Class.m */; };
@@ -1018,6 +1020,10 @@
 		544F802320D0B9A300F492AE /* NSDictionary+SafeValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+SafeValue.h"; sourceTree = "<group>"; };
 		544F802620D0BDA000F492AE /* EaseHttpManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EaseHttpManager.h; sourceTree = "<group>"; };
 		544F802720D0BDA100F492AE /* EaseHttpManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EaseHttpManager.m; sourceTree = "<group>"; };
+		544F802920D10CE500F492AE /* CBLivePlayerVCUI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBLivePlayerVCUI.h; sourceTree = "<group>"; };
+		544F802A20D10CE500F492AE /* CBLivePlayerVCUI.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBLivePlayerVCUI.m; sourceTree = "<group>"; };
+		544F802C20D1114400F492AE /* EaseHeartFlyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EaseHeartFlyView.m; sourceTree = "<group>"; };
+		544F802D20D1114400F492AE /* EaseHeartFlyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EaseHeartFlyView.h; sourceTree = "<group>"; };
 		54520AE720BFD2BA005B787E /* NSObject+Class.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Class.h"; sourceTree = "<group>"; };
 		54520AE920BFD2BA005B787E /* NSObject+Coding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Coding.h"; sourceTree = "<group>"; };
 		54520AEB20BFD2BA005B787E /* NSObject+Copy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Copy.m"; sourceTree = "<group>"; };
@@ -2067,6 +2073,10 @@
 				07B8BD1B20A3E14200DD05B2 /* CBPlayerVC.m */,
 				07359D8D20A419E900FEEA4E /* CBLivePlayerVC.h */,
 				07359D8E20A419E900FEEA4E /* CBLivePlayerVC.m */,
+				544F802920D10CE500F492AE /* CBLivePlayerVCUI.h */,
+				544F802A20D10CE500F492AE /* CBLivePlayerVCUI.m */,
+				544F802D20D1114400F492AE /* EaseHeartFlyView.h */,
+				544F802C20D1114400F492AE /* EaseHeartFlyView.m */,
 			);
 			path = Ctrl;
 			sourceTree = "<group>";
@@ -4298,6 +4308,8 @@
 				07558C232094517A007E41C2 /* CBOnlineUserCell.m in Sources */,
 				544B8F8920CA118E00FC9CFE /* PLPanelDelegateGenerator.m in Sources */,
 				071D3C152092B51700A6C5CE /* CBPackageRecordVO.m in Sources */,
+				544F802E20D1114500F492AE /* EaseHeartFlyView.m in Sources */,
+				544F802B20D10CE500F492AE /* CBLivePlayerVCUI.m in Sources */,
 				54A76AEF20B7DEDE0034D5A2 /* PLSStickerBar.m in Sources */,
 				544B8F8C20CA118E00FC9CFE /* PLPermissionRequestor.m in Sources */,
 				54A76ADF20B7DEDE0034D5A2 /* PLSViewRecorderManager.m in Sources */,

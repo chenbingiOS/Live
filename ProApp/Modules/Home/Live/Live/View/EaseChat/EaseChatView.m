@@ -17,8 +17,8 @@
 
 #define kBarrageAction @"is_barrage_msg"
 
-#define kButtonWitdh 40
-#define kButtonHeight 40
+#define kButtonWitdh 60
+#define kButtonHeight 60
 
 #define kDefaultSpace 5.f
 #define kDefaulfLeftSpace 10.f
@@ -161,7 +161,7 @@
 {
     if (_sendTextButton == nil) {
         _sendTextButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _sendTextButton.frame = CGRectMake(kDefaultSpace*2, 6.f, kButtonWitdh, kButtonHeight);
+        _sendTextButton.frame = CGRectMake(0, 0, kButtonWitdh, kButtonHeight);
         [_sendTextButton setImage:[UIImage imageNamed:@"live_barrage"] forState:UIControlStateNormal];
         [_sendTextButton addTarget:self action:@selector(sendTextAction) forControlEvents:UIControlEventTouchUpInside];
     }

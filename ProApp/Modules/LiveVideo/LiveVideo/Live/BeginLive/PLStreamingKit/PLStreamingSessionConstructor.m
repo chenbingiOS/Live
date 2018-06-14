@@ -31,30 +31,31 @@
 
 - (void)_generateStreamURLFromServerWithURL:(NSURL *)url
 {
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
-    request.HTTPMethod = @"POST";
-    request.timeoutInterval = 10;
-    
-    NSURLSessionDataTask *task = [[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-        if (error != nil || response == nil || data == nil) {
-            NSLog(@"get play json faild, %@, %@, %@", error, response, data);
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.4 * NSEC_PER_SEC)), dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                [self _generateStreamURLFromServerWithURL:url];
-            });
-            return;
-        }
-        
-        NSURL *streamURL = [NSURL URLWithString:[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]];
-        
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"streamURL" message:streamURL.absoluteString delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [alert show];
-        });
-        if ([self.delegate respondsToSelector:@selector(PLStreamingSessionConstructor:didGetStreamURL:)]) {
-            [self.delegate PLStreamingSessionConstructor:self didGetStreamURL:streamURL];
-        }
-    }];
-    [task resume];
+//    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
+//    request.HTTPMethod = @"POST";
+//    request.timeoutInterval = 10;
+//    
+//    NSURLSessionDataTask *task = [[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+////        if (error != nil || response == nil || data == nil) {
+////            NSLog(@"get play json faild, %@, %@, %@", error, response, data);
+////            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.4 * NSEC_PER_SEC)), dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+////                [self _generateStreamURLFromServerWithURL:url];
+////            });
+////            return;
+////        }
+//        
+//        NSURL *streamURL = [NSURL URLWithString:[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]];
+//        
+////        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"streamURL" message:streamURL.absoluteString delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil];
+////        dispatch_async(dispatch_get_main_queue(), ^{
+////            [alert show];
+////        });
+//        
+//        if ([self.delegate respondsToSelector:@selector(PLStreamingSessionConstructor:didGetStreamURL:)]) {
+//            [self.delegate PLStreamingSessionConstructor:self didGetStreamURL:streamURL];
+//        }
+//    }];
+//    [task resume];
 }
 
 - (PLMediaStreamingSession *)_createStreamingSessionWithSream:(PLStream *)stream
