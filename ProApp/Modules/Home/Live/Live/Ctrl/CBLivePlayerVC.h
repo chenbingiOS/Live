@@ -12,6 +12,6 @@
 @class CBAppLiveVO;
 @interface CBLivePlayerVC : CBPlayerVC
 
-@property (nonatomic, strong) CBAppLiveVO *live;  /** 直播 */
+@property (nonatomic, strong) CBAppLiveVO *liveVO;  /** 直播 */
 
 @end

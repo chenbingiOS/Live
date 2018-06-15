@@ -12,57 +12,79 @@
 #import "PLStreamingSessionConstructor.h"
 #import "PLPermissionRequestor.h"
 #import "PLPanelDelegateGenerator.h"
-//#import <PLMediaStreamingKit/PLMediaStreamingKit.h>
 #import <PLRTCStreamingKit/PLRTCStreamingKit.h>
 #import <Masonry/Masonry.h>
 #import <BlocksKit/BlocksKit.h>
 #import <BlocksKit/BlocksKit+UIKit.h>
-//#import <WeiboSDK/WeiboSDK.h>
-#import <WeiboSDK.h>
-#import "WXApi.h"
 
-#import "CBBeginLiveVO.h"
 #import "CBBeginLiveView.h"
 #import "CBImagePickerTool.h"
+#import "UILabel+ShadowText.h"
+#import "EaseChatView.h"
+#import "CBAppLiveVO.h"
+#import "EaseLiveHeaderListView.h"
 
-#warning 如果需要分享到微博或微信，请在这里填写相应的 key
+@interface CBBeginLiveVC ()
+<
+PLMediaStreamingSessionDelegate,
+PLPanelDelegateGeneratorDelegate,
+EaseChatViewDelegate,
+EMChatroomManagerDelegate,
+EMClientDelegate,
+EaseLiveHeaderListViewDelegate
+>
 
-#define kWeiboAppKey     @"Your weibo app key"
-#define kWeiboAppSecret  @"Your weibo app secret"
-#define kWeiXinAppID     @"Your weixin app ID"
-
-@interface CBBeginLiveVC () <PLMediaStreamingSessionDelegate, PLPanelDelegateGeneratorDelegate, PLStreamingSessionConstructorDelegate>
-
-@property (nonatomic, strong) CBBeginLiveView *beginLiveView;
+//--------------------------------------------
+// 配置直播
 @property (nonatomic, strong) NSURL *streamURL;
-@property (nonatomic, strong) CBBeginLiveVO *beginLiveVO;
+@property (nonatomic, strong) CBBeginLiveView *beginLiveView;
+@property (nonatomic, strong) CBAppLiveVO *liveVO;
+//--------------------------------------------
+// 直播开始
+@property (nonatomic, strong) UIView *roomView;                 ///< 房间UI
+@property (nonatomic, strong) UIScrollView *scrollView;         ///< 实现左滑清空数据
+@property (nonatomic, strong) UIView *leftView;                 ///< 左边控件容器
+@property (nonatomic, strong) UIView *rightView;                ///< 右边控件容器
+@property (nonatomic, strong) UIImageView *topGradientView;     ///< 上部渐变
+@property (nonatomic, strong) UIImageView *bottomGradientView;  ///< 下部渐变
+@property (nonatomic, strong) UILabel *roomCodeLabel;           ///< 房间号
+@property (nonatomic, strong) EaseLiveHeaderListView *headerListView; ///< 顶部人员
+@property (nonatomic, strong) EaseChatView *chatview;           ///< 底部聊天
+@property (strong, nonatomic) UITapGestureRecognizer *singleTapGR;
+@property (nonatomic, strong) UIWindow *subWindow;
+//--------------------------------------------
+@property (nonatomic, strong) UIButton *closeButton;            ///< 关闭按钮
 
 @end
 
-@implementation CBBeginLiveVC
-{
+@implementation CBBeginLiveVC {
+    // 直播流需要的配置工具
     PLMediaStreamingSession *_streamingSession;
     PLModelPanelGenerator *_modelPanelGenerator;
     PLPanelDelegateGenerator *_panelDelegateGenerator;
     PLStreamingSessionConstructor *_sessionConstructor;
-    UIButton *_startButton;
-    UISlider *_zoomSlider;
-    UIView *_inputURLView;
-    UITextView *_inputURLTextView;
 }
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
+- (void)dealloc {
+    [[EMClient sharedClient].roomManager removeDelegate:self];
+    [[EMClient sharedClient] removeDelegate:self];
     
+    _chatview.delegate = nil;
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    [_streamingSession destroy];
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
     self.tabBar.hidden = YES;
     
-    [WeiboSDK registerApp:kWeiboAppKey];
-    
-    [WXApi registerApp:kWeiXinAppID withDescription:@"PLMediaStreamingKitDemo"];
-    
     [self _prepareForCameraSetting];
-    [self setupUI];
+    [self setup_beginLive_UI];
     
     _panelDelegateGenerator = [[PLPanelDelegateGenerator alloc] initWithMediaStreamingSession:_streamingSession];
     [_panelDelegateGenerator generate];
@@ -72,364 +94,7 @@
     self.panelModels = [_modelPanelGenerator generate];
 }
 
-- (void)viewDidDisappear:(BOOL)animated
-{
-    [super viewDidDisappear:animated];
-    [_streamingSession destroy];
-}
-
-- (void)_prepareForCameraSetting
-{
-#warning 在这里填写获取推流地址的业务服务器 url
-    NSURL *streamCloudURL = [NSURL URLWithString:@"your app server url"];
-    _sessionConstructor = [[PLStreamingSessionConstructor alloc] initWithStreamCloudURL:streamCloudURL];
-    _sessionConstructor.delegate = self;
-    _streamingSession = [_sessionConstructor streamingSession];
-    
-    _streamingSession.delegate = self;
-    PLPermissionRequestor *permission = [[PLPermissionRequestor alloc] init];
-    permission.noPermission = ^{};
-    permission.permissionGranted = ^{
-        UIView *previewView = _streamingSession.previewView;
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.cameraPreviewView insertSubview:previewView atIndex:0];
-            [previewView mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.top.bottom.left.and.right.equalTo(self.cameraPreviewView);
-            }];
-        });
-    };
-    [permission checkAndRequestPermission];
-}
-
-- (void)_prepareButtons
-{
-    _startButton = ({
-        UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
-        [self.cameraPreviewView addSubview:button];
-        [button setTitle:@"start" forState:UIControlStateNormal];
-        [button mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.size.mas_equalTo(CGSizeMake(100, 50));
-            make.bottom.equalTo(self.cameraPreviewView).with.offset(-25);
-            make.centerX.equalTo(self.cameraPreviewView).with.offset(-120);
-        }];
-        button;
-    });
-    UIButton *qrCodeButton = ({
-        UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
-        [self.cameraPreviewView addSubview:button];
-        [button setTitle:@"二维码" forState:UIControlStateNormal];
-        [button mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.size.mas_equalTo(CGSizeMake(100, 50));
-            make.bottom.equalTo(self.cameraPreviewView).with.offset(-25);
-            make.centerX.equalTo(self.cameraPreviewView).with.offset(-40);
-        }];
-        button;
-    });
-    UIButton *screenshotButton = ({
-        UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
-        [self.cameraPreviewView addSubview:button];
-        [button setTitle:@"截图" forState:UIControlStateNormal];
-        [button mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.size.mas_equalTo(CGSizeMake(100, 50));
-            make.bottom.equalTo(self.cameraPreviewView).with.offset(-25);
-            make.centerX.equalTo(self.cameraPreviewView).with.offset(40);
-        }];
-        button;
-    });
-    UIButton *changeCameraButton = ({
-        UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
-        [self.cameraPreviewView addSubview:button];
-        [button setTitle:@"转" forState:UIControlStateNormal];
-        [button mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.size.mas_equalTo(CGSizeMake(100, 50));
-            make.bottom.equalTo(self.cameraPreviewView).with.offset(-25);
-            make.centerX.equalTo(self.cameraPreviewView).with.offset(120);
-        }];
-        button;
-    });
-    
-    _zoomSlider = ({
-        UISlider *slider = [[UISlider alloc] init];
-        [self.cameraPreviewView addSubview:slider];
-        slider.value = 1.0;
-        slider.minimumValue = 1.0;
-        slider.maximumValue = MIN(5, _streamingSession.videoActiveFormat.videoMaxZoomFactor);
-        [slider mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.size.mas_equalTo(CGSizeMake(320, 20));
-            make.bottom.equalTo(self.cameraPreviewView).with.offset(-100);
-            make.centerX.equalTo(self.cameraPreviewView).with.offset(0);
-        }];
-        slider;
-    });
-    
-    UIButton *inputPushURLButton = ({
-        UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
-        [self.cameraPreviewView addSubview:button];
-        [button setTitle:@"输入 pushURL" forState:UIControlStateNormal];
-        [button mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.size.mas_equalTo(CGSizeMake(100, 50));
-            make.bottom.equalTo(self.cameraPreviewView).with.offset(-140);
-            make.centerX.equalTo(self.cameraPreviewView).with.offset(0);
-        }];
-        button;
-    });
-    
-    UIButton *shareWeiXinButton = ({
-        UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
-        [self.cameraPreviewView addSubview:button];
-        [button setTitle:@"分享WeiXin" forState:UIControlStateNormal];
-        [button mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.size.mas_equalTo(CGSizeMake(100, 50));
-            make.bottom.equalTo(self.cameraPreviewView).with.offset(-140);
-            make.centerX.equalTo(self.cameraPreviewView).with.offset(-120);
-        }];
-        button;
-    });
-    
-    UIButton *shareWeiboButton = ({
-        UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
-        [self.cameraPreviewView addSubview:button];
-        [button setTitle:@"分享Weibo" forState:UIControlStateNormal];
-        [button mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.size.mas_equalTo(CGSizeMake(100, 50));
-            make.bottom.equalTo(self.cameraPreviewView).with.offset(-140);
-            make.centerX.equalTo(self.cameraPreviewView).with.offset(120);
-        }];
-        button;
-    });
-    
-    [_startButton addTarget:self action:@selector(_pressedStartButton:)
-           forControlEvents:UIControlEventTouchUpInside];
-    [qrCodeButton addTarget:self action:@selector(_pressedQRButton:)
-           forControlEvents:UIControlEventTouchUpInside];
-    [changeCameraButton addTarget:self action:@selector(_pressedChangeCameraButton:)
-                 forControlEvents:UIControlEventTouchUpInside];
-    [shareWeiboButton addTarget:self action:@selector(_pressedWeiboShareButton:)
-               forControlEvents:UIControlEventTouchUpInside];
-    [shareWeiXinButton addTarget:self action:@selector(_pressedWeiXinShareButton:)
-                forControlEvents:UIControlEventTouchUpInside];
-    [screenshotButton addTarget:self action:@selector(_pressedScreenshotButton:)
-               forControlEvents:UIControlEventTouchUpInside];
-    [_zoomSlider addTarget:self action:@selector(_scrollSlider:) forControlEvents:UIControlEventValueChanged];
-    [inputPushURLButton addTarget:self action:@selector(_pressedInputURL:) forControlEvents:UIControlEventTouchUpInside];
-    
-    _inputURLView = ({
-        UIView *view = [[UIView alloc] init];
-        [self.cameraPreviewView addSubview:view];
-        view.backgroundColor = [UIColor whiteColor];
-        [view mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.size.mas_equalTo(CGSizeMake(300, 200));
-            make.top.equalTo(self.cameraPreviewView).with.offset(50);
-            make.centerX.equalTo(self.cameraPreviewView);
-        }];
-        
-        _inputURLTextView = [[UITextView alloc] initWithFrame:CGRectMake(10, 10, 280, 100)];
-        _inputURLTextView.backgroundColor = [UIColor lightGrayColor];
-        [view addSubview:_inputURLTextView];
-        
-        UIButton *cancelButton = [UIButton buttonWithType:UIButtonTypeSystem];
-        cancelButton.frame = CGRectMake(0, 130, 150, 50);
-        [cancelButton setTitle:@"取消" forState:UIControlStateNormal];
-        cancelButton.titleLabel.textAlignment = NSTextAlignmentCenter;
-        [cancelButton addTarget:self action:@selector(_cancelButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-        [view addSubview:cancelButton];
-        
-        UIButton *sureButton = [UIButton buttonWithType:UIButtonTypeSystem];
-        sureButton.frame = CGRectMake(150, 130, 150, 50);
-        [sureButton setTitle:@"确定" forState:UIControlStateNormal];
-        sureButton.titleLabel.textAlignment = NSTextAlignmentCenter;
-        [sureButton addTarget:self action:@selector(_sureButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-        [view addSubview:sureButton];
-        
-        view;
-    });
-    _inputURLView.hidden = YES;
-}
-
-- (void)_pressedStartButton:(UIButton *)button
-{
-    if (!_streamingSession.isStreamingRunning) {
-        if (!_streamURL) {
-            [[[UIAlertView alloc] initWithTitle:@"错误" message:@"还没有获取到 streamURL 不能推流哦" delegate:nil cancelButtonTitle:@"知道啦" otherButtonTitles:nil] show];
-            return;
-        }
-        button.enabled = NO;
-        [_streamingSession startStreamingWithPushURL:_streamURL feedback:^(PLStreamStartStateFeedback feedback) {
-            NSString *log = [NSString stringWithFormat:@"session start state %lu",(unsigned long)feedback];
-            dispatch_async(dispatch_get_main_queue(), ^{
-//                NSLog(@"---------%@", log);
-                button.enabled = YES;
-                if (PLStreamStartStateSuccess == feedback) {
-                    // 成功直播推流
-                    [self httpStartLivePushCallback];
-                    // 关闭按钮
-                    [button setTitle:@"stop" forState:UIControlStateNormal];
-                } else {
-                    [[[UIAlertView alloc] initWithTitle:@"错误" message:@"推流失败了" delegate:nil cancelButtonTitle:@"知道啦" otherButtonTitles:nil] show];
-                }
-            });
-        }];
-    } else {
-        [_streamingSession stopStreaming];
-        [button setTitle:@"start" forState:UIControlStateNormal];
-    }
-}
-
-- (void)_cancelButtonPressed:(UIButton *)button {
-    _inputURLView.hidden = YES;
-    [_inputURLTextView resignFirstResponder];
-}
-
-- (void)_sureButtonPressed:(UIButton *)button {
-    _inputURLView.hidden = YES;
-    [_inputURLTextView resignFirstResponder];
-    NSString *pushURL = [_inputURLTextView text];
-    if (pushURL && pushURL.length) {
-        _streamURL = [NSURL URLWithString:pushURL];
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"streamURL" message:pushURL delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil];
-        [alert show];
-    }
-}
-
-- (void)_pressedQRButton:(UIButton *)button
-{
-    if (!_streamURL) {
-        [[[UIAlertView alloc] initWithTitle:@"错误" message:@"还没有获取到 streamJson 没有可供播放的二维码哦" delegate:nil cancelButtonTitle:@"知道啦" otherButtonTitles:nil] show];
-    } else {
-#warning 在这里填写相关的 host，hub 即可使用播放器直接扫码播放
-        NSString *host = @"your play host";
-        NSString *hub = @"your hub";
-        NSString *streamID = [[[[_streamURL.absoluteString componentsSeparatedByString:@"/"] objectAtIndex:4] componentsSeparatedByString:@"?"] objectAtIndex:0];
-        NSString *url = [NSString stringWithFormat:@"%@/%@/%@",host, hub,  streamID];
-        UIImage *image = [self createQRForString:url];
-        UIControl *screenMaskView = ({
-            UIControl *mask = [[UIControl alloc] init];
-            [self.view addSubview:mask];
-            UIImageView *imgView = [[UIImageView alloc] initWithImage:image];
-            [mask addSubview:imgView];
-            [imgView mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.size.mas_equalTo(CGSizeMake(204, 204));
-                make.center.equalTo(mask);
-            }];
-            [mask mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.top.left.right.and.bottom.equalTo(self.view);
-            }];
-            mask;
-        });
-        [screenMaskView addTarget:self action:@selector(_onTapQRCodeImageView:)
-                 forControlEvents:UIControlEventTouchUpInside];
-    }
-}
-
-- (void)_pressedWeiboShareButton:(UIButton *)button {
-    
-    if (![WeiboSDK isWeiboAppInstalled]) {
-        [[[UIAlertView alloc] initWithTitle:@"矮油" message:@"您还没有安装微博哦" delegate:nil cancelButtonTitle:@"知道啦" otherButtonTitles:nil] show];
-        return;
-    }
-    
-    WBMessageObject *message = [WBMessageObject message];
-    
-    message.text = [NSString stringWithFormat:@"直播开始啦: %@", [_streamURL absoluteString]];
-    
-    WBImageObject *image = [WBImageObject object];
-    image.imageData = UIImagePNGRepresentation([UIImage imageNamed:@"qiniu.png"]);
-    message.imageObject = image;
-    
-    WBSendMessageToWeiboRequest *request = [WBSendMessageToWeiboRequest requestWithMessage:message];
-    
-    [WeiboSDK sendRequest:request];
-}
-
-- (void)_pressedWeiXinShareButton:(UIButton *)button {
-    if (![WXApi isWXAppInstalled] || ![WXApi isWXAppSupportApi] ) {
-        [[[UIAlertView alloc] initWithTitle:@"矮油" message:@"您还没有安装微信哦" delegate:nil cancelButtonTitle:@"知道啦" otherButtonTitles:nil] show];
-        return;
-    }
-    
-    SendMessageToWXReq *WXMessage = [[SendMessageToWXReq alloc] init];
-    WXMessage.text = [NSString stringWithFormat:@"直播开始啦: %@", [_streamURL absoluteString]];
-    WXMessage.bText = YES;
-    WXMessage.scene = WXSceneTimeline;
-    
-    [WXApi sendReq:WXMessage];
-    
-    return;
-}
-
-- (void)_pressedScreenshotButton:(UIButton *)button {
-    static NSUInteger screenshotCount = 0;
-    [_streamingSession getScreenshotWithCompletionHandler:^(UIImage * _Nullable image) {
-        if (image == nil) {
-            return;
-        }
-        
-        screenshotCount++;
-        uint64_t timestamp = (uint64_t)[[NSDate date] timeIntervalSince1970];
-        
-        NSString *savedPath = [NSString stringWithFormat:@"%@screenshot_%llu_%lu.png",
-                               [[[[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] objectAtIndex:0] absoluteString] substringFromIndex:7], timestamp, screenshotCount];
-        NSData *imageData=UIImagePNGRepresentation(image);
-        [imageData writeToFile:savedPath atomically:YES];
-    }];
-}
-
-- (void)_pressedChangeCameraButton:(UIButton *)button
-{
-    [_streamingSession toggleCamera];
-    _zoomSlider.minimumValue = 1.0;
-    _zoomSlider.maximumValue = MIN(5, _streamingSession.videoActiveFormat.videoMaxZoomFactor);
-}
-
-- (void)_onTapQRCodeImageView:(UIView *)screenMask
-{
-    [screenMask removeFromSuperview];
-}
-
-- (void)_scrollSlider:(UISlider *)slider {
-    _streamingSession.videoZoomFactor = slider.value;
-}
-
-- (void)_pressedInputURL:(UIButton *)button {
-    _inputURLView.hidden = NO;
-}
-
-- (UIImage *)createQRForString:(NSString *)qrString
-{
-    NSData *stringData = [qrString dataUsingEncoding:NSUTF8StringEncoding];
-    CIFilter *qrFilter = [CIFilter filterWithName:@"CIQRCodeGenerator"];
-    [qrFilter setValue:stringData forKey:@"inputMessage"];
-    [qrFilter setValue:@"H" forKey:@"inputCorrectionLevel"];
-    return [[UIImage alloc] initWithCIImage:qrFilter.outputImage];
-}
-
-#pragma mark - delegate
-
-- (void)panelDelegateGenerator:(PLPanelDelegateGenerator *)panelDelegateGenerator streamDidDisconnectWithError:(NSError *)error {
-    [_startButton setTitle:@"start" forState:UIControlStateNormal];
-    [[[UIAlertView alloc] initWithTitle:@"错误" message:error.localizedDescription delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
-}
-
-- (void)panelDelegateGenerator:(PLPanelDelegateGenerator *)panelDelegateGenerator streamStateDidChange:(PLStreamState)state {
-    if (PLStreamStateDisconnected == state) {
-        [_startButton setTitle:@"start" forState:UIControlStateNormal];
-    }
-}
-
-//- (void)PLStreamingSessionConstructor:(PLStreamingSessionConstructor *)constructor didGetStreamURL:(NSURL *)streamURL {
-//    _streamURL = streamURL;
-//}
-
-- (CBBeginLiveView *)beginLiveView {
-    if (!_beginLiveView) {
-        _beginLiveView = [CBBeginLiveView viewFromXib];
-        _beginLiveView.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight);
-    }
-    return _beginLiveView;
-}
-
-//------------------------------------------------------------------------------------------------------
-- (void)setupUI {
+- (void)setup_beginLive_UI {
     [self.view addSubview:self.beginLiveView];
     @weakify(self);
     [self.beginLiveView.closeBtn addBlockForControlEvents:UIControlEventTouchUpInside block:^(id  _Nonnull sender) {
@@ -457,12 +122,66 @@
     }];
 }
 
+// 成功开播后需要关闭开始播放UI
+- (void)liveUIReload {
+    [UIView animateWithDuration:0.35 animations:^{
+        self.beginLiveView.hidden = YES;
+    } completion:^(BOOL finished) {
+        [self.beginLiveView removeFromSuperview];
+        self.beginLiveView = nil;
+        [self setup_Living_UI];
+    }];
+}
+
+// 直播中UI
+- (void)setup_Living_UI {
+    
+    [[EMClient sharedClient].roomManager addDelegate:self delegateQueue:nil];
+    [[EMClient sharedClient] addDelegate:self delegateQueue:nil];
+    
+    [self.view addSubview:self.roomView];
+    [self.roomView addSubview:self.scrollView];
+    [self.scrollView addSubview:self.leftView];
+    [self.scrollView addSubview:self.rightView];
+    [self.leftView addSubview:self.roomCodeLabel];
+    [self.rightView addSubview:self.topGradientView];
+    [self.rightView addSubview:self.bottomGradientView];
+    [self.rightView addSubview:self.headerListView];
+    [self.rightView addSubview:self.chatview];
+    
+    
+    
+    [self.view addSubview:self.closeButton];
+    [self setupForDismissKeyboard];
+    
+    @weakify(self);
+    [self.chatview joinChatroomWithIsCount:NO completion:^(BOOL success) {
+        @strongify(self);
+        if (success) {
+            [self.headerListView loadHeaderListWithChatroomId:self.liveVO.leancloud_room];
+        }
+    }];
+
+    
+    // 加载数据
+    [self loadData_LivingData];
+}
+
+- (void)loadData_LivingData {
+    [self.roomCodeLabel shadowWtihText:[NSString stringWithFormat:@"房间号: %@", self.liveVO.room_id]];
+}
+
+#pragma mark - http
+// 获取一个直播地址
 - (void)httpGetPushAddress:(UIButton *)btn {
+    
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
+    
     if (self.beginLiveView.titleTextField.text.length == 0) {
         [MBProgressHUD showAutoMessage:@"填写主题吸引观众"];
         return ;
     }
-
+    
     NSString *url = urlStartLive;
     NSDictionary *param = @{
                             @"token":[CBLiveUserConfig getOwnToken],
@@ -475,17 +194,17 @@
         
     } success:^(id responseObject) {
         @strongify(self);
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
         NSNumber *code = responseObject[@"code"];
         if ([code isEqualToNumber:@200]) {
-            self.beginLiveVO = [CBBeginLiveVO modelWithDictionary:responseObject[@"data"]];
-            self.streamURL = [NSURL URLWithString:self.beginLiveVO.push_rtmp];
-            [self _pressedStartButton:btn];
+            self.liveVO = [CBAppLiveVO modelWithDictionary:responseObject[@"data"]];
+            self.streamURL = [NSURL URLWithString:self.liveVO.push_rtmp];
+            [self _pressedStartButton];
             [self liveUIReload];
-            [self httpStartLivePushCallback];
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
         } else if ([code isEqualToNumber:@511]) {
             [self httpStopLive:btn];
         } else {
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
             NSString *descrp = responseObject[@"descrp"];
             [MBProgressHUD showAutoMessage:descrp];
         }
@@ -495,6 +214,24 @@
     }];
 }
 
+// 成功推流后告诉后台开始直播
+- (void)httpStartLivePushCallback {
+    NSString *url = urlStartLivePushCallback;
+    NSDictionary *param = @{ @"token":[CBLiveUserConfig getOwnToken],
+                             @"action": @"push" };
+    [PPNetworkHelper POST:url parameters:param success:^(id responseObject) {
+        NSNumber *code = responseObject[@"code"];
+        if ([code isEqualToNumber:@200]) {
+        } else {
+            NSString *descrp = responseObject[@"descrp"];
+            [MBProgressHUD showAutoMessage:descrp];
+        }
+    } failure:^(NSError *error) {
+        
+    }];
+}
+
+// 如果非正常推出直播，重新直播前，告诉后台停止直播
 - (void)httpStopLive:(UIButton *)btn {
     NSString *url = urlStopLive;
     NSDictionary *param = @{ @"token":[CBLiveUserConfig getOwnToken]};
@@ -514,15 +251,20 @@
     }];
 }
 
-- (void)httpStartLivePushCallback {
-    NSString *url = urlStartLivePushCallback;
-    NSDictionary *param = @{ @"token":[CBLiveUserConfig getOwnToken],
-                             @"action": @"push" };
+// 告诉后台停止直播
+- (void)httpCloseLive {
+    NSString *url = urlStopLive;
+    NSDictionary *param = @{ @"token":[CBLiveUserConfig getOwnToken]};
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     @weakify(self);
     [PPNetworkHelper POST:url parameters:param success:^(id responseObject) {
         @strongify(self);
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         NSNumber *code = responseObject[@"code"];
         if ([code isEqualToNumber:@200]) {
+            [self dismissViewControllerAnimated:YES completion:^{
+                
+            }];
         } else {
             NSString *descrp = responseObject[@"descrp"];
             [MBProgressHUD showAutoMessage:descrp];
@@ -533,22 +275,245 @@
     }];
 }
 
-- (void)liveUIReload {
-    [UIView animateWithDuration:0.35 animations:^{
-        self.beginLiveView.hidden = YES;
-    } completion:^(BOOL finished) {
-        [self.beginLiveView removeFromSuperview];
-        self.beginLiveView = nil;
-    }];
+#pragma mark - Action
+// 关闭键盘
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    [self.view endEditing:YES];
 }
 
+#pragma mark - override
+
+- (void)setupForDismissKeyboard {
+    self.singleTapGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAnywhereToDismissKeyboard:)];
+}
+
+- (void)tapAnywhereToDismissKeyboard:(UIGestureRecognizer *)gestureRecognizer {
+    [self.view endEditing:YES];
+    [self.chatview endEditing:YES];
+}
+
+
+// 设置封面图片
 - (void)setCoverImage:(UIImage *)coverImage {
     _coverImage = coverImage;
     self.beginLiveView.coverImageView.image = _coverImage;
 }
 
-- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    [self.view endEditing:YES];
+// 设置摄像头
+- (void)_prepareForCameraSetting {
+    _sessionConstructor = [[PLStreamingSessionConstructor alloc] init];
+    _streamingSession = [_sessionConstructor streamingSession];
+    
+    _streamingSession.delegate = self;
+    PLPermissionRequestor *permission = [[PLPermissionRequestor alloc] init];
+    permission.noPermission = ^{};
+    permission.permissionGranted = ^{
+        UIView *previewView = self->_streamingSession.previewView;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.cameraPreviewView insertSubview:previewView atIndex:0];
+            [previewView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.top.bottom.left.and.right.equalTo(self.cameraPreviewView);
+            }];
+        });
+    };
+    [permission checkAndRequestPermission];
+}
+
+// 开始推流
+- (void)_pressedStartButton {
+    if (!_streamingSession.isStreamingRunning) {
+        [_streamingSession startStreamingWithPushURL:_streamURL feedback:^(PLStreamStartStateFeedback feedback) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (PLStreamStartStateSuccess == feedback) {
+                    // 成功直播推流
+                    [self httpStartLivePushCallback];
+                }
+            });
+        }];
+    }
+}
+
+// 摄像头旋转
+- (void)_pressedChangeCameraButton:(UIButton *)button {
+    [_streamingSession toggleCamera];
+}
+
+// 退出播放
+- (void)closeAction: (UIButton *) button {
+    // 退出播放
+    [_streamingSession stopStreaming];
+    // 关闭直播
+    [self httpCloseLive];
+    // 关闭聊天
+    [self closeChat];
+}
+
+#pragma mark - EaseChatViewDelegate
+
+- (void)easeChatViewDidChangeFrameToHeight:(CGFloat)toHeight {
+    if ([self.subWindow isKeyWindow]) {
+        return;
+    }
+    
+    if (toHeight == 200) {
+        [self.view removeGestureRecognizer:self.singleTapGR];
+    } else {
+        [self.view addGestureRecognizer:self.singleTapGR];
+    }
+    
+    if (!self.chatview.hidden) {
+        [UIView animateWithDuration:0.3 animations:^{
+            CGRect rect = self.chatview.frame;
+            rect.origin.y = self.view.frame.size.height - toHeight;
+            self.chatview.frame = rect;
+        }];
+    }
+}
+
+#pragma mark - Chat
+- (void)closeChat {
+    @weakify(self);
+    dispatch_block_t block = ^{
+        [self.chatview leaveChatroomWithIsCount:NO completion:^(BOOL success) {
+            @strongify(self);
+            if (success) {
+//                [[EMClient sharedClient].chatManager deleteConversation:_room.chatroomId isDeleteMessages:YES completion:NULL];
+            } else {
+                [self showHint:@"退出聊天室失败"];
+            }
+//            if (self.videoView)
+//            {
+//                [self.videoView removeFromSuperview];
+//            }
+//            self.videoView = nil;
+//            self.closeBtn.enabled = YES;
+            
+            [UIApplication sharedApplication].idleTimerDisabled = NO;
+//            [self removeNoti];
+//            [self dismissViewControllerAnimated:YES completion:^{
+//                [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationRefreshList object:@(YES)];
+//            }];
+        }];
+    };
+    
+//    [[EaseHttpManager sharedInstance] modifyLiveRoomStatusWithRoomId:self.le_room.roomId status:EaseLiveSessionCompleted completion:^(BOOL success) {
+//        @strongify(self);
+//        if (!success) {
+//            [weakSelf showHint:@"更新失败"];
+//        }
+//        block();
+//    }];
+}
+
+#pragma mark - lazy
+
+- (CBBeginLiveView *)beginLiveView {
+    if (!_beginLiveView) {
+        _beginLiveView = [CBBeginLiveView viewFromXib];
+        _beginLiveView.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight);
+    }
+    return _beginLiveView;
+}
+
+- (UIView *)roomView {
+    if (!_roomView) {
+        _roomView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight)];
+    }
+    return _roomView;
+}
+
+- (UIScrollView *)scrollView {
+    if (!_scrollView) {
+        _scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight)];
+        _scrollView.contentSize = CGSizeMake(kScreenWidth * 2, kScreenHeight);
+        _scrollView.contentOffset = CGPointMake(kScreenWidth, 0);
+        _scrollView.backgroundColor = [UIColor clearColor];
+        _scrollView.pagingEnabled = YES;
+        _scrollView.showsVerticalScrollIndicator = NO;
+        _scrollView.showsHorizontalScrollIndicator = NO;
+        _scrollView.bounces = NO;
+    }
+    return _scrollView;
+}
+
+- (UIView *)leftView {
+    if (!_leftView) {
+        _leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight)];
+        _leftView.backgroundColor = [UIColor clearColor];
+    }
+    return _leftView;
+}
+
+- (UILabel *)roomCodeLabel {
+    if (!_roomCodeLabel) {
+        _roomCodeLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 35, 100, 30)];
+        _roomCodeLabel.textColor = [UIColor whiteColor];
+        _roomCodeLabel.font = [UIFont systemFontOfSize:13];
+    }
+    return _roomCodeLabel;
+}
+
+- (UIView *)rightView {
+    if (!_rightView) {
+        _rightView = [[UIView alloc] initWithFrame:CGRectMake(kScreenWidth, 0, kScreenWidth, kScreenHeight)];
+        _rightView.backgroundColor = [UIColor clearColor];
+    }
+    return _rightView;
+}
+
+- (UIImageView *)topGradientView {
+    if (!_topGradientView) {
+        _topGradientView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 170)];
+        _topGradientView.image = [UIImage imageNamed:@"topGradient"];
+    }
+    return _topGradientView;
+}
+
+- (UIView *)bottomGradientView {
+    if (!_bottomGradientView) {
+        _bottomGradientView = [[UIImageView alloc] initWithFrame:CGRectMake(0, kScreenHeight-205, kScreenWidth, 205)];
+        _bottomGradientView.image = [UIImage imageNamed:@"bottomGradient"];
+    }
+    return _bottomGradientView;
+}
+
+- (UIButton *)closeButton {
+    if (!_closeButton) {
+        _closeButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        CGFloat y = kScreenHeight-60;
+        if (iPhoneX) y -= 35;
+        _closeButton.frame = CGRectMake(kScreenWidth - 60, y, 60, 60);
+        [_closeButton setImage:[UIImage imageNamed:@"live_close"] forState:UIControlStateNormal];
+        [_closeButton addTarget:self action:@selector(closeAction:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _closeButton;
+}
+
+- (UIWindow*)subWindow {
+    if (!_subWindow) {
+        _subWindow = [[UIWindow alloc] initWithFrame:CGRectMake(0, kScreenHeight, kScreenWidth, 290.f)];
+    }
+    return _subWindow;
+}
+
+- (EaseChatView*)chatview {
+    if (!_chatview) {
+        CGFloat y = kScreenHeight - 200 - SafeAreaBottomHeight;
+        CGRect frame = CGRectMake(0, y, kScreenWidth, 200);
+        _chatview = [[EaseChatView alloc] initWithFrame:frame room:_liveVO isPublish:NO];
+        _chatview.delegate = self;
+    }
+    return _chatview;
+}
+
+- (EaseLiveHeaderListView*)headerListView {
+    if (!_headerListView) {
+        CGFloat y = SafeAreaTopHeight - 40 ;
+        CGRect frame = CGRectMake(0, y, kScreenWidth, 30);
+        _headerListView = [[EaseLiveHeaderListView alloc] initWithFrame:frame room:_liveVO];
+        _headerListView.delegate = self;
+    }
+    return _headerListView;
 }
 
 @end

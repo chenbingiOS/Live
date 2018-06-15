@@ -36,9 +36,10 @@
     self.bigPicView.layer.masksToBounds = YES;
     [self.headImageView sd_setImageWithURL:[NSURL URLWithString:live.avatar] placeholderImage:[UIImage imageNamed:@"placeholder_empty_375"]];
     [self.headImageView roundedCornerByDefault];
-    self.nameLabel.text = live.user_nicename;
+    self.nameLabel.text = live.channel_title;
+    NSString *rootIDAndName = [NSString stringWithFormat:@"房间号:%@   %@", live.room_id, live.user_nicename];
+    self.roomIDLab.text = rootIDAndName;
     self.startView.image  = [UIImage imageNamed:[NSString stringWithFormat:@"v%@",live.user_level]];
-    self.roomIDLab.text = [NSString stringWithFormat:@"房间号: %@",live.room_id];
     // 设置当前观众数量
     NSString *fullChaoyang = [NSString stringWithFormat:@"%ld人在看", live.online_num.integerValue];
     NSRange range = [fullChaoyang rangeOfString:[NSString stringWithFormat:@"%ld", live.online_num.integerValue]];

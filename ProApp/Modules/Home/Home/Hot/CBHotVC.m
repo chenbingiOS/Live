@@ -63,7 +63,7 @@ static NSString *RIDCBAppLiveCell = @"RIDCBAppLiveCell";
     NSString *url = urlGetLive;
     NSDictionary *param = @{@"page":@(self.currentPage),
                             @"token":[CBLiveUserConfig getOwnToken],
-                            @"type":@2};
+                            @"type":@1};
     [PPNetworkHelper POST:url parameters:param success:^(id responseObject) {
         NSNumber *code = [responseObject valueForKey:@"code"];
         if ([code isEqualToNumber:@200]) {

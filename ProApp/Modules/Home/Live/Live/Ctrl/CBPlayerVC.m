@@ -77,7 +77,7 @@
         format = kPLPLAY_FORMAT_M3U8;
     }
     [option setOptionValue:@(format) forKey:PLPlayerOptionKeyVideoPreferFormat];
-    [option setOptionValue:@(kPLLogNone) forKey:PLPlayerOptionKeyLogLevel];
+//    [option setOptionValue:@(kPLLogNone) forKey:PLPlayerOptionKeyLogLevel];
     
     self.player = [PLPlayer playerWithURL:_url option:option];
     self.player.playerView.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight);

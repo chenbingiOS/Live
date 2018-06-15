@@ -571,10 +571,11 @@ static EaseHttpManager *sharedInstance = nil;
         BOOL ret = NO;
         if (!error) {
             if (aIsCount) {
-                [weakSelf _doPutCountWithRoomId:aRoomId
-                                           type:@"join"
-                                          count:1
-                                     completion:NULL];
+                // 人数加一
+//                [weakSelf _doPutCountWithRoomId:aRoomId
+//                                           type:@"join"
+//                                          count:1
+//                                     completion:NULL];
             }
             ret = YES;
         }

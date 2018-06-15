@@ -43,9 +43,9 @@
     if (self.lives.count) {
         CBLivePlayerVC *livePlayerVC = [[CBLivePlayerVC alloc] init];
         if (self.currentIndex < self.lives.count) {
-            livePlayerVC.live = self.lives[self.currentIndex];
+            livePlayerVC.liveVO = self.lives[self.currentIndex];
         } else {
-            livePlayerVC.live = self.lives.firstObject;
+            livePlayerVC.liveVO = self.lives.firstObject;
             self.currentIndex = 0;
         }
         [self setViewControllers:@[livePlayerVC] direction:(UIPageViewControllerNavigationDirectionForward) animated:NO completion:^(BOOL finished) {
@@ -57,14 +57,14 @@
     
     if (![viewController isKindOfClass:[CBLivePlayerVC class]]) return nil;
     
-    NSInteger index = [self.lives indexOfObject:[(CBLivePlayerVC*)viewController live]];
+    NSInteger index = [self.lives indexOfObject:[(CBLivePlayerVC*)viewController liveVO]];
     if (NSNotFound == index) return nil;
     
     index --;
     if (index < 0) return nil;
     
     CBLivePlayerVC *livePlayerVC = [[CBLivePlayerVC alloc] init];
-    livePlayerVC.live = self.lives[index];
+    livePlayerVC.liveVO = self.lives[index];
     self.currentIndex = index;
     
     return livePlayerVC;
@@ -74,14 +74,14 @@
     
     if (![viewController isKindOfClass:[CBLivePlayerVC class]]) return nil;
     
-    NSInteger index = [self.lives indexOfObject:[(CBLivePlayerVC*)viewController live]];
+    NSInteger index = [self.lives indexOfObject:[(CBLivePlayerVC*)viewController liveVO]];
     if (NSNotFound == index) return nil;
     
     index ++;
     
     if (self.lives.count > index) {
         CBLivePlayerVC *livePlayerVC = [[CBLivePlayerVC alloc] init];
-        livePlayerVC.live = self.lives[index];
+        livePlayerVC.liveVO = self.lives[index];
         self.currentIndex = index;
         
         return livePlayerVC;

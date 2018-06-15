@@ -15,3 +15,9 @@
 }
 
 @end
+
+
+@implementation CBMsgVO
+
+@end
+

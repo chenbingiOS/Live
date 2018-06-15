@@ -10,7 +10,8 @@
 #import "CBShareView.h"
 
 @class EMMessage;
-@class EaseLiveRoom;
+//@class EaseLiveRoom;
+@class CBAppLiveVO;
 @protocol EaseChatViewDelegate <NSObject>
 
 @optional
@@ -41,7 +42,7 @@
                     isPublish:(BOOL)isPublish;
 
 - (instancetype)initWithFrame:(CGRect)frame
-                         room:(EaseLiveRoom*)room
+                         room:(CBAppLiveVO*)room
                     isPublish:(BOOL)isPublish;
 
 @property (nonatomic, weak) id<EaseChatViewDelegate> delegate;

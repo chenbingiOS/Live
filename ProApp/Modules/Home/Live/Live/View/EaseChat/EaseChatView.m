@@ -10,6 +10,7 @@
 #import "EaseInputTextView.h"
 #import "EaseChatCell.h"
 #import "EaseLiveRoom.h"
+#import "CBAppLiveVO.h"
 
 #define kGiftAction @"cmd_gift"
 #define kPraiseAction @"cmd_live_praise"
@@ -25,15 +26,15 @@
 
 @interface EaseChatView () <EMChatManagerDelegate,EMChatroomManagerDelegate,UITableViewDelegate,UITableViewDataSource,UITextViewDelegate,EMFaceDelegate>
 {
-    NSString *_chatroomId;
-    EaseLiveRoom *_room;
-    EMChatroom *_chatroom;
-    NSInteger _praiseCount;
-    
     long long _curtime;
     CGFloat _previousTextViewContentHeight;
     CGFloat _defaultHeight;
 }
+
+@property (nonatomic, strong) CBAppLiveVO *room;
+@property (nonatomic, strong) EMChatroom *chatroom;
+@property (nonatomic, copy) NSString *chatroomId;
+@property (nonatomic, assign) NSInteger praiseCount;
 
 @property (strong, nonatomic) NSMutableArray *datasource;
 @property (strong, nonatomic) UITableView *tableView;
@@ -107,12 +108,12 @@
 }
 
 - (instancetype)initWithFrame:(CGRect)frame
-                         room:(EaseLiveRoom*)room
+                         room:(CBAppLiveVO*)room
                     isPublish:(BOOL)isPublish
 {
-    self = [self initWithFrame:frame chatroomId:room.chatroomId isPublish:isPublish];
+    self = [self initWithFrame:frame chatroomId:room.leancloud_room isPublish:isPublish];
     if (self) {
-        _room = room;
+        self.room = room;
     }
     return self;
 }
@@ -172,7 +173,7 @@
 {
     if (_changeCameraButton == nil) {
         _changeCameraButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _changeCameraButton.frame = CGRectMake(KScreenWidth - kDefaultSpace*2 - kButtonWitdh, 6.f, kButtonWitdh, kButtonHeight);
+        _changeCameraButton.frame = CGRectMake(kScreenWidth - kDefaultSpace*2 - kButtonWitdh, 6.f, kButtonWitdh, kButtonHeight);
         [_changeCameraButton setImage:[UIImage imageNamed:@"reversal_camera"] forState:UIControlStateNormal];
         [_changeCameraButton addTarget:self action:@selector(changeCameraAction) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -183,7 +184,7 @@
 {
     if (_likeButton == nil) {
         _likeButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _likeButton.frame = CGRectMake(KScreenWidth - kDefaultSpace*2 - kButtonWitdh, 6.f, kButtonWitdh, kButtonHeight);
+        _likeButton.frame = CGRectMake(kScreenWidth - kDefaultSpace*2 - kButtonWitdh, 6.f, kButtonWitdh, kButtonHeight);
         [_likeButton setImage:[UIImage imageNamed:@"like"] forState:UIControlStateNormal];
         [_likeButton addTarget:self action:@selector(praiseAction) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -257,7 +258,7 @@
 - (void)messagesDidReceive:(NSArray *)aMessages
 {
     for (EMMessage *message in aMessages) {
-        if ([message.conversationId isEqualToString:_chatroomId]) {
+        if ([message.conversationId isEqualToString:self.chatroomId]) {
             if ([message.ext objectForKey:kBarrageAction]) {
                 if (message.timestamp < _curtime) {
                     continue;
@@ -280,7 +281,7 @@
 - (void)cmdMessagesDidReceive:(NSArray *)aCmdMessages
 {
     for (EMMessage *message in aCmdMessages) {
-        if ([message.conversationId isEqualToString:_chatroomId]) {
+        if ([message.conversationId isEqualToString:self.chatroomId]) {
             if (message.timestamp < _curtime) {
                 continue;
             }
@@ -307,7 +308,7 @@
 - (void)chatroomAdminListDidUpdate:(EMChatroom *)aChatroom
                         addedAdmin:(NSString *)aAdmin;
 {
-    if ([aChatroom.chatroomId isEqualToString:_chatroomId]) {
+    if ([aChatroom.chatroomId isEqualToString:self.chatroomId]) {
         if ([aAdmin isEqualToString:[EMClient sharedClient].currentUsername]) {
             [self.bottomView addSubview:self.adminButton];
             [self layoutSubviews];
@@ -318,7 +319,7 @@
 - (void)chatroomAdminListDidUpdate:(EMChatroom *)aChatroom
                       removedAdmin:(NSString *)aAdmin
 {
-    if ([aChatroom.chatroomId isEqualToString:_chatroomId]) {
+    if ([aChatroom.chatroomId isEqualToString:self.chatroomId]) {
         if ([aAdmin isEqualToString:[EMClient sharedClient].currentUsername]) {
             [self.adminButton removeFromSuperview];
             [self layoutSubviews];
@@ -621,7 +622,7 @@
 - (void)sendText
 {
     if (self.textView.text.length > 0) {
-        EMMessage *message = [self _sendTextMessage:self.textView.text to:_chatroomId messageType:EMChatTypeChatRoom messageExt:nil];
+        EMMessage *message = [self _sendTextMessage:self.textView.text to:self.chatroomId messageType:EMChatTypeChatRoom messageExt:nil];
         __weak EaseChatView *weakSelf = self;
         [[EMClient sharedClient].chatManager sendMessage:message progress:NULL completion:^(EMMessage *message, EMError *error) {
             if (!error) {
@@ -663,7 +664,7 @@
 {
     if (_delegate && [_delegate respondsToSelector:@selector(didSelectAdminButton:)]) {
         BOOL isOwner = NO;
-        if (_chatroom && _chatroom.permissionType == EMChatroomPermissionTypeOwner) {
+        if (self.chatroom && self.chatroom.permissionType == EMChatroomPermissionTypeOwner) {
             isOwner = YES;
         }
         [_delegate didSelectAdminButton:isOwner];
@@ -674,28 +675,28 @@
 - (void)praiseAction
 {
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(_uploadPraiseCountToServer) object:nil];
-    EMMessage *message = [self _sendCMDMessageTo:_chatroomId messageType:EMChatTypeChatRoom messageExt:@{kPraiseCount:@(1)} action:kPraiseAction];
-    __weak EaseChatView *weakSelf = self;
+    EMMessage *message = [self _sendCMDMessageTo:self.chatroomId messageType:EMChatTypeChatRoom messageExt:@{kPraiseCount:@(1)} action:kPraiseAction];
+    @weakify(self);
     [[EMClient sharedClient].chatManager sendMessage:message progress:NULL completion:^(EMMessage *message, EMError *error) {
+        @strongify(self);
         if (!error) {
-            if (weakSelf.delegate && [weakSelf.delegate respondsToSelector:@selector(didReceivePraiseWithCMDMessage:)]) {
-                [weakSelf.delegate didReceivePraiseWithCMDMessage:message];
+            if (self.delegate && [self.delegate respondsToSelector:@selector(didReceivePraiseWithCMDMessage:)]) {
+                [self.delegate didReceivePraiseWithCMDMessage:message];
             }
-            _praiseCount++;
-            [weakSelf performSelector:@selector(_uploadPraiseCountToServer) withObject:nil afterDelay:10.f];
+            self.praiseCount++;
+            [self performSelector:@selector(_uploadPraiseCountToServer) withObject:nil afterDelay:10.f];
         }
     }];
 }
 
-- (void)_uploadPraiseCountToServer
-{
-    [[EaseHttpManager sharedInstance] savePraiseCountToServerWithRoomId:_room.roomId
-                                                                  count:_praiseCount
-                                                             completion:^(NSInteger count, BOOL success) {
-                                                                 if (success) {
-                                                                     _praiseCount = 0;
-                                                                 }
-                                                             }];
+- (void)_uploadPraiseCountToServer {
+    @weakify(self);
+    [[EaseHttpManager sharedInstance] savePraiseCountToServerWithRoomId:self.room.room_id count:self.praiseCount completion:^(NSInteger count, BOOL success) {
+        @strongify(self);
+        if (success) {
+            self.praiseCount = 0;
+        }
+    }];
 }
 
 #pragma mark - public
@@ -712,40 +713,38 @@
 - (void)joinChatroomWithIsCount:(BOOL)aIsCount
                      completion:(void (^)(BOOL success))aCompletion
 {
-    __weak typeof(self) weakSelf = self;
-    [[EaseHttpManager sharedInstance] joinLiveRoomWithRoomId:_room.roomId
-                                                  chatroomId:_room.chatroomId
-                                                     isCount:aIsCount
-                                                  completion:^(BOOL success) {
-                                                      BOOL ret = NO;
-                                                      if (success) {
-                                                          EMError *error = nil;
-                                                          _chatroom = [[EMClient sharedClient].roomManager getChatroomSpecificationFromServerWithId:_chatroomId error:&error];
-                                                          ret = YES;
-                                                          if (!error) {
-                                                              BOOL ret = _chatroom.permissionType == EMChatroomPermissionTypeAdmin || _chatroom.permissionType == EMChatroomPermissionTypeOwner;
-                                                              if (ret) {
-                                                                  [weakSelf.bottomView addSubview:weakSelf.adminButton];
-                                                                  [weakSelf layoutSubviews];
-                                                              }
-                                                          }
-                                                      }
-                                                      aCompletion(ret);
-                                                  }];
+    @weakify(self);
+    [[EaseHttpManager sharedInstance] joinLiveRoomWithRoomId:self.room.room_id chatroomId:self.room.leancloud_room isCount:aIsCount completion:^(BOOL success) {
+        @strongify(self);
+        BOOL ret = NO;
+        if (success) {
+            EMError *error = nil;
+            self.chatroom = [[EMClient sharedClient].roomManager getChatroomSpecificationFromServerWithId:self.chatroomId error:&error];
+            ret = YES;
+            if (!error) {
+                BOOL ret = self.chatroom.permissionType == EMChatroomPermissionTypeAdmin || self.chatroom.permissionType == EMChatroomPermissionTypeOwner;
+                if (ret) {
+                    [self.bottomView addSubview:self.adminButton];
+                    [self layoutSubviews];
+                }
+            }
+        }
+        aCompletion(ret);
+    }];
 }
 
 - (void)leaveChatroomWithIsCount:(BOOL)aIsCount
                       completion:(void (^)(BOOL success))aCompletion
 {
     __weak typeof(self) weakSelf = self;
-    [[EaseHttpManager sharedInstance] leaveLiveRoomWithRoomId:_room.roomId
-                                                   chatroomId:_room.chatroomId
+    [[EaseHttpManager sharedInstance] leaveLiveRoomWithRoomId:self.room.room_id
+                                                   chatroomId:self.room.leancloud_room
                                                       isCount:aIsCount
                                                    completion:^(BOOL success) {
                                                        BOOL ret = NO;
                                                        if (success) {
                                                            [weakSelf.datasource removeAllObjects];
-                                                           [[EMClient sharedClient].chatManager deleteConversation:_chatroomId isDeleteMessages:YES completion:NULL];
+                                                           [[EMClient sharedClient].chatManager deleteConversation:self.chatroomId isDeleteMessages:YES completion:NULL];
                                                            ret = YES;
                                                        }
                                                        aCompletion(ret);
@@ -754,14 +753,16 @@
 
 - (void)sendGiftWithId:(NSString*)giftId
 {
-    EMMessage *message = [self _sendCMDMessageTo:_chatroomId messageType:EMChatTypeChatRoom messageExt:nil action:kGiftAction];
+    EMMessage *message = [self _sendCMDMessageTo:self.chatroomId messageType:EMChatTypeChatRoom messageExt:nil action:kGiftAction];
+    @weakify(self);
     [[EMClient sharedClient].chatManager sendMessage:message progress:nil completion:^(EMMessage *message, EMError *error) {
+        @strongify(self);
         if (!error) {
             EMCmdMessageBody *body = (EMCmdMessageBody*)message.body;
             if (body) {
                 if ([body.action isEqualToString:kGiftAction]) {
-                    if (_delegate && [_delegate respondsToSelector:@selector(didReceiveGiftWithCMDMessage:)]) {
-                        [_delegate didReceiveGiftWithCMDMessage:message];
+                    if (self.delegate && [self.delegate respondsToSelector:@selector(didReceiveGiftWithCMDMessage:)]) {
+                        [self.delegate didReceiveGiftWithCMDMessage:message];
                     }
                 }
             }

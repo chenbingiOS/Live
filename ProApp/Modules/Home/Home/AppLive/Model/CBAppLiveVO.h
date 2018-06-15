@@ -7,8 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "EaseLiveRoom.h"
 
+
+@class CBMsgVO;
 @interface CBAppLiveVO : NSObject
 
 @property (nonatomic, copy) NSString *room_id;          ///<直播间编号    数字(number)
@@ -31,4 +32,17 @@
 @property (nonatomic, copy) NSString *need_password;    ///<是否需要密码    数字(number)
 @property (nonatomic, copy) NSString *channel_source;   ///<拉流地址    字符串(string)
 
+// 推流地址
+@property (nonatomic, copy) NSString *push_rtmp;        ///<推流地址    字符串(string)
+@property (nonatomic, copy) NSArray <CBMsgVO *> *msg;   ///<直播间公告    数组(array
+
 @end
+
+//直播间公告
+@interface CBMsgVO : NSObject
+
+@property (nonatomic, copy) NSString *title;    ///<标题    字符串(string)
+@property (nonatomic, copy) NSString *msg;      ///<消息    字符串(string)
+
+@end
+

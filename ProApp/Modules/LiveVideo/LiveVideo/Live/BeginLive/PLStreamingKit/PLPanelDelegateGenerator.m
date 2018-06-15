@@ -62,7 +62,7 @@
         }];
         [d implementMethod:@selector(mediaStreamingSession:streamStatusDidUpdate:) withBlock:^(PLMediaStreamingSession *session, PLStreamStatus *status){
             dispatch_async(dispatch_get_main_queue(), ^{
-                NSLog(@"%@", [NSString stringWithFormat:@"session status %@", status]);
+//                NSLog(@"%@", [NSString stringWithFormat:@"session status %@", status]);
             });
         }];
         [d implementMethod:@selector(mediaStreamingSession:didGetCameraAuthorizationStatus:) withBlock:^(PLMediaStreamingSession *session, PLAuthorizationStatus authorizationStatus){
