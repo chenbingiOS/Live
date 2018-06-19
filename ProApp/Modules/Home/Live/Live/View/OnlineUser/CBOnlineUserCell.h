@@ -8,12 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@class ALinUser;
+@class CBAppLiveVO;
 @interface CBOnlineUserCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UIImageView *avaterImageView;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 
-- (void)loadData:(ALinUser *)data;
+- (void)loadData:(CBAppLiveVO *)data;
 
 @end

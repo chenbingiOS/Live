@@ -33,7 +33,6 @@
 @property (nonatomic, strong) UIImageView *topGradientView;     ///< 上部渐变
 @property (nonatomic, strong) UIImageView *bottomGradientView;  ///< 下部渐变
 @property (nonatomic, strong) UILabel *roomCodeLabel;           ///< 房间号
-@property (nonatomic, strong) CBOnlineUserView *onlineUserView; ///< 在线用户
 @property (nonatomic, strong) CBAnchorInfoView *anchorInfoView; ///< 直播用户信息
 @property (nonatomic, strong) JPGiftView *giftView;             /** gift */
 @property (nonatomic, strong) UIImageView *gifImageView;        /** gifimage */

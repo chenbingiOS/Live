@@ -35,7 +35,12 @@
 // 关闭直播接口
 #define urlStopLive             purl@"Api/Anchor/stopLive"
 // 进入直播间接口
+#define urlEnterLiveRoom        purl@"Api/Anchor/enterLiveRoom"
 // 离开直播间接口
+#define urlExitLiveRoom         purl@"Api/Anchor/exitLiveRoom"
+// 获取直播间在线用户列表
+#define urlGetLiveRoomOnlineUserList purl@"Api/Anchor/getLiveRoomOnlineUserList"
+
 //------------------------------------------------------------------
 // 用户操作
 // 用户注册

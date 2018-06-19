@@ -580,11 +580,10 @@ static EaseHttpManager *sharedInstance = nil;
         if (!error) {
             if (aIsCount) {
                 // 人数加一
-//                [self _doPutCountWithRoomId:aRoomId type:@"join" count:1 completion:NULL];
+                [self _doPutCountWithRoomId:aRoomId type:@"join" count:1 completion:NULL];
             }
             ret = YES;
         }
-        
         if (aCompletion) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 aCompletion(ret);
@@ -606,15 +605,11 @@ static EaseHttpManager *sharedInstance = nil;
         BOOL ret = NO;
         if (!error) {
             if (aIsCount) {
-                
-//                [weakSelf _doPutCountWithRoomId:aRoomId
-//                                           type:@"leave"
-//                                          count:1
-//                                     completion:NULL];
+                // 人数减一
+                [self _doPutCountWithRoomId:aRoomId type:@"leave" count:1 completion:NULL];
             }
             ret = YES;
         }
-        
         if (aCompletion) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 aCompletion(ret);
@@ -661,32 +656,46 @@ static EaseHttpManager *sharedInstance = nil;
 
 #pragma mark - private
 
-- (void)_doPutCountWithRoomId:(NSString*)aRoomId
-                         type:(NSString*)aType
+- (void)_doPutCountWithRoomId:(NSString *)aRoomId
+                         type:(NSString *)aType
                         count:(NSInteger)aCount
                    completion:(void (^)(NSInteger count, BOOL success))aCompletion
 {
-    NSDictionary *parameters = nil;
-    if ([aType isEqualToString:@"join"] || [aType isEqualToString:@"leave"]) {
-        parameters = @{@"count":[EMClient sharedClient].currentUsername,@"type":aType};
-    } else {
-        parameters = @{@"count":@(aCount),@"type":aType};
+//    NSDictionary *parameters = nil;
+//    if ([aType isEqualToString:@"join"] || [aType isEqualToString:@"leave"]) {
+//        parameters = @{@"count":[EMClient sharedClient].currentUsername,@"type":aType};
+//    } else {
+//        parameters = @{@"count":@(aCount),@"type":aType};
+//    }
+//    [self _doPutRequestWithPath:kRequestCountUrl(aRoomId) parameters:parameters completion:^(id responseObject, NSError *error) {
+//        if (aCompletion) {
+//            BOOL ret = NO;
+//            NSInteger count = 0;
+//            if (!error) {
+//                if (responseObject && [responseObject isKindOfClass:[NSDictionary class]]) {
+//                    NSDictionary *data = [responseObject objectForKey:@"data"];
+//                    if (data) {
+//                        count = [data safeIntegerValueForKey:@"result"];
+//                        ret = YES;
+//                    }
+//                }
+//            }
+//            aCompletion(count, ret);
+//        }
+//    }];
+    
+    NSString *url = @"";
+    if ([aType isEqualToString:@"join"]) {
+        url = urlEnterLiveRoom;
+    } else if ([aType isEqualToString:@"leave"]) {
+        url = urlExitLiveRoom;
     }
-    [self _doPutRequestWithPath:kRequestCountUrl(aRoomId) parameters:parameters completion:^(id responseObject, NSError *error) {
-        if (aCompletion) {
-            BOOL ret = NO;
-            NSInteger count = 0;
-            if (!error) {
-                if (responseObject && [responseObject isKindOfClass:[NSDictionary class]]) {
-                    NSDictionary *data = [responseObject objectForKey:@"data"];
-                    if (data) {
-                        count = [data safeIntegerValueForKey:@"result"];
-                        ret = YES;
-                    }
-                }
-            }
-            aCompletion(count, ret);
-        }
+    NSDictionary *param = @{@"room_id":aRoomId,
+                            @"token": [CBLiveUserConfig getOwnToken]};
+    [PPNetworkHelper POST:url parameters:param success:^(id responseObject) {
+        
+    } failure:^(NSError *error) {
+        
     }];
 }
 

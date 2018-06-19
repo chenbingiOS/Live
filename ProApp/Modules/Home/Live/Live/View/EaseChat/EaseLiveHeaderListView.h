@@ -11,6 +11,7 @@
 @protocol EaseLiveHeaderListViewDelegate <NSObject>
 
 - (void)didSelectHeaderWithUsername:(NSString*)username;
+- (void)didSelectOccupantsWithUserID:(NSString *)userId;
 
 @end
 

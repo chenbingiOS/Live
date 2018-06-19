@@ -135,13 +135,6 @@
     return _anchorView;
 }
 
-- (CBOnlineUserView *)onlineUserView {
-    if (!_onlineUserView) {
-        _onlineUserView = [[CBOnlineUserView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight/2)];
-    }
-    return _onlineUserView;
-}
-
 - (CBAnchorInfoView *)anchorInfoView {
     if (!_anchorInfoView) {
         _anchorInfoView = [[CBAnchorInfoView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 365)];

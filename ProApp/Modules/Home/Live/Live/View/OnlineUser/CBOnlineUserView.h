@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "CBPopView.h"
 
+@class CBAppLiveVO;
 @interface CBOnlineUserView : CBPopView
 
+- (instancetype)initWithFrame:(CGRect)frame room:(CBAppLiveVO *)room;
 @end

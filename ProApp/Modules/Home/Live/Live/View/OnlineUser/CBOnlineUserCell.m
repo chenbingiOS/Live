@@ -7,7 +7,7 @@
 //
 
 #import "CBOnlineUserCell.h"
-#import "ALinUser.h"
+#import "CBAppLiveVO.h"
 
 @implementation CBOnlineUserCell
 
@@ -23,9 +23,9 @@
     // Configure the view for the selected state
 }
 
-- (void)loadData:(ALinUser *)data {
-    [self.avaterImageView sd_setImageWithURL:[NSURL URLWithString:data.photo] placeholderImage:[UIImage imageNamed:@"placeholder_head"]];
-    self.nameLabel.text = data.nickname;
+- (void)loadData:(CBAppLiveVO *)data {
+    [self.avaterImageView sd_setImageWithURL:[NSURL URLWithString:data.avatar] placeholderImage:[UIImage imageNamed:@"placeholder_head"]];
+    self.nameLabel.text = data.user_nicename;
 }
 
 @end

@@ -36,7 +36,8 @@ EaseLiveHeaderListViewDelegate
     BOOL _enableAdmin;
 }
 
-@property (nonatomic, strong) EMChatroom *chatroom;                 ///< 房间UI
+@property (nonatomic, strong) UIButton *closeButton;            ///< 关闭按钮
+@property (nonatomic, strong) EMChatroom *chatroom;             ///< 房间UI
 
 @property (nonatomic, strong) UIView *roomView;                 ///< 房间UI
 @property (nonatomic, strong) UIScrollView *scrollView;         ///< 实现左滑清空数据
@@ -50,7 +51,8 @@ EaseLiveHeaderListViewDelegate
 @property (nonatomic, strong) CBOnlineUserView *onlineUserView; ///< 在线用户
 @property (nonatomic, strong) CBAnchorInfoView *anchorInfoView; ///< 直播用户信息
 @property (nonatomic, strong) EaseChatView *chatview;           ///< 底部聊天
-@property (nonatomic, strong) EaseLiveHeaderListView *headerListView;
+@property (nonatomic, strong) EaseLiveHeaderListView *headerListView;   ///< 顶部用户信息
+
 // 键盘关闭功能
 @property (nonatomic, strong) UIWindow *window;
 @property (nonatomic, strong) UITapGestureRecognizer *singleTapGR;
@@ -87,20 +89,18 @@ EaseLiveHeaderListViewDelegate
 }
 
 - (void)_UI_JoinChatRoom {
+    [[EMClient sharedClient].roomManager addDelegate:self delegateQueue:nil];
+    [[EMClient sharedClient] addDelegate:self delegateQueue:nil];
     @weakify(self);
     [self.chatview joinChatroomWithIsCount:YES completion:^(BOOL success) {
         @strongify(self);
         if (success) {
             [self.headerListView loadHeaderListWithChatroomId:[self.liveVO.leancloud_room copy]];
-            self.chatroom = [[EMClient sharedClient].roomManager getChatroomSpecificationFromServerWithId:self.liveVO.leancloud_room error:nil];
-            
+            self.chatroom = [[EMClient sharedClient].roomManager getChatroomSpecificationFromServerWithId:self.liveVO.leancloud_room error:nil];            
         } else {
             [MBProgressHUD showAutoMessage:@"加入聊天室失败"];
         }
     }];
-    
-    [[EMClient sharedClient].roomManager addDelegate:self delegateQueue:nil];
-    [[EMClient sharedClient] addDelegate:self delegateQueue:nil];
 }
 
 - (void)_UI_LeaveChatRoom {
@@ -140,6 +140,19 @@ EaseLiveHeaderListViewDelegate
 }
 
 #pragma mark - layz
+
+- (UIButton *)closeButton {
+    if (!_closeButton) {
+        _closeButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        CGFloat y = kScreenHeight-60;
+        if (iPhoneX) y -= 35;
+        _closeButton.frame = CGRectMake(kScreenWidth - 60, y, 60, 60);
+        [_closeButton setImage:[UIImage imageNamed:@"live_close"] forState:UIControlStateNormal];
+        [_closeButton addTarget:self action:@selector(actionCloseLive:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _closeButton;
+}
+
 - (UIView *)roomView {
     if (!_roomView) {
         _roomView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight)];
@@ -214,7 +227,7 @@ EaseLiveHeaderListViewDelegate
 
 - (CBOnlineUserView *)onlineUserView {
     if (!_onlineUserView) {
-        _onlineUserView = [[CBOnlineUserView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight/2)];
+        _onlineUserView = [[CBOnlineUserView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight/2) room:_liveVO];
     }
     return _onlineUserView;
 }
@@ -236,11 +249,10 @@ EaseLiveHeaderListViewDelegate
     return _chatview;
 }
 
-- (EaseLiveHeaderListView*)headerListView
-{
+- (EaseLiveHeaderListView*)headerListView {
     if (_headerListView == nil) {
-        CGFloat y = SafeAreaTopHeight - 40 ;
-        CGRect frame = CGRectMake(0, y, kScreenWidth, 30);
+        CGFloat y = SafeAreaTopHeight - 44;
+        CGRect frame = CGRectMake(0, y, kScreenWidth, 60);
         _headerListView = [[EaseLiveHeaderListView alloc] initWithFrame:frame room:_liveVO];
         _headerListView.delegate = self;
     }
@@ -249,8 +261,7 @@ EaseLiveHeaderListViewDelegate
 
 #pragma mark - EaseLiveHeaderListViewDelegate
 
-- (void)didSelectHeaderWithUsername:(NSString *)username
-{
+- (void)didSelectHeaderWithUsername:(NSString *)username {
     if ([self.window isKeyWindow]) {
         [self closeAction];
         return;
@@ -266,6 +277,11 @@ EaseLiveHeaderListViewDelegate
         profileLiveView.delegate = self;
         [profileLiveView showFromParentView:self.view];
     }
+}
+
+- (void)didSelectOccupantsWithUserID:(NSString *)userId {
+    UIWindow *keyWindow = [UIApplication sharedApplication].keyWindow;
+    [self.onlineUserView showIn:keyWindow];
 }
 
 #pragma  mark - TapBackgroundViewDelegate
@@ -362,7 +378,7 @@ EaseLiveHeaderListViewDelegate
                         reason:(EMChatroomBeKickedReason)aReason {
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"被踢出直播聊天室" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
     [alert show];
-    [self closeButtonAction];
+    [self actionCloseButton];
 }
 
 - (void)chatroomAdminListDidUpdate:(EMChatroom *)aChatroom
@@ -420,7 +436,7 @@ EaseLiveHeaderListViewDelegate
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"" message:[NSString stringWithFormat:@"聊天室创建者有更新:%@",aChatroom.chatroomId] preferredStyle:UIAlertControllerStyleAlert];
         
         UIAlertAction *ok = [UIAlertAction actionWithTitle:NSLocalizedString(@"publish.ok", @"Ok") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-            [self closeButtonAction];
+            [self actionCloseButton];
         }];
         
         [alert addAction:ok];
@@ -431,10 +447,19 @@ EaseLiveHeaderListViewDelegate
 
 - (void)userAccountDidLoginFromOtherDevice
 {
-    [self closeButtonAction];
+    [self actionCloseButton];
 }
 
 #pragma mark - Action
+
+- (void)actionCloseLive: (UIButton *) button {
+    [self actionCloseButton];
+    @weakify(self);
+    [self dismissViewControllerAnimated:YES completion:^{
+        @strongify(self);
+        [self.closeButton removeFromSuperview];
+    }];
+}
 
 - (void)closeAction {
     [self.window resignKeyWindow];
@@ -446,8 +471,7 @@ EaseLiveHeaderListViewDelegate
     }];
 }
 
--(void)showTheLoveAction
-{
+- (void)showTheLoveAction {
     EaseHeartFlyView* heart = [[EaseHeartFlyView alloc]initWithFrame:CGRectMake(0, 0, 55, 50)];
     [_chatview addSubview:heart];
     CGPoint fountainSource = CGPointMake(kScreenWidth - (20 + 50/2.0), _chatview.height);
@@ -455,8 +479,7 @@ EaseLiveHeaderListViewDelegate
     [heart animateInView:_chatview];
 }
 
-- (void)closeButtonAction
-{
+- (void)actionCloseButton {
 //    [self.playerManager.mediaPlayer.player.view removeFromSuperview];
 //    [self.playerManager.controlVC.view removeFromSuperview];
 //    [self.playerManager.mediaPlayer.player shutdown];
@@ -469,6 +492,8 @@ EaseLiveHeaderListViewDelegate
     
 //    [_burstTimer invalidate];
 //    _burstTimer = nil;
+    
+    
 }
 
 - (void)keyboardWillChangeFrame:(NSNotification *)notification
@@ -506,7 +531,6 @@ EaseLiveHeaderListViewDelegate
 }
 
 @end
-
 
 /**
 //--------------------------------------------------------

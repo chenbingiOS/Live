@@ -149,6 +149,7 @@
 		5403B86720CF9A01000BE8B1 /* CBShortVideoRoomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5403B86620CF9A01000BE8B1 /* CBShortVideoRoomView.m */; };
 		5403B86B20CFAD85000BE8B1 /* CBShareView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5403B86A20CFAD85000BE8B1 /* CBShareView.m */; };
 		5403B86F20CFAEF0000BE8B1 /* CBShareView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5403B86E20CFAEF0000BE8B1 /* CBShareView.xib */; };
+		540CCCD720D8F1D200CAA312 /* CBOccupantsCountView.m in Sources */ = {isa = PBXBuildFile; fileRef = 540CCCD620D8F1D200CAA312 /* CBOccupantsCountView.m */; };
 		54130A0820B69DEF00CAE467 /* CBRefreshGifHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 54130A0720B69DEF00CAE467 /* CBRefreshGifHeader.m */; };
 		54130A0B20B6A0C000CAE467 /* CBAppLiveVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 54130A0A20B6A0C000CAE467 /* CBAppLiveVO.m */; };
 		54130A0F20B6B48900CAE467 /* CBLiveSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = 54130A0E20B6B48900CAE467 /* CBLiveSetting.m */; };
@@ -813,6 +814,8 @@
 		5403B86920CFAD85000BE8B1 /* CBShareView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBShareView.h; sourceTree = "<group>"; };
 		5403B86A20CFAD85000BE8B1 /* CBShareView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBShareView.m; sourceTree = "<group>"; };
 		5403B86E20CFAEF0000BE8B1 /* CBShareView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CBShareView.xib; sourceTree = "<group>"; };
+		540CCCD520D8F1D200CAA312 /* CBOccupantsCountView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBOccupantsCountView.h; sourceTree = "<group>"; };
+		540CCCD620D8F1D200CAA312 /* CBOccupantsCountView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBOccupantsCountView.m; sourceTree = "<group>"; };
 		54130A0620B69DEF00CAE467 /* CBRefreshGifHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBRefreshGifHeader.h; sourceTree = "<group>"; };
 		54130A0720B69DEF00CAE467 /* CBRefreshGifHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBRefreshGifHeader.m; sourceTree = "<group>"; };
 		54130A0920B6A0C000CAE467 /* CBAppLiveVO.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBAppLiveVO.h; sourceTree = "<group>"; };
@@ -2905,6 +2908,8 @@
 				544F801820D0B91B00F492AE /* EaseChatCell.m */,
 				545384C320D256F600BE91D2 /* EaseLiveHeaderListView.h */,
 				545384C420D256F700BE91D2 /* EaseLiveHeaderListView.m */,
+				540CCCD520D8F1D200CAA312 /* CBOccupantsCountView.h */,
+				540CCCD620D8F1D200CAA312 /* CBOccupantsCountView.m */,
 				545384C620D2571000BE91D2 /* EaseLiveCastView.h */,
 				545384C720D2571100BE91D2 /* EaseLiveCastView.m */,
 				5401D87720D26CE400A3FFEF /* EaseProfileLiveView.h */,
@@ -4368,6 +4373,7 @@
 				545494A920C7E4B400E96C0A /* CBBeginLiveVC.m in Sources */,
 				548C5CC120B50CD800A6FF53 /* CBLiveUserConfig.m in Sources */,
 				0737ED972074A33600A89CC0 /* main.m in Sources */,
+				540CCCD720D8F1D200CAA312 /* CBOccupantsCountView.m in Sources */,
 				54130A0F20B6B48900CAE467 /* CBLiveSetting.m in Sources */,
 				077C1A992091A6C10005CE97 /* CBAccountAndSecurityVC.m in Sources */,
 				079AAE7A2079C85000674A92 /* CBNVC.m in Sources */,

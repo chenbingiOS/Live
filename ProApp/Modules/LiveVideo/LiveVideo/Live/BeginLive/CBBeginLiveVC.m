@@ -177,6 +177,7 @@ EaseProfileLiveViewDelegate
         };
         [tool showFromView:self.view];
     }];
+    // 开发按钮触发
     [self.beginLiveView.beginLiveBtn addBlockForControlEvents:UIControlEventTouchUpInside block:^(id  _Nonnull sender) {
         @strongify(self);
         [self httpGetPushAddress:sender];

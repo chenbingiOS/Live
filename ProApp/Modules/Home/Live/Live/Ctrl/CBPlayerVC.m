@@ -14,7 +14,6 @@
 @interface CBPlayerVC () <PLPlayerDelegate>
 
 @property (nonatomic, strong) PLPlayer      *player;
-@property (nonatomic, strong) UIButton      *playButton;
 @property (nonatomic, strong) UIImage       *thumbImage;
 @property (nonatomic, strong) UIVisualEffectView *effectView;
 @property (nonatomic, assign) BOOL isDisapper;
@@ -98,22 +97,9 @@
 - (void)joinChatRoom {
     NSLog(@"子类未实现");
 }
+
 - (void)leaveChatRoom {
     NSLog(@"子类未实现");
-}
-
-#pragma mark - Action
-
-- (void)clickPlayButton:(UIButton *)button {
-    [self.player resume];
-}
-
-- (void)closeAction: (UIButton *) button {
-    @weakify(self);
-    [self dismissViewControllerAnimated:YES completion:^{
-        @strongify(self);
-        [self.closeButton removeFromSuperview];
-    }];
 }
 
 #pragma mark - PLPlayerDelegate
@@ -212,30 +198,6 @@
         _effectView.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight);
     }
     return _effectView;
-}
-
-- (UIButton *)playButton {
-    if (!_playButton) {
-        _playButton = [[UIButton alloc] init];
-        _playButton.size = CGSizeMake(60, 60);
-        _playButton.center = self.view.center;
-        _playButton.hidden = YES;
-        [_playButton addTarget:self action:@selector(clickPlayButton:) forControlEvents:(UIControlEventTouchUpInside)];
-        [_playButton setImage:[UIImage imageNamed:@"play"] forState:(UIControlStateNormal)];
-    }
-    return _playButton;
-}
-
-- (UIButton *)closeButton {
-    if (!_closeButton) {
-        _closeButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        CGFloat y = kScreenHeight-60;
-        if (iPhoneX) y -= 35;
-        _closeButton.frame = CGRectMake(kScreenWidth - 60, y, 60, 60);
-        [_closeButton setImage:[UIImage imageNamed:@"live_close"] forState:UIControlStateNormal];
-        [_closeButton addTarget:self action:@selector(closeAction:) forControlEvents:UIControlEventTouchUpInside];
-    }
-    return _closeButton;
 }
 
 #pragma mark - Set
