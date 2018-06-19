@@ -610,7 +610,6 @@
     }
 }
 
-
 #pragma mark - action
 
 - (void)sendTextAction
@@ -701,8 +700,7 @@
 
 #pragma mark - public
 
-- (BOOL)endEditing:(BOOL)force
-{
+- (BOOL)endEditing:(BOOL)force {
     BOOL result = [super endEditing:force];
     [self _willShowBottomView:nil];
     [self _setSendState:NO];
@@ -710,14 +708,13 @@
     return result;
 }
 
-- (void)joinChatroomWithIsCount:(BOOL)aIsCount
-                     completion:(void (^)(BOOL success))aCompletion
-{
+- (void)joinChatroomWithIsCount:(BOOL)aIsCount completion:(void (^)(BOOL success))aCompletion {
     @weakify(self);
     [[EaseHttpManager sharedInstance] joinLiveRoomWithRoomId:self.room.room_id chatroomId:self.room.leancloud_room isCount:aIsCount completion:^(BOOL success) {
         @strongify(self);
         BOOL ret = NO;
         if (success) {
+            // 获取聊天室详情
             EMError *error = nil;
             self.chatroom = [[EMClient sharedClient].roomManager getChatroomSpecificationFromServerWithId:self.chatroomId error:&error];
             ret = YES;
@@ -736,19 +733,19 @@
 - (void)leaveChatroomWithIsCount:(BOOL)aIsCount
                       completion:(void (^)(BOOL success))aCompletion
 {
-    __weak typeof(self) weakSelf = self;
-    [[EaseHttpManager sharedInstance] leaveLiveRoomWithRoomId:self.room.room_id
-                                                   chatroomId:self.room.leancloud_room
-                                                      isCount:aIsCount
-                                                   completion:^(BOOL success) {
-                                                       BOOL ret = NO;
-                                                       if (success) {
-                                                           [weakSelf.datasource removeAllObjects];
-                                                           [[EMClient sharedClient].chatManager deleteConversation:self.chatroomId isDeleteMessages:YES completion:NULL];
-                                                           ret = YES;
-                                                       }
-                                                       aCompletion(ret);
-                                                   }];
+    
+    @weakify(self);
+    [[EaseHttpManager sharedInstance] leaveLiveRoomWithRoomId:self.room.room_id chatroomId:self.room.leancloud_room isCount:aIsCount completion:^(BOOL success) {
+        @strongify(self);
+        BOOL ret = NO;
+        if (success) {
+            // 移除聊天数据
+            [self.datasource removeAllObjects];
+            [[EMClient sharedClient].chatManager deleteConversation:self.chatroomId isDeleteMessages:YES completion:NULL];
+            ret = YES;
+        }
+        aCompletion(ret);
+    }];
 }
 
 - (void)sendGiftWithId:(NSString*)giftId

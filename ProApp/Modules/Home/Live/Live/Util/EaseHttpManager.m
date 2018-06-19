@@ -233,6 +233,7 @@ static EaseHttpManager *sharedInstance = nil;
     }];
 }
 
+// 房间详情
 - (void)getLiveRoomWithRoomId:(NSString*)aRoomId
                    completion:(void (^)(EaseLiveRoom *room, BOOL success))aCompletion
 {
@@ -559,23 +560,27 @@ static EaseHttpManager *sharedInstance = nil;
     }];
 }
 
-- (void)joinLiveRoomWithRoomId:(NSString*)aRoomId
-                    chatroomId:(NSString*)aChatroomId
-                       isCount:(BOOL)aIsCount
-                    completion:(void (^)(BOOL success))aCompletion
-{
-    __weak typeof(self) weakSelf = self;
+
+/**
+ 加入直播间，聊天室
+
+ @param aRoomId 直播间ID
+ @param aChatroomId 聊天室ID
+ @param aIsCount 是否计数
+ @param aCompletion 成功回掉
+ */
+- (void)joinLiveRoomWithRoomId:(NSString*)aRoomId chatroomId:(NSString*)aChatroomId isCount:(BOOL)aIsCount completion:(void (^)(BOOL success))aCompletion {
+    @weakify(self);
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        @strongify(self);
+        // 环信加入房间
         EMError *error = nil;
         [[EMClient sharedClient].roomManager joinChatroom:aChatroomId error:&error];
         BOOL ret = NO;
         if (!error) {
             if (aIsCount) {
                 // 人数加一
-//                [weakSelf _doPutCountWithRoomId:aRoomId
-//                                           type:@"join"
-//                                          count:1
-//                                     completion:NULL];
+//                [self _doPutCountWithRoomId:aRoomId type:@"join" count:1 completion:NULL];
             }
             ret = YES;
         }
@@ -593,17 +598,19 @@ static EaseHttpManager *sharedInstance = nil;
                         isCount:(BOOL)aIsCount
                      completion:(void (^)(BOOL success))aCompletion
 {
-    __weak typeof(self) weakSelf = self;
+    @weakify(self);
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        @strongify(self);
         EMError *error = nil;
         [[EMClient sharedClient].roomManager leaveChatroom:aChatroomId error:&error];
         BOOL ret = NO;
         if (!error) {
             if (aIsCount) {
-                [weakSelf _doPutCountWithRoomId:aRoomId
-                                           type:@"leave"
-                                          count:1
-                                     completion:NULL];
+                
+//                [weakSelf _doPutCountWithRoomId:aRoomId
+//                                           type:@"leave"
+//                                          count:1
+//                                     completion:NULL];
             }
             ret = YES;
         }

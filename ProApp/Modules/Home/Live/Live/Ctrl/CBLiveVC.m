@@ -11,7 +11,7 @@
 #import "CBLivePlayerVC.h"
 
 @interface CBLiveVC () <UIPageViewControllerDelegate, UIPageViewControllerDataSource>
-@property (nonatomic, strong) UIButton *closeButton;
+
 @end
 
 @implementation CBLiveVC
@@ -19,8 +19,8 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES animated:NO];
-    [self.view addSubview:self.closeButton];
-    [self.view insertSubview:self.closeButton atIndex:999];
+//    [self.view addSubview:self.closeButton];
+//    [self.view insertSubview:self.closeButton atIndex:999];
 }
 
 - (void)viewDidLoad {
@@ -91,29 +91,6 @@
 
 - (void)pageViewController:(UIPageViewController *)pageViewController didFinishAnimating:(BOOL)finished previousViewControllers:(NSArray<UIViewController *> *)previousViewControllers transitionCompleted:(BOOL)completed{
     
-}
-
-
-- (UIButton *)closeButton {
-    if (!_closeButton) {
-        _closeButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        CGFloat y = kScreenHeight-60;
-        if (iPhoneX) y -= 35;
-        _closeButton.frame = CGRectMake(kScreenWidth - 60, y, 60, 60);
-        [_closeButton setImage:[UIImage imageNamed:@"live_close"] forState:UIControlStateNormal];
-        [_closeButton addTarget:self action:@selector(closeAction:) forControlEvents:UIControlEventTouchUpInside];
-    }
-    return _closeButton;
-}
-
-#pragma mark - Action
-
-- (void)closeAction: (UIButton *) button {
-    @weakify(self);
-    [self dismissViewControllerAnimated:YES completion:^{
-        @strongify(self);
-        [self.closeButton removeFromSuperview];
-    }];
 }
 
 @end

@@ -130,26 +130,27 @@
 }
 
 #pragma mark - public
-- (void)loadHeaderListWithChatroomId:(NSString*)chatroomId
-{
-    __weak typeof(self) weakself = self;
-    [[EMClient sharedClient].roomManager getChatroomSpecificationFromServerWithId:chatroomId
-                                                                       completion:^(EMChatroom *aChatroom, EMError *aError) {
-                                                                           if (!aError) {
-                                                                               weakself.occupantsCount = aChatroom.occupantsCount;
-                                                                               [weakself.liveCastView setNumberOfChatroom:weakself.occupantsCount];
-                                                                           }
-                                                                       }];
+// 加载聊天室详细信息
+- (void)loadHeaderListWithChatroomId:(NSString*)chatroomId {
+    @weakify(self);
+    // 获取聊天室详情
+    [[EMClient sharedClient].roomManager getChatroomSpecificationFromServerWithId:chatroomId completion:^(EMChatroom *aChatroom, EMError *aError) {
+        @strongify(self);
+        if (!aError) {
+            self.occupantsCount = aChatroom.occupantsCount;
+            [self.liveCastView setNumberOfChatroom:self.occupantsCount];
+        }
+    }];
     
-    [[EMClient sharedClient].roomManager getChatroomMemberListFromServerWithId:chatroomId
-                                                                        cursor:nil
-                                                                      pageSize:10
-                                                                    completion:^(EMCursorResult *aResult, EMError *aError) {
-                                                                        if (!aError) {
-                                                                            [weakself.dataArray addObjectsFromArray:aResult.list];
-                                                                            [weakself.collectionView reloadData];
-                                                                        }
-                                                                    }];
+    // 获取聊天室成员列表
+    [[EMClient sharedClient].roomManager getChatroomMemberListFromServerWithId:chatroomId cursor:nil pageSize:10 completion:^(EMCursorResult *aResult, EMError *aError) {
+        @strongify(self);
+        if (!aError) {
+#warning 这边有问题
+            [self.dataArray addObjectsFromArray:aResult.list];
+            [self.collectionView reloadData];
+        }
+    }];
 }
 
 - (void)joinChatroomWithUsername:(NSString *)username

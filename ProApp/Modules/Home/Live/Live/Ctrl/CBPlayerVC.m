@@ -9,18 +9,25 @@
 #import "CBPlayerVC.h"
 #import "CBRoomView.h"
 #import <PLPlayerKit/PLPlayerKit.h>
+#import "UIButton+Animate.h"
 
 @interface CBPlayerVC () <PLPlayerDelegate>
 
 @property (nonatomic, strong) PLPlayer      *player;
-@property (nonatomic, assign) BOOL isDisapper;
-
+@property (nonatomic, strong) UIButton      *playButton;
 @property (nonatomic, strong) UIImage       *thumbImage;
 @property (nonatomic, strong) UIVisualEffectView *effectView;
+@property (nonatomic, assign) BOOL isDisapper;
 
 @end
 
 @implementation CBPlayerVC
+
+- (void)viewDidDisappear:(BOOL)animated {
+    self.isDisapper = YES;
+    [self.player stop];
+    [super viewDidDisappear:animated];
+}
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
@@ -30,22 +37,9 @@
     }
 }
 
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-    
-}
-
-- (void)viewDidDisappear:(BOOL)animated {
-    self.isDisapper = YES;
-    [self.player stop];
-    [super viewDidDisappear:animated];
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     [self setupPlayer];
-    
     [self setupThumbImage];
 }
 
@@ -90,48 +84,67 @@
     [self.view addSubview:self.player.playerView];
 }
 
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
 - (void)showWaiting {
-//    [self.playButton hide];
-//    [self.view showFullLoading];
 }
 
 - (void)hideWaiting {
-//    [self.view hideFullLoading];
-    if (PLPlayerStatusPlaying != self.player.status) {
-//        [self.playButton show];
-    }
+}
+
+- (void)joinChatRoom {
+    NSLog(@"子类未实现");
+}
+- (void)leaveChatRoom {
+    NSLog(@"子类未实现");
+}
+
+#pragma mark - Action
+
+- (void)clickPlayButton:(UIButton *)button {
+    [self.player resume];
+}
+
+- (void)closeAction: (UIButton *) button {
+    @weakify(self);
+    [self dismissViewControllerAnimated:YES completion:^{
+        @strongify(self);
+        [self.closeButton removeFromSuperview];
+    }];
 }
 
 #pragma mark - PLPlayerDelegate
-- (void)playerWillBeginBackgroundTask:(PLPlayer *)player {
-}
 
-- (void)playerWillEndBackgroundTask:(PLPlayer *)player {
-}
+/** 告知代理对象 PLPlayer 即将开始进入后台播放任务 */
+- (void)playerWillBeginBackgroundTask:(nonnull PLPlayer *)player {}
 
-- (void)player:(PLPlayer *)player statusDidChange:(PLPlayerStatus)state
-{
+/** 告知代理对象 PLPlayer 即将结束后台播放状态任务  */
+- (void)playerWillEndBackgroundTask:(nonnull PLPlayer *)player {}
+
+/** 告知代理对象播放器状态变更  */
+- (void)player:(nonnull PLPlayer *)player statusDidChange:(PLPlayerStatus)state {
     if (self.isDisapper) {
         [self.player stop];
         [self hideWaiting];
+        [self leaveChatRoom];
         return;
     }
     
     if (state == PLPlayerStatusPlaying ||
         state == PLPlayerStatusPaused ||
-        state == PLPlayerStatusStopped ||
         state == PLPlayerStatusError ||
         state == PLPlayerStatusUnknow ||
         state == PLPlayerStatusCompleted) {
         [self hideWaiting];
-    } else if (state == PLPlayerStatusPreparing ||
-               state == PLPlayerStatusReady ||
+    }
+    else if (state == PLPlayerStatusStopped) {
+        [self leaveChatRoom];
+    } else if (state == PLPlayerStatusPreparing) {
+        [self joinChatRoom];
+    } else if (state == PLPlayerStatusReady ||
                state == PLPlayerStatusCaching) {
         [self showWaiting];
     } else if (state == PLPlayerStateAutoReconnecting) {
@@ -139,40 +152,47 @@
     }
 }
 
-- (void)player:(PLPlayer *)player stoppedWithError:(NSError *)error
-{
+/** 告知代理对象播放器因错误停止播放 */
+- (void)player:(nonnull PLPlayer *)player stoppedWithError:(nullable NSError *)error {
     [self hideWaiting];
     NSString *info = [NSString stringWithFormat:@"发生错误,error = %@, code = %ld", error.description, (long)error.code];
-    NSLog(@"%@",info);
-//    [self.view showTip:info];
+    [MBProgressHUD showAutoMessage:info];
 }
 
-- (void)player:(nonnull PLPlayer *)player willRenderFrame:(nullable CVPixelBufferRef)frame pts:(int64_t)pts sarNumerator:(int)sarNumerator sarDenominator:(int)sarDenominator {
-}
+/** 点播已缓冲区域 */
+- (void)player:(nonnull PLPlayer *)player loadedTimeRange:(CMTime)timeRange {}
 
+/** 回调将要渲染的帧数据 该功能只支持直播 */
+- (void)player:(nonnull PLPlayer *)player willRenderFrame:(nullable CVPixelBufferRef)frame pts:(int64_t)pts sarNumerator:(int)sarNumerator sarDenominator:(int)sarDenominator {}
+
+/** 回调音频数据 */
 - (AudioBufferList *)player:(PLPlayer *)player willAudioRenderBuffer:(AudioBufferList *)audioBufferList asbd:(AudioStreamBasicDescription)audioStreamDescription pts:(int64_t)pts sampleFormat:(PLPlayerAVSampleFormat)sampleFormat{
     return audioBufferList;
 }
 
+/** 回调 SEI 数据 */
+- (void)player:(nonnull PLPlayer *)player SEIData:(nullable NSData *)SEIData {}
+
+/** 音视频渲染首帧回调通知  */
 - (void)player:(nonnull PLPlayer *)player firstRender:(PLPlayerFirstRenderType)firstRenderType {
     if (PLPlayerFirstRenderTypeVideo == firstRenderType) {
         self.thumbImageView.hidden = YES;
     }
 }
 
-- (void)player:(nonnull PLPlayer *)player SEIData:(nullable NSData *)SEIData {
+/** 视频宽高数据回调通知 */
+- (void)player:(nonnull PLPlayer *)player width:(int)width height:(int)height {}
+
+/** seekTo 完成的回调通知 */
+- (void)player:(nonnull PLPlayer *)player seekToCompleted:(BOOL)isCompleted {
     
 }
 
-- (void)player:(PLPlayer *)player codecError:(NSError *)error {
+- (void)player:(nonnull PLPlayer *)player codecError:(nonnull NSError *)error {
     NSString *info = [NSString stringWithFormat:@"播放发生错误,error = %@, code = %ld", error.description, (long)error.code];
-    NSLog(@"%@",info);
-//    [self.view showTip:info];
-    [self hideWaiting];
-}
-
-- (void)player:(PLPlayer *)player loadedTimeRange:(CMTimeRange)timeRange {
+    [MBProgressHUD showAutoMessage:info];
     
+    [self hideWaiting];
 }
 
 #pragma mark - layz
@@ -194,6 +214,30 @@
     return _effectView;
 }
 
+- (UIButton *)playButton {
+    if (!_playButton) {
+        _playButton = [[UIButton alloc] init];
+        _playButton.size = CGSizeMake(60, 60);
+        _playButton.center = self.view.center;
+        _playButton.hidden = YES;
+        [_playButton addTarget:self action:@selector(clickPlayButton:) forControlEvents:(UIControlEventTouchUpInside)];
+        [_playButton setImage:[UIImage imageNamed:@"play"] forState:(UIControlStateNormal)];
+    }
+    return _playButton;
+}
+
+- (UIButton *)closeButton {
+    if (!_closeButton) {
+        _closeButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        CGFloat y = kScreenHeight-60;
+        if (iPhoneX) y -= 35;
+        _closeButton.frame = CGRectMake(kScreenWidth - 60, y, 60, 60);
+        [_closeButton setImage:[UIImage imageNamed:@"live_close"] forState:UIControlStateNormal];
+        [_closeButton addTarget:self action:@selector(closeAction:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _closeButton;
+}
+
 #pragma mark - Set
 - (void)setThumbImage:(UIImage *)thumbImage {
     _thumbImage = thumbImage;
@@ -202,14 +246,14 @@
 
 - (void)setThumbImageURL:(NSURL *)thumbImageURL {
     _thumbImageURL = thumbImageURL;
-    [self.thumbImageView sd_setImageWithURL:thumbImageURL placeholderImage:self.thumbImageView.image];
+    [self.thumbImageView sd_setImageWithURL:thumbImageURL placeholderImage:[UIImage imageNamed:@"placeholder_empty_375"]];
 }
 
 - (void)setUrl:(NSURL *)url {
     if ([_url.absoluteString isEqualToString:url.absoluteString]) return;
     _url = url;
     
-    if (self.player) {
+    if ([self.player isPlaying]) {
         [self.player stop];
         [self setupPlayer];
         [self.player play];

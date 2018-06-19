@@ -160,6 +160,8 @@
 		5436EA9A20B7EDCF00011BF0 /* RecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5436EA9820B7EDCF00011BF0 /* RecordViewController.m */; };
 		5436EA9B20B7EF0E00011BF0 /* video_draft_test.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 5436E9EC20B7E34300011BF0 /* video_draft_test.mp4 */; };
 		54375D1320BC049000F09CAA /* WZBCountDownButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 54375D1120BC049000F09CAA /* WZBCountDownButton.m */; };
+		5443976520D3619F0039722D /* EaseEndLiveView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5443976420D3619E0039722D /* EaseEndLiveView.m */; };
+		5443976920D39C2D0039722D /* CBStopLiveVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5443976820D39C2D0039722D /* CBStopLiveVO.m */; };
 		5444B05D20C61F2100C68A18 /* CB_address.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5444B05B20C619A700C68A18 /* CB_address.plist */; };
 		544B8F8820CA118E00FC9CFE /* PLStreamingSessionConstructor.m in Sources */ = {isa = PBXBuildFile; fileRef = 544B8F8020CA118A00FC9CFE /* PLStreamingSessionConstructor.m */; };
 		544B8F8920CA118E00FC9CFE /* PLPanelDelegateGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 544B8F8120CA118B00FC9CFE /* PLPanelDelegateGenerator.m */; };
@@ -178,7 +180,6 @@
 		544F802020D0B97100F492AE /* EaseLiveSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 544F801F20D0B97100F492AE /* EaseLiveSession.m */; };
 		544F802420D0B9A300F492AE /* NSDictionary+SafeValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 544F802220D0B9A300F492AE /* NSDictionary+SafeValue.m */; };
 		544F802820D0BDA100F492AE /* EaseHttpManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 544F802720D0BDA100F492AE /* EaseHttpManager.m */; };
-		544F802B20D10CE500F492AE /* CBLivePlayerVCUI.m in Sources */ = {isa = PBXBuildFile; fileRef = 544F802A20D10CE500F492AE /* CBLivePlayerVCUI.m */; };
 		544F802E20D1114500F492AE /* EaseHeartFlyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 544F802C20D1114400F492AE /* EaseHeartFlyView.m */; };
 		54520AF020BFD2BB005B787E /* NSObject+Copy.m in Sources */ = {isa = PBXBuildFile; fileRef = 54520AEB20BFD2BA005B787E /* NSObject+Copy.m */; };
 		54520AF120BFD2BB005B787E /* NSObject+Coding.m in Sources */ = {isa = PBXBuildFile; fileRef = 54520AEC20BFD2BA005B787E /* NSObject+Coding.m */; };
@@ -208,6 +209,7 @@
 		5469A56420C4D195004E06F1 /* CBImagePickerTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 5469A56320C4D195004E06F1 /* CBImagePickerTool.m */; };
 		5469A58120C54587004E06F1 /* CBCityMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5469A58020C54587004E06F1 /* CBCityMenuView.m */; };
 		5469A58320C54591004E06F1 /* CBCityMenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5469A58220C54591004E06F1 /* CBCityMenuView.xib */; };
+		547CB63320D899BD0064B29B /* UIButton+Animate.m in Sources */ = {isa = PBXBuildFile; fileRef = 547CB63220D899BD0064B29B /* UIButton+Animate.m */; };
 		547EA77420CE6D1F00CDC1A1 /* PLAttributeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 547EA76720CE6D1F00CDC1A1 /* PLAttributeModel.m */; };
 		547EA77520CE6D1F00CDC1A1 /* PLPanelModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 547EA76820CE6D1F00CDC1A1 /* PLPanelModel.m */; };
 		547EA77620CE6D1F00CDC1A1 /* PLMainTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 547EA76920CE6D1F00CDC1A1 /* PLMainTabBarController.m */; };
@@ -995,6 +997,10 @@
 		5436EA9920B7EDCF00011BF0 /* RecordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordViewController.h; sourceTree = "<group>"; };
 		54375D1120BC049000F09CAA /* WZBCountDownButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WZBCountDownButton.m; sourceTree = "<group>"; };
 		54375D1220BC049000F09CAA /* WZBCountDownButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WZBCountDownButton.h; sourceTree = "<group>"; };
+		5443976320D3619E0039722D /* EaseEndLiveView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EaseEndLiveView.h; sourceTree = "<group>"; };
+		5443976420D3619E0039722D /* EaseEndLiveView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EaseEndLiveView.m; sourceTree = "<group>"; };
+		5443976720D39C2D0039722D /* CBStopLiveVO.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBStopLiveVO.h; sourceTree = "<group>"; };
+		5443976820D39C2D0039722D /* CBStopLiveVO.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBStopLiveVO.m; sourceTree = "<group>"; };
 		5444B05B20C619A700C68A18 /* CB_address.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = CB_address.plist; sourceTree = "<group>"; };
 		544B8F7E20CA118A00FC9CFE /* PLStreamingSessionConstructor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLStreamingSessionConstructor.h; sourceTree = "<group>"; };
 		544B8F7F20CA118A00FC9CFE /* PLPanelDelegateGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLPanelDelegateGenerator.h; sourceTree = "<group>"; };
@@ -1028,8 +1034,6 @@
 		544F802320D0B9A300F492AE /* NSDictionary+SafeValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+SafeValue.h"; sourceTree = "<group>"; };
 		544F802620D0BDA000F492AE /* EaseHttpManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EaseHttpManager.h; sourceTree = "<group>"; };
 		544F802720D0BDA100F492AE /* EaseHttpManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EaseHttpManager.m; sourceTree = "<group>"; };
-		544F802920D10CE500F492AE /* CBLivePlayerVCUI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBLivePlayerVCUI.h; sourceTree = "<group>"; };
-		544F802A20D10CE500F492AE /* CBLivePlayerVCUI.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBLivePlayerVCUI.m; sourceTree = "<group>"; };
 		544F802C20D1114400F492AE /* EaseHeartFlyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EaseHeartFlyView.m; sourceTree = "<group>"; };
 		544F802D20D1114400F492AE /* EaseHeartFlyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EaseHeartFlyView.h; sourceTree = "<group>"; };
 		54520AE720BFD2BA005B787E /* NSObject+Class.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Class.h"; sourceTree = "<group>"; };
@@ -1083,6 +1087,8 @@
 		5469A57F20C54587004E06F1 /* CBCityMenuView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBCityMenuView.h; sourceTree = "<group>"; };
 		5469A58020C54587004E06F1 /* CBCityMenuView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBCityMenuView.m; sourceTree = "<group>"; };
 		5469A58220C54591004E06F1 /* CBCityMenuView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CBCityMenuView.xib; sourceTree = "<group>"; };
+		547CB63120D899BD0064B29B /* UIButton+Animate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+Animate.h"; sourceTree = "<group>"; };
+		547CB63220D899BD0064B29B /* UIButton+Animate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+Animate.m"; sourceTree = "<group>"; };
 		547EA76520CE6D1F00CDC1A1 /* PLTitleValueConf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLTitleValueConf.h; sourceTree = "<group>"; };
 		547EA76620CE6D1F00CDC1A1 /* PLDelgateHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLDelgateHelper.h; sourceTree = "<group>"; };
 		547EA76720CE6D1F00CDC1A1 /* PLAttributeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLAttributeModel.m; sourceTree = "<group>"; };
@@ -1619,6 +1625,7 @@
 		072DC57B2091604600F693E8 /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				547CB63020D899B50064B29B /* UIButton */,
 				544F802120D0B99300F492AE /* NSDictionary */,
 				54520AE620BFD2BA005B787E /* NSObject */,
 				548C5CD920B5430300A6FF53 /* MBProgressHUD */,
@@ -2085,8 +2092,6 @@
 				07B8BD1B20A3E14200DD05B2 /* CBPlayerVC.m */,
 				07359D8D20A419E900FEEA4E /* CBLivePlayerVC.h */,
 				07359D8E20A419E900FEEA4E /* CBLivePlayerVC.m */,
-				544F802920D10CE500F492AE /* CBLivePlayerVCUI.h */,
-				544F802A20D10CE500F492AE /* CBLivePlayerVCUI.m */,
 			);
 			path = Ctrl;
 			sourceTree = "<group>";
@@ -2830,6 +2835,15 @@
 			path = WZBCountdownLabel;
 			sourceTree = "<group>";
 		};
+		5443976620D39C1D0039722D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				5443976720D39C2D0039722D /* CBStopLiveVO.h */,
+				5443976820D39C2D0039722D /* CBStopLiveVO.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		544B8F6620CA116300FC9CFE /* PLStreamingKit */ = {
 			isa = PBXGroup;
 			children = (
@@ -2899,6 +2913,8 @@
 				5401D87B20D26E3C00A3FFEF /* EaseBaseSubView.m */,
 				5401D87E20D26F3200A3FFEF /* EaseAdminView.h */,
 				5401D87D20D26F3200A3FFEF /* EaseAdminView.m */,
+				5443976320D3619E0039722D /* EaseEndLiveView.h */,
+				5443976420D3619E0039722D /* EaseEndLiveView.m */,
 			);
 			path = EaseChat;
 			sourceTree = "<group>";
@@ -2960,6 +2976,7 @@
 			children = (
 				545494A720C7E4B400E96C0A /* CBBeginLiveVC.h */,
 				545494A820C7E4B400E96C0A /* CBBeginLiveVC.m */,
+				5443976620D39C1D0039722D /* Model */,
 				544B8F8D20CA21EA00FC9CFE /* View */,
 				544B8F6620CA116300FC9CFE /* PLStreamingKit */,
 			);
@@ -3081,6 +3098,15 @@
 				54A0D8E420C13C1A0056554D /* CBEditUserInfoVC.xib */,
 			);
 			path = Ctrl;
+			sourceTree = "<group>";
+		};
+		547CB63020D899B50064B29B /* UIButton */ = {
+			isa = PBXGroup;
+			children = (
+				547CB63120D899BD0064B29B /* UIButton+Animate.h */,
+				547CB63220D899BD0064B29B /* UIButton+Animate.m */,
+			);
+			path = UIButton;
 			sourceTree = "<group>";
 		};
 		547EA76420CE6D1F00CDC1A1 /* PLStreamingKitDemoUtils */ = {
@@ -4188,6 +4214,7 @@
 				5465AE0720BD4A10006E24BB /* CBUploadVideoVC.m in Sources */,
 				0750561C2092AEBD00F0679B /* CBGiftPackageVC.m in Sources */,
 				54A76AE320B7DEDE0034D5A2 /* PLSRateButtonView.m in Sources */,
+				547CB63320D899BD0064B29B /* UIButton+Animate.m in Sources */,
 				07F38C0720994A0000DDBC90 /* JPGiftOperation.m in Sources */,
 				54520AF020BFD2BB005B787E /* NSObject+Copy.m in Sources */,
 				544F801920D0B91B00F492AE /* EaseChatCell.m in Sources */,
@@ -4215,6 +4242,7 @@
 				544F802020D0B97100F492AE /* EaseLiveSession.m in Sources */,
 				072DC58E209170B000F693E8 /* UIImageView+RoundedCorner.m in Sources */,
 				548C5CDC20B5433900A6FF53 /* MBProgressHUD+HUD.m in Sources */,
+				5443976520D3619F0039722D /* EaseEndLiveView.m in Sources */,
 				07F38C0620994A0000DDBC90 /* JPGiftCellModel.m in Sources */,
 				54A76AF020B7DEDE0034D5A2 /* PLSVideoEditingController.m in Sources */,
 				0745F1EC20A9691000052FF6 /* CBHomeMenuView.m in Sources */,
@@ -4256,6 +4284,7 @@
 				54A76AAF20B7DE830034D5A2 /* CBRecordVideoVC.m in Sources */,
 				54A76B0F20B7DF7E0034D5A2 /* FilterView.m in Sources */,
 				07659C1E20A4439700EBE030 /* HcdGuideView.m in Sources */,
+				5443976920D39C2D0039722D /* CBStopLiveVO.m in Sources */,
 				07C9734A20A91F1000BB9820 /* CBAttentionLiveVC.m in Sources */,
 				54A76AEC20B7DEDE0034D5A2 /* PLSToolBarCommon.m in Sources */,
 				545494B620C8D06E00E96C0A /* CBMyVideoVC.m in Sources */,
@@ -4325,7 +4354,6 @@
 				544B8F8920CA118E00FC9CFE /* PLPanelDelegateGenerator.m in Sources */,
 				071D3C152092B51700A6C5CE /* CBPackageRecordVO.m in Sources */,
 				544F802E20D1114500F492AE /* EaseHeartFlyView.m in Sources */,
-				544F802B20D10CE500F492AE /* CBLivePlayerVCUI.m in Sources */,
 				54A76AEF20B7DEDE0034D5A2 /* PLSStickerBar.m in Sources */,
 				544B8F8C20CA118E00FC9CFE /* PLPermissionRequestor.m in Sources */,
 				54A76ADF20B7DEDE0034D5A2 /* PLSViewRecorderManager.m in Sources */,
