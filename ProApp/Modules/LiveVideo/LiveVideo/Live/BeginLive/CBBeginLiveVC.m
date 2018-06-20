@@ -462,7 +462,7 @@ EaseProfileLiveViewDelegate
     return _subWindow;
 }
 
-- (EaseChatView*)chatview {
+- (EaseChatView *)chatview {
     if (!_chatview) {
         CGFloat y = kScreenHeight - 200 - SafeAreaBottomHeight;
         CGRect frame = CGRectMake(0, y, kScreenWidth, 200);

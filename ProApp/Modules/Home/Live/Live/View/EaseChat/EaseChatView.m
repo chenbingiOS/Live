@@ -18,8 +18,8 @@
 
 #define kBarrageAction @"is_barrage_msg"
 
-#define kButtonWitdh 60
-#define kButtonHeight 60
+#define kButtonWitdh 50
+#define kButtonHeight 50
 
 #define kDefaultSpace 5.f
 #define kDefaulfLeftSpace 10.f
@@ -62,7 +62,7 @@
 
 
 @end
-
+ 
 @implementation EaseChatView
 
 - (instancetype)initWithFrame:(CGRect)frame
@@ -139,7 +139,7 @@
 - (UITableView*)tableView
 {
     if (_tableView == nil) {
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.width, CGRectGetHeight(self.bounds) - 60) style:UITableViewStylePlain];
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.width, CGRectGetHeight(self.bounds) - 48.f) style:UITableViewStylePlain];
         _tableView.dataSource = self;
         _tableView.delegate = self;
         _tableView.backgroundColor = [UIColor clearColor];
@@ -152,8 +152,8 @@
 - (UIView*)bottomView
 {
     if (_bottomView == nil) {
-        _bottomView = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.tableView.frame), CGRectGetWidth(self.bounds), 60)];
-        _bottomView.backgroundColor = [UIColor yellowColor];
+        _bottomView = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.tableView.frame), CGRectGetWidth(self.bounds), kButtonHeight)];
+        _bottomView.backgroundColor = [UIColor clearColor];
     }
     return _bottomView;
 }
@@ -162,7 +162,7 @@
 {
     if (_sendTextButton == nil) {
         _sendTextButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _sendTextButton.frame = CGRectMake(0, 0, kButtonWitdh, kButtonHeight);
+        _sendTextButton.frame = CGRectMake(kDefaultSpace, 0, kButtonWitdh, kButtonHeight);
         [_sendTextButton setImage:[UIImage imageNamed:@"live_barrage"] forState:UIControlStateNormal];
         [_sendTextButton addTarget:self action:@selector(sendTextAction) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -173,7 +173,7 @@
 {
     if (_changeCameraButton == nil) {
         _changeCameraButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _changeCameraButton.frame = CGRectMake(kScreenWidth - kDefaultSpace*2 - kButtonWitdh, 6.f, kButtonWitdh, kButtonHeight);
+        _changeCameraButton.frame = CGRectMake(kScreenWidth - kDefaultSpace - kButtonWitdh, 0, kButtonWitdh, kButtonHeight);
         [_changeCameraButton setImage:[UIImage imageNamed:@"reversal_camera"] forState:UIControlStateNormal];
         [_changeCameraButton addTarget:self action:@selector(changeCameraAction) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -184,7 +184,7 @@
 {
     if (_likeButton == nil) {
         _likeButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _likeButton.frame = CGRectMake(kScreenWidth - kDefaultSpace*2 - kButtonWitdh, 6.f, kButtonWitdh, kButtonHeight);
+        _likeButton.frame = CGRectMake(kScreenWidth - kDefaultSpace - kButtonWitdh, 6.f, kButtonWitdh, kButtonHeight);
         [_likeButton setImage:[UIImage imageNamed:@"like"] forState:UIControlStateNormal];
         [_likeButton addTarget:self action:@selector(praiseAction) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -195,7 +195,7 @@
 {
     if (_adminButton == nil) {
         _adminButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _adminButton.frame = CGRectMake(CGRectGetMaxX(_sendTextButton.frame) + kDefaultSpace*2, 6.f, kButtonWitdh, kButtonHeight);
+        _adminButton.frame = CGRectMake(CGRectGetMaxX(_sendTextButton.frame) + kDefaultSpace, 6.f, kButtonWitdh, kButtonHeight);
         [_adminButton setImage:[UIImage imageNamed:@"list"] forState:UIControlStateNormal];
         [_adminButton addTarget:self action:@selector(adminAction) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -440,13 +440,15 @@
     NSDictionary *userInfo = notification.userInfo;
     CGRect endFrame = [userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
     
-    
     if (self.activityView) {
         [self _willShowBottomView:nil];
     }
     
     if (self.delegate && [self.delegate respondsToSelector:@selector(easeChatViewDidChangeFrameToHeight:)]) {
         CGFloat toHeight = endFrame.size.height + self.frame.size.height + (self.textView.height - 30);
+        
+        NSLog(@"%@", @(toHeight));
+        
         [self.delegate easeChatViewDidChangeFrameToHeight:toHeight];
     }
 }
@@ -524,8 +526,8 @@
     return message;
 }
 
-- (void)_setSendState:(BOOL)state
-{
+// 设置当前是否处于发送消息状态
+- (void)_setSendState:(BOOL)state {
     if (state) {
         self.bottomSendMsgView.hidden = NO;
         self.bottomView.hidden = YES;
@@ -576,8 +578,7 @@
     [(EaseFaceView *)self.faceView setEmotionManagers:@[manager]];
 }
 
-- (CGFloat)_getTextViewContentH:(UITextView *)textView
-{
+- (CGFloat)_getTextViewContentH:(UITextView *)textView {
     return ceilf([textView sizeThatFits:textView.frame.size].height);
 }
 
@@ -603,6 +604,8 @@
         rect = self.bottomSendMsgView.frame;
         rect.size.height += changeHeight;
         self.bottomSendMsgView.frame = rect;
+        
+        NSLog(@"%@", NSStringFromCGRect(rect));
         
         [self.textView setContentOffset:CGPointMake(0.0f, (self.textView.contentSize.height - self.textView.frame.size.height) / 2) animated:YES];
 

@@ -123,9 +123,9 @@
         
         UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
         [flowLayout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
-        CGFloat left = kScreenWidth - 163 - 10 - 10 - 10;
-        CGFloat width = left - 50 - 10;
-        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(left, 15, width, 30) collectionViewLayout:flowLayout];
+        CGFloat left = self.width - 150 - 10;
+        CGFloat width = left - 40 - 10;
+        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(left, 10, width, 30) collectionViewLayout:flowLayout];
         _collectionView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         
         [_collectionView registerClass:[EaseLiveHeaderCell class] forCellWithReuseIdentifier:kCollectionIdentifier];
@@ -146,14 +146,14 @@
 
 - (EaseLiveCastView*)liveCastView {
     if (!_liveCastView) {
-        _liveCastView = [[EaseLiveCastView alloc] initWithFrame:CGRectMake(10, 15, 163, 30.f) room:_room];
+        _liveCastView = [[EaseLiveCastView alloc] initWithFrame:CGRectMake(10, 10, 150, 30.f) room:_room];
     }
     return _liveCastView;
 }
 
 - (CBOccupantsCountView *)occupantsCountView {
     if (!_occupantsCountView) {
-        _occupantsCountView = [[CBOccupantsCountView alloc] initWithFrame:CGRectMake(kScreenWidth - 60, 15, 50, 30) room:_room];
+        _occupantsCountView = [[CBOccupantsCountView alloc] initWithFrame:CGRectMake(self.width - 40, 10, 40, 30) room:_room];
     }
     return _occupantsCountView;
 }

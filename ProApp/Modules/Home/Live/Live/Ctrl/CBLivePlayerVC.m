@@ -126,9 +126,8 @@ EaseLiveHeaderListViewDelegate
 //    [self.rightView addSubview:self.anchorView];
     [self.rightView addSubview:self.headerListView];
     [self.rightView addSubview:self.chatview];
- 
-    
-    [self.view insertSubview:self.closeButton atIndex:999];
+    [self.view bringSubviewToFront:self.closeButton];
+//    [self.view insertSubview:self.closeButton atIndex:999];
     [self setupForDismissKeyboard];
 }
 
@@ -137,6 +136,7 @@ EaseLiveHeaderListViewDelegate
     _liveVO = liveVO;
     self.thumbImageURL = [NSURL URLWithString:liveVO.thumb];
     self.url = [NSURL URLWithString:liveVO.channel_source];
+    [self.roomCodeLabel shadowWtihText:liveVO.room_id];
 }
 
 #pragma mark - layz
@@ -144,9 +144,8 @@ EaseLiveHeaderListViewDelegate
 - (UIButton *)closeButton {
     if (!_closeButton) {
         _closeButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        CGFloat y = kScreenHeight-60;
-        if (iPhoneX) y -= 35;
-        _closeButton.frame = CGRectMake(kScreenWidth - 60, y, 60, 60);
+        CGFloat y = SafeAreaTopHeight - 44;
+        _closeButton.frame = CGRectMake(kScreenWidth - 50, y, 50, 50);
         [_closeButton setImage:[UIImage imageNamed:@"live_close"] forState:UIControlStateNormal];
         [_closeButton addTarget:self action:@selector(actionCloseLive:) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -239,11 +238,10 @@ EaseLiveHeaderListViewDelegate
     return _anchorInfoView;
 }
 
-- (EaseChatView*)chatview {
-    if (!_chatview) {
-        CGFloat y = kScreenHeight - 200 - SafeAreaBottomHeight;
-        CGRect frame = CGRectMake(0, y, kScreenWidth, 200);
-        _chatview = [[EaseChatView alloc] initWithFrame:frame room:_liveVO isPublish:NO];
+- (EaseChatView *)chatview {
+    if (_chatview == nil) {
+         CGFloat y = kScreenHeight - 200 - SafeAreaBottomHeight;
+        _chatview = [[EaseChatView alloc] initWithFrame:CGRectMake(0, y, CGRectGetWidth(self.view.frame), 200) room:_liveVO isPublish:NO];
         _chatview.delegate = self;
     }
     return _chatview;
@@ -252,7 +250,7 @@ EaseLiveHeaderListViewDelegate
 - (EaseLiveHeaderListView*)headerListView {
     if (_headerListView == nil) {
         CGFloat y = SafeAreaTopHeight - 44;
-        CGRect frame = CGRectMake(0, y, kScreenWidth, 60);
+        CGRect frame = CGRectMake(0, y, kScreenWidth - 50, 50);
         _headerListView = [[EaseLiveHeaderListView alloc] initWithFrame:frame room:_liveVO];
         _headerListView.delegate = self;
     }
@@ -301,6 +299,7 @@ EaseLiveHeaderListViewDelegate
     
     if (toHeight == 200) {
         [self.view removeGestureRecognizer:self.singleTapGR];
+        toHeight += SafeAreaBottomHeight;
     } else {
         [self.view addGestureRecognizer:self.singleTapGR];
     }
