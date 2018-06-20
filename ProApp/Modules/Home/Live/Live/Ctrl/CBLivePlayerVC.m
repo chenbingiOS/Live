@@ -22,6 +22,7 @@
 #import "EaseAdminView.h"
 #import "EaseLiveHeaderListView.h"
 #import "EaseHeartFlyView.h"
+#import "CBShareView.h"
 
 @interface CBLivePlayerVC ()
 <
@@ -48,10 +49,11 @@ EaseLiveHeaderListViewDelegate
 @property (nonatomic, strong) UILabel *roomCodeLabel;           ///< 房间号
 
 @property (nonatomic, strong) CBLiveAnchorView *anchorView;     ///< 顶部主播相关视图
-@property (nonatomic, strong) CBOnlineUserView *onlineUserView; ///< 在线用户
 @property (nonatomic, strong) CBAnchorInfoView *anchorInfoView; ///< 直播用户信息
 @property (nonatomic, strong) EaseChatView *chatview;           ///< 底部聊天
 @property (nonatomic, strong) EaseLiveHeaderListView *headerListView;   ///< 顶部用户信息
+@property (nonatomic, strong) CBOnlineUserView *onlineUserView; ///< 在线用户
+@property (nonatomic, strong) CBSharePopView *sharePopView; ///< 在线用户
 
 // 键盘关闭功能
 @property (nonatomic, strong) UIWindow *window;
@@ -136,7 +138,7 @@ EaseLiveHeaderListViewDelegate
     _liveVO = liveVO;
     self.thumbImageURL = [NSURL URLWithString:liveVO.thumb];
     self.url = [NSURL URLWithString:liveVO.channel_source];
-    [self.roomCodeLabel shadowWtihText:liveVO.room_id];
+    [self.roomCodeLabel shadowWtihText:[NSString stringWithFormat:@"房间号: %@", liveVO.room_id]];
 }
 
 #pragma mark - layz
@@ -224,13 +226,6 @@ EaseLiveHeaderListViewDelegate
     return _anchorView;
 }
 
-- (CBOnlineUserView *)onlineUserView {
-    if (!_onlineUserView) {
-        _onlineUserView = [[CBOnlineUserView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight/2) room:_liveVO];
-    }
-    return _onlineUserView;
-}
-
 - (CBAnchorInfoView *)anchorInfoView {
     if (!_anchorInfoView) {
         _anchorInfoView = [[CBAnchorInfoView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 365)];
@@ -255,6 +250,22 @@ EaseLiveHeaderListViewDelegate
         _headerListView.delegate = self;
     }
     return _headerListView;
+}
+
+- (CBOnlineUserView *)onlineUserView {
+    if (!_onlineUserView) {
+        _onlineUserView = [[CBOnlineUserView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight/2) room:_liveVO];
+    }
+    return _onlineUserView;
+}
+
+- (CBSharePopView *)sharePopView {
+    if (!_sharePopView) {
+        CGFloat height = 180;
+        if (iPhoneX) { height += 35;}
+        _sharePopView = [[CBSharePopView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, height)];
+    }
+    return _sharePopView;
 }
 
 #pragma mark - EaseLiveHeaderListViewDelegate
@@ -334,10 +345,14 @@ EaseLiveHeaderListViewDelegate
 
 - (void)didSelectAdminButton:(BOOL)isOwner
 {
-    EaseAdminView *adminView = [[EaseAdminView alloc] initWithChatroomId:self.liveVO.leancloud_room
-                                                                 isOwner:isOwner];
+    EaseAdminView *adminView = [[EaseAdminView alloc] initWithChatroomId:self.liveVO.leancloud_room isOwner:isOwner];
     adminView.delegate = self;
     [adminView showFromParentView:self.view];
+}
+
+- (void)didSelectShareButton {
+    UIWindow *window = [UIApplication sharedApplication].keyWindow;
+    [self.sharePopView showIn:window];
 }
 
 #pragma mark - EaseLiveGiftViewDelegate

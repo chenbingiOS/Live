@@ -42,7 +42,13 @@
 
 
 //底部功能按钮
-@property (strong, nonatomic) UIButton *sendTextButton;
+@property (strong, nonatomic) UIButton *sendTextButton;     ///< 发送消息
+@property (strong, nonatomic) UIButton *messageBtn;         ///< 私信功能
+@property (strong, nonatomic) UIButton *giftBtn;            ///< 礼物功能
+@property (strong, nonatomic) UIButton *shareBtn;           ///< 分享按钮
+@property (strong, nonatomic) UIButton *noticeBoardBtn;     ///< 侧边功能
+
+
 @property (strong, nonatomic) UIButton *changeCameraButton;
 @property (strong, nonatomic) UIButton *adminButton;
 @property (strong, nonatomic) UIButton *likeButton;
@@ -53,13 +59,6 @@
 
 @property (strong, nonatomic) UIView *faceView;
 @property (strong, nonatomic) UIView *activityView;
-
-@property (strong, nonatomic) UIButton *barrageBtn;      ///< 普通消息
-@property (strong, nonatomic) UIButton *shareBtn;        ///< 分享按钮
-@property (strong, nonatomic) UIButton *giftBtn;         ///< 礼物功能
-@property (strong, nonatomic) UIButton *noticeBoardBtn;  ///< 侧边功能
-@property (strong, nonatomic) UIButton *messageBtn;      ///< 私信功能
-
 
 @end
  
@@ -87,11 +86,19 @@
         //底部功能按钮
         [self addSubview:self.bottomView];
         [self.bottomView addSubview:self.sendTextButton];
+        [self.bottomView addSubview:self.messageBtn];
+        [self.bottomView addSubview:self.giftBtn];
+        [self.bottomView addSubview:self.shareBtn];
+        [self.bottomView addSubview:self.noticeBoardBtn];
+        
+        
         if (isPublish) {
+            // 主播端
             [self.bottomView addSubview:self.adminButton];
             [self.bottomView addSubview:self.changeCameraButton];
         } else {
-            [self.bottomView addSubview:self.likeButton];
+            // 观众端
+//            [self.bottomView addSubview:self.likeButton];
         }
         
         self.bottomSendMsgView.hidden = YES;
@@ -149,24 +156,63 @@
     return _tableView;
 }
 
-- (UIView*)bottomView
-{
-    if (_bottomView == nil) {
+- (UIView*)bottomView {
+    if (!_bottomView) {
         _bottomView = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.tableView.frame), CGRectGetWidth(self.bounds), kButtonHeight)];
         _bottomView.backgroundColor = [UIColor clearColor];
     }
     return _bottomView;
 }
 
-- (UIButton*)sendTextButton
-{
-    if (_sendTextButton == nil) {
+- (UIButton *)sendTextButton {
+    if (!_sendTextButton) {
         _sendTextButton = [UIButton buttonWithType:UIButtonTypeCustom];
         _sendTextButton.frame = CGRectMake(kDefaultSpace, 0, kButtonWitdh, kButtonHeight);
         [_sendTextButton setImage:[UIImage imageNamed:@"live_barrage"] forState:UIControlStateNormal];
         [_sendTextButton addTarget:self action:@selector(sendTextAction) forControlEvents:UIControlEventTouchUpInside];
     }
     return _sendTextButton;
+}
+
+- (UIButton *)messageBtn {
+    if (!_messageBtn) {
+        _messageBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _messageBtn.frame = CGRectMake(kDefaultSpace + kButtonWitdh, 0, kButtonWitdh, kButtonHeight);
+        [_messageBtn setImage:[UIImage imageNamed:@"live_message"] forState:UIControlStateNormal];
+        [_messageBtn addTarget:self action:@selector(sendTextAction) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _messageBtn;
+}
+
+- (UIButton *)giftBtn {
+    if (!_giftBtn) {
+        _giftBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _giftBtn.frame = CGRectMake(0, 0, kButtonWitdh, kButtonHeight);
+        _giftBtn.centerX = self.centerX;
+        [_giftBtn setImage:[UIImage imageNamed:@"live_gift"] forState:UIControlStateNormal];
+        [_giftBtn addTarget:self action:@selector(sendTextAction) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _giftBtn;
+}
+
+- (UIButton *)shareBtn {
+    if (!_shareBtn) {
+        _shareBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _shareBtn.frame = CGRectMake(kScreenWidth-kDefaultSpace-kButtonWitdh*2, 0, kButtonWitdh, kButtonHeight);
+        [_shareBtn setImage:[UIImage imageNamed:@"live_share"] forState:UIControlStateNormal];
+        [_shareBtn addTarget:self action:@selector(shareAction) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _shareBtn;
+}
+
+- (UIButton *)noticeBoardBtn {
+    if (!_noticeBoardBtn) {
+        _noticeBoardBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _noticeBoardBtn.frame = CGRectMake(kScreenWidth-kDefaultSpace-kButtonWitdh, 0, kButtonWitdh, kButtonHeight);
+        [_noticeBoardBtn setImage:[UIImage imageNamed:@"live_notice-board"] forState:UIControlStateNormal];
+        [_noticeBoardBtn addTarget:self action:@selector(sendTextAction) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _noticeBoardBtn;
 }
 
 - (UIButton*)changeCameraButton
@@ -614,6 +660,12 @@
 }
 
 #pragma mark - action
+
+- (void)shareAction {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(didSelectShareButton)]) {
+        [self.delegate didSelectShareButton];
+    }
+}
 
 - (void)sendTextAction
 {
