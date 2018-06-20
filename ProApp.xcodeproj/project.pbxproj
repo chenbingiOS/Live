@@ -598,6 +598,7 @@
 		54C18B4F20D9E4E600882377 /* default_image@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 54C18B3220D9E4E600882377 /* default_image@3x.png */; };
 		54C18B5020D9E4E600882377 /* notalk@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 54C18B3320D9E4E600882377 /* notalk@3x.png */; };
 		54C18B5120D9E4E600882377 /* close@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 54C18B3420D9E4E600882377 /* close@3x.png */; };
+		54C18B5420DA061600882377 /* CBAnchorInfoVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C18B5320DA061600882377 /* CBAnchorInfoVO.m */; };
 		54F7828E20BD56C500EE6821 /* CBForgetPwdVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 54F7828C20BD56C500EE6821 /* CBForgetPwdVC.m */; };
 		54F7828F20BD56C500EE6821 /* CBForgetPwdVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 54F7828D20BD56C500EE6821 /* CBForgetPwdVC.xib */; };
 		7E902906E2CA7AD8D2F3A5A8 /* libPods-ProApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B93D832D0DEF97DA8E7CD09 /* libPods-ProApp.a */; };
@@ -1569,6 +1570,8 @@
 		54C18B3220D9E4E600882377 /* default_image@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default_image@3x.png"; sourceTree = "<group>"; };
 		54C18B3320D9E4E600882377 /* notalk@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "notalk@3x.png"; sourceTree = "<group>"; };
 		54C18B3420D9E4E600882377 /* close@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "close@3x.png"; sourceTree = "<group>"; };
+		54C18B5220DA061600882377 /* CBAnchorInfoVO.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBAnchorInfoVO.h; sourceTree = "<group>"; };
+		54C18B5320DA061600882377 /* CBAnchorInfoVO.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBAnchorInfoVO.m; sourceTree = "<group>"; };
 		54F7828B20BD56C500EE6821 /* CBForgetPwdVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBForgetPwdVC.h; sourceTree = "<group>"; };
 		54F7828C20BD56C500EE6821 /* CBForgetPwdVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBForgetPwdVC.m; sourceTree = "<group>"; };
 		54F7828D20BD56C500EE6821 /* CBForgetPwdVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CBForgetPwdVC.xib; sourceTree = "<group>"; };
@@ -2043,6 +2046,8 @@
 				07558C292094569C007E41C2 /* CBAnchorInfoXibView.h */,
 				07558C2A2094569C007E41C2 /* CBAnchorInfoXibView.m */,
 				07558C2C209456A5007E41C2 /* CBAnchorInfoXibView.xib */,
+				54C18B5220DA061600882377 /* CBAnchorInfoVO.h */,
+				54C18B5320DA061600882377 /* CBAnchorInfoVO.m */,
 			);
 			path = AnchorInfoView;
 			sourceTree = "<group>";
@@ -4364,6 +4369,7 @@
 				0763FC1C20A935020086BFA4 /* CBHorizontalFlowLayout.m in Sources */,
 				0787704E2092CA7D00A5A42A /* CBAccountRecordVC.m in Sources */,
 				079AAE4A2079AF9E00674A92 /* CBTBC.m in Sources */,
+				54C18B5420DA061600882377 /* CBAnchorInfoVO.m in Sources */,
 				5465AE0720BD4A10006E24BB /* CBUploadVideoVC.m in Sources */,
 				0750561C2092AEBD00F0679B /* CBGiftPackageVC.m in Sources */,
 				54A76AE320B7DEDE0034D5A2 /* PLSRateButtonView.m in Sources */,

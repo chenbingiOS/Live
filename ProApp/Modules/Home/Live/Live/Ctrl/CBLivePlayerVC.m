@@ -24,6 +24,7 @@
 #import "EaseHeartFlyView.h"
 #import "CBShareView.h"
 
+
 @interface CBLivePlayerVC ()
 <
 UIGestureRecognizerDelegate,
@@ -185,7 +186,8 @@ EaseLiveHeaderListViewDelegate
 
 - (UILabel *)roomCodeLabel {
     if (!_roomCodeLabel) {
-        _roomCodeLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 35, 100, 30)];
+        CGFloat y = SafeAreaTopHeight - 40;
+        _roomCodeLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, y, 100, 30)];
         _roomCodeLabel.textColor = [UIColor whiteColor];
         _roomCodeLabel.font = [UIFont systemFontOfSize:13];
     }
@@ -235,7 +237,7 @@ EaseLiveHeaderListViewDelegate
 
 - (EaseChatView *)chatview {
     if (_chatview == nil) {
-         CGFloat y = kScreenHeight - 200 - SafeAreaBottomHeight;
+         CGFloat y = kScreenHeight - 200 - SafeAreaBottomHeight - 6;
         _chatview = [[EaseChatView alloc] initWithFrame:CGRectMake(0, y, CGRectGetWidth(self.view.frame), 200) room:_liveVO isPublish:NO];
         _chatview.delegate = self;
     }
@@ -282,9 +284,12 @@ EaseLiveHeaderListViewDelegate
         profileLiveView.delegate = self;
         [profileLiveView showFromParentView:self.view];
     } else {
-        EaseProfileLiveView *profileLiveView = [[EaseProfileLiveView alloc] initWithUsername:username chatroomId:self.liveVO.leancloud_room];
-        profileLiveView.delegate = self;
-        [profileLiveView showFromParentView:self.view];
+//        EaseProfileLiveView *profileLiveView = [[EaseProfileLiveView alloc] initWithUsername:username chatroomId:self.liveVO.leancloud_room];
+//        profileLiveView.delegate = self;
+//        [profileLiveView showFromParentView:self.view];
+        UIWindow *window = [UIApplication sharedApplication].keyWindow;
+        [self.anchorInfoView showIn:window];
+        self.anchorInfoView.liveVO = _liveVO;
     }
 }
 
@@ -310,7 +315,7 @@ EaseLiveHeaderListViewDelegate
     
     if (toHeight == 200) {
         [self.view removeGestureRecognizer:self.singleTapGR];
-        toHeight += SafeAreaBottomHeight;
+        toHeight += SafeAreaBottomHeight+6;
     } else {
         [self.view addGestureRecognizer:self.singleTapGR];
     }

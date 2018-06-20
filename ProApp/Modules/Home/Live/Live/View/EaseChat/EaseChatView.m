@@ -492,9 +492,6 @@
     
     if (self.delegate && [self.delegate respondsToSelector:@selector(easeChatViewDidChangeFrameToHeight:)]) {
         CGFloat toHeight = endFrame.size.height + self.frame.size.height + (self.textView.height - 30);
-        
-        NSLog(@"%@", @(toHeight));
-        
         [self.delegate easeChatViewDidChangeFrameToHeight:toHeight];
     }
 }

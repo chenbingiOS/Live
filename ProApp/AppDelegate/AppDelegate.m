@@ -28,7 +28,7 @@
     [self initApperance];
     [self initPLKit];
 
-//    [PPNetworkHelper openLog];
+    [PPNetworkHelper openLog];
     
     return YES;
 }

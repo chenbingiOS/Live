@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
+@class CBAppLiveVO;
 @interface CBAnchorInfoXibView : UIView
+
+@property (nonatomic, strong) CBAppLiveVO *liveVO;
 
 @end

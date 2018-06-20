@@ -61,6 +61,8 @@
 #define urlGetGuardPrices       purl@"Api/Anchor/get_guard_prices"
 // 我的黑名单列表
 #define urlBlacklist            purl@"Api/user/blacklist"
+// 查看用户信息 查看某个主播或用户的主页信息
+#define urlAnchorGetUserInfo    purl@"Api/Anchor/getUserInfo"
 //------------------------------------------------------------------
 // 短视频模块
 // 获取上传token

@@ -8,6 +8,7 @@
 
 #import "CBAnchorInfoView.h"
 #import "CBAnchorInfoXibView.h"
+#import "CBAppLiveVO.h"
 
 @implementation CBAnchorInfoView
 
@@ -35,6 +36,11 @@
         _acnchorInfoXibView.frame = CGRectMake(0, 0, self.width, 365);
     }
     return _acnchorInfoXibView;
+}
+
+- (void)setLiveVO:(CBAppLiveVO *)liveVO {
+    _liveVO = liveVO;    
+    self.acnchorInfoXibView.liveVO = liveVO;
 }
 
 @end

@@ -10,8 +10,11 @@
 #import "CBPopView.h"
 
 @class CBAnchorInfoXibView;
+@class CBAppLiveVO;
+
 @interface CBAnchorInfoView : CBPopView
 
 @property (nonatomic, strong) CBAnchorInfoXibView *acnchorInfoXibView;
+@property (nonatomic, strong) CBAppLiveVO *liveVO;
 
 @end

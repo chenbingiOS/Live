@@ -123,7 +123,6 @@
     NSString *url = urlGetUserInfo;
     NSDictionary *param = @{@"token": token};
     [PPNetworkHelper POST:url parameters:param success:^(id responseObject) {
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
         NSNumber *code = [responseObject valueForKey:@"code"];
         if ([code isEqualToNumber:@200]) {
             NSDictionary *info = [responseObject valueForKey:@"data"];
@@ -138,6 +137,7 @@
             NSString *descrp = responseObject[@"descrp"];
             [MBProgressHUD showAutoMessage:descrp];
         }
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
     } failure:^(NSError *error) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         [MBProgressHUD showAutoMessage:@"登录失败"];
