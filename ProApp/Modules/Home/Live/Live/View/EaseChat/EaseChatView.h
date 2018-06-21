@@ -10,7 +10,6 @@
 #import "CBShareView.h"
 
 @class EMMessage;
-//@class EaseLiveRoom;
 @class CBAppLiveVO;
 @protocol EaseChatViewDelegate <NSObject>
 

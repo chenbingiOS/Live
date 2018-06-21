@@ -40,6 +40,8 @@
 #define urlExitLiveRoom         purl@"Api/Anchor/exitLiveRoom"
 // 获取直播间在线用户列表
 #define urlGetLiveRoomOnlineUserList purl@"Api/Anchor/getLiveRoomOnlineUserList"
+// 获取守护列表
+#define urlGetGuardRankList     purl@"Api/Anchor/guard_rank_list"
 
 //------------------------------------------------------------------
 // 用户操作

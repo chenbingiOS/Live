@@ -17,4 +17,6 @@
 
 @property (nonatomic, weak) id<EaseLiveHeaderListViewDelegate> delegate;
 
+- (void)_UI_reload;
+
 @end

@@ -18,6 +18,7 @@
 @property (nonatomic, strong) UIImageView *headImageView;
 @property (nonatomic, strong) UILabel *nameLabel;
 @property (nonatomic, strong) UILabel *numberLabel;
+@property (nonatomic, strong) UIButton *attentionBtn;
 
 @end
 
@@ -35,6 +36,7 @@
         [self addSubview:self.headImageView];
         [self addSubview:self.nameLabel];
         [self addSubview:self.numberLabel];
+        [self addSubview:self.attentionBtn];
         
         [self.headImageView sd_setImageWithURL:[NSURL URLWithString:_room.avatar] placeholderImage:[UIImage imageNamed:@"placeholder_head"]];
         self.nameLabel.text = _room.user_nicename;
@@ -64,7 +66,7 @@
 {
     if (_nameLabel == nil) {
         _nameLabel = [[UILabel alloc] init];
-        _nameLabel.frame = CGRectMake(_headImageView.width + 8.f, 2.f, self.width - (_headImageView.width + 10.f), self.height/2);
+        _nameLabel.frame = CGRectMake(_headImageView.width + 8.f, 2.f, self.width - (_headImageView.width + 10.f)-50, self.height/2);
         _nameLabel.font = [UIFont fontWithName:@"PingFang-SC-Medium" size:12];
         _nameLabel.textColor = [UIColor whiteColor];
     }
@@ -75,11 +77,28 @@
 {
     if (_numberLabel == nil) {
         _numberLabel = [[UILabel alloc] init];
-        _numberLabel.frame = CGRectMake(_headImageView.width + 8.f, self.height/2+1, self.width - (_headImageView.width + 10.f), self.height/2);
+        _numberLabel.frame = CGRectMake(_headImageView.width + 8.f, self.height/2+1, self.width - (_headImageView.width + 10.f)-50, self.height/2);
         _numberLabel.font = [UIFont fontWithName:@"PingFang-SC-Medium" size:9];
         _numberLabel.textColor = [UIColor whiteColor];
     }
     return _numberLabel;
+}
+
+- (UIButton *)attentionBtn {
+    if (!_attentionBtn) {
+        _attentionBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        CGFloat left = self.width-50;
+        _attentionBtn.frame = CGRectMake(left, 0, 50, 30);
+        _attentionBtn.layer.cornerRadius = 15;
+        _attentionBtn.layer.masksToBounds = YES;
+        _attentionBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
+        _attentionBtn.titleLabel.font = [UIFont fontWithName:@"PingFang-SC-Medium" size:11];
+        [_attentionBtn addTarget:self action:@selector(actionAttentionBtn) forControlEvents:UIControlEventTouchUpInside];
+        [_attentionBtn setTitle:@"+关注" forState:UIControlStateNormal];
+        [_attentionBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        _attentionBtn.backgroundColor = [UIColor mainColor];
+    }
+    return _attentionBtn;
 }
 
 #pragma mark - action
@@ -88,6 +107,12 @@
     if (self.delegate && [self.delegate respondsToSelector:@selector(didSelectHeaderWithUsername:)]) {
         [self.delegate didSelectHeaderWithUsername:_room.user_nicename];
     }
+}
+
+- (void)actionAttentionBtn {
+    //    if (self.delegate && [self.delegate respondsToSelector:@selector(didSelectHeaderWithUsername:)]) {
+    //        [self.delegate didSelectHeaderWithUsername:nil];
+    //    }
 }
 
 #pragma mark - public 

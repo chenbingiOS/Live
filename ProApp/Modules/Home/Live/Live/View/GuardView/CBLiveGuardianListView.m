@@ -1,25 +1,25 @@
 //
-//  EaseLiveHeaderListView.m
+//  CBLiveGuardianListView.m
 //  EaseMobLiveDemo
 //
 //  Created by EaseMob on 16/7/15.
 //  Copyright © 2016年 zmw. All rights reserved.
 //
 
-#import "EaseLiveHeaderListView.h"
+#import "CBLiveGuardianListView.h"
 #import "CBOccupantsCountView.h"
-#import "EaseLiveCastView.h"
+#import "CBLiveCastView.h"
 #import "CBAppLiveVO.h"
 
 #define kCollectionIdentifier @"collectionCell"
 
-@interface EaseLiveHeaderCell : UICollectionViewCell
+@interface CBLiveGuardianCell : UICollectionViewCell
 
 @property (nonatomic, strong) UIImageView *headerImage;
 
 @end
 
-@implementation EaseLiveHeaderCell
+@implementation CBLiveGuardianCell
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
@@ -38,7 +38,7 @@
 
 @end
 
-@interface EaseLiveHeaderListView () <UICollectionViewDelegate,UICollectionViewDataSource>
+@interface CBLiveGuardianListView () <UICollectionViewDelegate,UICollectionViewDataSource>
 {
     EasePublishModel *_model;
 }
@@ -48,7 +48,7 @@
 
 // 贡献榜单
 @property (nonatomic, strong) UICollectionView *collectionView;
-@property (nonatomic, strong) EaseLiveCastView *liveCastView;
+@property (nonatomic, strong) CBLiveCastView *liveCastView;
 @property (nonatomic, strong) NSMutableArray <CBAppLiveVO *> *dataArray;
 
 // 总人数
@@ -58,22 +58,9 @@
 
 @end
 
-@implementation EaseLiveHeaderListView
+@implementation CBLiveGuardianListView
 
-- (instancetype)initWithFrame:(CGRect)frame model:(EasePublishModel*)model
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        _model = model;
-        [self addSubview:self.collectionView];
-        [self addSubview:self.liveCastView];
-        _currentPage = 1;
-    }
-    return self;
-}
-
-- (instancetype)initWithFrame:(CGRect)frame room:(CBAppLiveVO*)room
-{
+- (instancetype)initWithFrame:(CGRect)frame room:(CBAppLiveVO*)room {
     self = [super initWithFrame:frame];
     if (self) {
         _room = room;
@@ -85,9 +72,9 @@
     return self;
 }
 
-- (void)httpGetLiveRoomOnlineUserList {
-    NSString *url = urlGetLiveRoomOnlineUserList;
-    NSDictionary *param = @{@"room_id": self.room.room_id,
+- (void)httpGetGuardRankList {
+    NSString *url = urlGetGuardRankList;
+    NSDictionary *param = @{@"host_id": self.room.ID,
                             @"token": [CBLiveUserConfig getOwnToken],
                             @"page": @(self.currentPage)};
     [PPNetworkHelper POST:url parameters:param success:^(id responseObject) {
@@ -97,7 +84,7 @@
             if (resultList.count < 20 && self.currentPage > 1) {
                 self.currentPage--;
             } else {
-                [self.dataArray addObjectsFromArray:resultList];
+                self.dataArray = resultList.copy;
                 [self.collectionView reloadData];
             }
         } else {
@@ -123,12 +110,12 @@
         
         UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
         [flowLayout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
-        CGFloat left = self.width - 150 - 10;
-        CGFloat width = left - 40 - 10;
+        CGFloat left = _liveCastView.right + 5;
+        CGFloat width = 100;
         _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(left, 10, width, 30) collectionViewLayout:flowLayout];
         _collectionView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         
-        [_collectionView registerClass:[EaseLiveHeaderCell class] forCellWithReuseIdentifier:kCollectionIdentifier];
+        [_collectionView registerClass:[CBLiveGuardianCell class] forCellWithReuseIdentifier:kCollectionIdentifier];
         [_collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"FooterView"];
         
         _collectionView.backgroundColor = [UIColor clearColor];
@@ -144,81 +131,37 @@
     return _collectionView;
 }
 
-- (EaseLiveCastView*)liveCastView {
+- (CBLiveCastView*)liveCastView {
     if (!_liveCastView) {
-        _liveCastView = [[EaseLiveCastView alloc] initWithFrame:CGRectMake(10, 10, 150, 30.f) room:_room];
+        _liveCastView = [[CBLiveCastView alloc] initWithFrame:CGRectMake(10, 10, 118, 30.f) room:_room];
     }
     return _liveCastView;
 }
 
 - (CBOccupantsCountView *)occupantsCountView {
     if (!_occupantsCountView) {
-        _occupantsCountView = [[CBOccupantsCountView alloc] initWithFrame:CGRectMake(self.width - 40, 10, 40, 30) room:_room];
+        _occupantsCountView = [[CBOccupantsCountView alloc] initWithFrame:CGRectMake(self.width - 70, 10, 60, 30) room:_room];
+        [_occupantsCountView _UI_reload];
     }
     return _occupantsCountView;
 }
 
-- (void)setDelegate:(id<EaseLiveHeaderListViewDelegate>)delegate {
+- (void)setDelegate:(id<CBLiveGuardianListViewDelegate>)delegate {
     _delegate = delegate;
-    self.liveCastView.delegate = delegate;
     self.occupantsCountView.delegate = delegate;
 }
 
 #pragma mark - public
+- (void)actionAttentionBtn {
+//    if (self.delegate && [self.delegate respondsToSelector:@selector(didSelectHeaderWithUsername:)]) {
+//        [self.delegate didSelectHeaderWithUsername:nil];
+//    }
+}
 
-// 加载聊天室详细信息
+// 加载守护人员信息详细信息
 - (void)loadHeaderListWithChatroomId:(NSString*)chatroomId {
-    self.chatRoomId = chatroomId;
-    @weakify(self);
-    // 获取聊天室详情
-    [[EMClient sharedClient].roomManager getChatroomSpecificationFromServerWithId:chatroomId completion:^(EMChatroom *aChatroom, EMError *aError) {
-        @strongify(self);
-        if (!aError) {
-            self.occupantsCount = aChatroom.occupantsCount;
-//            [self.liveCastView setNumberOfChatroom:self.occupantsCount];
-        }
-    }];
-    
-    // 获取聊天室成员列表
-    // 不从环信获取聊天室成员，从自己的业务后台获取
-//    [[EMClient sharedClient].roomManager getChatroomMemberListFromServerWithId:chatroomId cursor:nil pageSize:10 completion:^(EMCursorResult *aResult, EMError *aError) {
-//        @strongify(self);
-//        if (!aError) {
-//            [self.dataArray addObjectsFromArray:aResult.list];
-//            [self.collectionView reloadData];
-//        }
-//    }];
     self.dataArray = [NSMutableArray array];
-    [self httpGetLiveRoomOnlineUserList];
-}
-
-// 单用户加入直播间
-- (void)joinChatroomWithUsername:(NSString *)username
-{
-//    if ([self.dataArray count] > 10) {
-//        [self.dataArray removeObjectAtIndex:0];
-//    }
-//    if ([self.dataArray containsObject:username]) {
-//        return;
-//    }
-//    [self.dataArray insertObject:[username copy] atIndex:0];
-//    self.occupantsCount++;
-//    [self.liveCastView setNumberOfChatroom:self.occupantsCount];
-//    [self.collectionView reloadData];
-}
-
-// 单用户离开直播间
-- (void)leaveChatroomWithUsername:(NSString *)username
-{
-//    for (int index = 0; index < [self.dataArray count]; index ++) {
-//        NSString *name = [self.dataArray objectAtIndex:index];
-//        if ([name isEqualToString:username]) {
-//            [self.dataArray removeObjectAtIndex:index];
-//        }
-//    }
-//    self.occupantsCount--;
-//    [self.liveCastView setNumberOfChatroom:self.occupantsCount];
-//    [self.collectionView reloadData];
+    [self httpGetGuardRankList];
 }
 
 #pragma mark - UICollectionViewDataSource
@@ -232,7 +175,7 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    EaseLiveHeaderCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kCollectionIdentifier forIndexPath:indexPath];
+    CBLiveGuardianCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kCollectionIdentifier forIndexPath:indexPath];
     [cell.headerImage sd_setImageWithURL:[NSURL URLWithString:self.dataArray[indexPath.row].avatar] placeholderImage:[UIImage imageNamed:@"placeholder_head"]];
     return cell;
 }

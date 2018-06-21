@@ -66,7 +66,7 @@
     }
     self.roomLab.text = [NSString stringWithFormat:@"房间号: %@", self.liveVO.room_id];
     self.locationLab.text = [NSString stringWithFormat:@"坐标: %@", user.location];
-    self.signatureLab.text = user.signature;
+    self.signatureLab.text = user.signature.length ? user.signature : @"这个用户很懒，什么都没有～";    
     self.focusLab.text = user.attention_num;
     self.fansLab.text = user.fans_num;
     self.sentOutLab.text = user.total_spend;

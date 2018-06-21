@@ -23,7 +23,7 @@
 #import "EaseLiveHeaderListView.h"
 #import "EaseHeartFlyView.h"
 #import "CBShareView.h"
-
+#import "CBLiveGuardianListView.h"
 
 @interface CBLivePlayerVC ()
 <
@@ -53,6 +53,7 @@ EaseLiveHeaderListViewDelegate
 @property (nonatomic, strong) CBAnchorInfoView *anchorInfoView; ///< 直播用户信息
 @property (nonatomic, strong) EaseChatView *chatview;           ///< 底部聊天
 @property (nonatomic, strong) EaseLiveHeaderListView *headerListView;   ///< 顶部用户信息
+@property (nonatomic, strong) CBLiveGuardianListView *guardianListView; ///<  顶部守护
 @property (nonatomic, strong) CBOnlineUserView *onlineUserView; ///< 在线用户
 @property (nonatomic, strong) CBSharePopView *sharePopView; ///< 在线用户
 
@@ -99,6 +100,7 @@ EaseLiveHeaderListViewDelegate
         @strongify(self);
         if (success) {
             [self.headerListView loadHeaderListWithChatroomId:[self.liveVO.leancloud_room copy]];
+            [self.guardianListView loadHeaderListWithChatroomId:[self.liveVO.leancloud_room copy]];
             self.chatroom = [[EMClient sharedClient].roomManager getChatroomSpecificationFromServerWithId:self.liveVO.leancloud_room error:nil];            
         } else {
             [MBProgressHUD showAutoMessage:@"加入聊天室失败"];
@@ -126,8 +128,8 @@ EaseLiveHeaderListViewDelegate
     [self.leftView addSubview:self.roomCodeLabel];
     [self.rightView addSubview:self.topGradientView];
     [self.rightView addSubview:self.bottomGradientView];
-//    [self.rightView addSubview:self.anchorView];
     [self.rightView addSubview:self.headerListView];
+    [self.rightView addSubview:self.guardianListView];
     [self.rightView addSubview:self.chatview];
     [self.view bringSubviewToFront:self.closeButton];
 //    [self.view insertSubview:self.closeButton atIndex:999];
@@ -230,7 +232,10 @@ EaseLiveHeaderListViewDelegate
 
 - (CBAnchorInfoView *)anchorInfoView {
     if (!_anchorInfoView) {
-        _anchorInfoView = [[CBAnchorInfoView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 365)];
+        CGFloat height = 365;
+        if (iPhoneX) height += SafeAreaBottomHeight;
+        _anchorInfoView = [[CBAnchorInfoView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, height
+                                                                             )];
     }
     return _anchorInfoView;
 }
@@ -244,14 +249,24 @@ EaseLiveHeaderListViewDelegate
     return _chatview;
 }
 
-- (EaseLiveHeaderListView*)headerListView {
-    if (_headerListView == nil) {
+- (EaseLiveHeaderListView *)headerListView {
+    if (!_headerListView) {
         CGFloat y = SafeAreaTopHeight - 44;
         CGRect frame = CGRectMake(0, y, kScreenWidth - 50, 50);
         _headerListView = [[EaseLiveHeaderListView alloc] initWithFrame:frame room:_liveVO];
         _headerListView.delegate = self;
     }
     return _headerListView;
+}
+
+- (CBLiveGuardianListView *)guardianListView {
+    if (!_guardianListView ) {
+        CGFloat y = SafeAreaTopHeight-4;
+        CGRect frame = CGRectMake(0, y, kScreenWidth, 50);
+        _guardianListView = [[CBLiveGuardianListView alloc] initWithFrame:frame room:_liveVO];
+        _guardianListView.delegate = self;
+    }
+    return _guardianListView;
 }
 
 - (CBOnlineUserView *)onlineUserView {

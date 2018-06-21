@@ -72,4 +72,8 @@
     }
 }
 
+- (void)_UI_reload {
+    self.nameLabel.text = @"贡献币";
+}
+
 @end
