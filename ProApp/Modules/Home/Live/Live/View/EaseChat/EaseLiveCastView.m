@@ -55,7 +55,7 @@
         _headImageView.layer.cornerRadius = CGRectGetHeight(_headImageView.frame)/2;
         _headImageView.contentMode = UIViewContentModeScaleAspectFill;
         
-        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didSelectHeadImage)];
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(actionTapShowAnchorInfo)];
         _headImageView.userInteractionEnabled = YES;
         [_headImageView addGestureRecognizer:tap];
     }
@@ -93,7 +93,7 @@
         _attentionBtn.layer.masksToBounds = YES;
         _attentionBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
         _attentionBtn.titleLabel.font = [UIFont fontWithName:@"PingFang-SC-Medium" size:11];
-        [_attentionBtn addTarget:self action:@selector(actionAttentionBtn) forControlEvents:UIControlEventTouchUpInside];
+        [_attentionBtn addTarget:self action:@selector(actionBtnAttentionCurrentAnchor) forControlEvents:UIControlEventTouchUpInside];
         [_attentionBtn setTitle:@"+关注" forState:UIControlStateNormal];
         [_attentionBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         _attentionBtn.backgroundColor = [UIColor mainColor];
@@ -102,17 +102,16 @@
 }
 
 #pragma mark - action
-- (void)didSelectHeadImage
-{
-    if (self.delegate && [self.delegate respondsToSelector:@selector(didSelectHeaderWithUsername:)]) {
-        [self.delegate didSelectHeaderWithUsername:_room.user_nicename];
+- (void)actionTapShowAnchorInfo {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(actionLiveShowAnchorInfo)]) {
+        [self.delegate actionLiveShowAnchorInfo];
     }
 }
 
-- (void)actionAttentionBtn {
-    //    if (self.delegate && [self.delegate respondsToSelector:@selector(didSelectHeaderWithUsername:)]) {
-    //        [self.delegate didSelectHeaderWithUsername:nil];
-    //    }
+- (void)actionBtnAttentionCurrentAnchor {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(actionLiveAttentionCurrentAnchor)]) {
+        [self.delegate actionLiveAttentionCurrentAnchor];
+    }
 }
 
 #pragma mark - public 

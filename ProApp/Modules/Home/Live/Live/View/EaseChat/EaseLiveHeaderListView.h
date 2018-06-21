@@ -7,28 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CBActionLiveDelegate.h"
 
-@protocol EaseLiveHeaderListViewDelegate <NSObject>
-
-- (void)didSelectHeaderWithUsername:(NSString*)username;
-- (void)didSelectOccupantsWithUserID:(NSString *)userId;
-
-@end
-
-@class EasePublishModel;
 @class CBAppLiveVO;
 @interface EaseLiveHeaderListView : UIView
 
-- (instancetype)initWithFrame:(CGRect)frame model:(EasePublishModel*)model;
-
 - (instancetype)initWithFrame:(CGRect)frame room:(CBAppLiveVO*)room;
 
-@property (nonatomic, weak) id<EaseLiveHeaderListViewDelegate> delegate;
+@property (nonatomic, weak) id <CBActionLiveDelegate> delegate;
 
 - (void)loadHeaderListWithChatroomId:(NSString*)chatroomId;
-
-- (void)joinChatroomWithUsername:(NSString*)username;
-
-- (void)leaveChatroomWithUsername:(NSString*)username;
 
 @end

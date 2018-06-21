@@ -36,7 +36,6 @@ PLPanelDelegateGeneratorDelegate,
 EaseChatViewDelegate,
 EMChatroomManagerDelegate,
 EMClientDelegate,
-EaseLiveHeaderListViewDelegate,
 TapBackgroundViewDelegate,
 EaseProfileLiveViewDelegate
 >
@@ -649,7 +648,6 @@ EaseProfileLiveViewDelegate
 {
     if ([aChatroom.chatroomId isEqualToString:self.liveVO.leancloud_room]) {
         if (![aChatroom.owner isEqualToString:aUsername]) {
-            [_headerListView joinChatroomWithUsername:aUsername];
         }
     }
 }
@@ -659,7 +657,6 @@ EaseProfileLiveViewDelegate
 {
     if ([aChatroom.chatroomId isEqualToString:self.liveVO.leancloud_room]) {
         if (![aChatroom.owner isEqualToString:aUsername]) {
-            [_headerListView leaveChatroomWithUsername:aUsername];
         }
     }
 }

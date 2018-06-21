@@ -7,23 +7,27 @@
 //
 
 #import "CBLivePlayerVC.h"
-#import "CBAppLiveVO.h"
-#import <PLPlayerKit/PLPlayerKit.h>
-#import "EaseChatView.h"
-#import "CBLiveAnchorView.h"
-#import "CBLiveBottomView.h"
-#import "UILabel+ShadowText.h"
-#import "CBOnlineUserView.h"
-#import "CBAnchorInfoView.h"
+// VC
 #import "CBGuardVC.h"
 #import "CBGuardRankVC.h"
 #import "CBContributionRankVC.h"
+// View
+#import "EaseChatView.h"
+#import "CBLiveAnchorView.h"
+#import "CBLiveBottomView.h"
+#import "CBOnlineUserView.h"
+#import "CBAnchorInfoView.h"
 #import "EaseProfileLiveView.h"
 #import "EaseAdminView.h"
 #import "EaseLiveHeaderListView.h"
 #import "EaseHeartFlyView.h"
 #import "CBShareView.h"
 #import "CBLiveGuardianListView.h"
+//
+#import "CBAppLiveVO.h"
+#import <PLPlayerKit/PLPlayerKit.h>
+#import "UILabel+ShadowText.h"
+#import "CBActionLiveDelegate.h"
 
 @interface CBLivePlayerVC ()
 <
@@ -32,7 +36,7 @@ EaseChatViewDelegate,
 EMClientDelegate,
 EMChatroomManagerDelegate,
 TapBackgroundViewDelegate,
-EaseLiveHeaderListViewDelegate
+CBActionLiveDelegate
 >
 {
     BOOL _enableAdmin;
@@ -285,6 +289,24 @@ EaseLiveHeaderListViewDelegate
     return _sharePopView;
 }
 
+#pragma mark - CBActionLiveDelegate
+// 开通守护
+- (void)actionLiveOpenGuard {
+    CBGuardVC *vc = [CBGuardVC new];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+// 在线用户列表
+- (void)actionLiveShowOnlineUserList {
+    UIWindow *keyWindow = [UIApplication sharedApplication].keyWindow;
+    [self.onlineUserView showIn:keyWindow];
+}
+
+// 贡献币，贡献榜
+- (void)actionLiveShowContributionList {
+    
+}
+
 #pragma mark - EaseLiveHeaderListViewDelegate
 
 - (void)didSelectHeaderWithUsername:(NSString *)username {
@@ -306,11 +328,6 @@ EaseLiveHeaderListViewDelegate
         [self.anchorInfoView showIn:window];
         self.anchorInfoView.liveVO = _liveVO;
     }
-}
-
-- (void)didSelectOccupantsWithUserID:(NSString *)userId {
-    UIWindow *keyWindow = [UIApplication sharedApplication].keyWindow;
-    [self.onlineUserView showIn:keyWindow];
 }
 
 #pragma  mark - TapBackgroundViewDelegate
@@ -393,7 +410,7 @@ EaseLiveHeaderListViewDelegate
 {
     if ([aChatroom.chatroomId isEqualToString:self.liveVO.leancloud_room]) {
         if (![aChatroom.owner isEqualToString:aUsername]) {
-            [self.headerListView joinChatroomWithUsername:aUsername];
+
         }
     }
 }
@@ -403,7 +420,6 @@ EaseLiveHeaderListViewDelegate
 {
     if ([aChatroom.chatroomId isEqualToString:self.liveVO.leancloud_room]) {
         if (![aChatroom.owner isEqualToString:aUsername]) {
-            [self.headerListView leaveChatroomWithUsername:aUsername];
         }
     }
 }

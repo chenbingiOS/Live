@@ -1126,6 +1126,7 @@
 		5469A58220C54591004E06F1 /* CBCityMenuView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CBCityMenuView.xib; sourceTree = "<group>"; };
 		546E848520DB31CD0044DCC6 /* CBLiveCastView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBLiveCastView.h; sourceTree = "<group>"; };
 		546E848620DB31CE0044DCC6 /* CBLiveCastView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBLiveCastView.m; sourceTree = "<group>"; };
+		546E848820DB43B30044DCC6 /* CBActionLiveDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBActionLiveDelegate.h; sourceTree = "<group>"; };
 		547CB63120D899BD0064B29B /* UIButton+Animate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+Animate.h"; sourceTree = "<group>"; };
 		547CB63220D899BD0064B29B /* UIButton+Animate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+Animate.m"; sourceTree = "<group>"; };
 		547EA76520CE6D1F00CDC1A1 /* PLTitleValueConf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLTitleValueConf.h; sourceTree = "<group>"; };
@@ -2003,6 +2004,8 @@
 				542F89FE20DA45E300C6E99D /* CBLiveGuardianListView.m */,
 				546E848520DB31CD0044DCC6 /* CBLiveCastView.h */,
 				546E848620DB31CE0044DCC6 /* CBLiveCastView.m */,
+				540CCCD520D8F1D200CAA312 /* CBOccupantsCountView.h */,
+				540CCCD620D8F1D200CAA312 /* CBOccupantsCountView.m */,
 			);
 			path = GuardView;
 			sourceTree = "<group>";
@@ -2162,6 +2165,7 @@
 		077D1F8620886C5A003B9E56 /* Ctrl */ = {
 			isa = PBXGroup;
 			children = (
+				546E848820DB43B30044DCC6 /* CBActionLiveDelegate.h */,
 				077D1F8320886C56003B9E56 /* CBLiveVC.h */,
 				077D1F8420886C56003B9E56 /* CBLiveVC.m */,
 				07B8BD1A20A3E14200DD05B2 /* CBPlayerVC.h */,
@@ -2982,8 +2986,6 @@
 				544F801820D0B91B00F492AE /* EaseChatCell.m */,
 				545384C320D256F600BE91D2 /* EaseLiveHeaderListView.h */,
 				545384C420D256F700BE91D2 /* EaseLiveHeaderListView.m */,
-				540CCCD520D8F1D200CAA312 /* CBOccupantsCountView.h */,
-				540CCCD620D8F1D200CAA312 /* CBOccupantsCountView.m */,
 				545384C620D2571000BE91D2 /* EaseLiveCastView.h */,
 				545384C720D2571100BE91D2 /* EaseLiveCastView.m */,
 				5401D87720D26CE400A3FFEF /* EaseProfileLiveView.h */,

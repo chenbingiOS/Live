@@ -8,13 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-#import "EaseLiveHeaderListView.h"
+#import "CBActionLiveDelegate.h"
 
 @class CBAppLiveVO;
 @interface EaseLiveCastView : UIView
 
-- (instancetype)initWithFrame:(CGRect)frame room:(CBAppLiveVO*)room;
+@property (nonatomic, weak) id <CBActionLiveDelegate> delegate;
 
-@property (nonatomic, weak) id<EaseLiveHeaderListViewDelegate> delegate;
+- (instancetype)initWithFrame:(CGRect)frame room:(CBAppLiveVO*)room;
 
 @end

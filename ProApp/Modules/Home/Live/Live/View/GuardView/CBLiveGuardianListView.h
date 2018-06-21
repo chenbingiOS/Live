@@ -7,21 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@protocol CBLiveGuardianListViewDelegate <NSObject>
-
-- (void)didSelectHeaderWithUsername:(NSString*)username;
-- (void)didSelectOccupantsWithUserID:(NSString *)userId;
-
-@end
+#import "CBActionLiveDelegate.h"
 
 @class EasePublishModel;
 @class CBAppLiveVO;
 @interface CBLiveGuardianListView : UIView
 
-- (instancetype)initWithFrame:(CGRect)frame room:(CBAppLiveVO*)room;
+@property (nonatomic, weak) id <CBActionLiveDelegate> delegate;
 
-@property (nonatomic, weak) id<CBLiveGuardianListViewDelegate> delegate;
+- (instancetype)initWithFrame:(CGRect)frame room:(CBAppLiveVO*)room;
 
 - (void)loadHeaderListWithChatroomId:(NSString*)chatroomId;
 

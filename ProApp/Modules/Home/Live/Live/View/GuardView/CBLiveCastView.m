@@ -70,7 +70,7 @@
         _openGuardBtn.layer.masksToBounds = YES;
         _openGuardBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
         _openGuardBtn.titleLabel.font = [UIFont fontWithName:@"PingFang-SC-Medium" size:13];
-        [_openGuardBtn addTarget:self action:@selector(actionOpenGuardBtn) forControlEvents:UIControlEventTouchUpInside];
+        [_openGuardBtn addTarget:self action:@selector(actionBtnOpenGuard) forControlEvents:UIControlEventTouchUpInside];
         [_openGuardBtn setTitle:@"开通" forState:UIControlStateNormal];
         [_openGuardBtn setBackgroundImage:[UIImage imageNamed:@"btn_guard_pre"] forState:UIControlStateNormal];
         [_openGuardBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -78,7 +78,11 @@
     return _openGuardBtn;
 }
 
-- (void)actionOpenGuardBtn {
-    
+// 开通守护
+- (void)actionBtnOpenGuard {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(actionLiveOpenGuard)]) {
+        [self.delegate actionLiveOpenGuard];
+    }
 }
+
 @end

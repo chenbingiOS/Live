@@ -39,12 +39,8 @@
 @end
 
 @interface EaseLiveHeaderListView () <UICollectionViewDelegate,UICollectionViewDataSource>
-{
-    EasePublishModel *_model;
-}
 // 个人信息
 @property (nonatomic, strong) CBAppLiveVO *room;
-@property (nonatomic, copy)   NSString *chatRoomId;     ///< 聊天室ID
 
 // 贡献榜单
 @property (nonatomic, strong) UICollectionView *collectionView;
@@ -53,24 +49,11 @@
 
 // 总人数
 @property (nonatomic, strong) CBOccupantsCountView *occupantsCountView;
-@property (nonatomic, assign) NSInteger occupantsCount;
 @property (nonatomic, assign) NSUInteger currentPage;   ///< 当前页
 
 @end
 
 @implementation EaseLiveHeaderListView
-
-- (instancetype)initWithFrame:(CGRect)frame model:(EasePublishModel*)model
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        _model = model;
-        [self addSubview:self.collectionView];
-        [self addSubview:self.liveCastView];
-        _currentPage = 1;
-    }
-    return self;
-}
 
 - (instancetype)initWithFrame:(CGRect)frame room:(CBAppLiveVO*)room
 {
@@ -158,7 +141,7 @@
     return _occupantsCountView;
 }
 
-- (void)setDelegate:(id<EaseLiveHeaderListViewDelegate>)delegate {
+- (void)setDelegate:(id<CBActionLiveDelegate>)delegate {
     _delegate = delegate;
     self.liveCastView.delegate = delegate;
     self.occupantsCountView.delegate = delegate;
@@ -168,57 +151,8 @@
 
 // 加载聊天室详细信息
 - (void)loadHeaderListWithChatroomId:(NSString*)chatroomId {
-    self.chatRoomId = chatroomId;
-    @weakify(self);
-    // 获取聊天室详情
-    [[EMClient sharedClient].roomManager getChatroomSpecificationFromServerWithId:chatroomId completion:^(EMChatroom *aChatroom, EMError *aError) {
-        @strongify(self);
-        if (!aError) {
-            self.occupantsCount = aChatroom.occupantsCount;
-//            [self.liveCastView setNumberOfChatroom:self.occupantsCount];
-        }
-    }];
-    
-    // 获取聊天室成员列表
-    // 不从环信获取聊天室成员，从自己的业务后台获取
-//    [[EMClient sharedClient].roomManager getChatroomMemberListFromServerWithId:chatroomId cursor:nil pageSize:10 completion:^(EMCursorResult *aResult, EMError *aError) {
-//        @strongify(self);
-//        if (!aError) {
-//            [self.dataArray addObjectsFromArray:aResult.list];
-//            [self.collectionView reloadData];
-//        }
-//    }];
     self.dataArray = [NSMutableArray array];
     [self httpGetLiveRoomOnlineUserList];
-}
-
-// 单用户加入直播间
-- (void)joinChatroomWithUsername:(NSString *)username
-{
-//    if ([self.dataArray count] > 10) {
-//        [self.dataArray removeObjectAtIndex:0];
-//    }
-//    if ([self.dataArray containsObject:username]) {
-//        return;
-//    }
-//    [self.dataArray insertObject:[username copy] atIndex:0];
-//    self.occupantsCount++;
-//    [self.liveCastView setNumberOfChatroom:self.occupantsCount];
-//    [self.collectionView reloadData];
-}
-
-// 单用户离开直播间
-- (void)leaveChatroomWithUsername:(NSString *)username
-{
-//    for (int index = 0; index < [self.dataArray count]; index ++) {
-//        NSString *name = [self.dataArray objectAtIndex:index];
-//        if ([name isEqualToString:username]) {
-//            [self.dataArray removeObjectAtIndex:index];
-//        }
-//    }
-//    self.occupantsCount--;
-//    [self.liveCastView setNumberOfChatroom:self.occupantsCount];
-//    [self.collectionView reloadData];
 }
 
 #pragma mark - UICollectionViewDataSource
@@ -282,9 +216,9 @@
 #pragma mark - UICollectionViewDelegate
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-//    if (self.delegate && [self.delegate respondsToSelector:@selector(didSelectHeaderWithUsername:)]) {
-//        [self.delegate didSelectHeaderWithUsername:nil];
-//    }
+    if (self.delegate && [self.delegate respondsToSelector:@selector(actionLiveShowContributionList)]) {
+        [self.delegate actionLiveShowContributionList];
+    }
 }
 
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath {

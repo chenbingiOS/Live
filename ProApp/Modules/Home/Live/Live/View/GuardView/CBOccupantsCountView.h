@@ -7,15 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CBActionLiveDelegate.h"
 
-#import "EaseLiveHeaderListView.h"
-
+// 观众数量，贡献币数量
 @class CBAppLiveVO;
 @interface CBOccupantsCountView : UIView
 
-- (instancetype)initWithFrame:(CGRect)frame room:(CBAppLiveVO *)room;
+@property (nonatomic, weak) id <CBActionLiveDelegate> delegate;
 
-@property (nonatomic, weak) id<EaseLiveHeaderListViewDelegate> delegate;
+- (instancetype)initWithFrame:(CGRect)frame room:(CBAppLiveVO *)room;
 
 - (void)_UI_reload;
 

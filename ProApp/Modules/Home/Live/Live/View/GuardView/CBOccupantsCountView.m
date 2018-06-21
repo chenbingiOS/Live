@@ -33,16 +33,15 @@
         
         self.numberLabel.text = _room.online_num;
         
-        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(actionTapOccupantsView)];
         self.userInteractionEnabled = YES;
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(actionTapShowOnlineUserListOrContributionList)];
         [self addGestureRecognizer:tap];
     }
     return self;
 }
 
-- (UILabel*)nameLabel
-{
-    if (_nameLabel == nil) {
+- (UILabel*)nameLabel {
+    if (!_nameLabel) {
         _nameLabel = [[UILabel alloc] init];
         _nameLabel.frame = CGRectMake(0, 2, self.width, self.height/2-3);
         _nameLabel.font = [UIFont fontWithName:@"PingFang-SC-Medium" size:9];
@@ -53,9 +52,8 @@
     return _nameLabel;
 }
 
-- (UILabel*)numberLabel
-{
-    if (_numberLabel == nil) {
+- (UILabel*)numberLabel {
+    if (!_numberLabel) {
         _numberLabel = [[UILabel alloc] init];
         _numberLabel.frame = CGRectMake(0, self.height/2-1, self.width, self.height/2);
         _numberLabel.font = [UIFont fontWithName:@"PingFang-SC-Medium" size:12];
@@ -66,14 +64,23 @@
     return _numberLabel;
 }
 
-- (void)actionTapOccupantsView {
-    if (self.delegate && [self.delegate respondsToSelector:@selector(didSelectOccupantsWithUserID:)]) {
-        [self.delegate didSelectOccupantsWithUserID:_room.ID];
+#pragma mark - Action
+- (void)actionTapShowOnlineUserListOrContributionList {
+    if ([self.nameLabel.text isEqualToString:@"观众"]) {
+        if (self.delegate && [self.delegate respondsToSelector:@selector(actionLiveShowOnlineUserList)]) {
+            [self.delegate actionLiveShowOnlineUserList];
+        }
+    } else if ([self.nameLabel.text isEqualToString:@"贡献币"]) {
+        if (self.delegate && [self.delegate respondsToSelector:@selector(actionLiveShowContributionList)]) {
+            [self.delegate actionLiveShowContributionList];
+        }
     }
 }
 
+#pragma mark - Public
 - (void)_UI_reload {
     self.nameLabel.text = @"贡献币";
+    self.numberLabel.text = @"0";
 }
 
 @end

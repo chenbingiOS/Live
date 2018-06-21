@@ -146,16 +146,10 @@
     return _occupantsCountView;
 }
 
-- (void)setDelegate:(id<CBLiveGuardianListViewDelegate>)delegate {
+- (void)setDelegate:(id<CBActionLiveDelegate>)delegate {
     _delegate = delegate;
+    self.liveCastView.delegate = delegate;
     self.occupantsCountView.delegate = delegate;
-}
-
-#pragma mark - public
-- (void)actionAttentionBtn {
-//    if (self.delegate && [self.delegate respondsToSelector:@selector(didSelectHeaderWithUsername:)]) {
-//        [self.delegate didSelectHeaderWithUsername:nil];
-//    }
 }
 
 // 加载守护人员信息详细信息
@@ -225,9 +219,9 @@
 #pragma mark - UICollectionViewDelegate
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-//    if (self.delegate && [self.delegate respondsToSelector:@selector(didSelectHeaderWithUsername:)]) {
-//        [self.delegate didSelectHeaderWithUsername:nil];
-//    }
+//    if (self.delegate && [self.delegate respondsToSelector:@selector(actionTapShowOnlineUserListOrContributionList)]) {
+//                [self.delegate actionTapShowOnlineUserListOrContributionList];
+//            }
 }
 
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath {
