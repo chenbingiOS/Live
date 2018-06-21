@@ -119,18 +119,17 @@
         return;
     }
     
-    if (state == PLPlayerStatusPlaying ||
-        state == PLPlayerStatusPaused ||
+    if (state == PLPlayerStatusPaused ||
         state == PLPlayerStatusError ||
         state == PLPlayerStatusUnknow ||
         state == PLPlayerStatusCompleted) {
         [self hideWaiting];
-    }
-    else if (state == PLPlayerStatusStopped) {
-        [self leaveChatRoom];
-    } else if (state == PLPlayerStatusPreparing) {
+    } else if (state == PLPlayerStatusPlaying) {
         [self joinChatRoom];
-    } else if (state == PLPlayerStatusReady ||
+    } else if (state == PLPlayerStatusStopped) {
+        [self leaveChatRoom];
+    } else if (state == PLPlayerStatusPreparing ||
+               state == PLPlayerStatusReady ||
                state == PLPlayerStatusCaching) {
         [self showWaiting];
     } else if (state == PLPlayerStateAutoReconnecting) {

@@ -18,5 +18,6 @@
 - (instancetype)initWithFrame:(CGRect)frame room:(CBAppLiveVO*)room;
 
 - (void)loadHeaderListWithChatroomId:(NSString*)chatroomId;
+- (void)cancelRequest;
 
 @end

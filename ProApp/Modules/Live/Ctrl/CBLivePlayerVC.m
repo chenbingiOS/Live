@@ -97,15 +97,16 @@ CBActionLiveDelegate
 }
 
 - (void)_UI_JoinChatRoom {
+    [self.headerListView loadHeaderListWithChatroomId:[self.liveVO.leancloud_room copy]];
+    [self.guardianListView loadHeaderListWithChatroomId:[self.liveVO.leancloud_room copy]];
+    
     [[EMClient sharedClient].roomManager addDelegate:self delegateQueue:nil];
     [[EMClient sharedClient] addDelegate:self delegateQueue:nil];
     @weakify(self);
     [self.chatview joinChatroomWithIsCount:YES completion:^(BOOL success) {
         @strongify(self);
         if (success) {
-            [self.headerListView loadHeaderListWithChatroomId:[self.liveVO.leancloud_room copy]];
-            [self.guardianListView loadHeaderListWithChatroomId:[self.liveVO.leancloud_room copy]];
-            self.chatroom = [[EMClient sharedClient].roomManager getChatroomSpecificationFromServerWithId:self.liveVO.leancloud_room error:nil];            
+            self.chatroom = [[EMClient sharedClient].roomManager getChatroomSpecificationFromServerWithId:self.liveVO.leancloud_room error:nil];
         } else {
             [MBProgressHUD showAutoMessage:@"加入聊天室失败"];
         }
@@ -113,6 +114,9 @@ CBActionLiveDelegate
 }
 
 - (void)_UI_LeaveChatRoom {
+    [self.headerListView cancelRequest];
+    [self.guardianListView cancelRequest];
+
     @weakify(self);
     [self.chatview leaveChatroomWithIsCount:YES completion:^(BOOL success) {
         @strongify(self);
@@ -121,7 +125,7 @@ CBActionLiveDelegate
         } else {
             [MBProgressHUD showAutoMessage:@"离开聊天室失败"];
         }
-    }];
+    }];    
 }
 
 - (void)_UI_setupLiveRoom {

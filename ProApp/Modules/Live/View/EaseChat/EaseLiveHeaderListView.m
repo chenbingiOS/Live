@@ -155,6 +155,12 @@
     [self httpGetLiveRoomOnlineUserList];
 }
 
+// 取消掉请求
+- (void)cancelRequest {
+    NSString *url = urlGetLiveRoomOnlineUserList;
+    [PPNetworkHelper cancelRequestWithURL:url];
+}
+
 #pragma mark - UICollectionViewDataSource
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return [_dataArray count];

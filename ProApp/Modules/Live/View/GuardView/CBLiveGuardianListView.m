@@ -158,6 +158,12 @@
     [self httpGetGuardRankList];
 }
 
+// 取消掉请求
+- (void)cancelRequest {
+    NSString *url = urlGetGuardRankList;
+    [PPNetworkHelper cancelRequestWithURL:url];
+}
+
 #pragma mark - UICollectionViewDataSource
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return [_dataArray count];

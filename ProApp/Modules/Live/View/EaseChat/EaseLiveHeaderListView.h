@@ -17,5 +17,6 @@
 @property (nonatomic, weak) id <CBActionLiveDelegate> delegate;
 
 - (void)loadHeaderListWithChatroomId:(NSString*)chatroomId;
+- (void)cancelRequest;
 
 @end
