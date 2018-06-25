@@ -11,11 +11,5 @@
 @interface CBPlayerVC : UIViewController
 
 @property (nonatomic, strong) NSURL *url;
-@property (nonatomic, strong) NSURL *thumbImageURL;
-@property (nonatomic, strong) UIImageView *thumbImageView;
-
-// 子类重写，用于加入聊天室
-- (void)joinChatRoom;
-- (void)leaveChatRoom;
 
 @end

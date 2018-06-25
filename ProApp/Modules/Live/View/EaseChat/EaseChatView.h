@@ -31,6 +31,8 @@
 
 - (void)didSelectShareButton;
 
+- (void)didSelectGiftButton;
+
 @end
 
 @interface EaseChatView : UIView

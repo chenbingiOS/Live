@@ -210,7 +210,7 @@ EaseProfileLiveViewDelegate
     [self.chatview joinChatroomWithIsCount:NO completion:^(BOOL success) {
         @strongify(self);
         if (success) {
-            [self.headerListView loadHeaderListWithChatroomId:self.liveVO.leancloud_room];
+//            [self.headerListView loadHeaderListWithChatroomId:self.liveVO.leancloud_room];
         }
     }];
     
@@ -475,7 +475,7 @@ EaseProfileLiveViewDelegate
     if (!_headerListView) {
         CGFloat y = SafeAreaTopHeight - 40 ;
         CGRect frame = CGRectMake(0, y, kScreenWidth, 30);
-        _headerListView = [[EaseLiveHeaderListView alloc] initWithFrame:frame room:_liveVO];
+//        _headerListView = [[EaseLiveHeaderListView alloc] initWithFrame:frame room:_liveVO];
         _headerListView.delegate = self;
     }
     return _headerListView;

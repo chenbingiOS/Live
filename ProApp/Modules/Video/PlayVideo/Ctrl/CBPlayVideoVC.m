@@ -30,8 +30,7 @@
 #pragma mark - 重写父类方法
 - (void)player:(nonnull PLPlayer *)player firstRender:(PLPlayerFirstRenderType)firstRenderType {
     if (PLPlayerFirstRenderTypeVideo == firstRenderType) {
-        self.thumbImageView.hidden = YES;
-        [self setupRoom];
+//        [self setupRoom];
     }
 }
 
@@ -47,7 +46,6 @@
 - (void)setVideo:(CBShortVideoVO *)video {
     _video = video;
     self.url = [NSURL URLWithString:video.href];
-    self.thumbImageURL = [NSURL URLWithString:video.thumb];
 }
 
 

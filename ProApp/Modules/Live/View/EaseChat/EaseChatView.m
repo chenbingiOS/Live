@@ -190,7 +190,7 @@
         _giftBtn.frame = CGRectMake(0, 0, kButtonWitdh, kButtonHeight);
         _giftBtn.centerX = self.centerX;
         [_giftBtn setImage:[UIImage imageNamed:@"live_gift"] forState:UIControlStateNormal];
-        [_giftBtn addTarget:self action:@selector(sendTextAction) forControlEvents:UIControlEventTouchUpInside];
+        [_giftBtn addTarget:self action:@selector(actionBtnGift) forControlEvents:UIControlEventTouchUpInside];
     }
     return _giftBtn;
 }
@@ -657,6 +657,12 @@
 }
 
 #pragma mark - action
+
+- (void)actionBtnGift {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(didSelectGiftButton)]) {
+        [self.delegate didSelectGiftButton];
+    }
+}
 
 - (void)shareAction {
     if (self.delegate && [self.delegate respondsToSelector:@selector(didSelectShareButton)]) {

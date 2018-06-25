@@ -10,7 +10,15 @@
 #import "CBAppLiveVO.h"
 #import "CBLivePlayerVC.h"
 
-@interface CBLiveVC () <UIPageViewControllerDelegate, UIPageViewControllerDataSource>
+@interface CBLiveVC () <UIScrollViewDelegate>
+
+@property (nonatomic, strong) UIButton *closeButton;
+/**所有视图*/
+@property (nonatomic,strong) NSMutableArray* subViews;
+/**正在显示的视图*/
+@property (nonatomic,strong) UIView* showView;
+/**房间展示视图*/
+@property (nonatomic,strong) CBLivePlayerVC *roomShowView;
 
 @end
 
@@ -18,79 +26,129 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:YES animated:NO];
-//    [self.view addSubview:self.closeButton];
-//    [self.view insertSubview:self.closeButton atIndex:999];
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    self.delegate   = self;
-    self.dataSource = self;
-
-    for (UIView *subView in self.view.subviews ) {
-        if ([subView isKindOfClass:[UIScrollView class]]) {
-            UIScrollView* scrollView = (UIScrollView*)subView;
-            scrollView.delaysContentTouches = NO; // 默认值为YES；如果设置为NO，则无论手指移动的多么快，始终都会将触摸事件传递给内部控件；设置为NO可能会影响到UIScrollView的滚动功能。
-        }
-    }
-    
-    [self reloadCtrl];
 }
 
-- (void)reloadCtrl {
-    if (self.lives.count) {
-        CBLivePlayerVC *livePlayerVC = [[CBLivePlayerVC alloc] init];
-        if (self.currentIndex < self.lives.count) {
-            livePlayerVC.liveVO = self.lives[self.currentIndex];
-        } else {
-            livePlayerVC.liveVO = self.lives.firstObject;
-            self.currentIndex = 0;
-        }
-        [self setViewControllers:@[livePlayerVC] direction:(UIPageViewControllerNavigationDirectionForward) animated:NO completion:^(BOOL finished) {
-        }];
-    }
-}
-
-- (nullable UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController{
-    
-    if (![viewController isKindOfClass:[CBLivePlayerVC class]]) return nil;
-    
-    NSInteger index = [self.lives indexOfObject:[(CBLivePlayerVC*)viewController liveVO]];
-    if (NSNotFound == index) return nil;
-    
-    index --;
-    if (index < 0) return nil;
-    
-    CBLivePlayerVC *livePlayerVC = [[CBLivePlayerVC alloc] init];
-    livePlayerVC.liveVO = self.lives[index];
-    self.currentIndex = index;
-    
-    return livePlayerVC;
-}
-
-- (nullable UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController{
-    
-    if (![viewController isKindOfClass:[CBLivePlayerVC class]]) return nil;
-    
-    NSInteger index = [self.lives indexOfObject:[(CBLivePlayerVC*)viewController liveVO]];
-    if (NSNotFound == index) return nil;
-    
-    index ++;
-    
-    if (self.lives.count > index) {
-        CBLivePlayerVC *livePlayerVC = [[CBLivePlayerVC alloc] init];
-        livePlayerVC.liveVO = self.lives[index];
-        self.currentIndex = index;
+- (instancetype)initWithLives:(NSArray *)lives currentIndex:(NSUInteger)index {
+    self = [super init];
+    if (self) {
+        _roomDatas = lives;
+        _index = index;
         
-        return livePlayerVC;
+        CGRect frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight);
+        UIScrollView *scrollerView = [[UIScrollView alloc] initWithFrame:frame];
+        scrollerView.delegate = self;
+        scrollerView.bounces = NO;
+        scrollerView.pagingEnabled = YES;
+        scrollerView.showsHorizontalScrollIndicator = NO;
+        scrollerView.showsVerticalScrollIndicator = NO;
+        [self.view addSubview:scrollerView];
+        
+        for (NSInteger i = 0; i < 3; i ++ ){
+            UIImageView *imageView = [[UIImageView alloc] initWithFrame:frame];
+            [self generateDimImage:imageView];
+            CGFloat imageY = CGRectGetHeight(self.view.bounds)*i;
+            imageView.frame = CGRectMake(0, imageY, kScreenWidth, kScreenHeight);
+            [scrollerView addSubview:imageView];
+            [self.subViews addObject:imageView];
+        }
+        scrollerView.contentSize = CGSizeMake(kScreenWidth, kScreenHeight*3);
+        scrollerView.contentOffset = CGPointMake(0, kScreenHeight);
+        
+        [self setUpImageWith:index];
     }
-    return nil;
+    return self;
 }
 
-- (void)pageViewController:(UIPageViewController *)pageViewController didFinishAnimating:(BOOL)finished previousViewControllers:(NSArray<UIViewController *> *)previousViewControllers transitionCompleted:(BOOL)completed{
+// 设置当前图片根据当前的索引
+- (void)setUpImageWith:(NSInteger )index{
+    NSInteger currentIndex = 0;
+    for (NSInteger i = 0; i < self.subViews.count; i ++) {
+        UIImageView *imageView = self.subViews[i];
+        imageView.userInteractionEnabled = YES;
+        if (i==0) {
+            currentIndex = index==0 ? self.roomDatas.count-1 : index -1;
+        } else if (i==1) {
+            currentIndex = index;
+        } else{
+            currentIndex = index==self.roomDatas.count-1 ? 0 : index + 1;
+        }
+        /**此处非常重要 可以根据自己是实际需要选折是显示本地照片或者网路照片,若显示网路照片,请将下面的方法换成sdwebimage显示图片方法*/
+//        imageView.image = [UIImage imageNamed:self.roomDatas[currentIndex]];
+        [imageView sd_setImageWithURL:[NSURL URLWithString:self.roomDatas[currentIndex].thumb] placeholderImage:[UIImage imageNamed:@""]];
+    }
     
+    //主需要将播放视图展示在 i==1 的界面即可
+    UIView *currentView = self.subViews[1];
+    [currentView addSubview:self.roomShowView.view];
+    self.roomShowView.live = self.roomDatas[currentIndex];
 }
+
+#pragma mark UIScrollViewDelegate 此处解决了scrollerview的循环引用
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+    NSInteger index  = scrollView.contentOffset.y/kScreenHeight;
+    if (index==1) return;
+    for (NSInteger i = 0; i < self.subViews.count; i ++ ) {
+        UIView *subView = self.subViews[i];
+        if (index == i) {
+            self.showView = subView;
+            continue;
+        }
+        [subView removeFromSuperview];
+    }
+    [self.subViews removeAllObjects];
+    self.index = scrollView.contentOffset.y/kScreenHeight <1 ? -- self.index :++self.index;
+    if (self.index < 0) {
+        self.index = self.roomDatas.count - 1;
+    }else if (self.index>=self.roomDatas.count){
+        self.index = 0;
+    }
+    for (NSInteger i = 0; i < 3; i ++ ) {
+        if (i == 1) {
+            self.showView.frame =  CGRectMake(0, kScreenHeight, kScreenWidth, kScreenHeight);
+            [self.subViews addObject: self.showView];
+            continue;
+        }
+        UIImageView *imageView = [[UIImageView alloc]initWithFrame:self.view.bounds];
+        [self generateDimImage:imageView];
+        CGFloat imageY = CGRectGetHeight(self.view.bounds)*i;
+        imageView.frame = CGRectMake(0, imageY, kScreenWidth, kScreenHeight);
+        [scrollView addSubview:imageView];
+        [self.subViews addObject:imageView];
+    }
+    scrollView.contentOffset = CGPointMake(0, kScreenHeight);
+    
+    // 设置直播间
+    [self setUpImageWith:self.index];
+}
+
+// 生成磨玻璃图片
+- (void)generateDimImage:(UIImageView *)imageView{
+    UIBlurEffect *effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
+    UIVisualEffectView *effectView = [[UIVisualEffectView alloc] initWithEffect:effect];
+    effectView.frame = CGRectMake(0, 0, imageView.frame.size.width, imageView.frame.size.height);
+    [imageView addSubview:effectView];
+}
+
+#pragma mark - layz
+
+- (CBLivePlayerVC *)roomShowView{
+    if (!_roomShowView) {
+        _roomShowView = [[CBLivePlayerVC alloc]init];
+    }
+    return _roomShowView;
+}
+
+- (NSMutableArray *)subViews{
+    if (!_subViews) {
+        _subViews = [NSMutableArray arrayWithCapacity:3];
+    }
+    return _subViews;
+}
+
 
 @end

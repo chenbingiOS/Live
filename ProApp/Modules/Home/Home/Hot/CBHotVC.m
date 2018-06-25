@@ -108,9 +108,8 @@ static NSString *RIDCBAppLiveCell = @"RIDCBAppLiveCell";
 #pragma mark - TableView delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     // 跳转直播播放器
-    CBLiveVC *liveVC = [[CBLiveVC alloc] initWithTransitionStyle:(UIPageViewControllerTransitionStyleScroll) navigationOrientation:(UIPageViewControllerNavigationOrientationVertical) options:@{UIPageViewControllerOptionInterPageSpacingKey:@(0)}];
-    liveVC.lives = self.lives;
-    liveVC.currentIndex = indexPath.row;
+//    CBLiveVC *liveVC = [[CBLiveVC alloc] initWithTransitionStyle:(UIPageViewControllerTransitionStyleScroll) navigationOrientation:(UIPageViewControllerNavigationOrientationVertical) options:@{UIPageViewControllerOptionInterPageSpacingKey:@(0)}];
+    CBLiveVC *liveVC = [[CBLiveVC alloc] initWithLives:self.lives currentIndex:indexPath.row];
     CBNVC *nvc = [[CBNVC alloc] initWithRootViewController:liveVC];
     [self presentViewController:nvc animated:YES completion:nil];
 }
