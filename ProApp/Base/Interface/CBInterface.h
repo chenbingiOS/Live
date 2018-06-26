@@ -122,10 +122,15 @@
 // 获取连麦Token
 #define urlRoomToken            purl@"Api/qiniu/roomToken"
 //------------------------------------------------------------------
+// 礼物/蜂窝币模块
+#define urlGetGiftList          purl@"Api/Gift/getGiftList"
+// 赠送礼物接口
+#define urlSendGiftToAnchor     purl@"Api/Gift/sendGiftToAnchor"
+//------------------------------------------------------------------
 // VIP/钻石模块
 // 获取钻石充值套餐详情
 #define urlGetRechargePackage   purl@"Api/Anchor/get_recharge_package"
-
+//------------------------------------------------------------------
 
 
 

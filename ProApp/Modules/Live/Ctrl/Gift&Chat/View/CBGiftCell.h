@@ -1,5 +1,5 @@
 //
-//  TSCGiftCell.h
+//  CBGiftCell.h
 //  Test-inke
 //
 //  Created by 唐嗣成 on 2017/12/7.
@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "TSCGifts.h"
+#import "CBGiftVO.h"
 
-@interface TSCGiftCell : UICollectionViewCell
-@property (nonatomic,strong) TSCGifts *gift;
+@interface CBGiftCell : UICollectionViewCell
+
+@property (nonatomic,strong) CBGiftVO *gift;
 - (void) showAnimation;
 - (void) stopAnimation;
+
 @end

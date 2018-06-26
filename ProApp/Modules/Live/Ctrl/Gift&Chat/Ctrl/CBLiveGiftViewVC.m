@@ -7,20 +7,29 @@
 //
 
 #import "CBLiveGiftViewVC.h"
+// VC
 #import "CBLiveChatViewVC.h"
 #import "TSCCollectionViewFlowLayout.h"
+// Category
 #import "UIViewController+SuperViewCtrl.h"
+// Model
+#import "CBGiftVO.h"
+#import "CBAppLiveVO.h"
+#import "CBChatGiftMessageVO.h"
+// View
+#import "CBGiftCell.h"
 #import "TSCGifts.h"
-#import "TSCGiftCell.h"
 
-@interface CBLiveGiftViewVC () <UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UIScrollViewDelegate>
+@interface CBLiveGiftViewVC () <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UIScrollViewDelegate>
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomConstraint;
 @property (nonatomic, weak) IBOutlet UIView *giftView;
-@property (nonatomic, strong) CBLiveChatViewVC *superController;
+
 @property (nonatomic, strong) UICollectionView *giftCollectionView;
-@property (nonatomic, strong) UIPageControl *pageController;
-@property (nonatomic, strong) NSArray *gifts;
+@property (nonatomic, strong) UIPageControl *pageControl;
+@property (nonatomic, strong) NSArray <CBGiftVO *> *giftAry;
+@property (nonatomic, strong) CBGiftVO *selectGiftVO;
+
 @property (nonatomic, strong) UIView *btnView;
 @property (nonatomic, strong) UIButton *sendBtn;
 @property (nonatomic, strong) UIImageView *coinMarkImg;
@@ -29,15 +38,16 @@
 
 @end
 
-static NSString *const identifier = @"TSCGiftCell";
+static NSString *const KReuseIdGiftCell = @"KReuseIdGiftCell";
+static NSString *const kCMDMessageGift = @"kCMDMessageGift";
 
 @implementation CBLiveGiftViewVC
 
 #pragma mark init
 - (void)viewDidLoad {
     [super viewDidLoad];    
-    [self initUI];
-    [self loadData];
+    [self _UI_setup];
+    [self httpGetGiftList];
 }
 
 - (void)updateViewConstraints {
@@ -45,36 +55,38 @@ static NSString *const identifier = @"TSCGiftCell";
     self.bottomConstraint.constant = self.bottomConstraint.constant - SafeAreaBottomHeight;
 }
 
-- (void)loadData{
-    NSString *url = @"http:/service.inke.com/api/resource/user_gifts";
-    NSDictionary *param = @{
-                            @"conn" : @"wifi",
-                            @"live_id" : @"1529894145896049",
-                            @"live_uid" : @"0",
-                            @"osversion" : @"ios_11.300000",
-                            @"uid" : @"486750187"
-                            };
-    [PPNetworkHelper POST:url parameters:param success:^(id responseObject) {
-
-        self.gifts = [NSArray modelArrayWithClass:[TSCGifts class] json:responseObject[@"gifts"]];
-        TSCGifts *gift = self.gifts[0];
-        gift.selected = YES;
+- (void)httpGetGiftList{
+    NSString *url = urlGetGiftList;
+    NSDictionary *param = @{@"token": [CBLiveUserConfig getOwnToken]};
+    @weakify(self);
+    [PPNetworkHelper POST:url parameters:param responseCache:^(id responseCache) {
+        @strongify(self);
+        self.giftAry = [NSArray modelArrayWithClass:[CBGiftVO class] json:responseCache[@"data"]];
+        CBGiftVO *vo = self.giftAry.firstObject;
+        vo.selected = YES;
         [self.giftCollectionView reloadData];
-        //进位
-        self.pageController.numberOfPages = (int)ceilf(self.gifts.count/8.0);
+        // 设置选择器页面数量
+        self.pageControl.numberOfPages = (int)ceilf(self.giftAry.count/8.0);
+    } success:^(id responseObject) {
+        @strongify(self);
+        self.giftAry = [NSArray modelArrayWithClass:[CBGiftVO class] json:responseObject[@"data"]];
+        CBGiftVO *vo = self.giftAry.firstObject;
+        vo.selected = YES;
+        self.selectGiftVO = vo;
+        [self.giftCollectionView reloadData];
+        // 设置选择器页面数量
+        self.pageControl.numberOfPages = (int)ceilf(self.giftAry.count/8.0);
     } failure:^(NSError *error) {
         
     }];
 }
 
-- (void)initUI{
+- (void)_UI_setup{
     self.giftView.backgroundColor = [[UIColor blackColor]colorWithAlphaComponent:0.6f];
     [self.giftView addSubview:self.giftCollectionView];
-    [self.giftCollectionView registerNib:[UINib nibWithNibName:@"TSCGiftCell" bundle:nil] forCellWithReuseIdentifier: identifier];
-    self.giftCollectionView.delegate = self;
-    [self.giftView addSubview:self.pageController];
+    [self.giftView addSubview:self.pageControl];
     
-    [self.pageController mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.pageControl mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.offset(248);
         make.left.offset(kScreenWidth/2);
         make.size.mas_equalTo(CGSizeMake(0,15));
@@ -162,8 +174,71 @@ static NSString *const identifier = @"TSCGiftCell";
     return nil;
 }
 
-- (void)sendGift {
-    NSLog(@"送礼物");
+- (void)actionBtnSendGift {
+    NSLog(@"发送了*************************************%@", self.selectGiftVO.giftname);
+    self.giftCollectionView.userInteractionEnabled = NO;
+    
+//    NSString *lianfa = @"y";
+//    _push.enabled = NO;
+//    _push.backgroundColor = [UIColor lightGrayColor];
+//    NSLog(@"发送了%@",_selectModel.giftname);
+//    //判断连发
+//    if ([_selectModel.type isEqualToString:@"0"]) {
+//        lianfa = @"n";
+//        _continuBTN.hidden = YES;
+//        _push.enabled = YES;
+//        _push.backgroundColor = normalColors;
+//        self.collectionView.userInteractionEnabled = YES;
+//    }
+//    else{
+//        _continuBTN.hidden = NO;
+//        a = 30;
+//        if(timer == nil)
+//        {
+//            timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(jishiqi) userInfo:nil repeats:YES];
+//        }
+//        if(sender == _push)
+//        {
+//            [timer setFireDate:[NSDate date]];
+//        }
+//    }
+    NSString *url = urlSendGiftToAnchor;
+    NSDictionary *param = @{
+                            @"token":[CBLiveUserConfig getOwnToken],
+                            @"room_id": self.superController.liveVO.room_id,
+                            @"giftid": self.selectGiftVO.giftid,
+                            @"number":@"1"
+                            };
+    [PPNetworkHelper POST:url parameters:param success:^(id responseObject) {
+        NSNumber *code = responseObject[@"code"];
+        if ([code isEqualToNumber:@200]) {
+            CBLiveUser *user = [CBLiveUserConfig myProfile];
+            NSDictionary *dictExt = @{
+                                      @"senderUID": user.ID,
+                                      @"senderName": user.user_nicename,
+                                      @"senderAvater": user.avatar,
+                                      @"giftID": self.selectGiftVO.giftid,
+                                      @"giftName": self.selectGiftVO.giftname,
+                                      @"giftImageURL": self.selectGiftVO.gifticon
+                                      };
+            [self _EMClient_SendGiftMessage:dictExt];
+        } else {
+            NSString *descrp = responseObject[@"descrp"];
+            [MBProgressHUD showAutoMessage:descrp];
+            self.giftCollectionView.userInteractionEnabled = YES;
+        }
+    } failure:^(NSError *error) {
+        [MBProgressHUD showAutoMessage:@"礼物赠送失败"];
+        self.giftCollectionView.userInteractionEnabled = YES;
+    }];
+}
+
+- (void)_EMClient_SendGiftMessage:(NSDictionary *)dictExt {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(actionLiveSentGiftDict:)]) {
+        [self.delegate actionLiveSentGiftDict:dictExt];
+        [self.superController closeGiftView];
+        self.giftCollectionView.userInteractionEnabled = YES;
+    }
 }
 
 #pragma mark 手势事件
@@ -177,43 +252,33 @@ static NSString *const identifier = @"TSCGiftCell";
     }
 }
 
-#pragma mark collectionview 事件
+#pragma mark - UICollectionViewDataSource,UICollectionViewDelegate
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+    return self.giftAry.count;
+}
+
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-    TSCGiftCell *cell = [self.giftCollectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
-    cell.gift = self.gifts[indexPath.row];
-    if(cell.gift.isSelected == YES){
-        cell.layer.borderWidth = 0.5;
-        cell.layer.borderColor = [UIColor colorWithRed:65.0/255.0 green:214.0/255.0 blue:197.0/255.0 alpha:1].CGColor;
-        [cell showAnimation];
-    } else {
-        cell.layer.borderColor =[UIColor colorWithRed:43.0/225.0 green:43.0/255.0 blue:59.0/225.0 alpha:1].CGColor;
-        cell.layer.borderWidth = 0.3;
-        [cell stopAnimation];
-    }
+    CBGiftCell *cell = [self.giftCollectionView dequeueReusableCellWithReuseIdentifier:KReuseIdGiftCell forIndexPath:indexPath];
+    cell.gift = self.giftAry[indexPath.row];
     return cell;
 }
 
--(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return self.gifts.count;
-}
-/** 点击事件*/
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    //    [collectionView deselectRowAtIndexPath:indexPath animated:YES];//选中后的反显颜色即刻消失
     [collectionView deselectItemAtIndexPath:indexPath animated:YES];
-    /** 单选效果，将所有的selected设置为no */
-    for (TSCGifts *gift in self.gifts) {
-        gift.selected = NO;
+    for (CBGiftVO *vo in self.giftAry) {
+        vo.selected = NO;
     }
-    TSCGifts *gift = self.gifts[indexPath.row];
-    gift.selected = YES;
+    CBGiftVO *giftVO = self.giftAry[indexPath.row];
+    giftVO.selected = YES;
+    self.selectGiftVO = giftVO;
     [self.giftCollectionView reloadData];
 }
 
--(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
     CGFloat offset = scrollView.contentOffset.x;
-    self.pageController.currentPage = offset/kScreenWidth;
+    self.pageControl.currentPage = offset/kScreenWidth;
 }
-
 
 #pragma mark - lazy
 
@@ -253,10 +318,9 @@ static NSString *const identifier = @"TSCGiftCell";
         _sendBtn.layer.masksToBounds = YES;
         _sendBtn.titleLabel.font = [UIFont systemFontOfSize:14];
         //设置字体
-        //        [_sendBtn setTitleEdgeInsets:UIEdgeInsetsMake(9, 9, 9, 9)];
-        [_sendBtn setTintColor:[UIColor whiteColor]];//?
+        [_sendBtn setTintColor:[UIColor whiteColor]];
         [_sendBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [_sendBtn setTarget:self action:@selector(sendGift) forControlEvents:UIControlEventTouchUpInside];
+        [_sendBtn setTarget:self action:@selector(actionBtnSendGift) forControlEvents:UIControlEventTouchUpInside];
     }
     return _sendBtn;
 }
@@ -268,15 +332,15 @@ static NSString *const identifier = @"TSCGiftCell";
     return _btnView;
 }
 
-- (UIPageControl *)pageController{
-    if(!_pageController){
-        _pageController = [[UIPageControl alloc]init];
-        _pageController.pageIndicatorTintColor = [UIColor grayColor];
-        _pageController.currentPageIndicatorTintColor = [UIColor whiteColor];
-        _pageController.backgroundColor = [UIColor redColor];
+- (UIPageControl *)pageControl{
+    if(!_pageControl){
+        _pageControl = [[UIPageControl alloc]init];
+        _pageControl.pageIndicatorTintColor = [UIColor grayColor];
+        _pageControl.currentPageIndicatorTintColor = [UIColor whiteColor];
+        _pageControl.backgroundColor = [UIColor redColor];
         
     }
-    return _pageController;
+    return _pageControl;
 }
 
 - (UIView *)giftCollectionView{
@@ -292,10 +356,13 @@ static NSString *const identifier = @"TSCGiftCell";
         layout.minimumLineSpacing = 0;//行间距
         layout.minimumInteritemSpacing = 0;//同行之间item间距
         _giftCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 248) collectionViewLayout:layout];
-        _giftCollectionView.dataSource = self;
         _giftCollectionView.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.0f];
         _giftCollectionView.pagingEnabled = YES;//是否可以类似page的滚动
         _giftCollectionView.showsHorizontalScrollIndicator = NO;
+        _giftCollectionView.delegate = self;
+        _giftCollectionView.dataSource = self;
+        
+        [_giftCollectionView registerNib:[UINib nibWithNibName:@"CBGiftCell" bundle:nil] forCellWithReuseIdentifier:KReuseIdGiftCell];
     }
     return _giftCollectionView;
 }
@@ -308,6 +375,13 @@ static NSString *const identifier = @"TSCGiftCell";
         }
     }
     return _superController;
+}
+
+- (NSArray<CBGiftVO *> *)giftAry {
+    if (!_giftAry) {
+        _giftAry = [NSArray array];
+    }
+    return _giftAry;
 }
 
 @end

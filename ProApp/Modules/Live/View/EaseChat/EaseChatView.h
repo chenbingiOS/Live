@@ -58,6 +58,8 @@
 
 - (void)sendGiftWithId:(NSString*)giftId;
 
+- (void)sendGiftDict:(NSDictionary *)giftDict;
+
 - (void)sendMessageAtWithUsername:(NSString*)username;
 
 @property (strong, nonatomic) UIView *bottomView;

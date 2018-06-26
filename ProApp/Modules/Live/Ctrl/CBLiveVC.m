@@ -12,7 +12,6 @@
 
 @interface CBLiveVC () <UIScrollViewDelegate>
 
-@property (nonatomic, strong) UIButton *closeButton;
 /**所有视图*/
 @property (nonatomic,strong) NSMutableArray* subViews;
 /**正在显示的视图*/
@@ -31,6 +30,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(closeLive) name:@"KNotificationCloseLiveVC" object:nil];
 }
 
 - (instancetype)initWithLives:(NSArray *)lives currentIndex:(NSUInteger)index {
@@ -62,6 +62,10 @@
         [self setUpImageWith:index];
     }
     return self;
+}
+
+- (void)closeLive {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 // 设置当前图片根据当前的索引

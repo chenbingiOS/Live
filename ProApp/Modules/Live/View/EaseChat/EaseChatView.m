@@ -24,6 +24,8 @@
 #define kDefaultSpace 5.f
 #define kDefaulfLeftSpace 10.f
 
+static NSString *const kCMDMessageGift = @"kCMDMessageGift";
+
 @interface EaseChatView () <EMChatManagerDelegate,EMChatroomManagerDelegate,UITableViewDelegate,UITableViewDataSource,UITextViewDelegate,EMFaceDelegate>
 {
     long long _curtime;
@@ -333,7 +335,7 @@
             }
             EMCmdMessageBody *body = (EMCmdMessageBody*)message.body;
             if (body) {
-                if ([body.action isEqualToString:kGiftAction]) {
+                if ([body.action isEqualToString:kCMDMessageGift]) {
                     if (_delegate && [_delegate respondsToSelector:@selector(didReceiveGiftWithCMDMessage:)]) {
                         [_delegate didReceiveGiftWithCMDMessage:message];
                     }
@@ -809,6 +811,26 @@
 - (void)sendGiftWithId:(NSString*)giftId
 {
     EMMessage *message = [self _sendCMDMessageTo:self.chatroomId messageType:EMChatTypeChatRoom messageExt:nil action:kGiftAction];
+    @weakify(self);
+    [[EMClient sharedClient].chatManager sendMessage:message progress:nil completion:^(EMMessage *message, EMError *error) {
+        @strongify(self);
+        if (!error) {
+            EMCmdMessageBody *body = (EMCmdMessageBody*)message.body;
+            if (body) {
+                if ([body.action isEqualToString:kGiftAction]) {
+                    if (self.delegate && [self.delegate respondsToSelector:@selector(didReceiveGiftWithCMDMessage:)]) {
+                        [self.delegate didReceiveGiftWithCMDMessage:message];
+                    }
+                }
+            }
+        } else {
+            //发送失败
+        }
+    }];
+}
+
+- (void)sendGiftDict:(NSDictionary *)giftDict {
+    EMMessage *message = [self _sendCMDMessageTo:self.chatroomId messageType:EMChatTypeChatRoom messageExt:giftDict action:kGiftAction];
     @weakify(self);
     [[EMClient sharedClient].chatManager sendMessage:message progress:nil completion:^(EMMessage *message, EMError *error) {
         @strongify(self);

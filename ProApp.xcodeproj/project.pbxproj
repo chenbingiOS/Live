@@ -174,6 +174,12 @@
 		544B8F9220CA221300FC9CFE /* CBBeginLiveView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 544B8F9120CA221300FC9CFE /* CBBeginLiveView.xib */; };
 		544B8F9F20CA813C00FC9CFE /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 544B8F9E20CA813B00FC9CFE /* Info.plist */; };
 		544B96E320C67E81004D0DB0 /* CBFillInfoWebVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 544B96E220C67E81004D0DB0 /* CBFillInfoWebVC.m */; };
+		544CF83320E1D85400E915D7 /* AnimOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 544CF82020E1D85400E915D7 /* AnimOperationManager.m */; };
+		544CF83520E1D85400E915D7 /* AnimOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 544CF82320E1D85400E915D7 /* AnimOperation.m */; };
+		544CF83820E1D85400E915D7 /* ShakeLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 544CF82820E1D85400E915D7 /* ShakeLabel.m */; };
+		544CF83A20E1D85400E915D7 /* CBChatGiftMessageVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 544CF82A20E1D85400E915D7 /* CBChatGiftMessageVO.m */; };
+		544CF83B20E1D85400E915D7 /* PresentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 544CF82B20E1D85400E915D7 /* PresentView.m */; };
+		544CF83E20E1D85400E915D7 /* GiftModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 544CF82F20E1D85400E915D7 /* GiftModel.m */; };
 		544F800F20D0AECC00F492AE /* AppDelegate+Hyphenate.m in Sources */ = {isa = PBXBuildFile; fileRef = 544F800E20D0AECB00F492AE /* AppDelegate+Hyphenate.m */; };
 		544F801320D0B8DB00F492AE /* EaseChatView.m in Sources */ = {isa = PBXBuildFile; fileRef = 544F801220D0B8DA00F492AE /* EaseChatView.m */; };
 		544F801620D0B90200F492AE /* EaseInputTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 544F801520D0B90200F492AE /* EaseInputTextView.m */; };
@@ -183,11 +189,6 @@
 		544F802420D0B9A300F492AE /* NSDictionary+SafeValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 544F802220D0B9A300F492AE /* NSDictionary+SafeValue.m */; };
 		544F802820D0BDA100F492AE /* EaseHttpManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 544F802720D0BDA100F492AE /* EaseHttpManager.m */; };
 		544F802E20D1114500F492AE /* EaseHeartFlyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 544F802C20D1114400F492AE /* EaseHeartFlyView.m */; };
-		54514B4E20DC8FDD00B84DBB /* EaseLiveGiftView.m in Sources */ = {isa = PBXBuildFile; fileRef = 54514B4C20DC8FDC00B84DBB /* EaseLiveGiftView.m */; };
-		54514B5420DC918900B84DBB /* EaseGiftCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 54514B5320DC918900B84DBB /* EaseGiftCell.m */; };
-		54514B6620DCA8F700B84DBB /* liwucell.m in Sources */ = {isa = PBXBuildFile; fileRef = 54514B6120DCA8F700B84DBB /* liwucell.m */; };
-		54514B6720DCA8F700B84DBB /* liwuview.m in Sources */ = {isa = PBXBuildFile; fileRef = 54514B6220DCA8F700B84DBB /* liwuview.m */; };
-		54514B6820DCA8F700B84DBB /* liwuModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 54514B6420DCA8F700B84DBB /* liwuModel.m */; };
 		54520AF020BFD2BB005B787E /* NSObject+Copy.m in Sources */ = {isa = PBXBuildFile; fileRef = 54520AEB20BFD2BA005B787E /* NSObject+Copy.m */; };
 		54520AF120BFD2BB005B787E /* NSObject+Coding.m in Sources */ = {isa = PBXBuildFile; fileRef = 54520AEC20BFD2BA005B787E /* NSObject+Coding.m */; };
 		54520AF320BFD2BB005B787E /* NSObject+Class.m in Sources */ = {isa = PBXBuildFile; fileRef = 54520AEE20BFD2BA005B787E /* NSObject+Class.m */; };
@@ -617,10 +618,11 @@
 		54FD10C220E0970400C74C92 /* TSCGiftExtra.m in Sources */ = {isa = PBXBuildFile; fileRef = 54FD10BB20E0970300C74C92 /* TSCGiftExtra.m */; };
 		54FD10C320E0970400C74C92 /* TSCLevelInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 54FD10BC20E0970300C74C92 /* TSCLevelInfo.m */; };
 		54FD10C420E0970400C74C92 /* TSCResource.m in Sources */ = {isa = PBXBuildFile; fileRef = 54FD10BD20E0970300C74C92 /* TSCResource.m */; };
-		54FD10C820E0974E00C74C92 /* TSCGiftCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 54FD10C520E0974D00C74C92 /* TSCGiftCell.m */; };
-		54FD10C920E0974E00C74C92 /* TSCGiftCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 54FD10C620E0974E00C74C92 /* TSCGiftCell.xib */; };
+		54FD10C820E0974E00C74C92 /* CBGiftCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 54FD10C520E0974D00C74C92 /* CBGiftCell.m */; };
+		54FD10C920E0974E00C74C92 /* CBGiftCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 54FD10C620E0974E00C74C92 /* CBGiftCell.xib */; };
 		54FD10CC20E0979700C74C92 /* UIImageView+SDWebImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 54FD10CB20E0979700C74C92 /* UIImageView+SDWebImage.m */; };
 		54FD10CE20E0C20100C74C92 /* CBLiveGiftViewVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 54FD10CD20E0C20100C74C92 /* CBLiveGiftViewVC.xib */; };
+		54FD10DB20E0F09500C74C92 /* CBGiftVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 54FD10DA20E0F09500C74C92 /* CBGiftVO.m */; };
 		7E902906E2CA7AD8D2F3A5A8 /* libPods-ProApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B93D832D0DEF97DA8E7CD09 /* libPods-ProApp.a */; };
 /* End PBXBuildFile section */
 
@@ -1073,6 +1075,18 @@
 		544B8F9E20CA813B00FC9CFE /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		544B96E120C67E81004D0DB0 /* CBFillInfoWebVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBFillInfoWebVC.h; sourceTree = "<group>"; };
 		544B96E220C67E81004D0DB0 /* CBFillInfoWebVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBFillInfoWebVC.m; sourceTree = "<group>"; };
+		544CF81B20E1D85400E915D7 /* CBChatGiftMessageVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBChatGiftMessageVO.h; sourceTree = "<group>"; };
+		544CF81C20E1D85400E915D7 /* ShakeLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShakeLabel.h; sourceTree = "<group>"; };
+		544CF81E20E1D85400E915D7 /* PresentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PresentView.h; sourceTree = "<group>"; };
+		544CF82020E1D85400E915D7 /* AnimOperationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnimOperationManager.m; sourceTree = "<group>"; };
+		544CF82220E1D85400E915D7 /* GiftModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GiftModel.h; sourceTree = "<group>"; };
+		544CF82320E1D85400E915D7 /* AnimOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnimOperation.m; sourceTree = "<group>"; };
+		544CF82820E1D85400E915D7 /* ShakeLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShakeLabel.m; sourceTree = "<group>"; };
+		544CF82A20E1D85400E915D7 /* CBChatGiftMessageVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBChatGiftMessageVO.m; sourceTree = "<group>"; };
+		544CF82B20E1D85400E915D7 /* PresentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PresentView.m; sourceTree = "<group>"; };
+		544CF82D20E1D85400E915D7 /* AnimOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimOperation.h; sourceTree = "<group>"; };
+		544CF82F20E1D85400E915D7 /* GiftModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GiftModel.m; sourceTree = "<group>"; };
+		544CF83120E1D85400E915D7 /* AnimOperationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimOperationManager.h; sourceTree = "<group>"; };
 		544F800D20D0AECA00F492AE /* AppDelegate+Hyphenate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+Hyphenate.h"; sourceTree = "<group>"; };
 		544F800E20D0AECB00F492AE /* AppDelegate+Hyphenate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+Hyphenate.m"; sourceTree = "<group>"; };
 		544F801120D0B8DA00F492AE /* EaseChatView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EaseChatView.h; sourceTree = "<group>"; };
@@ -1091,16 +1105,6 @@
 		544F802720D0BDA100F492AE /* EaseHttpManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EaseHttpManager.m; sourceTree = "<group>"; };
 		544F802C20D1114400F492AE /* EaseHeartFlyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EaseHeartFlyView.m; sourceTree = "<group>"; };
 		544F802D20D1114400F492AE /* EaseHeartFlyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EaseHeartFlyView.h; sourceTree = "<group>"; };
-		54514B4C20DC8FDC00B84DBB /* EaseLiveGiftView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EaseLiveGiftView.m; sourceTree = "<group>"; };
-		54514B4D20DC8FDD00B84DBB /* EaseLiveGiftView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EaseLiveGiftView.h; sourceTree = "<group>"; };
-		54514B5220DC918800B84DBB /* EaseGiftCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EaseGiftCell.h; sourceTree = "<group>"; };
-		54514B5320DC918900B84DBB /* EaseGiftCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EaseGiftCell.m; sourceTree = "<group>"; };
-		54514B6020DCA8F700B84DBB /* liwuModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = liwuModel.h; sourceTree = "<group>"; };
-		54514B6120DCA8F700B84DBB /* liwucell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = liwucell.m; sourceTree = "<group>"; };
-		54514B6220DCA8F700B84DBB /* liwuview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = liwuview.m; sourceTree = "<group>"; };
-		54514B6320DCA8F700B84DBB /* liwucell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = liwucell.h; sourceTree = "<group>"; };
-		54514B6420DCA8F700B84DBB /* liwuModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = liwuModel.m; sourceTree = "<group>"; };
-		54514B6520DCA8F700B84DBB /* liwuview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = liwuview.h; sourceTree = "<group>"; };
 		54520AE720BFD2BA005B787E /* NSObject+Class.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Class.h"; sourceTree = "<group>"; };
 		54520AE920BFD2BA005B787E /* NSObject+Coding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Coding.h"; sourceTree = "<group>"; };
 		54520AEB20BFD2BA005B787E /* NSObject+Copy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Copy.m"; sourceTree = "<group>"; };
@@ -1628,12 +1632,14 @@
 		54FD10BD20E0970300C74C92 /* TSCResource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSCResource.m; sourceTree = "<group>"; };
 		54FD10BE20E0970300C74C92 /* TSCGifts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSCGifts.h; sourceTree = "<group>"; };
 		54FD10BF20E0970300C74C92 /* TSCResourceExtra.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSCResourceExtra.h; sourceTree = "<group>"; };
-		54FD10C520E0974D00C74C92 /* TSCGiftCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSCGiftCell.m; sourceTree = "<group>"; };
-		54FD10C620E0974E00C74C92 /* TSCGiftCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TSCGiftCell.xib; sourceTree = "<group>"; };
-		54FD10C720E0974E00C74C92 /* TSCGiftCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSCGiftCell.h; sourceTree = "<group>"; };
+		54FD10C520E0974D00C74C92 /* CBGiftCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBGiftCell.m; sourceTree = "<group>"; };
+		54FD10C620E0974E00C74C92 /* CBGiftCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CBGiftCell.xib; sourceTree = "<group>"; };
+		54FD10C720E0974E00C74C92 /* CBGiftCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBGiftCell.h; sourceTree = "<group>"; };
 		54FD10CA20E0979700C74C92 /* UIImageView+SDWebImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+SDWebImage.h"; sourceTree = "<group>"; };
 		54FD10CB20E0979700C74C92 /* UIImageView+SDWebImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+SDWebImage.m"; sourceTree = "<group>"; };
 		54FD10CD20E0C20100C74C92 /* CBLiveGiftViewVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CBLiveGiftViewVC.xib; sourceTree = "<group>"; };
+		54FD10D920E0F09500C74C92 /* CBGiftVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBGiftVO.h; sourceTree = "<group>"; };
+		54FD10DA20E0F09500C74C92 /* CBGiftVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBGiftVO.m; sourceTree = "<group>"; };
 		9B93D832D0DEF97DA8E7CD09 /* libPods-ProApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ProApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D104A5A85520E26A75922659 /* Pods-ProApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-ProApp/Pods-ProApp.release.xcconfig"; sourceTree = "<group>"; };
 		E42F78E1DEE816974A7C9C0C /* Pods-ProApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ProApp/Pods-ProApp.debug.xcconfig"; sourceTree = "<group>"; };
@@ -2220,23 +2226,13 @@
 		077D1F8620886C5A003B9E56 /* Ctrl */ = {
 			isa = PBXGroup;
 			children = (
-				546E848820DB43B30044DCC6 /* CBActionLiveDelegate.h */,
 				077D1F8320886C56003B9E56 /* CBLiveVC.h */,
 				077D1F8420886C56003B9E56 /* CBLiveVC.m */,
 				07B8BD1A20A3E14200DD05B2 /* CBPlayerVC.h */,
 				07B8BD1B20A3E14200DD05B2 /* CBPlayerVC.m */,
 				07359D8D20A419E900FEEA4E /* CBLivePlayerVC.h */,
 				07359D8E20A419E900FEEA4E /* CBLivePlayerVC.m */,
-				54DD931A20DCE02F0016C563 /* CBLiveChatViewVC.h */,
-				54DD931B20DCE02F0016C563 /* CBLiveChatViewVC.m */,
-				54DD931720DCDD1E0016C563 /* CBLiveGiftViewVC.h */,
-				54DD931820DCDD1E0016C563 /* CBLiveGiftViewVC.m */,
-				54FD10CD20E0C20100C74C92 /* CBLiveGiftViewVC.xib */,
-				54FD10AF20E0933F00C74C92 /* TSCCollectionViewFlowLayout.h */,
-				54FD10AE20E0933F00C74C92 /* TSCCollectionViewFlowLayout.m */,
-				54FD10C720E0974E00C74C92 /* TSCGiftCell.h */,
-				54FD10C520E0974D00C74C92 /* TSCGiftCell.m */,
-				54FD10C620E0974E00C74C92 /* TSCGiftCell.xib */,
+				54FD10D420E0F01500C74C92 /* Gift&Chat */,
 			);
 			path = Ctrl;
 			sourceTree = "<group>";
@@ -3069,7 +3065,7 @@
 		544F801A20D0B92300F492AE /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				54FD10B520E0970300C74C92 /* gift */,
+				54FD10B520E0970300C74C92 /* TSCgift */,
 				544F801B20D0B93600F492AE /* EaseLiveRoom.h */,
 				544F801C20D0B93700F492AE /* EaseLiveRoom.m */,
 				544F801E20D0B97100F492AE /* EaseLiveSession.h */,
@@ -3099,26 +3095,20 @@
 		54514B4B20DC8FC500B84DBB /* GiftView */ = {
 			isa = PBXGroup;
 			children = (
-				54514B5F20DCA8F700B84DBB /* liwus */,
-				54514B4D20DC8FDD00B84DBB /* EaseLiveGiftView.h */,
-				54514B4C20DC8FDC00B84DBB /* EaseLiveGiftView.m */,
-				54514B5220DC918800B84DBB /* EaseGiftCell.h */,
-				54514B5320DC918900B84DBB /* EaseGiftCell.m */,
+				544CF82220E1D85400E915D7 /* GiftModel.h */,
+				544CF82F20E1D85400E915D7 /* GiftModel.m */,
+				544CF81B20E1D85400E915D7 /* CBChatGiftMessageVO.h */,
+				544CF82A20E1D85400E915D7 /* CBChatGiftMessageVO.m */,
+				544CF81C20E1D85400E915D7 /* ShakeLabel.h */,
+				544CF82820E1D85400E915D7 /* ShakeLabel.m */,
+				544CF81E20E1D85400E915D7 /* PresentView.h */,
+				544CF82B20E1D85400E915D7 /* PresentView.m */,
+				544CF82D20E1D85400E915D7 /* AnimOperation.h */,
+				544CF82320E1D85400E915D7 /* AnimOperation.m */,
+				544CF83120E1D85400E915D7 /* AnimOperationManager.h */,
+				544CF82020E1D85400E915D7 /* AnimOperationManager.m */,
 			);
 			path = GiftView;
-			sourceTree = "<group>";
-		};
-		54514B5F20DCA8F700B84DBB /* liwus */ = {
-			isa = PBXGroup;
-			children = (
-				54514B6520DCA8F700B84DBB /* liwuview.h */,
-				54514B6220DCA8F700B84DBB /* liwuview.m */,
-				54514B6320DCA8F700B84DBB /* liwucell.h */,
-				54514B6120DCA8F700B84DBB /* liwucell.m */,
-				54514B6020DCA8F700B84DBB /* liwuModel.h */,
-				54514B6420DCA8F700B84DBB /* liwuModel.m */,
-			);
-			path = liwus;
 			sourceTree = "<group>";
 		};
 		54520AE620BFD2BA005B787E /* NSObject */ = {
@@ -3924,7 +3914,7 @@
 			path = UIViewController;
 			sourceTree = "<group>";
 		};
-		54FD10B520E0970300C74C92 /* gift */ = {
+		54FD10B520E0970300C74C92 /* TSCgift */ = {
 			isa = PBXGroup;
 			children = (
 				54FD10B620E0970300C74C92 /* TSCGiftExtra.h */,
@@ -3938,7 +3928,59 @@
 				54FD10BE20E0970300C74C92 /* TSCGifts.h */,
 				54FD10BF20E0970300C74C92 /* TSCResourceExtra.h */,
 			);
-			path = gift;
+			path = TSCgift;
+			sourceTree = "<group>";
+		};
+		54FD10D420E0F01500C74C92 /* Gift&Chat */ = {
+			isa = PBXGroup;
+			children = (
+				54FD10D520E0F04100C74C92 /* Ctrl */,
+				54FD10D820E0F09500C74C92 /* Model */,
+				54FD10D720E0F05C00C74C92 /* View */,
+				54FD10D620E0F04F00C74C92 /* Layout&Setting */,
+			);
+			path = "Gift&Chat";
+			sourceTree = "<group>";
+		};
+		54FD10D520E0F04100C74C92 /* Ctrl */ = {
+			isa = PBXGroup;
+			children = (
+				546E848820DB43B30044DCC6 /* CBActionLiveDelegate.h */,
+				54DD931A20DCE02F0016C563 /* CBLiveChatViewVC.h */,
+				54DD931B20DCE02F0016C563 /* CBLiveChatViewVC.m */,
+				54DD931720DCDD1E0016C563 /* CBLiveGiftViewVC.h */,
+				54DD931820DCDD1E0016C563 /* CBLiveGiftViewVC.m */,
+				54FD10CD20E0C20100C74C92 /* CBLiveGiftViewVC.xib */,
+			);
+			path = Ctrl;
+			sourceTree = "<group>";
+		};
+		54FD10D620E0F04F00C74C92 /* Layout&Setting */ = {
+			isa = PBXGroup;
+			children = (
+				54FD10AF20E0933F00C74C92 /* TSCCollectionViewFlowLayout.h */,
+				54FD10AE20E0933F00C74C92 /* TSCCollectionViewFlowLayout.m */,
+			);
+			path = "Layout&Setting";
+			sourceTree = "<group>";
+		};
+		54FD10D720E0F05C00C74C92 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				54FD10C720E0974E00C74C92 /* CBGiftCell.h */,
+				54FD10C520E0974D00C74C92 /* CBGiftCell.m */,
+				54FD10C620E0974E00C74C92 /* CBGiftCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		54FD10D820E0F09500C74C92 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				54FD10D920E0F09500C74C92 /* CBGiftVO.h */,
+				54FD10DA20E0F09500C74C92 /* CBGiftVO.m */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		E2E021358B1DC84C5135A348 /* Frameworks */ = {
@@ -4142,7 +4184,7 @@
 				54A76D0120B7E0E10034D5A2 /* style_default_1.11_btn_edit_recordSound_unselect@3x.png in Resources */,
 				54A76C9520B7E0E10034D5A2 /* lsq_filter_thumb_Fireball.jpg in Resources */,
 				54A76D4520B7E0E10034D5A2 /* style_default_1.11_homepage_edit_icon@2x.png in Resources */,
-				54FD10C920E0974E00C74C92 /* TSCGiftCell.xib in Resources */,
+				54FD10C920E0974E00C74C92 /* CBGiftCell.xib in Resources */,
 				54A76C9A20B7E0E10034D5A2 /* style_default_1.6.0_homepage_next_icon@2x.png in Resources */,
 				54A76D7420B7E0E10034D5A2 /* nav_ic_back_w_1.11@3x.png in Resources */,
 				07B66892208D6A8900AA5B62 /* CBRealNameVC.xib in Resources */,
@@ -4504,10 +4546,10 @@
 				54C18B5420DA061600882377 /* CBAnchorInfoVO.m in Sources */,
 				5465AE0720BD4A10006E24BB /* CBUploadVideoVC.m in Sources */,
 				0750561C2092AEBD00F0679B /* CBGiftPackageVC.m in Sources */,
-				54514B6720DCA8F700B84DBB /* liwuview.m in Sources */,
 				54A76AE320B7DEDE0034D5A2 /* PLSRateButtonView.m in Sources */,
 				547CB63320D899BD0064B29B /* UIButton+Animate.m in Sources */,
 				07F38C0720994A0000DDBC90 /* JPGiftOperation.m in Sources */,
+				54FD10DB20E0F09500C74C92 /* CBGiftVO.m in Sources */,
 				54520AF020BFD2BB005B787E /* NSObject+Copy.m in Sources */,
 				544F801920D0B91B00F492AE /* EaseChatCell.m in Sources */,
 				072DC5A02091A1B500F693E8 /* CBNotificationsVC.m in Sources */,
@@ -4531,15 +4573,16 @@
 				54A76AEA20B7DEDE0034D5A2 /* PLSEditVideoCell.m in Sources */,
 				075DB82C207D974F00891E60 /* UIView+CornerRadius.m in Sources */,
 				07C9735020A9224000BB9820 /* CBAttentionLiveCell.m in Sources */,
-				54514B6820DCA8F700B84DBB /* liwuModel.m in Sources */,
 				0715279220A5773C00D3859D /* CBVerticalFlowLayout.m in Sources */,
 				544F802020D0B97100F492AE /* EaseLiveSession.m in Sources */,
+				544CF83320E1D85400E915D7 /* AnimOperationManager.m in Sources */,
 				072DC58E209170B000F693E8 /* UIImageView+RoundedCorner.m in Sources */,
 				548C5CDC20B5433900A6FF53 /* MBProgressHUD+HUD.m in Sources */,
 				5443976520D3619F0039722D /* EaseEndLiveView.m in Sources */,
 				07F38C0620994A0000DDBC90 /* JPGiftCellModel.m in Sources */,
 				54A76AF020B7DEDE0034D5A2 /* PLSVideoEditingController.m in Sources */,
 				0745F1EC20A9691000052FF6 /* CBHomeMenuView.m in Sources */,
+				544CF83A20E1D85400E915D7 /* CBChatGiftMessageVO.m in Sources */,
 				073746FD208ECF5900E108E9 /* CBVideoHotVC.m in Sources */,
 				0750562B2092B0C700F0679B /* CBPackageRecordVC.m in Sources */,
 				07F38C0320994A0000DDBC90 /* JPGiftShowManager.m in Sources */,
@@ -4547,6 +4590,7 @@
 				07691D4920B270F900BF731E /* PPNetworkHelper.m in Sources */,
 				54A76B1720B7DF7E0034D5A2 /* EffectsItemView.m in Sources */,
 				54A76D8C20B7E17B0034D5A2 /* DubViewController.m in Sources */,
+				544CF83B20E1D85400E915D7 /* PresentView.m in Sources */,
 				54A76AE720B7DEDE0034D5A2 /* PLSFilterGroup.m in Sources */,
 				5467016D20C1300900519860 /* CBSexMenuView.m in Sources */,
 				07359D8F20A419E900FEEA4E /* CBLivePlayerVC.m in Sources */,
@@ -4572,12 +4616,12 @@
 				54FD10C220E0970400C74C92 /* TSCGiftExtra.m in Sources */,
 				07359D9820A429AC00FEEA4E /* CBLiveVideoVC.m in Sources */,
 				54A76AE620B7DEDE0034D5A2 /* PLSProgressBar.m in Sources */,
-				54514B4E20DC8FDD00B84DBB /* EaseLiveGiftView.m in Sources */,
 				5469A56420C4D195004E06F1 /* CBImagePickerTool.m in Sources */,
 				07F38C0120994A0000DDBC90 /* JPGiftView.m in Sources */,
 				07F6EFE020872E3D0035C6BD /* CBHomeVC.m in Sources */,
 				07558C2B2094569C007E41C2 /* CBAnchorInfoXibView.m in Sources */,
 				077C1AA42091A7E00005CE97 /* CBPhoneBindVC.m in Sources */,
+				544CF83E20E1D85400E915D7 /* GiftModel.m in Sources */,
 				54A76AAF20B7DE830034D5A2 /* CBRecordVideoVC.m in Sources */,
 				54A76B0F20B7DF7E0034D5A2 /* FilterView.m in Sources */,
 				07659C1E20A4439700EBE030 /* HcdGuideView.m in Sources */,
@@ -4598,7 +4642,6 @@
 				5401D87C20D26E3D00A3FFEF /* EaseBaseSubView.m in Sources */,
 				54A76AE920B7DEDE0034D5A2 /* PLSSelectionView.m in Sources */,
 				076F52A120750E64004F91E8 /* AppDelegate+AppServer.m in Sources */,
-				54514B6620DCA8F700B84DBB /* liwucell.m in Sources */,
 				542F89FF20DA45E300C6E99D /* CBLiveGuardianListView.m in Sources */,
 				0791588520883C6D007CA2E0 /* CBAttentionCell.m in Sources */,
 				54520AF620BFD83D005B787E /* CBArchiverTool.m in Sources */,
@@ -4660,11 +4703,12 @@
 				54A76AEF20B7DEDE0034D5A2 /* PLSStickerBar.m in Sources */,
 				544B8F8C20CA118E00FC9CFE /* PLPermissionRequestor.m in Sources */,
 				54FD10B020E0933F00C74C92 /* TSCCollectionViewFlowLayout.m in Sources */,
+				544CF83520E1D85400E915D7 /* AnimOperation.m in Sources */,
 				54A76ADF20B7DEDE0034D5A2 /* PLSViewRecorderManager.m in Sources */,
 				54A76AE520B7DEDE0034D5A2 /* PLSAudioVolumeView.m in Sources */,
 				54FD10B420E093BE00C74C92 /* UIViewController+SuperViewCtrl.m in Sources */,
 				54A4457E20B7BCF700D65F0A /* AppDelegate+PLKit.m in Sources */,
-				54FD10C820E0974E00C74C92 /* TSCGiftCell.m in Sources */,
+				54FD10C820E0974E00C74C92 /* CBGiftCell.m in Sources */,
 				5465AE0320BD31A3006E24BB /* CBEditVideoVC.m in Sources */,
 				547EA77920CE6D1F00CDC1A1 /* PLDelgateHelper.m in Sources */,
 				07F6EFE120872E3D0035C6BD /* ALinUser.m in Sources */,
@@ -4677,7 +4721,6 @@
 				540CCCD720D8F1D200CAA312 /* CBOccupantsCountView.m in Sources */,
 				54130A0F20B6B48900CAE467 /* CBLiveSetting.m in Sources */,
 				077C1A992091A6C10005CE97 /* CBAccountAndSecurityVC.m in Sources */,
-				54514B5420DC918900B84DBB /* EaseGiftCell.m in Sources */,
 				079AAE7A2079C85000674A92 /* CBNVC.m in Sources */,
 				547EA77420CE6D1F00CDC1A1 /* PLAttributeModel.m in Sources */,
 				54520AF320BFD2BB005B787E /* NSObject+Class.m in Sources */,
@@ -4703,6 +4746,7 @@
 				0737ED892074A33600A89CC0 /* AppDelegate.m in Sources */,
 				54DD931920DCDD1E0016C563 /* CBLiveGiftViewVC.m in Sources */,
 				54A76AF620B7DEF00034D5A2 /* EditViewController.m in Sources */,
+				544CF83820E1D85400E915D7 /* ShakeLabel.m in Sources */,
 				07CF5FC0207AFDB10087A5E2 /* ViewController.m in Sources */,
 				548C5CBE20B50C2400A6FF53 /* CBLiveUser.m in Sources */,
 				54A76B1120B7DF7E0034D5A2 /* StickerCollectionViewCell.m in Sources */,

@@ -15,11 +15,16 @@
 #import "EaseChatView.h"
 #import "EaseLiveHeaderListView.h"
 #import "CBLiveGuardianListView.h"
-#import "EaseLiveGiftView.h"
 #import "EaseProfileLiveView.h"
 #import "CBAnchorInfoView.h"
 #import "EaseAdminView.h"
 #import "CBOnlineUserView.h"
+// Gift
+#import "PresentView.h"
+#import "GiftModel.h"
+#import "AnimOperation.h"
+#import "AnimOperationManager.h"
+#import "CBChatGiftMessageVO.h"
 
 @interface CBLiveChatViewVC ()
 <
@@ -28,8 +33,8 @@
     EMClientDelegate,
     EMChatroomManagerDelegate,
     TapBackgroundViewDelegate,
-    EaseLiveGiftViewDelegate,
-    CBActionLiveDelegate
+    CBActionLiveDelegate,
+    CBLiveGiftViewDelegate
 >
 {
     BOOL _enableAdmin;
@@ -45,6 +50,7 @@
 @property (nonatomic, strong) CBOnlineUserView *onlineUserView; ///< 在线用户
 
 @property (nonatomic, strong) CBLiveGiftViewVC *liveGiftView;   ///< 礼物系统
+@property (nonatomic, strong) UIView *showGiftView;             ///< 显示礼物系统
 // 键盘关闭功能
 @property (nonatomic, strong) UIWindow *window;
 @property (nonatomic, strong) UITapGestureRecognizer *singleTapGR;
@@ -70,9 +76,10 @@
     
     [self.view addSubview:self.headerListView];
     [self.view addSubview:self.guardianListView];
+    [self.view addSubview:self.showGiftView];
     [self.view addSubview:self.chatview];
     [self.view addSubview:self.closeButton];
-    
+
     @weakify(self);
     [self addChildViewController:self.liveGiftView];
     [self.view addSubview:self.liveGiftView.view];
@@ -82,6 +89,7 @@
         make.size.mas_equalTo(CGSizeMake(kScreenWidth, kScreenHeight));
         make.top.offset(kScreenHeight);
     }];
+    self.liveGiftView.superController = self;
 }
 
 - (void)joinChatRoom {
@@ -100,8 +108,7 @@
             [MBProgressHUD showAutoMessage:@"加入聊天室失败"];
         }
     }];
-    
-    
+        
     [self setupForDismissKeyboard];
 }
 
@@ -151,6 +158,26 @@
 }
 
 #pragma mark - EaseChatViewDelegate
+// 收到礼物消息
+- (void)didReceiveGiftWithCMDMessage:(EMMessage *)message {
+    // NSLog(@"收到礼物 Ext %@", message.ext);
+    CBChatGiftMessageVO *msgVO = [CBChatGiftMessageVO modelWithJSON:message.ext];
+
+    // 礼物模型
+    GiftModel *giftModel = [[GiftModel alloc] init];
+    giftModel.headImageURL = msgVO.senderAvater;
+    giftModel.name = msgVO.senderName;
+    giftModel.giftImageURL = msgVO.giftImageURL;
+    giftModel.giftName = msgVO.giftName;
+    giftModel.giftCount = 1;
+    
+    AnimOperationManager *manager = [AnimOperationManager sharedManager];
+    manager.parentView = self.showGiftView;
+    // 用用户唯一标识 msg.senderChatID 存礼物信息,model 传入礼物模型
+    NSString *userID = msgVO.senderUID;
+    [manager animWithUserID:userID model:giftModel finishedBlock:^(BOOL result) {
+    }];
+}
 
 - (void)easeChatViewDidChangeFrameToHeight:(CGFloat)toHeight
 {
@@ -218,6 +245,15 @@
 {
     if (_chatview) {
         [_chatview sendGiftWithId:giftId];
+    }
+}
+
+#pragma mark - CBLiveGiftViewDelegate
+
+- (void)actionLiveSentGiftDict:(NSDictionary *)giftDict {
+    self.chatview.hidden = NO;
+    if (self.chatview) {
+        [self.chatview sendGiftDict:giftDict];
     }
 }
 
@@ -324,11 +360,7 @@
 
 - (void)actionCloseLive: (UIButton *) button {
     [self actionCloseButton];
-    @weakify(self);
-    [self dismissViewControllerAnimated:YES completion:^{
-        @strongify(self);
-        [self.closeButton removeFromSuperview];
-    }];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"KNotificationCloseLiveVC" object:nil];
 }
 
 - (void)closeAction {
@@ -389,15 +421,15 @@
 
 //关闭礼物界面
 - (void)closeGiftView{
-    [UIView animateWithDuration:0.5 animations:^{
+    self.chatview.hidden = NO;
+    [UIView animateWithDuration:0.5 animations:^{        
         self.liveGiftView.view.origin = CGPointMake(0, kScreenHeight);
     }];
-    self.chatview.hidden = NO;
 }
+
 #pragma mark - override
 
-- (void)setupForDismissKeyboard
-{
+- (void)setupForDismissKeyboard {
     _singleTapGR = [[UITapGestureRecognizer alloc] initWithTarget:self
                                                            action:@selector(tapAnywhereToDismissKeyboard:)];
 }
@@ -478,8 +510,17 @@
 - (CBLiveGiftViewVC *)liveGiftView {
     if (!_liveGiftView) {
         _liveGiftView = [CBLiveGiftViewVC new];
+        _liveGiftView.delegate = self;
     }
     return _liveGiftView;
+}
+
+- (UIView *)showGiftView {
+    if (!_showGiftView) {
+        _showGiftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight)];
+        _showGiftView.backgroundColor = [UIColor clearColor];
+    }
+    return _showGiftView;
 }
 
 @end
