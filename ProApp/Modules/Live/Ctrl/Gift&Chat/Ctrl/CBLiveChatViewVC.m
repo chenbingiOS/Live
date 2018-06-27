@@ -19,12 +19,7 @@
 #import "CBAnchorInfoView.h"
 #import "EaseAdminView.h"
 #import "CBOnlineUserView.h"
-// Gift
-#import "PresentView.h"
-#import "GiftModel.h"
-#import "AnimOperation.h"
-#import "AnimOperationManager.h"
-#import "CBChatGiftMessageVO.h"
+#import "LiveGiftShowCustom.h"
 
 @interface CBLiveChatViewVC ()
 <
@@ -34,7 +29,8 @@
     EMChatroomManagerDelegate,
     TapBackgroundViewDelegate,
     CBActionLiveDelegate,
-    CBLiveGiftViewDelegate
+    CBLiveGiftViewDelegate,
+    LiveGiftShowCustomDelegate
 >
 {
     BOOL _enableAdmin;
@@ -48,9 +44,9 @@
 @property (nonatomic, strong) CBAnchorInfoView *anchorInfoView; ///< 直播用户信息
 @property (nonatomic, strong) CBSharePopView *sharePopView;     ///< 分享
 @property (nonatomic, strong) CBOnlineUserView *onlineUserView; ///< 在线用户
-
 @property (nonatomic, strong) CBLiveGiftViewVC *liveGiftView;   ///< 礼物系统
-@property (nonatomic, strong) UIView *showGiftView;             ///< 显示礼物系统
+@property (nonatomic, weak)   LiveGiftShowCustom *customGiftShow;
+
 // 键盘关闭功能
 @property (nonatomic, strong) UIWindow *window;
 @property (nonatomic, strong) UITapGestureRecognizer *singleTapGR;
@@ -76,7 +72,6 @@
     
     [self.view addSubview:self.headerListView];
     [self.view addSubview:self.guardianListView];
-    [self.view addSubview:self.showGiftView];
     [self.view addSubview:self.chatview];
     [self.view addSubview:self.closeButton];
 
@@ -108,14 +103,12 @@
             [MBProgressHUD showAutoMessage:@"加入聊天室失败"];
         }
     }];
-        
+    
+    self.chatview.delegate = self;
     [self setupForDismissKeyboard];
 }
 
 - (void)leaveChatRoom {
-    [self.headerListView cancelRequest];
-    [self.guardianListView cancelRequest];
-    
     @weakify(self);
     [self.chatview leaveChatroomWithIsCount:YES completion:^(BOOL success) {
         @strongify(self);
@@ -125,6 +118,14 @@
             [MBProgressHUD showAutoMessage:@"离开聊天室失败"];
         }
     }];
+    
+    [self.headerListView cancelRequest];
+    [self.guardianListView cancelRequest];
+    self.headerListView = nil;
+    self.guardianListView = nil;
+    self.chatview = nil;
+    self.closeButton = nil;
+    self.liveGiftView = nil;
 }
 
 #pragma mark - EaseLiveHeaderListViewDelegate
@@ -160,23 +161,11 @@
 #pragma mark - EaseChatViewDelegate
 // 收到礼物消息
 - (void)didReceiveGiftWithCMDMessage:(EMMessage *)message {
-    // NSLog(@"收到礼物 Ext %@", message.ext);
+     NSLog(@"收到礼物 Ext %@", message.ext);
     CBChatGiftMessageVO *msgVO = [CBChatGiftMessageVO modelWithJSON:message.ext];
-
-    // 礼物模型
-    GiftModel *giftModel = [[GiftModel alloc] init];
-    giftModel.headImageURL = msgVO.senderAvater;
-    giftModel.name = msgVO.senderName;
-    giftModel.giftImageURL = msgVO.giftImageURL;
-    giftModel.giftName = msgVO.giftName;
-    giftModel.giftCount = 1;
-    
-    AnimOperationManager *manager = [AnimOperationManager sharedManager];
-    manager.parentView = self.showGiftView;
-    // 用用户唯一标识 msg.senderChatID 存礼物信息,model 传入礼物模型
-    NSString *userID = msgVO.senderUID;
-    [manager animWithUserID:userID model:giftModel finishedBlock:^(BOOL result) {
-    }];
+    LiveGiftShowModel *model = [LiveGiftShowModel instancetypeGiftVOByGiftMessage:msgVO];
+    model.toNumber = msgVO.giftNum.integerValue;
+    [self.customGiftShow animatedWithGiftModel:model];
 }
 
 - (void)easeChatViewDidChangeFrameToHeight:(CGFloat)toHeight
@@ -239,23 +228,18 @@
     }];
 }
 
-#pragma mark - EaseLiveGiftViewDelegate
-
-- (void)didSelectGiftWithGiftId:(NSString *)giftId
-{
-    if (_chatview) {
-        [_chatview sendGiftWithId:giftId];
-    }
-}
-
 #pragma mark - CBLiveGiftViewDelegate
 
 - (void)actionLiveSentGiftDict:(NSDictionary *)giftDict {
-    self.chatview.hidden = NO;
     if (self.chatview) {
         [self.chatview sendGiftDict:giftDict];
     }
 }
+
+- (void)giftDidRemove:(LiveGiftShowModel *)showModel {
+    WLog(@"用户：%@ 送出了 %li 个 %@", showModel.user.name, showModel.currentNumber, showModel.giftModel.name);
+}
+
 
 #pragma mark - EaseProfileLiveViewDelegate
 
@@ -445,7 +429,6 @@
     if (_chatview == nil) {
         CGFloat y = kScreenHeight - 200 - SafeAreaBottomHeight - 6;
         _chatview = [[EaseChatView alloc] initWithFrame:CGRectMake(0, y, CGRectGetWidth(self.view.frame), 200) room:_liveVO isPublish:NO];
-        _chatview.delegate = self;
     }
     return _chatview;
 }
@@ -491,13 +474,6 @@
     return _closeButton;
 }
 
-//- (CBOnlineUserView *)onlineUserView {
-//    if (!_onlineUserView) {
-//        _onlineUserView = [[CBOnlineUserView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight/2) room:_liveVO];
-//    }
-//    return _onlineUserView;
-//}
-
 - (CBSharePopView *)sharePopView {
     if (!_sharePopView) {
         CGFloat height = 180;
@@ -515,12 +491,21 @@
     return _liveGiftView;
 }
 
-- (UIView *)showGiftView {
-    if (!_showGiftView) {
-        _showGiftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight)];
-        _showGiftView.backgroundColor = [UIColor clearColor];
+/*
+ 礼物视图支持很多配置属性，开发者按需选择。
+ */
+- (LiveGiftShowCustom *)customGiftShow{
+    if (!_customGiftShow) {
+        _customGiftShow = [LiveGiftShowCustom addToView:self.view];
+        _customGiftShow.addMode = LiveGiftAddModeAdd;
+        [_customGiftShow setMaxGiftCount:3];
+        [_customGiftShow setShowMode:LiveGiftShowModeFromTopToBottom];
+        [_customGiftShow setAppearModel:LiveGiftAppearModeLeft];
+        [_customGiftShow setHiddenModel:LiveGiftHiddenModeNone];
+        [_customGiftShow enableInterfaceDebug:YES];
+        _customGiftShow.delegate = self;
     }
-    return _showGiftView;
+    return _customGiftShow;
 }
 
 @end

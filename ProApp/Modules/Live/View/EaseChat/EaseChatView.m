@@ -24,8 +24,6 @@
 #define kDefaultSpace 5.f
 #define kDefaulfLeftSpace 10.f
 
-static NSString *const kCMDMessageGift = @"kCMDMessageGift";
-
 @interface EaseChatView () <EMChatManagerDelegate,EMChatroomManagerDelegate,UITableViewDelegate,UITableViewDataSource,UITextViewDelegate,EMFaceDelegate>
 {
     long long _curtime;
@@ -125,6 +123,10 @@ static NSString *const kCMDMessageGift = @"kCMDMessageGift";
         self.room = room;
     }
     return self;
+}
+
+- (void)setDelegate:(id<EaseChatViewDelegate>)delegate {
+    _delegate = delegate;
 }
 
 - (void)setHidden:(BOOL)hidden
@@ -302,7 +304,7 @@ static NSString *const kCMDMessageGift = @"kCMDMessageGift";
 }
 
 #pragma mark - EMChatManagerDelegate
-
+// 聊天收到消息
 - (void)messagesDidReceive:(NSArray *)aMessages
 {
     for (EMMessage *message in aMessages) {
@@ -326,6 +328,7 @@ static NSString *const kCMDMessageGift = @"kCMDMessageGift";
     }
 }
 
+// 聊天礼物收到消息
 - (void)cmdMessagesDidReceive:(NSArray *)aCmdMessages
 {
     for (EMMessage *message in aCmdMessages) {
@@ -335,7 +338,7 @@ static NSString *const kCMDMessageGift = @"kCMDMessageGift";
             }
             EMCmdMessageBody *body = (EMCmdMessageBody*)message.body;
             if (body) {
-                if ([body.action isEqualToString:kCMDMessageGift]) {
+                if ([body.action isEqualToString:kGiftAction]) {
                     if (_delegate && [_delegate respondsToSelector:@selector(didReceiveGiftWithCMDMessage:)]) {
                         [_delegate didReceiveGiftWithCMDMessage:message];
                     }
@@ -829,6 +832,7 @@ static NSString *const kCMDMessageGift = @"kCMDMessageGift";
     }];
 }
 
+// 发送礼物消息
 - (void)sendGiftDict:(NSDictionary *)giftDict {
     EMMessage *message = [self _sendCMDMessageTo:self.chatroomId messageType:EMChatTypeChatRoom messageExt:giftDict action:kGiftAction];
     @weakify(self);

@@ -39,7 +39,6 @@
 @end
 
 static NSString *const KReuseIdGiftCell = @"KReuseIdGiftCell";
-static NSString *const kCMDMessageGift = @"kCMDMessageGift";
 
 @implementation CBLiveGiftViewVC
 
@@ -209,9 +208,13 @@ static NSString *const kCMDMessageGift = @"kCMDMessageGift";
                             @"giftid": self.selectGiftVO.giftid,
                             @"number":@"1"
                             };
+    @weakify(self);
     [PPNetworkHelper POST:url parameters:param success:^(id responseObject) {
+        @strongify(self);
         NSNumber *code = responseObject[@"code"];
         if ([code isEqualToNumber:@200]) {
+            [self.superController closeGiftView];
+            
             CBLiveUser *user = [CBLiveUserConfig myProfile];
             NSDictionary *dictExt = @{
                                       @"senderUID": user.ID,
@@ -219,7 +222,8 @@ static NSString *const kCMDMessageGift = @"kCMDMessageGift";
                                       @"senderAvater": user.avatar,
                                       @"giftID": self.selectGiftVO.giftid,
                                       @"giftName": self.selectGiftVO.giftname,
-                                      @"giftImageURL": self.selectGiftVO.gifticon
+                                      @"giftImageURL": self.selectGiftVO.gifticon,
+                                      @"giftNum": @"3"
                                       };
             [self _EMClient_SendGiftMessage:dictExt];
         } else {
@@ -228,6 +232,7 @@ static NSString *const kCMDMessageGift = @"kCMDMessageGift";
             self.giftCollectionView.userInteractionEnabled = YES;
         }
     } failure:^(NSError *error) {
+        @strongify(self);
         [MBProgressHUD showAutoMessage:@"礼物赠送失败"];
         self.giftCollectionView.userInteractionEnabled = YES;
     }];
@@ -236,7 +241,6 @@ static NSString *const kCMDMessageGift = @"kCMDMessageGift";
 - (void)_EMClient_SendGiftMessage:(NSDictionary *)dictExt {
     if (self.delegate && [self.delegate respondsToSelector:@selector(actionLiveSentGiftDict:)]) {
         [self.delegate actionLiveSentGiftDict:dictExt];
-        [self.superController closeGiftView];
         self.giftCollectionView.userInteractionEnabled = YES;
     }
 }

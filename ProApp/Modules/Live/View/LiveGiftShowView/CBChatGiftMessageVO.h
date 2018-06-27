@@ -13,8 +13,10 @@
 @property (nonatomic, retain) NSString *senderUID;      ///< 发送人ID
 @property (nonatomic, retain) NSString *senderName;     ///< 发送人名字
 @property (nonatomic, retain) NSString *senderAvater;   ///< 发送人头像
+
 @property (nonatomic, retain) NSString *giftID;         ///< 礼物编号
 @property (nonatomic, retain) NSString *giftName;       ///< 礼物名称
 @property (nonatomic, retain) NSString *giftImageURL;   ///< 礼物图片地址
+@property (nonatomic, retain) NSString *giftNum;        ///< 礼物数量
 
 @end
