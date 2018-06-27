@@ -1988,7 +1988,6 @@
 			isa = PBXGroup;
 			children = (
 				0715278420A53F3A00D3859D /* Login */,
-				07F38C0A2099501600DDBC90 /* Live */,
 				07F6EF6120872E3C0035C6BD /* Home */,
 				073746F3208ECD1900E108E9 /* Video */,
 				07359D9520A4299400FEEA4E /* LiveVideo */,
@@ -2221,6 +2220,7 @@
 		077D1F8220886C3E003B9E56 /* Live */ = {
 			isa = PBXGroup;
 			children = (
+				07F38C0A2099501600DDBC90 /* Live */,
 				07F38C102099503D00DDBC90 /* Guard */,
 				077FFCFD2099A63D00B8680C /* GuardRank */,
 				07CD47AC20A0265D00A372C7 /* ContributionRank */,

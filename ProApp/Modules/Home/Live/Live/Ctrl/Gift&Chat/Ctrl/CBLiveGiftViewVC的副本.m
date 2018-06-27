@@ -23,13 +23,22 @@
 @interface CBLiveGiftViewVC () <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UIScrollViewDelegate>
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomConstraint;
-@property (nonatomic, weak) IBOutlet UIView *giftView;
-
-@property (nonatomic, strong) UICollectionView *giftCollectionView;
-@property (nonatomic, strong) UIPageControl *pageControl;
+@property (weak, nonatomic) IBOutlet UIView *giftView;
+@property (weak, nonatomic) IBOutlet UIButton *giftListBtn;
+@property (weak, nonatomic) IBOutlet UIButton *warehouseListBtn;
+@property (weak, nonatomic) IBOutlet UICollectionView *giftCollectionView;
+@property (weak, nonatomic) IBOutlet TSCCollectionViewFlowLayout *collectionViewLayout;
+@property (weak, nonatomic) IBOutlet UIPageControl *pageControl;
+@property (weak, nonatomic) IBOutlet UIButton *countABtn;
+@property (weak, nonatomic) IBOutlet UIButton *countBBtn;
+@property (weak, nonatomic) IBOutlet UIButton *countCBtn;
+@property (weak, nonatomic) IBOutlet UIButton *countDBtn;
+@property (weak, nonatomic) IBOutlet UIButton *countEBtn;
+@property (nonatomic, strong) NSArray <UIButton *> *countBtnAry;
+@property (nonatomic, assign) NSNumber *countNum;
+@property (weak, nonatomic) IBOutlet UIButton *sentGiftBtn;
 @property (nonatomic, strong) NSArray <CBGiftVO *> *giftAry;
 @property (nonatomic, strong) CBGiftVO *selectGiftVO;
-
 @property (nonatomic, strong) UIView *btnView;
 @property (nonatomic, strong) UIButton *sendBtn;
 @property (nonatomic, strong) UIImageView *coinMarkImg;
@@ -81,78 +90,89 @@ static NSString *const KReuseIdGiftCell = @"KReuseIdGiftCell";
 }
 
 - (void)_UI_setup{
-    self.giftView.backgroundColor = [[UIColor blackColor]colorWithAlphaComponent:0.6f];
-    [self.giftView addSubview:self.giftCollectionView];
-    [self.giftView addSubview:self.pageControl];
+    self.collectionViewLayout.rowCount = 2;
+    self.collectionViewLayout.itemCountPerRow = 4;
+    [self.collectionViewLayout setColumnSpacing:0 rowSpacing:0 edgeInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
+    self.collectionViewLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;//设置滚动方向
+    self.collectionViewLayout.itemSize = CGSizeMake(kScreenWidth/4, 124);//设置cell的size
+    self.collectionViewLayout.minimumLineSpacing = 0;//行间距
+    self.collectionViewLayout.minimumInteritemSpacing = 0;//同行之间item间距
+    [self.giftCollectionView registerNib:[UINib nibWithNibName:@"CBGiftCell" bundle:nil] forCellWithReuseIdentifier:KReuseIdGiftCell];
     
-    [self.pageControl mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.offset(248);
-        make.left.offset(kScreenWidth/2);
-        make.size.mas_equalTo(CGSizeMake(0,15));
-    }];
-    [self.giftView addSubview:self.btnView];
-    [self.btnView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.offset(260);
-        make.left.offset(0);
-        make.size.mas_equalTo(CGSizeMake(kScreenWidth,self.giftView.frame.size.height - 260 - 34));
-    }];
-    [self.btnView addSubview:self.sendBtn];
-    [self.sendBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.offset(0);
-        make.right.offset(-10);//????
-        make.size.mas_equalTo(CGSizeMake(70, 30));
-    }];
-    
-    [self.btnView addSubview:self.coinMarkImg];
-    [self.coinMarkImg mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(self.sendBtn.mas_centerY);
-        make.size.mas_equalTo(CGSizeMake(14, 14));
-        make.left.offset(10);
-    }];
-    UILabel *coinLabel = [[UILabel alloc]init];
-    coinLabel.text = @"首充";
-    coinLabel.textColor = [UIColor colorWithRed:243.0/255.0 green:194.0/255.0 blue:45.0/255.0 alpha:1];
-    coinLabel.font = [UIFont systemFontOfSize:14];
-    [self.btnView addSubview:coinLabel];
-    [coinLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(self.coinMarkImg.mas_centerY);
-        make.left.equalTo(self.coinMarkImg.mas_right).with.offset(2);
-    }];
-    UIImageView *payArrowImg = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"pay_arrow"]];
-    payArrowImg.contentMode = UIViewContentModeScaleAspectFit;
-    [self.btnView addSubview:payArrowImg];
-    [payArrowImg mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.height.equalTo(@15);
-        make.width.equalTo(@19);
-        make.centerY.equalTo(self.sendBtn.mas_centerY);
-        make.left.equalTo(coinLabel.mas_right).offset(0);
-    }];
-    [self.btnView addSubview:self.diamondCount];
-    [self.diamondCount mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(self.coinMarkImg.mas_centerY);
-        make.left.equalTo(payArrowImg.mas_right).with.offset(2);
-    }];
-    UIImageView *diamondImg = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"first_charge_reward_diamond"]];
-    
-    [self.btnView addSubview:diamondImg];
-    [diamondImg mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(self.sendBtn.mas_centerY);
-        make.size.mas_equalTo(CGSizeMake(13, 13));
-        make.left.equalTo(self.diamondCount.mas_right).with.offset(2);
-    }];
-    [self.btnView addSubview:self.starCount];
-    [self.starCount mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(self.coinMarkImg.mas_centerY);
-        make.left.equalTo(diamondImg.mas_right).with.offset(2);
-    }];
-    UIImageView *starImg = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"first_charge_reward_star"]];
-    
-    [self.btnView addSubview:starImg];
-    [starImg mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(self.sendBtn.mas_centerY);
-        make.size.mas_equalTo(CGSizeMake(13, 13));
-        make.left.equalTo(self.starCount.mas_right).with.offset(2);
-    }];
+    self.countBtnAry = @[self.countABtn, self.countBBtn, self.countCBtn, self.countDBtn, self.countEBtn];
+
+//    self.giftView.backgroundColor = [[UIColor blackColor]colorWithAlphaComponent:0.6f];
+//    [self.giftView addSubview:self.giftCollectionView];
+//    [self.giftView addSubview:self.pageControl];
+//
+//    [self.pageControl mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.offset(248);
+//        make.left.offset(kScreenWidth/2);
+//        make.size.mas_equalTo(CGSizeMake(0,15));
+//    }];
+//    [self.giftView addSubview:self.btnView];
+//    [self.btnView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.offset(260);
+//        make.left.offset(0);
+//        make.size.mas_equalTo(CGSizeMake(kScreenWidth,self.giftView.frame.size.height - 260 - 34));
+//    }];
+//    [self.btnView addSubview:self.sendBtn];
+//    [self.sendBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.offset(0);
+//        make.right.offset(-10);//????
+//        make.size.mas_equalTo(CGSizeMake(70, 30));
+//    }];
+//
+//    [self.btnView addSubview:self.coinMarkImg];
+//    [self.coinMarkImg mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.centerY.equalTo(self.sendBtn.mas_centerY);
+//        make.size.mas_equalTo(CGSizeMake(14, 14));
+//        make.left.offset(10);
+//    }];
+//    UILabel *coinLabel = [[UILabel alloc]init];
+//    coinLabel.text = @"首充";
+//    coinLabel.textColor = [UIColor colorWithRed:243.0/255.0 green:194.0/255.0 blue:45.0/255.0 alpha:1];
+//    coinLabel.font = [UIFont systemFontOfSize:14];
+//    [self.btnView addSubview:coinLabel];
+//    [coinLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.centerY.equalTo(self.coinMarkImg.mas_centerY);
+//        make.left.equalTo(self.coinMarkImg.mas_right).with.offset(2);
+//    }];
+//    UIImageView *payArrowImg = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"pay_arrow"]];
+//    payArrowImg.contentMode = UIViewContentModeScaleAspectFit;
+//    [self.btnView addSubview:payArrowImg];
+//    [payArrowImg mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.height.equalTo(@15);
+//        make.width.equalTo(@19);
+//        make.centerY.equalTo(self.sendBtn.mas_centerY);
+//        make.left.equalTo(coinLabel.mas_right).offset(0);
+//    }];
+//    [self.btnView addSubview:self.diamondCount];
+//    [self.diamondCount mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.centerY.equalTo(self.coinMarkImg.mas_centerY);
+//        make.left.equalTo(payArrowImg.mas_right).with.offset(2);
+//    }];
+//    UIImageView *diamondImg = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"first_charge_reward_diamond"]];
+//
+//    [self.btnView addSubview:diamondImg];
+//    [diamondImg mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.centerY.equalTo(self.sendBtn.mas_centerY);
+//        make.size.mas_equalTo(CGSizeMake(13, 13));
+//        make.left.equalTo(self.diamondCount.mas_right).with.offset(2);
+//    }];
+//    [self.btnView addSubview:self.starCount];
+//    [self.starCount mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.centerY.equalTo(self.coinMarkImg.mas_centerY);
+//        make.left.equalTo(diamondImg.mas_right).with.offset(2);
+//    }];
+//    UIImageView *starImg = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"first_charge_reward_star"]];
+//
+//    [self.btnView addSubview:starImg];
+//    [starImg mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.centerY.equalTo(self.sendBtn.mas_centerY);
+//        make.size.mas_equalTo(CGSizeMake(13, 13));
+//        make.left.equalTo(self.starCount.mas_right).with.offset(2);
+//    }];
     
 }
 
@@ -245,6 +265,10 @@ static NSString *const KReuseIdGiftCell = @"KReuseIdGiftCell";
     }
 }
 
+- (IBAction)actionCountBtn:(id)sender {
+    
+}
+
 #pragma mark 手势事件
 
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
@@ -334,41 +358,6 @@ static NSString *const KReuseIdGiftCell = @"KReuseIdGiftCell";
         _btnView = [[UIView alloc]init];
     }
     return _btnView;
-}
-
-- (UIPageControl *)pageControl{
-    if(!_pageControl){
-        _pageControl = [[UIPageControl alloc]init];
-        _pageControl.pageIndicatorTintColor = [UIColor grayColor];
-        _pageControl.currentPageIndicatorTintColor = [UIColor whiteColor];
-        _pageControl.backgroundColor = [UIColor redColor];
-        
-    }
-    return _pageControl;
-}
-
-- (UIView *)giftCollectionView{
-    if(!_giftCollectionView){
-        /**--------------1. 系统自带的排列方式是上下布局。---------------------*/
-        //        UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc]init];
-        /**--------------2. 使用自定义的的排列方式是左右布局。---------------------*/
-        TSCCollectionViewFlowLayout *layout = [[TSCCollectionViewFlowLayout alloc] initWithRowCount:2 itemCountPerRow:4];
-        [layout setColumnSpacing:0 rowSpacing:0 edgeInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
-        layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;//设置滚动方向
-        /** 注意,此处设置的item的尺寸是理论值，实际是由行列间距、collectionView的内边距和宽高决定 */
-        layout.itemSize = CGSizeMake(kScreenWidth/4, 124);//设置cell的size
-        layout.minimumLineSpacing = 0;//行间距
-        layout.minimumInteritemSpacing = 0;//同行之间item间距
-        _giftCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 248) collectionViewLayout:layout];
-        _giftCollectionView.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.0f];
-        _giftCollectionView.pagingEnabled = YES;//是否可以类似page的滚动
-        _giftCollectionView.showsHorizontalScrollIndicator = NO;
-        _giftCollectionView.delegate = self;
-        _giftCollectionView.dataSource = self;
-        
-        [_giftCollectionView registerNib:[UINib nibWithNibName:@"CBGiftCell" bundle:nil] forCellWithReuseIdentifier:KReuseIdGiftCell];
-    }
-    return _giftCollectionView;
 }
 
 - (CBLiveChatViewVC *)superController{

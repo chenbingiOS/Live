@@ -48,7 +48,7 @@
 - (void)showAnimation {
     
     self.layer.borderWidth = 0.5;
-    self.layer.borderColor = [UIColor colorWithRed:65.0/255.0 green:214.0/255.0 blue:197.0/255.0 alpha:1].CGColor;
+    self.layer.borderColor = [UIColor mainColor].CGColor;
     
     self.timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, dispatch_get_main_queue());
     // 开始时间 DISPATCH_TIME_NOW ，提交时间 1 * NSEC_PER_SEC（一秒后）
@@ -74,7 +74,7 @@
 - (void)stopAnimation {
     
     self.layer.borderWidth = 0.3;
-    self.layer.borderColor =[UIColor colorWithRed:43.0/225.0 green:43.0/255.0 blue:59.0/225.0 alpha:1].CGColor;
+    self.layer.borderColor = [UIColor colorWithRed:43.0/225.0 green:43.0/255.0 blue:59.0/225.0 alpha:1].CGColor;
     
     if (self.timer !=nil){
         dispatch_source_cancel(self.timer);
