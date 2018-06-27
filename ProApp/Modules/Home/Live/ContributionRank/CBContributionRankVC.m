@@ -37,6 +37,9 @@ static NSString *const CBGuardRankCCellID = @"CBGuardRankCCellID";
     [self.tableView registerNib:[UINib nibWithNibName:@"CBGuardRankBCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:CBGuardRankBCellID];
     [self.tableView registerNib:[UINib nibWithNibName:@"CBGuardRankCCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:CBGuardRankCCellID];
 }
+- (IBAction)action:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

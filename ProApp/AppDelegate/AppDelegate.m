@@ -29,16 +29,6 @@
     [self initPLKit];
 
 //    [PPNetworkHelper openLog];
-//    NSDictionary *param = @{@"token": [CBLiveUserConfig getOwnToken],
-//                            @"uid": @"157968",
-//                            @"data": @[@"4",@"5",@"6"]
-//                            };
-//    [PPNetworkHelper POST:@"http://fengwo.gttead.cn/Api/Anchor/add_impress" parameters:param success:^(id responseObject) {
-//
-//    } failure:^(NSError *error) {
-//
-//    }];
-    
     return YES;
 }
 

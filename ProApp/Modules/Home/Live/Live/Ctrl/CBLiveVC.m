@@ -65,7 +65,7 @@
 }
 
 - (void)closeLive {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 // 设置当前图片根据当前的索引
@@ -142,7 +142,7 @@
 
 - (CBLivePlayerVC *)roomShowView{
     if (!_roomShowView) {
-        _roomShowView = [[CBLivePlayerVC alloc]init];
+        _roomShowView = [[CBLivePlayerVC alloc] init];
     }
     return _roomShowView;
 }

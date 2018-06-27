@@ -34,24 +34,13 @@
 
 @implementation CBLivePlayerVC
 
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-    [self _UI_Join_Room];
-}
-
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-    [self _UI_LeaveChatRoom];
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.isLookFirstLive = YES;
 }
 
 - (void)_UI_LeaveChatRoom {
-    
-    // 加入聊天
+    NSLog(@"离开聊天室");
     [self.liveChatView leaveChatRoom];
     
     self.liveChatView = nil;
@@ -66,6 +55,8 @@
 }
 
 - (void)_UI_Join_Room {
+    NSLog(@"加入聊天室");
+    
     [self.view addSubview:self.roomView];
     [self.roomView addSubview:self.scrollView];
     [self.scrollView addSubview:self.leftView];
@@ -87,11 +78,16 @@
     [self.liveChatView joinChatRoom];
 }
 
-- (void)firstRenderTypeVideoShow {
+- (void)firstJoinLiveRoom {
     if (self.isLookFirstLive) {
-        [self _UI_Join_Room];
         self.isLookFirstLive = NO;
+    } else {
+        [self _UI_LeaveChatRoom];
     }
+}
+
+- (void)firstJoinLiveChatRoom {
+    [self _UI_Join_Room];
 }
 
 #pragma mark - layz
@@ -169,6 +165,9 @@
 #pragma mark - Set 
 - (void)setLive:(CBAppLiveVO *)live {
     _live = live;
+    
+    [self firstJoinLiveRoom];
+    
     self.url = [NSURL URLWithString:live.channel_source];
     [self.roomCodeLabel shadowWtihText:[NSString stringWithFormat:@"房间号: %@", live.room_id]];
 }

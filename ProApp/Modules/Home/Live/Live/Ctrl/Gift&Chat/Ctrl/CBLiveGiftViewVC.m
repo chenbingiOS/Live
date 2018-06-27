@@ -91,7 +91,7 @@ static NSString *const KReuseIdGiftCell = @"KReuseIdGiftCell";
 
 - (void)_UI_setup{
     self.countNum = @1;
-    
+    self.giftCollectionView.collectionViewLayout = self.collectionViewLayout;
     self.collectionViewLayout.rowCount = 2;
     self.collectionViewLayout.itemCountPerRow = 4;
     [self.collectionViewLayout setColumnSpacing:0 rowSpacing:0 edgeInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
@@ -107,18 +107,6 @@ static NSString *const KReuseIdGiftCell = @"KReuseIdGiftCell";
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-//查找父控制器
-- (UIViewController *)superViewController
-{
-    for (UIView* next = [self.view superview]; next; next = next.superview) {
-        UIResponder *nextResponder = [next nextResponder];
-        if ([nextResponder isKindOfClass:[UIViewController class]]) {
-            return (UIViewController *)nextResponder;
-        }
-    }
-    return nil;
 }
 
 - (IBAction)actionBtnSendGift:(UIButton *)sender {

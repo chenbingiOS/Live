@@ -20,7 +20,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="103" height="110"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bangbangtang" translatesAutoresizingMaskIntoConstraints="NO" id="fno-Rf-f9c">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder_head" translatesAutoresizingMaskIntoConstraints="NO" id="fno-Rf-f9c">
                         <rect key="frame" x="0.0" y="10" width="103" height="61"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="fno-Rf-f9c" secondAttribute="height" multiplier="103:55" constant="-11.236363636363635" id="pST-nc-b1c"/>
@@ -107,7 +107,6 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="bangbangtang" width="210" height="132"/>
         <image name="first_charge_reward_diamond" width="120" height="120"/>
         <image name="imageView:k6O-pw-9v3:image" width="42" height="42">
             <mutableData key="keyedArchiveRepresentation">
@@ -375,5 +374,6 @@ PAI8BzwUPBc8JDwpPDE8NDw5PEE8RDxWPFk8XgAAAAAAAAIBAAAAAAAAAFYAAAAAAAAAAAAAAAAAADxg
 A
 </mutableData>
         </image>
+        <image name="placeholder_head" width="100" height="100"/>
     </resources>
 </document>

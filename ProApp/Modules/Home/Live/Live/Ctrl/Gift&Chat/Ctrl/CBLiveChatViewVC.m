@@ -9,6 +9,9 @@
 #import "CBLiveChatViewVC.h"
 // VC
 #import "CBLiveGiftViewVC.h"
+#import "CBContributionRankVC.h"
+#import "CBLivePlayerVC.h"
+#import "CBLiveVC.h"
 // VO
 #import "CBAppLiveVO.h"
 // View
@@ -20,6 +23,10 @@
 #import "EaseAdminView.h"
 #import "CBOnlineUserView.h"
 #import "LiveGiftShowCustom.h"
+// Delegate
+#import "CBActionLiveDelegate.h"
+// Category
+#import "UIViewController+SuperViewCtrl.h"
 
 @interface CBLiveChatViewVC ()
 <
@@ -30,7 +37,8 @@
     TapBackgroundViewDelegate,
     CBActionLiveDelegate,
     CBLiveGiftViewDelegate,
-    LiveGiftShowCustomDelegate
+    LiveGiftShowCustomDelegate,
+    CBActionLiveDelegate
 >
 {
     BOOL _enableAdmin;
@@ -126,6 +134,31 @@
     self.chatview = nil;
     self.closeButton = nil;
     self.liveGiftView = nil;
+}
+
+#pragma mark - CBActionLiveDelegate
+// 显示主播信息
+- (void)actionLiveShowAnchorInfo {
+    UIWindow *window = [UIApplication sharedApplication].keyWindow;
+    [self.anchorInfoView showIn:window];
+    self.anchorInfoView.liveVO = _liveVO;
+}
+// 关注当前用户
+- (void)actionLiveAttentionCurrentAnchor {}
+// 开通守护
+- (void)actionLiveOpenGuard {}
+// 显示在线用户列表
+- (void)actionLiveShowOnlineUserList {}
+// 显示贡献榜
+- (void)actionLiveShowContributionList {
+    
+    CBContributionRankVC *vc = [CBContributionRankVC new];
+    [self presentViewController:vc animated:YES completion:nil];
+    
+//    CBContributionRankVC *vc = [CBContributionRankVC new];
+//    CBLivePlayerVC *livePlayerVC = (CBLivePlayerVC *)[UIViewController superViewController:self];
+//    CBLiveVC *liveVC = (CBLiveVC *)[UIViewController superViewController:livePlayerVC];
+//    [liveVC.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark - EaseLiveHeaderListViewDelegate

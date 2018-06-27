@@ -12,7 +12,7 @@
 
 + (UIViewController *)superViewController:(UIViewController *)vc
 {
-    for (UIView* next = [vc.view superview]; next; next = next.superview) {
+    for (UIView *next = [vc.view superview]; next; next = next.superview) {
         UIResponder *nextResponder = [next nextResponder];
         if ([nextResponder isKindOfClass:[UIViewController class]]) {
             return (UIViewController *)nextResponder;
@@ -23,7 +23,7 @@
 
 + (UIViewController *)getSuperViewController:(NSString *)controllerName target:(nullable id)target{
     
-    for (UIView* next = [target superview]; next; next = next.superview) {
+    for (UIView  *next = [target superview]; next; next = next.superview) {
         UIResponder *nextResponder = [next nextResponder];
         if ([nextResponder isKindOfClass:[controllerName class]]) {
             return (UIViewController *)nextResponder;

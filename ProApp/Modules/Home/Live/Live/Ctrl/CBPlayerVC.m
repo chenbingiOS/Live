@@ -84,7 +84,7 @@
     }
 }
 
-- (void)firstRenderTypeVideoShow {
+- (void)firstJoinLiveChatRoom {
     NSLog(@"子类未实现");
 }
 
@@ -96,9 +96,7 @@
 }
 
 - (void)player:(PLPlayer *)player statusDidChange:(PLPlayerStatus)state
-{
-    NSLog(@"%@", @(state));
-    
+{    
     if (self.isDisapper) {
         [self.player stop];
         [self hideWaiting];
@@ -119,6 +117,64 @@
     } else if (state == PLPlayerStateAutoReconnecting) {
         [self showWaiting];
     }
+    
+    switch (state) {
+        case PLPlayerStatusUnknow:
+            {
+                NSLog(@"PLPlayerStatusUnknow");
+            }
+            break;
+        case PLPlayerStatusPreparing:
+            {
+                NSLog(@"PLPlayerStatusPreparing");
+            }
+            break;
+        case PLPlayerStatusReady:
+            {
+                NSLog(@"PLPlayerStatusReady");
+            }
+            break;
+        case PLPlayerStatusOpen:
+            {
+                NSLog(@"PLPlayerStatusOpen");
+            }
+            break;
+        case PLPlayerStatusCaching:
+            {
+                NSLog(@"PLPlayerStatusCaching");
+            }
+            break;
+        case PLPlayerStatusPlaying:
+            {
+                NSLog(@"PLPlayerStatusPlaying");
+            }
+            break;
+        case PLPlayerStatusPaused:
+            {
+                NSLog(@"PLPlayerStatusPaused");
+            }
+            break;
+        case PLPlayerStatusStopped:
+            {
+                NSLog(@"PLPlayerStatusStopped");
+            }
+            break;
+        case PLPlayerStatusError:
+            {
+                NSLog(@"PLPlayerStatusError");
+            }
+            break;
+        case PLPlayerStateAutoReconnecting:
+            {
+                NSLog(@"PLPlayerStateAutoReconnecting");
+            }
+            break;
+        case PLPlayerStatusCompleted:
+            {
+                NSLog(@"PLPlayerStatusCompleted");
+            }
+            break;
+    }
 }
 
 - (void)player:(PLPlayer *)player stoppedWithError:(NSError *)error
@@ -138,7 +194,6 @@
 
 - (void)player:(nonnull PLPlayer *)player firstRender:(PLPlayerFirstRenderType)firstRenderType {
     if (PLPlayerFirstRenderTypeVideo == firstRenderType) {
-        [self firstRenderTypeVideoShow];
     }
 }
 
@@ -168,6 +223,8 @@
 //        self.player = nil;
         [self setupPlayer];
         [self.player play];
+        
+        [self firstJoinLiveChatRoom];
     }
 }
 

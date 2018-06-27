@@ -29,7 +29,7 @@
     } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
         if (error) {
             failed(error);
-        }else {
+        } else {
             self.image = image;
             success(image);
         }
