@@ -96,7 +96,7 @@ static NSString *const KReuseIdGiftCell = @"KReuseIdGiftCell";
     self.collectionViewLayout.itemCountPerRow = 4;
     [self.collectionViewLayout setColumnSpacing:0 rowSpacing:0 edgeInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
     self.collectionViewLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;//设置滚动方向
-    self.collectionViewLayout.itemSize = CGSizeMake(kScreenWidth/4, 124);//设置cell的size
+    self.collectionViewLayout.itemSize = CGSizeMake(kScreenWidth/4, 110);//设置cell的size
     self.collectionViewLayout.minimumLineSpacing = 0;//行间距
     self.collectionViewLayout.minimumInteritemSpacing = 0;//同行之间item间距
     [self.giftCollectionView registerNib:[UINib nibWithNibName:@"CBGiftCell" bundle:nil] forCellWithReuseIdentifier:KReuseIdGiftCell];

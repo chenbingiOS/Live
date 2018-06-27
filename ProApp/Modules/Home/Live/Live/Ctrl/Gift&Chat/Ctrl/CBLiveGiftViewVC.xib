@@ -219,7 +219,7 @@
                             </constraints>
                         </view>
                     </subviews>
-                    <color key="backgroundColor" white="1" alpha="0.75255831870000001" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="bottom" secondItem="JU1-AE-VnS" secondAttribute="bottom" id="2mf-xF-4g3"/>
                         <constraint firstItem="bkq-25-PLS" firstAttribute="top" secondItem="ATi-fh-VEr" secondAttribute="bottom" constant="15" id="5aW-0A-7cV"/>
@@ -253,7 +253,7 @@
                 <constraint firstItem="YzS-wS-jm2" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="dJv-ou-FWq"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
-            <point key="canvasLocation" x="143" y="26"/>
+            <point key="canvasLocation" x="-115" y="23"/>
         </view>
     </objects>
     <resources>

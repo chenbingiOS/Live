@@ -222,6 +222,7 @@
 }
 
 - (void)didSelectGiftButton {
+    self.chatview.hidden = YES;
     [UIView animateWithDuration:0.5 animations:^{
         self.liveGiftView.view.origin = CGPointMake(0, 0);
     }];
@@ -404,6 +405,7 @@
 
 //关闭礼物界面
 - (void)closeGiftView{
+    self.chatview.hidden = NO;
     [UIView animateWithDuration:0.5 animations:^{        
         self.liveGiftView.view.origin = CGPointMake(0, kScreenHeight);
     }];
@@ -500,7 +502,7 @@
         [_customGiftShow setShowMode:LiveGiftShowModeFromTopToBottom];
         [_customGiftShow setAppearModel:LiveGiftAppearModeLeft];
         [_customGiftShow setHiddenModel:LiveGiftHiddenModeNone];
-        [_customGiftShow enableInterfaceDebug:YES];
+//        [_customGiftShow enableInterfaceDebug:YES];
         _customGiftShow.delegate = self;
     }
     return _customGiftShow;

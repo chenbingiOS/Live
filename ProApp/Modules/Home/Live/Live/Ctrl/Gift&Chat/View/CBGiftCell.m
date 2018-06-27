@@ -26,12 +26,10 @@
     _gift = gift;
     [self.giftImage downloadImage:gift.gifticon placeholder:@"placeholder_head" success:^(UIImage *image) {
         self.giftName.text = gift.giftname;
-        self.typeImage.hidden = YES;
-        if ([gift.continuous isEqualToString:@"1"]){
-            self.typeImage.hidden = NO;
+        if (![gift.continuous isEqualToString:@"1"]){
+            self.typeImage.hidden = YES;
         }
         self.countLable.text = gift.needcoin;
-        self.countType.image = [UIImage imageNamed:@"first_charge_reward_diamond"];
     } failed:^(NSError *error) {
 
     } progress:^(CGFloat progress) {
