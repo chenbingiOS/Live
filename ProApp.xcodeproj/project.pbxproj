@@ -164,6 +164,7 @@
 		5443976520D3619F0039722D /* EaseEndLiveView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5443976420D3619E0039722D /* EaseEndLiveView.m */; };
 		5443976920D39C2D0039722D /* CBStopLiveVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5443976820D39C2D0039722D /* CBStopLiveVO.m */; };
 		5444B05D20C61F2100C68A18 /* CB_address.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5444B05B20C619A700C68A18 /* CB_address.plist */; };
+		544A3A6320E472B9008C6BA8 /* niconiconi@2x.gif in Resources */ = {isa = PBXBuildFile; fileRef = 544A3A6220E472B9008C6BA8 /* niconiconi@2x.gif */; };
 		544B8F8820CA118E00FC9CFE /* PLStreamingSessionConstructor.m in Sources */ = {isa = PBXBuildFile; fileRef = 544B8F8020CA118A00FC9CFE /* PLStreamingSessionConstructor.m */; };
 		544B8F8920CA118E00FC9CFE /* PLPanelDelegateGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 544B8F8120CA118B00FC9CFE /* PLPanelDelegateGenerator.m */; };
 		544B8F8A20CA118E00FC9CFE /* PLMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 544B8F8220CA118B00FC9CFE /* PLMainViewController.m */; };
@@ -1061,6 +1062,7 @@
 		5443976720D39C2D0039722D /* CBStopLiveVO.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBStopLiveVO.h; sourceTree = "<group>"; };
 		5443976820D39C2D0039722D /* CBStopLiveVO.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBStopLiveVO.m; sourceTree = "<group>"; };
 		5444B05B20C619A700C68A18 /* CB_address.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = CB_address.plist; sourceTree = "<group>"; };
+		544A3A6220E472B9008C6BA8 /* niconiconi@2x.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "niconiconi@2x.gif"; sourceTree = "<group>"; };
 		544B8F7E20CA118A00FC9CFE /* PLStreamingSessionConstructor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLStreamingSessionConstructor.h; sourceTree = "<group>"; };
 		544B8F7F20CA118A00FC9CFE /* PLPanelDelegateGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLPanelDelegateGenerator.h; sourceTree = "<group>"; };
 		544B8F8020CA118A00FC9CFE /* PLStreamingSessionConstructor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLStreamingSessionConstructor.m; sourceTree = "<group>"; };
@@ -1788,6 +1790,7 @@
 			children = (
 				5444B05B20C619A700C68A18 /* CB_address.plist */,
 				5436E9EC20B7E34300011BF0 /* video_draft_test.mp4 */,
+				544A3A6220E472B9008C6BA8 /* niconiconi@2x.gif */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -3884,21 +3887,21 @@
 		54C1964820E2382A00E8853D /* LiveGiftShowView */ = {
 			isa = PBXGroup;
 			children = (
+				54C1965420E2382A00E8853D /* LiveDefaultIcon.jpeg */,
 				544CF81B20E1D85400E915D7 /* CBChatGiftMessageVO.h */,
 				544CF82A20E1D85400E915D7 /* CBChatGiftMessageVO.m */,
+				54C1965020E2382A00E8853D /* LiveGiftShowCustom.h */,
 				54C1964920E2382A00E8853D /* LiveGiftShowCustom.m */,
+				54C1964F20E2382A00E8853D /* LiveGiftShowNumberView.h */,
 				54C1964A20E2382A00E8853D /* LiveGiftShowNumberView.m */,
 				54C1964B20E2382A00E8853D /* LiveGiftListModel.h */,
+				54C1965220E2382A00E8853D /* LiveGiftListModel.m */,
+				54C1965120E2382A00E8853D /* LiveUserModel.h */,
 				54C1964C20E2382A00E8853D /* LiveUserModel.m */,
+				54C1965520E2382A00E8853D /* LiveGiftShowView.h */,
 				54C1964D20E2382A00E8853D /* LiveGiftShowView.m */,
 				54C1964E20E2382A00E8853D /* LiveGiftShowModel.m */,
-				54C1964F20E2382A00E8853D /* LiveGiftShowNumberView.h */,
-				54C1965020E2382A00E8853D /* LiveGiftShowCustom.h */,
-				54C1965120E2382A00E8853D /* LiveUserModel.h */,
-				54C1965220E2382A00E8853D /* LiveGiftListModel.m */,
 				54C1965320E2382A00E8853D /* LiveGiftShowModel.h */,
-				54C1965420E2382A00E8853D /* LiveDefaultIcon.jpeg */,
-				54C1965520E2382A00E8853D /* LiveGiftShowView.h */,
 			);
 			path = LiveGiftShowView;
 			sourceTree = "<group>";
@@ -4436,6 +4439,7 @@
 				072DC5A12091A1B600F693E8 /* CBNotificationsVC.xib in Resources */,
 				54A76CDE20B7E0E10034D5A2 /* style_default_1.11_edit_effect_default@3x.png in Resources */,
 				54A76C5820B7E0E10034D5A2 /* style_default_2.0_moviEditor_changeColor@2x.png in Resources */,
+				544A3A6320E472B9008C6BA8 /* niconiconi@2x.gif in Resources */,
 				545494C220C8DAA400E96C0A /* CBMyVideoCell.xib in Resources */,
 				54A76C6420B7E0E10034D5A2 /* style_default_1.6.0_del_btn_default@2x.png in Resources */,
 				54A76CDF20B7E0E10034D5A2 /* style_default_btn_sticker_off@3x.png in Resources */,

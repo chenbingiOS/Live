@@ -29,6 +29,7 @@
     [self initPLKit];
 
 //    [PPNetworkHelper openLog];
+    
     return YES;
 }
 

@@ -27,6 +27,8 @@
 #import "CBActionLiveDelegate.h"
 // Category
 #import "UIViewController+SuperViewCtrl.h"
+#import "BlocksKit.h"
+#import "UIImageView+YYWebImage.h"
 
 @interface CBLiveChatViewVC ()
 <
@@ -44,16 +46,17 @@
     BOOL _enableAdmin;
 }
 
-@property (nonatomic, strong) UIButton *closeButton;            ///< 关闭按钮
-@property (nonatomic, strong) EMChatroom *chatroom;             ///< 房间UI
-@property (nonatomic, strong) EaseChatView *chatview;           ///< 底部聊天
+@property (nonatomic, strong) UIButton *closeButton;                ///< 关闭按钮
+@property (nonatomic, strong) EMChatroom *chatroom;                 ///< 房间UI
+@property (nonatomic, strong) EaseChatView *chatview;               ///< 底部聊天
 @property (nonatomic, strong) EaseLiveHeaderListView *headerListView;   ///< 顶部用户信息
 @property (nonatomic, strong) CBLiveGuardianListView *guardianListView; ///<  顶部守护
-@property (nonatomic, strong) CBAnchorInfoView *anchorInfoView; ///< 直播用户信息
-@property (nonatomic, strong) CBSharePopView *sharePopView;     ///< 分享
-@property (nonatomic, strong) CBOnlineUserView *onlineUserView; ///< 在线用户
-@property (nonatomic, strong) CBLiveGiftViewVC *liveGiftView;   ///< 礼物系统
-@property (nonatomic, weak)   LiveGiftShowCustom *customGiftShow;
+@property (nonatomic, strong) CBAnchorInfoView *anchorInfoView;     ///< 直播用户信息
+@property (nonatomic, strong) CBSharePopView *sharePopView;         ///< 分享
+@property (nonatomic, strong) CBOnlineUserView *onlineUserView;     ///< 在线用户
+@property (nonatomic, strong) CBLiveGiftViewVC *liveGiftView;       ///< 礼物系统
+@property (nonatomic, strong) LiveGiftShowCustom *customGiftShow;   ///< 显示普通礼物
+@property (nonatomic, strong) YYAnimatedImageView *showGifImageView; ///< 显示Gif礼物
 
 // 键盘关闭功能
 @property (nonatomic, strong) UIWindow *window;
@@ -82,6 +85,7 @@
     [self.view addSubview:self.guardianListView];
     [self.view addSubview:self.chatview];
     [self.view addSubview:self.closeButton];
+    [self.view addSubview:self.showGifImageView];
 
     @weakify(self);
     [self addChildViewController:self.liveGiftView];
@@ -194,11 +198,30 @@
 #pragma mark - EaseChatViewDelegate
 // 收到礼物消息
 - (void)didReceiveGiftWithCMDMessage:(EMMessage *)message {
-     NSLog(@"收到礼物 Ext %@", message.ext);
+    NSLog(@"收到礼物 Ext %@", message.ext);
     CBChatGiftMessageVO *msgVO = [CBChatGiftMessageVO modelWithJSON:message.ext];
-    LiveGiftShowModel *model = [LiveGiftShowModel instancetypeGiftVOByGiftMessage:msgVO];
-    model.toNumber = msgVO.giftNum.integerValue;
-    [self.customGiftShow animatedWithGiftModel:model];
+    if (msgVO.giftSwf.length > 0) {
+        self.showGifImageView.hidden = NO;
+        [self.view addSubview:self.showGifImageView];
+        @weakify(self);
+        [self.showGifImageView setImageWithURL:[NSURL URLWithString:msgVO.giftSwf] placeholder:nil options:YYWebImageOptionShowNetworkActivity completion:^(UIImage * _Nullable image, NSURL * _Nonnull url, YYWebImageFromType from, YYWebImageStage stage, NSError * _Nullable error) {
+            @strongify(self);
+            self.showGifImageView.image = image;
+        }];
+        [self.showGifImageView bk_addObserverForKeyPath:@"currentAnimatedImageIndex" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld task:^(id obj, NSDictionary *change) {
+            @strongify(self);
+            NSNumber *newV =  change[@"new"];
+            if ([newV isEqualToNumber:@0] ) {
+                [self.showGifImageView stopAnimating];
+                self.showGifImageView.hidden = YES;
+                [self.showGifImageView removeFromSuperview];
+            }
+        }];
+    } else {
+        LiveGiftShowModel *model = [LiveGiftShowModel instancetypeGiftVOByGiftMessage:msgVO];
+        model.toNumber = msgVO.giftNum.integerValue;
+        [self.customGiftShow animatedWithGiftModel:model];
+    }
 }
 
 - (void)easeChatViewDidChangeFrameToHeight:(CGFloat)toHeight
@@ -273,8 +296,9 @@
     WLog(@"用户：%@ 送出了 %li 个 %@", showModel.user.name, showModel.currentNumber, showModel.giftModel.name);
 }
 
-
 #pragma mark - EaseProfileLiveViewDelegate
+
+
 
 #pragma mark - EMChatroomManagerDelegate
 
@@ -524,9 +548,7 @@
     return _liveGiftView;
 }
 
-/*
- 礼物视图支持很多配置属性，开发者按需选择。
- */
+/* 礼物视图支持很多配置属性，开发者按需选择。*/
 - (LiveGiftShowCustom *)customGiftShow{
     if (!_customGiftShow) {
         _customGiftShow = [LiveGiftShowCustom addToView:self.view];
@@ -539,6 +561,15 @@
         _customGiftShow.delegate = self;
     }
     return _customGiftShow;
+}
+
+- (YYAnimatedImageView *)showGifImageView {
+    if (!_showGifImageView) {
+        _showGifImageView = [[YYAnimatedImageView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenWidth)];
+        _showGifImageView.centerX = self.view.centerX;
+        _showGifImageView.centerY = kScreenHeight*0.35;
+    }
+    return _showGifImageView;
 }
 
 @end

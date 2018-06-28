@@ -133,7 +133,8 @@ static NSString *const KReuseIdGiftCell = @"KReuseIdGiftCell";
                                       @"giftID": self.selectGiftVO.giftid,
                                       @"giftName": self.selectGiftVO.giftname,
                                       @"giftImageURL": self.selectGiftVO.gifticon,
-                                      @"giftNum": self.countNum
+                                      @"giftNum": self.countNum,
+                                      @"giftSwf": self.selectGiftVO.giftswf
                                       };
             [self _EMClient_SendGiftMessage:dictExt];
         } else {

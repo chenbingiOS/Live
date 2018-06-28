@@ -32,6 +32,8 @@
 #pod 'Hyphenate' ,'3.3.2'
 ##集成环信EaseUI
 #pod 'EaseUI', :git => 'https://github.com/easemob/easeui-ios-hyphenate-cocoapods.git', :tag => '3.3.2'
+# 输入框
+#pod 'JVFloatLabeledTextField'
 
 platform :ios, '9.0'
 
