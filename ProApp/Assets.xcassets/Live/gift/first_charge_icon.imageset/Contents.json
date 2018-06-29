@@ -2,11 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "first_charge_icon.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "first_charge_icon.png",
       "scale" : "2x"
     },
     {

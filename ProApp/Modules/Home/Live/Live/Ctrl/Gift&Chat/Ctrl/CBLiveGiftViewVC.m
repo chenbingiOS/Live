@@ -9,13 +9,13 @@
 #import "CBLiveGiftViewVC.h"
 // VC
 #import "CBLiveChatViewVC.h"
-#import "TSCCollectionViewFlowLayout.h"
 // Category
 #import "UIViewController+SuperViewCtrl.h"
 // Model
 #import "CBGiftVO.h"
 #import "CBAppLiveVO.h"
 #import "CBChatGiftMessageVO.h"
+#import "CBGiftTypeVO.h"
 // View
 #import "CBGiftCell.h"
 #import "TSCGifts.h"
@@ -23,11 +23,16 @@
 @interface CBLiveGiftViewVC () <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UIScrollViewDelegate>
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomConstraint;
+@property (weak, nonatomic) IBOutlet UIButton *giftTypeABtn;
+@property (weak, nonatomic) IBOutlet UIButton *giftTypeBBtn;
+@property (weak, nonatomic) IBOutlet UIButton *giftTypeCBtn;
+@property (weak, nonatomic) IBOutlet UIButton *giftTypeDBtn;
+@property (nonatomic, strong) NSArray <UIButton *> *giftTypeBtnAry;
 @property (weak, nonatomic) IBOutlet UIView *giftView;
 @property (weak, nonatomic) IBOutlet UIButton *giftListBtn;
 @property (weak, nonatomic) IBOutlet UIButton *warehouseListBtn;
 @property (weak, nonatomic) IBOutlet UICollectionView *giftCollectionView;
-@property (weak, nonatomic) IBOutlet TSCCollectionViewFlowLayout *collectionViewLayout;
+@property (weak, nonatomic) IBOutlet UICollectionViewFlowLayout *collectionViewLayout;
 @property (weak, nonatomic) IBOutlet UIPageControl *pageControl;
 @property (weak, nonatomic) IBOutlet UIButton *countABtn;
 @property (weak, nonatomic) IBOutlet UIButton *countBBtn;
@@ -36,14 +41,12 @@
 @property (weak, nonatomic) IBOutlet UIButton *countEBtn;
 @property (nonatomic, strong) NSArray <UIButton *> *countBtnAry;
 @property (nonatomic, assign) NSNumber *countNum;
+@property (weak, nonatomic) IBOutlet UILabel *moneyCountLab;
 @property (weak, nonatomic) IBOutlet UIButton *sentGiftBtn;
+
+@property (nonatomic, strong) CBGiftTypeVO *saveGiftAry;
 @property (nonatomic, strong) NSArray <CBGiftVO *> *giftAry;
 @property (nonatomic, strong) CBGiftVO *selectGiftVO;
-@property (nonatomic, strong) UIView *btnView;
-@property (nonatomic, strong) UIButton *sendBtn;
-@property (nonatomic, strong) UIImageView *coinMarkImg;
-@property (nonatomic, strong) UILabel *diamondCount;
-@property (nonatomic, strong) UILabel *starCount;
 
 @end
 
@@ -69,20 +72,19 @@ static NSString *const KReuseIdGiftCell = @"KReuseIdGiftCell";
     @weakify(self);
     [PPNetworkHelper POST:url parameters:param responseCache:^(id responseCache) {
         @strongify(self);
-        self.giftAry = [NSArray modelArrayWithClass:[CBGiftVO class] json:responseCache[@"data"]];
+        self.saveGiftAry = [CBGiftTypeVO modelWithJSON:responseCache[@"data"]];
+        self.giftAry = self.saveGiftAry.putong;
         CBGiftVO *vo = self.giftAry.firstObject;
         vo.selected = YES;
         [self.giftCollectionView reloadData];
-        // 设置选择器页面数量
         self.pageControl.numberOfPages = (int)ceilf(self.giftAry.count/8.0);
     } success:^(id responseObject) {
         @strongify(self);
-        self.giftAry = [NSArray modelArrayWithClass:[CBGiftVO class] json:responseObject[@"data"]];
+        self.saveGiftAry = [CBGiftTypeVO modelWithJSON:responseObject[@"data"]];
+        self.giftAry = self.saveGiftAry.putong;
         CBGiftVO *vo = self.giftAry.firstObject;
         vo.selected = YES;
-        self.selectGiftVO = vo;
         [self.giftCollectionView reloadData];
-        // 设置选择器页面数量
         self.pageControl.numberOfPages = (int)ceilf(self.giftAry.count/8.0);
     } failure:^(NSError *error) {
         
@@ -90,23 +92,17 @@ static NSString *const KReuseIdGiftCell = @"KReuseIdGiftCell";
 }
 
 - (void)_UI_setup{
+    self.moneyCountLab.text = [CBLiveUserConfig myProfile].balance;
     self.countNum = @1;
-    self.giftCollectionView.collectionViewLayout = self.collectionViewLayout;
-    self.collectionViewLayout.rowCount = 2;
-    self.collectionViewLayout.itemCountPerRow = 4;
-    [self.collectionViewLayout setColumnSpacing:0 rowSpacing:0 edgeInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
-    self.collectionViewLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;//设置滚动方向
-    self.collectionViewLayout.itemSize = CGSizeMake(kScreenWidth/4, 110);//设置cell的size
-    self.collectionViewLayout.minimumLineSpacing = 0;//行间距
-    self.collectionViewLayout.minimumInteritemSpacing = 0;//同行之间item间距
+    self.collectionViewLayout.itemSize = CGSizeMake(kScreenWidth/4-0.25, 110);
     [self.giftCollectionView registerNib:[UINib nibWithNibName:@"CBGiftCell" bundle:nil] forCellWithReuseIdentifier:KReuseIdGiftCell];
     
     self.countBtnAry = @[self.countABtn, self.countBBtn, self.countCBtn, self.countDBtn, self.countEBtn];
+    self.giftTypeBtnAry = @[self.giftTypeABtn, self.giftTypeBBtn, self.giftTypeCBtn, self.giftTypeDBtn];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (IBAction)actionBtnSendGift:(UIButton *)sender {
@@ -123,7 +119,6 @@ static NSString *const KReuseIdGiftCell = @"KReuseIdGiftCell";
         @strongify(self);
         NSNumber *code = responseObject[@"code"];
         if ([code isEqualToNumber:@200]) {
-            
             [self.superController closeGiftView];
             CBLiveUser *user = [CBLiveUserConfig myProfile];
             NSDictionary *dictExt = @{
@@ -136,7 +131,17 @@ static NSString *const KReuseIdGiftCell = @"KReuseIdGiftCell";
                                       @"giftNum": self.countNum,
                                       @"giftSwf": self.selectGiftVO.giftswf
                                       };
+            
+            user.balance = ((NSNumber *)(responseObject[@"data"][@"balance"])).stringValue;
+            user.user_level = ((NSNumber *)(responseObject[@"data"][@"user_level"])).stringValue;
+            [CBLiveUserConfig saveProfile:user];
+            self.moneyCountLab.text = user.balance;
             [self _EMClient_SendGiftMessage:dictExt];
+            
+            NSString *award = responseObject[@"data"][@"award"];
+            if (award.length > 0) {
+                [MBProgressHUD showAutoMessage:award];
+            }
         } else {
             NSString *descrp = responseObject[@"descrp"];
             [MBProgressHUD showAutoMessage:descrp];
@@ -160,6 +165,46 @@ static NSString *const KReuseIdGiftCell = @"KReuseIdGiftCell";
     }];
     sender.selected = YES;
     self.countNum = sender.titleLabel.text.numberValue;
+}
+
+- (IBAction)actionGiftTypeBtn:(UIButton *)sender {
+    [self.giftTypeBtnAry enumerateObjectsUsingBlock:^(UIButton * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        obj.selected = NO;
+    }];
+    sender.selected = YES;
+    
+    if (sender.tag == 11) {
+        self.giftAry = self.saveGiftAry.putong;
+    } else if (sender.tag == 22) {
+        self.giftAry = self.saveGiftAry.guizu;
+    } else if (sender.tag == 33) {
+        self.giftAry = self.saveGiftAry.xingyun;
+    } else if (sender.tag == 44) {
+        
+    }
+
+    [self.countBtnAry enumerateObjectsUsingBlock:^(UIButton * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (sender.tag == 11) {
+            obj.alpha = 1;
+        } else {
+            obj.alpha = 0;
+        }
+        obj.selected = NO;
+        if (idx == 0) {
+            obj.alpha = 1;
+            obj.selected = YES;
+        }
+    }];
+    
+    [self.giftAry enumerateObjectsUsingBlock:^(CBGiftVO * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (idx == 0) {
+            obj.selected = YES;
+        } else {
+            obj.selected = NO;
+        }
+    }];
+    self.pageControl.numberOfPages = (int)ceilf(self.giftAry.count/8.0);
+    [self.giftCollectionView reloadData];
 }
 
 #pragma mark 手势事件
@@ -203,33 +248,6 @@ static NSString *const KReuseIdGiftCell = @"KReuseIdGiftCell";
 
 #pragma mark - lazy
 
-- (UILabel *)starCount{
-    if(!_starCount){
-        _starCount = [[UILabel alloc]init];
-        _starCount.text = @"9999999";
-        _starCount.textColor = [UIColor colorWithRed:253.0/255.0 green:227.0/255.0 blue:180.0/255.0 alpha:1];
-        _starCount.font = [UIFont systemFontOfSize:13];
-    }
-    return _starCount;
-}
-
-- (UILabel *)diamondCount{
-    if(!_diamondCount){
-        _diamondCount = [[UILabel alloc]init];
-        _diamondCount.text = @"9999999";
-        _diamondCount.textColor = [UIColor colorWithRed:243.0/255.0 green:194.0/255.0 blue:45.0/255.0 alpha:1];
-        _diamondCount.font = [UIFont systemFontOfSize:13];
-    }
-    return _diamondCount;
-}
-
-- (UIImageView *)coinMarkImg{
-    if(!_coinMarkImg){
-        _coinMarkImg = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"first_charge_icon"]];
-    }
-    return _coinMarkImg;
-}
-
 - (CBLiveChatViewVC *)superController{
     if (!_superController) {
         UIViewController *vc = [UIViewController superViewController:self];
@@ -240,7 +258,7 @@ static NSString *const KReuseIdGiftCell = @"KReuseIdGiftCell";
     return _superController;
 }
 
-- (NSArray<CBGiftVO *> *)giftAry {
+- (NSArray <CBGiftVO *> *)giftAry {
     if (!_giftAry) {
         _giftAry = [NSArray array];
     }

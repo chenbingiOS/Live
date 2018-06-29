@@ -24,18 +24,12 @@
 
 - (void)setGift:(CBGiftVO *)gift{
     _gift = gift;
-    [self.giftImage downloadImage:gift.gifticon placeholder:@"placeholder_head" success:^(UIImage *image) {
-        self.giftName.text = gift.giftname;
-        if (![gift.continuous isEqualToString:@"1"]){
-            self.typeImage.hidden = YES;
-        }
-        self.countLable.text = gift.needcoin;
-    } failed:^(NSError *error) {
-
-    } progress:^(CGFloat progress) {
-        
-    }];
-   
+    self.countLable.text = gift.needcoin;
+    self.giftName.text = gift.giftname;
+    [self.giftImage sd_setImageWithURL:[NSURL URLWithString:gift.gifticon] placeholderImage:[UIImage imageNamed:@"placeholder_head"]];
+    if (![gift.continuous isEqualToString:@"1"]){
+        self.typeImage.hidden = YES;
+    }
     if (_gift.isSelected == YES){
         [self showAnimation];
     } else {
