@@ -15,7 +15,7 @@
 /**所有视图*/
 @property (nonatomic,strong) NSMutableArray* subViews;
 /**正在显示的视图*/
-@property (nonatomic,strong) UIView* showView;
+@property (nonatomic,strong) UIView *showView;
 /**房间展示视图*/
 @property (nonatomic,strong) CBLivePlayerVC *roomShowView;
 
@@ -50,6 +50,7 @@
         
         for (NSInteger i = 0; i < 3; i ++ ){
             UIImageView *imageView = [[UIImageView alloc] initWithFrame:frame];
+            imageView.contentMode = UIViewContentModeScaleAspectFill;
             [self generateDimImage:imageView];
             CGFloat imageY = CGRectGetHeight(self.view.bounds)*i;
             imageView.frame = CGRectMake(0, imageY, kScreenWidth, kScreenHeight);
@@ -83,12 +84,18 @@
         }
         /**此处非常重要 可以根据自己是实际需要选折是显示本地照片或者网路照片,若显示网路照片,请将下面的方法换成sdwebimage显示图片方法*/
 //        imageView.image = [UIImage imageNamed:self.roomDatas[currentIndex]];
-        [imageView sd_setImageWithURL:[NSURL URLWithString:self.roomDatas[currentIndex].thumb] placeholderImage:[UIImage imageNamed:@""]];
+        [imageView sd_setImageWithURL:[NSURL URLWithString:self.roomDatas[currentIndex].thumb]];
     }
     
     //主需要将播放视图展示在 i==1 的界面即可
     UIView *currentView = self.subViews[1];
     [currentView addSubview:self.roomShowView.view];
+    // 加载数据
+    if (currentIndex == 0) {
+        currentIndex = self.roomDatas.count-1;
+    } else if (currentIndex > 0) {
+        currentIndex--;
+    }
     self.roomShowView.live = self.roomDatas[currentIndex];
 }
 
@@ -105,19 +112,20 @@
         [subView removeFromSuperview];
     }
     [self.subViews removeAllObjects];
-    self.index = scrollView.contentOffset.y/kScreenHeight <1 ? -- self.index :++self.index;
+    self.index = scrollView.contentOffset.y/kScreenHeight < 1 ? --self.index : ++self.index;
     if (self.index < 0) {
         self.index = self.roomDatas.count - 1;
-    }else if (self.index>=self.roomDatas.count){
+    } else if (self.index >= self.roomDatas.count){
         self.index = 0;
     }
     for (NSInteger i = 0; i < 3; i ++ ) {
         if (i == 1) {
-            self.showView.frame =  CGRectMake(0, kScreenHeight, kScreenWidth, kScreenHeight);
-            [self.subViews addObject: self.showView];
+            self.showView.frame = CGRectMake(0, kScreenHeight, kScreenWidth, kScreenHeight);
+            [self.subViews addObject:self.showView];
             continue;
         }
         UIImageView *imageView = [[UIImageView alloc]initWithFrame:self.view.bounds];
+        imageView.contentMode = UIViewContentModeScaleAspectFill;
         [self generateDimImage:imageView];
         CGFloat imageY = CGRectGetHeight(self.view.bounds)*i;
         imageView.frame = CGRectMake(0, imageY, kScreenWidth, kScreenHeight);

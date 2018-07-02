@@ -66,19 +66,20 @@ static NSString *RIDCBAppADCell = @"RIDCBAppADCell";
         [self httpLive];
     }];
     
-    self.tableView.ly_emptyView = [CBEmptyView diyEmptyActionViewWithTarget:self action:@selector(reloadAllData)];
+//    self.tableView.ly_emptyView = [CBEmptyView diyEmptyActionViewWithTarget:self action:@selector(reloadAllData)];
 }
 
 - (void)reloadAllData {
     self.currentPage = 1;
     self.lives = [NSMutableArray array];
+    [self.tableView reloadData];
     // 获取顶部的广告
     [self httpAD];
     [self httpLive];
 }
 
 - (void)httpLive {
-    [self.tableView ly_startLoading];
+//    [self.tableView ly_startLoading];
     NSString *url = urlGetLive;
     NSDictionary *param = @{@"page":@(self.currentPage),
                             @"token":[CBLiveUserConfig getOwnToken],
@@ -100,11 +101,12 @@ static NSString *RIDCBAppADCell = @"RIDCBAppADCell";
         }
         [self.tableView.mj_header endRefreshing];
         [self.tableView.mj_footer endRefreshing];
-        [self.tableView ly_endLoading];
+//        [self.tableView ly_endLoading];
     } failure:^(NSError *error) {
         [self.tableView.mj_header endRefreshing];
         [self.tableView.mj_footer endRefreshing];
         self.currentPage--;
+//                [self.tableView ly_endLoading];
     }];
 }
 

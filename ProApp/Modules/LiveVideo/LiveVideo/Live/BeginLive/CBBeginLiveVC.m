@@ -140,12 +140,12 @@ EaseProfileLiveViewDelegate
 
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
-    [_streamingSession destroy];
-    
-    [[EMClient sharedClient].roomManager removeDelegate:self];
-    [[EMClient sharedClient] removeDelegate:self];
-    _chatview.delegate = nil;
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
+//    [_streamingSession destroy];
+//    
+//    [[EMClient sharedClient].roomManager removeDelegate:self];
+//    [[EMClient sharedClient] removeDelegate:self];
+//    _chatview.delegate = nil;
+//    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)viewDidLoad {
