@@ -177,7 +177,7 @@
 - (void)joinLiveRoomWithRoomId:(NSString*)aRoomId
                     chatroomId:(NSString*)aChatroomId
                        isCount:(BOOL)aIsCount
-                    completion:(void (^)(BOOL success))aCompletion;
+                    completion:(void (^)(BOOL success, id responseObject))aCompletion;
 
 /*
  *  用户离开直播聊天室

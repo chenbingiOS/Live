@@ -27,14 +27,11 @@
             CGFloat nameWidth = [_name boundingRectWithSize:CGSizeMake(MAXFLOAT, 15) options:NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:13]} context:nil].size.width;
             nameWidth = ceilf(nameWidth);
             _nameWidth = @(nameWidth);
-            NSLog(@"计算名字宽度 %@", @(nameWidth));
             //计算文本宽度
             CGFloat contentWidth = [_context boundingRectWithSize:CGSizeMake(MAXFLOAT, 15) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:13]} context:nil].size.width;
             contentWidth = ceilf(contentWidth);
-            NSLog(@"计算文本宽度 %@", @(contentWidth));
             //第一行可行的宽度
             CGFloat contentMaxWidth = _tableWidth.floatValue - nameWidth - 32 - 15; //5*4的间隔+32的level宽度
-            NSLog(@"第一行可行的宽度 %@", @(contentMaxWidth));
             
             if (contentWidth > contentMaxWidth){
                 _isMoreLine = YES;

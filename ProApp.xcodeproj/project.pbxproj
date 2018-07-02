@@ -161,6 +161,8 @@
 		5436EA9A20B7EDCF00011BF0 /* RecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5436EA9820B7EDCF00011BF0 /* RecordViewController.m */; };
 		5436EA9B20B7EF0E00011BF0 /* video_draft_test.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 5436E9EC20B7E34300011BF0 /* video_draft_test.mp4 */; };
 		54375D1320BC049000F09CAA /* WZBCountDownButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 54375D1120BC049000F09CAA /* WZBCountDownButton.m */; };
+		5440F09B20EA11BA0059F886 /* TSCSystemMsgCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5440F09920EA11B90059F886 /* TSCSystemMsgCell.m */; };
+		5440F09C20EA11BA0059F886 /* TSCSystemMsgCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5440F09A20EA11B90059F886 /* TSCSystemMsgCell.xib */; };
 		5443976520D3619F0039722D /* EaseEndLiveView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5443976420D3619E0039722D /* EaseEndLiveView.m */; };
 		5443976920D39C2D0039722D /* CBStopLiveVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5443976820D39C2D0039722D /* CBStopLiveVO.m */; };
 		5444B05D20C61F2100C68A18 /* CB_address.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5444B05B20C619A700C68A18 /* CB_address.plist */; };
@@ -1060,6 +1062,9 @@
 		5436EA9920B7EDCF00011BF0 /* RecordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordViewController.h; sourceTree = "<group>"; };
 		54375D1120BC049000F09CAA /* WZBCountDownButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WZBCountDownButton.m; sourceTree = "<group>"; };
 		54375D1220BC049000F09CAA /* WZBCountDownButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WZBCountDownButton.h; sourceTree = "<group>"; };
+		5440F09820EA11B80059F886 /* TSCSystemMsgCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSCSystemMsgCell.h; sourceTree = "<group>"; };
+		5440F09920EA11B90059F886 /* TSCSystemMsgCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSCSystemMsgCell.m; sourceTree = "<group>"; };
+		5440F09A20EA11B90059F886 /* TSCSystemMsgCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TSCSystemMsgCell.xib; sourceTree = "<group>"; };
 		5443976320D3619E0039722D /* EaseEndLiveView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EaseEndLiveView.h; sourceTree = "<group>"; };
 		5443976420D3619E0039722D /* EaseEndLiveView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EaseEndLiveView.m; sourceTree = "<group>"; };
 		5443976720D39C2D0039722D /* CBStopLiveVO.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBStopLiveVO.h; sourceTree = "<group>"; };
@@ -3061,6 +3066,9 @@
 				5463451C20E5E4BC00C23F87 /* TSCChatViewCell.h */,
 				5463451B20E5E4BB00C23F87 /* TSCChatViewCell.m */,
 				5463451D20E5E4BC00C23F87 /* TSCChatViewCell.xib */,
+				5440F09820EA11B80059F886 /* TSCSystemMsgCell.h */,
+				5440F09920EA11B90059F886 /* TSCSystemMsgCell.m */,
+				5440F09A20EA11B90059F886 /* TSCSystemMsgCell.xib */,
 				544F801120D0B8DA00F492AE /* EaseChatView.h */,
 				544F801220D0B8DA00F492AE /* EaseChatView.m */,
 				544F801420D0B90200F492AE /* EaseInputTextView.h */,
@@ -4287,6 +4295,7 @@
 				54C18B4020D9E4E600882377 /* reversal_camera@2x.png in Resources */,
 				54A76C7B20B7E0E10034D5A2 /* style_default_1.7.0_soundreco_selected@3x.png in Resources */,
 				54A76D1B20B7E0E10034D5A2 /* style_default_1.7.0_nosound_selected@2x.png in Resources */,
+				5440F09C20EA11BA0059F886 /* TSCSystemMsgCell.xib in Resources */,
 				54A76CE620B7E0E10034D5A2 /* style_default_1.7.1_btn_import@3x.png in Resources */,
 				54A76D1920B7E0E10034D5A2 /* style_default_1.6.0_homepage_btn_normal@3x.png in Resources */,
 				54A76D7C20B7E0E10034D5A2 /* InfoPlist.strings in Resources */,
@@ -4743,6 +4752,7 @@
 				54FD10C820E0974E00C74C92 /* CBGiftCell.m in Sources */,
 				5465AE0320BD31A3006E24BB /* CBEditVideoVC.m in Sources */,
 				547EA77920CE6D1F00CDC1A1 /* PLDelgateHelper.m in Sources */,
+				5440F09B20EA11BA0059F886 /* TSCSystemMsgCell.m in Sources */,
 				07F6EFE120872E3D0035C6BD /* ALinUser.m in Sources */,
 				54130A1220B6B52200CAE467 /* CBLiveSettingConfig.m in Sources */,
 				07558C1F20941F18007E41C2 /* CBPopView.m in Sources */,

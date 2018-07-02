@@ -14,6 +14,7 @@
 
 #import "TSCChatModel.h"
 #import "TSCChatViewCell.h"
+#import "TSCSystemMsgCell.h"
 
 #define kGiftAction @"cmd_gift"
 #define kPraiseAction @"cmd_live_praise"
@@ -165,7 +166,7 @@ static NSString * chatSystemMsgId = @"TSCSystemMsgId";
         _tableView.showsVerticalScrollIndicator = NO;
         
         [_tableView registerNib:[UINib nibWithNibName:@"TSCChatViewCell" bundle:nil] forCellReuseIdentifier:chatCellId];
-//        [self.chatTableView registerNib:[UINib nibWithNibName:@"TSCSystemMsgCell" bundle:nil] forCellReuseIdentifier:chatSystemMsgId];
+        [_tableView registerNib:[UINib nibWithNibName:@"TSCSystemMsgCell" bundle:nil] forCellReuseIdentifier:chatSystemMsgId];
     }
     return _tableView;
 }
@@ -426,10 +427,9 @@ static NSString * chatSystemMsgId = @"TSCSystemMsgId";
 //    return cell;
     
     if(self.datasource[indexPath.row].type.integerValue == 1){
-//        TSCSystemMsgCell *cell = [tableView dequeueReusableCellWithIdentifier:chatSystemMsgId];
-//        cell.model = self.datasource[indexPath.row];
-//        return cell;
-        return [[UITableViewCell alloc] init];
+        TSCSystemMsgCell *cell = [tableView dequeueReusableCellWithIdentifier:chatSystemMsgId];
+        cell.model = self.datasource[indexPath.row];
+        return cell;
     }else{
         TSCChatViewCell *cell = [tableView dequeueReusableCellWithIdentifier:chatCellId];
         cell.model = self.datasource[indexPath.row];
@@ -454,10 +454,10 @@ static NSString * chatSystemMsgId = @"TSCSystemMsgId";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    EMMessage *message = [self.datasource objectAtIndex:indexPath.row];
-    if (self.delegate && [self.delegate respondsToSelector:@selector(didSelectUserWithMessage:)]) {
-        [self.delegate didSelectUserWithMessage:message];
-    }
+//    EMMessage *message = [self.datasource objectAtIndex:indexPath.row];
+//    if (self.delegate && [self.delegate respondsToSelector:@selector(didSelectUserWithMessage:)]) {
+//        [self.delegate didSelectUserWithMessage:message];
+//    }
 }
 
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
@@ -677,11 +677,7 @@ static NSString * chatSystemMsgId = @"TSCSystemMsgId";
         rect = self.bottomSendMsgView.frame;
         rect.size.height += changeHeight;
         self.bottomSendMsgView.frame = rect;
-        
-        NSLog(@"%@", NSStringFromCGRect(rect));
-        
         [self.textView setContentOffset:CGPointMake(0.0f, (self.textView.contentSize.height - self.textView.frame.size.height) / 2) animated:YES];
-
         _previousTextViewContentHeight = toHeight;
     }
 }
@@ -808,7 +804,7 @@ static NSString * chatSystemMsgId = @"TSCSystemMsgId";
 
 - (void)joinChatroomWithIsCount:(BOOL)aIsCount completion:(void (^)(BOOL success))aCompletion {
     @weakify(self);
-    [[EaseHttpManager sharedInstance] joinLiveRoomWithRoomId:self.room.room_id chatroomId:self.room.leancloud_room isCount:aIsCount completion:^(BOOL success) {
+    [[EaseHttpManager sharedInstance] joinLiveRoomWithRoomId:self.room.room_id chatroomId:self.room.leancloud_room isCount:aIsCount completion:^(BOOL success, id responseObject) {
         @strongify(self);
         BOOL ret = NO;
         if (success) {
@@ -823,6 +819,15 @@ static NSString * chatSystemMsgId = @"TSCSystemMsgId";
                     [self layoutSubviews];
                 }
             }
+            NSArray *msgAry = responseObject[@"data"][@"msg"];
+            for (NSDictionary *dictMsg in msgAry) {
+                NSDictionary *dictDate = @{@"name":dictMsg[@"title"],
+                                           @"context":dictMsg[@"msg"],
+                                           @"type":@1};
+                TSCChatModel *model = [[TSCChatModel alloc] initWithDictinary:dictDate];
+                [self.datasource addObject:model];
+            }
+            [self.tableView reloadData];
         }
         aCompletion(ret);
     }];

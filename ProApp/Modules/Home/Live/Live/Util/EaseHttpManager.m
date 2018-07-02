@@ -474,7 +474,8 @@ static EaseHttpManager *sharedInstance = nil;
     [self _doPutCountWithRoomId:aRoomId
                            type:@"praise"
                           count:aCount
-                     completion:aCompletion];
+                     completion:aCompletion
+                     cmpRespObj:nil];
 }
 
 - (void)getPraiseCountToServerWithRoomId:(NSString*)aRoomId
@@ -492,7 +493,8 @@ static EaseHttpManager *sharedInstance = nil;
     [self _doPutCountWithRoomId:aRoomId
                            type:@"gift"
                           count:aCount
-                     completion:aCompletion];
+                     completion:aCompletion
+                     cmpRespObj:nil];
 }
 
 - (void)getGiftCountToServerWithRoomId:(NSString *)aRoomId
@@ -569,7 +571,7 @@ static EaseHttpManager *sharedInstance = nil;
  @param aIsCount 是否计数
  @param aCompletion 成功回掉
  */
-- (void)joinLiveRoomWithRoomId:(NSString*)aRoomId chatroomId:(NSString*)aChatroomId isCount:(BOOL)aIsCount completion:(void (^)(BOOL success))aCompletion {
+- (void)joinLiveRoomWithRoomId:(NSString*)aRoomId chatroomId:(NSString*)aChatroomId isCount:(BOOL)aIsCount completion:(void (^)(BOOL success, id responseObject))aCompletion {
     @weakify(self);
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         @strongify(self);
@@ -580,15 +582,17 @@ static EaseHttpManager *sharedInstance = nil;
         if (!error) {
             if (aIsCount) {
                 // 人数加一
-                [self _doPutCountWithRoomId:aRoomId type:@"join" count:1 completion:NULL];
+                [self _doPutCountWithRoomId:aRoomId type:@"join" count:1 completion:NULL cmpRespObj:^(id responseObject) {
+                    if (aCompletion) {
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            aCompletion(YES, responseObject);
+                        });
+                    }
+                }];
             }
             ret = YES;
         }
-        if (aCompletion) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                aCompletion(ret);
-            });
-        }
+        
     });
 }
 
@@ -606,7 +610,7 @@ static EaseHttpManager *sharedInstance = nil;
         if (!error) {
             if (aIsCount) {
                 // 人数减一
-                [self _doPutCountWithRoomId:aRoomId type:@"leave" count:1 completion:NULL];
+                [self _doPutCountWithRoomId:aRoomId type:@"leave" count:1 completion:NULL cmpRespObj:nil];
             }
             ret = YES;
         }
@@ -660,6 +664,7 @@ static EaseHttpManager *sharedInstance = nil;
                          type:(NSString *)aType
                         count:(NSInteger)aCount
                    completion:(void (^)(NSInteger count, BOOL success))aCompletion
+                   cmpRespObj:(void (^)(id responseObject))cmpRespObj
 {
 //    NSDictionary *parameters = nil;
 //    if ([aType isEqualToString:@"join"] || [aType isEqualToString:@"leave"]) {
@@ -693,7 +698,9 @@ static EaseHttpManager *sharedInstance = nil;
     NSDictionary *param = @{@"room_id":aRoomId,
                             @"token": [CBLiveUserConfig getOwnToken]};
     [PPNetworkHelper POST:url parameters:param success:^(id responseObject) {
-        
+        if (cmpRespObj) {
+            cmpRespObj(responseObject);
+        }
     } failure:^(NSError *error) {
         
     }];
