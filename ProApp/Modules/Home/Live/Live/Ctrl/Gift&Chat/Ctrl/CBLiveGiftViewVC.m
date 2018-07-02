@@ -148,6 +148,7 @@ static NSString *const KReuseIdGiftCell = @"KReuseIdGiftCell";
         }
         [MBProgressHUD hideHUDForView:self.giftView animated:YES];
     } failure:^(NSError *error) {
+        @strongify(self);
         [MBProgressHUD showAutoMessage:@"礼物赠送失败"];
         [MBProgressHUD hideHUDForView:self.giftView animated:YES];
     }];

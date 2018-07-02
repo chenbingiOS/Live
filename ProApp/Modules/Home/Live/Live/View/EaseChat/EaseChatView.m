@@ -12,6 +12,9 @@
 #import "EaseLiveRoom.h"
 #import "CBAppLiveVO.h"
 
+#import "TSCChatModel.h"
+#import "TSCChatViewCell.h"
+
 #define kGiftAction @"cmd_gift"
 #define kPraiseAction @"cmd_live_praise"
 #define kPraiseCount @"live_praise_count"
@@ -36,7 +39,7 @@
 @property (nonatomic, copy) NSString *chatroomId;
 @property (nonatomic, assign) NSInteger praiseCount;
 
-@property (strong, nonatomic) NSMutableArray *datasource;
+@property (strong, nonatomic) NSMutableArray <TSCChatModel *> *datasource;
 @property (strong, nonatomic) UITableView *tableView;
 @property (strong, nonatomic) EaseInputTextView *textView;
 
@@ -61,7 +64,11 @@
 @property (strong, nonatomic) UIView *activityView;
 
 @end
- 
+
+static NSString * chatCellId = @"TSCChatViewId";
+static NSString * chatSystemMsgId = @"TSCSystemMsgId";
+
+
 @implementation EaseChatView
 
 - (instancetype)initWithFrame:(CGRect)frame
@@ -150,12 +157,15 @@
 - (UITableView*)tableView
 {
     if (_tableView == nil) {
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.width, CGRectGetHeight(self.bounds) - 48.f) style:UITableViewStylePlain];
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(10, 0, kScreenWidth*0.7, CGRectGetHeight(self.bounds) - 48.f) style:UITableViewStylePlain];
         _tableView.dataSource = self;
         _tableView.delegate = self;
         _tableView.backgroundColor = [UIColor clearColor];
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _tableView.showsVerticalScrollIndicator = NO;
+        
+        [_tableView registerNib:[UINib nibWithNibName:@"TSCChatViewCell" bundle:nil] forCellReuseIdentifier:chatCellId];
+//        [self.chatTableView registerNib:[UINib nibWithNibName:@"TSCSystemMsgCell" bundle:nil] forCellReuseIdentifier:chatSystemMsgId];
     }
     return _tableView;
 }
@@ -320,7 +330,9 @@
                 if ([self.datasource count] >= 200) {
                     [self.datasource removeObjectsInRange:NSMakeRange(0, 190)];
                 }
-                [self.datasource addObject:message];
+                NSDictionary *dictDate = message.ext;
+                TSCChatModel *model = [[TSCChatModel alloc] initWithDictinary:dictDate];
+                [self.datasource addObject:model];
                 [self.tableView reloadData];
                 [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:[self.datasource count] - 1 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:YES];
             }
@@ -389,8 +401,9 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath;
 {
-    EMMessage *message = [self.datasource objectAtIndex:indexPath.row];
-    return [EaseChatCell heightForMessage:message];
+//    EMMessage *message = [self.datasource objectAtIndex:indexPath.row];
+//    return [EaseChatCell heightForMessage:message];
+    return MAX(35, self.datasource[indexPath.row].cellHeight.integerValue+10);
 }
 
 #pragma mark - UITableViewDataSource
@@ -402,14 +415,26 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *CellIdentifier = @"cell";
-    EaseChatCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[EaseChatCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+//    NSString *CellIdentifier = @"cell";
+//    TSCChatViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+//    if (cell == nil) {
+//        cell = [[TSCChatViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+//    }
+//    TSCChatModel *message = [self.datasource objectAtIndex:indexPath.row];
+////    [cell setMesssage:message];
+//    cell.model = message;
+//    return cell;
+    
+    if(self.datasource[indexPath.row].type.integerValue == 1){
+//        TSCSystemMsgCell *cell = [tableView dequeueReusableCellWithIdentifier:chatSystemMsgId];
+//        cell.model = self.datasource[indexPath.row];
+//        return cell;
+        return [[UITableViewCell alloc] init];
+    }else{
+        TSCChatViewCell *cell = [tableView dequeueReusableCellWithIdentifier:chatCellId];
+        cell.model = self.datasource[indexPath.row];
+        return cell;
     }
-    EMMessage *message = [self.datasource objectAtIndex:indexPath.row];
-    [cell setMesssage:message];
-    return cell;
 }
 
 #pragma mark - UITextViewDelegate
@@ -681,17 +706,27 @@
     [self _willShowInputTextViewToHeight:[self _getTextViewContentH:self.textView] refresh:YES];
 }
 
+// 发送文本消息
 - (void)sendText
 {
     if (self.textView.text.length > 0) {
-        EMMessage *message = [self _sendTextMessage:self.textView.text to:self.chatroomId messageType:EMChatTypeChatRoom messageExt:nil];
+        NSDictionary *userExt = @{
+                                  @"userName":[CBLiveUserConfig myProfile].user_nicename,
+                                  @"userLevel":[CBLiveUserConfig myProfile].user_level,
+                                  @"context" : self.textView.text,
+                                  @"type": @"0"
+                                  };
+        EMMessage *message = [self _sendTextMessage:self.textView.text to:self.chatroomId messageType:EMChatTypeChatRoom messageExt:userExt];
         __weak EaseChatView *weakSelf = self;
         [[EMClient sharedClient].chatManager sendMessage:message progress:NULL completion:^(EMMessage *message, EMError *error) {
             if (!error) {
                 if ([weakSelf.datasource count] >= 200) {
                     [weakSelf.datasource removeObjectsInRange:NSMakeRange(0, 190)];
                 }
-                [weakSelf.datasource addObject:message];
+//                [weakSelf.datasource addObject:message];
+                NSDictionary *dictDate = message.ext;
+                TSCChatModel *model = [[TSCChatModel alloc] initWithDictinary:dictDate];
+                [self.datasource addObject:model];
                 [weakSelf.tableView reloadData];
                 [weakSelf.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:[weakSelf.datasource count] - 1 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:YES];
             } else {

@@ -33,15 +33,15 @@
         @strongify(self);
         UIViewController *vc = nil;
         // 实名认证
-        if ([[CBLiveUserConfig myProfile].is_truename isEqualToString:@"0"]) {
+        if (![[CBLiveUserConfig myProfile].is_truename isEqualToString:@"1"]) {
             vc = [CBRealNameVC new];
             [(CBRealNameVC *)vc setupUICloseItem];
         } else {
             // 是否主播
-            if ([[CBLiveUserConfig myProfile].is_host isEqualToString:@"0"]) {
-                vc = [CBApplyAnchorVC new];
-            } else {
+            if ([[CBLiveUserConfig myProfile].is_host isEqualToString:@"1"]) {
                 vc = [CBOpenLiveVC new];
+            } else {
+                vc = [CBApplyAnchorVC new];
             }
         }
         CBNVC *nvc = [[CBNVC alloc] initWithRootViewController:vc];

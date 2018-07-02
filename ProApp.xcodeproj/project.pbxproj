@@ -164,7 +164,6 @@
 		5443976520D3619F0039722D /* EaseEndLiveView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5443976420D3619E0039722D /* EaseEndLiveView.m */; };
 		5443976920D39C2D0039722D /* CBStopLiveVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5443976820D39C2D0039722D /* CBStopLiveVO.m */; };
 		5444B05D20C61F2100C68A18 /* CB_address.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5444B05B20C619A700C68A18 /* CB_address.plist */; };
-		544A3A6320E472B9008C6BA8 /* niconiconi@2x.gif in Resources */ = {isa = PBXBuildFile; fileRef = 544A3A6220E472B9008C6BA8 /* niconiconi@2x.gif */; };
 		544A3A6720E4C667008C6BA8 /* CBGiftTypeVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 544A3A6620E4C667008C6BA8 /* CBGiftTypeVO.m */; };
 		544B8F8820CA118E00FC9CFE /* PLStreamingSessionConstructor.m in Sources */ = {isa = PBXBuildFile; fileRef = 544B8F8020CA118A00FC9CFE /* PLStreamingSessionConstructor.m */; };
 		544B8F8920CA118E00FC9CFE /* PLPanelDelegateGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 544B8F8120CA118B00FC9CFE /* PLPanelDelegateGenerator.m */; };
@@ -204,6 +203,9 @@
 		545494C220C8DAA400E96C0A /* CBMyVideoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 545494C120C8DAA400E96C0A /* CBMyVideoCell.xib */; };
 		545494C620C931A800E96C0A /* CBPlayVideoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 545494C520C931A800E96C0A /* CBPlayVideoVC.m */; };
 		545494C920C9322700E96C0A /* CBShortVideoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 545494C820C9322700E96C0A /* CBShortVideoVC.m */; };
+		5463451E20E5E4BD00C23F87 /* TSCChatViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5463451B20E5E4BB00C23F87 /* TSCChatViewCell.m */; };
+		5463451F20E5E4BD00C23F87 /* TSCChatViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5463451D20E5E4BC00C23F87 /* TSCChatViewCell.xib */; };
+		5463452220E5E4F300C23F87 /* TSCChatModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5463452020E5E4F200C23F87 /* TSCChatModel.m */; };
 		5465AE0320BD31A3006E24BB /* CBEditVideoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5465AE0220BD31A3006E24BB /* CBEditVideoVC.m */; };
 		5465AE0720BD4A10006E24BB /* CBUploadVideoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5465AE0520BD4A10006E24BB /* CBUploadVideoVC.m */; };
 		5467015920C0D47D00519860 /* CBAttentionVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5467015820C0D47D00519860 /* CBAttentionVO.m */; };
@@ -1063,7 +1065,6 @@
 		5443976720D39C2D0039722D /* CBStopLiveVO.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBStopLiveVO.h; sourceTree = "<group>"; };
 		5443976820D39C2D0039722D /* CBStopLiveVO.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBStopLiveVO.m; sourceTree = "<group>"; };
 		5444B05B20C619A700C68A18 /* CB_address.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = CB_address.plist; sourceTree = "<group>"; };
-		544A3A6220E472B9008C6BA8 /* niconiconi@2x.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "niconiconi@2x.gif"; sourceTree = "<group>"; };
 		544A3A6520E4C667008C6BA8 /* CBGiftTypeVO.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBGiftTypeVO.h; sourceTree = "<group>"; };
 		544A3A6620E4C667008C6BA8 /* CBGiftTypeVO.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBGiftTypeVO.m; sourceTree = "<group>"; };
 		544B8F7E20CA118A00FC9CFE /* PLStreamingSessionConstructor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLStreamingSessionConstructor.h; sourceTree = "<group>"; };
@@ -1137,6 +1138,11 @@
 		545494C520C931A800E96C0A /* CBPlayVideoVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBPlayVideoVC.m; sourceTree = "<group>"; };
 		545494C720C9322700E96C0A /* CBShortVideoVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBShortVideoVC.h; sourceTree = "<group>"; };
 		545494C820C9322700E96C0A /* CBShortVideoVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBShortVideoVC.m; sourceTree = "<group>"; };
+		5463451B20E5E4BB00C23F87 /* TSCChatViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSCChatViewCell.m; sourceTree = "<group>"; };
+		5463451C20E5E4BC00C23F87 /* TSCChatViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSCChatViewCell.h; sourceTree = "<group>"; };
+		5463451D20E5E4BC00C23F87 /* TSCChatViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TSCChatViewCell.xib; sourceTree = "<group>"; };
+		5463452020E5E4F200C23F87 /* TSCChatModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSCChatModel.m; sourceTree = "<group>"; };
+		5463452120E5E4F300C23F87 /* TSCChatModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSCChatModel.h; sourceTree = "<group>"; };
 		5465AE0120BD31A3006E24BB /* CBEditVideoVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBEditVideoVC.h; sourceTree = "<group>"; };
 		5465AE0220BD31A3006E24BB /* CBEditVideoVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBEditVideoVC.m; sourceTree = "<group>"; };
 		5465AE0420BD4A10006E24BB /* CBUploadVideoVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBUploadVideoVC.h; sourceTree = "<group>"; };
@@ -1793,7 +1799,6 @@
 			children = (
 				5444B05B20C619A700C68A18 /* CB_address.plist */,
 				5436E9EC20B7E34300011BF0 /* video_draft_test.mp4 */,
-				544A3A6220E472B9008C6BA8 /* niconiconi@2x.gif */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -3051,6 +3056,11 @@
 				54C18B1420D9E4E600882377 /* image */,
 				544F802D20D1114400F492AE /* EaseHeartFlyView.h */,
 				544F802C20D1114400F492AE /* EaseHeartFlyView.m */,
+				5463452120E5E4F300C23F87 /* TSCChatModel.h */,
+				5463452020E5E4F200C23F87 /* TSCChatModel.m */,
+				5463451C20E5E4BC00C23F87 /* TSCChatViewCell.h */,
+				5463451B20E5E4BB00C23F87 /* TSCChatViewCell.m */,
+				5463451D20E5E4BC00C23F87 /* TSCChatViewCell.xib */,
 				544F801120D0B8DA00F492AE /* EaseChatView.h */,
 				544F801220D0B8DA00F492AE /* EaseChatView.m */,
 				544F801420D0B90200F492AE /* EaseInputTextView.h */,
@@ -4369,6 +4379,7 @@
 				54A76C8E20B7E0E10034D5A2 /* lsq_filter_thumb_whitening.jpg in Resources */,
 				54A76D8020B7E0E10034D5A2 /* fullScreenSticker.json in Resources */,
 				54A76C7220B7E0E10034D5A2 /* style_default_1.8.0_homepage_tools_icon@2x.png in Resources */,
+				5463451F20E5E4BD00C23F87 /* TSCChatViewCell.xib in Resources */,
 				54A76CC020B7E0E10034D5A2 /* lsq_filter_thumb_nature_1.jpg in Resources */,
 				54A76CD720B7E0E10034D5A2 /* style_default_1.7.0_save@3x.png in Resources */,
 				54A76C7620B7E0E10034D5A2 /* video_style_default_btn_remove@3x.png in Resources */,
@@ -4444,7 +4455,6 @@
 				072DC5A12091A1B600F693E8 /* CBNotificationsVC.xib in Resources */,
 				54A76CDE20B7E0E10034D5A2 /* style_default_1.11_edit_effect_default@3x.png in Resources */,
 				54A76C5820B7E0E10034D5A2 /* style_default_2.0_moviEditor_changeColor@2x.png in Resources */,
-				544A3A6320E472B9008C6BA8 /* niconiconi@2x.gif in Resources */,
 				545494C220C8DAA400E96C0A /* CBMyVideoCell.xib in Resources */,
 				54A76C6420B7E0E10034D5A2 /* style_default_1.6.0_del_btn_default@2x.png in Resources */,
 				54A76CDF20B7E0E10034D5A2 /* style_default_btn_sticker_off@3x.png in Resources */,
@@ -4608,6 +4618,7 @@
 				07691D4920B270F900BF731E /* PPNetworkHelper.m in Sources */,
 				54A76B1720B7DF7E0034D5A2 /* EffectsItemView.m in Sources */,
 				54A76D8C20B7E17B0034D5A2 /* DubViewController.m in Sources */,
+				5463451E20E5E4BD00C23F87 /* TSCChatViewCell.m in Sources */,
 				54A76AE720B7DEDE0034D5A2 /* PLSFilterGroup.m in Sources */,
 				5467016D20C1300900519860 /* CBSexMenuView.m in Sources */,
 				07359D8F20A419E900FEEA4E /* CBLivePlayerVC.m in Sources */,
@@ -4708,6 +4719,7 @@
 				547EA77620CE6D1F00CDC1A1 /* PLMainTabBarController.m in Sources */,
 				54A76AF320B7DEDE0034D5A2 /* PLSClipMovieView.m in Sources */,
 				54A76B1620B7DF7E0034D5A2 /* SceneEffectTools.m in Sources */,
+				5463452220E5E4F300C23F87 /* TSCChatModel.m in Sources */,
 				547EA77820CE6D1F00CDC1A1 /* PLTitleValueConf.m in Sources */,
 				546E848720DB31CE0044DCC6 /* CBLiveCastView.m in Sources */,
 				548C5CCB20B519CE00A6FF53 /* CBInterface.m in Sources */,
