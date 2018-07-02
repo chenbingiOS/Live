@@ -45,6 +45,7 @@ EaseProfileLiveViewDelegate
 @property (nonatomic, strong) NSURL *streamURL;
 @property (nonatomic, strong) CBBeginLiveView *beginLiveView;           ///< 开始直播前的UI
 @property (nonatomic, strong) CBAppLiveVO *liveVO;                      ///< 直播信息对象
+@property (nonatomic, strong) UIImage *coverImage;
 //--------------------------------------------
 // 直播开始
 @property (nonatomic, strong) UIView *roomView;                         ///< 房间UI
@@ -73,6 +74,11 @@ EaseProfileLiveViewDelegate
     PLModelPanelGenerator *_modelPanelGenerator;
     PLPanelDelegateGenerator *_panelDelegateGenerator;
     PLStreamingSessionConstructor *_sessionConstructor;
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self setNavigationBarHidden:YES animated:animated];
 }
 
 // 设置摄像头
@@ -145,6 +151,7 @@ EaseProfileLiveViewDelegate
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.tabBar.hidden = YES;
+    self.coverImage = [UIImage imageNamed:@"live_empty"];
     
     [self _step_1_CameraSetting];
     [self _step_2_PLSetting];

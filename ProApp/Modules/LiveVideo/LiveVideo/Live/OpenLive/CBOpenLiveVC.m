@@ -75,7 +75,7 @@
     AppDelegate *delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
     CBTBC *tbc = (CBTBC *)(delegate.rootVC);
     CBBeginLiveVC *vc = [CBBeginLiveVC new];
-    vc.coverImage = self.coverImageView.image;
+//    vc.coverImage = self.coverImageView.image;
     [tbc.selectedViewController presentViewController:vc animated:YES completion:nil];
 }
 

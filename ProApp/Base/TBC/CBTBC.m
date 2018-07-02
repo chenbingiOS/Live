@@ -12,8 +12,8 @@
 #import "CBApplyAnchorVC.h"
 #import "CBRecordVideoVC.h"
 #import "RecordViewController.h"
-#import "CBOpenLiveVC.h"
 #import "CBRealNameVC.h"
+#import "CBBeginLiveVC.h"
 
 @interface CBTBC () <UITabBarControllerDelegate>
 
@@ -39,7 +39,7 @@
         } else {
             // 是否主播
             if ([[CBLiveUserConfig myProfile].is_host isEqualToString:@"1"]) {
-                vc = [CBOpenLiveVC new];
+                vc = [CBBeginLiveVC new];
             } else {
                 vc = [CBApplyAnchorVC new];
             }

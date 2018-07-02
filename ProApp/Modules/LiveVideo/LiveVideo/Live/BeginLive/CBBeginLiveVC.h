@@ -11,6 +11,4 @@
 
 @interface CBBeginLiveVC : PLMainTabBarController
 
-@property (nonatomic, strong) UIImage *coverImage;
-
 @end
