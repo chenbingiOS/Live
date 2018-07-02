@@ -77,6 +77,7 @@ static NSString *const KReuseIdGiftCell = @"KReuseIdGiftCell";
         CBGiftVO *vo = self.giftAry.firstObject;
         vo.selected = YES;
         [self.giftCollectionView reloadData];
+        self.selectGiftVO = vo;
         self.pageControl.numberOfPages = (int)ceilf(self.giftAry.count/8.0);
     } success:^(id responseObject) {
         @strongify(self);
@@ -85,6 +86,7 @@ static NSString *const KReuseIdGiftCell = @"KReuseIdGiftCell";
         CBGiftVO *vo = self.giftAry.firstObject;
         vo.selected = YES;
         [self.giftCollectionView reloadData];
+        self.selectGiftVO = vo;
         self.pageControl.numberOfPages = (int)ceilf(self.giftAry.count/8.0);
     } failure:^(NSError *error) {
         
@@ -92,6 +94,7 @@ static NSString *const KReuseIdGiftCell = @"KReuseIdGiftCell";
 }
 
 - (void)_UI_setup{
+    
     self.moneyCountLab.text = [CBLiveUserConfig myProfile].balance;
     self.countNum = @1;
     self.collectionViewLayout.itemSize = CGSizeMake(kScreenWidth/4-0.25, 110);
@@ -169,6 +172,7 @@ static NSString *const KReuseIdGiftCell = @"KReuseIdGiftCell";
 }
 
 - (IBAction)actionGiftTypeBtn:(UIButton *)sender {
+    
     [self.giftTypeBtnAry enumerateObjectsUsingBlock:^(UIButton * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         obj.selected = NO;
     }];
@@ -181,7 +185,7 @@ static NSString *const KReuseIdGiftCell = @"KReuseIdGiftCell";
     } else if (sender.tag == 33) {
         self.giftAry = self.saveGiftAry.xingyun;
     } else if (sender.tag == 44) {
-        
+//        [self httpLoad]
     }
 
     [self.countBtnAry enumerateObjectsUsingBlock:^(UIButton * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -197,9 +201,12 @@ static NSString *const KReuseIdGiftCell = @"KReuseIdGiftCell";
         }
     }];
     
+    @weakify(self);
     [self.giftAry enumerateObjectsUsingBlock:^(CBGiftVO * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         if (idx == 0) {
+            @strongify(self);
             obj.selected = YES;
+            self.selectGiftVO = obj;
         } else {
             obj.selected = NO;
         }
