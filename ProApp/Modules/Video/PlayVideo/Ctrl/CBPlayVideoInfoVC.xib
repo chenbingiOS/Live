@@ -132,7 +132,7 @@
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="iih-2K-VRT" secondAttribute="trailing" constant="15" id="tHX-ra-djP"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
-            <point key="canvasLocation" x="-59" y="128"/>
+            <point key="canvasLocation" x="-190" y="27"/>
         </view>
     </objects>
     <resources>
