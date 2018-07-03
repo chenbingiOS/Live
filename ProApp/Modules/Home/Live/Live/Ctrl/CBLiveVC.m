@@ -12,12 +12,14 @@
 
 @interface CBLiveVC () <UIScrollViewDelegate>
 
+@property (nonatomic, strong) NSArray <CBAppLiveVO *> *roomDatas;  /** 直播 */
+@property (nonatomic, assign) NSInteger index;      /** 当前的index */
 /**所有视图*/
-@property (nonatomic,strong) NSMutableArray* subViews;
+@property (nonatomic, strong) NSMutableArray* subViews;
 /**正在显示的视图*/
-@property (nonatomic,strong) UIView *showView;
-/**房间展示视图*/
-@property (nonatomic,strong) CBLivePlayerVC *roomShowView;
+@property (nonatomic, strong) UIView *showView;
+/** 直播 */
+@property (nonatomic, strong) CBLivePlayerVC *roomShowView;
 
 @end
 

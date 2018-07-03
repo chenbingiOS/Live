@@ -135,8 +135,8 @@ static NSString *const KReuseIdGiftCell = @"KReuseIdGiftCell";
                                       @"giftSwf": self.selectGiftVO.giftswf
                                       };
             
-            user.balance = ((NSNumber *)(responseObject[@"data"][@"balance"])).stringValue;
-            user.user_level = ((NSNumber *)(responseObject[@"data"][@"user_level"])).stringValue;
+            user.balance = responseObject[@"data"][@"balance"];
+            user.user_level = responseObject[@"data"][@"user_level"];
             [CBLiveUserConfig saveProfile:user];
             self.moneyCountLab.text = user.balance;
             [self _EMClient_SendGiftMessage:dictExt];

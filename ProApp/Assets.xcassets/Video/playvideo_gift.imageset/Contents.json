@@ -2,16 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
+      "filename" : "playvideo_gift.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "ApplyAnchor_guild@2x.png",
+      "filename" : "playvideo_gift@2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "ApplyAnchor_guild@3x.png",
+      "filename" : "playvideo_gift@3x.png",
       "scale" : "3x"
     }
   ],

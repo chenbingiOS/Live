@@ -456,7 +456,7 @@
                         <constraint firstAttribute="width" constant="44" id="2pi-8o-fXo"/>
                         <constraint firstAttribute="height" constant="44" id="Z4m-ag-Jfk"/>
                     </constraints>
-                    <state key="normal" image="guard_back"/>
+                    <state key="normal" image="begin_live_close"/>
                     <connections>
                         <action selector="actionBack:" destination="-1" eventType="touchUpInside" id="ieP-Sb-c09"/>
                     </connections>
@@ -485,12 +485,12 @@
                 <constraint firstItem="oRk-PJ-pBb" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" id="wUd-hx-lz4"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
-            <point key="canvasLocation" x="53" y="41"/>
+            <point key="canvasLocation" x="-89" y="38"/>
         </view>
     </objects>
     <resources>
+        <image name="begin_live_close" width="24" height="24"/>
         <image name="guard_anti_kicking" width="58" height="41"/>
-        <image name="guard_back" width="58" height="41"/>
         <image name="guard_btn" width="300" height="35"/>
         <image name="guard_bubble" width="58" height="41"/>
         <image name="guard_car" width="58" height="41"/>

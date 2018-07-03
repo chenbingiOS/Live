@@ -12,6 +12,7 @@
 #import "CBContributionRankVC.h"
 #import "CBLivePlayerVC.h"
 #import "CBLiveVC.h"
+#import "CBGuardVC.h"
 // VO
 #import "CBAppLiveVO.h"
 // View
@@ -149,8 +150,13 @@
 }
 // 关注当前用户
 - (void)actionLiveAttentionCurrentAnchor {}
+
 // 开通守护
-- (void)actionLiveOpenGuard {}
+- (void)actionLiveOpenGuard {
+    CBGuardVC *vc = [CBGuardVC new];
+    [self presentViewController:vc animated:YES completion:nil];
+}
+
 // 显示在线用户列表
 - (void)actionLiveShowOnlineUserList {}
 // 显示贡献榜

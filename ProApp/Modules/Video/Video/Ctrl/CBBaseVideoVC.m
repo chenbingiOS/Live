@@ -13,6 +13,8 @@
 #import "CBVerticalFlowLayout.h"
 #import "CBShortVideoVO.h"
 #import "CBShortVideoVC.h"
+#import "CBLiveVC.h"
+#import "CBVideoScrollVC.h"
 
 @interface CBBaseVideoVC () <CBVerticalFlowLayoutDelegate, UICollectionViewDelegate, UICollectionViewDataSource>
 
@@ -94,10 +96,8 @@ static NSString * const reuseIdentifier = @"CBAttentionCell";
 #pragma mark - UICollectionViewDelegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     // 跳转播放器
-    CBShortVideoVC *shortVideoVC = [[CBShortVideoVC alloc] initWithTransitionStyle:(UIPageViewControllerTransitionStyleScroll) navigationOrientation:(UIPageViewControllerNavigationOrientationVertical) options:@{UIPageViewControllerOptionInterPageSpacingKey:@(0)}];
-    shortVideoVC.videos = self.cellDataAry;
-    shortVideoVC.currentIndex = indexPath.row;
-    [self.navigationController pushViewController:shortVideoVC animated:YES];
+    CBVideoScrollVC *liveVC = [[CBVideoScrollVC alloc] initWithLives:self.cellDataAry currentIndex:indexPath.row];
+    [self.navigationController pushViewController:liveVC animated:YES];
 }
 
 

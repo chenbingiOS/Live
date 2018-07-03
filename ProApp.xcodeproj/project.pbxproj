@@ -163,6 +163,8 @@
 		54375D1320BC049000F09CAA /* WZBCountDownButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 54375D1120BC049000F09CAA /* WZBCountDownButton.m */; };
 		5440F09B20EA11BA0059F886 /* TSCSystemMsgCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5440F09920EA11B90059F886 /* TSCSystemMsgCell.m */; };
 		5440F09C20EA11BA0059F886 /* TSCSystemMsgCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5440F09A20EA11B90059F886 /* TSCSystemMsgCell.xib */; };
+		5440F0AE20EA31BB0059F886 /* CBPlayVideoInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5440F0AC20EA31BB0059F886 /* CBPlayVideoInfoVC.m */; };
+		5440F0AF20EA31BB0059F886 /* CBPlayVideoInfoVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5440F0AD20EA31BB0059F886 /* CBPlayVideoInfoVC.xib */; };
 		5443976520D3619F0039722D /* EaseEndLiveView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5443976420D3619E0039722D /* EaseEndLiveView.m */; };
 		5443976920D39C2D0039722D /* CBStopLiveVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5443976820D39C2D0039722D /* CBStopLiveVO.m */; };
 		5444B05D20C61F2100C68A18 /* CB_address.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5444B05B20C619A700C68A18 /* CB_address.plist */; };
@@ -218,6 +220,7 @@
 		5469A58120C54587004E06F1 /* CBCityMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5469A58020C54587004E06F1 /* CBCityMenuView.m */; };
 		5469A58320C54591004E06F1 /* CBCityMenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5469A58220C54591004E06F1 /* CBCityMenuView.xib */; };
 		546E848720DB31CE0044DCC6 /* CBLiveCastView.m in Sources */ = {isa = PBXBuildFile; fileRef = 546E848620DB31CE0044DCC6 /* CBLiveCastView.m */; };
+		5479D2DE20EB06DB0068F688 /* CBVideoScrollVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5479D2DD20EB06DA0068F688 /* CBVideoScrollVC.m */; };
 		547CB63320D899BD0064B29B /* UIButton+Animate.m in Sources */ = {isa = PBXBuildFile; fileRef = 547CB63220D899BD0064B29B /* UIButton+Animate.m */; };
 		547EA77420CE6D1F00CDC1A1 /* PLAttributeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 547EA76720CE6D1F00CDC1A1 /* PLAttributeModel.m */; };
 		547EA77520CE6D1F00CDC1A1 /* PLPanelModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 547EA76820CE6D1F00CDC1A1 /* PLPanelModel.m */; };
@@ -1065,6 +1068,9 @@
 		5440F09820EA11B80059F886 /* TSCSystemMsgCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSCSystemMsgCell.h; sourceTree = "<group>"; };
 		5440F09920EA11B90059F886 /* TSCSystemMsgCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSCSystemMsgCell.m; sourceTree = "<group>"; };
 		5440F09A20EA11B90059F886 /* TSCSystemMsgCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TSCSystemMsgCell.xib; sourceTree = "<group>"; };
+		5440F0AB20EA31BB0059F886 /* CBPlayVideoInfoVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBPlayVideoInfoVC.h; sourceTree = "<group>"; };
+		5440F0AC20EA31BB0059F886 /* CBPlayVideoInfoVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBPlayVideoInfoVC.m; sourceTree = "<group>"; };
+		5440F0AD20EA31BB0059F886 /* CBPlayVideoInfoVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CBPlayVideoInfoVC.xib; sourceTree = "<group>"; };
 		5443976320D3619E0039722D /* EaseEndLiveView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EaseEndLiveView.h; sourceTree = "<group>"; };
 		5443976420D3619E0039722D /* EaseEndLiveView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EaseEndLiveView.m; sourceTree = "<group>"; };
 		5443976720D39C2D0039722D /* CBStopLiveVO.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBStopLiveVO.h; sourceTree = "<group>"; };
@@ -1167,6 +1173,8 @@
 		546E848520DB31CD0044DCC6 /* CBLiveCastView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBLiveCastView.h; sourceTree = "<group>"; };
 		546E848620DB31CE0044DCC6 /* CBLiveCastView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBLiveCastView.m; sourceTree = "<group>"; };
 		546E848820DB43B30044DCC6 /* CBActionLiveDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBActionLiveDelegate.h; sourceTree = "<group>"; };
+		5479D2DC20EB06DA0068F688 /* CBVideoScrollVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBVideoScrollVC.h; sourceTree = "<group>"; };
+		5479D2DD20EB06DA0068F688 /* CBVideoScrollVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBVideoScrollVC.m; sourceTree = "<group>"; };
 		547CB63120D899BD0064B29B /* UIButton+Animate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+Animate.h"; sourceTree = "<group>"; };
 		547CB63220D899BD0064B29B /* UIButton+Animate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+Animate.m"; sourceTree = "<group>"; };
 		547EA76520CE6D1F00CDC1A1 /* PLTitleValueConf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLTitleValueConf.h; sourceTree = "<group>"; };
@@ -3038,10 +3046,13 @@
 		544B8F9320CA718E00FC9CFE /* Ctrl */ = {
 			isa = PBXGroup;
 			children = (
-				545494C720C9322700E96C0A /* CBShortVideoVC.h */,
-				545494C820C9322700E96C0A /* CBShortVideoVC.m */,
+				5479D2DC20EB06DA0068F688 /* CBVideoScrollVC.h */,
+				5479D2DD20EB06DA0068F688 /* CBVideoScrollVC.m */,
 				545494C420C931A800E96C0A /* CBPlayVideoVC.h */,
 				545494C520C931A800E96C0A /* CBPlayVideoVC.m */,
+				5440F0AB20EA31BB0059F886 /* CBPlayVideoInfoVC.h */,
+				5440F0AC20EA31BB0059F886 /* CBPlayVideoInfoVC.m */,
+				5440F0AD20EA31BB0059F886 /* CBPlayVideoInfoVC.xib */,
 			);
 			path = Ctrl;
 			sourceTree = "<group>";
@@ -3207,6 +3218,8 @@
 		545494C320C9300D00E96C0A /* PlayVideo */ = {
 			isa = PBXGroup;
 			children = (
+				545494C720C9322700E96C0A /* CBShortVideoVC.h */,
+				545494C820C9322700E96C0A /* CBShortVideoVC.m */,
 				544B8F9320CA718E00FC9CFE /* Ctrl */,
 				544B8F9420CA719900FC9CFE /* View */,
 			);
@@ -4325,6 +4338,7 @@
 				54A76CE720B7E0E10034D5A2 /* video_style_default_btn_sticker@3x.png in Resources */,
 				54A76CD620B7E0E10034D5A2 /* lsq_filter_thumb_LiveMegrim01.png in Resources */,
 				54A76CAE20B7E0E10034D5A2 /* style_default_record_btn_record_unselected@3x.png in Resources */,
+				5440F0AF20EA31BB0059F886 /* CBPlayVideoInfoVC.xib in Resources */,
 				54A76D6E20B7E0E10034D5A2 /* style_default_1.7.1_btn_filter_w_1.11@2x.png in Resources */,
 				54A76CC920B7E0E10034D5A2 /* lsq_filter_thumb_Pink010.jpg in Resources */,
 				54A76C9020B7E0E10034D5A2 /* lsq_filter_thumb_LiveSoulOut01.jpg in Resources */,
@@ -4649,6 +4663,7 @@
 				547EA77720CE6D1F00CDC1A1 /* PLAlertSpinner.m in Sources */,
 				07B6689E208D902500AA5B62 /* UIView+DashedLine.m in Sources */,
 				545494AF20C8C2F500E96C0A /* CBUploadSuccessView.m in Sources */,
+				5479D2DE20EB06DB0068F688 /* CBVideoScrollVC.m in Sources */,
 				54A0D8E520C13C1A0056554D /* CBEditUserInfoVC.m in Sources */,
 				54FD10C220E0970400C74C92 /* TSCGiftExtra.m in Sources */,
 				54C1965920E2382B00E8853D /* LiveGiftShowView.m in Sources */,
@@ -4771,6 +4786,7 @@
 				5403B86B20CFAD85000BE8B1 /* CBShareView.m in Sources */,
 				544B8F8820CA118E00FC9CFE /* PLStreamingSessionConstructor.m in Sources */,
 				54A76B1220B7DF7E0034D5A2 /* FilterItemView.m in Sources */,
+				5440F0AE20EA31BB0059F886 /* CBPlayVideoInfoVC.m in Sources */,
 				5467015C20C0E1EF00519860 /* CBEmptyView.m in Sources */,
 				077FFD082099AA7300B8680C /* CBGuardRankCell.m in Sources */,
 				54A76AE020B7DEDE0034D5A2 /* UIView+PLSLightFrame.m in Sources */,
