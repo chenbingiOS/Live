@@ -39,13 +39,14 @@
 #define urlEnterLiveRoom        purl@"Api/Anchor/enterLiveRoom"
 // 离开直播间接口
 #define urlExitLiveRoom         purl@"Api/Anchor/exitLiveRoom"
+// 获取Banner图
+#define urlGetBanner            purl@"Api/HomePage/getBanner"
 // 获取直播间在线用户列表
 #define urlGetLiveRoomOnlineUserList purl@"Api/Anchor/getLiveRoomOnlineUserList"
 // 直播间点赞
 #define urlAddLike              purl@"Api/Anchor/add_like"
 // 获取守护列表
 #define urlGetGuardRankList     purl@"Api/Anchor/guard_rank_list"
-
 //------------------------------------------------------------------
 // 用户操作
 // 用户注册

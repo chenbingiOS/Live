@@ -10,13 +10,9 @@
 
 @interface CBAppADVO : NSObject
 
-@property (nonatomic, copy) NSString *roomid;
+@property (nonatomic, copy) NSString *type;
 @property (nonatomic, copy) NSString *title;
-@property (nonatomic, copy) NSString *imageUrl;
-@property (nonatomic, copy) NSString *link;
-@property (nonatomic, copy) NSString *cutTime;
-@property (nonatomic, copy) NSString *serverid;
-@property (nonatomic, copy) NSString *contents;
-@property (nonatomic, copy) NSString *showmodel;
+@property (nonatomic, copy) NSString *pic;
+@property (nonatomic, copy) NSString *jump;
 
 @end

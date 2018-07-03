@@ -19,7 +19,7 @@
 
 - (void)setAppAdVO:(CBAppADVO *)appAdVO {
     _appAdVO = appAdVO;
-    [self.imageView sd_setImageWithURL:[NSURL URLWithString:appAdVO.imageUrl] placeholderImage:[UIImage imageNamed:@"placeHolder_ad_414x100"]];
+    [self.imageView sd_setImageWithURL:[NSURL URLWithString:appAdVO.pic] placeholderImage:[UIImage imageNamed:@"placeHolder_ad_414x100"]];
 }
 
 @end

@@ -111,14 +111,13 @@ static NSString *RIDCBAppADCell = @"RIDCBAppADCell";
 }
 
 - (void)httpAD {
-    NSString *url = getAD;
-    [PPNetworkHelper GET:url parameters:nil success:^(id responseObject) {
-        NSArray *result = responseObject[@"data"];
-        self.appADs = [NSArray modelArrayWithClass:[CBAppADVO class] json:result];
+    NSString *url = urlGetBanner;
+    NSDictionary *param = @{@"token":[CBLiveUserConfig getOwnToken]};
+    [PPNetworkHelper POST:url parameters:param success:^(id responseObject) {
+        self.appADs = [NSArray modelArrayWithClass:[CBAppADVO class] json:responseObject[@"data"]];
         self.pageControl.numberOfPages = self.appADs.count;
         [self.cyclePagerView reloadData];
     } failure:^(NSError *error) {
-        [MBProgressHUD showAutoMessage:@"网络异常"];
     }];
 }
 
