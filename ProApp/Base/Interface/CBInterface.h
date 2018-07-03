@@ -26,6 +26,7 @@
 // 在线直播列表
 #define urlGetLive              purl@"Api/Anchor/getLive"
 // 关注主播
+#define urlAddAttention         purl@"Api/Anchor/addAttention"
 // 实名认证
 // 获取守护套餐详情
 // 开始直播接口
@@ -40,6 +41,8 @@
 #define urlExitLiveRoom         purl@"Api/Anchor/exitLiveRoom"
 // 获取直播间在线用户列表
 #define urlGetLiveRoomOnlineUserList purl@"Api/Anchor/getLiveRoomOnlineUserList"
+// 直播间点赞
+#define urlAddLike              purl@"Api/Anchor/add_like"
 // 获取守护列表
 #define urlGetGuardRankList     purl@"Api/Anchor/guard_rank_list"
 

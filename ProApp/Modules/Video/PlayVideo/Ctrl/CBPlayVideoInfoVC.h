@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+@class CBShortVideoVO;
 @interface CBPlayVideoInfoVC : UIViewController
+
+@property (nonatomic, strong) CBShortVideoVO *shortVideoVO;
+- (void)joinVideoRoom;
+- (void)leaveVideoRoom;
 
 @end

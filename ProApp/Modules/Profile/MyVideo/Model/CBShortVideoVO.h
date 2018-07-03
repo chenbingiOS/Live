@@ -22,4 +22,7 @@
 @property (nonatomic, copy) NSString *uid;      ///< 视频上传者id    数字(number)
 @property (nonatomic, copy) NSString *avatar;           ///< 作者头像
 @property (nonatomic, copy) NSString *user_nicename;    ///< 作者名称
+@property (nonatomic, copy) NSString *is_attention;     ///< 是否关注
+@property (nonatomic, copy) NSString *is_like;          ///< 是否点赞
+
 @end
