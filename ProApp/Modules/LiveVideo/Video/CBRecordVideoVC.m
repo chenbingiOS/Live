@@ -846,11 +846,11 @@ FUItemsViewDelegate
     audioSettings[PLSVolumeKey] = [NSNumber numberWithFloat:1.0];
     
     // 水印图片路径
-    NSString *watermarkPath = [[NSBundle mainBundle] pathForResource:@"qiniu_logo" ofType:@".png"];
+    NSString *watermarkPath = [[NSBundle mainBundle] pathForResource:@"shortVideo_logo" ofType:@".png"];
     UIImage *watermarkImage = [UIImage imageWithContentsOfFile:watermarkPath];
     NSURL *watermarkURL = [NSURL URLWithString:watermarkPath];
     CGSize watermarkSize = watermarkImage.size;
-    CGPoint watermarkPosition = CGPointMake(10, 65);
+    CGPoint watermarkPosition = CGPointMake(44, 44);
     // 水印
     watermarkSettings[PLSURLKey] = watermarkURL;
     watermarkSettings[PLSSizeKey] = [NSValue valueWithCGSize:watermarkSize];
@@ -863,6 +863,7 @@ FUItemsViewDelegate
     exportSession.outputSettings = outputSettings;
     exportSession.isExportMovieToPhotosAlbum = YES;
     // 设置视频的导出分辨率，会将原视频缩放
+    exportSession.outputVideoSize = CGSizeMake(544, 960);
 //    exportSession.outputVideoSize = self.videoSize;
     // 旋转视频
     exportSession.videoLayerOrientation = PLSPreviewOrientationPortrait;
