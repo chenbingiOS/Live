@@ -1,4 +1,3 @@
-//
 //  CBEditVideoVC.h
 //  ProApp
 //

@@ -1,15 +1,12 @@
 //
-//  CBEditVideoVC.m
-//  ProApp
+//  EditViewController.m
+//  PLShortVideoKitDemo
 //
-//  Created by hxbjt on 2018/5/29.
-//  Copyright © 2018年 ChenBing. All rights reserved.
+//  Created by suntongmian on 17/4/11.
+//  Copyright © 2017年 Pili Engineering, Qiniu Inc. All rights reserved.
 //
 
 #import "CBEditVideoVC.h"
-#import "CBUploadVideoVC.h"
-
-
 #import "GifFormatViewController.h"
 #import "DubViewController.h"
 #import "PlayViewController.h"
@@ -44,8 +41,6 @@
 UICollectionViewDelegate,
 UICollectionViewDataSource,
 UICollectionViewDelegateFlowLayout,
-EffectsViewEventDelegate,
-TuSDKFilterProcessorDelegate,
 PLSAudioVolumeViewDelegate,
 PLSClipAudioViewDelegate,
 PLSRateButtonViewDelegate,
@@ -77,6 +72,8 @@ PLSVideoEditingControllerDelegate
 
 // 选取要编辑的功能点
 @property (assign, nonatomic) NSInteger selectionViewIndex;
+// 展示所有滤镜、音乐、MV、字幕列表的集合视图
+@property (strong, nonatomic) UICollectionView *editCollectionView;
 // 所有滤镜
 @property (strong, nonatomic) PLSFilterGroup *filterGroup;
 // 滤镜信息
@@ -357,13 +354,147 @@ PLSVideoEditingControllerDelegate
     buttonScrollView.showsVerticalScrollIndicator = NO;
     [self.editToolboxView addSubview:buttonScrollView];
     
+    UILabel *hintLabel = [[UILabel alloc]initWithFrame:CGRectMake(5, 0, 162, 35)];
+    hintLabel.font = [UIFont systemFontOfSize:13];
+    hintLabel.textAlignment = NSTextAlignmentLeft;
+    hintLabel.textColor = [UIColor redColor];
+    hintLabel.text = @"左右滑动体验更多功能按钮";
+    [buttonScrollView addSubview:hintLabel];
+    
+    // 滤镜
+    UIButton *filterButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    filterButton.frame = CGRectMake(177, 0, 35, 35);
+    [filterButton setTitle:@"滤镜" forState:UIControlStateNormal];
+    [filterButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    filterButton.titleLabel.font = [UIFont systemFontOfSize:14];
+    [filterButton addTarget:self action:@selector(filterButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+    [buttonScrollView addSubview:filterButton];
+    
+    // 选择背景音乐
+    UIButton *musicButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    musicButton.frame = CGRectMake(222, 0, 35, 35);
+    [musicButton setTitle:@"音乐" forState:UIControlStateNormal];
+    [musicButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    musicButton.titleLabel.font = [UIFont systemFontOfSize:14];
+    [musicButton addTarget:self action:@selector(musicButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+    [buttonScrollView addSubview:musicButton];
+    
+    // MV 特效
+    UIButton *mvButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    mvButton.frame = CGRectMake(267, 0, 35, 35);
+    [mvButton setTitle:@"MV" forState:UIControlStateNormal];
+    [mvButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    mvButton.titleLabel.font = [UIFont systemFontOfSize:14];
+    [mvButton addTarget:self action:@selector(mvButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+    [buttonScrollView addSubview:mvButton];
+    
+    // 配音
+    UIButton *audioDubButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    audioDubButton.frame = CGRectMake(312, 0, 35, 35);
+    [audioDubButton setImage:[UIImage imageNamed:@"icon_dub"] forState:UIControlStateNormal];
+    audioDubButton.titleLabel.font = [UIFont systemFontOfSize:14];
+    [audioDubButton addTarget:self action:@selector(dubAudioButtonEvent:) forControlEvents:UIControlEventTouchUpInside];
+    [buttonScrollView addSubview:audioDubButton];
+    
+    // 时光倒流
+    self.reverserButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.reverserButton.frame = CGRectMake(357, 0, 35, 35);
+    [self.reverserButton setImage:[UIImage imageNamed:@"Time_Machine_No_Reverser"] forState:UIControlStateNormal];
+    [self.reverserButton setImage:[UIImage imageNamed:@"Time_Machine_Reverser"] forState:UIControlStateSelected];
+    self.reverserButton.selected = NO;
+    [self.reverserButton addTarget:self action:@selector(reverserButtonEvent:) forControlEvents:UIControlEventTouchUpInside];
+    [buttonScrollView addSubview:_reverserButton];
+    
+    // 制作Gif图
+    UIButton *formGifButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    formGifButton.frame = CGRectMake(402, 0, 35, 35);
+    [formGifButton setImage:[UIImage imageNamed:@"icon_gif"] forState:UIControlStateNormal];
+    formGifButton.titleLabel.font = [UIFont systemFontOfSize:14];
+    [formGifButton addTarget:self action:@selector(formatGifButtonEvent:) forControlEvents:UIControlEventTouchUpInside];
+    [buttonScrollView addSubview:formGifButton];
+    
+    // 裁剪背景音乐
+    UIButton *clipMusicButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    clipMusicButton.frame = CGRectMake(447, 0, 35, 35);
+    [clipMusicButton setImage:[UIImage imageNamed:@"icon_trim"] forState:UIControlStateNormal];
+    [clipMusicButton addTarget:self action:@selector(clipMusicButtonEvent:) forControlEvents:UIControlEventTouchUpInside];
+    [buttonScrollView addSubview:clipMusicButton];
+    
+    // 音量调节
+    UIButton *volumeButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    volumeButton.frame = CGRectMake(492, 0, 35, 35);
+    [volumeButton setImage:[UIImage imageNamed:@"icon_volume"] forState:UIControlStateNormal];
+    [volumeButton addTarget:self action:@selector(volumeChangeEvent:) forControlEvents:UIControlEventTouchUpInside];
+    [buttonScrollView addSubview:volumeButton];
+    
+    // 关闭原声
+    UIButton *closeSoundButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    closeSoundButton.frame = CGRectMake(537, 0, 35, 35);
+    [closeSoundButton setImage:[UIImage imageNamed:@"btn_sound"] forState:UIControlStateNormal];
+    [closeSoundButton setImage:[UIImage imageNamed:@"btn_close_sound"] forState:UIControlStateSelected];
+    [closeSoundButton addTarget:self action:@selector(closeSoundButtonEvent:) forControlEvents:UIControlEventTouchUpInside];
+    [buttonScrollView addSubview:closeSoundButton];
+    
+    // 视频旋转
+    UIButton *rotateVideoButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    rotateVideoButton.frame = CGRectMake(582, 0, 35, 35);
+    [rotateVideoButton setImage:[UIImage imageNamed:@"rotate"] forState:UIControlStateNormal];
+    [rotateVideoButton addTarget:self action:@selector(rotateVideoButtonEvent:) forControlEvents:UIControlEventTouchUpInside];
+    [buttonScrollView addSubview:rotateVideoButton];
+    
+    // 添加文字、图片、涂鸦
+    UIButton *addTextButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    addTextButton.frame = CGRectMake(627, 0, 35, 35);
+    [addTextButton setImage:[UIImage imageNamed:@"btn_add_text"] forState:UIControlStateNormal];
+    [addTextButton addTarget:self action:@selector(addTextButtonEvent:) forControlEvents:UIControlEventTouchUpInside];
+    [buttonScrollView addSubview:addTextButton];
+    
+    // 视频列表
+    UIButton *videoListButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    videoListButton.frame = CGRectMake(672, 0, 60, 35);
+    videoListButton.selected = NO;
+    [videoListButton setTitle:@"视频列表" forState:UIControlStateNormal];
+    [videoListButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    videoListButton.titleLabel.font = [UIFont systemFontOfSize:14];
+    [videoListButton addTarget:self action:@selector(videoListButtonEvent:) forControlEvents:UIControlEventTouchUpInside];
+    [buttonScrollView addSubview:videoListButton];
+    
     // TuSDK mark - 特效按钮
     UIButton *effectsButton = [UIButton buttonWithType:UIButtonTypeCustom];
     effectsButton.frame = CGRectMake(742, 0, 35, 35);
     [effectsButton setTitle:@"特效" forState:UIControlStateNormal];
+    [videoListButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     effectsButton.titleLabel.font = [UIFont systemFontOfSize:14];
     [effectsButton addTarget:self action:@selector(effectsButtonClick:) forControlEvents:UIControlEventTouchUpInside];
     [buttonScrollView addSubview:effectsButton];
+    
+    // 倍数处理
+    self.titleArray = @[@"极慢", @"慢", @"正常", @"快", @"极快"];
+    self.titleIndex = 2;
+    
+    CGFloat rateTopSpace;
+    CGFloat collectionViewTopSpace;
+    
+    if (PLS_SCREEN_HEIGHT > 568) {
+        rateTopSpace = 46;
+        collectionViewTopSpace = 94;
+    } else{
+        rateTopSpace = 37;
+        collectionViewTopSpace = 75;
+    }
+    PLSRateButtonView *rateButtonView = [[PLSRateButtonView alloc]initWithFrame:CGRectMake(CGRectGetWidth(self.view.frame) - 270, rateTopSpace, 260, 34) defaultIndex:self.titleIndex];
+    rateButtonView.hidden = NO;
+    CGFloat countSpace = 200 /self.titleArray.count / 6;
+    rateButtonView.space = countSpace;
+    rateButtonView.staticTitleArray = self.titleArray;
+    rateButtonView.rateDelegate = self;
+    [self.editToolboxView addSubview:rateButtonView];
+    
+    // 展示滤镜、音乐、字幕列表效果的 UICollectionView
+    CGRect frame = self.editCollectionView.frame;
+    self.editCollectionView.frame = CGRectMake(0, collectionViewTopSpace, frame.size.width, frame.size.height);
+    [self.editToolboxView addSubview:self.editCollectionView];
+    [self.editCollectionView reloadData];
 }
 
 - (void)setupMergeToolboxView {
@@ -484,6 +615,7 @@ PLSVideoEditingControllerDelegate
     self.effectsView.effectEventDelegate = self;
     self.effectsView.effectsCode = self.videoEffects;
     [self.view addSubview:self.effectsView];
+    self.effectsView.hidden = YES;
     
     // 撤销特效的按钮
     UIButton *revocationButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -780,6 +912,29 @@ PLSVideoEditingControllerDelegate
     return array;
 }
 
+#pragma mark -- 加载 collectionView 视图
+- (UICollectionView *)editCollectionView {
+    if (!_editCollectionView) {
+        UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc]init];
+        layout.itemSize = CGSizeMake(90, 105);
+        [layout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
+        layout.minimumLineSpacing = 10;
+        layout.minimumInteritemSpacing = 10;
+        
+        _editCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, PLS_SCREEN_WIDTH, layout.itemSize.height) collectionViewLayout:layout];
+        _editCollectionView.backgroundColor = [UIColor clearColor];
+        
+        _editCollectionView.showsHorizontalScrollIndicator = NO;
+        _editCollectionView.showsVerticalScrollIndicator = NO;
+        [_editCollectionView setExclusiveTouch:YES];
+        
+        [_editCollectionView registerClass:[PLSEditVideoCell class] forCellWithReuseIdentifier:NSStringFromClass([PLSEditVideoCell class])];
+        
+        _editCollectionView.delegate = self;
+        _editCollectionView.dataSource = self;
+    }
+    return _editCollectionView;
+}
 
 #pragma mark -- 获取音乐文件的封面
 - (UIImage *)musicImageWithMusicURL:(NSURL *)url {
@@ -1067,7 +1222,26 @@ PLSVideoEditingControllerDelegate
 }
 
 #pragma mark -- UIButton 按钮响应事件
+#pragma mark -- 滤镜
+- (void)filterButtonClick:(id)sender {
+    [self setEffectsViewHidden];
+    
+    if (self.selectionViewIndex == 0) {
+        return;
+    }
+    self.selectionViewIndex = 0;
+    [self.editCollectionView reloadData];
+}
 
+#pragma mark -- 配音
+- (void)dubAudioButtonEvent:(id)sender{
+    [self setEffectsViewHidden];
+    
+    DubViewController *dubViewController = [[DubViewController alloc]init];
+    dubViewController.movieSettings = self.movieSettings;
+    dubViewController.delegate = self;
+    [self presentViewController:dubViewController animated:YES completion:nil];
+}
 
 #pragma mark -- DubViewControllerDelegate 配音的回调
 - (void)didOutputAsset:(AVAsset *)asset {
@@ -1083,6 +1257,182 @@ PLSVideoEditingControllerDelegate
     [self.shortVideoEditor replaceCurrentAssetWithAsset:self.movieSettings[PLSAssetKey]];
     [self.shortVideoEditor startEditing];
     self.playButton.selected = NO;
+}
+
+#pragma mark -- 背景音乐
+- (void)musicButtonClick:(id)sender {
+    [self setEffectsViewHidden];
+    
+    if (self.selectionViewIndex == 1) {
+        return;
+    }
+    self.selectionViewIndex = 1;
+    [self.editCollectionView reloadData];
+}
+
+#pragma mark -- MV 特效
+- (void)mvButtonClick:(id)sender {
+    [self setEffectsViewHidden];
+    
+    if (self.selectionViewIndex == 2) {
+        return;
+    }
+    self.selectionViewIndex = 2;
+    [self.editCollectionView reloadData];
+}
+
+#pragma mark -- 制作Gif图
+- (void)formatGifButtonEvent:(id)sender {
+    [self setEffectsViewHidden];
+    
+    [self joinGifFormatViewController];
+}
+
+#pragma mark -- 时光倒流
+- (void)reverserButtonEvent:(id)sender {
+    [self setEffectsViewHidden];
+    
+    [self.shortVideoEditor stopEditing];
+    self.playButton.selected = YES;
+    
+    [self loadActivityIndicatorView];
+    
+    if (self.reverser.isReversing) {
+        NSLog(@"reverser effect isReversing");
+        return;
+    }
+    
+    if (self.reverser) {
+        self.reverser = nil;
+    }
+    
+    __weak typeof(self)weakSelf = self;
+    AVAsset *asset = self.movieSettings[PLSAssetKey];
+    self.reverser = [[PLSReverserEffect alloc] initWithAsset:asset];
+    self.inputAsset = self.movieSettings[PLSAssetKey];
+    [self.reverser setCompletionBlock:^(NSURL *url) {
+        [weakSelf removeActivityIndicatorView];
+        
+        NSLog(@"reverser effect, url: %@", url);
+        
+        weakSelf.movieSettings[PLSURLKey] = url;
+        weakSelf.movieSettings[PLSAssetKey] = [AVAsset assetWithURL:url];
+        
+        [weakSelf.shortVideoEditor replaceCurrentAssetWithAsset:weakSelf.movieSettings[PLSAssetKey]];
+        [weakSelf.shortVideoEditor startEditing];
+        weakSelf.playButton.selected = NO;
+    }];
+    
+    [self.reverser setFailureBlock:^(NSError *error){
+        [weakSelf removeActivityIndicatorView];
+        
+        NSLog(@"reverser effect, error: %@",error);
+        
+        weakSelf.movieSettings[PLSAssetKey] = weakSelf.inputAsset;
+        
+        [weakSelf.shortVideoEditor replaceCurrentAssetWithAsset:weakSelf.movieSettings[PLSAssetKey]];
+        [weakSelf.shortVideoEditor startEditing];
+        weakSelf.playButton.selected = NO;
+    }];
+    
+    [self.reverser setProcessingBlock:^(float progress) {
+        NSLog(@"reverser effect, progress: %f", progress);
+    }];
+    
+    [self.reverser startReversing];
+}
+
+#pragma mark -- 裁剪背景音乐
+- (void)clipMusicButtonEvent:(id)sender {
+    [self setEffectsViewHidden];
+    
+    CMTimeRange currentMusicTimeRange = CMTimeRangeMake(CMTimeMake([self.audioSettings[PLSStartTimeKey] floatValue] * 1e9, 1e9), CMTimeMake([self.audioSettings[PLSDurationKey] floatValue] * 1e9, 1e9));
+    
+    PLSClipAudioView *clipAudioView = [[PLSClipAudioView alloc] initWithMuiscURL:self.audioSettings[PLSURLKey] timeRange:currentMusicTimeRange];
+    clipAudioView.delegate = self;
+    [clipAudioView showAtView:self.view];
+}
+
+#pragma mark -- 音量调节
+- (void)volumeChangeEvent:(id)sender {
+    [self setEffectsViewHidden];
+    
+    NSNumber *movieVolume = self.movieSettings[PLSVolumeKey];
+    NSNumber *musicVolume = self.audioSettings[PLSVolumeKey];
+    
+    PLSAudioVolumeView *volumeView = [[PLSAudioVolumeView alloc] initWithMovieVolume:[movieVolume floatValue] musicVolume:[musicVolume floatValue]];
+    volumeView.delegate = self;
+    [volumeView showAtView:self.view];
+}
+
+#pragma mark -- 关闭原声
+- (void)closeSoundButtonEvent:(UIButton *)button {
+    [self setEffectsViewHidden];
+    
+    button.selected = !button.selected;
+    
+    if (button.selected) {
+        self.shortVideoEditor.volume = 0.0f;
+    } else {
+        self.shortVideoEditor.volume = 1.0f;
+    }
+    self.movieSettings[PLSVolumeKey] = [NSNumber numberWithFloat:self.shortVideoEditor.volume];
+}
+
+#pragma mark -- 旋转视频
+- (void)rotateVideoButtonEvent:(UIButton *)button {
+    [self setEffectsViewHidden];
+    
+    AVAsset *asset = self.movieSettings[PLSAssetKey];
+    if (![self checkMovieHasVideoTrack:asset]) {
+        NSString *errorInfo = @"Error: movie has no videoTrack";
+        NSLog(@"%s, %@", __func__, errorInfo);
+        AlertViewShow(errorInfo);
+        return;
+    }
+    
+    self.videoLayerOrientation = [self.shortVideoEditor rotateVideoLayer];
+    NSLog(@"videoLayerOrientation: %ld", (long)self.videoLayerOrientation);
+}
+
+#pragma mark -- 添加文字、图片、涂鸦
+- (void)addTextButtonEvent:(UIButton *)button {
+    [self setEffectsViewHidden];
+    
+    AVAsset *asset = self.movieSettings[PLSAssetKey];
+    if (![self checkMovieHasVideoTrack:asset]) {
+        NSString *errorInfo = @"Error: movie has no videoTrack";
+        NSLog(@"%s, %@", __func__, errorInfo);
+        AlertViewShow(errorInfo);
+        return;
+    }
+    
+    PLSVideoEditingController *videoEditingVC = [[PLSVideoEditingController alloc] init];
+    videoEditingVC.videoLayerOrientation = self.videoLayerOrientation;
+    videoEditingVC.delegate = self;
+    if (self.videoEdit) {
+        videoEditingVC.videoEdit = self.videoEdit;
+    } else {
+        AVAsset *asset = self.movieSettings[PLSAssetKey];
+        CMTime start = CMTimeMake([self.movieSettings[PLSStartTimeKey] floatValue] * 1e9, 1e9);
+        CMTime duration = CMTimeMake([self.movieSettings[PLSDurationKey] floatValue] * 1e9, 1e9);
+        CMTimeRange timeRange = CMTimeRangeMake(start, duration);
+        [videoEditingVC setVideoAsset:asset timeRange:timeRange placeholderImage:nil];
+    }
+    
+    [self presentViewController:videoEditingVC animated:YES completion:nil];
+}
+
+#pragma mark -- 视频列表
+- (void)videoListButtonEvent:(UIButton *)button {
+    [self setEffectsViewHidden];
+    
+    button.selected = !button.selected;
+    if (button.selected) {
+        [self loadVideoListView];
+    } else {
+        [self removeVideoListView];
+    }
 }
 
 #pragma mark - PLSVideoEditingControllerDelegate 涂鸦、文字、贴纸效果的回调
@@ -1325,10 +1675,10 @@ PLSVideoEditingControllerDelegate
 //    playViewController.url = url;
 //    [self presentViewController:playViewController animated:YES completion:nil];
     
-    CBUploadVideoVC *uploadVideoVC = [CBUploadVideoVC new];
-    uploadVideoVC.url = url;
-//    [self presentViewController:uploadVideoVC animated:YES completion:nil];
-    [self.navigationController pushViewController:uploadVideoVC animated:YES];
+//    CBUploadVideoVC *uploadVideoVC = [CBUploadVideoVC new];
+//    uploadVideoVC.url = url;
+//    //    [self presentViewController:uploadVideoVC animated:YES completion:nil];
+//    [self.navigationController pushViewController:uploadVideoVC animated:YES];
 }
 
 #pragma mark -- 程序的状态监听
@@ -1379,6 +1729,9 @@ PLSVideoEditingControllerDelegate
     
     self.reverser = nil;
     
+    self.editCollectionView.dataSource = nil;
+    self.editCollectionView.delegate = nil;
+    self.editCollectionView = nil;
     self.filtersArray = nil;
     self.musicsArray = nil;
     
@@ -1391,3 +1744,4 @@ PLSVideoEditingControllerDelegate
 }
 
 @end
+

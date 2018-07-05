@@ -19,10 +19,10 @@
 #import "PLSRateButtonView.h"
 //#import "EasyarARViewController.h"
 
-// TuSDK mark - 导入
-#import "FilterView.h"
-#import "StickerScrollView.h"
-#import <TuSDKVideo/TuSDKVideo.h>
+//// TuSDK mark - 导入
+//#import "FilterView.h"
+//#import "StickerScrollView.h"
+//#import <TuSDKVideo/TuSDKVideo.h>
 
 #define AlertViewShow(msg) [[[UIAlertView alloc] initWithTitle:@"warning" message:[NSString stringWithFormat:@"%@", msg] delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil] show]
 
@@ -43,8 +43,8 @@ UICollectionViewDelegate,
 UICollectionViewDataSource,
 UICollectionViewDelegateFlowLayout,
 PLSViewRecorderManagerDelegate,
-PLSRateButtonViewDelegate,
-FilterViewEventDelegate, StickerViewClickDelegate, TuSDKFilterProcessorDelegate
+PLSRateButtonViewDelegate
+//FilterViewEventDelegate, StickerViewClickDelegate, TuSDKFilterProcessorDelegate
 >
 
 @property (strong, nonatomic) PLSVideoConfiguration *videoConfiguration;
@@ -98,21 +98,21 @@ FilterViewEventDelegate, StickerViewClickDelegate, TuSDKFilterProcessorDelegate
 // 录制前是否开启自动检测设备方向调整视频拍摄的角度（竖屏、横屏）
 @property (assign, nonatomic) BOOL isUseAutoCheckDeviceOrientationBeforeRecording;
 
-// TuSDK mark - 初始化数据
-// 滤镜列表
-@property (strong, nonatomic) NSArray *videoFilters;
-// 当前的滤镜索引
-@property (assign, nonatomic) NSInteger videoFilterIndex;
-
-// TuSDK mark - 初始化对象
-// 滤镜栏
-@property (nonatomic, strong) FilterView *filterView;
-// 贴纸栏
-@property (nonatomic, strong) StickerScrollView *stickerView;
-// TuSDK美颜处理类
-@property (nonatomic,strong) TuSDKFilterProcessor *filterProcessor;
-// 当前获取的滤镜对象
-@property (nonatomic,strong) TuSDKFilterWrap *currentFilter;
+//// TuSDK mark - 初始化数据
+//// 滤镜列表
+//@property (strong, nonatomic) NSArray *videoFilters;
+//// 当前的滤镜索引
+//@property (assign, nonatomic) NSInteger videoFilterIndex;
+//
+//// TuSDK mark - 初始化对象
+//// 滤镜栏
+//@property (nonatomic, strong) FilterView *filterView;
+//// 贴纸栏
+//@property (nonatomic, strong) StickerScrollView *stickerView;
+//// TuSDK美颜处理类
+//@property (nonatomic,strong) TuSDKFilterProcessor *filterProcessor;
+//// 当前获取的滤镜对象
+//@property (nonatomic,strong) TuSDKFilterWrap *currentFilter;
 
 @end
 
@@ -156,7 +156,7 @@ FilterViewEventDelegate, StickerViewClickDelegate, TuSDKFilterProcessorDelegate
     
     // --------------------------
     // TuSDK mark - 初始化
-    [self initTUSDK];
+//    [self initTUSDK];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -768,10 +768,10 @@ FilterViewEventDelegate, StickerViewClickDelegate, TuSDKFilterProcessorDelegate
 
 // 结束录制
 - (void)endButtonEvent:(id)sender {
-    AVAsset *asset = self.shortVideoRecorder.assetRepresentingAllFiles;
-    [self playEvent:asset];
-    [self.viewRecorderManager cancelRecording];
-    self.viewRecordButton.selected = NO;
+//    AVAsset *asset = self.shortVideoRecorder.assetRepresentingAllFiles;
+//    [self playEvent:asset];
+//    [self.viewRecorderManager cancelRecording];
+//    self.viewRecordButton.selected = NO;
 }
 
 // 取消录制
@@ -896,9 +896,9 @@ FilterViewEventDelegate, StickerViewClickDelegate, TuSDKFilterProcessorDelegate
     }
     
     if (self.isUseExternalFilterWhenRecording) {
-        // TuSDK mark - TUSDK 美颜处理 暂时屏蔽其他滤镜处理，可根据需求使用
-        pixelBuffer =  [_filterProcessor syncProcessPixelBuffer:pixelBuffer];
-        [_filterProcessor destroyFrameData];
+//        // TuSDK mark - TUSDK 美颜处理 暂时屏蔽其他滤镜处理，可根据需求使用
+//        pixelBuffer =  [_filterProcessor syncProcessPixelBuffer:pixelBuffer];
+//        [_filterProcessor destroyFrameData];
     }
     
     return pixelBuffer;
@@ -1144,157 +1144,157 @@ FilterViewEventDelegate, StickerViewClickDelegate, TuSDKFilterProcessorDelegate
     self.filterGroup.filterIndex = indexPath.row;
 }
 
-#pragma mark - TuSDK method
-
-- (void)checkBundleId {
-    // 需要提供包名，获取对应的资源才可以请用。
-    // 获取到对应包名的资源之后，设置 self.isUseExternalFilterWhenRecording = YES; 即可使用
-    AlertViewShow(@"使用高级滤镜和人脸贴纸特效，请联系七牛销售！");
-}
-
-- (void)externalFilterButtonOnClick:(UIButton *)button {
-    [self checkBundleId];
-    
-    if (!_filterView) {
-        [self initFilterView];
-    }
-    
-    _filterView.hidden = !_filterView.hidden;
-    if (!_filterView.hidden) {
-        _stickerView.hidden = YES;
-    }
-}
-
-- (void)externalStickerButtonOnClick:(UIButton *)button {
-    [self checkBundleId];
-    
-    if (!_stickerView) {
-        [self initStickerView];
-    }
-    
-    _stickerView.hidden = !_stickerView.hidden;
-    if (!_stickerView.hidden) {
-        _filterView.hidden = YES;
-    }
-}
-
-// TuSDK mark - 初始化
-- (void)initTUSDK {
-    [self initFilterCodes];
-    [self initFilterProcessor];
-}
-
-- (void)initFilterCodes {
-    self.videoFilters = @[@"Normal",@"porcelain",@"nature",@"pink",@"jelly",@"ruddy",@"sugar",@"honey",@"clear",@"timber",@"whitening"];
-    self.videoFilterIndex = 0;
-}
-
-// 初始化 TuSDKFilterProcessor
-- (void)initFilterProcessor {
-    // 传入图像的方向是否为原始朝向(相机采集的原始朝向)，SDK 将依据该属性来调整人脸检测时图片的角度。如果没有对图片进行旋转，则为 YES
-    BOOL isOriginalOrientation = NO;
-    
-    self.filterProcessor = [[TuSDKFilterProcessor alloc] initWithFormatType:kCVPixelFormatType_32BGRA isOriginalOrientation:isOriginalOrientation];
-    self.filterProcessor.delegate = self;
-    
-    // 是否开启了镜像
-    self.filterProcessor.horizontallyMirrorFrontFacingCamera = NO;
-    // 前置还是后置
-    
-    self.filterProcessor.outputPixelFormatType = lsqFormatTypeBGRA;
-    
-    
-    self.filterProcessor.cameraPosition = AVCaptureDevicePositionFront;
-    self.filterProcessor.adjustOutputRotation = NO;
-    [self.filterProcessor setEnableLiveSticker:YES];
-    
-    // 切换滤镜
-    [self.filterProcessor switchFilterWithCode:self.videoFilters[1]];
-}
-
-- (void)initFilterView {
-    // 注：当前Demo中参数调节栏和左滑油滑手势冲突，在自己的项目中可自定义UI
-    CGFloat filterViewHeight = 246;
-    _filterView = [[FilterView alloc]initWithFrame:CGRectMake(0, self.view.lsqGetSizeHeight - filterViewHeight, self.view.lsqGetSizeWidth, filterViewHeight)];
-    _filterView.canAdjustParameter = true;
-    _filterView.filterEventDelegate = self;
-    _filterView.currentFilterTag = 1;
-    _filterView.backgroundColor = [UIColor colorWithRed:0.22 green:0.22 blue:0.22 alpha:0.7];
-    [_filterView createFilterWith:_videoFilters];
-    [_filterView refreshAdjustParameterViewWith:_currentFilter.code filterArgs:_currentFilter.filterParameter.args];
-    
-    [self.view addSubview:_filterView];
-    _filterView.hidden = YES;
-}
-
-- (void)initStickerView {
-    CGFloat stickerViewHeight = 246;
-    _stickerView = [[StickerScrollView alloc]initWithFrame:CGRectMake(0, self.view.lsqGetSizeHeight - stickerViewHeight, self.view.lsqGetSizeWidth, stickerViewHeight)];
-    _stickerView.stickerDelegate = self;
-    _stickerView.cameraStickerType = lsqCameraStickersTypeSquare;
-    _stickerView.backgroundColor = [UIColor colorWithRed:0.22 green:0.22 blue:0.22 alpha:0.7];
-    [self.view addSubview:_stickerView];
-    _stickerView.hidden = YES;
-}
-
-#pragma mark -- 滤镜栏点击代理方法 FilterEventDelegate
-
-// 调节滤镜效果
-- (void)filterViewParamChangedWith:(TuSDKICSeekBar *)seekbar changedProgress:(CGFloat)progress {
-    //根据tag获得当前滤镜的对应参数，修改precent;
-    NSInteger index = seekbar.tag;
-    TuSDKFilterArg *arg = _currentFilter.filterParameter.args[index];
-    
-    NSLog(@"当前调节的滤镜参数名为 : %@",arg.key);
-    
-    if ([arg.key isEqualToString:@"smoothing"]) {
-        
-        // value range 0-1
-        arg.precent = progress * 0.5;
-    }else if ([arg.key isEqualToString:@"chinSize"])
-    {
-        arg.precent = progress * 0.3;
-    }else{
-        arg.precent = progress;
-    }
-    
-    //    arg.precent = progress;
-    //设置滤镜参数；
-    [_currentFilter submitParameter];
-}
-
-- (void)filterViewSwitchFilterWithCode:(NSString *)filterCode{
-    //切换滤镜
-    [_filterProcessor switchFilterWithCode:filterCode];
-}
-
-#pragma mark -- 贴纸栏点击代理方法 StickerViewClickDelegate
-
-- (void)clickStickerViewWith:(TuSDKPFStickerGroup *)stickGroup {
-    if (!stickGroup) {
-        //为nil时 移除已有贴纸组；
-        [_filterProcessor removeAllLiveSticker];
-        _stickerView.hidden = YES;
-        
-        return;
-    }
-    //展示对应贴纸组；
-    [_filterProcessor showGroupSticker:stickGroup];
-}
-
-#pragma mark -- TuSDKFilterProcessorDelegate
-
-/**
- *  滤镜改变 (如需操作UI线程， 请检查当前线程是否为主线程)
- *
- *  @param processor 视频处理对象
- *  @param newFilter 新的滤镜对象
- */
-- (void)onVideoProcessor:(TuSDKFilterProcessor *)processor filterChanged:(TuSDKFilterWrap *)newFilter {
-    //赋值新滤镜 同事刷新新滤镜的参数配置；
-    _currentFilter = newFilter;
-    [_filterView refreshAdjustParameterViewWith:newFilter.code filterArgs:newFilter.filterParameter.args];
-}
+//#pragma mark - TuSDK method
+//
+//- (void)checkBundleId {
+//    // 需要提供包名，获取对应的资源才可以请用。
+//    // 获取到对应包名的资源之后，设置 self.isUseExternalFilterWhenRecording = YES; 即可使用
+//    AlertViewShow(@"使用高级滤镜和人脸贴纸特效，请联系七牛销售！");
+//}
+//
+//- (void)externalFilterButtonOnClick:(UIButton *)button {
+//    [self checkBundleId];
+//
+//    if (!_filterView) {
+//        [self initFilterView];
+//    }
+//
+//    _filterView.hidden = !_filterView.hidden;
+//    if (!_filterView.hidden) {
+//        _stickerView.hidden = YES;
+//    }
+//}
+//
+//- (void)externalStickerButtonOnClick:(UIButton *)button {
+//    [self checkBundleId];
+//
+//    if (!_stickerView) {
+//        [self initStickerView];
+//    }
+//
+//    _stickerView.hidden = !_stickerView.hidden;
+//    if (!_stickerView.hidden) {
+//        _filterView.hidden = YES;
+//    }
+//}
+//
+//// TuSDK mark - 初始化
+//- (void)initTUSDK {
+//    [self initFilterCodes];
+//    [self initFilterProcessor];
+//}
+//
+//- (void)initFilterCodes {
+//    self.videoFilters = @[@"Normal",@"porcelain",@"nature",@"pink",@"jelly",@"ruddy",@"sugar",@"honey",@"clear",@"timber",@"whitening"];
+//    self.videoFilterIndex = 0;
+//}
+//
+//// 初始化 TuSDKFilterProcessor
+//- (void)initFilterProcessor {
+//    // 传入图像的方向是否为原始朝向(相机采集的原始朝向)，SDK 将依据该属性来调整人脸检测时图片的角度。如果没有对图片进行旋转，则为 YES
+//    BOOL isOriginalOrientation = NO;
+//
+//    self.filterProcessor = [[TuSDKFilterProcessor alloc] initWithFormatType:kCVPixelFormatType_32BGRA isOriginalOrientation:isOriginalOrientation];
+//    self.filterProcessor.delegate = self;
+//
+//    // 是否开启了镜像
+//    self.filterProcessor.horizontallyMirrorFrontFacingCamera = NO;
+//    // 前置还是后置
+//
+//    self.filterProcessor.outputPixelFormatType = lsqFormatTypeBGRA;
+//
+//
+//    self.filterProcessor.cameraPosition = AVCaptureDevicePositionFront;
+//    self.filterProcessor.adjustOutputRotation = NO;
+//    [self.filterProcessor setEnableLiveSticker:YES];
+//
+//    // 切换滤镜
+//    [self.filterProcessor switchFilterWithCode:self.videoFilters[1]];
+//}
+//
+//- (void)initFilterView {
+//    // 注：当前Demo中参数调节栏和左滑油滑手势冲突，在自己的项目中可自定义UI
+//    CGFloat filterViewHeight = 246;
+//    _filterView = [[FilterView alloc]initWithFrame:CGRectMake(0, self.view.lsqGetSizeHeight - filterViewHeight, self.view.lsqGetSizeWidth, filterViewHeight)];
+//    _filterView.canAdjustParameter = true;
+//    _filterView.filterEventDelegate = self;
+//    _filterView.currentFilterTag = 1;
+//    _filterView.backgroundColor = [UIColor colorWithRed:0.22 green:0.22 blue:0.22 alpha:0.7];
+//    [_filterView createFilterWith:_videoFilters];
+//    [_filterView refreshAdjustParameterViewWith:_currentFilter.code filterArgs:_currentFilter.filterParameter.args];
+//
+//    [self.view addSubview:_filterView];
+//    _filterView.hidden = YES;
+//}
+//
+//- (void)initStickerView {
+//    CGFloat stickerViewHeight = 246;
+//    _stickerView = [[StickerScrollView alloc]initWithFrame:CGRectMake(0, self.view.lsqGetSizeHeight - stickerViewHeight, self.view.lsqGetSizeWidth, stickerViewHeight)];
+//    _stickerView.stickerDelegate = self;
+//    _stickerView.cameraStickerType = lsqCameraStickersTypeSquare;
+//    _stickerView.backgroundColor = [UIColor colorWithRed:0.22 green:0.22 blue:0.22 alpha:0.7];
+//    [self.view addSubview:_stickerView];
+//    _stickerView.hidden = YES;
+//}
+//
+//#pragma mark -- 滤镜栏点击代理方法 FilterEventDelegate
+//
+//// 调节滤镜效果
+//- (void)filterViewParamChangedWith:(TuSDKICSeekBar *)seekbar changedProgress:(CGFloat)progress {
+//    //根据tag获得当前滤镜的对应参数，修改precent;
+//    NSInteger index = seekbar.tag;
+//    TuSDKFilterArg *arg = _currentFilter.filterParameter.args[index];
+//
+//    NSLog(@"当前调节的滤镜参数名为 : %@",arg.key);
+//
+//    if ([arg.key isEqualToString:@"smoothing"]) {
+//
+//        // value range 0-1
+//        arg.precent = progress * 0.5;
+//    }else if ([arg.key isEqualToString:@"chinSize"])
+//    {
+//        arg.precent = progress * 0.3;
+//    }else{
+//        arg.precent = progress;
+//    }
+//
+//    //    arg.precent = progress;
+//    //设置滤镜参数；
+//    [_currentFilter submitParameter];
+//}
+//
+//- (void)filterViewSwitchFilterWithCode:(NSString *)filterCode{
+//    //切换滤镜
+//    [_filterProcessor switchFilterWithCode:filterCode];
+//}
+//
+//#pragma mark -- 贴纸栏点击代理方法 StickerViewClickDelegate
+//
+//- (void)clickStickerViewWith:(TuSDKPFStickerGroup *)stickGroup {
+//    if (!stickGroup) {
+//        //为nil时 移除已有贴纸组；
+//        [_filterProcessor removeAllLiveSticker];
+//        _stickerView.hidden = YES;
+//
+//        return;
+//    }
+//    //展示对应贴纸组；
+//    [_filterProcessor showGroupSticker:stickGroup];
+//}
+//
+//#pragma mark -- TuSDKFilterProcessorDelegate
+//
+///**
+// *  滤镜改变 (如需操作UI线程， 请检查当前线程是否为主线程)
+// *
+// *  @param processor 视频处理对象
+// *  @param newFilter 新的滤镜对象
+// */
+//- (void)onVideoProcessor:(TuSDKFilterProcessor *)processor filterChanged:(TuSDKFilterWrap *)newFilter {
+//    //赋值新滤镜 同事刷新新滤镜的参数配置；
+//    _currentFilter = newFilter;
+//    [_filterView refreshAdjustParameterViewWith:newFilter.code filterArgs:newFilter.filterParameter.args];
+//}
 
 @end
 
