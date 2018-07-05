@@ -478,7 +478,6 @@
 		5442F85C20EC68E90001C238 /* EffectsItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5442F72520EC68E90001C238 /* EffectsItemView.m */; };
 		5442F85F20EC693E0001C238 /* CBEditVideoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5442F85E20EC693E0001C238 /* CBEditVideoVC.m */; };
 		5442F96320EC77400001C238 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54869FFF20EB69C8002A49F5 /* Accelerate.framework */; };
-		5442F96420EC77490001C238 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5442F5D120EC624B0001C238 /* AVFoundation.framework */; };
 		5442F96520EC77510001C238 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5442F5CF20EC62440001C238 /* CoreMedia.framework */; };
 		5442F96620EC77580001C238 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5442F5CD20EC623D0001C238 /* OpenGLES.framework */; };
 		5442F96720EC77620001C238 /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 5442F5CB20EC62200001C238 /* libstdc++.tbd */; };
@@ -508,17 +507,18 @@
 		544F802820D0BDA100F492AE /* EaseHttpManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 544F802720D0BDA100F492AE /* EaseHttpManager.m */; };
 		544F802E20D1114500F492AE /* EaseHeartFlyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 544F802C20D1114400F492AE /* EaseHeartFlyView.m */; };
 		5451EC2420EDB31800F182E0 /* shortVideo_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 5451EC2320EDB31800F182E0 /* shortVideo_logo.png */; };
-		5451EC3E20EDBA2800F182E0 /* ANMusicTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5451EC2720EDBA2800F182E0 /* ANMusicTableViewController.m */; };
-		5451EC3F20EDBA2800F182E0 /* ANMusicModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5451EC2A20EDBA2800F182E0 /* ANMusicModel.m */; };
-		5451EC4020EDBA2800F182E0 /* ANCircleProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5451EC2D20EDBA2800F182E0 /* ANCircleProgressView.m */; };
-		5451EC4120EDBA2800F182E0 /* ANMusicPlayButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 5451EC3320EDBA2800F182E0 /* ANMusicPlayButton.m */; };
-		5451EC4220EDBA2800F182E0 /* SDBaseProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5451EC3420EDBA2800F182E0 /* SDBaseProgressView.m */; };
-		5451EC4320EDBA2800F182E0 /* ANMusicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5451EC3520EDBA2800F182E0 /* ANMusicCell.m */; };
-		5451EC4420EDBA2800F182E0 /* SDPieLoopProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5451EC3620EDBA2800F182E0 /* SDPieLoopProgressView.m */; };
-		5451EC4520EDBA2800F182E0 /* AWYDownloadHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 5451EC3820EDBA2800F182E0 /* AWYDownloadHelper.m */; };
-		5451EC4620EDBA2800F182E0 /* AWYDownloadFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5451EC3A20EDBA2800F182E0 /* AWYDownloadFileManager.m */; };
-		5451EC4720EDBA2800F182E0 /* NSString+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 5451EC3C20EDBA2800F182E0 /* NSString+MD5.m */; };
 		5451EC4A20EDC00E00F182E0 /* counter-35s.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5451EC4820EDBED300F182E0 /* counter-35s.m4a */; };
+		5451EC8F20EDFCFC00F182E0 /* ANMusicTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5451EC7820EDFCFC00F182E0 /* ANMusicTableViewController.m */; };
+		5451EC9020EDFCFC00F182E0 /* ANMusicModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5451EC7B20EDFCFC00F182E0 /* ANMusicModel.m */; };
+		5451EC9120EDFCFC00F182E0 /* ANCircleProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5451EC7E20EDFCFC00F182E0 /* ANCircleProgressView.m */; };
+		5451EC9220EDFCFC00F182E0 /* ANMusicPlayButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 5451EC8420EDFCFC00F182E0 /* ANMusicPlayButton.m */; };
+		5451EC9320EDFCFC00F182E0 /* SDBaseProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5451EC8520EDFCFC00F182E0 /* SDBaseProgressView.m */; };
+		5451EC9420EDFCFC00F182E0 /* ANMusicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5451EC8620EDFCFC00F182E0 /* ANMusicCell.m */; };
+		5451EC9520EDFCFC00F182E0 /* SDPieLoopProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5451EC8720EDFCFC00F182E0 /* SDPieLoopProgressView.m */; };
+		5451EC9620EDFCFC00F182E0 /* AWYDownloadHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 5451EC8920EDFCFC00F182E0 /* AWYDownloadHelper.m */; };
+		5451EC9720EDFCFC00F182E0 /* AWYDownloadFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5451EC8B20EDFCFC00F182E0 /* AWYDownloadFileManager.m */; };
+		5451EC9820EDFCFC00F182E0 /* NSString+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 5451EC8D20EDFCFC00F182E0 /* NSString+MD5.m */; };
+		5451EC9920EE001E00F182E0 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5442F5D120EC624B0001C238 /* AVFoundation.framework */; };
 		54520AF020BFD2BB005B787E /* NSObject+Copy.m in Sources */ = {isa = PBXBuildFile; fileRef = 54520AEB20BFD2BA005B787E /* NSObject+Copy.m */; };
 		54520AF120BFD2BB005B787E /* NSObject+Coding.m in Sources */ = {isa = PBXBuildFile; fileRef = 54520AEC20BFD2BA005B787E /* NSObject+Coding.m */; };
 		54520AF320BFD2BB005B787E /* NSObject+Class.m in Sources */ = {isa = PBXBuildFile; fileRef = 54520AEE20BFD2BA005B787E /* NSObject+Class.m */; };
@@ -1611,27 +1611,27 @@
 		544F802C20D1114400F492AE /* EaseHeartFlyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EaseHeartFlyView.m; sourceTree = "<group>"; };
 		544F802D20D1114400F492AE /* EaseHeartFlyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EaseHeartFlyView.h; sourceTree = "<group>"; };
 		5451EC2320EDB31800F182E0 /* shortVideo_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shortVideo_logo.png; sourceTree = "<group>"; };
-		5451EC2720EDBA2800F182E0 /* ANMusicTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANMusicTableViewController.m; sourceTree = "<group>"; };
-		5451EC2820EDBA2800F182E0 /* ANMusicTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANMusicTableViewController.h; sourceTree = "<group>"; };
-		5451EC2A20EDBA2800F182E0 /* ANMusicModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANMusicModel.m; sourceTree = "<group>"; };
-		5451EC2B20EDBA2800F182E0 /* ANMusicModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANMusicModel.h; sourceTree = "<group>"; };
-		5451EC2D20EDBA2800F182E0 /* ANCircleProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANCircleProgressView.m; sourceTree = "<group>"; };
-		5451EC2E20EDBA2800F182E0 /* SDBaseProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDBaseProgressView.h; sourceTree = "<group>"; };
-		5451EC2F20EDBA2800F182E0 /* ANMusicPlayButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANMusicPlayButton.h; sourceTree = "<group>"; };
-		5451EC3020EDBA2800F182E0 /* SDPieLoopProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDPieLoopProgressView.h; sourceTree = "<group>"; };
-		5451EC3120EDBA2800F182E0 /* ANMusicCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANMusicCell.h; sourceTree = "<group>"; };
-		5451EC3220EDBA2800F182E0 /* ANCircleProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANCircleProgressView.h; sourceTree = "<group>"; };
-		5451EC3320EDBA2800F182E0 /* ANMusicPlayButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANMusicPlayButton.m; sourceTree = "<group>"; };
-		5451EC3420EDBA2800F182E0 /* SDBaseProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDBaseProgressView.m; sourceTree = "<group>"; };
-		5451EC3520EDBA2800F182E0 /* ANMusicCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANMusicCell.m; sourceTree = "<group>"; };
-		5451EC3620EDBA2800F182E0 /* SDPieLoopProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDPieLoopProgressView.m; sourceTree = "<group>"; };
-		5451EC3820EDBA2800F182E0 /* AWYDownloadHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWYDownloadHelper.m; sourceTree = "<group>"; };
-		5451EC3920EDBA2800F182E0 /* NSString+MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MD5.h"; sourceTree = "<group>"; };
-		5451EC3A20EDBA2800F182E0 /* AWYDownloadFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWYDownloadFileManager.m; sourceTree = "<group>"; };
-		5451EC3B20EDBA2800F182E0 /* AWYDownloadHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWYDownloadHelper.h; sourceTree = "<group>"; };
-		5451EC3C20EDBA2800F182E0 /* NSString+MD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MD5.m"; sourceTree = "<group>"; };
-		5451EC3D20EDBA2800F182E0 /* AWYDownloadFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWYDownloadFileManager.h; sourceTree = "<group>"; };
 		5451EC4820EDBED300F182E0 /* counter-35s.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "counter-35s.m4a"; sourceTree = "<group>"; };
+		5451EC7820EDFCFC00F182E0 /* ANMusicTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANMusicTableViewController.m; sourceTree = "<group>"; };
+		5451EC7920EDFCFC00F182E0 /* ANMusicTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANMusicTableViewController.h; sourceTree = "<group>"; };
+		5451EC7B20EDFCFC00F182E0 /* ANMusicModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANMusicModel.m; sourceTree = "<group>"; };
+		5451EC7C20EDFCFC00F182E0 /* ANMusicModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANMusicModel.h; sourceTree = "<group>"; };
+		5451EC7E20EDFCFC00F182E0 /* ANCircleProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANCircleProgressView.m; sourceTree = "<group>"; };
+		5451EC7F20EDFCFC00F182E0 /* SDBaseProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDBaseProgressView.h; sourceTree = "<group>"; };
+		5451EC8020EDFCFC00F182E0 /* ANMusicPlayButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANMusicPlayButton.h; sourceTree = "<group>"; };
+		5451EC8120EDFCFC00F182E0 /* SDPieLoopProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDPieLoopProgressView.h; sourceTree = "<group>"; };
+		5451EC8220EDFCFC00F182E0 /* ANMusicCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANMusicCell.h; sourceTree = "<group>"; };
+		5451EC8320EDFCFC00F182E0 /* ANCircleProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANCircleProgressView.h; sourceTree = "<group>"; };
+		5451EC8420EDFCFC00F182E0 /* ANMusicPlayButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANMusicPlayButton.m; sourceTree = "<group>"; };
+		5451EC8520EDFCFC00F182E0 /* SDBaseProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDBaseProgressView.m; sourceTree = "<group>"; };
+		5451EC8620EDFCFC00F182E0 /* ANMusicCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANMusicCell.m; sourceTree = "<group>"; };
+		5451EC8720EDFCFC00F182E0 /* SDPieLoopProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDPieLoopProgressView.m; sourceTree = "<group>"; };
+		5451EC8920EDFCFC00F182E0 /* AWYDownloadHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWYDownloadHelper.m; sourceTree = "<group>"; };
+		5451EC8A20EDFCFC00F182E0 /* NSString+MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MD5.h"; sourceTree = "<group>"; };
+		5451EC8B20EDFCFC00F182E0 /* AWYDownloadFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWYDownloadFileManager.m; sourceTree = "<group>"; };
+		5451EC8C20EDFCFC00F182E0 /* AWYDownloadHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWYDownloadHelper.h; sourceTree = "<group>"; };
+		5451EC8D20EDFCFC00F182E0 /* NSString+MD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MD5.m"; sourceTree = "<group>"; };
+		5451EC8E20EDFCFC00F182E0 /* AWYDownloadFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWYDownloadFileManager.h; sourceTree = "<group>"; };
 		54520AE720BFD2BA005B787E /* NSObject+Class.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Class.h"; sourceTree = "<group>"; };
 		54520AE920BFD2BA005B787E /* NSObject+Coding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Coding.h"; sourceTree = "<group>"; };
 		54520AEB20BFD2BA005B787E /* NSObject+Copy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Copy.m"; sourceTree = "<group>"; };
@@ -2008,11 +2008,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5451EC9920EE001E00F182E0 /* AVFoundation.framework in Frameworks */,
 				54A149D820ECA24200423BF6 /* FUAPIDemoBar.framework in Frameworks */,
 				5442F96720EC77620001C238 /* libstdc++.tbd in Frameworks */,
 				5442F96620EC77580001C238 /* OpenGLES.framework in Frameworks */,
 				5442F96520EC77510001C238 /* CoreMedia.framework in Frameworks */,
-				5442F96420EC77490001C238 /* AVFoundation.framework in Frameworks */,
 				5442F96320EC77400001C238 /* Accelerate.framework in Frameworks */,
 				5436EA9720B7E53600011BF0 /* libGPUImage.a in Frameworks */,
 				5442F85020EC68E90001C238 /* TuSDKFace.framework in Frameworks */,
@@ -2220,7 +2220,7 @@
 		07359D9520A4299400FEEA4E /* LiveVideo */ = {
 			isa = PBXGroup;
 			children = (
-				5451EC2520EDBA2800F182E0 /* Music */,
+				5451EC7620EDFCFC00F182E0 /* Music */,
 				548C5C9B20B4FA8500A6FF53 /* LiveVideo */,
 				548C5C9A20B4FA7B00A6FF53 /* Video */,
 			);
@@ -3851,61 +3851,61 @@
 			path = Util;
 			sourceTree = "<group>";
 		};
-		5451EC2520EDBA2800F182E0 /* Music */ = {
+		5451EC7620EDFCFC00F182E0 /* Music */ = {
 			isa = PBXGroup;
 			children = (
-				5451EC2620EDBA2800F182E0 /* Controller */,
-				5451EC2920EDBA2800F182E0 /* Model */,
-				5451EC2C20EDBA2800F182E0 /* View */,
-				5451EC3720EDBA2800F182E0 /* DownLoadHelper */,
+				5451EC7720EDFCFC00F182E0 /* Controller */,
+				5451EC7A20EDFCFC00F182E0 /* Model */,
+				5451EC7D20EDFCFC00F182E0 /* View */,
+				5451EC8820EDFCFC00F182E0 /* DownLoadHelper */,
 			);
 			path = Music;
 			sourceTree = "<group>";
 		};
-		5451EC2620EDBA2800F182E0 /* Controller */ = {
+		5451EC7720EDFCFC00F182E0 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				5451EC2820EDBA2800F182E0 /* ANMusicTableViewController.h */,
-				5451EC2720EDBA2800F182E0 /* ANMusicTableViewController.m */,
+				5451EC7820EDFCFC00F182E0 /* ANMusicTableViewController.m */,
+				5451EC7920EDFCFC00F182E0 /* ANMusicTableViewController.h */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
 		};
-		5451EC2920EDBA2800F182E0 /* Model */ = {
+		5451EC7A20EDFCFC00F182E0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				5451EC2B20EDBA2800F182E0 /* ANMusicModel.h */,
-				5451EC2A20EDBA2800F182E0 /* ANMusicModel.m */,
+				5451EC7B20EDFCFC00F182E0 /* ANMusicModel.m */,
+				5451EC7C20EDFCFC00F182E0 /* ANMusicModel.h */,
 			);
 			path = Model;
 			sourceTree = "<group>";
 		};
-		5451EC2C20EDBA2800F182E0 /* View */ = {
+		5451EC7D20EDFCFC00F182E0 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				5451EC3220EDBA2800F182E0 /* ANCircleProgressView.h */,
-				5451EC2D20EDBA2800F182E0 /* ANCircleProgressView.m */,
-				5451EC2E20EDBA2800F182E0 /* SDBaseProgressView.h */,
-				5451EC3420EDBA2800F182E0 /* SDBaseProgressView.m */,
-				5451EC3020EDBA2800F182E0 /* SDPieLoopProgressView.h */,
-				5451EC3620EDBA2800F182E0 /* SDPieLoopProgressView.m */,
-				5451EC2F20EDBA2800F182E0 /* ANMusicPlayButton.h */,
-				5451EC3320EDBA2800F182E0 /* ANMusicPlayButton.m */,
-				5451EC3120EDBA2800F182E0 /* ANMusicCell.h */,
-				5451EC3520EDBA2800F182E0 /* ANMusicCell.m */,
+				5451EC7E20EDFCFC00F182E0 /* ANCircleProgressView.m */,
+				5451EC7F20EDFCFC00F182E0 /* SDBaseProgressView.h */,
+				5451EC8020EDFCFC00F182E0 /* ANMusicPlayButton.h */,
+				5451EC8120EDFCFC00F182E0 /* SDPieLoopProgressView.h */,
+				5451EC8220EDFCFC00F182E0 /* ANMusicCell.h */,
+				5451EC8320EDFCFC00F182E0 /* ANCircleProgressView.h */,
+				5451EC8420EDFCFC00F182E0 /* ANMusicPlayButton.m */,
+				5451EC8520EDFCFC00F182E0 /* SDBaseProgressView.m */,
+				5451EC8620EDFCFC00F182E0 /* ANMusicCell.m */,
+				5451EC8720EDFCFC00F182E0 /* SDPieLoopProgressView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
 		};
-		5451EC3720EDBA2800F182E0 /* DownLoadHelper */ = {
+		5451EC8820EDFCFC00F182E0 /* DownLoadHelper */ = {
 			isa = PBXGroup;
 			children = (
-				5451EC3920EDBA2800F182E0 /* NSString+MD5.h */,
-				5451EC3C20EDBA2800F182E0 /* NSString+MD5.m */,
-				5451EC3B20EDBA2800F182E0 /* AWYDownloadHelper.h */,
-				5451EC3820EDBA2800F182E0 /* AWYDownloadHelper.m */,
-				5451EC3D20EDBA2800F182E0 /* AWYDownloadFileManager.h */,
-				5451EC3A20EDBA2800F182E0 /* AWYDownloadFileManager.m */,
+				5451EC8920EDFCFC00F182E0 /* AWYDownloadHelper.m */,
+				5451EC8A20EDFCFC00F182E0 /* NSString+MD5.h */,
+				5451EC8B20EDFCFC00F182E0 /* AWYDownloadFileManager.m */,
+				5451EC8C20EDFCFC00F182E0 /* AWYDownloadHelper.h */,
+				5451EC8D20EDFCFC00F182E0 /* NSString+MD5.m */,
+				5451EC8E20EDFCFC00F182E0 /* AWYDownloadFileManager.h */,
 			);
 			path = DownLoadHelper;
 			sourceTree = "<group>";
@@ -5414,7 +5414,7 @@
 				0750561C2092AEBD00F0679B /* CBGiftPackageVC.m in Sources */,
 				54A76AE320B7DEDE0034D5A2 /* PLSRateButtonView.m in Sources */,
 				547CB63320D899BD0064B29B /* UIButton+Animate.m in Sources */,
-				5451EC4120EDBA2800F182E0 /* ANMusicPlayButton.m in Sources */,
+				5451EC9220EDFCFC00F182E0 /* ANMusicPlayButton.m in Sources */,
 				07F38C0720994A0000DDBC90 /* JPGiftOperation.m in Sources */,
 				54FD10DB20E0F09500C74C92 /* CBGiftVO.m in Sources */,
 				54520AF020BFD2BB005B787E /* NSObject+Copy.m in Sources */,
@@ -5461,7 +5461,7 @@
 				54A76AE720B7DEDE0034D5A2 /* PLSFilterGroup.m in Sources */,
 				5467016D20C1300900519860 /* CBSexMenuView.m in Sources */,
 				07359D8F20A419E900FEEA4E /* CBLivePlayerVC.m in Sources */,
-				5451EC4020EDBA2800F182E0 /* ANCircleProgressView.m in Sources */,
+				5451EC9120EDFCFC00F182E0 /* ANCircleProgressView.m in Sources */,
 				545494A320C7CC2500E96C0A /* CBOpenLiveVC.m in Sources */,
 				07B8BD1C20A3E14200DD05B2 /* CBPlayerVC.m in Sources */,
 				077FFD0D2099B3BD00B8680C /* CBGuardRankBCell.m in Sources */,
@@ -5483,13 +5483,13 @@
 				5479D2DE20EB06DB0068F688 /* CBVideoScrollVC.m in Sources */,
 				54A0D8E520C13C1A0056554D /* CBEditUserInfoVC.m in Sources */,
 				54FD10C220E0970400C74C92 /* TSCGiftExtra.m in Sources */,
-				5451EC4220EDBA2800F182E0 /* SDBaseProgressView.m in Sources */,
+				5451EC9320EDFCFC00F182E0 /* SDBaseProgressView.m in Sources */,
 				54C1965920E2382B00E8853D /* LiveGiftShowView.m in Sources */,
 				07359D9820A429AC00FEEA4E /* CBLiveVideoVC.m in Sources */,
 				54A76AE620B7DEDE0034D5A2 /* PLSProgressBar.m in Sources */,
 				5469A56420C4D195004E06F1 /* CBImagePickerTool.m in Sources */,
 				07F38C0120994A0000DDBC90 /* JPGiftView.m in Sources */,
-				5451EC3F20EDBA2800F182E0 /* ANMusicModel.m in Sources */,
+				5451EC9020EDFCFC00F182E0 /* ANMusicModel.m in Sources */,
 				07F6EFE020872E3D0035C6BD /* CBHomeVC.m in Sources */,
 				07558C2B2094569C007E41C2 /* CBAnchorInfoXibView.m in Sources */,
 				54A14A6B20ECA2A900423BF6 /* FUManager.m in Sources */,
@@ -5497,7 +5497,7 @@
 				54A76AAF20B7DE830034D5A2 /* CBShortVideoRecordVC.m in Sources */,
 				07659C1E20A4439700EBE030 /* HcdGuideView.m in Sources */,
 				5443976920D39C2D0039722D /* CBStopLiveVO.m in Sources */,
-				5451EC4520EDBA2800F182E0 /* AWYDownloadHelper.m in Sources */,
+				5451EC9620EDFCFC00F182E0 /* AWYDownloadHelper.m in Sources */,
 				07C9734A20A91F1000BB9820 /* CBAttentionLiveVC.m in Sources */,
 				54A76AEC20B7DEDE0034D5A2 /* PLSToolBarCommon.m in Sources */,
 				545494B620C8D06E00E96C0A /* CBMyVideoVC.m in Sources */,
@@ -5514,7 +5514,7 @@
 				5401D87C20D26E3D00A3FFEF /* EaseBaseSubView.m in Sources */,
 				54A76AE920B7DEDE0034D5A2 /* PLSSelectionView.m in Sources */,
 				076F52A120750E64004F91E8 /* AppDelegate+AppServer.m in Sources */,
-				5451EC3E20EDBA2800F182E0 /* ANMusicTableViewController.m in Sources */,
+				5451EC8F20EDFCFC00F182E0 /* ANMusicTableViewController.m in Sources */,
 				542F89FF20DA45E300C6E99D /* CBLiveGuardianListView.m in Sources */,
 				54C1965720E2382B00E8853D /* LiveGiftShowNumberView.m in Sources */,
 				0791588520883C6D007CA2E0 /* CBAttentionCell.m in Sources */,
@@ -5602,7 +5602,7 @@
 				545494A920C7E4B400E96C0A /* CBLiveAnchorMainPageVC.m in Sources */,
 				548C5CC120B50CD800A6FF53 /* CBLiveUserConfig.m in Sources */,
 				0737ED972074A33600A89CC0 /* main.m in Sources */,
-				5451EC4720EDBA2800F182E0 /* NSString+MD5.m in Sources */,
+				5451EC9820EDFCFC00F182E0 /* NSString+MD5.m in Sources */,
 				54CFFC3B20ECCCC100DA26FD /* FUItemsViewCell.m in Sources */,
 				540CCCD720D8F1D200CAA312 /* CBOccupantsCountView.m in Sources */,
 				54130A0F20B6B48900CAE467 /* CBLiveSetting.m in Sources */,
@@ -5612,14 +5612,14 @@
 				54520AF320BFD2BB005B787E /* NSObject+Class.m in Sources */,
 				07374702208ECF9C00E108E9 /* CBVideoAttentionVC.m in Sources */,
 				54A76D8920B7E1600034D5A2 /* GifFormatViewController.m in Sources */,
-				5451EC4620EDBA2800F182E0 /* AWYDownloadFileManager.m in Sources */,
+				5451EC9720EDFCFC00F182E0 /* AWYDownloadFileManager.m in Sources */,
 				5403B86B20CFAD85000BE8B1 /* CBShareView.m in Sources */,
 				544B8F8820CA118E00FC9CFE /* PLStreamingSessionConstructor.m in Sources */,
 				5440F0AE20EA31BB0059F886 /* CBPlayVideoInfoVC.m in Sources */,
 				5467015C20C0E1EF00519860 /* CBEmptyView.m in Sources */,
 				077FFD082099AA7300B8680C /* CBGuardRankCell.m in Sources */,
 				54A76AE020B7DEDE0034D5A2 /* UIView+PLSLightFrame.m in Sources */,
-				5451EC4420EDBA2800F182E0 /* SDPieLoopProgressView.m in Sources */,
+				5451EC9520EDFCFC00F182E0 /* SDPieLoopProgressView.m in Sources */,
 				54A76AF920B7DEFA0034D5A2 /* PhotoAlbumViewController.m in Sources */,
 				545494C620C931A800E96C0A /* CBPlayVideoVC.m in Sources */,
 				073746F8208ECEB600E108E9 /* CBVideoVC.m in Sources */,
@@ -5632,7 +5632,7 @@
 				54FD10C020E0970400C74C92 /* TSCGifts.m in Sources */,
 				07737DE2208F0150009EB9E6 /* CBMyAttentionVC.m in Sources */,
 				5469A58120C54587004E06F1 /* CBCityMenuView.m in Sources */,
-				5451EC4320EDBA2800F182E0 /* ANMusicCell.m in Sources */,
+				5451EC9420EDFCFC00F182E0 /* ANMusicCell.m in Sources */,
 				0737ED892074A33600A89CC0 /* AppDelegate.m in Sources */,
 				54DD931920DCDD1E0016C563 /* CBLiveGiftViewVC.m in Sources */,
 				54A76AF620B7DEF00034D5A2 /* EditViewController.m in Sources */,

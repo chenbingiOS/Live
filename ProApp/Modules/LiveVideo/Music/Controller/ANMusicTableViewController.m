@@ -24,8 +24,9 @@
 @property(nonatomic,weak)ANMusicModel *playModel;
 @property(nonatomic,assign) NSInteger page;
 @property(nonatomic,assign) BOOL moreMusic;
-
 @property(nonatomic,weak)ANCircleProgressView *progressView;
+
+@property(nonatomic,strong)AVPlayer *play;
 @end
 
 @implementation ANMusicTableViewController
@@ -136,9 +137,9 @@
     //1URL
     NSString *url;
     if(self.playModel.bgm_qiniu_key.length == 0){//当七牛没有此歌曲，访问备用地址，访问自己的服务器
-        url = [@"http://fengwo.gttead.cn" stringByAppendingString:self.playModel.bgm_url];
+        url = self.playModel.bgm_url;
     }else {
-        url = [@"http://fengwocdn.xmhxb.com/" stringByAppendingString:self.playModel.bgm_qiniu_key];
+        url = self.playModel.bgm_qiniu_key;
     }
     // 2.创建请求
     NSMutableURLRequest *request =[NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
@@ -159,9 +160,9 @@
     ANMusicModel *model = cell.model;
     NSString *urlStr;
     if(self.playModel.bgm_qiniu_key.length == 0){//当七牛没有此歌曲，访问备用地址，访问自己的服务器
-        urlStr = [@"http://fengwo.gttead.cn" stringByAppendingString:model.bgm_url];
+        urlStr = model.bgm_url;
     }else {
-        urlStr = [@"http://fengwocdn.xmhxb.com/" stringByAppendingString:model.bgm_qiniu_key];
+        urlStr = model.bgm_qiniu_key;
     }
     NSURL *url = [NSURL URLWithString:urlStr];
     //判断本地是否已经下载了，

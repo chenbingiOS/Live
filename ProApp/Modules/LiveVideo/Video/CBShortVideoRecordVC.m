@@ -30,6 +30,9 @@
 #import "FUItemsView.h"
 #import "FULiveModel.h"
 
+#import <AVFoundation/AVPlayer.h>
+#import <AVFoundation/AVAudioPlayer.h>
+
 #define AlertViewShow(msg) [[[UIAlertView alloc] initWithTitle:@"warning" message:[NSString stringWithFormat:@"%@", msg] delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil] show]
 
 #define PLS_CLOSE_CONTROLLER_ALERTVIEW_TAG 10001
@@ -112,6 +115,10 @@ ANMusicDidSelectedDelegate
 @property (strong, nonatomic) UIButton *itemsViewBtn;
 @property (nonatomic, strong) FUItemsView *itemsView;
 /**     FaceUnity       **/
+
+@property (nonatomic, strong) AVPlayer *palyer;
+@property (nonatomic, strong) AVAudioPlayer *audioPlayer;
+
 
 @end
 
@@ -902,9 +909,12 @@ ANMusicDidSelectedDelegate
 #pragma mark - ANMusicDidSelectedDelegate
 // 添加音乐
 - (void)didSelectedMusic:(ANMusicModel *)musicModel {
-    NSURL *audioURL = [NSURL fileURLWithPath:musicModel.savePath];
-    NSLog(@"music file path %@", audioURL.absoluteString);
-    [self.shortVideoRecorder mixAudio:audioURL];
+    if (self.shortVideoRecorder) {
+        NSURL *audioURL = [NSURL fileURLWithPath:musicModel.savePath];
+        NSLog(@"%@", audioURL.absoluteString);
+        [self.shortVideoRecorder mixAudio:audioURL];
+        [self.shortVideoRecorder startCaptureSession];
+    }    
 }
 
 #pragma mark -- Button event
