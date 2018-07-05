@@ -10,10 +10,10 @@
 #import "CBNVC.h"
 #import "CBHomeMenuView.h"
 #import "CBApplyAnchorVC.h"
-#import "CBRecordVideoVC.h"
+#import "CBShortVideoRecordVC.h"
 #import "RecordViewController.h"
 #import "CBRealNameVC.h"
-#import "CBBeginLiveVC.h"
+#import "CBLiveAnchorMainPageVC.h"
 
 @interface CBTBC () <UITabBarControllerDelegate>
 
@@ -39,7 +39,7 @@
         } else {
             // 是否主播
             if ([[CBLiveUserConfig myProfile].is_host isEqualToString:@"1"]) {
-                vc = [CBBeginLiveVC new];
+                vc = [CBLiveAnchorMainPageVC new];
             } else {
                 vc = [CBApplyAnchorVC new];
             }
@@ -51,7 +51,7 @@
     }];
     [self.homeMenuPopView.homeMenuView.videoButton addBlockForControlEvents:UIControlEventTouchUpInside block:^(id  _Nonnull sender) {
         @strongify(self);
-        CBRecordVideoVC *recordVC = [[CBRecordVideoVC alloc] init];
+        CBShortVideoRecordVC *recordVC = [[CBShortVideoRecordVC alloc] init];
         CBNVC *nvc = [[CBNVC alloc] initWithRootViewController:recordVC];
         [self.selectedViewController presentViewController:nvc animated:YES completion:^{
             [self.homeMenuPopView hide];

@@ -8,7 +8,7 @@
 
 #import "CBOpenLiveVC.h"
 #import "CBImagePickerTool.h"
-#import "CBBeginLiveVC.h"
+#import "CBLiveAnchorMainPageVC.h"
 #import "AppDelegate.h"
 #import "CBTBC.h"
 
@@ -74,7 +74,7 @@
     }];
     AppDelegate *delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
     CBTBC *tbc = (CBTBC *)(delegate.rootVC);
-    CBBeginLiveVC *vc = [CBBeginLiveVC new];
+    CBLiveAnchorMainPageVC *vc = [CBLiveAnchorMainPageVC new];
 //    vc.coverImage = self.coverImageView.image;
     [tbc.selectedViewController presentViewController:vc animated:YES completion:nil];
 }
