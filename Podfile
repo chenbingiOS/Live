@@ -49,7 +49,7 @@ pod 'YYKit'
 # 按钮文字和图片位置
 pod 'LXMButtonImagePosition'
 # 智能键盘
-#pod 'IQKeyboardManager'
+pod 'IQKeyboardManager'
 # 圆角处理
 pod 'ZYCornerRadius'
 # 提示

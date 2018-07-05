@@ -20,6 +20,7 @@
 #import "PLSFilterGroup.h"
 #import "PLSViewRecorderManager.h"
 #import "PLSRateButtonView.h"
+#import "CBUploadVideoVC.h"
 
 #import "FUManager.h"
 #import <FUAPIDemoBar/FUAPIDemoBar.h>
@@ -165,9 +166,9 @@ FUItemsViewDelegate
         
         FULiveModel *liveModel = [FUManager shareManager].dataSource[1];
         _itemsView.itemsArray = liveModel.items;
-        NSString *selectItem = liveModel.items.count > 0 ? liveModel.items[0] : @"noitem" ;
-        _itemsView.selectedItem = selectItem ;
-        [[FUManager shareManager] loadItem:selectItem];
+//        NSString *selectItem = liveModel.items.count > 0 ? liveModel.items[0] : @"noitem" ;
+        _itemsView.selectedItem = @"noitem" ;
+//        [[FUManager shareManager] loadItem:selectItem];
 
         _itemsView.delegate = self;
     }
@@ -267,7 +268,6 @@ FUItemsViewDelegate
     
     NSLog(@"dealloc: %@", [[self class] description]);
 }
-
 
 #pragma mark - PLShortVideoRecorderDelegate 摄像头采集的视频数据的回调
 /// @abstract 获取到摄像头原数据时的回调, 便于开发者做滤镜等处理，需要注意的是这个回调在 camera 数据的输出线程，请不要做过于耗时的操作，否则可能会导致帧率下降
@@ -405,6 +405,7 @@ FUItemsViewDelegate
     self.URL = [NSURL fileURLWithPath:filePath];
 }
 
+// 右边工具条
 - (void)setupBaseToolboxView {
 //    self.baseToolboxView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, PLS_BaseToolboxView_HEIGHT, PLS_BaseToolboxView_HEIGHT + PLS_SCREEN_WIDTH)];
 //    self.baseToolboxView.backgroundColor = [UIColor clearColor];
@@ -577,7 +578,7 @@ FUItemsViewDelegate
     beautyFaceButton.frame = CGRectMake(0, 256+15+15+15+15, 64, 64);
     [beautyFaceButton setTitle:@"音乐" forState:UIControlStateNormal];
     beautyFaceButton.titleLabel.font = [UIFont fontWithName:@"PingFang-SC-Medium" size:12];
-    [beautyFaceButton setImage:[UIImage imageNamed:@"shortVideo_meiyan"] forState:UIControlStateNormal];
+    [beautyFaceButton setImage:[UIImage imageNamed:@"shortVideo_music"] forState:UIControlStateNormal];
     [beautyFaceButton setImagePosition:LXMImagePositionTop spacing:4];
     [beautyFaceButton addTarget:self action:@selector(actionMusicBtn:) forControlEvents:UIControlEventTouchUpInside];
         [self.baseToolboxView addSubview:beautyFaceButton];
@@ -585,6 +586,7 @@ FUItemsViewDelegate
     self.useSDKInternalPath = YES;
 }
 
+// 底部拍摄工具条
 - (void)setupRecordToolboxView {
 //    CGFloat y = PLS_BaseToolboxView_HEIGHT + PLS_SCREEN_WIDTH;
 //    self.recordToolboxView = [[UIView alloc] initWithFrame:CGRectMake(0, y, PLS_SCREEN_WIDTH, PLS_SCREEN_HEIGHT- y)];
@@ -792,7 +794,7 @@ FUItemsViewDelegate
     
 }
 
-#pragma -隐藏工具栏
+#pragma mark - 隐藏工具栏
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     if (self.demoBar.alpha == 1) {
         self.demoBar.alpha = 1.0 ;
@@ -816,6 +818,77 @@ FUItemsViewDelegate
             self.recordToolboxView.hidden = NO;
         }];
     }
+}
+
+
+#pragma mark - 将视频输出
+// 输出视频流
+- (void)actionOutputVideoStreamDict:(NSDictionary *)settings {
+
+    NSLog(@"%@", [settings description]);
+    
+    // 编辑
+    /* outputSettings 中的字典元素为 movieSettings, audioSettings, watermarkSettings */
+    NSMutableDictionary *outputSettings = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *movieSettings = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *audioSettings = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *watermarkSettings = [[NSMutableDictionary alloc] init];
+    
+    outputSettings[PLSMovieSettingsKey] = movieSettings;
+    outputSettings[PLSAudioSettingsKey] = audioSettings;
+    outputSettings[PLSWatermarkSettingsKey] = watermarkSettings;
+    
+    // 原始视频
+    [movieSettings addEntriesFromDictionary:settings[PLSMovieSettingsKey]];
+    movieSettings[PLSVolumeKey] = [NSNumber numberWithFloat:1.0];
+    
+    // 背景音乐
+    audioSettings[PLSVolumeKey] = [NSNumber numberWithFloat:1.0];
+    
+    // 水印图片路径
+    NSString *watermarkPath = [[NSBundle mainBundle] pathForResource:@"qiniu_logo" ofType:@".png"];
+    UIImage *watermarkImage = [UIImage imageWithContentsOfFile:watermarkPath];
+    NSURL *watermarkURL = [NSURL URLWithString:watermarkPath];
+    CGSize watermarkSize = watermarkImage.size;
+    CGPoint watermarkPosition = CGPointMake(10, 65);
+    // 水印
+    watermarkSettings[PLSURLKey] = watermarkURL;
+    watermarkSettings[PLSSizeKey] = [NSValue valueWithCGSize:watermarkSize];
+    watermarkSettings[PLSPointKey] = [NSValue valueWithCGPoint:watermarkPosition];
+    
+    AVAsset *asset = movieSettings[PLSAssetKey];
+    PLSAVAssetExportSession *exportSession = [[PLSAVAssetExportSession alloc] initWithAsset:asset];
+    exportSession.outputFileType = PLSFileTypeMPEG4;
+    exportSession.shouldOptimizeForNetworkUse = YES;
+    exportSession.outputSettings = outputSettings;
+    exportSession.isExportMovieToPhotosAlbum = YES;
+    // 设置视频的导出分辨率，会将原视频缩放
+//    exportSession.outputVideoSize = self.videoSize;
+    // 旋转视频
+    exportSession.videoLayerOrientation = PLSPreviewOrientationPortrait;
+    
+    @weakify(self);
+    [exportSession setCompletionBlock:^(NSURL *url) {
+        @strongify(self);
+        NSLog(@"Asset Export Completed");
+        dispatch_async(dispatch_get_main_queue(), ^{
+            CBUploadVideoVC *uploadVideoVC = [CBUploadVideoVC new];
+            uploadVideoVC.url = url;
+            //    [self presentViewController:uploadVideoVC animated:YES completion:nil];
+            [self.navigationController pushViewController:uploadVideoVC animated:YES];
+        });
+    }];
+    
+    [exportSession setFailureBlock:^(NSError *error) {
+        NSLog(@"Asset Export Failed: %@", error);
+    }];
+    
+    [exportSession setProcessingBlock:^(float progress) {
+        // 更新进度 UI
+        NSLog(@"Asset Export Progress: %f", progress);
+    }];
+    
+    [exportSession exportAsynchronously];
 }
 
 #pragma mark -- Button event
@@ -1049,6 +1122,7 @@ FUItemsViewDelegate
     }
 }
 
+// 缓存文件
 - (NSURL *)getFileURL {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *path = [paths objectAtIndex:0];
@@ -1150,6 +1224,7 @@ FUItemsViewDelegate
 }
 
 #pragma mark - PLSViewRecorderManagerDelegate
+// 视频录制结束
 - (void)viewRecorderManager:(PLSViewRecorderManager *)manager didFinishRecordingToAsset:(AVAsset *)asset totalDuration:(CGFloat)totalDuration {
     self.viewRecordButton.selected = NO;
     // 设置音视频、水印等编辑信息
@@ -1162,9 +1237,11 @@ FUItemsViewDelegate
     plsMovieSettings[PLSVolumeKey] = [NSNumber numberWithFloat:1.0f];
     outputSettings[PLSMovieSettingsKey] = plsMovieSettings;
     
-    EditViewController *videoEditViewController = [[EditViewController alloc] init];
-    videoEditViewController.settings = outputSettings;
-    [self presentViewController:videoEditViewController animated:YES completion:nil];
+    // 业务需求不需要编辑短视频功能 2018.07.05
+    //    EditViewController *videoEditViewController = [[EditViewController alloc] init];
+    //    videoEditViewController.settings = outputSettings;
+    //    [self presentViewController:videoEditViewController animated:YES completion:nil];
+//    CBUploadVideoVC 
 }
 
 #pragma mark -- PLShortVideoRecorderDelegate 摄像头／麦克风鉴权的回调
@@ -1318,11 +1395,14 @@ FUItemsViewDelegate
     plsMovieSettings[PLSVolumeKey] = [NSNumber numberWithFloat:1.0f];
     outputSettings[PLSMovieSettingsKey] = plsMovieSettings;
     
-    EditViewController *videoEditViewController = [[EditViewController alloc] init];
-    videoEditViewController.settings = outputSettings;
-    videoEditViewController.filesURLArray = filesURLArray;
-    [self presentViewController:videoEditViewController animated:YES completion:nil];
+//    EditViewController *videoEditViewController = [[EditViewController alloc] init];
+//    videoEditViewController.settings = outputSettings;
+//    videoEditViewController.filesURLArray = filesURLArray;
+//    [self presentViewController:videoEditViewController animated:YES completion:nil];
+    
+    [self actionOutputVideoStreamDict:outputSettings];
 }
+
 #pragma mark - 输出路径
 - (NSURL *)exportAudioMixPath {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
