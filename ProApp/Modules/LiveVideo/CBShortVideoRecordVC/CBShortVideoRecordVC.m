@@ -810,6 +810,7 @@ ANMusicDidSelectedDelegate
 }
 
 #pragma mark - 隐藏工具栏
+// 因此FaceUnity工具条
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     if (self.demoBar.alpha == 1) {
         self.demoBar.alpha = 1.0 ;

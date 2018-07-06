@@ -8,7 +8,6 @@
 
 #import "PLModelPanelGenerator.h"
 #import "PLStreamingKitDemoUtils.h"
-//#import <PLMediaStreamingKit/PLMediaStreamingKit.h>
 #import <PLRTCStreamingKit/PLRTCStreamingKit.h>
 
 @implementation PLModelPanelGenerator

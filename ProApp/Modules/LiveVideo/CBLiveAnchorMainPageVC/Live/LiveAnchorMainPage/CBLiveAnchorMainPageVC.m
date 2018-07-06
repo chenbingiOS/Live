@@ -17,7 +17,7 @@
 #import <BlocksKit/BlocksKit.h>
 #import <BlocksKit/BlocksKit+UIKit.h>
 
-#import "CBBeginLiveView.h"
+#import "CBLiveAnchorBeginView.h"
 #import "CBImagePickerTool.h"
 #import "UILabel+ShadowText.h"
 #import "EaseChatView.h"
@@ -28,22 +28,26 @@
 #import "EaseHeartFlyView.h"
 #import "EaseAdminView.h"
 #import "CBStopLiveVO.h"
+#import "CBLiveChatViewVC.h"
+#import "CBLiveGiftViewVC.h"
+
+#import "FUManager.h"
+#import <FUAPIDemoBar/FUAPIDemoBar.h>
+#import "FUItemsView.h"
+#import "FULiveModel.h"
 
 @interface CBLiveAnchorMainPageVC ()
 <
 PLMediaStreamingSessionDelegate,
 PLPanelDelegateGeneratorDelegate,
-EaseChatViewDelegate,
-EMChatroomManagerDelegate,
-EMClientDelegate,
-TapBackgroundViewDelegate,
-EaseProfileLiveViewDelegate
+FUAPIDemoBarDelegate,
+FUItemsViewDelegate
 >
 
 //--------------------------------------------
 // 配置直播
 @property (nonatomic, strong) NSURL *streamURL;
-@property (nonatomic, strong) CBBeginLiveView *beginLiveView;           ///< 开始直播前的UI
+@property (nonatomic, strong) CBLiveAnchorBeginView *beginLiveView;           ///< 开始直播前的UI
 @property (nonatomic, strong) CBAppLiveVO *liveVO;                      ///< 直播信息对象
 @property (nonatomic, strong) UIImage *coverImage;
 //--------------------------------------------
@@ -55,12 +59,15 @@ EaseProfileLiveViewDelegate
 @property (nonatomic, strong) UIImageView *topGradientView;             ///< 上部渐变
 @property (nonatomic, strong) UIImageView *bottomGradientView;          ///< 下部渐变
 @property (nonatomic, strong) UILabel *roomCodeLabel;                   ///< 房间号
-@property (nonatomic, strong) EaseLiveHeaderListView *headerListView;   ///< 顶部人员
-@property (nonatomic, strong) EaseChatView *chatview;                   ///< 底部聊天
 @property (nonatomic, strong) EaseEndLiveView *endLiveView;             ///< 结束直播
+@property (nonatomic, strong) CBLiveChatViewVC *liveChatView;           ///< 聊天系统
 //--------------------------------------------
-// 关闭UI
-@property (nonatomic, strong) UIButton *closeButton;                    ///< 关闭按钮
+/**     FaceUnity       **/
+@property (strong, nonatomic) UIButton *barBtn;
+@property (nonatomic, strong) FUAPIDemoBar *demoBar;
+@property (strong, nonatomic) UIButton *itemsViewBtn;
+@property (nonatomic, strong) FUItemsView *itemsView;
+/**     FaceUnity       **/
 //--------------------------------------------
 @property (strong, nonatomic) UITapGestureRecognizer *singleTapGR;      ///< 点击手势
 @property (nonatomic, strong) UIWindow *subWindow;
@@ -74,11 +81,6 @@ EaseProfileLiveViewDelegate
     PLModelPanelGenerator *_modelPanelGenerator;
     PLPanelDelegateGenerator *_panelDelegateGenerator;
     PLStreamingSessionConstructor *_sessionConstructor;
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    [self setNavigationBarHidden:YES animated:animated];
 }
 
 // 设置摄像头
@@ -117,8 +119,7 @@ EaseProfileLiveViewDelegate
             dispatch_async(dispatch_get_main_queue(), ^{
                 if (PLStreamStartStateSuccess == feedback) {
                     // 成功直播推流
-                    [self httpStartLivePushCallback];
-                    
+                    [self httpStartLivePushCallback];                    
                     [UIApplication sharedApplication].idleTimerDisabled = YES;
                 }
             });
@@ -128,35 +129,33 @@ EaseProfileLiveViewDelegate
 
 #pragma mark - life
 
-- (void)dealloc {
-    [_streamingSession destroy];
-    
-    [[EMClient sharedClient].roomManager removeDelegate:self];
-    [[EMClient sharedClient] removeDelegate:self];
-    _chatview.delegate = nil;
-    _chatview = nil;
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:YES animated:animated];
 }
 
-- (void)viewDidDisappear:(BOOL)animated {
-    [super viewDidDisappear:animated];
-//    [_streamingSession destroy];
-//    
-//    [[EMClient sharedClient].roomManager removeDelegate:self];
-//    [[EMClient sharedClient] removeDelegate:self];
-//    _chatview.delegate = nil;
-//    [[NSNotificationCenter defaultCenter] removeObserver:self];
+- (void)dealloc {
+    [_streamingSession destroy];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    
+    /**     -----  FaceUnity  ----     **/
+    [[FUManager shareManager] destoryItems];
+    /**     -----  FaceUnity  ----     **/
+    
+    NSLog(@"dealloc: %@", [[self class] description]);
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.tabBar.hidden = YES;
     self.coverImage = [UIImage imageNamed:@"live_empty"];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(closeLive) name:@"KNotificationCloseLiveVC" object:nil];
     
     [self _step_1_CameraSetting];
     [self _step_2_PLSetting];
     
     [self _UI_beginLiveBefore];
+    [self _setup_FaceUnity];
 }
 
 #pragma mark - UI
@@ -164,17 +163,27 @@ EaseProfileLiveViewDelegate
 - (void)_UI_beginLiveBefore {
     [self.view addSubview:self.beginLiveView];
     @weakify(self);
+    // 关闭按钮
     [self.beginLiveView.closeBtn addBlockForControlEvents:UIControlEventTouchUpInside block:^(id  _Nonnull sender) {
         @strongify(self);
         [self dismissViewControllerAnimated:YES completion:nil];
     }];
+    // 摄像头颠倒
     [self.beginLiveView.cameraBackBtn addBlockForControlEvents:UIControlEventTouchUpInside block:^(id  _Nonnull sender) {
         @strongify(self);
         [self actionChangeCamera];
     }];
+    // 美颜
     [self.beginLiveView.beautyBtn addBlockForControlEvents:UIControlEventTouchUpInside block:^(id  _Nonnull sender) {
-        
+        @strongify(self);
+        [self actionFaceUnityBeautyFaceBtn:sender];
     }];
+    // 道具
+    [self.beginLiveView.propsBtn addBlockForControlEvents:UIControlEventTouchUpInside block:^(id  _Nonnull sender) {
+        @strongify(self);
+        [self actionFaceUnityStickersBtn:sender];
+    }];
+    // 修改封面
     [self.beginLiveView.changeCoverBtn addBlockForControlEvents:UIControlEventTouchUpInside block:^(id  _Nonnull sender) {
         @strongify(self);
         CBImagePickerTool *tool = [CBImagePickerTool new];
@@ -193,11 +202,9 @@ EaseProfileLiveViewDelegate
     self.beginLiveView.coverImageView.image = self.coverImage;
 }
 
-// 直播中UI
-- (void)_UI_startLive {
-    
-    [[EMClient sharedClient].roomManager addDelegate:self delegateQueue:nil];
-    [[EMClient sharedClient] addDelegate:self delegateQueue:nil];
+// 加入聊天室
+- (void)_UI_Join_Room {
+    NSLog(@"加入聊天室");
     
     [self.view addSubview:self.roomView];
     [self.roomView addSubview:self.scrollView];
@@ -206,20 +213,40 @@ EaseProfileLiveViewDelegate
     [self.leftView addSubview:self.roomCodeLabel];
     [self.rightView addSubview:self.topGradientView];
     [self.rightView addSubview:self.bottomGradientView];
-    [self.rightView addSubview:self.headerListView];
-    [self.rightView addSubview:self.chatview];
     
-    [self.view addSubview:self.closeButton];
-    [self setupForDismissKeyboard];
-    
-    // 聊天加入房间
     @weakify(self);
-    [self.chatview joinChatroomWithIsCount:NO completion:^(BOOL success) {
+    [self addChildViewController:self.liveChatView];
+    [self.rightView addSubview:self.liveChatView.view];
+    [self.liveChatView.view mas_makeConstraints:^(MASConstraintMaker *make) {
         @strongify(self);
-        if (success) {
-//            [self.headerListView loadHeaderListWithChatroomId:self.liveVO.leancloud_room];
-        }
+        make.edges.equalTo(self.rightView);
     }];
+    
+    // 加入聊天
+    self.liveChatView.liveVO = self.liveVO;
+    [self.liveChatView joinChatRoom];
+}
+
+// 离开聊天室
+- (void)_UI_LeaveChatRoom {
+    NSLog(@"离开聊天室");
+    [self.liveChatView leaveChatRoom];
+    
+    self.liveChatView = nil;
+    self.bottomGradientView = nil;
+    self.topGradientView = nil;
+    self.roomCodeLabel = nil;
+    self.rightView = nil;
+    self.leftView = nil;
+    self.scrollView = nil;
+    self.roomView = nil;
+    [self.view removeAllSubviews];
+}
+
+// 直播中UI
+- (void)_UI_startLive {
+    
+    [self _UI_Join_Room];
     
     // 加载数据
     [self _reloadData_UpadteRoomCode];
@@ -236,17 +263,6 @@ EaseProfileLiveViewDelegate
     }];
 }
 
-// 关闭直播后关闭Window
-- (void)_UI_closeSubWindow {
-    [self.subWindow resignKeyWindow];
-    [UIView animateWithDuration:0.3 animations:^{
-        self.subWindow.top = kScreenHeight;
-    } completion:^(BOOL finished) {
-        self.subWindow.hidden = YES;
-        [self.view.window makeKeyAndVisible];
-    }];
-}
-
 // 关闭直播后显示结束详情视图
 - (void)_UI_stopLiveEndView {
     // 显示直播详情
@@ -254,9 +270,8 @@ EaseProfileLiveViewDelegate
     [self.view addSubview:self.endLiveView];
     [self.view bringSubviewToFront:self.endLiveView];
     
-    self.closeButton.hidden = YES;
-    [self.closeButton removeFromSuperview];
-    self.closeButton = nil;
+    
+    
     
     self.roomView.hidden = YES;
     [self.roomView removeAllSubviews];
@@ -265,7 +280,6 @@ EaseProfileLiveViewDelegate
 }
 
 #pragma mark - Data
-
 // 刷新数据
 - (void)_reloadData_UpadteRoomCode {
     [self.roomCodeLabel shadowWtihText:[NSString stringWithFormat:@"房间号: %@", self.liveVO.room_id]];
@@ -297,9 +311,9 @@ EaseProfileLiveViewDelegate
         NSNumber *code = responseObject[@"code"];
         if ([code isEqualToNumber:@200]) {
             self.liveVO = [CBAppLiveVO modelWithDictionary:responseObject[@"data"]];
+            self.liveVO.ID = [CBLiveUserConfig getOwnID];
             self.streamURL = [NSURL URLWithString:self.liveVO.push_rtmp];
             [self _step_3_PushStream];
-            [self _UI_closeBeginLiveView];
             [MBProgressHUD hideHUDForView:self.view animated:YES];
         } else if ([code isEqualToNumber:@511]) {
             [self httpStopLive:btn];
@@ -319,15 +333,23 @@ EaseProfileLiveViewDelegate
     NSString *url = urlStartLivePushCallback;
     NSDictionary *param = @{ @"token":[CBLiveUserConfig getOwnToken],
                              @"action": @"push" };
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    @weakify(self);
     [PPNetworkHelper POST:url parameters:param success:^(id responseObject) {
+        @strongify(self);
         NSNumber *code = responseObject[@"code"];
         if ([code isEqualToNumber:@200]) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self _UI_closeBeginLiveView];
+            });            
         } else {
             NSString *descrp = responseObject[@"descrp"];
             [MBProgressHUD showAutoMessage:descrp];
         }
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
     } failure:^(NSError *error) {
-        
+        @strongify(self);
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
     }];
 }
 
@@ -377,11 +399,40 @@ EaseProfileLiveViewDelegate
     }];
 }
 
+#pragma mark - Set
+// 设置封面图片
+- (void)setCoverImage:(UIImage *)coverImage {
+    _coverImage = coverImage;
+    self.beginLiveView.coverImageView.image = _coverImage;
+}
+
+#pragma mark - Action
+
+// 摄像头旋转
+- (void)actionChangeCamera {
+    [_streamingSession toggleCamera];
+    /**     -------- FaceUnity --------       **/
+    [[FUManager shareManager] onCameraChange];
+    /**     -------- FaceUnity --------       **/
+}
+
+// 退出播放
+- (void)closeLive{
+    // 关闭直播
+    [self httpCloseLive];
+}
+
+// 直播流停止
+- (void)actionStopPushStream {
+    // 退出播放
+    [_streamingSession stopStreaming];
+}
+
 #pragma mark - lazy
 
-- (CBBeginLiveView *)beginLiveView {
+- (CBLiveAnchorBeginView *)beginLiveView {
     if (!_beginLiveView) {
-        _beginLiveView = [CBBeginLiveView viewFromXib];
+        _beginLiveView = [CBLiveAnchorBeginView viewFromXib];
         _beginLiveView.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight);
     }
     return _beginLiveView;
@@ -449,18 +500,6 @@ EaseProfileLiveViewDelegate
     return _bottomGradientView;
 }
 
-- (UIButton *)closeButton {
-    if (!_closeButton) {
-        _closeButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        CGFloat y = kScreenHeight-60;
-        if (iPhoneX) y -= 35;
-        _closeButton.frame = CGRectMake(kScreenWidth - 60, y, 60, 60);
-        [_closeButton setImage:[UIImage imageNamed:@"live_close"] forState:UIControlStateNormal];
-        [_closeButton addTarget:self action:@selector(closeAction:) forControlEvents:UIControlEventTouchUpInside];
-    }
-    return _closeButton;
-}
-
 - (UIWindow*)subWindow {
     if (!_subWindow) {
         _subWindow = [[UIWindow alloc] initWithFrame:CGRectMake(0, kScreenHeight, kScreenWidth, 290.f)];
@@ -468,24 +507,11 @@ EaseProfileLiveViewDelegate
     return _subWindow;
 }
 
-- (EaseChatView *)chatview {
-    if (!_chatview) {
-        CGFloat y = kScreenHeight - 200 - SafeAreaBottomHeight;
-        CGRect frame = CGRectMake(0, y, kScreenWidth, 200);
-        _chatview = [[EaseChatView alloc] initWithFrame:frame room:_liveVO isPublish:NO];
-        _chatview.delegate = self;
+- (CBLiveChatViewVC *)liveChatView {
+    if (!_liveChatView) {
+        _liveChatView = [CBLiveChatViewVC new];
     }
-    return _chatview;
-}
-
-- (EaseLiveHeaderListView*)headerListView {
-    if (!_headerListView) {
-        CGFloat y = SafeAreaTopHeight - 40 ;
-        CGRect frame = CGRectMake(0, y, kScreenWidth, 30);
-//        _headerListView = [[EaseLiveHeaderListView alloc] initWithFrame:frame room:_liveVO];
-        _headerListView.delegate = self;
-    }
-    return _headerListView;
+    return _liveChatView;
 }
 
 - (EaseEndLiveView*)endLiveView {
@@ -496,297 +522,165 @@ EaseProfileLiveViewDelegate
     return _endLiveView;
 }
 
-#pragma mark - Set
-// 设置封面图片
-- (void)setCoverImage:(UIImage *)coverImage {
-    _coverImage = coverImage;
-    self.beginLiveView.coverImageView.image = _coverImage;
-}
-
-#pragma mark - Action
-
-// 摄像头旋转
-- (void)actionChangeCamera {
-    [_streamingSession toggleCamera];
-}
-
-// 退出播放
-- (void)closeAction: (UIButton *) button {
-    // 关闭直播
-    [self httpCloseLive];
-}
-
-// 直播流停止
-- (void)actionStopPushStream {
-    // 退出播放
-    [_streamingSession stopStreaming];
-}
-
-//点击屏幕点赞特效
--(void)showTheLoveAction
-{
-    EaseHeartFlyView* heart = [[EaseHeartFlyView alloc]initWithFrame:CGRectMake(0, 0, 55, 50)];
-    [_chatview addSubview:heart];
-    CGPoint fountainSource = CGPointMake(kScreenWidth - (20 + 50/2.0), _chatview.height);
-    heart.center = fountainSource;
-    [heart animateInView:_chatview];
-}
-
-#pragma mark - PLPanelDelegateGeneratorDelegate
-
-- (void)panelDelegateGenerator:(PLPanelDelegateGenerator *)panelDelegateGenerator streamDidDisconnectWithError:(NSError *)error {}
-
-- (void)panelDelegateGenerator:(PLPanelDelegateGenerator *)panelDelegateGenerator streamStateDidChange:(PLStreamState)state {}
-
-#pragma mark - EaseLiveHeaderListViewDelegate
-
-- (void)didSelectHeaderWithUsername:(NSString *)username
-{
-    if ([self.subWindow isKeyWindow]) {
-        [self _UI_closeSubWindow];
-        return;
-    }
-    EaseProfileLiveView *profileLiveView = [[EaseProfileLiveView alloc] initWithUsername:username
-                                                                              chatroomId:self.liveVO.leancloud_room
-                                                                                 isOwner:YES];
-    profileLiveView.delegate = self;
-    [profileLiveView showFromParentView:self.view];
-}
-
-#pragma  mark - TapBackgroundViewDelegate
-
-- (void)didTapBackgroundView:(EaseBaseSubView *)profileView
-{
-    [profileView removeFromParentView];
-}
-
-#pragma mark - EaseEndLiveViewDelegate
-
-// 关闭直播
-- (void)didClickEndButton {    
-    // 离开聊天室
-    [self.chatview leaveChatroomWithIsCount:NO completion:^(BOOL success) {
-        if (success) {
-            [[EMClient sharedClient].chatManager deleteConversation:self.liveVO.leancloud_room isDeleteMessages:YES completion:NULL];
-        } else {
-            [MBProgressHUD showAutoMessage:@"退出聊天室失败"];
-        }
-        [UIApplication sharedApplication].idleTimerDisabled = NO;
-        [self removeNoti];
-        [self dismissViewControllerAnimated:YES completion:^{
+#pragma mark - FaceUnity
+#pragma mark - 隐藏工具栏
+// 关闭键盘
+// 因此FaceUnity工具条
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    
+    [self.view endEditing:YES];
+    
+    if (self.demoBar.alpha == 1) {
+        self.demoBar.alpha = 1.0 ;
+        [UIView animateWithDuration:0.5 animations:^{
+            self.demoBar.transform = CGAffineTransformIdentity;
+            self.demoBar.alpha = 0.0 ;
+        } completion:^(BOOL finished) {
+            self.barBtn.hidden = NO;
+            self.beginLiveView.btnBoxView.hidden = NO;
+            self.beginLiveView.toolBoxView.hidden = NO;
         }];
+    }
+    else if (self.itemsView.alpha == 1) {
+        self.itemsView.alpha = 1.0 ;
+        [UIView animateWithDuration:0.5 animations:^{
+            self.itemsView.transform = CGAffineTransformIdentity;
+            self.itemsView.alpha = 0.0 ;
+        } completion:^(BOOL finished) {
+            self.itemsViewBtn.hidden = NO;
+            self.beginLiveView.btnBoxView.hidden = NO;
+            self.beginLiveView.toolBoxView.hidden = NO;
+        }];
+    }
+}
+// FUSDK 美颜
+- (void)actionFaceUnityBeautyFaceBtn:(UIButton *)sender {
+    self.beginLiveView.btnBoxView.hidden = YES;
+    self.beginLiveView.toolBoxView.hidden = YES;
+    self.demoBar.alpha = 0.0 ;
+    [UIView animateWithDuration:0.5 animations:^{
+        self.demoBar.transform = CGAffineTransformMakeTranslation(0, -self.demoBar.frame.size.height-34);
+        self.demoBar.alpha = 1.0 ;
     }];
 }
 
-// 继续直播
-- (void)didClickContinueButton {
-    [self _UI_beginLiveBefore];
+// 贴纸
+- (void)actionFaceUnityStickersBtn:(UIButton *)sender {
+    self.beginLiveView.btnBoxView.hidden = YES;
+    self.beginLiveView.toolBoxView.hidden = YES;
+    self.itemsView.alpha = 0.0 ;
+    [UIView animateWithDuration:0.5 animations:^{
+        self.itemsView.transform = CGAffineTransformMakeTranslation(0, -self.itemsView.frame.size.height-34);
+        self.itemsView.alpha = 1.0 ;
+    }];
 }
 
-#pragma mark - EaseChatViewDelegate
 
-- (void)easeChatViewDidChangeFrameToHeight:(CGFloat)toHeight
-{
-    if ([self.subWindow isKeyWindow]) {
-        return;
-    }
-    
-    if (toHeight == 200) {
-        [self.view removeGestureRecognizer:self.singleTapGR];
-    } else {
-        [self.view addGestureRecognizer:self.singleTapGR];
-    }
-    
-    if (!self.chatview.hidden) {
-        [UIView animateWithDuration:0.3 animations:^{
-            CGRect rect = self.chatview.frame;
-            rect.origin.y = self.view.frame.size.height - toHeight;
-            self.chatview.frame = rect;
-        }];
-    }
+// 初始化FaceUnity
+- (void)_setup_FaceUnity {
+    /**     -------- FaceUnity --------       **/
+    [[FUManager shareManager] loadItems];
+    [self.view addSubview:self.demoBar];
+    [self.view addSubview:self.itemsView];
+    /**     -------- FaceUnity --------       **/
 }
 
-- (void)didReceivePraiseWithCMDMessage:(EMMessage *)message
-{
-    [self showTheLoveAction];
-}
+/**     -------- FaceUnity --------       **/
 
-- (void)didSelectUserWithMessage:(EMMessage *)message
-{
-    [self.view endEditing:YES];
-    EaseProfileLiveView *profileLiveView = [[EaseProfileLiveView alloc] initWithUsername:message.from
-                                                                              chatroomId:self.liveVO.leancloud_room
-                                                                                 isOwner:YES];
-    profileLiveView.profileDelegate = self;
-    profileLiveView.delegate = self;
-    [profileLiveView showFromParentView:self.view];
-}
-
-- (void)didSelectChangeCameraButton
-{
-
-}
-
-- (void)didSelectAdminButton:(BOOL)isOwner
-{
-    EaseAdminView *adminView = [[EaseAdminView alloc] initWithChatroomId:self.liveVO.leancloud_room
-                                                                 isOwner:isOwner];
-    adminView.delegate = self;
-    [adminView showFromParentView:self.view];
-}
-
-#pragma mark - UITextViewDelegate
-
-- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
-{
-    if ([text isEqualToString:@"\n"]) {
-        [textView resignFirstResponder];
-        return NO;
-    }
-    return YES;
-}
-
-#pragma mark - EaseProfileLiveViewDelegate
-
-#pragma mark - EMChatroomManagerDelegate
-
-- (void)userDidJoinChatroom:(EMChatroom *)aChatroom
-                       user:(NSString *)aUsername
-{
-    if ([aChatroom.chatroomId isEqualToString:self.liveVO.leancloud_room]) {
-        if (![aChatroom.owner isEqualToString:aUsername]) {
-        }
-    }
-}
-
-- (void)userDidLeaveChatroom:(EMChatroom *)aChatroom
-                        user:(NSString *)aUsername
-{
-    if ([aChatroom.chatroomId isEqualToString:self.liveVO.leancloud_room]) {
-        if (![aChatroom.owner isEqualToString:aUsername]) {
-        }
-    }
-}
-
-- (void)chatroomMuteListDidUpdate:(EMChatroom *)aChatroom
-                addedMutedMembers:(NSArray *)aMutes
-                       muteExpire:(NSInteger)aMuteExpire
-{
-    if ([aChatroom.chatroomId isEqualToString:self.liveVO.leancloud_room]) {
-        NSMutableString *text = [NSMutableString string];
-        for (NSString *name in aMutes) {
-            [text appendString:name];
-        }
-        [self showHint:[NSString stringWithFormat:@"禁言成员:%@",text]];
-    }
-}
-
-- (void)chatroomMuteListDidUpdate:(EMChatroom *)aChatroom
-              removedMutedMembers:(NSArray *)aMutes
-{
-    if ([aChatroom.chatroomId isEqualToString:self.liveVO.leancloud_room]) {
-        NSMutableString *text = [NSMutableString string];
-        for (NSString *name in aMutes) {
-            [text appendString:name];
-        }
-        [self showHint:[NSString stringWithFormat:@"解除禁言:%@",text]];
-    }
-}
-
-- (void)chatroomOwnerDidUpdate:(EMChatroom *)aChatroom
-                      newOwner:(NSString *)aNewOwner
-                      oldOwner:(NSString *)aOldOwner
-{
-    if ([aChatroom.chatroomId isEqualToString:self.liveVO.leancloud_room]) {
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"" message:[NSString stringWithFormat:@"聊天室创建者有更新:%@",aChatroom.chatroomId] preferredStyle:UIAlertControllerStyleAlert];
+- (FUItemsView *)itemsView {
+    if (!_itemsView) {
+        _itemsView = [FUItemsView viewFromXib];
+        _itemsView.frame = CGRectMake(0, kScreenHeight, kScreenWidth, 60);
         
-        UIAlertAction *ok = [UIAlertAction actionWithTitle:NSLocalizedString(@"publish.ok", @"Ok") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-            [self didClickEndButton];
-        }];
+        FULiveModel *liveModel = [FUManager shareManager].dataSource[1];
+        _itemsView.itemsArray = liveModel.items;
+        //        NSString *selectItem = liveModel.items.count > 0 ? liveModel.items[0] : @"noitem" ;
+        _itemsView.selectedItem = @"noitem" ;
+        //        [[FUManager shareManager] loadItem:selectItem];
         
-        [alert addAction:ok];
+        _itemsView.delegate = self;
     }
+    return _itemsView;
 }
 
-- (void)didDismissFromChatroom:(EMChatroom *)aChatroom
-                        reason:(EMChatroomBeKickedReason)aReason
-{
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"被踢出直播聊天室" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
-    [alert show];
-    [self didClickEndButton];
-}
-
-#pragma mark - EMClientDelegate
-
-- (void)userAccountDidLoginFromOtherDevice
-{
-    
-}
-
-#pragma mark - private
-
-- (void)addNoti
-{
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(noti:) name:UIApplicationWillResignActiveNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(noti:) name:UIApplicationDidBecomeActiveNotification object:nil];
-}
-
-- (void)removeNoti
-{
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationWillResignActiveNotification object:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationDidBecomeActiveNotification object:nil];
-}
-
-- (void)setBtnStateInSel:(NSInteger)num
-{
-    if (num == 1) {
-        self.chatview.hidden = YES;
-        self.headerListView.hidden = YES;
-    } else {
-        self.chatview.hidden = NO;
-        self.headerListView.hidden = NO;
+- (FUAPIDemoBar *)demoBar {
+    if (!_demoBar) {
+        
+        _demoBar = [[FUAPIDemoBar alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 164)];
+        _demoBar.top = kScreenHeight;
+        
+        _demoBar.itemsDataSource = [FUManager shareManager].filtersDataSource;
+        _demoBar.selectedItem = [FUManager shareManager].selectedItem ;
+        
+        _demoBar.filtersDataSource = [FUManager shareManager].filtersDataSource ;
+        _demoBar.beautyFiltersDataSource = [FUManager shareManager].beautyFiltersDataSource ;
+        _demoBar.filtersCHName = [FUManager shareManager].filtersCHName ;
+        _demoBar.selectedFilter = [FUManager shareManager].selectedFilter ;
+        [_demoBar setFilterLevel:[FUManager shareManager].selectedFilterLevel forFilter:[FUManager shareManager].selectedFilter] ;
+        
+        _demoBar.skinDetectEnable = [FUManager shareManager].skinDetectEnable;
+        _demoBar.blurShape = [FUManager shareManager].blurShape ;
+        _demoBar.blurLevel = [FUManager shareManager].blurLevel ;
+        _demoBar.whiteLevel = [FUManager shareManager].whiteLevel ;
+        _demoBar.redLevel = [FUManager shareManager].redLevel;
+        _demoBar.eyelightingLevel = [FUManager shareManager].eyelightingLevel ;
+        _demoBar.beautyToothLevel = [FUManager shareManager].beautyToothLevel ;
+        _demoBar.faceShape = [FUManager shareManager].faceShape ;
+        
+        _demoBar.enlargingLevel = [FUManager shareManager].enlargingLevel ;
+        _demoBar.thinningLevel = [FUManager shareManager].thinningLevel ;
+        _demoBar.enlargingLevel_new = [FUManager shareManager].enlargingLevel_new ;
+        _demoBar.thinningLevel_new = [FUManager shareManager].thinningLevel_new ;
+        _demoBar.jewLevel = [FUManager shareManager].jewLevel ;
+        _demoBar.foreheadLevel = [FUManager shareManager].foreheadLevel ;
+        _demoBar.noseLevel = [FUManager shareManager].noseLevel ;
+        _demoBar.mouthLevel = [FUManager shareManager].mouthLevel ;
+        
+        _demoBar.delegate = self;
     }
+    return _demoBar ;
 }
 
-- (void)keyboardWillChangeFrame:(NSNotification *)notification
-{
-    NSDictionary *userInfo = notification.userInfo;
-    CGRect endFrame = [userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
-    CGFloat y = endFrame.origin.y;
+/**      FUAPIDemoBarDelegate       **/
+
+- (void)demoBarDidSelectedItem:(NSString *)itemName {
     
-    if ([self.subWindow isKeyWindow]) {
-        if (y == kScreenHeight) {
-            [UIView animateWithDuration:0.3 animations:^{
-                self.subWindow.top = kScreenHeight - 290.f;
-                self.subWindow.height = 290.f;
-            }];
-        } else  {
-            [UIView animateWithDuration:0.3 animations:^{
-                self.subWindow.top = 0;
-                self.subWindow.height = kScreenHeight;
-            }];
-        }
-    }
+    [[FUManager shareManager] loadItem:itemName];
 }
 
-#pragma mark - override
-
-- (void)setupForDismissKeyboard
-{
-    _singleTapGR = [[UITapGestureRecognizer alloc] initWithTarget:self
-                                                           action:@selector(tapAnywhereToDismissKeyboard:)];
+- (void)itemsViewDidSelectedItem:(NSString *)itenName {
+    [[FUManager shareManager] loadItem:itenName];
+    [self.itemsView stopAnimation];
 }
 
-- (void)tapAnywhereToDismissKeyboard:(UIGestureRecognizer *)gestureRecognizer {
-    [self.view endEditing:YES];
-    [self.chatview endEditing:YES];
+- (void)demoBarBeautyParamChanged {
+    
+    [FUManager shareManager].skinDetectEnable = _demoBar.skinDetectEnable;
+    [FUManager shareManager].blurShape = _demoBar.blurShape;
+    [FUManager shareManager].blurLevel = _demoBar.blurLevel ;
+    [FUManager shareManager].whiteLevel = _demoBar.whiteLevel;
+    [FUManager shareManager].redLevel = _demoBar.redLevel;
+    [FUManager shareManager].eyelightingLevel = _demoBar.eyelightingLevel;
+    [FUManager shareManager].beautyToothLevel = _demoBar.beautyToothLevel;
+    [FUManager shareManager].faceShape = _demoBar.faceShape;
+    [FUManager shareManager].enlargingLevel = _demoBar.enlargingLevel;
+    [FUManager shareManager].thinningLevel = _demoBar.thinningLevel;
+    [FUManager shareManager].enlargingLevel_new = _demoBar.enlargingLevel_new;
+    [FUManager shareManager].thinningLevel_new = _demoBar.thinningLevel_new;
+    [FUManager shareManager].jewLevel = _demoBar.jewLevel;
+    [FUManager shareManager].foreheadLevel = _demoBar.foreheadLevel;
+    [FUManager shareManager].noseLevel = _demoBar.noseLevel;
+    [FUManager shareManager].mouthLevel = _demoBar.mouthLevel;
+    
+    [FUManager shareManager].selectedFilter = _demoBar.selectedFilter ;
+    [FUManager shareManager].selectedFilterLevel = _demoBar.selectedFilterLevel;
 }
 
-#pragma mark - Action
-// 关闭键盘
-- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    [self.view endEditing:YES];
+#pragma mark - PLPanelDelegateGeneratorDelegate
+- (void)panelDelegateGenerator:(PLPanelDelegateGenerator *)panelDelegateGenerator cameraSourceDidGetPixelBuffer:(CVPixelBufferRef)pixelBuffer {
+    /**     -----  FaceUnity  ----     **/
+    [[FUManager shareManager] renderItemsToPixelBuffer:pixelBuffer];
+    /**     -----  FaceUnity  ----     **/
 }
 
 @end

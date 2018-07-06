@@ -818,7 +818,7 @@ static NSString * chatSystemMsgId = @"TSCSystemMsgId";
                     [self.bottomView addSubview:self.adminButton];
                     [self layoutSubviews];
                 }
-            }
+            }            
             NSArray *msgAry = responseObject[@"data"][@"msg"];
             for (NSDictionary *dictMsg in msgAry) {
                 NSDictionary *dictDate = @{@"name":dictMsg[@"title"],

@@ -1,16 +1,16 @@
 //
-//  CBBeginLiveView.m
+//  CBLiveAnchorBeginView.m
 //  ProApp
 //
 //  Created by hxbjt on 2018/6/8.
 //  Copyright © 2018年 ChenBing. All rights reserved.
 //
 
-#import "CBBeginLiveView.h"
+#import "CBLiveAnchorBeginView.h"
 #import "UIImageView+CornerRadius.h"
 #import "UIView+CornerRadius.h"
 
-@implementation CBBeginLiveView
+@implementation CBLiveAnchorBeginView
 
 - (void)awakeFromNib {
     [super awakeFromNib];

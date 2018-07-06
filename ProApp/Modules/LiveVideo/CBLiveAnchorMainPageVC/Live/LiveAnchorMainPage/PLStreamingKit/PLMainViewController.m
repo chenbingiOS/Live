@@ -11,13 +11,10 @@
 #import "PLStreamingSessionConstructor.h"
 #import "PLPermissionRequestor.h"
 #import "PLPanelDelegateGenerator.h"
-//#import <PLMediaStreamingKit/PLMediaStreamingKit.h>
 #import <PLRTCStreamingKit/PLRTCStreamingKit.h>
 #import <Masonry/Masonry.h>
 #import <BlocksKit/BlocksKit.h>
 #import <BlocksKit/BlocksKit+UIKit.h>
-//#import <WeiboSDK/WeiboSDK.h>
-#import <WeiboSDK.h>
 #import "WXApi.h"
 
 #warning 如果需要分享到微博或微信，请在这里填写相应的 key
@@ -47,7 +44,7 @@
 {
     [super viewDidLoad];
     
-    [WeiboSDK registerApp:kWeiboAppKey];
+//    [WeiboSDK registerApp:kWeiboAppKey];
     
     [WXApi registerApp:kWeiXinAppID withDescription:@"PLMediaStreamingKitDemo"];
     
@@ -310,22 +307,22 @@
 
 - (void)_pressedWeiboShareButton:(UIButton *)button {
     
-    if (![WeiboSDK isWeiboAppInstalled]) {
-        [[[UIAlertView alloc] initWithTitle:@"矮油" message:@"您还没有安装微博哦" delegate:nil cancelButtonTitle:@"知道啦" otherButtonTitles:nil] show];
-        return;
-    }
-    
-    WBMessageObject *message = [WBMessageObject message];
-    
-    message.text = [NSString stringWithFormat:@"直播开始啦: %@", [_streamURL absoluteString]];
-    
-    WBImageObject *image = [WBImageObject object];
-    image.imageData = UIImagePNGRepresentation([UIImage imageNamed:@"qiniu.png"]);
-    message.imageObject = image;
-    
-    WBSendMessageToWeiboRequest *request = [WBSendMessageToWeiboRequest requestWithMessage:message];
-    
-    [WeiboSDK sendRequest:request];
+//    if (![WeiboSDK isWeiboAppInstalled]) {
+//        [[[UIAlertView alloc] initWithTitle:@"矮油" message:@"您还没有安装微博哦" delegate:nil cancelButtonTitle:@"知道啦" otherButtonTitles:nil] show];
+//        return;
+//    }
+//    
+//    WBMessageObject *message = [WBMessageObject message];
+//    
+//    message.text = [NSString stringWithFormat:@"直播开始啦: %@", [_streamURL absoluteString]];
+//    
+//    WBImageObject *image = [WBImageObject object];
+//    image.imageData = UIImagePNGRepresentation([UIImage imageNamed:@"qiniu.png"]);
+//    message.imageObject = image;
+//    
+//    WBSendMessageToWeiboRequest *request = [WBSendMessageToWeiboRequest requestWithMessage:message];
+//    
+//    [WeiboSDK sendRequest:request];
 }
 
 - (void)_pressedWeiXinShareButton:(UIButton *)button {

@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-//#import <PLMediaStreamingKit/PLMediaStreamingKit.h>
 #import <PLRTCStreamingKit/PLRTCStreamingKit.h>
 
 @class PLPanelDelegateGenerator;
@@ -18,7 +17,7 @@
 
 - (void)panelDelegateGenerator:(PLPanelDelegateGenerator *)panelDelegateGenerator streamDidDisconnectWithError:(NSError *)error;
 - (void)panelDelegateGenerator:(PLPanelDelegateGenerator *)panelDelegateGenerator streamStateDidChange:(PLStreamState)state;
-
+- (void)panelDelegateGenerator:(PLPanelDelegateGenerator *)panelDelegateGenerator cameraSourceDidGetPixelBuffer:(CVPixelBufferRef)pixelBuffer;
 
 @end
 

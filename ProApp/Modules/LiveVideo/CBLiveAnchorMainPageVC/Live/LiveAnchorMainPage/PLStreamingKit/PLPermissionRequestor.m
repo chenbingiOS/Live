@@ -7,7 +7,6 @@
 //
 
 #import "PLPermissionRequestor.h"
-//#import <PLMediaStreamingKit/PLMediaStreamingKit.h>
 #import <PLRTCStreamingKit/PLRTCStreamingKit.h>
 
 @implementation PLPermissionRequestor

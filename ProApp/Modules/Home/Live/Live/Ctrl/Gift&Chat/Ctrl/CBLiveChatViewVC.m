@@ -100,11 +100,7 @@
     self.liveGiftView.superController = self;
 }
 
-- (void)joinChatRoom {
-
-    [self.headerListView loadHeaderListWithChatroomId:[self.liveVO.leancloud_room copy]];
-    [self.guardianListView loadHeaderListWithChatroomId:[self.liveVO.leancloud_room copy]];
-    
+- (void)joinChatRoom {    
     [[EMClient sharedClient].roomManager addDelegate:self delegateQueue:nil];
     [[EMClient sharedClient] addDelegate:self delegateQueue:nil];
     @weakify(self);
@@ -112,6 +108,8 @@
         @strongify(self);
         if (success) {
             self.chatroom = [[EMClient sharedClient].roomManager getChatroomSpecificationFromServerWithId:self.liveVO.leancloud_room error:nil];
+            [self.headerListView loadHeaderListWithChatroomId:[self.liveVO.leancloud_room copy]];
+            [self.guardianListView loadHeaderListWithChatroomId:[self.liveVO.leancloud_room copy]];
         } else {
             [MBProgressHUD showAutoMessage:@"加入聊天室失败"];
         }

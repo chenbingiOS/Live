@@ -486,14 +486,12 @@
 		5443976520D3619F0039722D /* EaseEndLiveView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5443976420D3619E0039722D /* EaseEndLiveView.m */; };
 		5443976920D39C2D0039722D /* CBStopLiveVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5443976820D39C2D0039722D /* CBStopLiveVO.m */; };
 		5444B05D20C61F2100C68A18 /* CB_address.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5444B05B20C619A700C68A18 /* CB_address.plist */; };
+		5447DE4620EF461F00C027B5 /* CBLiveAnchorMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5447DE4520EF461F00C027B5 /* CBLiveAnchorMenuView.m */; };
+		5447DE4820EF462A00C027B5 /* CBLiveAnchorMenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5447DE4720EF462A00C027B5 /* CBLiveAnchorMenuView.xib */; };
+		5447DE4A20EF485100C027B5 /* CBLiveAnchorBeginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5447DE4920EF485100C027B5 /* CBLiveAnchorBeginView.xib */; };
 		544A3A6720E4C667008C6BA8 /* CBGiftTypeVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 544A3A6620E4C667008C6BA8 /* CBGiftTypeVO.m */; };
-		544B8F8820CA118E00FC9CFE /* PLStreamingSessionConstructor.m in Sources */ = {isa = PBXBuildFile; fileRef = 544B8F8020CA118A00FC9CFE /* PLStreamingSessionConstructor.m */; };
-		544B8F8920CA118E00FC9CFE /* PLPanelDelegateGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 544B8F8120CA118B00FC9CFE /* PLPanelDelegateGenerator.m */; };
-		544B8F8A20CA118E00FC9CFE /* PLMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 544B8F8220CA118B00FC9CFE /* PLMainViewController.m */; };
-		544B8F8B20CA118E00FC9CFE /* PLModelPanelGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 544B8F8420CA118C00FC9CFE /* PLModelPanelGenerator.m */; };
-		544B8F8C20CA118E00FC9CFE /* PLPermissionRequestor.m in Sources */ = {isa = PBXBuildFile; fileRef = 544B8F8720CA118D00FC9CFE /* PLPermissionRequestor.m */; };
-		544B8F9020CA220800FC9CFE /* CBBeginLiveView.m in Sources */ = {isa = PBXBuildFile; fileRef = 544B8F8F20CA220800FC9CFE /* CBBeginLiveView.m */; };
-		544B8F9220CA221300FC9CFE /* CBBeginLiveView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 544B8F9120CA221300FC9CFE /* CBBeginLiveView.xib */; };
+		544B8F9020CA220800FC9CFE /* CBLiveAnchorBeginView.m in Sources */ = {isa = PBXBuildFile; fileRef = 544B8F8F20CA220800FC9CFE /* CBLiveAnchorBeginView.m */; };
+		544B8F9220CA221300FC9CFE /* CBLiveAnchorBeginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 544B8F9120CA221300FC9CFE /* CBLiveAnchorBeginView.xib */; };
 		544B8F9F20CA813C00FC9CFE /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 544B8F9E20CA813B00FC9CFE /* Info.plist */; };
 		544B96E320C67E81004D0DB0 /* CBFillInfoWebVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 544B96E220C67E81004D0DB0 /* CBFillInfoWebVC.m */; };
 		544CF83A20E1D85400E915D7 /* CBChatGiftMessageVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 544CF82A20E1D85400E915D7 /* CBChatGiftMessageVO.m */; };
@@ -549,6 +547,15 @@
 		5469A56420C4D195004E06F1 /* CBImagePickerTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 5469A56320C4D195004E06F1 /* CBImagePickerTool.m */; };
 		5469A58120C54587004E06F1 /* CBCityMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5469A58020C54587004E06F1 /* CBCityMenuView.m */; };
 		5469A58320C54591004E06F1 /* CBCityMenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5469A58220C54591004E06F1 /* CBCityMenuView.xib */; };
+		546ACB4920EEFB63000A9F7B /* PLPermissionRequestor.m in Sources */ = {isa = PBXBuildFile; fileRef = 546ACB3F20EEFB5E000A9F7B /* PLPermissionRequestor.m */; };
+		546ACB4A20EEFB63000A9F7B /* PLStreamingSessionConstructor.m in Sources */ = {isa = PBXBuildFile; fileRef = 546ACB4020EEFB5E000A9F7B /* PLStreamingSessionConstructor.m */; };
+		546ACB4B20EEFB63000A9F7B /* PLModelPanelGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 546ACB4420EEFB60000A9F7B /* PLModelPanelGenerator.m */; };
+		546ACB4C20EEFB63000A9F7B /* PLMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 546ACB4520EEFB61000A9F7B /* PLMainViewController.m */; };
+		546ACB4D20EEFB63000A9F7B /* PLPanelDelegateGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 546ACB4620EEFB62000A9F7B /* PLPanelDelegateGenerator.m */; };
+		546ACB5020EF3EF4000A9F7B /* CBLiveAnchorEndView.m in Sources */ = {isa = PBXBuildFile; fileRef = 546ACB4F20EF3EF4000A9F7B /* CBLiveAnchorEndView.m */; };
+		546ACB5220EF3F01000A9F7B /* CBLiveAnchorEndView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 546ACB5120EF3F01000A9F7B /* CBLiveAnchorEndView.xib */; };
+		546ACB5620EF40CB000A9F7B /* CBLiveAudienceEndView.m in Sources */ = {isa = PBXBuildFile; fileRef = 546ACB5520EF40CB000A9F7B /* CBLiveAudienceEndView.m */; };
+		546ACB5820EF40D3000A9F7B /* CBLiveAudienceEndView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 546ACB5720EF40D3000A9F7B /* CBLiveAudienceEndView.xib */; };
 		546E848720DB31CE0044DCC6 /* CBLiveCastView.m in Sources */ = {isa = PBXBuildFile; fileRef = 546E848620DB31CE0044DCC6 /* CBLiveCastView.m */; };
 		5479D2DE20EB06DB0068F688 /* CBVideoScrollVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5479D2DD20EB06DA0068F688 /* CBVideoScrollVC.m */; };
 		547CB63320D899BD0064B29B /* UIButton+Animate.m in Sources */ = {isa = PBXBuildFile; fileRef = 547CB63220D899BD0064B29B /* UIButton+Animate.m */; };
@@ -1572,21 +1579,15 @@
 		5443976720D39C2D0039722D /* CBStopLiveVO.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBStopLiveVO.h; sourceTree = "<group>"; };
 		5443976820D39C2D0039722D /* CBStopLiveVO.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBStopLiveVO.m; sourceTree = "<group>"; };
 		5444B05B20C619A700C68A18 /* CB_address.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = CB_address.plist; sourceTree = "<group>"; };
+		5447DE4420EF461F00C027B5 /* CBLiveAnchorMenuView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBLiveAnchorMenuView.h; sourceTree = "<group>"; };
+		5447DE4520EF461F00C027B5 /* CBLiveAnchorMenuView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBLiveAnchorMenuView.m; sourceTree = "<group>"; };
+		5447DE4720EF462A00C027B5 /* CBLiveAnchorMenuView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CBLiveAnchorMenuView.xib; sourceTree = "<group>"; };
+		5447DE4920EF485100C027B5 /* CBLiveAnchorBeginView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CBLiveAnchorBeginView.xib; sourceTree = "<group>"; };
 		544A3A6520E4C667008C6BA8 /* CBGiftTypeVO.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBGiftTypeVO.h; sourceTree = "<group>"; };
 		544A3A6620E4C667008C6BA8 /* CBGiftTypeVO.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBGiftTypeVO.m; sourceTree = "<group>"; };
-		544B8F7E20CA118A00FC9CFE /* PLStreamingSessionConstructor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLStreamingSessionConstructor.h; sourceTree = "<group>"; };
-		544B8F7F20CA118A00FC9CFE /* PLPanelDelegateGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLPanelDelegateGenerator.h; sourceTree = "<group>"; };
-		544B8F8020CA118A00FC9CFE /* PLStreamingSessionConstructor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLStreamingSessionConstructor.m; sourceTree = "<group>"; };
-		544B8F8120CA118B00FC9CFE /* PLPanelDelegateGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLPanelDelegateGenerator.m; sourceTree = "<group>"; };
-		544B8F8220CA118B00FC9CFE /* PLMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLMainViewController.m; sourceTree = "<group>"; };
-		544B8F8320CA118B00FC9CFE /* PLMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLMainViewController.h; sourceTree = "<group>"; };
-		544B8F8420CA118C00FC9CFE /* PLModelPanelGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLModelPanelGenerator.m; sourceTree = "<group>"; };
-		544B8F8520CA118D00FC9CFE /* PLPermissionRequestor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLPermissionRequestor.h; sourceTree = "<group>"; };
-		544B8F8620CA118D00FC9CFE /* PLModelPanelGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLModelPanelGenerator.h; sourceTree = "<group>"; };
-		544B8F8720CA118D00FC9CFE /* PLPermissionRequestor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLPermissionRequestor.m; sourceTree = "<group>"; };
-		544B8F8E20CA220800FC9CFE /* CBBeginLiveView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBBeginLiveView.h; sourceTree = "<group>"; };
-		544B8F8F20CA220800FC9CFE /* CBBeginLiveView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBBeginLiveView.m; sourceTree = "<group>"; };
-		544B8F9120CA221300FC9CFE /* CBBeginLiveView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CBBeginLiveView.xib; sourceTree = "<group>"; };
+		544B8F8E20CA220800FC9CFE /* CBLiveAnchorBeginView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBLiveAnchorBeginView.h; sourceTree = "<group>"; };
+		544B8F8F20CA220800FC9CFE /* CBLiveAnchorBeginView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBLiveAnchorBeginView.m; sourceTree = "<group>"; };
+		544B8F9120CA221300FC9CFE /* CBLiveAnchorBeginView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CBLiveAnchorBeginView.xib; sourceTree = "<group>"; };
 		544B8F9E20CA813B00FC9CFE /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		544B96E120C67E81004D0DB0 /* CBFillInfoWebVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBFillInfoWebVC.h; sourceTree = "<group>"; };
 		544B96E220C67E81004D0DB0 /* CBFillInfoWebVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBFillInfoWebVC.m; sourceTree = "<group>"; };
@@ -1686,6 +1687,22 @@
 		5469A57F20C54587004E06F1 /* CBCityMenuView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBCityMenuView.h; sourceTree = "<group>"; };
 		5469A58020C54587004E06F1 /* CBCityMenuView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBCityMenuView.m; sourceTree = "<group>"; };
 		5469A58220C54591004E06F1 /* CBCityMenuView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CBCityMenuView.xib; sourceTree = "<group>"; };
+		546ACB3F20EEFB5E000A9F7B /* PLPermissionRequestor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLPermissionRequestor.m; sourceTree = "<group>"; };
+		546ACB4020EEFB5E000A9F7B /* PLStreamingSessionConstructor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLStreamingSessionConstructor.m; sourceTree = "<group>"; };
+		546ACB4120EEFB5F000A9F7B /* PLPanelDelegateGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLPanelDelegateGenerator.h; sourceTree = "<group>"; };
+		546ACB4220EEFB5F000A9F7B /* PLPermissionRequestor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLPermissionRequestor.h; sourceTree = "<group>"; };
+		546ACB4320EEFB60000A9F7B /* PLMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLMainViewController.h; sourceTree = "<group>"; };
+		546ACB4420EEFB60000A9F7B /* PLModelPanelGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLModelPanelGenerator.m; sourceTree = "<group>"; };
+		546ACB4520EEFB61000A9F7B /* PLMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLMainViewController.m; sourceTree = "<group>"; };
+		546ACB4620EEFB62000A9F7B /* PLPanelDelegateGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLPanelDelegateGenerator.m; sourceTree = "<group>"; };
+		546ACB4720EEFB62000A9F7B /* PLStreamingSessionConstructor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLStreamingSessionConstructor.h; sourceTree = "<group>"; };
+		546ACB4820EEFB62000A9F7B /* PLModelPanelGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLModelPanelGenerator.h; sourceTree = "<group>"; };
+		546ACB4E20EF3EF4000A9F7B /* CBLiveAnchorEndView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBLiveAnchorEndView.h; sourceTree = "<group>"; };
+		546ACB4F20EF3EF4000A9F7B /* CBLiveAnchorEndView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBLiveAnchorEndView.m; sourceTree = "<group>"; };
+		546ACB5120EF3F01000A9F7B /* CBLiveAnchorEndView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CBLiveAnchorEndView.xib; sourceTree = "<group>"; };
+		546ACB5420EF40CB000A9F7B /* CBLiveAudienceEndView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBLiveAudienceEndView.h; sourceTree = "<group>"; };
+		546ACB5520EF40CB000A9F7B /* CBLiveAudienceEndView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBLiveAudienceEndView.m; sourceTree = "<group>"; };
+		546ACB5720EF40D3000A9F7B /* CBLiveAudienceEndView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CBLiveAudienceEndView.xib; sourceTree = "<group>"; };
 		546E848520DB31CD0044DCC6 /* CBLiveCastView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBLiveCastView.h; sourceTree = "<group>"; };
 		546E848620DB31CE0044DCC6 /* CBLiveCastView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBLiveCastView.m; sourceTree = "<group>"; };
 		546E848820DB43B30044DCC6 /* CBActionLiveDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBActionLiveDelegate.h; sourceTree = "<group>"; };
@@ -2221,8 +2238,8 @@
 			isa = PBXGroup;
 			children = (
 				548C5C9820B4FA6C00A6FF53 /* Ctrl */,
-				548C5C9B20B4FA8500A6FF53 /* Live */,
-				548C5C9A20B4FA7B00A6FF53 /* Video */,
+				548C5C9B20B4FA8500A6FF53 /* CBLiveAnchorMainPageVC */,
+				548C5C9A20B4FA7B00A6FF53 /* CBShortVideoRecordVC */,
 			);
 			path = LiveVideo;
 			sourceTree = "<group>";
@@ -2858,6 +2875,7 @@
 		07CDCAC9209034CC00B16FC6 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				546ACB5320EF40B1000A9F7B /* CBLiveAudienceEndView */,
 				54C1964820E2382A00E8853D /* LiveGiftShowView */,
 				544F801020D0B8C600F492AE /* EaseChat */,
 				07359D8C20A3F96800FEEA4E /* RoomView */,
@@ -3737,16 +3755,16 @@
 		544B8F6620CA116300FC9CFE /* PLStreamingKit */ = {
 			isa = PBXGroup;
 			children = (
-				544B8F8320CA118B00FC9CFE /* PLMainViewController.h */,
-				544B8F8220CA118B00FC9CFE /* PLMainViewController.m */,
-				544B8F8620CA118D00FC9CFE /* PLModelPanelGenerator.h */,
-				544B8F8420CA118C00FC9CFE /* PLModelPanelGenerator.m */,
-				544B8F7F20CA118A00FC9CFE /* PLPanelDelegateGenerator.h */,
-				544B8F8120CA118B00FC9CFE /* PLPanelDelegateGenerator.m */,
-				544B8F8520CA118D00FC9CFE /* PLPermissionRequestor.h */,
-				544B8F8720CA118D00FC9CFE /* PLPermissionRequestor.m */,
-				544B8F7E20CA118A00FC9CFE /* PLStreamingSessionConstructor.h */,
-				544B8F8020CA118A00FC9CFE /* PLStreamingSessionConstructor.m */,
+				546ACB4320EEFB60000A9F7B /* PLMainViewController.h */,
+				546ACB4520EEFB61000A9F7B /* PLMainViewController.m */,
+				546ACB4820EEFB62000A9F7B /* PLModelPanelGenerator.h */,
+				546ACB4420EEFB60000A9F7B /* PLModelPanelGenerator.m */,
+				546ACB4120EEFB5F000A9F7B /* PLPanelDelegateGenerator.h */,
+				546ACB4620EEFB62000A9F7B /* PLPanelDelegateGenerator.m */,
+				546ACB4220EEFB5F000A9F7B /* PLPermissionRequestor.h */,
+				546ACB3F20EEFB5E000A9F7B /* PLPermissionRequestor.m */,
+				546ACB4720EEFB62000A9F7B /* PLStreamingSessionConstructor.h */,
+				546ACB4020EEFB5E000A9F7B /* PLStreamingSessionConstructor.m */,
 				547EA76420CE6D1F00CDC1A1 /* PLStreamingKitDemoUtils */,
 			);
 			path = PLStreamingKit;
@@ -3755,9 +3773,16 @@
 		544B8F8D20CA21EA00FC9CFE /* View */ = {
 			isa = PBXGroup;
 			children = (
-				544B8F8E20CA220800FC9CFE /* CBBeginLiveView.h */,
-				544B8F8F20CA220800FC9CFE /* CBBeginLiveView.m */,
-				544B8F9120CA221300FC9CFE /* CBBeginLiveView.xib */,
+				544B8F8E20CA220800FC9CFE /* CBLiveAnchorBeginView.h */,
+				544B8F8F20CA220800FC9CFE /* CBLiveAnchorBeginView.m */,
+				544B8F9120CA221300FC9CFE /* CBLiveAnchorBeginView.xib */,
+				546ACB4E20EF3EF4000A9F7B /* CBLiveAnchorEndView.h */,
+				546ACB4F20EF3EF4000A9F7B /* CBLiveAnchorEndView.m */,
+				546ACB5120EF3F01000A9F7B /* CBLiveAnchorEndView.xib */,
+				5447DE4420EF461F00C027B5 /* CBLiveAnchorMenuView.h */,
+				5447DE4520EF461F00C027B5 /* CBLiveAnchorMenuView.m */,
+				5447DE4720EF462A00C027B5 /* CBLiveAnchorMenuView.xib */,
+				5447DE4920EF485100C027B5 /* CBLiveAnchorBeginView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -4064,6 +4089,16 @@
 			path = Ctrl;
 			sourceTree = "<group>";
 		};
+		546ACB5320EF40B1000A9F7B /* CBLiveAudienceEndView */ = {
+			isa = PBXGroup;
+			children = (
+				546ACB5420EF40CB000A9F7B /* CBLiveAudienceEndView.h */,
+				546ACB5520EF40CB000A9F7B /* CBLiveAudienceEndView.m */,
+				546ACB5720EF40D3000A9F7B /* CBLiveAudienceEndView.xib */,
+			);
+			path = CBLiveAudienceEndView;
+			sourceTree = "<group>";
+		};
 		547CB63020D899B50064B29B /* UIButton */ = {
 			isa = PBXGroup;
 			children = (
@@ -4076,21 +4111,21 @@
 		547EA76420CE6D1F00CDC1A1 /* PLStreamingKitDemoUtils */ = {
 			isa = PBXGroup;
 			children = (
-				547EA76520CE6D1F00CDC1A1 /* PLTitleValueConf.h */,
-				547EA76620CE6D1F00CDC1A1 /* PLDelgateHelper.h */,
-				547EA76720CE6D1F00CDC1A1 /* PLAttributeModel.m */,
-				547EA76820CE6D1F00CDC1A1 /* PLPanelModel.m */,
-				547EA76920CE6D1F00CDC1A1 /* PLMainTabBarController.m */,
-				547EA76A20CE6D1F00CDC1A1 /* PLLogDisplayer.h */,
-				547EA76B20CE6D1F00CDC1A1 /* PLAlertSpinner.m */,
-				547EA76C20CE6D1F00CDC1A1 /* PLTitleValueConf.m */,
-				547EA76D20CE6D1F00CDC1A1 /* PLDelgateHelper.m */,
 				547EA76E20CE6D1F00CDC1A1 /* PLStreamingKitDemoUtils.h */,
+				547EA76520CE6D1F00CDC1A1 /* PLTitleValueConf.h */,
+				547EA76C20CE6D1F00CDC1A1 /* PLTitleValueConf.m */,
+				547EA76620CE6D1F00CDC1A1 /* PLDelgateHelper.h */,
+				547EA76D20CE6D1F00CDC1A1 /* PLDelgateHelper.m */,
 				547EA76F20CE6D1F00CDC1A1 /* PLPanelModel.h */,
+				547EA76820CE6D1F00CDC1A1 /* PLPanelModel.m */,
 				547EA77020CE6D1F00CDC1A1 /* PLAttributeModel.h */,
+				547EA76720CE6D1F00CDC1A1 /* PLAttributeModel.m */,
 				547EA77120CE6D1F00CDC1A1 /* PLAlertSpinner.h */,
+				547EA76B20CE6D1F00CDC1A1 /* PLAlertSpinner.m */,
+				547EA76A20CE6D1F00CDC1A1 /* PLLogDisplayer.h */,
 				547EA77220CE6D1F00CDC1A1 /* PLLogDisplayer.m */,
 				547EA77320CE6D1F00CDC1A1 /* PLMainTabBarController.h */,
+				547EA76920CE6D1F00CDC1A1 /* PLMainTabBarController.m */,
 			);
 			path = PLStreamingKitDemoUtils;
 			sourceTree = "<group>";
@@ -4114,7 +4149,7 @@
 			path = Live;
 			sourceTree = "<group>";
 		};
-		548C5C9A20B4FA7B00A6FF53 /* Video */ = {
+		548C5C9A20B4FA7B00A6FF53 /* CBShortVideoRecordVC */ = {
 			isa = PBXGroup;
 			children = (
 				54A76AAD20B7DE830034D5A2 /* CBShortVideoRecordVC.h */,
@@ -4128,15 +4163,15 @@
 				54A76AB020B7DEDE0034D5A2 /* UI+Tools */,
 				5436EA9C20B7F9FA00011BF0 /* PLShortVidewVC */,
 			);
-			path = Video;
+			path = CBShortVideoRecordVC;
 			sourceTree = "<group>";
 		};
-		548C5C9B20B4FA8500A6FF53 /* Live */ = {
+		548C5C9B20B4FA8500A6FF53 /* CBLiveAnchorMainPageVC */ = {
 			isa = PBXGroup;
 			children = (
 				548C5C9920B4FA7700A6FF53 /* Live */,
 			);
-			path = Live;
+			path = CBLiveAnchorMainPageVC;
 			sourceTree = "<group>";
 		};
 		548C5C9C20B4FAA300A6FF53 /* ApplyAnchor */ = {
@@ -4900,6 +4935,7 @@
 				5442F7C120EC68E90001C238 /* lsq_filter_thumb_Pink01.jpg in Resources */,
 				5442F84320EC68E90001C238 /* style_default_1.11_btn_sticker_w@2x.png in Resources */,
 				5442F81020EC68E90001C238 /* nav_ic_back_w_1.11@2x.png in Resources */,
+				546ACB5820EF40D3000A9F7B /* CBLiveAudienceEndView.xib in Resources */,
 				5442F7F020EC68E90001C238 /* style_default_1.6.0_homepage_btn_normal@3x.png in Resources */,
 				5442F75920EC68E90001C238 /* style_default_1.7.0_soundreco_selected@2x.png in Resources */,
 				5442F7DA20EC68E90001C238 /* style_default_1.7.0_nosound@2x.png in Resources */,
@@ -5047,7 +5083,7 @@
 				5442F73120EC68E90001C238 /* style_default_1.11_btn_mv_unselected@2x.png in Resources */,
 				5440F09C20EA11BA0059F886 /* TSCSystemMsgCell.xib in Resources */,
 				5442F82C20EC68E90001C238 /* lsq_filter_thumb_Burning.jpg in Resources */,
-				544B8F9220CA221300FC9CFE /* CBBeginLiveView.xib in Resources */,
+				544B8F9220CA221300FC9CFE /* CBLiveAnchorBeginView.xib in Resources */,
 				54F7828F20BD56C500EE6821 /* CBForgetPwdVC.xib in Resources */,
 				54A149FF20ECA24200423BF6 /* fu_zh_hezxiong.bundle in Resources */,
 				5442F79D20EC68E90001C238 /* style_default_1.5.0_btn_back@2x.png in Resources */,
@@ -5127,6 +5163,7 @@
 				54A14A4220ECA24200423BF6 /* gufeng_zh_fu.bundle in Resources */,
 				54A14A4920ECA24200423BF6 /* hez_ztt_fu.bundle in Resources */,
 				5442F84520EC68E90001C238 /* style_default_1.7.1_btn_filter_w_1.11@2x.png in Resources */,
+				5447DE4820EF462A00C027B5 /* CBLiveAnchorMenuView.xib in Resources */,
 				07AB0BB8209300C9007A25A8 /* CBDiamondInfoVC.xib in Resources */,
 				5442F7EE20EC68E90001C238 /* style_default_btn_back_w@3x.png in Resources */,
 				54A14A4320ECA24200423BF6 /* sea_lm_fu.png in Resources */,
@@ -5152,6 +5189,7 @@
 				54A14A2420ECA24200423BF6 /* xiaobianzi_zh_fu.bundle in Resources */,
 				5442F79720EC68E90001C238 /* lsq_filter_thumb_nature_1.jpg in Resources */,
 				5442F7B720EC68E90001C238 /* lsq_filter_thumb_Blurred_1.jpg in Resources */,
+				546ACB5220EF3F01000A9F7B /* CBLiveAnchorEndView.xib in Resources */,
 				5442F78420EC68E90001C238 /* style_default_btn_back_selected@2x.png in Resources */,
 				5442F7FF20EC68E90001C238 /* style_default_btn_record_s@2x.png in Resources */,
 				54A149E920ECA24200423BF6 /* chaiquan_Animoji.bundle in Resources */,
@@ -5188,6 +5226,7 @@
 				54A14A2320ECA24200423BF6 /* jet_mask.bundle in Resources */,
 				07CDCAD620907D8400B16FC6 /* CBLiveBottomView.xib in Resources */,
 				5442F77420EC68E90001C238 /* lsq_filter_thumb_Flower.jpg in Resources */,
+				5447DE4A20EF485100C027B5 /* CBLiveAnchorBeginView.xib in Resources */,
 				54C18B4120D9E4E600882377 /* close@2x.png in Resources */,
 				5442F7B520EC68E90001C238 /* style_default_1.11_edit_effect_default@3x.png in Resources */,
 				54A14A1520ECA24200423BF6 /* mask_huangxiaoming.bundle in Resources */,
@@ -5363,7 +5402,6 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-ProApp/Pods-ProApp-resources.sh",
 				"${PODS_ROOT}/EaseUILite/EaseUI/resources/EaseUIResource.bundle",
-				"${PODS_ROOT}/IQKeyboardManager/IQKeyboardManager/Resources/IQKeyboardManager.bundle",
 				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/MWPhotoBrowser/MWPhotoBrowser.bundle",
 				"${PODS_ROOT}/ShareSDK3/SDK/ShareSDK/Support/Required/ShareSDK.bundle",
@@ -5375,7 +5413,6 @@
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/EaseUIResource.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/IQKeyboardManager.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MJRefresh.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MWPhotoBrowser.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ShareSDK.bundle",
@@ -5417,6 +5454,7 @@
 				5451EC9220EDFCFC00F182E0 /* ANMusicPlayButton.m in Sources */,
 				07F38C0720994A0000DDBC90 /* JPGiftOperation.m in Sources */,
 				54FD10DB20E0F09500C74C92 /* CBGiftVO.m in Sources */,
+				546ACB5020EF3EF4000A9F7B /* CBLiveAnchorEndView.m in Sources */,
 				54520AF020BFD2BB005B787E /* NSObject+Copy.m in Sources */,
 				54A14A6F20ECA2F600423BF6 /* FUMusicPlayer.m in Sources */,
 				544F801920D0B91B00F492AE /* EaseChatCell.m in Sources */,
@@ -5504,7 +5542,6 @@
 				073746E8208EBFAB00E108E9 /* CBWatchCell.m in Sources */,
 				071B70112092F4F000549C18 /* CBAccountRecordSelectView.m in Sources */,
 				5401D87F20D26F3200A3FFEF /* EaseAdminView.m in Sources */,
-				544B8F8A20CA118E00FC9CFE /* PLMainViewController.m in Sources */,
 				54A76D8F20B7E1C00034D5A2 /* PlayViewController.m in Sources */,
 				07691D4A20B270F900BF731E /* PPNetworkCache.m in Sources */,
 				54DD931C20DCE02F0016C563 /* CBLiveChatViewVC.m in Sources */,
@@ -5549,15 +5586,17 @@
 				07359D8B20A3F96200FEEA4E /* CBRoomView.m in Sources */,
 				54C1965B20E2382B00E8853D /* LiveGiftListModel.m in Sources */,
 				07CD47AA209FF78E00A372C7 /* CBGuardRankCCell.m in Sources */,
-				544B8F8B20CA118E00FC9CFE /* PLModelPanelGenerator.m in Sources */,
 				54CFFC3220ECCBE000DA26FD /* FULiveModel.m in Sources */,
 				07F6EFFC20872E3D0035C6BD /* CBAppLiveCell.m in Sources */,
-				544B8F9020CA220800FC9CFE /* CBBeginLiveView.m in Sources */,
+				544B8F9020CA220800FC9CFE /* CBLiveAnchorBeginView.m in Sources */,
 				07B66891208D6A8900AA5B62 /* CBRealNameVC.m in Sources */,
 				54A76AEE20B7DEDE0034D5A2 /* PLSColorPicker.m in Sources */,
+				546ACB4C20EEFB63000A9F7B /* PLMainViewController.m in Sources */,
 				07F6EFE320872E3D0035C6BD /* CBSelectedView.m in Sources */,
+				546ACB4D20EEFB63000A9F7B /* PLPanelDelegateGenerator.m in Sources */,
 				54FD10C420E0970400C74C92 /* TSCResource.m in Sources */,
 				0715278E20A5498A00D3859D /* UITextField+LeftImageView.m in Sources */,
+				546ACB5620EF40CB000A9F7B /* CBLiveAudienceEndView.m in Sources */,
 				07F6EFF820872E3D0035C6BD /* CBAppLiveVC.m in Sources */,
 				07737DE7208F0161009EB9E6 /* CBMyFansVC.m in Sources */,
 				54FD10C320E0970400C74C92 /* TSCLevelInfo.m in Sources */,
@@ -5575,32 +5614,34 @@
 				546E848720DB31CE0044DCC6 /* CBLiveCastView.m in Sources */,
 				548C5CCB20B519CE00A6FF53 /* CBInterface.m in Sources */,
 				545494C920C9322700E96C0A /* CBShortVideoVC.m in Sources */,
+				546ACB4920EEFB63000A9F7B /* PLPermissionRequestor.m in Sources */,
 				54A76D8620B7E14A0034D5A2 /* ClipMovieViewController.m in Sources */,
 				545494C020C8DA8E00E96C0A /* CBMyVideoCell.m in Sources */,
 				54130A0820B69DEF00CAE467 /* CBRefreshGifHeader.m in Sources */,
 				07F38C0520994A0000DDBC90 /* JPGiftCollectionViewCell.m in Sources */,
 				07558C232094517A007E41C2 /* CBOnlineUserCell.m in Sources */,
-				544B8F8920CA118E00FC9CFE /* PLPanelDelegateGenerator.m in Sources */,
 				071D3C152092B51700A6C5CE /* CBPackageRecordVO.m in Sources */,
 				544F802E20D1114500F492AE /* EaseHeartFlyView.m in Sources */,
 				54A76AEF20B7DEDE0034D5A2 /* PLSStickerBar.m in Sources */,
-				544B8F8C20CA118E00FC9CFE /* PLPermissionRequestor.m in Sources */,
 				54FD10B020E0933F00C74C92 /* TSCCollectionViewFlowLayout.m in Sources */,
 				54C1965820E2382B00E8853D /* LiveUserModel.m in Sources */,
 				54A76ADF20B7DEDE0034D5A2 /* PLSViewRecorderManager.m in Sources */,
 				54A76AE520B7DEDE0034D5A2 /* PLSAudioVolumeView.m in Sources */,
 				54FD10B420E093BE00C74C92 /* UIViewController+SuperViewCtrl.m in Sources */,
 				54A4457E20B7BCF700D65F0A /* AppDelegate+PLKit.m in Sources */,
+				546ACB4B20EEFB63000A9F7B /* PLModelPanelGenerator.m in Sources */,
 				54FD10C820E0974E00C74C92 /* CBGiftCell.m in Sources */,
 				547EA77920CE6D1F00CDC1A1 /* PLDelgateHelper.m in Sources */,
 				5440F09B20EA11BA0059F886 /* TSCSystemMsgCell.m in Sources */,
 				07F6EFE120872E3D0035C6BD /* ALinUser.m in Sources */,
 				54130A1220B6B52200CAE467 /* CBLiveSettingConfig.m in Sources */,
+				5447DE4620EF461F00C027B5 /* CBLiveAnchorMenuView.m in Sources */,
 				07558C1F20941F18007E41C2 /* CBPopView.m in Sources */,
 				544F800F20D0AECC00F492AE /* AppDelegate+Hyphenate.m in Sources */,
 				54CFFC3520ECCC0600DA26FD /* FUItemsView.m in Sources */,
 				545494A920C7E4B400E96C0A /* CBLiveAnchorMainPageVC.m in Sources */,
 				548C5CC120B50CD800A6FF53 /* CBLiveUserConfig.m in Sources */,
+				546ACB4A20EEFB63000A9F7B /* PLStreamingSessionConstructor.m in Sources */,
 				0737ED972074A33600A89CC0 /* main.m in Sources */,
 				5451EC9820EDFCFC00F182E0 /* NSString+MD5.m in Sources */,
 				54CFFC3B20ECCCC100DA26FD /* FUItemsViewCell.m in Sources */,
@@ -5614,7 +5655,6 @@
 				54A76D8920B7E1600034D5A2 /* GifFormatViewController.m in Sources */,
 				5451EC9720EDFCFC00F182E0 /* AWYDownloadFileManager.m in Sources */,
 				5403B86B20CFAD85000BE8B1 /* CBShareView.m in Sources */,
-				544B8F8820CA118E00FC9CFE /* PLStreamingSessionConstructor.m in Sources */,
 				5440F0AE20EA31BB0059F886 /* CBPlayVideoInfoVC.m in Sources */,
 				5467015C20C0E1EF00519860 /* CBEmptyView.m in Sources */,
 				077FFD082099AA7300B8680C /* CBGuardRankCell.m in Sources */,

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="KDc-li-XQI">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sPV-W8-eWy">
+                    <rect key="frame" x="164.5" y="464" width="46" height="30"/>
+                    <state key="normal" title="Button"/>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sDR-mO-KiV">
+                    <rect key="frame" x="164" y="522" width="46" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" title="Button"/>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fju-DC-oxI">
+                    <rect key="frame" x="166.5" y="286" width="42" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GXa-R9-2ng">
+                    <rect key="frame" x="166.5" y="323" width="42" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ii3-71-baN">
+                    <rect key="frame" x="164" y="183" width="42" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EWF-WI-sPW">
+                    <rect key="frame" x="59" y="69" width="240" height="128"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="sPV-W8-eWy" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="FUR-nO-Mt1"/>
+                <constraint firstItem="fju-DC-oxI" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="IrR-Vn-IRO"/>
+                <constraint firstItem="sPV-W8-eWy" firstAttribute="top" secondItem="GXa-R9-2ng" secondAttribute="bottom" constant="120" id="JSM-gD-Yhg"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="KDc-li-XQI" secondAttribute="trailing" id="Spc-5h-2Nr"/>
+                <constraint firstItem="GXa-R9-2ng" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="YD1-U1-RFJ"/>
+                <constraint firstItem="KDc-li-XQI" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Yqn-3J-g6S"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="KDc-li-XQI" secondAttribute="bottom" id="d04-nv-a9U"/>
+                <constraint firstItem="GXa-R9-2ng" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="etc-pc-nXR"/>
+                <constraint firstItem="GXa-R9-2ng" firstAttribute="top" secondItem="fju-DC-oxI" secondAttribute="bottom" constant="16" id="f5y-ZJ-j4B"/>
+                <constraint firstItem="KDc-li-XQI" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="h5b-2n-z0N"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="53.5" y="-307.5"/>
+        </view>
+    </objects>
+</document>
