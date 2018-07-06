@@ -2220,8 +2220,8 @@
 		07359D9520A4299400FEEA4E /* LiveVideo */ = {
 			isa = PBXGroup;
 			children = (
-				5451EC7620EDFCFC00F182E0 /* Music */,
-				548C5C9B20B4FA8500A6FF53 /* LiveVideo */,
+				548C5C9820B4FA6C00A6FF53 /* Ctrl */,
+				548C5C9B20B4FA8500A6FF53 /* Live */,
 				548C5C9A20B4FA7B00A6FF53 /* Video */,
 			);
 			path = LiveVideo;
@@ -3933,7 +3933,7 @@
 			path = OpenLive;
 			sourceTree = "<group>";
 		};
-		545494A620C7E3C100E96C0A /* BeginLive */ = {
+		545494A620C7E3C100E96C0A /* LiveAnchorMainPage */ = {
 			isa = PBXGroup;
 			children = (
 				545494A720C7E4B400E96C0A /* CBLiveAnchorMainPageVC.h */,
@@ -3942,7 +3942,7 @@
 				544B8F8D20CA21EA00FC9CFE /* View */,
 				544B8F6620CA116300FC9CFE /* PLStreamingKit */,
 			);
-			path = BeginLive;
+			path = LiveAnchorMainPage;
 			sourceTree = "<group>";
 		};
 		545494B220C8CFFF00E96C0A /* Ctrl */ = {
@@ -4109,7 +4109,7 @@
 			children = (
 				548C5C9C20B4FAA300A6FF53 /* ApplyAnchor */,
 				545494A520C7CCDF00E96C0A /* OpenLive */,
-				545494A620C7E3C100E96C0A /* BeginLive */,
+				545494A620C7E3C100E96C0A /* LiveAnchorMainPage */,
 			);
 			path = Live;
 			sourceTree = "<group>";
@@ -4123,6 +4123,7 @@
 				5442F85E20EC693E0001C238 /* CBEditVideoVC.m */,
 				5465AE0420BD4A10006E24BB /* CBUploadVideoVC.h */,
 				5465AE0520BD4A10006E24BB /* CBUploadVideoVC.m */,
+				5451EC7620EDFCFC00F182E0 /* Music */,
 				5422E9DD20BEAB5F0087FB91 /* View */,
 				54A76AB020B7DEDE0034D5A2 /* UI+Tools */,
 				5436EA9C20B7F9FA00011BF0 /* PLShortVidewVC */,
@@ -4130,13 +4131,12 @@
 			path = Video;
 			sourceTree = "<group>";
 		};
-		548C5C9B20B4FA8500A6FF53 /* LiveVideo */ = {
+		548C5C9B20B4FA8500A6FF53 /* Live */ = {
 			isa = PBXGroup;
 			children = (
-				548C5C9820B4FA6C00A6FF53 /* Ctrl */,
 				548C5C9920B4FA7700A6FF53 /* Live */,
 			);
-			path = LiveVideo;
+			path = Live;
 			sourceTree = "<group>";
 		};
 		548C5C9C20B4FAA300A6FF53 /* ApplyAnchor */ = {
