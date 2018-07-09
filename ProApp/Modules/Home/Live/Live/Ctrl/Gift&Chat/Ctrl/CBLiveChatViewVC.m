@@ -250,11 +250,13 @@
     }
 }
 
+
 - (void)didReceivePraiseWithCMDMessage:(EMMessage *)message
 {
     [self showTheLoveAction];
 }
 
+// 选择用户，某一条消息
 - (void)didSelectUserWithMessage:(EMMessage *)message
 {
     [self.view endEditing:YES];
@@ -269,6 +271,7 @@
     }
 }
 
+// 选择管理员按钮
 - (void)didSelectAdminButton:(BOOL)isOwner
 {
     EaseAdminView *adminView = [[EaseAdminView alloc] initWithChatroomId:self.liveVO.leancloud_room isOwner:isOwner];
@@ -276,19 +279,48 @@
     [adminView showFromParentView:self.view];
 }
 
-- (void)didSelectShareButton {
+// 选择分享按钮
+- (void)chatView:(EaseChatView *)chatView actionTouchShareBtn:(UIButton *)sender {
     UIWindow *window = [UIApplication sharedApplication].keyWindow;
     [self.sharePopView showIn:window];
 }
 
-- (void)didSelectGiftButton {
+// 选择礼物按钮
+- (void)chatView:(EaseChatView *)chatView actionTouchGiftBtn:(UIButton *)sender {
     [UIView animateWithDuration:0.5 animations:^{
         self.liveGiftView.view.origin = CGPointMake(0, 0);
     }];
 }
 
+// 选择菜单按钮
+- (void)chatView:(EaseChatView *)chatView actionTouchMenuBtn:(UIButton *)sender {
+   
+}
+
+// 美颜按钮
+- (void)chatView:(EaseChatView *)chatView actionTouchFaceUnityBeautyBtn:(UIButton *)sender {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(liveChatViewVC:actionTouchFaceUnityBeautyBtn:)]) {
+        [self.delegate liveChatViewVC:self actionTouchFaceUnityBeautyBtn:sender];
+    }
+}
+
+// 道具按钮
+- (void)chatView:(EaseChatView *)chatView actionTouchFaceUnityPropBtn:(UIButton *)sender {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(liveChatViewVC:actionTouchFaceUnityPropBtn:)]) {
+        [self.delegate liveChatViewVC:self actionTouchFaceUnityPropBtn:sender];
+    }
+}
+
+// 旋转相机
+- (void)chatView:(EaseChatView *)chatView actionTouchChangeCameraBtn:(UIButton *)sender {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(liveChatViewVC:actionTouchChangeCameraBtn:)]) {
+        [self.delegate liveChatViewVC:self actionTouchChangeCameraBtn:sender];
+    }
+}
+
 #pragma mark - CBLiveGiftViewDelegate
 
+// 礼物选择
 - (void)actionLiveSentGiftDict:(NSDictionary *)giftDict {
     if (self.chatview) {
         [self.chatview sendGiftDict:giftDict];
@@ -300,7 +332,6 @@
 }
 
 #pragma mark - EaseProfileLiveViewDelegate
-
 
 
 #pragma mark - EMChatroomManagerDelegate
@@ -487,7 +518,7 @@
 - (EaseChatView *)chatview {
     if (_chatview == nil) {
         CGFloat y = kScreenHeight - 200 - SafeAreaBottomHeight - 6;
-        _chatview = [[EaseChatView alloc] initWithFrame:CGRectMake(0, y, CGRectGetWidth(self.view.frame), 200) room:_liveVO isPublish:NO];
+        _chatview = [[EaseChatView alloc] initWithFrame:CGRectMake(0, y, CGRectGetWidth(self.view.frame), 200) room:_liveVO isPublish:_isAnchor];
     }
     return _chatview;
 }

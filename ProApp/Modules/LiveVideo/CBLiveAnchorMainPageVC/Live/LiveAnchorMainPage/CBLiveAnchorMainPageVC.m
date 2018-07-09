@@ -41,7 +41,8 @@
 PLMediaStreamingSessionDelegate,
 PLPanelDelegateGeneratorDelegate,
 FUAPIDemoBarDelegate,
-FUItemsViewDelegate
+FUItemsViewDelegate,
+LiveChatViewVCDelegate
 >
 
 //--------------------------------------------
@@ -63,10 +64,11 @@ FUItemsViewDelegate
 @property (nonatomic, strong) CBLiveChatViewVC *liveChatView;           ///< 聊天系统
 //--------------------------------------------
 /**     FaceUnity       **/
-@property (strong, nonatomic) UIButton *barBtn;
+@property (nonatomic, strong) UIButton *barBtn;
 @property (nonatomic, strong) FUAPIDemoBar *demoBar;
-@property (strong, nonatomic) UIButton *itemsViewBtn;
+@property (nonatomic, strong) UIButton *itemsViewBtn;
 @property (nonatomic, strong) FUItemsView *itemsView;
+@property (nonatomic, strong) UIView *fuCloseView;                      ///< FU控件关闭
 /**     FaceUnity       **/
 //--------------------------------------------
 @property (strong, nonatomic) UITapGestureRecognizer *singleTapGR;      ///< 点击手势
@@ -181,13 +183,14 @@ FUItemsViewDelegate
     // 道具
     [self.beginLiveView.propsBtn addBlockForControlEvents:UIControlEventTouchUpInside block:^(id  _Nonnull sender) {
         @strongify(self);
-        [self actionFaceUnityStickersBtn:sender];
+        [self actionFaceUnityPropBtn:sender];
     }];
     // 修改封面
     [self.beginLiveView.changeCoverBtn addBlockForControlEvents:UIControlEventTouchUpInside block:^(id  _Nonnull sender) {
         @strongify(self);
         CBImagePickerTool *tool = [CBImagePickerTool new];
         tool.finishBlock = ^(CBImagePickerTool *imagePickerTool, NSDictionary *mediaInfo) {
+            @strongify(self);
             self.coverImage = mediaInfo.editedImage;
         };
         [tool showFromView:self.view];
@@ -213,10 +216,10 @@ FUItemsViewDelegate
     [self.leftView addSubview:self.roomCodeLabel];
     [self.rightView addSubview:self.topGradientView];
     [self.rightView addSubview:self.bottomGradientView];
-    
-    @weakify(self);
     [self addChildViewController:self.liveChatView];
     [self.rightView addSubview:self.liveChatView.view];
+    
+    @weakify(self);
     [self.liveChatView.view mas_makeConstraints:^(MASConstraintMaker *make) {
         @strongify(self);
         make.edges.equalTo(self.rightView);
@@ -225,6 +228,12 @@ FUItemsViewDelegate
     // 加入聊天
     self.liveChatView.liveVO = self.liveVO;
     [self.liveChatView joinChatRoom];
+    
+    [self.rightView addSubview:self.fuCloseView];
+    [self.rightView addSubview:self.demoBar];
+    [self.rightView addSubview:self.itemsView];
+    [self.rightView insertSubview:self.demoBar atIndex:99];
+    [self.rightView insertSubview:self.itemsView atIndex:99];
 }
 
 // 离开聊天室
@@ -270,9 +279,6 @@ FUItemsViewDelegate
     [self.view addSubview:self.endLiveView];
     [self.view bringSubviewToFront:self.endLiveView];
     
-    
-    
-    
     self.roomView.hidden = YES;
     [self.roomView removeAllSubviews];
     [self.roomView removeFromSuperview];
@@ -311,10 +317,15 @@ FUItemsViewDelegate
         NSNumber *code = responseObject[@"code"];
         if ([code isEqualToNumber:@200]) {
             self.liveVO = [CBAppLiveVO modelWithDictionary:responseObject[@"data"]];
-            self.liveVO.ID = [CBLiveUserConfig getOwnID];
+            // 初始化主播间数据
+            CBLiveUser *user = [CBLiveUserConfig myProfile];
+            self.liveVO.ID = user.ID;
+            self.liveVO.user_nicename = user.user_nicename;
+            self.liveVO.user_level = user.user_level;
+            self.liveVO.online_num = @"0";
+            
             self.streamURL = [NSURL URLWithString:self.liveVO.push_rtmp];
             [self _step_3_PushStream];
-            [MBProgressHUD hideHUDForView:self.view animated:YES];
         } else if ([code isEqualToNumber:@511]) {
             [self httpStopLive:btn];
         } else {
@@ -323,6 +334,7 @@ FUItemsViewDelegate
             [MBProgressHUD showAutoMessage:descrp];
         }
     } failure:^(NSError *error) {
+        @strongify(self);
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         [MBProgressHUD showAutoMessage:@"直播失败"];
     }];
@@ -333,7 +345,6 @@ FUItemsViewDelegate
     NSString *url = urlStartLivePushCallback;
     NSDictionary *param = @{ @"token":[CBLiveUserConfig getOwnToken],
                              @"action": @"push" };
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     @weakify(self);
     [PPNetworkHelper POST:url parameters:param success:^(id responseObject) {
         @strongify(self);
@@ -368,6 +379,7 @@ FUItemsViewDelegate
             [MBProgressHUD showAutoMessage:descrp];
         }
     } failure:^(NSError *error) {
+        @strongify(self);
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         [MBProgressHUD showAutoMessage:@"停止直播失败"];
     }];
@@ -394,6 +406,7 @@ FUItemsViewDelegate
             [MBProgressHUD showAutoMessage:descrp];
         }
     } failure:^(NSError *error) {
+        @strongify(self);
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         [MBProgressHUD showAutoMessage:@"停止直播失败"];
     }];
@@ -407,6 +420,23 @@ FUItemsViewDelegate
 }
 
 #pragma mark - Action
+// FUSDK 美颜
+- (void)actionFaceUnityBeautyFaceBtn:(UIButton *)sender {
+    self.beginLiveView.hidden = YES;
+    [self faceUnityBeautyShow];
+}
+
+// 贴纸
+- (void)actionFaceUnityPropBtn:(UIButton *)sender {
+    self.beginLiveView.hidden = YES;
+    [self faceUnityPropShow];
+}
+
+// 关闭键盘
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    [self.view endEditing:YES];
+    [self faceUnityViewToolHide];
+}
 
 // 摄像头旋转
 - (void)actionChangeCamera {
@@ -510,6 +540,8 @@ FUItemsViewDelegate
 - (CBLiveChatViewVC *)liveChatView {
     if (!_liveChatView) {
         _liveChatView = [CBLiveChatViewVC new];
+        _liveChatView.isAnchor = YES;
+        _liveChatView.delegate = self;
     }
     return _liveChatView;
 }
@@ -522,59 +554,132 @@ FUItemsViewDelegate
     return _endLiveView;
 }
 
+- (UIView *)fuCloseView {
+    if (!_fuCloseView) {
+        _fuCloseView = [UIView new];
+        _fuCloseView.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight);
+        _fuCloseView.hidden = YES;
+        @weakify(self);
+        [_fuCloseView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithActionBlock:^(id  _Nonnull sender) {
+            @strongify(self);
+            [self faceUnityRightViewToolHide];
+        }]];
+    }
+    return _fuCloseView;
+}
+
 #pragma mark - FaceUnity
+#pragma mark - LiveChatViewVCDelegate
+// 美颜按钮
+- (void)liveChatViewVC:(CBLiveChatViewVC *)liveChatViewVC  actionTouchFaceUnityBeautyBtn:(UIButton *)sender {
+    liveChatViewVC.view.hidden = YES;
+    self.fuCloseView.hidden = NO;
+    self.fuCloseView.height = kScreenHeight - (self.demoBar.frame.size.height+SafeAreaBottomHeight);
+    [self faceUnityBeautyShow];
+}
+
+// 道具按钮
+- (void)liveChatViewVC:(CBLiveChatViewVC *)liveChatViewVC actionTouchFaceUnityPropBtn:(UIButton *)sender {
+    liveChatViewVC.view.hidden = YES;
+    self.fuCloseView.hidden = NO;
+    self.fuCloseView.height = kScreenHeight - (self.itemsView.frame.size.height+SafeAreaBottomHeight);
+    [self faceUnityPropShow];
+}
+
+// 旋转相机按钮
+- (void)liveChatViewVC:(CBLiveChatViewVC *)liveChatViewVC actionTouchChangeCameraBtn:(UIButton *)sender {
+    [self actionChangeCamera];
+}
+
 #pragma mark - 隐藏工具栏
-// 关闭键盘
-// 因此FaceUnity工具条
-- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    
-    [self.view endEditing:YES];
-    
+// 关闭
+- (void)faceUnityViewToolHide {
     if (self.demoBar.alpha == 1) {
-        self.demoBar.alpha = 1.0 ;
-        [UIView animateWithDuration:0.5 animations:^{
-            self.demoBar.transform = CGAffineTransformIdentity;
-            self.demoBar.alpha = 0.0 ;
-        } completion:^(BOOL finished) {
-            self.barBtn.hidden = NO;
-            self.beginLiveView.btnBoxView.hidden = NO;
-            self.beginLiveView.toolBoxView.hidden = NO;
+        @weakify(self);
+        [self faceUnityBeautyHide:^{
+            @strongify(self);
+            self.beginLiveView.hidden = NO;
         }];
     }
     else if (self.itemsView.alpha == 1) {
-        self.itemsView.alpha = 1.0 ;
-        [UIView animateWithDuration:0.5 animations:^{
-            self.itemsView.transform = CGAffineTransformIdentity;
-            self.itemsView.alpha = 0.0 ;
-        } completion:^(BOOL finished) {
-            self.itemsViewBtn.hidden = NO;
-            self.beginLiveView.btnBoxView.hidden = NO;
-            self.beginLiveView.toolBoxView.hidden = NO;
+        @weakify(self);
+        [self faceUnityPropHide:^{
+            @strongify(self);
+            self.beginLiveView.hidden = NO;
         }];
     }
 }
-// FUSDK 美颜
-- (void)actionFaceUnityBeautyFaceBtn:(UIButton *)sender {
-    self.beginLiveView.btnBoxView.hidden = YES;
-    self.beginLiveView.toolBoxView.hidden = YES;
+
+- (void)faceUnityRightViewToolHide {
+    if (self.demoBar.alpha == 1) {
+        @weakify(self);
+        [self faceUnityBeautyHide:^{
+            @strongify(self);
+            self.liveChatView.view.hidden = NO;
+            self.fuCloseView.hidden = YES;
+        }];
+    }
+    else if (self.itemsView.alpha == 1) {
+        @weakify(self);
+        [self faceUnityPropHide:^{
+            @strongify(self);
+            self.liveChatView.view.hidden = NO;
+            self.fuCloseView.hidden = YES;
+        }];
+    }
+}
+
+- (void)faceUnityBeautyShow {
     self.demoBar.alpha = 0.0 ;
+    @weakify(self);
     [UIView animateWithDuration:0.5 animations:^{
-        self.demoBar.transform = CGAffineTransformMakeTranslation(0, -self.demoBar.frame.size.height-34);
+        @strongify(self);
+        self.demoBar.transform = CGAffineTransformMakeTranslation(0, -self.demoBar.frame.size.height-SafeAreaBottomHeight);
         self.demoBar.alpha = 1.0 ;
     }];
 }
 
-// 贴纸
-- (void)actionFaceUnityStickersBtn:(UIButton *)sender {
-    self.beginLiveView.btnBoxView.hidden = YES;
-    self.beginLiveView.toolBoxView.hidden = YES;
-    self.itemsView.alpha = 0.0 ;
+- (void)faceUnityBeautyHide:(void (^)(void))cmplete {
+    self.demoBar.alpha = 1.0 ;
+    @weakify(self);
     [UIView animateWithDuration:0.5 animations:^{
-        self.itemsView.transform = CGAffineTransformMakeTranslation(0, -self.itemsView.frame.size.height-34);
+        @strongify(self);
+        self.demoBar.transform = CGAffineTransformIdentity;
+        self.demoBar.alpha = 0.0 ;
+    } completion:^(BOOL finished) {
+        @strongify(self);
+        self.barBtn.hidden = NO;
+        if (cmplete) {
+            cmplete();
+        }
+    }];
+}
+
+- (void)faceUnityPropShow {
+    self.itemsView.alpha = 0.0;
+    @weakify(self);
+    [UIView animateWithDuration:0.5 animations:^{
+        @strongify(self);
+        self.itemsView.transform = CGAffineTransformMakeTranslation(0, -self.itemsView.frame.size.height-SafeAreaBottomHeight);
         self.itemsView.alpha = 1.0 ;
     }];
 }
 
+- (void)faceUnityPropHide:(void (^)(void))cmplete {
+    self.itemsView.alpha = 1.0;
+    @weakify(self);
+    [UIView animateWithDuration:0.5 animations:^{
+        @strongify(self);
+        self.itemsView.transform = CGAffineTransformIdentity;
+        self.itemsView.alpha = 0.0 ;
+    } completion:^(BOOL finished) {
+        @strongify(self);
+        self.itemsViewBtn.hidden = NO;
+        if (cmplete) {
+            cmplete();
+        }
+    }];
+}
 
 // 初始化FaceUnity
 - (void)_setup_FaceUnity {
@@ -586,7 +691,6 @@ FUItemsViewDelegate
 }
 
 /**     -------- FaceUnity --------       **/
-
 - (FUItemsView *)itemsView {
     if (!_itemsView) {
         _itemsView = [FUItemsView viewFromXib];
@@ -644,7 +748,6 @@ FUItemsViewDelegate
 /**      FUAPIDemoBarDelegate       **/
 
 - (void)demoBarDidSelectedItem:(NSString *)itemName {
-    
     [[FUManager shareManager] loadItem:itemName];
 }
 

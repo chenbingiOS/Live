@@ -146,6 +146,7 @@ static NSString *const KReuseIdGiftCell = @"KReuseIdGiftCell";
                 [MBProgressHUD showAutoMessage:award];
             }
         } else {
+            
             NSString *descrp = responseObject[@"descrp"];
             [MBProgressHUD showAutoMessage:descrp];
         }

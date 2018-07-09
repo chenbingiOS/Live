@@ -581,7 +581,7 @@ ANMusicDidSelectedDelegate
     externalStickerButton.titleLabel.font = [UIFont fontWithName:@"PingFang-SC-Medium" size:12];
     [externalStickerButton setImage:[UIImage imageNamed:@"ShortVideo_meme"] forState:UIControlStateNormal];
     [externalStickerButton setImagePosition:LXMImagePositionTop spacing:4];
-    [externalStickerButton addTarget:self action:@selector(actionFaceUnityStickersBtn:) forControlEvents:UIControlEventTouchUpInside];
+    [externalStickerButton addTarget:self action:@selector(actionFaceUnityPropBtn:) forControlEvents:UIControlEventTouchUpInside];
     self.itemsViewBtn = externalStickerButton;
     [self.baseToolboxView addSubview:externalStickerButton];
     
@@ -791,7 +791,7 @@ ANMusicDidSelectedDelegate
 }
 
 // 贴纸
-- (void)actionFaceUnityStickersBtn:(UIButton *)sender {
+- (void)actionFaceUnityPropBtn:(UIButton *)sender {
     self.baseToolboxView.hidden = YES;
     self.recordToolboxView.hidden = YES;
     

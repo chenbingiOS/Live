@@ -158,6 +158,7 @@
 - (CBLiveChatViewVC *)liveChatView {
     if (!_liveChatView) {
         _liveChatView = [CBLiveChatViewVC new];
+        _liveChatView.isAnchor = NO;
     }
     return _liveChatView;
 }
