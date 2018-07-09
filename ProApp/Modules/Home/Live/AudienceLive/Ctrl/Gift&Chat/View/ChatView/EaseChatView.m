@@ -135,25 +135,42 @@ static NSString * chatSystemMsgId = @"TSCSystemMsgId";
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
+// 设置UI
 - (void)_setup_UI_isAnchor:(BOOL)isAnchor {
     if (isAnchor) {
         // 主播端
         [self addSubview:self.bottomView];
         [self.bottomView addSubview:self.sendTextBtn];
-        [self.bottomView addSubview:self.directMessagesBtn];
         [self.bottomView addSubview:self.giftBtn];
+        [self.bottomView addSubview:self.directMessagesBtn];
         [self.bottomView addSubview:self.shareBtn];
+        
         [self.bottomView addSubview:self.changeCameraBtn];
         [self.bottomView addSubview:self.faceUnityBeautyBtn];
         [self.bottomView addSubview:self.faceUnityPropBtn];
+        
+        self.sendTextBtn.frame = CGRectMake(10, 8, 34, 34);
+        self.giftBtn.frame  = CGRectMake(self.sendTextBtn.right+10, 8, 34, 34);
+        self.directMessagesBtn.frame = CGRectMake(self.giftBtn.right+10, 8, 34, 34);
+        self.shareBtn.frame = CGRectMake(self.directMessagesBtn.right+10, 8, 34, 34);
+        self.changeCameraBtn.frame = CGRectMake(kScreenWidth-44, 8, 34, 34);
+        self.faceUnityBeautyBtn.frame = CGRectMake(kScreenWidth-44-44, 8, 34, 34);
+        self.faceUnityPropBtn.frame = CGRectMake(kScreenWidth-44-44-44, 8, 34, 34);
     } else {
         // 观众端
         [self addSubview:self.bottomView];
         [self.bottomView addSubview:self.sendTextBtn];
-        [self.bottomView addSubview:self.directMessagesBtn];
+        [self.bottomView addSubview:self.roseBtn];
         [self.bottomView addSubview:self.giftBtn];
+        [self.bottomView addSubview:self.directMessagesBtn];
         [self.bottomView addSubview:self.shareBtn];
-        [self.bottomView addSubview:self.menuBtn];
+        [self.bottomView addSubview:self.joinVipBtn];
+        
+        self.sendTextBtn.frame = CGRectMake(10, 8, 34, 34);
+        self.roseBtn.frame = CGRectMake(self.sendTextBtn.right+10, 8, 34, 34);
+        self.giftBtn.frame  = CGRectMake(self.roseBtn.right+10, 8, 34, 34);
+        self.directMessagesBtn.frame = CGRectMake(self.giftBtn.right+10, 8, 34, 34);
+        self.shareBtn.frame = CGRectMake(self.directMessagesBtn.right+10, 8, 34, 34);
     }
 }
 
@@ -791,7 +808,6 @@ static NSString * chatSystemMsgId = @"TSCSystemMsgId";
 - (UIButton *)menuBtn {
     if (!_menuBtn) {
         _menuBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _menuBtn.frame = CGRectMake(kScreenWidth-kDefaultSpace-kButtonWitdh, 0, kButtonWitdh, kButtonHeight);
         [_menuBtn setImage:[UIImage imageNamed:@"live_notice-board"] forState:UIControlStateNormal];
         [_menuBtn addTarget:self action:@selector(actionMenuBtn:) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -799,8 +815,7 @@ static NSString * chatSystemMsgId = @"TSCSystemMsgId";
 }
 
 // 底部输入框容器
-- (UIView*)bottomSendMsgView
-{
+- (UIView*)bottomSendMsgView {
     if (_bottomSendMsgView == nil) {
         _bottomSendMsgView = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.tableView.frame), CGRectGetWidth(self.bounds), 50.f)];
         _bottomSendMsgView.backgroundColor = RGBACOLOR(255, 255, 255, 1);
@@ -809,8 +824,7 @@ static NSString * chatSystemMsgId = @"TSCSystemMsgId";
 }
 
 // 键盘输入框
-- (EaseInputTextView*)textView
-{
+- (EaseInputTextView*)textView {
     if (_textView == nil) {
         //输入框
         _textView = [[EaseInputTextView alloc] initWithFrame:CGRectMake(kDefaulfLeftSpace, 10.f, CGRectGetWidth(self.bounds) - CGRectGetWidth(self.faceButton.frame) - kDefaulfLeftSpace*3, 30.f)];
@@ -828,8 +842,7 @@ static NSString * chatSystemMsgId = @"TSCSystemMsgId";
 }
 
 // 表情按钮
-- (UIButton*)faceButton
-{
+- (UIButton*)faceButton {
     if (_faceButton == nil) {
         _faceButton = [UIButton buttonWithType:UIButtonTypeCustom];
         _faceButton.frame = CGRectMake(CGRectGetWidth(self.bounds) - 30 - kDefaulfLeftSpace, 10.f, 30, 30);
@@ -841,8 +854,7 @@ static NSString * chatSystemMsgId = @"TSCSystemMsgId";
 }
 
 // 表情容器
-- (UIView*)faceView
-{
+- (UIView*)faceView {
     if (_faceView == nil) {
         _faceView = [[EaseFaceView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_bottomSendMsgView.frame), self.frame.size.width, 180)];
         [(EaseFaceView *)_faceView setDelegate:self];
@@ -857,7 +869,6 @@ static NSString * chatSystemMsgId = @"TSCSystemMsgId";
 - (UIButton*)adminButton {
     if (_adminButton == nil) {
         _adminButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _adminButton.frame = CGRectMake(CGRectGetMaxX(_sendTextBtn.frame) + kDefaultSpace, 6.f, kButtonWitdh, kButtonHeight);
         [_adminButton setImage:[UIImage imageNamed:@"list"] forState:UIControlStateNormal];
         [_adminButton addTarget:self action:@selector(adminAction) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -877,7 +888,6 @@ static NSString * chatSystemMsgId = @"TSCSystemMsgId";
 - (UIButton *)sendTextBtn {
     if (!_sendTextBtn) {
         _sendTextBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _sendTextBtn.frame = CGRectMake(kDefaultSpace, 0, kButtonWitdh, kButtonHeight);
         [_sendTextBtn setImage:[UIImage imageNamed:@"live_barrage"] forState:UIControlStateNormal];
         [_sendTextBtn addTarget:self action:@selector(actionSendTextBtn:) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -888,7 +898,6 @@ static NSString * chatSystemMsgId = @"TSCSystemMsgId";
 - (UIButton *)directMessagesBtn {
     if (!_directMessagesBtn) {
         _directMessagesBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _directMessagesBtn.frame = CGRectMake(kDefaultSpace + kButtonWitdh, 0, kButtonWitdh, kButtonHeight);
         [_directMessagesBtn setImage:[UIImage imageNamed:@"live_message"] forState:UIControlStateNormal];
         [_directMessagesBtn addTarget:self action:@selector(actionDirectMessagesBtn:) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -899,8 +908,6 @@ static NSString * chatSystemMsgId = @"TSCSystemMsgId";
 - (UIButton *)giftBtn {
     if (!_giftBtn) {
         _giftBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _giftBtn.frame = CGRectMake(0, 0, kButtonWitdh, kButtonHeight);
-        _giftBtn.centerX = self.centerX;
         [_giftBtn setImage:[UIImage imageNamed:@"live_gift"] forState:UIControlStateNormal];
         [_giftBtn addTarget:self action:@selector(actionGiftBtn:) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -911,7 +918,6 @@ static NSString * chatSystemMsgId = @"TSCSystemMsgId";
 - (UIButton *)shareBtn {
     if (!_shareBtn) {
         _shareBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _shareBtn.frame = CGRectMake(kScreenWidth-kDefaultSpace-kButtonWitdh*2, 0, kButtonWitdh, kButtonHeight);
         [_shareBtn setImage:[UIImage imageNamed:@"live_share"] forState:UIControlStateNormal];
         [_shareBtn addTarget:self action:@selector(actionShareBtn:) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -922,8 +928,7 @@ static NSString * chatSystemMsgId = @"TSCSystemMsgId";
 - (UIButton*)changeCameraBtn {
     if (!_changeCameraBtn) {
         _changeCameraBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _changeCameraBtn.frame = CGRectMake(kScreenWidth - kDefaultSpace - kButtonWitdh, 0, kButtonWitdh, kButtonHeight);
-        [_changeCameraBtn setImage:[UIImage imageNamed:@"reversal_camera"] forState:UIControlStateNormal];
+        [_changeCameraBtn setImage:[UIImage imageNamed:@"live_camera"] forState:UIControlStateNormal];
         [_changeCameraBtn addTarget:self action:@selector(actionChangeCameraBtn:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _changeCameraBtn;
@@ -933,8 +938,7 @@ static NSString * chatSystemMsgId = @"TSCSystemMsgId";
 - (UIButton*)faceUnityBeautyBtn {
     if (!_faceUnityBeautyBtn) {
         _faceUnityBeautyBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _faceUnityBeautyBtn.frame = CGRectMake(kScreenWidth - kDefaultSpace - kButtonWitdh, 0, kButtonWitdh, kButtonHeight);
-        [_faceUnityBeautyBtn setImage:[UIImage imageNamed:@"reversal_camera"] forState:UIControlStateNormal];
+        [_faceUnityBeautyBtn setImage:[UIImage imageNamed:@"live_beauty"] forState:UIControlStateNormal];
         [_faceUnityBeautyBtn addTarget:self action:@selector(actionFaceUnityBeautyBtn:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _faceUnityBeautyBtn;
@@ -944,23 +948,41 @@ static NSString * chatSystemMsgId = @"TSCSystemMsgId";
 - (UIButton*)faceUnityPropBtn {
     if (!_faceUnityPropBtn) {
         _faceUnityPropBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _faceUnityPropBtn.frame = CGRectMake(kScreenWidth - kDefaultSpace - kButtonWitdh, 0, kButtonWitdh, kButtonHeight);
-        [_faceUnityPropBtn setImage:[UIImage imageNamed:@"reversal_camera"] forState:UIControlStateNormal];
+        [_faceUnityPropBtn setImage:[UIImage imageNamed:@"live_beauty"] forState:UIControlStateNormal];
         [_faceUnityPropBtn addTarget:self action:@selector(actionFaceUnityPropBtn:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _faceUnityPropBtn;
 }
 
 // 喜欢按钮
-- (UIButton*)likeButton
-{
+- (UIButton*)likeButton {
     if (_likeButton == nil) {
         _likeButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _likeButton.frame = CGRectMake(kScreenWidth - kDefaultSpace - kButtonWitdh, 6.f, kButtonWitdh, kButtonHeight);
         [_likeButton setImage:[UIImage imageNamed:@"like"] forState:UIControlStateNormal];
         [_likeButton addTarget:self action:@selector(praiseAction) forControlEvents:UIControlEventTouchUpInside];
     }
     return _likeButton;
+}
+
+// 加入Vip按钮
+- (UIButton *)joinVipBtn {
+    if (!_joinVipBtn) {
+        _joinVipBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _joinVipBtn.frame = CGRectMake(kScreenWidth-80, 0, 80, 50);
+        [_joinVipBtn setImage:[UIImage imageNamed:@"live_joinVip"] forState:UIControlStateNormal];
+        [_joinVipBtn addTarget:self action:@selector(actionShareBtn:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _joinVipBtn;
+}
+
+// 玫瑰按钮
+- (UIButton *)roseBtn {
+    if (!_roseBtn) {
+        _roseBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_roseBtn setImage:[UIImage imageNamed:@"live_rose"] forState:UIControlStateNormal];
+        [_roseBtn addTarget:self action:@selector(actionShareBtn:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _roseBtn;
 }
 
 @end

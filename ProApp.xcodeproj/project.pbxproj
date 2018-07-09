@@ -2601,7 +2601,7 @@
 		077D1F8220886C3E003B9E56 /* Live */ = {
 			isa = PBXGroup;
 			children = (
-				07F38C0A2099501600DDBC90 /* Live */,
+				07F38C0A2099501600DDBC90 /* AudienceLive */,
 				07F38C102099503D00DDBC90 /* Guard */,
 				077FFCFD2099A63D00B8680C /* GuardRank */,
 				07CD47AC20A0265D00A372C7 /* ContributionRank */,
@@ -2918,7 +2918,7 @@
 			path = JPGiftManager;
 			sourceTree = "<group>";
 		};
-		07F38C0A2099501600DDBC90 /* Live */ = {
+		07F38C0A2099501600DDBC90 /* AudienceLive */ = {
 			isa = PBXGroup;
 			children = (
 				077D1F8620886C5A003B9E56 /* Ctrl */,
@@ -2926,7 +2926,7 @@
 				544F801A20D0B92300F492AE /* Model */,
 				07CDCAC9209034CC00B16FC6 /* View */,
 			);
-			path = Live;
+			path = AudienceLive;
 			sourceTree = "<group>";
 		};
 		07F38C102099503D00DDBC90 /* Guard */ = {
