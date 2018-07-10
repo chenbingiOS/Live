@@ -12,6 +12,7 @@
 #import "HcdGuideView.h"
 #import "CBLiveUserConfig.h"
 #import "CBLoginVC.h"
+#import "CBGiftTypeVO.h"
 
 @implementation AppDelegate (AppServer)
 
@@ -20,6 +21,17 @@
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
+    
+    
+    dispatch_queue_t initGiftQueue =dispatch_queue_create("com.gift.GCD.initGiftQueue",DISPATCH_QUEUE_CONCURRENT);
+    dispatch_async(initGiftQueue, ^{
+        //在此处编写需要副线程处理的代码（后台执行）
+        [self initGiftData];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            //反馈到主线程，处理副线程执行完成的结果（反馈到主线程执行）
+        });
+    });
+    
 }
 
 #pragma mark - rootVC
@@ -94,7 +106,7 @@
     [[UIButton appearance] setExclusiveTouch:YES];  // 禁止按钮同时触发
     [[UIButton appearance] setShowsTouchWhenHighlighted:YES];   // 按钮被点击高亮提醒
     
-    //    [UIActivityIndicatorView appearanceWhenContainedIn:[MBProgressHUD class], nil].color = KWhiteColor;
+//    [UIActivityIndicatorView appearanceWhenContainedIn:[MBProgressHUD class], nil].color = KWhiteColor;
     
     // iOS 11 ScrollView 偏移量
     if (@available(iOS 11.0, *)){
@@ -114,6 +126,22 @@
     [[UIBarButtonItem appearance] setBackButtonBackgroundImage:[[UIImage imageNamed:@"jht_dly_fh"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, 0, 0)] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
 }
 
+#pragma mark - 数据初始化
+- (void)initGiftData {
+    NSString *url = urlGetGiftOneList;
+    [PPNetworkHelper POST:url parameters:nil success:^(id responseObject) {
+        NSArray *giftAry = responseObject[@"data"];
+        for (NSString *str in giftAry) {
+            [[YYWebImageManager sharedManager] requestImageWithURL:[NSURL URLWithString:str] options:YYWebImageOptionAllowBackgroundTask progress:nil transform:nil completion:^(UIImage * _Nullable image, NSURL * _Nonnull url, YYWebImageFromType from, YYWebImageStage stage, NSError * _Nullable error) {
+                if (!error) {
+                    NSLog(@"gift资源下载完成");
+                }
+            }];
+        }
+    } failure:^(NSError *error) {
+        
+    }];
+}
 @end
 
 

@@ -16,6 +16,7 @@
 // VO
 #import "CBAppLiveVO.h"
 // View
+#import "CBLiveAnchorGiftRecordView.h"
 #import "EaseChatView.h"
 #import "EaseLiveHeaderListView.h"
 #import "CBLiveGuardianListView.h"
@@ -58,6 +59,7 @@
 @property (nonatomic, strong) CBLiveGiftViewVC *liveGiftView;       ///< 礼物系统
 @property (nonatomic, strong) LiveGiftShowCustom *customGiftShow;   ///< 显示普通礼物
 @property (nonatomic, strong) YYAnimatedImageView *showGifImageView; ///< 显示Gif礼物
+@property (nonatomic, strong) CBLiveAnchorGiftRecordPopView *giftRecordPopView; ///< 礼物记录
 
 // 键盘关闭功能
 @property (nonatomic, strong) UIWindow *window;
@@ -146,6 +148,7 @@
     [self.anchorInfoView showIn:window];
     self.anchorInfoView.liveVO = _liveVO;
 }
+
 // 关注当前用户
 - (void)actionLiveAttentionCurrentAnchor {}
 
@@ -157,6 +160,7 @@
 
 // 显示在线用户列表
 - (void)actionLiveShowOnlineUserList {}
+
 // 显示贡献榜
 - (void)actionLiveShowContributionList {
     
@@ -250,7 +254,6 @@
     }
 }
 
-
 - (void)didReceivePraiseWithCMDMessage:(EMMessage *)message
 {
     [self showTheLoveAction];
@@ -287,9 +290,14 @@
 
 // 选择礼物按钮
 - (void)chatView:(EaseChatView *)chatView actionTouchGiftBtn:(UIButton *)sender {
-    [UIView animateWithDuration:0.5 animations:^{
-        self.liveGiftView.view.origin = CGPointMake(0, 0);
-    }];
+    if (self.isAnchor) {
+        UIWindow *window = [UIApplication sharedApplication].keyWindow;
+        [self.giftRecordPopView showIn:window];
+    } else {
+        [UIView animateWithDuration:0.5 animations:^{
+            self.liveGiftView.view.origin = CGPointMake(0, 0);
+        }];
+    }
 }
 
 // 选择菜单按钮
@@ -604,5 +612,15 @@
     }
     return _showGifImageView;
 }
+
+// 主播礼物列表
+- (CBLiveAnchorGiftRecordPopView *)giftRecordPopView {
+    if (!_giftRecordPopView) {
+        CGFloat height = kScreenHeight*0.75+SafeAreaBottomHeight;
+        _giftRecordPopView = [[CBLiveAnchorGiftRecordPopView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, height)];
+    }
+    return _giftRecordPopView;
+}
+
 
 @end

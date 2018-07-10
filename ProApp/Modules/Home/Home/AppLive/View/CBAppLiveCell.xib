@@ -128,7 +128,7 @@
                 <outlet property="roomIDLab" destination="BhW-l6-O86" id="HHt-j9-qs1"/>
                 <outlet property="startView" destination="1Xd-ou-YsO" id="xOb-13-SRh"/>
             </connections>
-            <point key="canvasLocation" x="330" y="26"/>
+            <point key="canvasLocation" x="98" y="28"/>
         </tableViewCell>
     </objects>
     <resources>

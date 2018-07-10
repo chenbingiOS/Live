@@ -649,7 +649,6 @@ static NSString * chatSystemMsgId = @"TSCSystemMsgId";
     [self _setSendState:YES];
 }
 
-
 #pragma mark - action
 // 消息按钮触发
 - (void)actionSendTextBtn:(UIButton *)sender {
@@ -735,8 +734,7 @@ static NSString * chatSystemMsgId = @"TSCSystemMsgId";
     }
 }
 
-- (void)faceAction
-{
+- (void)faceAction {
     _faceButton.selected = !_faceButton.selected;
     
     if (_faceButton.selected) {
@@ -747,8 +745,7 @@ static NSString * chatSystemMsgId = @"TSCSystemMsgId";
     }
 }
 
-- (void)adminAction
-{
+- (void)adminAction {
     if (_delegate && [_delegate respondsToSelector:@selector(didSelectAdminButton:)]) {
         BOOL isOwner = NO;
         if (self.chatroom && self.chatroom.permissionType == EMChatroomPermissionTypeOwner) {
@@ -759,8 +756,7 @@ static NSString * chatSystemMsgId = @"TSCSystemMsgId";
     }
 }
 
-- (void)praiseAction
-{
+- (void)praiseAction {
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(_uploadPraiseCountToServer) object:nil];
     EMMessage *message = [self _sendCMDMessageTo:self.chatroomId messageType:EMChatTypeChatRoom messageExt:@{kPraiseCount:@(1)} action:kPraiseAction];
     @weakify(self);
@@ -832,7 +828,7 @@ static NSString * chatSystemMsgId = @"TSCSystemMsgId";
         _textView.scrollEnabled = YES;
         _textView.returnKeyType = UIReturnKeySend;
         _textView.enablesReturnKeyAutomatically = YES; // UITextView内部判断send按钮是否可以用
-        _textView.placeHolder = NSLocalizedString(@"chat.input.placeholder", @"input a new message");
+        _textView.placeHolder = @"发个消息...";
         _textView.delegate = self;
         _textView.backgroundColor = RGBACOLOR(236, 236, 236, 1);
         _textView.layer.cornerRadius = 4.0f;

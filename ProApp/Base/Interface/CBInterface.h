@@ -47,6 +47,8 @@
 #define urlAddLike              purl@"Api/Anchor/add_like"
 // 获取守护列表
 #define urlGetGuardRankList     purl@"Api/Anchor/guard_rank_list"
+// 礼物gif图片
+#define urlGetGiftOneList       purl@"Api/Gift/getGiftOneList"
 //------------------------------------------------------------------
 // 用户操作
 // 用户注册
