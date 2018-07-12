@@ -52,6 +52,11 @@
 @property (nonatomic, copy) NSString *attention_num;    ///< 我的关注
 @property (nonatomic, copy) NSString *fans_num;         ///< 我的粉丝
 
+@property (nonatomic, copy) NSString *orderId;
+@property (nonatomic, copy) NSString *level;        ///< 守护等级 4：小守护 5：大守护
+@property (nonatomic, copy) NSString *shouhu_time;  ///< 守护天数
+@property (nonatomic, copy) NSString *user_money;   ///< 贡献币
+
 
 - (instancetype)initWithDic:(NSDictionary *)dic;
 + (instancetype)modelWithDic:(NSDictionary *)dic;

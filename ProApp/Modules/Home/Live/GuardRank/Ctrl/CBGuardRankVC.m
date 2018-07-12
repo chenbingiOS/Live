@@ -8,8 +8,6 @@
 
 #import "CBGuardRankVC.h"
 #import "CBGuardVC.h"
-#import "CBGuardRankCell.h"
-#import "CBGuardRankBCell.h"
 #import "CBGuardRankCCell.h"
 
 @interface CBGuardRankVC () <UITableViewDelegate, UITableViewDataSource>
@@ -18,8 +16,6 @@
 
 @end
 
-static NSString *const CBGuardRankACellID = @"CBGuardRankACellID";
-static NSString *const CBGuardRankBCellID = @"CBGuardRankBCellID";
 static NSString *const CBGuardRankCCellID = @"CBGuardRankCCellID";
 
 @implementation CBGuardRankVC
@@ -34,8 +30,6 @@ static NSString *const CBGuardRankCCellID = @"CBGuardRankCCellID";
     self.title = @"守护排行榜";
 
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"去守护" style:UIBarButtonItemStylePlain target:self action:@selector(toGuard)];
-    [self.tableView registerNib:[UINib nibWithNibName:@"CBGuardRankCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:CBGuardRankACellID];
-    [self.tableView registerNib:[UINib nibWithNibName:@"CBGuardRankBCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:CBGuardRankBCellID];
     [self.tableView registerNib:[UINib nibWithNibName:@"CBGuardRankCCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:CBGuardRankCCellID];
 }
 
@@ -54,16 +48,8 @@ static NSString *const CBGuardRankCCellID = @"CBGuardRankCCellID";
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row == 0) {
-        CBGuardRankCell *cell = [tableView dequeueReusableCellWithIdentifier:CBGuardRankACellID];
-        return cell;
-    } else if (indexPath.row == 1 || indexPath.row == 2) {
-        CBGuardRankBCell *cell = [tableView dequeueReusableCellWithIdentifier:CBGuardRankBCellID];
-        return cell;
-    } else {
-        CBGuardRankCCell *cell = [tableView dequeueReusableCellWithIdentifier:CBGuardRankCCellID];
-        return cell;
-    }
+    CBGuardRankCCell *cell = [tableView dequeueReusableCellWithIdentifier:CBGuardRankCCellID];
+    return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {

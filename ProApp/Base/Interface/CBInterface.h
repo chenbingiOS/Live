@@ -47,6 +47,8 @@
 #define urlAddLike              purl@"Api/Anchor/add_like"
 // 获取守护列表
 #define urlGetGuardRankList     purl@"Api/Anchor/guard_rank_list"
+// 获取某个用户贡献币列表
+#define urlReceiveCoin          purl@"Api/Gift/receive_coin"
 // 礼物gif图片
 #define urlGetGiftOneList       purl@"Api/Gift/getGiftOneList"
 //------------------------------------------------------------------

@@ -22,5 +22,7 @@
 - (void)actionLiveShowOnlineUserList;
 // 显示贡献榜
 - (void)actionLiveShowContributionList;
+// 显示守护列表
+- (void)actionLiveShowGrardianList;
 
 @end

@@ -25,6 +25,8 @@
 #import "EaseAdminView.h"
 #import "CBOnlineUserView.h"
 #import "LiveGiftShowCustom.h"
+#import "CBLiveAnchorGuardianListVC.h"
+#import "CBNVC.h"
 // Delegate
 #import "CBActionLiveDelegate.h"
 // Category
@@ -150,7 +152,9 @@
 }
 
 // 关注当前用户
-- (void)actionLiveAttentionCurrentAnchor {}
+- (void)actionLiveAttentionCurrentAnchor {
+    
+}
 
 // 开通守护
 - (void)actionLiveOpenGuard {
@@ -159,22 +163,27 @@
 }
 
 // 显示在线用户列表
-- (void)actionLiveShowOnlineUserList {}
+- (void)actionLiveShowOnlineUserList {
+    UIWindow *window = [[UIApplication sharedApplication].delegate window];
+    [self.onlineUserView showIn:window];
+}
 
 // 显示贡献榜
 - (void)actionLiveShowContributionList {
-    
     CBContributionRankVC *vc = [CBContributionRankVC new];
-    [self presentViewController:vc animated:YES completion:nil];
-    
-//    CBContributionRankVC *vc = [CBContributionRankVC new];
-//    CBLivePlayerVC *livePlayerVC = (CBLivePlayerVC *)[UIViewController superViewController:self];
-//    CBLiveVC *liveVC = (CBLiveVC *)[UIViewController superViewController:livePlayerVC];
-//    [liveVC.navigationController pushViewController:vc animated:YES];
+    CBNVC *nvc = [[CBNVC alloc] initWithRootViewController:vc];
+    [self presentViewController:nvc animated:YES completion:nil];
+}
+
+// 显示守护榜
+- (void)actionLiveShowGrardianList {
+    CBLiveAnchorGuardianListVC *vc = [CBLiveAnchorGuardianListVC new];
+    CBNVC *nvc = [[CBNVC alloc] initWithRootViewController:vc];
+    [self presentViewController:nvc animated:YES completion:nil];
 }
 
 #pragma mark - EaseLiveHeaderListViewDelegate
-
+// 选中头像
 - (void)didSelectHeaderWithUsername:(NSString *)username {
     if ([self.window isKeyWindow]) {
         [self closeAction];
@@ -187,9 +196,6 @@
         profileLiveView.delegate = self;
         [profileLiveView showFromParentView:self.view];
     } else {
-        //        EaseProfileLiveView *profileLiveView = [[EaseProfileLiveView alloc] initWithUsername:username chatroomId:self.liveVO.leancloud_room];
-        //        profileLiveView.delegate = self;
-        //        [profileLiveView showFromParentView:self.view];
         UIWindow *window = [UIApplication sharedApplication].keyWindow;
         [self.anchorInfoView showIn:window];
         self.anchorInfoView.liveVO = _liveVO;
@@ -622,5 +628,11 @@
     return _giftRecordPopView;
 }
 
-
+// 在线用户
+- (CBOnlineUserView *)onlineUserView {
+    if (!_onlineUserView) {
+        _onlineUserView = [[CBOnlineUserView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight/2) room:_liveVO];
+    }
+    return _onlineUserView;
+}
 @end

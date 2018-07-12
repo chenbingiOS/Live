@@ -19,6 +19,7 @@
 @property (nonatomic, strong) UILabel *nameLabel;
 @property (nonatomic, strong) UILabel *numberLabel;
 @property (nonatomic, strong) UIButton *attentionBtn;
+@property (nonatomic, strong) UIActivityIndicatorView *indicatorView;
 
 @end
 
@@ -36,8 +37,13 @@
         [self addSubview:self.headImageView];
         [self addSubview:self.nameLabel];
         [self addSubview:self.numberLabel];
-        [self addSubview:self.attentionBtn];
         
+        if ([_room.is_attention isEqualToString:@"0"]) {
+            [self addSubview:self.attentionBtn];
+        } else {
+            frame.size.width = frame.size.width-45;
+            self.frame = frame;
+        }
         [self.headImageView sd_setImageWithURL:[NSURL URLWithString:_room.avatar] placeholderImage:[UIImage imageNamed:@"placeholder_head"]];
         self.nameLabel.text = _room.user_nicename;
         self.numberLabel.text = [NSString stringWithFormat:@"房间号: %@", _room.room_id];
@@ -93,12 +99,20 @@
         _attentionBtn.layer.masksToBounds = YES;
         _attentionBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
         _attentionBtn.titleLabel.font = [UIFont fontWithName:@"PingFang-SC-Medium" size:11];
-        [_attentionBtn addTarget:self action:@selector(actionBtnAttentionCurrentAnchor) forControlEvents:UIControlEventTouchUpInside];
+        [_attentionBtn addTarget:self action:@selector(actionAttentionCurrentAnchorBtn:) forControlEvents:UIControlEventTouchUpInside];
         [_attentionBtn setTitle:@"+关注" forState:UIControlStateNormal];
         [_attentionBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         _attentionBtn.backgroundColor = [UIColor mainColor];
     }
     return _attentionBtn;
+}
+
+- (UIActivityIndicatorView *)indicatorView {
+    if (!_indicatorView) {
+        _indicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+        _indicatorView.center = CGPointMake(25, 15);
+    }
+    return _indicatorView;
 }
 
 #pragma mark - action
@@ -108,9 +122,49 @@
     }
 }
 
-- (void)actionBtnAttentionCurrentAnchor {
+- (void)actionAttentionCurrentAnchorBtn:(UIButton *)sender {
+    [sender addSubview:self.indicatorView];
+    [self.indicatorView startAnimating];
+    
+    [self httpAddAttentionBtn:sender];
+    
     if (self.delegate && [self.delegate respondsToSelector:@selector(actionLiveAttentionCurrentAnchor)]) {
         [self.delegate actionLiveAttentionCurrentAnchor];
+    }
+}
+
+- (void)httpAddAttentionBtn:(UIButton *)sender {
+    NSString *url = urlAddAttention;
+    NSDictionary *param = @{@"token": [CBLiveUserConfig getOwnToken],
+                            @"userid": _room.ID};
+    @weakify(self);
+    [PPNetworkHelper POST:url parameters:param success:^(id responseObject) {
+        @strongify(self);
+        NSNumber *code = [responseObject valueForKey:@"code"];
+        if ([code isEqualToNumber:@200]) {
+            self->_room.is_attention = @"1";
+            sender.hidden = YES;
+            [self _UI_resetSelfWidth];
+            [self.indicatorView stopAnimating];
+            [self.indicatorView removeFromSuperview];
+            [MBProgressHUD showAutoMessage:@"关注成功"];
+        } else {
+            NSString *descrp = responseObject[@"descrp"];
+            [MBProgressHUD showAutoMessage:descrp];
+        }
+    } failure:^(NSError *error) {
+    }];
+}
+
+// 重新设置UI对大小
+- (void)_UI_resetSelfWidth {
+    if (![_room.is_attention isEqualToString:@"0"]) {
+        @weakify(self);
+        [UIView animateWithDuration:0.35 animations:^{
+            @strongify(self);
+            CGFloat width = self.frame.size.width - 45;
+            self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, width, self.frame.size.height);
+        }];
     }
 }
 

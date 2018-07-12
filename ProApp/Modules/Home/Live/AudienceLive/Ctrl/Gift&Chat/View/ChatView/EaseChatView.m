@@ -209,7 +209,7 @@ static NSString * chatSystemMsgId = @"TSCSystemMsgId";
             if (message.timestamp < _curtime) {
                 continue;
             }
-            EMCmdMessageBody *body = (EMCmdMessageBody*)message.body;
+            EMCmdMessageBody *body = (EMCmdMessageBody *)message.body;
             if (body) {
                 if ([body.action isEqualToString:kGiftAction]) {
                     if (_delegate && [_delegate respondsToSelector:@selector(didReceiveGiftWithCMDMessage:)]) {

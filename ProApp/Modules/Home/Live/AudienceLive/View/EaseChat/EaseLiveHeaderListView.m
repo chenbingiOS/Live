@@ -45,7 +45,7 @@
 // 贡献榜单
 @property (nonatomic, strong) UICollectionView *collectionView;
 @property (nonatomic, strong) EaseLiveCastView *liveCastView;
-@property (nonatomic, strong) NSMutableArray <CBAppLiveVO *> *dataArray;
+@property (nonatomic, strong) NSMutableArray <CBLiveUser *> *dataArray;
 
 // 总人数
 @property (nonatomic, strong) CBOccupantsCountView *occupantsCountView;
@@ -68,15 +68,16 @@
     return self;
 }
 
-- (void)httpGetLiveRoomOnlineUserList {
-    NSString *url = urlGetLiveRoomOnlineUserList;
-    NSDictionary *param = @{@"room_id": self.room.room_id,
+- (void)httpGetReceiveCoin{
+    NSString *url = urlReceiveCoin;
+    NSDictionary *param = @{@"id": [CBLiveUserConfig getOwnID],
                             @"token": [CBLiveUserConfig getOwnToken],
+                            @"count": @"0",
                             @"page": @(self.currentPage)};
     [PPNetworkHelper POST:url parameters:param success:^(id responseObject) {
         NSNumber *code = [responseObject valueForKey:@"code"];
         if ([code isEqualToNumber:@200]) {
-            NSArray *resultList = [NSArray modelArrayWithClass:[CBAppLiveVO class] json:responseObject[@"data"]];
+            NSArray *resultList = [NSArray modelArrayWithClass:[CBLiveUser class] json:responseObject[@"data"]];
             if (resultList.count < 20 && self.currentPage > 1) {
                 self.currentPage--;
             } else {
@@ -152,7 +153,7 @@
 // 加载聊天室详细信息
 - (void)loadHeaderListWithChatroomId:(NSString*)chatroomId {
     self.dataArray = [NSMutableArray array];
-    [self httpGetLiveRoomOnlineUserList];
+    [self httpGetReceiveCoin];
 }
 
 // 取消掉请求

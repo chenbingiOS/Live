@@ -82,10 +82,6 @@
 		077D1F8520886C56003B9E56 /* CBLiveVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 077D1F8420886C56003B9E56 /* CBLiveVC.m */; };
 		077FFD012099A67400B8680C /* CBGuardRankVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 077FFCFF2099A67400B8680C /* CBGuardRankVC.m */; };
 		077FFD022099A67400B8680C /* CBGuardRankVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 077FFD002099A67400B8680C /* CBGuardRankVC.xib */; };
-		077FFD082099AA7300B8680C /* CBGuardRankCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 077FFD062099AA7300B8680C /* CBGuardRankCell.m */; };
-		077FFD092099AA7300B8680C /* CBGuardRankCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 077FFD072099AA7300B8680C /* CBGuardRankCell.xib */; };
-		077FFD0D2099B3BD00B8680C /* CBGuardRankBCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 077FFD0B2099B3BD00B8680C /* CBGuardRankBCell.m */; };
-		077FFD0E2099B3BD00B8680C /* CBGuardRankBCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 077FFD0C2099B3BD00B8680C /* CBGuardRankBCell.xib */; };
 		0787704E2092CA7D00A5A42A /* CBAccountRecordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0787704C2092CA7D00A5A42A /* CBAccountRecordVC.m */; };
 		0787704F2092CA7D00A5A42A /* CBAccountRecordVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0787704D2092CA7D00A5A42A /* CBAccountRecordVC.xib */; };
 		0791587B20883209007CA2E0 /* CBHotVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0791587A20883209007CA2E0 /* CBHotVC.m */; };
@@ -539,6 +535,10 @@
 		545AEB3420F4519700BD89EC /* CBLiveAudienceGiveGiftRecordCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 545AEB3220F4519700BD89EC /* CBLiveAudienceGiveGiftRecordCell.xib */; };
 		545AEB3820F452D400BD89EC /* CBLiveAnchorGiftRecordView.m in Sources */ = {isa = PBXBuildFile; fileRef = 545AEB3720F452D400BD89EC /* CBLiveAnchorGiftRecordView.m */; };
 		545AEB3A20F452DF00BD89EC /* CBLiveAnchorGiftRecordView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 545AEB3920F452DF00BD89EC /* CBLiveAnchorGiftRecordView.xib */; };
+		545AEB3F20F48DED00BD89EC /* CBLiveAnchorGuardianListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 545AEB3D20F48DED00BD89EC /* CBLiveAnchorGuardianListVC.m */; };
+		545AEB4020F48DED00BD89EC /* CBLiveAnchorGuardianListVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 545AEB3E20F48DED00BD89EC /* CBLiveAnchorGuardianListVC.xib */; };
+		545AEB4420F48E2600BD89EC /* CBLiveAnchorGrardianListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 545AEB4220F48E2600BD89EC /* CBLiveAnchorGrardianListCell.m */; };
+		545AEB4520F48E2600BD89EC /* CBLiveAnchorGrardianListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 545AEB4320F48E2600BD89EC /* CBLiveAnchorGrardianListCell.xib */; };
 		5463451E20E5E4BD00C23F87 /* TSCChatViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5463451B20E5E4BB00C23F87 /* TSCChatViewCell.m */; };
 		5463451F20E5E4BD00C23F87 /* TSCChatViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5463451D20E5E4BC00C23F87 /* TSCChatViewCell.xib */; };
 		5463452220E5E4F300C23F87 /* TSCChatModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5463452020E5E4F200C23F87 /* TSCChatModel.m */; };
@@ -935,12 +935,6 @@
 		077FFCFE2099A67400B8680C /* CBGuardRankVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBGuardRankVC.h; sourceTree = "<group>"; };
 		077FFCFF2099A67400B8680C /* CBGuardRankVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBGuardRankVC.m; sourceTree = "<group>"; };
 		077FFD002099A67400B8680C /* CBGuardRankVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CBGuardRankVC.xib; sourceTree = "<group>"; };
-		077FFD052099AA7300B8680C /* CBGuardRankCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBGuardRankCell.h; sourceTree = "<group>"; };
-		077FFD062099AA7300B8680C /* CBGuardRankCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBGuardRankCell.m; sourceTree = "<group>"; };
-		077FFD072099AA7300B8680C /* CBGuardRankCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CBGuardRankCell.xib; sourceTree = "<group>"; };
-		077FFD0A2099B3BD00B8680C /* CBGuardRankBCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBGuardRankBCell.h; sourceTree = "<group>"; };
-		077FFD0B2099B3BD00B8680C /* CBGuardRankBCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBGuardRankBCell.m; sourceTree = "<group>"; };
-		077FFD0C2099B3BD00B8680C /* CBGuardRankBCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CBGuardRankBCell.xib; sourceTree = "<group>"; };
 		0787704B2092CA7D00A5A42A /* CBAccountRecordVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBAccountRecordVC.h; sourceTree = "<group>"; };
 		0787704C2092CA7D00A5A42A /* CBAccountRecordVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBAccountRecordVC.m; sourceTree = "<group>"; };
 		0787704D2092CA7D00A5A42A /* CBAccountRecordVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CBAccountRecordVC.xib; sourceTree = "<group>"; };
@@ -1675,6 +1669,12 @@
 		545AEB3620F452D400BD89EC /* CBLiveAnchorGiftRecordView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBLiveAnchorGiftRecordView.h; sourceTree = "<group>"; };
 		545AEB3720F452D400BD89EC /* CBLiveAnchorGiftRecordView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBLiveAnchorGiftRecordView.m; sourceTree = "<group>"; };
 		545AEB3920F452DF00BD89EC /* CBLiveAnchorGiftRecordView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CBLiveAnchorGiftRecordView.xib; sourceTree = "<group>"; };
+		545AEB3C20F48DED00BD89EC /* CBLiveAnchorGuardianListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBLiveAnchorGuardianListVC.h; sourceTree = "<group>"; };
+		545AEB3D20F48DED00BD89EC /* CBLiveAnchorGuardianListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBLiveAnchorGuardianListVC.m; sourceTree = "<group>"; };
+		545AEB3E20F48DED00BD89EC /* CBLiveAnchorGuardianListVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CBLiveAnchorGuardianListVC.xib; sourceTree = "<group>"; };
+		545AEB4120F48E2600BD89EC /* CBLiveAnchorGrardianListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBLiveAnchorGrardianListCell.h; sourceTree = "<group>"; };
+		545AEB4220F48E2600BD89EC /* CBLiveAnchorGrardianListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBLiveAnchorGrardianListCell.m; sourceTree = "<group>"; };
+		545AEB4320F48E2600BD89EC /* CBLiveAnchorGrardianListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CBLiveAnchorGrardianListCell.xib; sourceTree = "<group>"; };
 		5463451B20E5E4BB00C23F87 /* TSCChatViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSCChatViewCell.m; sourceTree = "<group>"; };
 		5463451C20E5E4BC00C23F87 /* TSCChatViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSCChatViewCell.h; sourceTree = "<group>"; };
 		5463451D20E5E4BC00C23F87 /* TSCChatViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TSCChatViewCell.xib; sourceTree = "<group>"; };
@@ -2655,12 +2655,6 @@
 		077FFD042099AA5A00B8680C /* View */ = {
 			isa = PBXGroup;
 			children = (
-				077FFD052099AA7300B8680C /* CBGuardRankCell.h */,
-				077FFD062099AA7300B8680C /* CBGuardRankCell.m */,
-				077FFD072099AA7300B8680C /* CBGuardRankCell.xib */,
-				077FFD0A2099B3BD00B8680C /* CBGuardRankBCell.h */,
-				077FFD0B2099B3BD00B8680C /* CBGuardRankBCell.m */,
-				077FFD0C2099B3BD00B8680C /* CBGuardRankBCell.xib */,
 				07CD47A7209FF78E00A372C7 /* CBGuardRankCCell.h */,
 				07CD47A8209FF78E00A372C7 /* CBGuardRankCCell.m */,
 				07CD47A9209FF78E00A372C7 /* CBGuardRankCCell.xib */,
@@ -4063,6 +4057,19 @@
 			path = AnchorGiftRecordView;
 			sourceTree = "<group>";
 		};
+		545AEB3B20F48DBA00BD89EC /* LiveAnchorGuardian */ = {
+			isa = PBXGroup;
+			children = (
+				545AEB3C20F48DED00BD89EC /* CBLiveAnchorGuardianListVC.h */,
+				545AEB3D20F48DED00BD89EC /* CBLiveAnchorGuardianListVC.m */,
+				545AEB3E20F48DED00BD89EC /* CBLiveAnchorGuardianListVC.xib */,
+				545AEB4120F48E2600BD89EC /* CBLiveAnchorGrardianListCell.h */,
+				545AEB4220F48E2600BD89EC /* CBLiveAnchorGrardianListCell.m */,
+				545AEB4320F48E2600BD89EC /* CBLiveAnchorGrardianListCell.xib */,
+			);
+			path = LiveAnchorGuardian;
+			sourceTree = "<group>";
+		};
 		5467015520C0D46100519860 /* Ctrl */ = {
 			isa = PBXGroup;
 			children = (
@@ -4173,16 +4180,6 @@
 			path = Ctrl;
 			sourceTree = "<group>";
 		};
-		548C5C9920B4FA7700A6FF53 /* Live */ = {
-			isa = PBXGroup;
-			children = (
-				548C5C9C20B4FAA300A6FF53 /* ApplyAnchor */,
-				545494A520C7CCDF00E96C0A /* OpenLive */,
-				545494A620C7E3C100E96C0A /* LiveAnchorMainPage */,
-			);
-			path = Live;
-			sourceTree = "<group>";
-		};
 		548C5C9A20B4FA7B00A6FF53 /* CBShortVideoRecordVC */ = {
 			isa = PBXGroup;
 			children = (
@@ -4203,7 +4200,10 @@
 		548C5C9B20B4FA8500A6FF53 /* CBLiveAnchorMainPageVC */ = {
 			isa = PBXGroup;
 			children = (
-				548C5C9920B4FA7700A6FF53 /* Live */,
+				545AEB3B20F48DBA00BD89EC /* LiveAnchorGuardian */,
+				548C5C9C20B4FAA300A6FF53 /* ApplyAnchor */,
+				545494A520C7CCDF00E96C0A /* OpenLive */,
+				545494A620C7E3C100E96C0A /* LiveAnchorMainPage */,
 			);
 			path = CBLiveAnchorMainPageVC;
 			sourceTree = "<group>";
@@ -5002,6 +5002,7 @@
 				5442F7E720EC68E90001C238 /* style_default_1.7.0_loading_icon@2x.png in Resources */,
 				54A14A1720ECA24200423BF6 /* mask_linzhiling.png in Resources */,
 				5442F7BF20EC68E90001C238 /* lsq_filter_thumb_Agar.jpg in Resources */,
+				545AEB4020F48DED00BD89EC /* CBLiveAnchorGuardianListVC.xib in Resources */,
 				5442F77520EC68E90001C238 /* lsq_filter_thumb_Normal.jpg in Resources */,
 				5436E9EB20B7E2F800011BF0 /* PLShortVideoKit.bundle in Resources */,
 				54C18B4320D9E4E600882377 /* default_image@2x.png in Resources */,
@@ -5078,7 +5079,6 @@
 				5442F82020EC68E90001C238 /* style_default_record_btn_record_selected@3x.png in Resources */,
 				54C18B3720D9E4E600882377 /* kick@2x.png in Resources */,
 				54A14A3C20ECA24200423BF6 /* douyin_old.png in Resources */,
-				077FFD0E2099B3BD00B8680C /* CBGuardRankBCell.xib in Resources */,
 				5442F7C820EC68E90001C238 /* style_default_record_btn_record_unselected@2x.png in Resources */,
 				54A14A3120ECA24200423BF6 /* facewarp5.png in Resources */,
 				5442F7FE20EC68E90001C238 /* lsq_audio_thumb_oldmovie.jpg in Resources */,
@@ -5113,7 +5113,6 @@
 				5442F75720EC68E90001C238 /* style_default_1.11_btn_mv@3x.png in Resources */,
 				54A14A2F20ECA24200423BF6 /* facewarp5.bundle in Resources */,
 				07CD47B120A0269600A372C7 /* CBContributionRankVC.xib in Resources */,
-				077FFD092099AA7300B8680C /* CBGuardRankCell.xib in Resources */,
 				5442F73C20EC68E90001C238 /* style_default_btn_finish_w@2x.png in Resources */,
 				54C18B4020D9E4E600882377 /* reversal_camera@2x.png in Resources */,
 				54A14A4720ECA24200423BF6 /* hez_ztt_fu.png in Resources */,
@@ -5123,6 +5122,7 @@
 				54A14A3920ECA24200423BF6 /* douyin.png in Resources */,
 				5442F73120EC68E90001C238 /* style_default_1.11_btn_mv_unselected@2x.png in Resources */,
 				5440F09C20EA11BA0059F886 /* TSCSystemMsgCell.xib in Resources */,
+				545AEB4520F48E2600BD89EC /* CBLiveAnchorGrardianListCell.xib in Resources */,
 				5442F82C20EC68E90001C238 /* lsq_filter_thumb_Burning.jpg in Resources */,
 				544B8F9220CA221300FC9CFE /* CBLiveAnchorBeginView.xib in Resources */,
 				54F7828F20BD56C500EE6821 /* CBForgetPwdVC.xib in Resources */,
@@ -5544,7 +5544,6 @@
 				5451EC9120EDFCFC00F182E0 /* ANCircleProgressView.m in Sources */,
 				545494A320C7CC2500E96C0A /* CBOpenLiveVC.m in Sources */,
 				07B8BD1C20A3E14200DD05B2 /* CBPlayerVC.m in Sources */,
-				077FFD0D2099B3BD00B8680C /* CBGuardRankBCell.m in Sources */,
 				548C5CA020B4FAD300A6FF53 /* CBApplyAnchorVC.m in Sources */,
 				07359D9320A422DD00FEEA4E /* CBLoginVC.m in Sources */,
 				5442F85A20EC68E90001C238 /* EffectsTimeLineModel.m in Sources */,
@@ -5574,6 +5573,7 @@
 				07F6EFE020872E3D0035C6BD /* CBHomeVC.m in Sources */,
 				07558C2B2094569C007E41C2 /* CBAnchorInfoXibView.m in Sources */,
 				54A14A6B20ECA2A900423BF6 /* FUManager.m in Sources */,
+				545AEB3F20F48DED00BD89EC /* CBLiveAnchorGuardianListVC.m in Sources */,
 				077C1AA42091A7E00005CE97 /* CBPhoneBindVC.m in Sources */,
 				54A76AAF20B7DE830034D5A2 /* CBShortVideoRecordVC.m in Sources */,
 				07659C1E20A4439700EBE030 /* HcdGuideView.m in Sources */,
@@ -5604,6 +5604,7 @@
 				54A76AEB20B7DEDE0034D5A2 /* PLSEditToolbar.m in Sources */,
 				5401D87920D26CE400A3FFEF /* EaseProfileLiveView.m in Sources */,
 				54A76AF220B7DEDE0034D5A2 /* PLSColumnListView.m in Sources */,
+				545AEB4420F48E2600BD89EC /* CBLiveAnchorGrardianListCell.m in Sources */,
 				5436EA9A20B7EDCF00011BF0 /* RecordViewController.m in Sources */,
 				5442F85B20EC68E90001C238 /* SceneEffectTools.m in Sources */,
 				072DC57F2091607600F693E8 /* UILabel+ShadowText.m in Sources */,
@@ -5701,7 +5702,6 @@
 				5403B86B20CFAD85000BE8B1 /* CBShareView.m in Sources */,
 				5440F0AE20EA31BB0059F886 /* CBPlayVideoInfoVC.m in Sources */,
 				5467015C20C0E1EF00519860 /* CBEmptyView.m in Sources */,
-				077FFD082099AA7300B8680C /* CBGuardRankCell.m in Sources */,
 				54A76AE020B7DEDE0034D5A2 /* UIView+PLSLightFrame.m in Sources */,
 				5451EC9520EDFCFC00F182E0 /* SDPieLoopProgressView.m in Sources */,
 				54A76AF920B7DEFA0034D5A2 /* PhotoAlbumViewController.m in Sources */,

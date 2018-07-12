@@ -225,9 +225,9 @@
 #pragma mark - UICollectionViewDelegate
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-//    if (self.delegate && [self.delegate respondsToSelector:@selector(actionTapShowOnlineUserListOrContributionList)]) {
-//                [self.delegate actionTapShowOnlineUserListOrContributionList];
-//            }
+    if (self.delegate && [self.delegate respondsToSelector:@selector(actionLiveShowGrardianList)]) {
+        [self.delegate actionLiveShowGrardianList];
+    }
 }
 
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath {

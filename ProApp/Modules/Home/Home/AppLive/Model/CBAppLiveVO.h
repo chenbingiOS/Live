@@ -35,6 +35,7 @@
 // 推流地址
 @property (nonatomic, copy) NSString *push_rtmp;        ///<推流地址    字符串(string)
 @property (nonatomic, copy) NSArray <CBMsgVO *> *msg;   ///<直播间公告    数组(array
+@property (nonatomic, copy) NSString *is_attention;     ///<是否关注
 
 @end
 

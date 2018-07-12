@@ -1,14 +1,15 @@
- //
-//  CBGuardRankCCell.m
+//
+//  CBLiveAnchorGrardianListCell.m
 //  ProApp
 //
-//  Created by 陈冰 on 2018/5/7.
+//  Created by hxbjt on 2018/7/10.
 //  Copyright © 2018年 ChenBing. All rights reserved.
 //
 
-#import "CBGuardRankCCell.h"
+#import "CBLiveAnchorGrardianListCell.h"
+#import "UIImageView+RoundedCorner.h"
 
-@implementation CBGuardRankCCell
+@implementation CBLiveAnchorGrardianListCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];
@@ -23,13 +24,16 @@
 
 - (void)setLiveUser:(CBLiveUser *)liveUser {
     _liveUser = liveUser;
-    
-    self.orderLab.text = liveUser.orderId;
+
     [self.avaterImageView sd_setImageWithURL:[NSURL URLWithString:liveUser.avatar] placeholderImage:[UIImage imageNamed:@"placeholder_head"]];
     [self.avaterImageView roundedCornerByDefault];
-    self.userNickLab.text = liveUser.user_nicename;
-    self.levelImageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"v%@", liveUser.user_level]];
-    self.coinLab.text = liveUser.user_money;
+    self.userNameLab.text = liveUser.user_nicename;
+    self.timeLab.text = liveUser.shouhu_time;
+    if ([liveUser.level isEqualToString:@"4"]) {
+        self.guardianImageView.image = [UIImage imageNamed:@"live_min_grardian"];
+    } else {
+        self.guardianImageView.image = [UIImage imageNamed:@"live_max_grardian"];
+    }    
 }
 
 @end
