@@ -12,6 +12,8 @@
 #import "CustomSegmentControl.h"
 #import "STHeaderView.h"
 #import "CustomTableView.h"
+#import "CBPersonalHomePageNavView.h"
+#import "CBPersonalHomePageBottomView.h"
 
 #define RGBColorAlpha(r,g,b,f)   [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:f]
 #define RGBColor(r,g,b)          RGBColorAlpha(r,g,b,1)
@@ -25,6 +27,8 @@ typedef NS_ENUM(NSInteger,STControllerType) {
 
 @interface CBPersonalHomePageVC () <SwipeTableViewDataSource,SwipeTableViewDelegate>
 
+@property (nonatomic, assign) STControllerType type;
+
 @property (nonatomic, strong) SwipeTableView * swipeTableView;
 @property (nonatomic, strong) CustomCollectionView * collectionView;
 @property (nonatomic, strong) CustomSegmentControl * segmentBar;
@@ -32,8 +36,9 @@ typedef NS_ENUM(NSInteger,STControllerType) {
 @property (nonatomic, strong) CustomTableView * tableView;
 @property (nonatomic, strong) UIImageView * headerImageView;
 @property (nonatomic, strong) NSMutableDictionary * dataDic;
+@property (nonatomic, strong) CBPersonalHomePageNavView *navView;
+@property (nonatomic, strong) CBPersonalHomePageBottomView *bottomView;
 
-@property (nonatomic, assign) STControllerType type;
 @end
 
 @implementation CBPersonalHomePageVC
@@ -47,45 +52,19 @@ typedef NS_ENUM(NSInteger,STControllerType) {
     [super viewDidLoad];
     
     _type = STControllerTypeHiddenNavBar;
-    BOOL disableBarScroll = _type == STControllerTypeDisableBarScroll;
-    BOOL hiddenNavigationBar = _type == STControllerTypeHiddenNavBar;
     
-    // init swipetableview
-    self.swipeTableView = [[SwipeTableView alloc]initWithFrame:self.view.bounds];
-    _swipeTableView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-    _swipeTableView.delegate = self;
-    _swipeTableView.dataSource = self;
-    _swipeTableView.shouldAdjustContentSize = YES;
-    _swipeTableView.swipeHeaderView = disableBarScroll?nil:self.tableViewHeader;
-    _swipeTableView.swipeHeaderBar = self.segmentBar;
-    _swipeTableView.swipeHeaderBarScrollDisabled = disableBarScroll;
-    _swipeTableView.swipeHeaderTopInset = 0;
-    [self.view addSubview:_swipeTableView];
-    
-    // nav bar
-    UIBarButtonItem * rightBarItem = [[UIBarButtonItem alloc]initWithTitle:@"- Header" style:UIBarButtonItemStylePlain target:self action:@selector(setSwipeTableHeader:)];
-    UIBarButtonItem * leftBarItem = [[UIBarButtonItem alloc]initWithTitle:@"- Bar" style:UIBarButtonItemStylePlain target:self action:@selector(setSwipeTableBar:)];
-    self.navigationItem.leftBarButtonItem = disableBarScroll?nil:leftBarItem;
-    self.navigationItem.rightBarButtonItem = disableBarScroll?nil:rightBarItem;
-    
-    // back bt
-    UIButton * back = [UIButton buttonWithType:UIButtonTypeCustom];
-    back.frame = CGRectMake(10, 0, 40, 40);
-    back.top = hiddenNavigationBar?25:74;
-    back.backgroundColor = RGBColorAlpha(10, 202, 0, 0.95);
-    back.layer.cornerRadius = back.height/2;
-    back.layer.masksToBounds = YES;
-    back.titleLabel.font = [UIFont boldSystemFontOfSize:14];
-    back.hidden = disableBarScroll;
-    [back setTitle:@"Back" forState:UIControlStateNormal];
-    [back setTitleColor:RGBColor(255, 255, 215) forState:UIControlStateNormal];
-    [back addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:back];
-    
-    [self.navigationController.navigationBar setTintColor:RGBColor(234, 39, 0)];
+    [self.view addSubview:self.swipeTableView];
     
     // edge gesture
     [_swipeTableView.contentView.panGestureRecognizer requireGestureRecognizerToFail:self.screenEdgePanGestureRecognizer];
+
+    [self.view addSubview:self.navView];
+    [self.view addSubview:self.bottomView];
+    @weakify(self);
+    [self.navView.backBtn addBlockForControlEvents:UIControlEventTouchUpInside block:^(id  _Nonnull sender) {
+        @strongify(self);
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }];
     
     // init data
     _dataDic = [@{} mutableCopy];
@@ -95,6 +74,11 @@ typedef NS_ENUM(NSInteger,STControllerType) {
     
     // 一次性请求所有item的数据
     [self getAllData];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 
 - (UIScreenEdgePanGestureRecognizer *)screenEdgePanGestureRecognizer {
@@ -110,65 +94,7 @@ typedef NS_ENUM(NSInteger,STControllerType) {
     return screenEdgePanGestureRecognizer;
 }
 
-#pragma mark - Header & Bar
-
-- (UIView *)tableViewHeader {
-    if (nil == _tableViewHeader) {
-        UIImage * headerImage = [UIImage imageNamed:@"onepiece_kiudai"];
-        // swipe header
-        self.tableViewHeader = [[STHeaderView alloc]init];
-        _tableViewHeader.frame = CGRectMake(0, 0, kScreenWidth, kScreenWidth * (0.75));
-        _tableViewHeader.backgroundColor = [UIColor whiteColor];
-        _tableViewHeader.layer.masksToBounds = YES;
-        
-        // image view
-        self.headerImageView = [[UIImageView alloc]initWithImage:headerImage];
-        _headerImageView.contentMode = UIViewContentModeScaleAspectFill;
-        _headerImageView.userInteractionEnabled = YES;
-        _headerImageView.frame = _tableViewHeader.bounds;
-        _headerImageView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
-        
-        // title label
-        UILabel * title = [[UILabel alloc]init];
-        title.textColor = RGBColor(255, 255, 255);
-        title.font = [UIFont boldSystemFontOfSize:17];
-        title.text = @"Tap To Full Screen";
-        title.textAlignment = NSTextAlignmentCenter;
-        title.size = CGSizeMake(200, 30);
-        title.centerX = _headerImageView.centerX;
-        title.bottom = _headerImageView.bottom - 20;
-        
-        // tap gesture
-        UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapHeader:)];
-        
-        [_tableViewHeader addSubview:_headerImageView];
-        [_tableViewHeader addSubview:title];
-        [_headerImageView addGestureRecognizer:tap];
-        [self shimmerHeaderTitle:title];
-    }
-    return _tableViewHeader;
-}
-
-- (CustomSegmentControl * )segmentBar {
-    if (nil == _segmentBar) {
-        self.segmentBar = [[CustomSegmentControl alloc]initWithItems:@[@"Item0",@"Item1",@"Item2",@"Item3"]];
-        _segmentBar.size = CGSizeMake(kScreenWidth, 40);
-        _segmentBar.font = [UIFont systemFontOfSize:15];
-        _segmentBar.textColor = RGBColor(100, 100, 100);
-        _segmentBar.selectedTextColor = RGBColor(0, 0, 0);
-        _segmentBar.backgroundColor = RGBColor(249, 251, 198);
-        _segmentBar.selectionIndicatorColor = RGBColor(249, 104, 92);
-        _segmentBar.selectedSegmentIndex = _swipeTableView.currentItemIndex;
-        [_segmentBar addTarget:self action:@selector(changeSwipeViewIndex:) forControlEvents:UIControlEventValueChanged];
-    }
-    return _segmentBar;
-}
-
 #pragma mark -
-
-- (void)back {
-    [self.navigationController popViewControllerAnimated:YES];
-}
 
 - (void)tapHeader:(UITapGestureRecognizer *)tap {
     NSLog(@"头部点击");
@@ -222,37 +148,6 @@ typedef NS_ENUM(NSInteger,STControllerType) {
             [weakSelf shimmerHeaderTitle:title];
         }];
     }];
-}
-
-- (void)setSwipeTableHeader:(UIBarButtonItem *)barItem {
-    if (!_swipeTableView.swipeHeaderView) {
-        _swipeTableView.swipeHeaderView = self.tableViewHeader;
-        [_swipeTableView reloadData];
-        
-        UIBarButtonItem * rightBarItem = [[UIBarButtonItem alloc]initWithTitle:@"- Header" style:UIBarButtonItemStylePlain target:self action:@selector(setSwipeTableHeader:)];
-        self.navigationItem.rightBarButtonItem = rightBarItem;
-    }else {
-        _swipeTableView.swipeHeaderView = nil;
-        
-        UIBarButtonItem * rightBarItem = [[UIBarButtonItem alloc]initWithTitle:@"+ Header" style:UIBarButtonItemStylePlain target:self action:@selector(setSwipeTableHeader:)];
-        self.navigationItem.rightBarButtonItem = rightBarItem;
-    }
-}
-
-- (void)setSwipeTableBar:(UIBarButtonItem *)barItem {
-    if (!_swipeTableView.swipeHeaderBar) {
-        _swipeTableView.swipeHeaderBar = self.segmentBar;
-        _swipeTableView.scrollEnabled  = YES;
-        
-        UIBarButtonItem * leftBarItem = [[UIBarButtonItem alloc]initWithTitle:@"- Bar" style:UIBarButtonItemStylePlain target:self action:@selector(setSwipeTableBar:)];
-        self.navigationItem.leftBarButtonItem = leftBarItem;
-    }else {
-        _swipeTableView.swipeHeaderBar = nil;
-        _swipeTableView.scrollEnabled  = NO;
-        
-        UIBarButtonItem * leftBarItem = [[UIBarButtonItem alloc]initWithTitle:@"+ Bar" style:UIBarButtonItemStylePlain target:self action:@selector(setSwipeTableBar:)];
-        self.navigationItem.leftBarButtonItem = leftBarItem;
-    }
 }
 
 - (CustomTableView *)tableView {
@@ -425,28 +320,89 @@ typedef NS_ENUM(NSInteger,STControllerType) {
 }
 
 
+#pragma mark - Header & Bar
 
-#pragma  mark - UIViewControllerTransitioningDelegate
-
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-    [self.navigationController setNavigationBarHidden:NO animated:animated];
+- (UIView *)tableViewHeader {
+    if (nil == _tableViewHeader) {
+        UIImage * headerImage = [UIImage imageNamed:@"onepiece_kiudai"];
+        // swipe header
+        self.tableViewHeader = [[STHeaderView alloc]init];
+        _tableViewHeader.frame = CGRectMake(0, 0, kScreenWidth, kScreenWidth * (4/4));
+        _tableViewHeader.backgroundColor = [UIColor whiteColor];
+        _tableViewHeader.layer.masksToBounds = YES;
+        
+        // image view
+        self.headerImageView = [[UIImageView alloc]initWithImage:headerImage];
+        _headerImageView.contentMode = UIViewContentModeScaleAspectFill;
+        _headerImageView.userInteractionEnabled = YES;
+        _headerImageView.frame = _tableViewHeader.bounds;
+        _headerImageView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
+        
+        // title label
+        UILabel * title = [[UILabel alloc]init];
+        title.textColor = RGBColor(255, 255, 255);
+        title.font = [UIFont boldSystemFontOfSize:17];
+        title.text = @"Tap To Full Screen";
+        title.textAlignment = NSTextAlignmentCenter;
+        title.size = CGSizeMake(200, 30);
+        title.centerX = _headerImageView.centerX;
+        title.bottom = _headerImageView.bottom - 20;
+        
+        // tap gesture
+        UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapHeader:)];
+        
+        [_tableViewHeader addSubview:_headerImageView];
+        [_tableViewHeader addSubview:title];
+        [_headerImageView addGestureRecognizer:tap];
+        [self shimmerHeaderTitle:title];
+    }
+    return _tableViewHeader;
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-    __weak typeof(self) weakSelf = self;
-    self.navigationController.interactivePopGestureRecognizer.delegate = weakSelf;
+- (CustomSegmentControl * )segmentBar {
+    if (nil == _segmentBar) {
+        self.segmentBar = [[CustomSegmentControl alloc]initWithItems:@[@"Item0",@"Item1"]];
+        _segmentBar.size = CGSizeMake(kScreenWidth, 40);
+        _segmentBar.font = [UIFont systemFontOfSize:15];
+        _segmentBar.textColor = RGBColor(100, 100, 100);
+        _segmentBar.selectedTextColor = RGBColor(0, 0, 0);
+        _segmentBar.backgroundColor = RGBColor(249, 251, 198);
+        _segmentBar.selectionIndicatorColor = RGBColor(249, 104, 92);
+        _segmentBar.selectedSegmentIndex = _swipeTableView.currentItemIndex;
+        [_segmentBar addTarget:self action:@selector(changeSwipeViewIndex:) forControlEvents:UIControlEventValueChanged];
+    }
+    return _segmentBar;
 }
 
-- (void)viewDidDisappear:(BOOL)animated {
-    [super viewDidDisappear:animated];
-    self.navigationController.interactivePopGestureRecognizer.delegate = nil;
+- (CBPersonalHomePageNavView *)navView {
+    if (!_navView) {
+        _navView = [CBPersonalHomePageNavView viewFromXib];
+        _navView.frame = CGRectMake(0, 0, kScreenWidth, SafeAreaTopHeight);
+    }
+    return _navView;
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (CBPersonalHomePageBottomView *)bottomView {
+    if (!_bottomView) {
+        _bottomView = [CBPersonalHomePageBottomView viewFromXib];
+        CGFloat height = kScreenHeight - SafeAreaBottomHeight - 50;
+        _bottomView.frame = CGRectMake(0, height, kScreenWidth, 50);
+    }
+    return _bottomView;
 }
 
+- (SwipeTableView *)swipeTableView {
+    if (!_swipeTableView) {
+        _swipeTableView = [[SwipeTableView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight-SafeAreaBottomHeight)];
+        _swipeTableView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+        _swipeTableView.delegate = self;
+        _swipeTableView.dataSource = self;
+        _swipeTableView.shouldAdjustContentSize = YES;
+        _swipeTableView.swipeHeaderView = self.tableViewHeader;
+        _swipeTableView.swipeHeaderBar = self.segmentBar;
+        _swipeTableView.swipeHeaderBarScrollDisabled = NO;
+        _swipeTableView.swipeHeaderTopInset = 0;
+    }
+    return _swipeTableView;
+}
 @end

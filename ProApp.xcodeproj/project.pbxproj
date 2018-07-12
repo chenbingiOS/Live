@@ -153,6 +153,10 @@
 		540F3ECE20F7353B00BD1920 /* CustomCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 540F3ECD20F7353A00BD1920 /* CustomCollectionView.m */; };
 		540F3ED120F735D100BD1920 /* CustomSegmentControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 540F3ECF20F735D100BD1920 /* CustomSegmentControl.m */; };
 		540F3ED420F73D8D00BD1920 /* CustomTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 540F3ED320F73D8C00BD1920 /* CustomTableView.m */; };
+		540F3ED820F7450900BD1920 /* CBPersonalHomePageNavView.m in Sources */ = {isa = PBXBuildFile; fileRef = 540F3ED720F7450900BD1920 /* CBPersonalHomePageNavView.m */; };
+		540F3EDA20F7451300BD1920 /* CBPersonalHomePageNavView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 540F3ED920F7451300BD1920 /* CBPersonalHomePageNavView.xib */; };
+		540F3EDD20F746AE00BD1920 /* CBPersonalHomePageBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 540F3EDC20F746AE00BD1920 /* CBPersonalHomePageBottomView.m */; };
+		540F3EDF20F746B700BD1920 /* CBPersonalHomePageBottomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 540F3EDE20F746B700BD1920 /* CBPersonalHomePageBottomView.xib */; };
 		54130A0820B69DEF00CAE467 /* CBRefreshGifHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 54130A0720B69DEF00CAE467 /* CBRefreshGifHeader.m */; };
 		54130A0B20B6A0C000CAE467 /* CBAppLiveVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 54130A0A20B6A0C000CAE467 /* CBAppLiveVO.m */; };
 		54130A0F20B6B48900CAE467 /* CBLiveSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = 54130A0E20B6B48900CAE467 /* CBLiveSetting.m */; };
@@ -1068,6 +1072,12 @@
 		540F3ED020F735D100BD1920 /* CustomSegmentControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomSegmentControl.h; sourceTree = "<group>"; };
 		540F3ED220F73D8C00BD1920 /* CustomTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomTableView.h; sourceTree = "<group>"; };
 		540F3ED320F73D8C00BD1920 /* CustomTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomTableView.m; sourceTree = "<group>"; };
+		540F3ED620F7450900BD1920 /* CBPersonalHomePageNavView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBPersonalHomePageNavView.h; sourceTree = "<group>"; };
+		540F3ED720F7450900BD1920 /* CBPersonalHomePageNavView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBPersonalHomePageNavView.m; sourceTree = "<group>"; };
+		540F3ED920F7451300BD1920 /* CBPersonalHomePageNavView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CBPersonalHomePageNavView.xib; sourceTree = "<group>"; };
+		540F3EDB20F746AE00BD1920 /* CBPersonalHomePageBottomView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBPersonalHomePageBottomView.h; sourceTree = "<group>"; };
+		540F3EDC20F746AE00BD1920 /* CBPersonalHomePageBottomView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBPersonalHomePageBottomView.m; sourceTree = "<group>"; };
+		540F3EDE20F746B700BD1920 /* CBPersonalHomePageBottomView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CBPersonalHomePageBottomView.xib; sourceTree = "<group>"; };
 		54130A0620B69DEF00CAE467 /* CBRefreshGifHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBRefreshGifHeader.h; sourceTree = "<group>"; };
 		54130A0720B69DEF00CAE467 /* CBRefreshGifHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBRefreshGifHeader.m; sourceTree = "<group>"; };
 		54130A0920B6A0C000CAE467 /* CBAppLiveVO.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBAppLiveVO.h; sourceTree = "<group>"; };
@@ -3136,12 +3146,7 @@
 			children = (
 				540F3EB920F6F0D100BD1920 /* CBPersonalHomePageVC.h */,
 				540F3EBA20F6F0D100BD1920 /* CBPersonalHomePageVC.m */,
-				540F3ECC20F7353A00BD1920 /* CustomCollectionView.h */,
-				540F3ECD20F7353A00BD1920 /* CustomCollectionView.m */,
-				540F3ED020F735D100BD1920 /* CustomSegmentControl.h */,
-				540F3ECF20F735D100BD1920 /* CustomSegmentControl.m */,
-				540F3ED220F73D8C00BD1920 /* CustomTableView.h */,
-				540F3ED320F73D8C00BD1920 /* CustomTableView.m */,
+				540F3ED520F744ED00BD1920 /* View */,
 			);
 			path = PersonalHomePage;
 			sourceTree = "<group>";
@@ -3159,6 +3164,25 @@
 				540F3EC720F72F8100BD1920 /* UIView+STFrame.h */,
 			);
 			path = SwipeTableView;
+			sourceTree = "<group>";
+		};
+		540F3ED520F744ED00BD1920 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				540F3ECC20F7353A00BD1920 /* CustomCollectionView.h */,
+				540F3ECD20F7353A00BD1920 /* CustomCollectionView.m */,
+				540F3ED020F735D100BD1920 /* CustomSegmentControl.h */,
+				540F3ECF20F735D100BD1920 /* CustomSegmentControl.m */,
+				540F3ED220F73D8C00BD1920 /* CustomTableView.h */,
+				540F3ED320F73D8C00BD1920 /* CustomTableView.m */,
+				540F3ED620F7450900BD1920 /* CBPersonalHomePageNavView.h */,
+				540F3ED720F7450900BD1920 /* CBPersonalHomePageNavView.m */,
+				540F3ED920F7451300BD1920 /* CBPersonalHomePageNavView.xib */,
+				540F3EDB20F746AE00BD1920 /* CBPersonalHomePageBottomView.h */,
+				540F3EDC20F746AE00BD1920 /* CBPersonalHomePageBottomView.m */,
+				540F3EDE20F746B700BD1920 /* CBPersonalHomePageBottomView.xib */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		54130A0220B69D9100CAE467 /* Refresh */ = {
@@ -4953,6 +4977,7 @@
 				5442F7AF20EC68E90001C238 /* style_default_1.7.1_btn_filter_w@3x.png in Resources */,
 				5442F82720EC68E90001C238 /* style_default_1.7.0_cancel@2x.png in Resources */,
 				5442F75420EC68E90001C238 /* lsq_filter_thumb_LiveSignal01.png in Resources */,
+				540F3EDA20F7451300BD1920 /* CBPersonalHomePageNavView.xib in Resources */,
 				5442F74F20EC68E90001C238 /* lsq_filter_thumb_LiveSignal01.jpg in Resources */,
 				54A149DF20ECA24200423BF6 /* mask_hat.bundle in Resources */,
 				5442F84920EC68E90001C238 /* style_default_1.5.0_btn_beauty@2x.png in Resources */,
@@ -5209,6 +5234,7 @@
 				54C18B4720D9E4E600882377 /* kick@3x.png in Resources */,
 				545AEB3420F4519700BD89EC /* CBLiveAudienceGiveGiftRecordCell.xib in Resources */,
 				54CFFC3C20ECCCC100DA26FD /* FUItemsViewCell.xib in Resources */,
+				540F3EDF20F746B700BD1920 /* CBPersonalHomePageBottomView.xib in Resources */,
 				5442F79A20EC68E90001C238 /* lsq_filter_thumb_Pink011.jpg in Resources */,
 				5442F84820EC68E90001C238 /* lsq_filter_thumb_Newborn_1.jpg in Resources */,
 				54A14A1220ECA24200423BF6 /* mask_luhan.bundle in Resources */,
@@ -5673,6 +5699,7 @@
 				54375D1320BC049000F09CAA /* WZBCountDownButton.m in Sources */,
 				544A3A6720E4C667008C6BA8 /* CBGiftTypeVO.m in Sources */,
 				545384C820D2571100BE91D2 /* EaseLiveCastView.m in Sources */,
+				540F3EDD20F746AE00BD1920 /* CBPersonalHomePageBottomView.m in Sources */,
 				072DC593209176B000F693E8 /* CBCurrencyVC.m in Sources */,
 				54520AF120BFD2BB005B787E /* NSObject+Coding.m in Sources */,
 				5442F85820EC68E90001C238 /* EffectsView.m in Sources */,
@@ -5684,6 +5711,7 @@
 				545494BB20C8D52900E96C0A /* CBShortVideoVO.m in Sources */,
 				071D3C102092B35D00A6C5CE /* CBPackageRecordCell.m in Sources */,
 				5442F85920EC68E90001C238 /* EffectsDisplayView.m in Sources */,
+				540F3ED820F7450900BD1920 /* CBPersonalHomePageNavView.m in Sources */,
 				07359D8B20A3F96200FEEA4E /* CBRoomView.m in Sources */,
 				54C1965B20E2382B00E8853D /* LiveGiftListModel.m in Sources */,
 				07CD47AA209FF78E00A372C7 /* CBGuardRankCCell.m in Sources */,

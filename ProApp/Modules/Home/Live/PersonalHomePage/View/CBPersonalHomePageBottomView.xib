@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="CBPersonalHomePageBottomView">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="57"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2IW-V6-Gts">
+                    <rect key="frame" x="187.5" y="14" width="0.5" height="22"/>
+                    <color key="backgroundColor" red="0.78823529411764703" green="0.78823529411764703" blue="0.78823529411764703" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="0.5" id="NRI-f4-NxU"/>
+                        <constraint firstAttribute="height" constant="22" id="gVp-sx-sFo"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WBi-cU-qoa">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="0.5"/>
+                    <color key="backgroundColor" red="0.78823529410000004" green="0.78823529410000004" blue="0.78823529410000004" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="0.5" id="FxX-8s-GPL"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vXx-Sz-amS">
+                    <rect key="frame" x="188" y="0.0" width="187" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="VbP-ou-DPM"/>
+                    </constraints>
+                    <state key="normal" title="私信"/>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BVT-PV-37h">
+                    <rect key="frame" x="0.0" y="0.0" width="187.5" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="kGp-I7-lvL"/>
+                    </constraints>
+                    <state key="normal" title="关注"/>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="vXx-Sz-amS" firstAttribute="leading" secondItem="2IW-V6-Gts" secondAttribute="trailing" id="1pq-3a-aYb"/>
+                <constraint firstItem="WBi-cU-qoa" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="6gA-JM-8wx"/>
+                <constraint firstItem="vXx-Sz-amS" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="ESL-hl-0Zl"/>
+                <constraint firstItem="BVT-PV-37h" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="UdU-P7-4ZA"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="vXx-Sz-amS" secondAttribute="trailing" id="aR0-mf-GtJ"/>
+                <constraint firstItem="2IW-V6-Gts" firstAttribute="leading" secondItem="BVT-PV-37h" secondAttribute="trailing" id="bWD-DP-bLu"/>
+                <constraint firstItem="2IW-V6-Gts" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="fUs-PR-2pA"/>
+                <constraint firstItem="WBi-cU-qoa" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="gCs-xX-x0V"/>
+                <constraint firstItem="2IW-V6-Gts" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="14" id="kZM-ZX-G7m"/>
+                <constraint firstItem="BVT-PV-37h" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="o64-uV-Lty"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="WBi-cU-qoa" secondAttribute="trailing" id="xCC-xG-sZU"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="24.5" y="55.5"/>
+        </view>
+    </objects>
+</document>
