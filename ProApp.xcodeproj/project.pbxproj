@@ -145,6 +145,8 @@
 		5403B86B20CFAD85000BE8B1 /* CBShareView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5403B86A20CFAD85000BE8B1 /* CBShareView.m */; };
 		5403B86F20CFAEF0000BE8B1 /* CBShareView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5403B86E20CFAEF0000BE8B1 /* CBShareView.xib */; };
 		540CCCD720D8F1D200CAA312 /* CBOccupantsCountView.m in Sources */ = {isa = PBXBuildFile; fileRef = 540CCCD620D8F1D200CAA312 /* CBOccupantsCountView.m */; };
+		540F3EBC20F6F0D100BD1920 /* CBPersonalHomePageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 540F3EBA20F6F0D100BD1920 /* CBPersonalHomePageVC.m */; };
+		540F3EBD20F6F0D100BD1920 /* CBPersonalHomePageVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 540F3EBB20F6F0D100BD1920 /* CBPersonalHomePageVC.xib */; };
 		54130A0820B69DEF00CAE467 /* CBRefreshGifHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 54130A0720B69DEF00CAE467 /* CBRefreshGifHeader.m */; };
 		54130A0B20B6A0C000CAE467 /* CBAppLiveVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 54130A0A20B6A0C000CAE467 /* CBAppLiveVO.m */; };
 		54130A0F20B6B48900CAE467 /* CBLiveSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = 54130A0E20B6B48900CAE467 /* CBLiveSetting.m */; };
@@ -1044,6 +1046,9 @@
 		5403B86E20CFAEF0000BE8B1 /* CBShareView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CBShareView.xib; sourceTree = "<group>"; };
 		540CCCD520D8F1D200CAA312 /* CBOccupantsCountView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBOccupantsCountView.h; sourceTree = "<group>"; };
 		540CCCD620D8F1D200CAA312 /* CBOccupantsCountView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBOccupantsCountView.m; sourceTree = "<group>"; };
+		540F3EB920F6F0D100BD1920 /* CBPersonalHomePageVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBPersonalHomePageVC.h; sourceTree = "<group>"; };
+		540F3EBA20F6F0D100BD1920 /* CBPersonalHomePageVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBPersonalHomePageVC.m; sourceTree = "<group>"; };
+		540F3EBB20F6F0D100BD1920 /* CBPersonalHomePageVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CBPersonalHomePageVC.xib; sourceTree = "<group>"; };
 		54130A0620B69DEF00CAE467 /* CBRefreshGifHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBRefreshGifHeader.h; sourceTree = "<group>"; };
 		54130A0720B69DEF00CAE467 /* CBRefreshGifHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBRefreshGifHeader.m; sourceTree = "<group>"; };
 		54130A0920B6A0C000CAE467 /* CBAppLiveVO.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBAppLiveVO.h; sourceTree = "<group>"; };
@@ -2615,6 +2620,7 @@
 				07F38C102099503D00DDBC90 /* Guard */,
 				077FFCFD2099A63D00B8680C /* GuardRank */,
 				07CD47AC20A0265D00A372C7 /* ContributionRank */,
+				540F3EBE20F7089500BD1920 /* PersonalHomePage */,
 			);
 			path = Live;
 			sourceTree = "<group>";
@@ -3103,6 +3109,16 @@
 				5403B86E20CFAEF0000BE8B1 /* CBShareView.xib */,
 			);
 			path = ShareView;
+			sourceTree = "<group>";
+		};
+		540F3EBE20F7089500BD1920 /* PersonalHomePage */ = {
+			isa = PBXGroup;
+			children = (
+				540F3EB920F6F0D100BD1920 /* CBPersonalHomePageVC.h */,
+				540F3EBA20F6F0D100BD1920 /* CBPersonalHomePageVC.m */,
+				540F3EBB20F6F0D100BD1920 /* CBPersonalHomePageVC.xib */,
+			);
+			path = PersonalHomePage;
 			sourceTree = "<group>";
 		};
 		54130A0220B69D9100CAE467 /* Refresh */ = {
@@ -5176,6 +5192,7 @@
 				5442F7ED20EC68E90001C238 /* lsq_filter_thumb_Fade_1.jpg in Resources */,
 				54A149E120ECA24200423BF6 /* juanhuzi_lm_fu.png in Resources */,
 				5442F76920EC68E90001C238 /* style_default_2.0_moviEditor_stopPreview@3x.png in Resources */,
+				540F3EBD20F6F0D100BD1920 /* CBPersonalHomePageVC.xib in Resources */,
 				544B8F9F20CA813C00FC9CFE /* Info.plist in Resources */,
 				0791588B208849C0007CA2E0 /* CBProfileVC.xib in Resources */,
 				54A149F220ECA24200423BF6 /* fu_zh_baoquan.bundle in Resources */,
@@ -5716,6 +5733,7 @@
 				54FD10C020E0970400C74C92 /* TSCGifts.m in Sources */,
 				07737DE2208F0150009EB9E6 /* CBMyAttentionVC.m in Sources */,
 				5469A58120C54587004E06F1 /* CBCityMenuView.m in Sources */,
+				540F3EBC20F6F0D100BD1920 /* CBPersonalHomePageVC.m in Sources */,
 				5451EC9420EDFCFC00F182E0 /* ANMusicCell.m in Sources */,
 				0737ED892074A33600A89CC0 /* AppDelegate.m in Sources */,
 				54DD931920DCDD1E0016C563 /* CBLiveGiftViewVC.m in Sources */,

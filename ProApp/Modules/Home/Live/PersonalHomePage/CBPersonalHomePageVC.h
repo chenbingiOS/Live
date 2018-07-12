@@ -1,0 +1,13 @@
+//
+//  CBPersonalHomePageVC.h
+//  ProApp
+//
+//  Created by hxbjt on 2018/7/12.
+//  Copyright © 2018年 ChenBing. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+// 个人主页
+@interface CBPersonalHomePageVC : UIViewController
+
+@end

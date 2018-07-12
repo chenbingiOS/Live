@@ -27,6 +27,7 @@
 #import "LiveGiftShowCustom.h"
 #import "CBLiveAnchorGuardianListVC.h"
 #import "CBNVC.h"
+#import "CBPersonalHomePageVC.h"
 // Delegate
 #import "CBActionLiveDelegate.h"
 // Category
@@ -44,7 +45,8 @@
     CBActionLiveDelegate,
     CBLiveGiftViewDelegate,
     LiveGiftShowCustomDelegate,
-    CBActionLiveDelegate
+    CBActionLiveDelegate,
+    AnchorInfoViewDelegate
 >
 {
     BOOL _enableAdmin;
@@ -141,6 +143,13 @@
     self.chatview = nil;
     self.closeButton = nil;
     self.liveGiftView = nil;
+}
+
+#pragma mark - AnchorInfoViewDelegate
+- (void)anchorInfoXibView:(CBAnchorInfoXibView *)infoXibView actionTouchHomeBtn:(UIButton *)btn {
+    CBPersonalHomePageVC *vc = [CBPersonalHomePageVC new];
+    CBNVC *nvc = [[CBNVC alloc] initWithRootViewController:vc];
+    [self presentViewController:nvc animated:YES completion:nil];
 }
 
 #pragma mark - CBActionLiveDelegate
@@ -563,6 +572,7 @@
         if (iPhoneX) height += SafeAreaBottomHeight;
         _anchorInfoView = [[CBAnchorInfoView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, height
                                                                              )];
+        _anchorInfoView.delelgate = self;
     }
     return _anchorInfoView;
 }

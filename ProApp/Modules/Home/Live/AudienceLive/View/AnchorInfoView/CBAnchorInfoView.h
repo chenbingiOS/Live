@@ -12,8 +12,15 @@
 @class CBAnchorInfoXibView;
 @class CBAppLiveVO;
 
+@protocol AnchorInfoViewDelegate <NSObject>
+
+- (void)anchorInfoXibView:(CBAnchorInfoXibView *)infoXibView actionTouchHomeBtn:(UIButton *)btn;
+
+@end
+
 @interface CBAnchorInfoView : CBPopView
 
+@property (nonatomic, weak) id <AnchorInfoViewDelegate> delelgate;
 @property (nonatomic, strong) CBAnchorInfoXibView *acnchorInfoXibView;
 @property (nonatomic, strong) CBAppLiveVO *liveVO;
 

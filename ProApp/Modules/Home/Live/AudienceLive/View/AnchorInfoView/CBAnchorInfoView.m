@@ -34,6 +34,14 @@
     if (!_acnchorInfoXibView) {
         _acnchorInfoXibView = [CBAnchorInfoXibView viewFromXib];
         _acnchorInfoXibView.frame = CGRectMake(0, 0, self.width, 365);
+        @weakify(self);
+        [_acnchorInfoXibView.homeBtn addBlockForControlEvents:UIControlEventTouchUpInside block:^(id  _Nonnull sender) {
+            @strongify(self);
+            if (self.delelgate && [self.delelgate respondsToSelector:@selector(anchorInfoXibView:actionTouchHomeBtn:)]) {
+                [self.delelgate anchorInfoXibView:self->_acnchorInfoXibView actionTouchHomeBtn:self->_acnchorInfoXibView.homeBtn];
+                [self hide];
+            }
+        }];
     }
     return _acnchorInfoXibView;
 }

@@ -12,5 +12,9 @@
 @interface CBAnchorInfoXibView : UIView
 
 @property (nonatomic, strong) CBAppLiveVO *liveVO;
+@property (weak, nonatomic) IBOutlet UIButton *focusBtn;
+@property (weak, nonatomic) IBOutlet UIButton *messageBtn;
+@property (weak, nonatomic) IBOutlet UIButton *herBtn;
+@property (weak, nonatomic) IBOutlet UIButton *homeBtn;
 
 @end

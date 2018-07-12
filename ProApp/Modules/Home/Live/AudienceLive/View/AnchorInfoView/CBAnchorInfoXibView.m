@@ -28,12 +28,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *impressionA;
 @property (weak, nonatomic) IBOutlet UILabel *impressionB;
 @property (weak, nonatomic) IBOutlet UILabel *impressionC;
-
 @property (weak, nonatomic) IBOutlet UIButton *addImpressionBtn;
-@property (weak, nonatomic) IBOutlet UIButton *focusBtn;
-@property (weak, nonatomic) IBOutlet UIButton *messageBtn;
-@property (weak, nonatomic) IBOutlet UIButton *herBtn;
-@property (weak, nonatomic) IBOutlet UIButton *homeBtn;
+
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *indicatorView;
 
 @end
 
@@ -74,6 +71,8 @@
 }
 
 - (void)httpAnchorGetUserInfo {
+    [self.indicatorView startAnimating];
+    self.indicatorView.hidden = NO;
     NSString *url = urlAnchorGetUserInfo;
     NSDictionary *param = @{@"token": [CBLiveUserConfig getOwnToken],
                             @"id": self.liveVO.ID};
@@ -84,6 +83,8 @@
             CBAnchorInfoVO *anchorInfoVO = [CBAnchorInfoVO modelWithJSON:data];
             [self _reloadData_UI:anchorInfoVO];
         }
+        [self.indicatorView stopAnimating];
+        self.indicatorView.hidden = YES;
     } success:^(id responseObject) {
         NSNumber *code = [responseObject valueForKey:@"code"];
         if ([code isEqualToNumber:@200]) {
@@ -91,6 +92,8 @@
             CBAnchorInfoVO *anchorInfoVO = [CBAnchorInfoVO modelWithJSON:data];
             [self _reloadData_UI:anchorInfoVO];
         }
+        [self.indicatorView stopAnimating];
+        self.indicatorView.hidden = YES;
     } failure:^(NSError *error) {
     }];
 }
