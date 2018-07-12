@@ -146,7 +146,13 @@
 		5403B86F20CFAEF0000BE8B1 /* CBShareView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5403B86E20CFAEF0000BE8B1 /* CBShareView.xib */; };
 		540CCCD720D8F1D200CAA312 /* CBOccupantsCountView.m in Sources */ = {isa = PBXBuildFile; fileRef = 540CCCD620D8F1D200CAA312 /* CBOccupantsCountView.m */; };
 		540F3EBC20F6F0D100BD1920 /* CBPersonalHomePageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 540F3EBA20F6F0D100BD1920 /* CBPersonalHomePageVC.m */; };
-		540F3EBD20F6F0D100BD1920 /* CBPersonalHomePageVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 540F3EBB20F6F0D100BD1920 /* CBPersonalHomePageVC.xib */; };
+		540F3EC820F72F8100BD1920 /* SwipeTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 540F3EC020F72F8100BD1920 /* SwipeTableView.m */; };
+		540F3EC920F72F8100BD1920 /* UIView+STFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 540F3EC320F72F8100BD1920 /* UIView+STFrame.m */; };
+		540F3ECA20F72F8100BD1920 /* STCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 540F3EC420F72F8100BD1920 /* STCollectionView.m */; };
+		540F3ECB20F72F8100BD1920 /* STHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 540F3EC520F72F8100BD1920 /* STHeaderView.m */; };
+		540F3ECE20F7353B00BD1920 /* CustomCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 540F3ECD20F7353A00BD1920 /* CustomCollectionView.m */; };
+		540F3ED120F735D100BD1920 /* CustomSegmentControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 540F3ECF20F735D100BD1920 /* CustomSegmentControl.m */; };
+		540F3ED420F73D8D00BD1920 /* CustomTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 540F3ED320F73D8C00BD1920 /* CustomTableView.m */; };
 		54130A0820B69DEF00CAE467 /* CBRefreshGifHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 54130A0720B69DEF00CAE467 /* CBRefreshGifHeader.m */; };
 		54130A0B20B6A0C000CAE467 /* CBAppLiveVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 54130A0A20B6A0C000CAE467 /* CBAppLiveVO.m */; };
 		54130A0F20B6B48900CAE467 /* CBLiveSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = 54130A0E20B6B48900CAE467 /* CBLiveSetting.m */; };
@@ -1048,7 +1054,20 @@
 		540CCCD620D8F1D200CAA312 /* CBOccupantsCountView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBOccupantsCountView.m; sourceTree = "<group>"; };
 		540F3EB920F6F0D100BD1920 /* CBPersonalHomePageVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBPersonalHomePageVC.h; sourceTree = "<group>"; };
 		540F3EBA20F6F0D100BD1920 /* CBPersonalHomePageVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBPersonalHomePageVC.m; sourceTree = "<group>"; };
-		540F3EBB20F6F0D100BD1920 /* CBPersonalHomePageVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CBPersonalHomePageVC.xib; sourceTree = "<group>"; };
+		540F3EC020F72F8100BD1920 /* SwipeTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwipeTableView.m; sourceTree = "<group>"; };
+		540F3EC120F72F8100BD1920 /* STHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STHeaderView.h; sourceTree = "<group>"; };
+		540F3EC220F72F8100BD1920 /* STCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STCollectionView.h; sourceTree = "<group>"; };
+		540F3EC320F72F8100BD1920 /* UIView+STFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+STFrame.m"; sourceTree = "<group>"; };
+		540F3EC420F72F8100BD1920 /* STCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STCollectionView.m; sourceTree = "<group>"; };
+		540F3EC520F72F8100BD1920 /* STHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STHeaderView.m; sourceTree = "<group>"; };
+		540F3EC620F72F8100BD1920 /* SwipeTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwipeTableView.h; sourceTree = "<group>"; };
+		540F3EC720F72F8100BD1920 /* UIView+STFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+STFrame.h"; sourceTree = "<group>"; };
+		540F3ECC20F7353A00BD1920 /* CustomCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomCollectionView.h; sourceTree = "<group>"; };
+		540F3ECD20F7353A00BD1920 /* CustomCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomCollectionView.m; sourceTree = "<group>"; };
+		540F3ECF20F735D100BD1920 /* CustomSegmentControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomSegmentControl.m; sourceTree = "<group>"; };
+		540F3ED020F735D100BD1920 /* CustomSegmentControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomSegmentControl.h; sourceTree = "<group>"; };
+		540F3ED220F73D8C00BD1920 /* CustomTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomTableView.h; sourceTree = "<group>"; };
+		540F3ED320F73D8C00BD1920 /* CustomTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomTableView.m; sourceTree = "<group>"; };
 		54130A0620B69DEF00CAE467 /* CBRefreshGifHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBRefreshGifHeader.h; sourceTree = "<group>"; };
 		54130A0720B69DEF00CAE467 /* CBRefreshGifHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBRefreshGifHeader.m; sourceTree = "<group>"; };
 		54130A0920B6A0C000CAE467 /* CBAppLiveVO.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBAppLiveVO.h; sourceTree = "<group>"; };
@@ -2393,6 +2412,7 @@
 		0737EDA12074A37600A89CC0 /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				540F3EBF20F72F8100BD1920 /* SwipeTableView */,
 				54A14A5420ECA2A900423BF6 /* Tool */,
 				54A1494920ECA24100423BF6 /* Faceunity */,
 				54A1493F20ECA24100423BF6 /* View */,
@@ -3116,9 +3136,29 @@
 			children = (
 				540F3EB920F6F0D100BD1920 /* CBPersonalHomePageVC.h */,
 				540F3EBA20F6F0D100BD1920 /* CBPersonalHomePageVC.m */,
-				540F3EBB20F6F0D100BD1920 /* CBPersonalHomePageVC.xib */,
+				540F3ECC20F7353A00BD1920 /* CustomCollectionView.h */,
+				540F3ECD20F7353A00BD1920 /* CustomCollectionView.m */,
+				540F3ED020F735D100BD1920 /* CustomSegmentControl.h */,
+				540F3ECF20F735D100BD1920 /* CustomSegmentControl.m */,
+				540F3ED220F73D8C00BD1920 /* CustomTableView.h */,
+				540F3ED320F73D8C00BD1920 /* CustomTableView.m */,
 			);
 			path = PersonalHomePage;
+			sourceTree = "<group>";
+		};
+		540F3EBF20F72F8100BD1920 /* SwipeTableView */ = {
+			isa = PBXGroup;
+			children = (
+				540F3EC020F72F8100BD1920 /* SwipeTableView.m */,
+				540F3EC120F72F8100BD1920 /* STHeaderView.h */,
+				540F3EC220F72F8100BD1920 /* STCollectionView.h */,
+				540F3EC320F72F8100BD1920 /* UIView+STFrame.m */,
+				540F3EC420F72F8100BD1920 /* STCollectionView.m */,
+				540F3EC520F72F8100BD1920 /* STHeaderView.m */,
+				540F3EC620F72F8100BD1920 /* SwipeTableView.h */,
+				540F3EC720F72F8100BD1920 /* UIView+STFrame.h */,
+			);
+			path = SwipeTableView;
 			sourceTree = "<group>";
 		};
 		54130A0220B69D9100CAE467 /* Refresh */ = {
@@ -5192,7 +5232,6 @@
 				5442F7ED20EC68E90001C238 /* lsq_filter_thumb_Fade_1.jpg in Resources */,
 				54A149E120ECA24200423BF6 /* juanhuzi_lm_fu.png in Resources */,
 				5442F76920EC68E90001C238 /* style_default_2.0_moviEditor_stopPreview@3x.png in Resources */,
-				540F3EBD20F6F0D100BD1920 /* CBPersonalHomePageVC.xib in Resources */,
 				544B8F9F20CA813C00FC9CFE /* Info.plist in Resources */,
 				0791588B208849C0007CA2E0 /* CBProfileVC.xib in Resources */,
 				54A149F220ECA24200423BF6 /* fu_zh_baoquan.bundle in Resources */,
@@ -5501,6 +5540,7 @@
 				07916D5A207CA415002E4D83 /* UIView+Xib.m in Sources */,
 				07557B8D207CBAD3005C6BC1 /* UIView+Sudoku.m in Sources */,
 				54F7828E20BD56C500EE6821 /* CBForgetPwdVC.m in Sources */,
+				540F3EC920F72F8100BD1920 /* UIView+STFrame.m in Sources */,
 				544F801620D0B90200F492AE /* EaseInputTextView.m in Sources */,
 				0763FC1C20A935020086BFA4 /* CBHorizontalFlowLayout.m in Sources */,
 				0787704E2092CA7D00A5A42A /* CBAccountRecordVC.m in Sources */,
@@ -5660,6 +5700,7 @@
 				546ACB5620EF40CB000A9F7B /* CBLiveAudienceEndView.m in Sources */,
 				07F6EFF820872E3D0035C6BD /* CBAppLiveVC.m in Sources */,
 				07737DE7208F0161009EB9E6 /* CBMyFansVC.m in Sources */,
+				540F3ECA20F72F8100BD1920 /* STCollectionView.m in Sources */,
 				54FD10C320E0970400C74C92 /* TSCLevelInfo.m in Sources */,
 				07116E9820B267FC007FAEED /* CBAppADCell.m in Sources */,
 				544F802820D0BDA100F492AE /* EaseHttpManager.m in Sources */,
@@ -5667,6 +5708,7 @@
 				545384C520D256F700BE91D2 /* EaseLiveHeaderListView.m in Sources */,
 				5442F72920EC68E90001C238 /* FilterItemView.m in Sources */,
 				077D1F8520886C56003B9E56 /* CBLiveVC.m in Sources */,
+				540F3ECE20F7353B00BD1920 /* CustomCollectionView.m in Sources */,
 				544B96E320C67E81004D0DB0 /* CBFillInfoWebVC.m in Sources */,
 				547EA77620CE6D1F00CDC1A1 /* PLMainTabBarController.m in Sources */,
 				54A76AF320B7DEDE0034D5A2 /* PLSClipMovieView.m in Sources */,
@@ -5674,6 +5716,7 @@
 				547EA77820CE6D1F00CDC1A1 /* PLTitleValueConf.m in Sources */,
 				546E848720DB31CE0044DCC6 /* CBLiveCastView.m in Sources */,
 				548C5CCB20B519CE00A6FF53 /* CBInterface.m in Sources */,
+				540F3ECB20F72F8100BD1920 /* STHeaderView.m in Sources */,
 				545494C920C9322700E96C0A /* CBShortVideoVC.m in Sources */,
 				546ACB4920EEFB63000A9F7B /* PLPermissionRequestor.m in Sources */,
 				54A76D8620B7E14A0034D5A2 /* ClipMovieViewController.m in Sources */,
@@ -5695,6 +5738,7 @@
 				547EA77920CE6D1F00CDC1A1 /* PLDelgateHelper.m in Sources */,
 				5440F09B20EA11BA0059F886 /* TSCSystemMsgCell.m in Sources */,
 				07F6EFE120872E3D0035C6BD /* ALinUser.m in Sources */,
+				540F3EC820F72F8100BD1920 /* SwipeTableView.m in Sources */,
 				54130A1220B6B52200CAE467 /* CBLiveSettingConfig.m in Sources */,
 				5447DE4620EF461F00C027B5 /* CBLiveAnchorMenuView.m in Sources */,
 				07558C1F20941F18007E41C2 /* CBPopView.m in Sources */,
@@ -5711,6 +5755,7 @@
 				077C1A992091A6C10005CE97 /* CBAccountAndSecurityVC.m in Sources */,
 				079AAE7A2079C85000674A92 /* CBNVC.m in Sources */,
 				547EA77420CE6D1F00CDC1A1 /* PLAttributeModel.m in Sources */,
+				540F3ED120F735D100BD1920 /* CustomSegmentControl.m in Sources */,
 				545AEB3820F452D400BD89EC /* CBLiveAnchorGiftRecordView.m in Sources */,
 				54520AF320BFD2BB005B787E /* NSObject+Class.m in Sources */,
 				07374702208ECF9C00E108E9 /* CBVideoAttentionVC.m in Sources */,
@@ -5721,6 +5766,7 @@
 				5467015C20C0E1EF00519860 /* CBEmptyView.m in Sources */,
 				54A76AE020B7DEDE0034D5A2 /* UIView+PLSLightFrame.m in Sources */,
 				5451EC9520EDFCFC00F182E0 /* SDPieLoopProgressView.m in Sources */,
+				540F3ED420F73D8D00BD1920 /* CustomTableView.m in Sources */,
 				54A76AF920B7DEFA0034D5A2 /* PhotoAlbumViewController.m in Sources */,
 				545494C620C931A800E96C0A /* CBPlayVideoVC.m in Sources */,
 				073746F8208ECEB600E108E9 /* CBVideoVC.m in Sources */,

@@ -57,7 +57,7 @@ pod 'ZYCornerRadius'
 # 表格数据为空时界面UI
 pod 'LYEmptyView'
 # 类似头部功能收缩功能，个人主页使用
-pod 'SwipeTableView'
+#pod 'SwipeTableView'
 # 轮播图
 pod 'TYCyclePagerView'
 # 下拉刷新
