@@ -16,7 +16,7 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="375"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder_empty_375" translatesAutoresizingMaskIntoConstraints="NO" id="dnG-X2-d8m">
+                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder_empty_375" translatesAutoresizingMaskIntoConstraints="NO" id="dnG-X2-d8m">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="253"/>
                 </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BiR-EX-84k">
@@ -144,7 +144,7 @@
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" red="0.93333333333333335" green="0.93333333333333335" blue="0.93333333333333335" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="JUs-fj-IIU" firstAttribute="top" secondItem="BiR-EX-84k" secondAttribute="bottom" constant="4" id="6Op-9Z-rsL"/>
                 <constraint firstItem="dnG-X2-d8m" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="E41-sC-Flo"/>

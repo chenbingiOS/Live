@@ -43,10 +43,12 @@
     _swipeTableView.delegate = self;
     _swipeTableView.dataSource = self;
     _swipeTableView.shouldAdjustContentSize = YES;
-    _swipeTableView.swipeHeaderView = self.tableViewHeader;
+    _swipeTableView.swipeHeaderView = disableBarScroll?nil:self.tableViewHeader;
     _swipeTableView.swipeHeaderBar = self.segmentBar;
-    _swipeTableView.swipeHeaderBarScrollDisabled = NO;
-    _swipeTableView.swipeHeaderTopInset = 0;
+    _swipeTableView.swipeHeaderBarScrollDisabled = disableBarScroll;
+    if (hiddenNavigationBar) {
+        _swipeTableView.swipeHeaderTopInset = 0;
+    }
     [self.view addSubview:_swipeTableView];
     
     // nav bar
@@ -54,22 +56,6 @@
     UIBarButtonItem * leftBarItem = [[UIBarButtonItem alloc]initWithTitle:@"- Bar" style:UIBarButtonItemStylePlain target:self action:@selector(setSwipeTableBar:)];
     self.navigationItem.leftBarButtonItem = disableBarScroll?nil:leftBarItem;
     self.navigationItem.rightBarButtonItem = disableBarScroll?nil:rightBarItem;
-    
-    // back bt
-    UIButton * back = [UIButton buttonWithType:UIButtonTypeCustom];
-    back.frame = CGRectMake(10, 0, 40, 40);
-    back.st_top = hiddenNavigationBar?25:74;
-    back.backgroundColor = RGBColorAlpha(10, 202, 0, 0.95);
-    back.layer.cornerRadius = back.st_height/2;
-    back.layer.masksToBounds = YES;
-    back.titleLabel.font = [UIFont boldSystemFontOfSize:14];
-    back.hidden = disableBarScroll;
-    [back setTitle:@"Back" forState:UIControlStateNormal];
-    [back setTitleColor:RGBColor(255, 255, 215) forState:UIControlStateNormal];
-    [back addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:back];
-    
-    [self.navigationController.navigationBar setTintColor:RGBColor(234, 39, 0)];
     
     // edge gesture
     [_swipeTableView.contentView.panGestureRecognizer requireGestureRecognizerToFail:self.screenEdgePanGestureRecognizer];
@@ -98,54 +84,16 @@
 }
 
 #pragma mark - Header & Bar
-
-//- (CBPersonalHomePageHeadView *)tableViewHeader {
-//    if (!_tableViewHeader) {
-//        _tableViewHeader = [CBPersonalHomePageHeadView viewFromXib];
-//        _tableViewHeader.frame = CGRectMake(0, 0, kScreenWidth, kScreenWidth * (4/4));
-//        _tableViewHeader.backgroundColor = [UIColor whiteColor];
-//        _tableViewHeader.layer.masksToBounds = YES;
-//    }
-//    return _tableViewHeader;
-//}
-
-- (UIView *)tableViewHeader {
-    if (nil == _tableViewHeader) {
-        UIImage * headerImage = [UIImage imageNamed:@"onepiece_kiudai"];
-        // swipe header
-        self.tableViewHeader = [[STHeaderView alloc]init];
-         CBPersonalHomePageHeadView *headView = [CBPersonalHomePageHeadView viewFromXib];
-        headView.frame = CGRectMake(0, 0, kScreenWidth, kScreenWidth * (4/4));
-        [_tableViewHeader addSubview:headView];
-
+- (STHeaderView *)tableViewHeader {
+    if (!_tableViewHeader) {
+        _tableViewHeader = [[STHeaderView alloc]init];
         _tableViewHeader.frame = CGRectMake(0, 0, kScreenWidth, kScreenWidth * (4/4));
         _tableViewHeader.backgroundColor = [UIColor whiteColor];
         _tableViewHeader.layer.masksToBounds = YES;
-
-        // image view
-        self.headerImageView = [[UIImageView alloc]initWithImage:headerImage];
-        _headerImageView.contentMode = UIViewContentModeScaleAspectFill;
-        _headerImageView.userInteractionEnabled = YES;
-        _headerImageView.frame = _tableViewHeader.bounds;
-        _headerImageView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
-
-        // title label
-        UILabel * title = [[UILabel alloc]init];
-        title.textColor = RGBColor(255, 255, 255);
-        title.font = [UIFont boldSystemFontOfSize:17];
-        title.text = @"Tap To Full Screen";
-        title.textAlignment = NSTextAlignmentCenter;
-        title.st_size = CGSizeMake(200, 30);
-        title.st_centerX = _headerImageView.st_centerX;
-        title.st_bottom = _headerImageView.st_bottom - 20;
-
-        // tap gesture
-        UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapHeader:)];
-
-        [_tableViewHeader addSubview:_headerImageView];
-        [_tableViewHeader addSubview:title];
-        [_headerImageView addGestureRecognizer:tap];
-        [self shimmerHeaderTitle:title];
+        
+        CBPersonalHomePageHeadView *headView = [CBPersonalHomePageHeadView viewFromXib];
+        headView.frame = CGRectMake(0, 0, kScreenWidth, kScreenWidth * (4/4));
+        [_tableViewHeader addSubview:headView];
     }
     return _tableViewHeader;
 }
@@ -167,14 +115,8 @@
 
 #pragma mark -
 
-- (void)back {
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
-- (void)tapHeader:(UITapGestureRecognizer *)tap {
-    STImageController * imageVC = [[STImageController alloc]init];
-    imageVC.transitioningDelegate = self;
-    [self presentViewController:imageVC animated:YES completion:nil];
+- (void)actionBack {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 // tap to change header's frame
@@ -192,7 +134,7 @@
     [contentOffsetQuene removeAllObjects];
     
     [UIView animateWithDuration:.35f delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-        _tableViewHeader.st_height += changeHeight;
+        self->_tableViewHeader.st_height += changeHeight;
         currentItem.contentInset = inset;
         currentItem.contentOffset = contentOffset;
     } completion:^(BOOL finished) {
@@ -210,21 +152,6 @@
     }];
 #endif
     
-}
-
-- (void)shimmerHeaderTitle:(UILabel *)title {
-    __weak typeof(self) weakSelf = self;
-    [UIView animateWithDuration:0.75f delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-        title.transform = CGAffineTransformMakeScale(0.98, 0.98);
-        title.alpha = 0.3;
-    } completion:^(BOOL finished) {
-        [UIView animateWithDuration:0.75f delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-            title.alpha = 1.0;
-            title.transform = CGAffineTransformIdentity;
-        } completion:^(BOOL finished) {
-            [weakSelf shimmerHeaderTitle:title];
-        }];
-    }];
 }
 
 - (void)setSwipeTableHeader:(UIBarButtonItem *)barItem {
@@ -427,18 +354,17 @@
 }
 
 
-
 #pragma  mark - UIViewControllerTransitioningDelegate
 
-//- (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented
-//                                                                  presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source {
-//
-//    return [[STTransitions alloc]initWithTransitionDuration:0.55f fromView:self.headerImageView isPresenting:YES];
-//}
-//
-//- (id <UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed {
-//    return [[STTransitions alloc]initWithTransitionDuration:0.5f fromView:self.headerImageView isPresenting:NO];
-//}
+- (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented
+                                                                  presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source {
+
+    return [[STTransitions alloc]initWithTransitionDuration:0.55f fromView:self.headerImageView isPresenting:YES];
+}
+
+- (id <UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed {
+    return [[STTransitions alloc]initWithTransitionDuration:0.5f fromView:self.headerImageView isPresenting:NO];
+}
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];

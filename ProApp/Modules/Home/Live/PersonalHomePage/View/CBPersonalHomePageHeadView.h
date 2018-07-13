@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "STHeaderView.h"
 
-@interface CBPersonalHomePageHeadView : STHeaderView
+@interface CBPersonalHomePageHeadView : UIView
 
 @end
