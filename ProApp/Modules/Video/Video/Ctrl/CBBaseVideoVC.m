@@ -146,6 +146,7 @@ static NSString * const reuseIdentifier = @"CBAttentionCell";
     }
     return _collectionView;
 }
+
 - (NSMutableArray *)cellDataAry {
     if (!_cellDataAry) {
         _cellDataAry = [NSMutableArray array];

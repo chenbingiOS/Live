@@ -7,8 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "STHeaderView.h"
 
-@interface CBPersonalHomePageHeadView : UIView
+@interface CBPersonalHomePageHeadView : UICollectionViewCell
 
 @end

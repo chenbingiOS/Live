@@ -148,7 +148,6 @@
 #pragma mark - AnchorInfoViewDelegate
 - (void)anchorInfoXibView:(CBAnchorInfoXibView *)infoXibView actionTouchHomeBtn:(UIButton *)btn {
     CBPersonalHomePageVC *vc = [CBPersonalHomePageVC new];
-    vc.type = STControllerTypeHybrid;
     CBNVC *nvc = [[CBNVC alloc] initWithRootViewController:vc];
     [self presentViewController:nvc animated:YES completion:nil];
 }
