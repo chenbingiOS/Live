@@ -8,7 +8,7 @@
 
 #import "CustomTableView.h"
 #import "UIView+STFrame.h"
-//#import "STRefresh.h"
+#import "STRefresh.h"
 #import "SwipeTableView.h"
 
 #define RGBColor(r,g,b)     [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:1]
@@ -32,11 +32,11 @@
         self.tableFooterView = [UIView new];
         self.itemIndex = -1;
         
-//        self.header = [STRefreshHeader headerWithRefreshingBlock:^(STRefreshHeader *header) {
-//            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//                [header endRefreshing];
-//            });
-//        }];
+        self.header = [STRefreshHeader headerWithRefreshingBlock:^(STRefreshHeader *header) {
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [header endRefreshing];
+            });
+        }];
     }
     return self;
 }
@@ -73,13 +73,13 @@
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-//#if !defined(ST_PULLTOREFRESH_HEADER_HEIGHT)
-//    STRefreshHeader * header = self.header;
-//    CGFloat orginY = - (header.st_height + self.swipeTableView.swipeHeaderView.st_height + self.swipeTableView.swipeHeaderBar.st_height);
-//    if (header.st_y != orginY) {
-//        header.st_y = orginY;
-//    }
-//#endif
+#if !defined(ST_PULLTOREFRESH_HEADER_HEIGHT)
+    STRefreshHeader * header = self.header;
+    CGFloat orginY = - (header.st_height + self.swipeTableView.swipeHeaderView.st_height + self.swipeTableView.swipeHeaderBar.st_height);
+    if (header.st_y != orginY) {
+        header.st_y = orginY;
+    }
+#endif
 }
 
 @end

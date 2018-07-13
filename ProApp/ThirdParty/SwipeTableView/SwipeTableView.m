@@ -521,9 +521,7 @@ static void * SwipeTableViewItemPanGestureContext      = &SwipeTableViewItemPanG
         if (!_swipeHeaderBarScrollDisabled) {
             CGFloat newOffsetY      = [change[NSKeyValueChangeNewKey] CGPointValue].y;
 #if !defined(ST_PULLTOREFRESH_HEADER_HEIGHT)
-//            CGFloat topMarginOffset = _swipeHeaderTopInset + _barInset;
-            // 修改原始代码让工具条不置顶
-            CGFloat topMarginOffset = SafeAreaTopHeight + _barInset;
+            CGFloat topMarginOffset = _swipeHeaderTopInset + _barInset;
             // stick the bar
             if (newOffsetY < - topMarginOffset) {
                 if (_swipeHeaderBar) {

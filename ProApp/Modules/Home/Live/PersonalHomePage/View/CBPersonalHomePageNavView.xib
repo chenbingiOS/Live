@@ -49,7 +49,7 @@
                     <state key="normal" title="分享"/>
                 </button>
             </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="VoS-ji-Mzf" firstAttribute="leading" secondItem="xvJ-q8-B20" secondAttribute="trailing" id="8za-AG-CWv"/>
                 <constraint firstAttribute="trailing" secondItem="VoS-ji-Mzf" secondAttribute="trailing" id="Ccb-0A-hGl"/>
@@ -65,7 +65,7 @@
             <connections>
                 <outlet property="backBtn" destination="d6V-p6-8qF" id="3YN-e8-DHq"/>
             </connections>
-            <point key="canvasLocation" x="-352" y="-43"/>
+            <point key="canvasLocation" x="-283" y="-44"/>
         </view>
     </objects>
 </document>

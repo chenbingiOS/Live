@@ -17,8 +17,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *countCoinLab;
 @property (weak, nonatomic) IBOutlet UILabel *countPeopleLab;
 
-@property (nonatomic, strong) NSArray *listAry;
-
 @end
 
 

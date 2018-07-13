@@ -1,14 +1,12 @@
 //
-//  CBPersonalHomePageVC.h
-//  ProApp
+//  STViewController.h
+//  SwipeTableView
 //
-//  Created by hxbjt on 2018/7/12.
-//  Copyright © 2018年 ChenBing. All rights reserved.
+//  Created by Roy lee on 16/4/1.
+//  Copyright © 2016年 Roy lee. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
-// 个人主页
-
 #define RGBColorAlpha(r,g,b,f)   [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:f]
 #define RGBColor(r,g,b)          RGBColorAlpha(r,g,b,1)
 
@@ -19,7 +17,7 @@ typedef NS_ENUM(NSInteger,STControllerType) {
     STControllerTypeHiddenNavBar,
 };
 
-@interface CBPersonalHomePageVC : UIViewController
+@interface STViewController : UIViewController
 
 @property (nonatomic, assign) STControllerType type;
 @property (nonatomic, strong) UIImageView * headerImageView;

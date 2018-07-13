@@ -8,7 +8,7 @@
 
 #import "CustomCollectionView.h"
 #import "UIView+STFrame.h"
-//#import "STRefresh.h"
+#import "STRefresh.h"
 
 #define RGBColor(r,g,b)     [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:1]
 
@@ -49,11 +49,11 @@
     [self registerClass:UICollectionReusableView.class forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"header"];
     [self registerClass:UICollectionReusableView.class forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"footer"];
     
-//    self.header = [STRefreshHeader headerWithRefreshingBlock:^(STRefreshHeader *header) {
-//        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//            [header endRefreshing];
-//        });
-//    }];
+    self.header = [STRefreshHeader headerWithRefreshingBlock:^(STRefreshHeader *header) {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [header endRefreshing];
+        });
+    }];
 }
 
 - (NSMutableArray *)itemSizes {

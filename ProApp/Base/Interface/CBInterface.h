@@ -51,6 +51,11 @@
 #define urlReceiveCoin          purl@"Api/Gift/receive_coin"
 // 礼物gif图片
 #define urlGetGiftOneList       purl@"Api/Gift/getGiftOneList"
+// 本场贡献
+#define urlThisContribute       purl@"Api/Anchor/thisContribute"
+// 本场礼物记录
+#define urlThisGift             purl@"Api/Anchor/thisGift"
+
 //------------------------------------------------------------------
 // 用户操作
 // 用户注册

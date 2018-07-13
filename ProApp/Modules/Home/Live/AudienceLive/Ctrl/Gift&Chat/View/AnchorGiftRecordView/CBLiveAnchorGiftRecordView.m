@@ -8,8 +8,7 @@
 
 #import "CBLiveAnchorGiftRecordView.h"
 #import "CBLiveAudienceGiveGiftRecordCell.h"
-
-
+#import "CBLiveAndienceAnchorRecordCell.h"
 
 @interface CBLiveAnchorGiftRecordView () <UITableViewDelegate, UITableViewDataSource>
 
@@ -21,47 +20,68 @@
 
 @implementation CBLiveAnchorGiftRecordView
 
-- (IBAction)actionThisContributionbtn:(id)sender {
-    [self reloadAllData];
+- (IBAction)actionThisContributionbtn:(UIButton *)sender {
+    self.contributionBtn.selected = NO;
+    self.giftListBtn.selected = NO;
+    sender.selected = YES;
+    self.url = urlThisContribute;
+    [self.tableView.mj_header beginRefreshing];
 }
-- (IBAction)actionRecordBtn:(id)sender {
-    [self reloadAllData];
+- (IBAction)actionRecordBtn:(UIButton *)sender {
+    self.contributionBtn.selected = NO;
+    self.giftListBtn.selected = NO;
+    sender.selected = YES;
+    self.url = urlThisGift;
+    [self.tableView.mj_header beginRefreshing];
 }
 
-#warning 这边逻辑还没有完全写完
 - (void)_reloadData_Init {
-    NSString *url = urlGetLiveRoomOnlineUserList;
+    self.url = urlThisContribute;
+    self.tableView.dataSource = self;
+    self.tableView.delegate = self;
+    
+    [self.tableView registerNib:[UINib nibWithNibName:@"CBLiveAudienceGiveGiftRecordCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"CBLiveAudienceGiveGiftRecordCellReuseIdentifier"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"CBLiveAndienceAnchorRecordCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"CBLiveAndienceAnchorRecordCellReuseIdentifier"];
+
     self.currentPage = 1;
+    self.tableView.tableFooterView = [UIView new];
     self.tableView.mj_header = [CBRefreshGifHeader headerWithRefreshingBlock:^{
         [self reloadAllData];
     }];
     [self.tableView.mj_header beginRefreshing];
     self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
         self.currentPage++;
-        [self httpGetLiveRoomOnlineUserList];
+        [self httpGetListData];
     }];
 }
 
 - (void)reloadAllData {
     self.currentPage = 1;
     self.cellDataAry = [NSMutableArray array];
-    [self httpGetLiveRoomOnlineUserList];
+    [self httpGetListData];
 }
 
-- (void)httpGetLiveRoomOnlineUserList {
-    NSString *url = urlGetLiveRoomOnlineUserList;
+- (void)httpGetListData {
+    NSString *url = self.url;
     NSDictionary *param = @{@"token": [CBLiveUserConfig getOwnToken],
+                            @"id": [CBLiveUserConfig getOwnID],
                             @"page": @(self.currentPage)};
+    @weakify(self);
     [PPNetworkHelper POST:url parameters:param success:^(id responseObject) {
+        @strongify(self);
         NSNumber *code = [responseObject valueForKey:@"code"];
         if ([code isEqualToNumber:@200]) {
-//            NSArray *resultList = [NSArray modelArrayWithClass:[CBAppLiveVO class] json:responseObject[@"data"]];
-//            if (resultList.count < 20 && self.currentPage > 1) {
-//                self.currentPage--;
-//            } else {
-//                [self.cellDataAry addObjectsFromArray:resultList];
-//                [self.tableView reloadData];
-//            }
+            NSString *allMoney = responseObject[@"data"][@"all"][@"allMoney"];
+            self.countCoinLab.text = allMoney;
+            NSString *count = responseObject[@"data"][@"all"][@"count"];
+            self.countPeopleLab.text = count;
+            NSArray *resultList = [NSArray modelArrayWithClass:[CBLiveUser class] json:responseObject[@"data"][@"user"]];
+            if (resultList.count < 20 && self.currentPage > 1) {
+                self.currentPage--;
+            } else {
+                [self.cellDataAry addObjectsFromArray:resultList];
+                [self.tableView reloadData];
+            }
         } else {
             NSString *descrp = responseObject[@"descrp"];
             [MBProgressHUD showAutoMessage:descrp];
@@ -69,34 +89,38 @@
         [self.tableView.mj_header endRefreshing];
         [self.tableView.mj_footer endRefreshing];
     } failure:^(NSError *error) {
+        @strongify(self);
         [self.tableView.mj_header endRefreshing];
         [self.tableView.mj_footer endRefreshing];
-        [MBProgressHUD showAutoMessage:@"在线用户获取失败"];
+        [MBProgressHUD showAutoMessage:@"数据获取失败"];
     }];
 }
 
-- (void)setListAry:(NSArray *)listAry {
-    _listAry = listAry;
-    
-    self.tableView.dataSource = self;
-    self.tableView.delegate = self;
-    
-    [self.tableView registerNib:[UINib nibWithNibName:@"CBLiveAudienceGiveGiftRecordCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"CBLiveAudienceGiveGiftRecordCellReuseIdentifier"];
-    [self.tableView reloadData];
-}
-
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
-    CBLiveAudienceGiveGiftRecordCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CBLiveAudienceGiveGiftRecordCellReuseIdentifier"];
-    
-    return cell;
+    if (self.contributionBtn.selected) {
+        CBLiveAudienceGiveGiftRecordCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CBLiveAudienceGiveGiftRecordCellReuseIdentifier"];
+        cell.liveUser = self.cellDataAry[indexPath.row];
+        return cell;
+    } else {
+        CBLiveAndienceAnchorRecordCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CBLiveAndienceAnchorRecordCellReuseIdentifier"];
+        cell.liveUser = self.cellDataAry[indexPath.row];
+        return cell;
+    }
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.listAry.count;
+    return self.cellDataAry.count;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (self.contributionBtn.selected) {
+        return 80;
+    } else {
+        return 50;
+    }
 }
 
 @end
-
 
 
 @implementation CBLiveAnchorGiftRecordPopView

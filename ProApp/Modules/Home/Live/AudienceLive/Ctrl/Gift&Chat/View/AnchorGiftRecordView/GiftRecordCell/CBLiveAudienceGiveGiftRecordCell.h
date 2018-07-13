@@ -10,4 +10,12 @@
 
 @interface CBLiveAudienceGiveGiftRecordCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UILabel *orderLab;
+@property (weak, nonatomic) IBOutlet UIImageView *avaterImageView;
+@property (weak, nonatomic) IBOutlet UILabel *userNickLab;
+@property (weak, nonatomic) IBOutlet UIImageView *levelImageView;
+@property (weak, nonatomic) IBOutlet UILabel *coinLab;
+
+@property (nonatomic, strong) CBLiveUser *liveUser;
+
 @end

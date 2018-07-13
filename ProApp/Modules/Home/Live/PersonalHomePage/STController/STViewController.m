@@ -1,12 +1,12 @@
 //
-//  CBPersonalHomePageVC.m
+//  STViewController.m
 //  SwipeTableView
 //
 //  Created by Roy lee on 16/4/1.
 //  Copyright © 2016年 Roy lee. All rights reserved.
 //
 
-#import "CBPersonalHomePageVC.h"
+#import "STViewController.h"
 #import "SwipeTableView.h"
 #import "CustomTableView.h"
 #import "CustomCollectionView.h"
@@ -16,9 +16,9 @@
 #import "STTransitions.h"
 #import "STRefresh.h"
 #import <objc/message.h>
-#import "CBPersonalHomePageHeadView.h"
 
-@interface CBPersonalHomePageVC ()<SwipeTableViewDataSource,SwipeTableViewDelegate,UIGestureRecognizerDelegate,UIViewControllerTransitioningDelegate>
+
+@interface STViewController ()<SwipeTableViewDataSource,SwipeTableViewDelegate,UIGestureRecognizerDelegate,UIViewControllerTransitioningDelegate>
 
 @property (nonatomic, strong) SwipeTableView * swipeTableView;
 @property (nonatomic, strong) STHeaderView * tableViewHeader;
@@ -29,7 +29,7 @@
 
 @end
 
-@implementation CBPersonalHomePageVC
+@implementation STViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -43,10 +43,12 @@
     _swipeTableView.delegate = self;
     _swipeTableView.dataSource = self;
     _swipeTableView.shouldAdjustContentSize = YES;
-    _swipeTableView.swipeHeaderView = self.tableViewHeader;
+    _swipeTableView.swipeHeaderView = disableBarScroll?nil:self.tableViewHeader;
     _swipeTableView.swipeHeaderBar = self.segmentBar;
-    _swipeTableView.swipeHeaderBarScrollDisabled = NO;
-    _swipeTableView.swipeHeaderTopInset = 0;
+    _swipeTableView.swipeHeaderBarScrollDisabled = disableBarScroll;
+    if (hiddenNavigationBar) {
+        _swipeTableView.swipeHeaderTopInset = 0;
+    }
     [self.view addSubview:_swipeTableView];
     
     // nav bar
@@ -99,36 +101,22 @@
 
 #pragma mark - Header & Bar
 
-//- (CBPersonalHomePageHeadView *)tableViewHeader {
-//    if (!_tableViewHeader) {
-//        _tableViewHeader = [CBPersonalHomePageHeadView viewFromXib];
-//        _tableViewHeader.frame = CGRectMake(0, 0, kScreenWidth, kScreenWidth * (4/4));
-//        _tableViewHeader.backgroundColor = [UIColor whiteColor];
-//        _tableViewHeader.layer.masksToBounds = YES;
-//    }
-//    return _tableViewHeader;
-//}
-
 - (UIView *)tableViewHeader {
     if (nil == _tableViewHeader) {
         UIImage * headerImage = [UIImage imageNamed:@"onepiece_kiudai"];
         // swipe header
         self.tableViewHeader = [[STHeaderView alloc]init];
-         CBPersonalHomePageHeadView *headView = [CBPersonalHomePageHeadView viewFromXib];
-        headView.frame = CGRectMake(0, 0, kScreenWidth, kScreenWidth * (4/4));
-        [_tableViewHeader addSubview:headView];
-
-        _tableViewHeader.frame = CGRectMake(0, 0, kScreenWidth, kScreenWidth * (4/4));
+        _tableViewHeader.frame = CGRectMake(0, 0, kScreenWidth, kScreenWidth * (headerImage.size.height/headerImage.size.width));
         _tableViewHeader.backgroundColor = [UIColor whiteColor];
         _tableViewHeader.layer.masksToBounds = YES;
-
+        
         // image view
         self.headerImageView = [[UIImageView alloc]initWithImage:headerImage];
         _headerImageView.contentMode = UIViewContentModeScaleAspectFill;
         _headerImageView.userInteractionEnabled = YES;
         _headerImageView.frame = _tableViewHeader.bounds;
         _headerImageView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
-
+        
         // title label
         UILabel * title = [[UILabel alloc]init];
         title.textColor = RGBColor(255, 255, 255);
@@ -138,10 +126,10 @@
         title.st_size = CGSizeMake(200, 30);
         title.st_centerX = _headerImageView.st_centerX;
         title.st_bottom = _headerImageView.st_bottom - 20;
-
+        
         // tap gesture
         UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapHeader:)];
-
+        
         [_tableViewHeader addSubview:_headerImageView];
         [_tableViewHeader addSubview:title];
         [_headerImageView addGestureRecognizer:tap];
@@ -325,6 +313,7 @@
     }
 }
 
+
 #pragma mark - SwipeTableView M
 
 - (NSInteger)numberOfItemsInSwipeTableView:(SwipeTableView *)swipeView {
@@ -430,15 +419,15 @@
 
 #pragma  mark - UIViewControllerTransitioningDelegate
 
-//- (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented
-//                                                                  presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source {
-//
-//    return [[STTransitions alloc]initWithTransitionDuration:0.55f fromView:self.headerImageView isPresenting:YES];
-//}
-//
-//- (id <UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed {
-//    return [[STTransitions alloc]initWithTransitionDuration:0.5f fromView:self.headerImageView isPresenting:NO];
-//}
+- (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented
+                                                                  presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source {
+    
+    return [[STTransitions alloc]initWithTransitionDuration:0.55f fromView:self.headerImageView isPresenting:YES];
+}
+
+- (id <UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed {
+    return [[STTransitions alloc]initWithTransitionDuration:0.5f fromView:self.headerImageView isPresenting:NO];
+}
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
