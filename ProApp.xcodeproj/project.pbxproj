@@ -154,6 +154,8 @@
 		540F3F1620F851F300BD1920 /* CBLiveAndienceAnchorRecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 540F3F1420F851F300BD1920 /* CBLiveAndienceAnchorRecordCell.m */; };
 		540F3F1720F851F300BD1920 /* CBLiveAndienceAnchorRecordCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 540F3F1520F851F300BD1920 /* CBLiveAndienceAnchorRecordCell.xib */; };
 		540F3F1B20F8939400BD1920 /* CBPersonalHomePageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 540F3F1920F8939400BD1920 /* CBPersonalHomePageVC.m */; };
+		540F3F2020F8A89500BD1920 /* CBPersonalHomePageVideoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 540F3F1E20F8A89500BD1920 /* CBPersonalHomePageVideoCell.m */; };
+		540F3F2120F8A89500BD1920 /* CBPersonalHomePageVideoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 540F3F1F20F8A89500BD1920 /* CBPersonalHomePageVideoCell.xib */; };
 		54130A0820B69DEF00CAE467 /* CBRefreshGifHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 54130A0720B69DEF00CAE467 /* CBRefreshGifHeader.m */; };
 		54130A0B20B6A0C000CAE467 /* CBAppLiveVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 54130A0A20B6A0C000CAE467 /* CBAppLiveVO.m */; };
 		54130A0F20B6B48900CAE467 /* CBLiveSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = 54130A0E20B6B48900CAE467 /* CBLiveSetting.m */; };
@@ -494,6 +496,8 @@
 		5447DE4620EF461F00C027B5 /* CBLiveAnchorMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5447DE4520EF461F00C027B5 /* CBLiveAnchorMenuView.m */; };
 		5447DE4820EF462A00C027B5 /* CBLiveAnchorMenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5447DE4720EF462A00C027B5 /* CBLiveAnchorMenuView.xib */; };
 		544A3A6720E4C667008C6BA8 /* CBGiftTypeVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 544A3A6620E4C667008C6BA8 /* CBGiftTypeVO.m */; };
+		544AF74520FC27BA006C8FB9 /* CBPersonalHomePageContriButionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 544AF74320FC27BA006C8FB9 /* CBPersonalHomePageContriButionCell.m */; };
+		544AF74620FC27BA006C8FB9 /* CBPersonalHomePageContriButionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 544AF74420FC27BA006C8FB9 /* CBPersonalHomePageContriButionCell.xib */; };
 		544B8F9020CA220800FC9CFE /* CBLiveAnchorBeginView.m in Sources */ = {isa = PBXBuildFile; fileRef = 544B8F8F20CA220800FC9CFE /* CBLiveAnchorBeginView.m */; };
 		544B8F9220CA221300FC9CFE /* CBLiveAnchorBeginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 544B8F9120CA221300FC9CFE /* CBLiveAnchorBeginView.xib */; };
 		544B8F9F20CA813C00FC9CFE /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 544B8F9E20CA813B00FC9CFE /* Info.plist */; };
@@ -1067,6 +1071,9 @@
 		540F3F1520F851F300BD1920 /* CBLiveAndienceAnchorRecordCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CBLiveAndienceAnchorRecordCell.xib; sourceTree = "<group>"; };
 		540F3F1820F8939400BD1920 /* CBPersonalHomePageVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBPersonalHomePageVC.h; sourceTree = "<group>"; };
 		540F3F1920F8939400BD1920 /* CBPersonalHomePageVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBPersonalHomePageVC.m; sourceTree = "<group>"; };
+		540F3F1D20F8A89400BD1920 /* CBPersonalHomePageVideoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBPersonalHomePageVideoCell.h; sourceTree = "<group>"; };
+		540F3F1E20F8A89500BD1920 /* CBPersonalHomePageVideoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBPersonalHomePageVideoCell.m; sourceTree = "<group>"; };
+		540F3F1F20F8A89500BD1920 /* CBPersonalHomePageVideoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CBPersonalHomePageVideoCell.xib; sourceTree = "<group>"; };
 		54130A0620B69DEF00CAE467 /* CBRefreshGifHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBRefreshGifHeader.h; sourceTree = "<group>"; };
 		54130A0720B69DEF00CAE467 /* CBRefreshGifHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBRefreshGifHeader.m; sourceTree = "<group>"; };
 		54130A0920B6A0C000CAE467 /* CBAppLiveVO.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBAppLiveVO.h; sourceTree = "<group>"; };
@@ -1603,6 +1610,9 @@
 		5447DE4720EF462A00C027B5 /* CBLiveAnchorMenuView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CBLiveAnchorMenuView.xib; sourceTree = "<group>"; };
 		544A3A6520E4C667008C6BA8 /* CBGiftTypeVO.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBGiftTypeVO.h; sourceTree = "<group>"; };
 		544A3A6620E4C667008C6BA8 /* CBGiftTypeVO.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBGiftTypeVO.m; sourceTree = "<group>"; };
+		544AF74220FC27BA006C8FB9 /* CBPersonalHomePageContriButionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBPersonalHomePageContriButionCell.h; sourceTree = "<group>"; };
+		544AF74320FC27BA006C8FB9 /* CBPersonalHomePageContriButionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBPersonalHomePageContriButionCell.m; sourceTree = "<group>"; };
+		544AF74420FC27BA006C8FB9 /* CBPersonalHomePageContriButionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CBPersonalHomePageContriButionCell.xib; sourceTree = "<group>"; };
 		544B8F8E20CA220800FC9CFE /* CBLiveAnchorBeginView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBLiveAnchorBeginView.h; sourceTree = "<group>"; };
 		544B8F8F20CA220800FC9CFE /* CBLiveAnchorBeginView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBLiveAnchorBeginView.m; sourceTree = "<group>"; };
 		544B8F9120CA221300FC9CFE /* CBLiveAnchorBeginView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CBLiveAnchorBeginView.xib; sourceTree = "<group>"; };
@@ -3151,6 +3161,12 @@
 				540F3EE020F74E6200BD1920 /* CBPersonalHomePageHeadView.h */,
 				540F3EE120F74E6200BD1920 /* CBPersonalHomePageHeadView.m */,
 				540F3EE320F74E7700BD1920 /* CBPersonalHomePageHeadView.xib */,
+				544AF74220FC27BA006C8FB9 /* CBPersonalHomePageContriButionCell.h */,
+				544AF74320FC27BA006C8FB9 /* CBPersonalHomePageContriButionCell.m */,
+				544AF74420FC27BA006C8FB9 /* CBPersonalHomePageContriButionCell.xib */,
+				540F3F1D20F8A89400BD1920 /* CBPersonalHomePageVideoCell.h */,
+				540F3F1E20F8A89500BD1920 /* CBPersonalHomePageVideoCell.m */,
+				540F3F1F20F8A89500BD1920 /* CBPersonalHomePageVideoCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -5122,6 +5138,7 @@
 				5442F78A20EC68E90001C238 /* video_style_default_btn_sticker_online@3x.png in Resources */,
 				54C18B4C20D9E4E600882377 /* reversal_camera@3x.png in Resources */,
 				5442F79520EC68E90001C238 /* video_style_default_crop_btn_record@3x.png in Resources */,
+				540F3F2120F8A89500BD1920 /* CBPersonalHomePageVideoCell.xib in Resources */,
 				54C18B3F20D9E4E600882377 /* open@2x.png in Resources */,
 				5442F84C20EC68E90001C238 /* lsq_filter_thumb_Money.jpg in Resources */,
 				5442F83920EC68E90001C238 /* lsq_filter_thumb_Missing01.jpg in Resources */,
@@ -5388,6 +5405,7 @@
 				5442F73520EC68E90001C238 /* style_default_1.11_record_btn_record_s@3x.png in Resources */,
 				5442F80C20EC68E90001C238 /* style_default_2.0_back_default@3x.png in Resources */,
 				5442F7E120EC68E90001C238 /* lsq_filter_thumb_SkinJelly010.jpg in Resources */,
+				544AF74620FC27BA006C8FB9 /* CBPersonalHomePageContriButionCell.xib in Resources */,
 				5442F79120EC68E90001C238 /* style_default_btn_sticker_off@2x.png in Resources */,
 				5442F76820EC68E90001C238 /* style_default_2.0_edit_effect_back@3x.png in Resources */,
 				54A14A0520ECA24200423BF6 /* xiongmao.bundle in Resources */,
@@ -5738,6 +5756,7 @@
 				547EA77920CE6D1F00CDC1A1 /* PLDelgateHelper.m in Sources */,
 				5440F09B20EA11BA0059F886 /* TSCSystemMsgCell.m in Sources */,
 				07F6EFE120872E3D0035C6BD /* ALinUser.m in Sources */,
+				544AF74520FC27BA006C8FB9 /* CBPersonalHomePageContriButionCell.m in Sources */,
 				54130A1220B6B52200CAE467 /* CBLiveSettingConfig.m in Sources */,
 				5447DE4620EF461F00C027B5 /* CBLiveAnchorMenuView.m in Sources */,
 				07558C1F20941F18007E41C2 /* CBPopView.m in Sources */,
@@ -5782,6 +5801,7 @@
 				0737ED892074A33600A89CC0 /* AppDelegate.m in Sources */,
 				54DD931920DCDD1E0016C563 /* CBLiveGiftViewVC.m in Sources */,
 				54A76AF620B7DEF00034D5A2 /* EditViewController.m in Sources */,
+				540F3F2020F8A89500BD1920 /* CBPersonalHomePageVideoCell.m in Sources */,
 				07CF5FC0207AFDB10087A5E2 /* ViewController.m in Sources */,
 				548C5CBE20B50C2400A6FF53 /* CBLiveUser.m in Sources */,
 				07B668AA208DD19700AA5B62 /* CBAccountVC.m in Sources */,

@@ -17,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *wbButton;
 @property (weak, nonatomic) IBOutlet UIButton *qqButton;
 @property (nonatomic, copy) void(^clickBtnBlock)(void);
+@property (nonatomic, copy) NSString *shareContentId;
 
 @end
 

@@ -76,24 +76,30 @@
     NSString *url = urlAnchorGetUserInfo;
     NSDictionary *param = @{@"token": [CBLiveUserConfig getOwnToken],
                             @"id": self.liveVO.ID};
+    [MBProgressHUD showHUDAddedTo:self animated:YES];
+    @weakify(self);
     [PPNetworkHelper POST:url parameters:param responseCache:^(id responseCache) {
+        @strongify(self);
         NSNumber *code = [responseCache valueForKey:@"code"];
         if ([code isEqualToNumber:@200]) {
             NSDictionary *data = [responseCache valueForKey:@"data"];
-            CBAnchorInfoVO *anchorInfoVO = [CBAnchorInfoVO modelWithJSON:data];
-            [self _reloadData_UI:anchorInfoVO];
+            self.infoVO = [CBAnchorInfoVO modelWithJSON:data];
+            [self _reloadData_UI:self.infoVO];
         }
         [self.indicatorView stopAnimating];
         self.indicatorView.hidden = YES;
+        [MBProgressHUD hideHUDForView:self animated:YES];
     } success:^(id responseObject) {
+        @strongify(self);
         NSNumber *code = [responseObject valueForKey:@"code"];
         if ([code isEqualToNumber:@200]) {
             NSDictionary *data = [responseObject valueForKey:@"data"];
-            CBAnchorInfoVO *anchorInfoVO = [CBAnchorInfoVO modelWithJSON:data];
-            [self _reloadData_UI:anchorInfoVO];
+            self.infoVO = [CBAnchorInfoVO modelWithJSON:data];
+            [self _reloadData_UI:self.infoVO];
         }
         [self.indicatorView stopAnimating];
         self.indicatorView.hidden = YES;
+        [MBProgressHUD hideHUDForView:self animated:YES];
     } failure:^(NSError *error) {
     }];
 }

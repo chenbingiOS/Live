@@ -39,7 +39,8 @@
 @property (nonatomic, copy) NSString *vip_deadline;     ///< vip截至日期
 
 @property (nonatomic, copy) NSString *user_status;      ///< 用户状态             0:禁用 1:正常 2:未验证
-@property (nonatomic, copy) NSString *user_level;       ///< vip等级             默认0，普通用户等级（财富）
+@property (nonatomic, copy) NSString *user_level;       ///< 用户等级             默认0，普通用户等级（财富）
+@property (nonatomic, copy) NSString *user_vip_level;   ///< vip等级             默认0，普通用户等级（财富）
 @property (nonatomic, copy) NSString *host_level;       ///< 主播等级             默认0，普通用户等级（财富）
 
 @property (nonatomic, copy) NSString *is_host;          ///< 是否是主播           0：不是主播 ，1：是主播
@@ -51,6 +52,7 @@
 @property (nonatomic, copy) NSString *minute_charge_timestamp;  ///< 分钟扣费时间
 @property (nonatomic, copy) NSString *attention_num;    ///< 我的关注
 @property (nonatomic, copy) NSString *fans_num;         ///< 我的粉丝
+@property (nonatomic, copy) NSString *guard_num;        ///< 我的守护
 
 @property (nonatomic, copy) NSString *orderId;
 @property (nonatomic, copy) NSString *level;        ///< 守护等级 4：小守护 5：大守护

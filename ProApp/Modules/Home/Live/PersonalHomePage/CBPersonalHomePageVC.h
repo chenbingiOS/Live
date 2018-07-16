@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
+@class CBAppLiveVO;
 @interface CBPersonalHomePageVC : UIViewController
+
+- (instancetype)initWithLiveVO:(CBAppLiveVO *)liveVO;
 
 @end

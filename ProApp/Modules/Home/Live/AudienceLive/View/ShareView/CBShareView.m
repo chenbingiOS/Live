@@ -32,7 +32,7 @@
 - (void)shareByPlatforms:(SSDKPlatformType)platformType {
     NSMutableDictionary *shareParams = [NSMutableDictionary dictionary];
     SSDKContentType contentType = SSDKContentTypeAuto;
-    NSString *url = [urlH5Share stringByAppendingFormat:@"?uid=%@", [CBLiveUserConfig getOwnID]];
+    NSString *url = [urlH5Share stringByAppendingFormat:@"?id=%@&shareId=%@", self.shareContentId, [CBLiveUserConfig getOwnID]];
     NSURL *paramURL = [NSURL URLWithString:url];
     if (platformType == SSDKPlatformTypeSinaWeibo) {
         contentType = SSDKContentTypeImage;

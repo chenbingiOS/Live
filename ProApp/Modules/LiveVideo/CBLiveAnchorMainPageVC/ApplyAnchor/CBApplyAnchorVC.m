@@ -17,7 +17,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"申请成为主播";
-    NSString *url = [urlH5Guild stringByAppendingFormat:@"?token=%@", [CBLiveUserConfig getOwnToken]];
+    NSString *url = [H5_index stringByAppendingFormat:@"?token=%@", [CBLiveUserConfig getOwnToken]];
     [self webViewloadRequestWithURLString:url];
 }
 

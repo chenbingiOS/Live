@@ -9,9 +9,11 @@
 #import <UIKit/UIKit.h>
 
 @class CBAppLiveVO;
+@class CBAnchorInfoVO;
 @interface CBAnchorInfoXibView : UIView
 
 @property (nonatomic, strong) CBAppLiveVO *liveVO;
+@property (nonatomic, strong) CBAnchorInfoVO *infoVO;
 @property (weak, nonatomic) IBOutlet UIButton *focusBtn;
 @property (weak, nonatomic) IBOutlet UIButton *messageBtn;
 @property (weak, nonatomic) IBOutlet UIButton *herBtn;

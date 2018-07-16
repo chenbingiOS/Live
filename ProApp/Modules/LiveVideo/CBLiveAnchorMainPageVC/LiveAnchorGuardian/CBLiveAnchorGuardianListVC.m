@@ -9,6 +9,7 @@
 #import "CBLiveAnchorGuardianListVC.h"
 #import "CBLiveAnchorGrardianListCell.h"
 #import "CBLiveUser.h"
+#import "CBAppLiveVO.h"
 
 @interface CBLiveAnchorGuardianListVC () <UITableViewDataSource, UITableViewDelegate>
 

@@ -9,32 +9,77 @@
 #import "CBPersonalHomePageVC.h"
 #import "CBPersonalHomePageNavView.h"
 #import "CBPersonalHomePageBottomView.h"
-#import "CBPersonalHomePageHeadView.h"
-#import "CBAttentionCell.h"
 #import "CBVerticalFlowLayout.h"
 #import "CBVideoScrollVC.h"
 #import "CBShortVideoVO.h"
+#import "CBPersonalHomePageHeadView.h"
+#import "CBPersonalHomePageContriButionCell.h"
+#import "CBPersonalHomePageVideoCell.h"
+#import "CBAnchorInfoVO.h"
+#import "CBAppLiveVO.h"
+#import "CBShareView.h"
 
-static NSString * const reuseIdentifier = @"CBAttentionCell";
+static NSString * const CBPersonalHomePageVideoCellReuseIdentifier = @"CBPersonalHomePageVideoCellReuseIdentifier";
 static NSString * const CBPersonalHomePageHeadViewReuseIdentifier = @"CBPersonalHomePageHeadViewReuseIdentifier";
-
+static NSString * const CBPersonalHomePageContriButionCellReuseIdentifier = @"CBPersonalHomePageContriButionCellReuseIdentifier";
 
 @interface CBPersonalHomePageVC () <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 
+@property (nonatomic, strong) CBAppLiveVO *liveVO;
 @property (nonatomic, strong) UICollectionView *collectionView;
 @property (nonatomic, strong) NSMutableArray *cellDataAry;
 @property (nonatomic, assign) NSUInteger currentPage;
 @property (nonatomic, strong) CBPersonalHomePageNavView *navView;
 @property (nonatomic, strong) CBPersonalHomePageBottomView *bottomView;
 @property (nonatomic, strong) CBPersonalHomePageHeadView *headView;
+@property (nonatomic, strong) CBPersonalHomePageContriButionCell *contriBtnCell;
+@property (nonatomic, strong) CBSharePopView *sharePopView;         ///< 分享
 
 @end
 
 @implementation CBPersonalHomePageVC
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+}
+
+- (instancetype)initWithLiveVO:(CBAppLiveVO *)liveVO {
+    self = [super init];
+    if (self) {
+        _liveVO = liveVO;
+    }
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    UIButton *tagButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    tagButton.size = CGSizeMake(44, 44);
+    [tagButton setBackgroundImage:[UIImage imageNamed:@"login_close"] forState:UIControlStateNormal];
+    [tagButton setBackgroundImage:[UIImage imageNamed:@"login_close"] forState:UIControlStateHighlighted];
+    tagButton.size = tagButton.currentBackgroundImage.size;
+    [tagButton addTarget:self action:@selector(tagClick) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:tagButton];
+    
+    UIButton *rtagButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    rtagButton.size = CGSizeMake(44, 44);
+    [rtagButton setBackgroundImage:[UIImage imageNamed:@"nav_share"] forState:UIControlStateNormal];
+    [rtagButton setBackgroundImage:[UIImage imageNamed:@"nav_share"] forState:UIControlStateHighlighted];
+    rtagButton.size = tagButton.currentBackgroundImage.size;
+    [rtagButton addTarget:self action:@selector(rtagClick) forControlEvents:UIControlEventTouchUpInside];
+    
     [self setupUI];
+}
+
+- (void)tagClick {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)rtagClick {
+    UIWindow *window = [UIApplication sharedApplication].keyWindow;
+    [self.sharePopView showIn:window];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -88,8 +133,42 @@ static NSString * const CBPersonalHomePageHeadViewReuseIdentifier = @"CBPersonal
     self.currentPage = 1;
     self.cellDataAry = [NSMutableArray array];
     [self httpGetVideos];
+    [self httpAnchorGetUserInfo];
 }
 
+- (void)httpAnchorGetUserInfo {
+    NSString *url = urlAnchorGetUserInfo;
+    NSDictionary *param = @{@"token": [CBLiveUserConfig getOwnToken],
+                            @"id": self.liveVO.ID};
+    @weakify(self);
+//    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [PPNetworkHelper POST:url parameters:param responseCache:^(id responseCache) {
+        @strongify(self);
+        NSNumber *code = [responseCache valueForKey:@"code"];
+        if ([code isEqualToNumber:@200]) {
+            NSDictionary *data = [responseCache valueForKey:@"data"];
+            CBAnchorInfoVO *infoVO = [CBAnchorInfoVO modelWithJSON:data];
+            [self _reloadData_UI:infoVO];
+        }
+//        [MBProgressHUD hideHUDForView:self.view animated:YES];
+    } success:^(id responseObject) {
+        @strongify(self);
+        NSNumber *code = [responseObject valueForKey:@"code"];
+        if ([code isEqualToNumber:@200]) {
+            NSDictionary *data = [responseObject valueForKey:@"data"];
+            CBAnchorInfoVO *infoVO = [CBAnchorInfoVO modelWithJSON:data];
+            [self _reloadData_UI:infoVO];
+        }
+//        [MBProgressHUD hideHUDForView:self.view animated:YES];
+    } failure:^(NSError *error) {
+    }];
+}
+
+- (void)_reloadData_UI:(CBAnchorInfoVO *)infoVO {
+    self.title = infoVO.user.user_nicename;
+    self.headView.liveUser = infoVO.user;
+    self.contriBtnCell.infoVO = infoVO;
+}
 
 #pragma mark - UICollectionViewDelegateFlowLayout
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -117,13 +196,15 @@ static NSString * const CBPersonalHomePageHeadViewReuseIdentifier = @"CBPersonal
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
             CBPersonalHomePageHeadView *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CBPersonalHomePageHeadViewReuseIdentifier forIndexPath:indexPath];
+            self.headView = cell;
             return cell;
         } else {
-            CBPersonalHomePageHeadView *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CBPersonalHomePageHeadViewReuseIdentifier forIndexPath:indexPath];
+            CBPersonalHomePageContriButionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CBPersonalHomePageContriButionCellReuseIdentifier forIndexPath:indexPath];
+            self.contriBtnCell = cell;
             return cell;
         }
     } else {
-        CBAttentionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
+        CBPersonalHomePageVideoCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CBPersonalHomePageVideoCellReuseIdentifier forIndexPath:indexPath];
         cell.video = self.cellDataAry[indexPath.row];
         return cell;
     }
@@ -164,8 +245,9 @@ static NSString * const CBPersonalHomePageHeadViewReuseIdentifier = @"CBPersonal
         _collectionView.dataSource = self;
         _collectionView.backgroundColor = [UIColor whiteColor];
         
-        [_collectionView registerNib:[UINib nibWithNibName:NSStringFromClass([CBAttentionCell class]) bundle:nil] forCellWithReuseIdentifier:reuseIdentifier];
+        [_collectionView registerNib:[UINib nibWithNibName:NSStringFromClass([CBPersonalHomePageVideoCell class]) bundle:nil] forCellWithReuseIdentifier:CBPersonalHomePageVideoCellReuseIdentifier];
         [_collectionView registerNib:[UINib nibWithNibName:NSStringFromClass([CBPersonalHomePageHeadView class]) bundle:nil] forCellWithReuseIdentifier:CBPersonalHomePageHeadViewReuseIdentifier];
+        [_collectionView registerNib:[UINib nibWithNibName:NSStringFromClass([CBPersonalHomePageContriButionCell class]) bundle:nil] forCellWithReuseIdentifier:CBPersonalHomePageContriButionCellReuseIdentifier];
     }
     return _collectionView;
 }
@@ -194,4 +276,12 @@ static NSString * const CBPersonalHomePageHeadViewReuseIdentifier = @"CBPersonal
     return _bottomView;
 }
 
+- (CBSharePopView *)sharePopView {
+    if (!_sharePopView) {
+        CGFloat height = 180;
+        if (iPhoneX) { height += 35;}
+        _sharePopView = [[CBSharePopView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, height)];
+    }
+    return _sharePopView;
+}
 @end

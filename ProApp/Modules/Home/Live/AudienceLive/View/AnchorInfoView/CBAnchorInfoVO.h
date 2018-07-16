@@ -14,6 +14,6 @@
 
 @property (nonatomic, strong) CBLiveUser *user;
 @property (nonatomic, copy) NSArray <CBLiveUser *> *guard;
-@property (nonatomic, copy) NSArray <CBLiveUser *> *gong;
+@property (nonatomic, copy) NSArray <CBLiveUser *> *tag;
 
 @end

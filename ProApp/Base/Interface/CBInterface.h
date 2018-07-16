@@ -7,20 +7,51 @@
 //
 
 #import <Foundation/Foundation.h>
-
-// 用户协议
-#define urlH5Policy         @"http://app.zhibo.gttead.cn/protocol.html"
-// 关于我们
-#define urlH5AboutUs        @"http://zhibo.gttead.cn"
-// 加入公会
-#define urlH5Guild          @"http://app.zhibo.gttead.cn/index.html"
-// 实名认证
-#define urlH5PresonCer      @"http://app.zhibo.gttead.cn/certification.html"
-// 网页分享
-#define urlH5Share          @"http://dl.zhibo.gttead.cn/index.html"
-
 // 域名
 #define purl @"http://fengwo.gttead.cn/"
+#define h5purl @"http://app.zhibo.gttead.cn/"
+
+
+//------------------------------------------------------------------
+
+//提现：
+//提现(有绑定银行卡)：
+#define H5_draw_money           h5purl@"draw_money.html"
+//绑定银行卡(没有绑定银行卡)：
+#define H5_card                 h5purl@"card.html"
+//提现记录：
+#define H5_draw_money_history   h5purl@"draw_money_history.html"
+//设置-我的银行卡：
+//我的银行卡：
+#define H5_card_preson          h5purl@"card_preson.html"
+//更换银行卡：
+#define H5_card_change          h5purl@"card_change.html"
+//实名认证：
+#define H5_certification        h5purl@"certification.html"
+//用户服务协议：
+#define H5_protocol             h5purl@"protocol.html"
+//公会：
+//选择加入公会类型：
+#define H5_index                h5purl@"index.html"
+//工会列表：
+#define H5_sociaty              h5purl@"sociaty.html"
+//工会加入：
+#define H5_enter_edit           h5purl@"enter_edit.html"
+//个人入驻：
+#define H5_enter_sociaty        h5purl@"enter_sociaty.html"
+// 加入守护
+#define H5_add_guard            h5purl@"add-guard.html"
+// 加入Vip
+#define H5_add_vip              h5purl@"add_vip.html"
+// 关于我们
+#define urlH5AboutUs            h5purl@"download.html"
+// 网页分享直播
+#define urlH5Share              h5purl@"share.html"
+// 网页分享小视频
+#define urlH5Sharevideo         h5purl@"share_video.html"
+// 邀请明细
+#define urlH5share_history      h5purl@"share_history.html"
+
 //------------------------------------------------------------------
 // 直播模块
 // 在线直播列表

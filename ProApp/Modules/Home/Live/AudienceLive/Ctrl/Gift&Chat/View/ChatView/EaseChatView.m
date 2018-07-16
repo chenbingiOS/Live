@@ -59,7 +59,6 @@
 @property (strong, nonatomic) UIButton *giftBtn;            ///< 礼物
 @property (strong, nonatomic) UIButton *directMessagesBtn;  ///< 私信
 @property (strong, nonatomic) UIButton *shareBtn;           ///< 分享
-@property (strong, nonatomic) UIButton *joinVipBtn;         ///< 加入Vip
 // 主播端
 @property (strong, nonatomic) UIButton *changeCameraBtn; ///< 摄像头颠倒
 @property (strong, nonatomic) UIButton *faceUnityBeautyBtn; ///< 美颜按钮
@@ -164,7 +163,6 @@ static NSString * chatSystemMsgId = @"TSCSystemMsgId";
         [self.bottomView addSubview:self.giftBtn];
         [self.bottomView addSubview:self.directMessagesBtn];
         [self.bottomView addSubview:self.shareBtn];
-        [self.bottomView addSubview:self.joinVipBtn];
         
         self.sendTextBtn.frame = CGRectMake(10, 8, 34, 34);
         self.roseBtn.frame = CGRectMake(self.sendTextBtn.right+10, 8, 34, 34);
@@ -958,17 +956,6 @@ static NSString * chatSystemMsgId = @"TSCSystemMsgId";
         [_likeButton addTarget:self action:@selector(praiseAction) forControlEvents:UIControlEventTouchUpInside];
     }
     return _likeButton;
-}
-
-// 加入Vip按钮
-- (UIButton *)joinVipBtn {
-    if (!_joinVipBtn) {
-        _joinVipBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _joinVipBtn.frame = CGRectMake(kScreenWidth-80, 0, 80, 50);
-        [_joinVipBtn setImage:[UIImage imageNamed:@"live_joinVip"] forState:UIControlStateNormal];
-        [_joinVipBtn addTarget:self action:@selector(actionShareBtn:) forControlEvents:UIControlEventTouchUpInside];
-    }
-    return _joinVipBtn;
 }
 
 // 玫瑰按钮

@@ -188,7 +188,7 @@
     [self.view endEditing:YES];
     CBWebVC *vc = [CBWebVC new];
     vc.title = @"服务和隐私条款";
-    [vc webViewloadRequestWithURLString:urlH5Policy];
+    [vc webViewloadRequestWithURLString:H5_protocol];
     [self.navigationController pushViewController:vc animated:YES];
 }
 

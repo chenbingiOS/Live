@@ -36,7 +36,7 @@
         }
         responseCallback(data);
     }];
-    NSString *url = [urlH5PresonCer stringByAppendingFormat:@"?token=%@", [CBLiveUserConfig getOwnToken]];
+    NSString *url = [H5_certification stringByAppendingFormat:@"?token=%@", [CBLiveUserConfig getOwnToken]];
     [self webViewloadRequestWithURLString:url];
 }
 
