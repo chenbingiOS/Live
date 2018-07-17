@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="CBRechargeView">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="295"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="ekz-eD-Yxq">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="235"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="235" id="v29-6l-yIb"/>
+                    </constraints>
+                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="iW2-rE-Y59" customClass="CBVerticalFlowLayout">
+                        <size key="itemSize" width="0.0" height="0.0"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                </collectionView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xp0-4U-UCL">
+                    <rect key="frame" x="0.0" y="235" width="375" height="0.5"/>
+                    <color key="backgroundColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="0.5" id="LGN-6P-Z8G"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KBc-c7-ihI">
+                    <rect key="frame" x="25" y="247.5" width="325" height="35"/>
+                    <state key="normal" title="充值" backgroundImage="login_btn_register"/>
+                    <connections>
+                        <action selector="actionTopUpBtn:" destination="iN0-l3-epB" eventType="touchUpInside" id="y1L-r2-6ru"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="KBc-c7-ihI" firstAttribute="top" secondItem="xp0-4U-UCL" secondAttribute="bottom" constant="12" id="92b-W9-jtY"/>
+                <constraint firstItem="KBc-c7-ihI" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="BVr-Ve-1Ou"/>
+                <constraint firstItem="xp0-4U-UCL" firstAttribute="top" secondItem="ekz-eD-Yxq" secondAttribute="bottom" id="MUq-UV-vs8"/>
+                <constraint firstItem="ekz-eD-Yxq" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="O6g-R2-Td7"/>
+                <constraint firstItem="xp0-4U-UCL" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="hjK-38-cvt"/>
+                <constraint firstItem="xp0-4U-UCL" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="lCJ-r7-Sdh"/>
+                <constraint firstItem="ekz-eD-Yxq" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="nmA-yb-MGE"/>
+                <constraint firstItem="ekz-eD-Yxq" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="xC0-MZ-IwR"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="collection" destination="ekz-eD-Yxq" id="HcC-Uv-8dO"/>
+                <outlet property="topUpBtn" destination="KBc-c7-ihI" id="A5z-g5-7Dg"/>
+                <outlet property="verticalFlowLayout" destination="iW2-rE-Y59" id="gb3-pg-1W8"/>
+            </connections>
+            <point key="canvasLocation" x="-368" y="-50"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="login_btn_register" width="325" height="35"/>
+    </resources>
+</document>

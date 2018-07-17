@@ -141,6 +141,15 @@
 		5401D87920D26CE400A3FFEF /* EaseProfileLiveView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5401D87820D26CE400A3FFEF /* EaseProfileLiveView.m */; };
 		5401D87C20D26E3D00A3FFEF /* EaseBaseSubView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5401D87B20D26E3C00A3FFEF /* EaseBaseSubView.m */; };
 		5401D87F20D26F3200A3FFEF /* EaseAdminView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5401D87D20D26F3200A3FFEF /* EaseAdminView.m */; };
+		54025E9B20FDF41D0000567C /* huanxinsixinview.m in Sources */ = {isa = PBXBuildFile; fileRef = 54025E9A20FDF41D0000567C /* huanxinsixinview.m */; };
+		54025E9E20FDF4270000567C /* messageListen.m in Sources */ = {isa = PBXBuildFile; fileRef = 54025E9C20FDF4270000567C /* messageListen.m */; };
+		54025EA120FDF44B0000567C /* chatsmallview.m in Sources */ = {isa = PBXBuildFile; fileRef = 54025EA020FDF44B0000567C /* chatsmallview.m */; };
+		54025EA420FDF4580000567C /* messagelisviews.m in Sources */ = {isa = PBXBuildFile; fileRef = 54025EA220FDF4570000567C /* messagelisviews.m */; };
+		54025EA720FDF4770000567C /* chatmessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 54025EA620FDF4770000567C /* chatmessageModel.m */; };
+		54025EAA20FDF4900000567C /* NSString+StringSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 54025EA820FDF48F0000567C /* NSString+StringSize.m */; };
+		54025EAD20FDF5370000567C /* messageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 54025EAC20FDF5360000567C /* messageModel.m */; };
+		54025EB120FDF54B0000567C /* messageCellcell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 54025EAE20FDF54A0000567C /* messageCellcell.xib */; };
+		54025EB220FDF54B0000567C /* messageCellcell.m in Sources */ = {isa = PBXBuildFile; fileRef = 54025EAF20FDF54A0000567C /* messageCellcell.m */; };
 		5403B86720CF9A01000BE8B1 /* CBShortVideoRoomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5403B86620CF9A01000BE8B1 /* CBShortVideoRoomView.m */; };
 		5403B86B20CFAD85000BE8B1 /* CBShareView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5403B86A20CFAD85000BE8B1 /* CBShareView.m */; };
 		5403B86F20CFAEF0000BE8B1 /* CBShareView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5403B86E20CFAEF0000BE8B1 /* CBShareView.xib */; };
@@ -588,6 +597,14 @@
 		548C5CCB20B519CE00A6FF53 /* CBInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 548C5CCA20B519CE00A6FF53 /* CBInterface.m */; };
 		548C5CCF20B51C8400A6FF53 /* CBWebVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 548C5CCE20B51C8400A6FF53 /* CBWebVC.m */; };
 		548C5CDC20B5433900A6FF53 /* MBProgressHUD+HUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 548C5CDB20B5433900A6FF53 /* MBProgressHUD+HUD.m */; };
+		548DE13320FC8F340079D31A /* CBGuardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 548DE13220FC8F340079D31A /* CBGuardView.m */; };
+		548DE13720FD8C4D0079D31A /* IAPManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 548DE13620FD8C4D0079D31A /* IAPManager.m */; };
+		548DE13920FD97FF0079D31A /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 548DE13820FD97FF0079D31A /* StoreKit.framework */; };
+		548DE13E20FD9BDE0079D31A /* CBRechargeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 548DE13C20FD9BDD0079D31A /* CBRechargeView.xib */; };
+		548DE13F20FD9BDE0079D31A /* CBRechargeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 548DE13D20FD9BDE0079D31A /* CBRechargeView.m */; };
+		548DE14320FD9C6D0079D31A /* CBRechargeViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 548DE14020FD9C6C0079D31A /* CBRechargeViewCell.xib */; };
+		548DE14420FD9C6D0079D31A /* CBRechargeViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 548DE14220FD9C6D0079D31A /* CBRechargeViewCell.m */; };
+		548DE14720FDBFF50079D31A /* CBRechargeVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 548DE14620FDBFF50079D31A /* CBRechargeVO.m */; };
 		54A0D8E520C13C1A0056554D /* CBEditUserInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 54A0D8E320C13C1A0056554D /* CBEditUserInfoVC.m */; };
 		54A0D8E620C13C1A0056554D /* CBEditUserInfoVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 54A0D8E420C13C1A0056554D /* CBEditUserInfoVC.xib */; };
 		54A149D820ECA24200423BF6 /* FUAPIDemoBar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54A1494620ECA24100423BF6 /* FUAPIDemoBar.framework */; };
@@ -1050,6 +1067,23 @@
 		5401D87B20D26E3C00A3FFEF /* EaseBaseSubView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EaseBaseSubView.m; sourceTree = "<group>"; };
 		5401D87D20D26F3200A3FFEF /* EaseAdminView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EaseAdminView.m; sourceTree = "<group>"; };
 		5401D87E20D26F3200A3FFEF /* EaseAdminView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EaseAdminView.h; sourceTree = "<group>"; };
+		54025E9920FDF41D0000567C /* huanxinsixinview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = huanxinsixinview.h; sourceTree = "<group>"; };
+		54025E9A20FDF41D0000567C /* huanxinsixinview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = huanxinsixinview.m; sourceTree = "<group>"; };
+		54025E9C20FDF4270000567C /* messageListen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = messageListen.m; sourceTree = "<group>"; };
+		54025E9D20FDF4270000567C /* messageListen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = messageListen.h; sourceTree = "<group>"; };
+		54025E9F20FDF44B0000567C /* chatsmallview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = chatsmallview.h; sourceTree = "<group>"; };
+		54025EA020FDF44B0000567C /* chatsmallview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = chatsmallview.m; sourceTree = "<group>"; };
+		54025EA220FDF4570000567C /* messagelisviews.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = messagelisviews.m; sourceTree = "<group>"; };
+		54025EA320FDF4580000567C /* messagelisviews.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = messagelisviews.h; sourceTree = "<group>"; };
+		54025EA520FDF4760000567C /* chatmessageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = chatmessageModel.h; sourceTree = "<group>"; };
+		54025EA620FDF4770000567C /* chatmessageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = chatmessageModel.m; sourceTree = "<group>"; };
+		54025EA820FDF48F0000567C /* NSString+StringSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+StringSize.m"; sourceTree = "<group>"; };
+		54025EA920FDF4900000567C /* NSString+StringSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+StringSize.h"; sourceTree = "<group>"; };
+		54025EAB20FDF5360000567C /* messageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = messageModel.h; sourceTree = "<group>"; };
+		54025EAC20FDF5360000567C /* messageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = messageModel.m; sourceTree = "<group>"; };
+		54025EAE20FDF54A0000567C /* messageCellcell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = messageCellcell.xib; sourceTree = "<group>"; };
+		54025EAF20FDF54A0000567C /* messageCellcell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = messageCellcell.m; sourceTree = "<group>"; };
+		54025EB020FDF54B0000567C /* messageCellcell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = messageCellcell.h; sourceTree = "<group>"; };
 		5403B86520CF9A01000BE8B1 /* CBShortVideoRoomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBShortVideoRoomView.h; sourceTree = "<group>"; };
 		5403B86620CF9A01000BE8B1 /* CBShortVideoRoomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBShortVideoRoomView.m; sourceTree = "<group>"; };
 		5403B86920CFAD85000BE8B1 /* CBShareView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBShareView.h; sourceTree = "<group>"; };
@@ -1778,6 +1812,19 @@
 		548C5CCE20B51C8400A6FF53 /* CBWebVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBWebVC.m; sourceTree = "<group>"; };
 		548C5CDA20B5433900A6FF53 /* MBProgressHUD+HUD.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+HUD.h"; sourceTree = "<group>"; };
 		548C5CDB20B5433900A6FF53 /* MBProgressHUD+HUD.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+HUD.m"; sourceTree = "<group>"; };
+		548DE13120FC8F340079D31A /* CBGuardView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBGuardView.h; sourceTree = "<group>"; };
+		548DE13220FC8F340079D31A /* CBGuardView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBGuardView.m; sourceTree = "<group>"; };
+		548DE13520FD8C4D0079D31A /* IAPManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IAPManager.h; sourceTree = "<group>"; };
+		548DE13620FD8C4D0079D31A /* IAPManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IAPManager.m; sourceTree = "<group>"; };
+		548DE13820FD97FF0079D31A /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		548DE13B20FD9BDD0079D31A /* CBRechargeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBRechargeView.h; sourceTree = "<group>"; };
+		548DE13C20FD9BDD0079D31A /* CBRechargeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CBRechargeView.xib; sourceTree = "<group>"; };
+		548DE13D20FD9BDE0079D31A /* CBRechargeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBRechargeView.m; sourceTree = "<group>"; };
+		548DE14020FD9C6C0079D31A /* CBRechargeViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CBRechargeViewCell.xib; sourceTree = "<group>"; };
+		548DE14120FD9C6C0079D31A /* CBRechargeViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBRechargeViewCell.h; sourceTree = "<group>"; };
+		548DE14220FD9C6D0079D31A /* CBRechargeViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBRechargeViewCell.m; sourceTree = "<group>"; };
+		548DE14520FDBFF50079D31A /* CBRechargeVO.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBRechargeVO.h; sourceTree = "<group>"; };
+		548DE14620FDBFF50079D31A /* CBRechargeVO.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBRechargeVO.m; sourceTree = "<group>"; };
 		54A0D8E220C13C1A0056554D /* CBEditUserInfoVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBEditUserInfoVC.h; sourceTree = "<group>"; };
 		54A0D8E320C13C1A0056554D /* CBEditUserInfoVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBEditUserInfoVC.m; sourceTree = "<group>"; };
 		54A0D8E420C13C1A0056554D /* CBEditUserInfoVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CBEditUserInfoVC.xib; sourceTree = "<group>"; };
@@ -2064,6 +2111,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				548DE13920FD97FF0079D31A /* StoreKit.framework in Frameworks */,
 				5451EC9920EE001E00F182E0 /* AVFoundation.framework in Frameworks */,
 				54A149D820ECA24200423BF6 /* FUAPIDemoBar.framework in Frameworks */,
 				5442F96720EC77620001C238 /* libstdc++.tbd in Frameworks */,
@@ -2761,6 +2809,7 @@
 		079AAE4B2079AFA500674A92 /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				548DE13420FD8C370079D31A /* IAPManager */,
 				548C5CCC20B519D000A6FF53 /* Interface */,
 				54130A0220B69D9100CAE467 /* Refresh */,
 				548C5CA820B50BFE00A6FF53 /* Cache */,
@@ -2909,6 +2958,8 @@
 		07CDCAC9209034CC00B16FC6 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				54025E9820FDF3F90000567C /* PrivateMessage */,
+				548DE13A20FD9A5F0079D31A /* RechargeView */,
 				546ACB5320EF40B1000A9F7B /* CBLiveAudienceEndView */,
 				54C1964820E2382A00E8853D /* LiveGiftShowView */,
 				544F801020D0B8C600F492AE /* EaseChat */,
@@ -2973,6 +3024,8 @@
 				07F38C0B2099503900DDBC90 /* CBGuardVC.h */,
 				07F38C0C2099503900DDBC90 /* CBGuardVC.m */,
 				07F38C0D2099503900DDBC90 /* CBGuardVC.xib */,
+				548DE13120FC8F340079D31A /* CBGuardView.h */,
+				548DE13220FC8F340079D31A /* CBGuardView.m */,
 			);
 			path = Guard;
 			sourceTree = "<group>";
@@ -3127,6 +3180,30 @@
 				D104A5A85520E26A75922659 /* Pods-ProApp.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		54025E9820FDF3F90000567C /* PrivateMessage */ = {
+			isa = PBXGroup;
+			children = (
+				54025E9920FDF41D0000567C /* huanxinsixinview.h */,
+				54025E9A20FDF41D0000567C /* huanxinsixinview.m */,
+				54025E9D20FDF4270000567C /* messageListen.h */,
+				54025E9C20FDF4270000567C /* messageListen.m */,
+				54025EA320FDF4580000567C /* messagelisviews.h */,
+				54025EA220FDF4570000567C /* messagelisviews.m */,
+				54025E9F20FDF44B0000567C /* chatsmallview.h */,
+				54025EA020FDF44B0000567C /* chatsmallview.m */,
+				54025EA520FDF4760000567C /* chatmessageModel.h */,
+				54025EA620FDF4770000567C /* chatmessageModel.m */,
+				54025EA920FDF4900000567C /* NSString+StringSize.h */,
+				54025EA820FDF48F0000567C /* NSString+StringSize.m */,
+				54025EAB20FDF5360000567C /* messageModel.h */,
+				54025EAC20FDF5360000567C /* messageModel.m */,
+				54025EB020FDF54B0000567C /* messageCellcell.h */,
+				54025EAF20FDF54A0000567C /* messageCellcell.m */,
+				54025EAE20FDF54A0000567C /* messageCellcell.xib */,
+			);
+			path = PrivateMessage;
 			sourceTree = "<group>";
 		};
 		5403B86820CFAD2D000BE8B1 /* ShareView */ = {
@@ -4333,6 +4410,30 @@
 			path = MBProgressHUD;
 			sourceTree = "<group>";
 		};
+		548DE13420FD8C370079D31A /* IAPManager */ = {
+			isa = PBXGroup;
+			children = (
+				548DE13520FD8C4D0079D31A /* IAPManager.h */,
+				548DE13620FD8C4D0079D31A /* IAPManager.m */,
+			);
+			path = IAPManager;
+			sourceTree = "<group>";
+		};
+		548DE13A20FD9A5F0079D31A /* RechargeView */ = {
+			isa = PBXGroup;
+			children = (
+				548DE13B20FD9BDD0079D31A /* CBRechargeView.h */,
+				548DE13D20FD9BDE0079D31A /* CBRechargeView.m */,
+				548DE13C20FD9BDD0079D31A /* CBRechargeView.xib */,
+				548DE14120FD9C6C0079D31A /* CBRechargeViewCell.h */,
+				548DE14220FD9C6D0079D31A /* CBRechargeViewCell.m */,
+				548DE14020FD9C6C0079D31A /* CBRechargeViewCell.xib */,
+				548DE14520FDBFF50079D31A /* CBRechargeVO.h */,
+				548DE14620FDBFF50079D31A /* CBRechargeVO.m */,
+			);
+			path = RechargeView;
+			sourceTree = "<group>";
+		};
 		549DAF3820F306CC001F269A /* ChatView */ = {
 			isa = PBXGroup;
 			children = (
@@ -4861,6 +4962,7 @@
 		E2E021358B1DC84C5135A348 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				548DE13820FD97FF0079D31A /* StoreKit.framework */,
 				5442F5D120EC624B0001C238 /* AVFoundation.framework */,
 				5442F5CF20EC62440001C238 /* CoreMedia.framework */,
 				5442F5CD20EC623D0001C238 /* OpenGLES.framework */,
@@ -4967,6 +5069,7 @@
 				5442F82720EC68E90001C238 /* style_default_1.7.0_cancel@2x.png in Resources */,
 				5442F75420EC68E90001C238 /* lsq_filter_thumb_LiveSignal01.png in Resources */,
 				540F3EDA20F7451300BD1920 /* CBPersonalHomePageNavView.xib in Resources */,
+				548DE13E20FD9BDE0079D31A /* CBRechargeView.xib in Resources */,
 				5442F74F20EC68E90001C238 /* lsq_filter_thumb_LiveSignal01.jpg in Resources */,
 				54A149DF20ECA24200423BF6 /* mask_hat.bundle in Resources */,
 				5442F84920EC68E90001C238 /* style_default_1.5.0_btn_beauty@2x.png in Resources */,
@@ -5108,6 +5211,7 @@
 				54A14A0720ECA24200423BF6 /* afd.bundle in Resources */,
 				5442F74320EC68E90001C238 /* style_default_btn_record_s_1.11@2x.png in Resources */,
 				07F6EFFA20872E3D0035C6BD /* CBAppLiveCell.xib in Resources */,
+				54025EB120FDF54B0000567C /* messageCellcell.xib in Resources */,
 				54A14A1E20ECA24200423BF6 /* picasso_e3.bundle in Resources */,
 				5442F74520EC68E90001C238 /* style_default_2.0_edit_effect_back@2x.png in Resources */,
 				54FD10C920E0974E00C74C92 /* CBGiftCell.xib in Resources */,
@@ -5180,6 +5284,7 @@
 				5442F83E20EC68E90001C238 /* lsq_filter_thumb_SkinPink011.jpg in Resources */,
 				54A14A1F20ECA24200423BF6 /* picasso_e1.bundle in Resources */,
 				5442F7A620EC68E90001C238 /* style_default_btn_finish_selected@2x.png in Resources */,
+				548DE14320FD9C6D0079D31A /* CBRechargeViewCell.xib in Resources */,
 				5442F7EC20EC68E90001C238 /* style_default_1.11_sound_default@2x.png in Resources */,
 				5442F75720EC68E90001C238 /* style_default_1.11_btn_mv@3x.png in Resources */,
 				54A14A2F20ECA24200423BF6 /* facewarp5.bundle in Resources */,
@@ -5567,6 +5672,7 @@
 				5465AE0720BD4A10006E24BB /* CBUploadVideoVC.m in Sources */,
 				0750561C2092AEBD00F0679B /* CBGiftPackageVC.m in Sources */,
 				54A76AE320B7DEDE0034D5A2 /* PLSRateButtonView.m in Sources */,
+				54025EA720FDF4770000567C /* chatmessageModel.m in Sources */,
 				547CB63320D899BD0064B29B /* UIButton+Animate.m in Sources */,
 				5451EC9220EDFCFC00F182E0 /* ANMusicPlayButton.m in Sources */,
 				07F38C0720994A0000DDBC90 /* JPGiftOperation.m in Sources */,
@@ -5580,6 +5686,7 @@
 				54BD85E420B65A890024B6E7 /* AppDelegate+ShareSDK.m in Sources */,
 				077C1A932091A4B50005CE97 /* CBFeedBackVC.m in Sources */,
 				548C5CCF20B51C8400A6FF53 /* CBWebVC.m in Sources */,
+				548DE13720FD8C4D0079D31A /* IAPManager.m in Sources */,
 				07F38BFF20994A0000DDBC90 /* JPGiftModel.m in Sources */,
 				07CDCAD420907D7900B16FC6 /* CBLiveBottomView.m in Sources */,
 				54A76ADE20B7DEDE0034D5A2 /* PLSClipAudioView.m in Sources */,
@@ -5673,8 +5780,10 @@
 				5451EC8F20EDFCFC00F182E0 /* ANMusicTableViewController.m in Sources */,
 				542F89FF20DA45E300C6E99D /* CBLiveGuardianListView.m in Sources */,
 				54C1965720E2382B00E8853D /* LiveGiftShowNumberView.m in Sources */,
+				54025E9B20FDF41D0000567C /* huanxinsixinview.m in Sources */,
 				0791588520883C6D007CA2E0 /* CBAttentionCell.m in Sources */,
 				54520AF620BFD83D005B787E /* CBArchiverTool.m in Sources */,
+				54025EAA20FDF4900000567C /* NSString+StringSize.m in Sources */,
 				07558C16209401A3007E41C2 /* CBOnlineUserView.m in Sources */,
 				5442F72820EC68E90001C238 /* StickerCollectionViewCell.m in Sources */,
 				54A76AEB20B7DEDE0034D5A2 /* PLSEditToolbar.m in Sources */,
@@ -5701,6 +5810,7 @@
 				075056232092B02100F0679B /* CBGiftPackageCell.m in Sources */,
 				07F38C0E2099503900DDBC90 /* CBGuardVC.m in Sources */,
 				0791587B20883209007CA2E0 /* CBHotVC.m in Sources */,
+				54025E9E20FDF4270000567C /* messageListen.m in Sources */,
 				545494BB20C8D52900E96C0A /* CBShortVideoVO.m in Sources */,
 				071D3C102092B35D00A6C5CE /* CBPackageRecordCell.m in Sources */,
 				5442F85920EC68E90001C238 /* EffectsDisplayView.m in Sources */,
@@ -5716,6 +5826,7 @@
 				546ACB4C20EEFB63000A9F7B /* PLMainViewController.m in Sources */,
 				07F6EFE320872E3D0035C6BD /* CBSelectedView.m in Sources */,
 				546ACB4D20EEFB63000A9F7B /* PLPanelDelegateGenerator.m in Sources */,
+				54025EAD20FDF5370000567C /* messageModel.m in Sources */,
 				54FD10C420E0970400C74C92 /* TSCResource.m in Sources */,
 				0715278E20A5498A00D3859D /* UITextField+LeftImageView.m in Sources */,
 				546ACB5620EF40CB000A9F7B /* CBLiveAudienceEndView.m in Sources */,
@@ -5723,6 +5834,7 @@
 				07737DE7208F0161009EB9E6 /* CBMyFansVC.m in Sources */,
 				54FD10C320E0970400C74C92 /* TSCLevelInfo.m in Sources */,
 				07116E9820B267FC007FAEED /* CBAppADCell.m in Sources */,
+				54025EB220FDF54B0000567C /* messageCellcell.m in Sources */,
 				544F802820D0BDA100F492AE /* EaseHttpManager.m in Sources */,
 				5442F72620EC68E90001C238 /* FilterView.m in Sources */,
 				545384C520D256F700BE91D2 /* EaseLiveHeaderListView.m in Sources */,
@@ -5757,6 +5869,7 @@
 				5440F09B20EA11BA0059F886 /* TSCSystemMsgCell.m in Sources */,
 				07F6EFE120872E3D0035C6BD /* ALinUser.m in Sources */,
 				544AF74520FC27BA006C8FB9 /* CBPersonalHomePageContriButionCell.m in Sources */,
+				54025EA420FDF4580000567C /* messagelisviews.m in Sources */,
 				54130A1220B6B52200CAE467 /* CBLiveSettingConfig.m in Sources */,
 				5447DE4620EF461F00C027B5 /* CBLiveAnchorMenuView.m in Sources */,
 				07558C1F20941F18007E41C2 /* CBPopView.m in Sources */,
@@ -5774,6 +5887,7 @@
 				079AAE7A2079C85000674A92 /* CBNVC.m in Sources */,
 				547EA77420CE6D1F00CDC1A1 /* PLAttributeModel.m in Sources */,
 				540F3EE220F74E6200BD1920 /* CBPersonalHomePageHeadView.m in Sources */,
+				548DE14720FDBFF50079D31A /* CBRechargeVO.m in Sources */,
 				545AEB3820F452D400BD89EC /* CBLiveAnchorGiftRecordView.m in Sources */,
 				54520AF320BFD2BB005B787E /* NSObject+Class.m in Sources */,
 				07374702208ECF9C00E108E9 /* CBVideoAttentionVC.m in Sources */,
@@ -5793,6 +5907,7 @@
 				0737470C208ED3F300E108E9 /* CBTitleSelectView.m in Sources */,
 				077C1A9F2091A7C10005CE97 /* CBResetPwdVC.m in Sources */,
 				07B668A3208DC2A600AA5B62 /* CBFillInfoOKView.m in Sources */,
+				548DE13320FC8F340079D31A /* CBGuardView.m in Sources */,
 				54FD10C020E0970400C74C92 /* TSCGifts.m in Sources */,
 				07737DE2208F0150009EB9E6 /* CBMyAttentionVC.m in Sources */,
 				5469A58120C54587004E06F1 /* CBCityMenuView.m in Sources */,
@@ -5800,11 +5915,14 @@
 				540F3F1620F851F300BD1920 /* CBLiveAndienceAnchorRecordCell.m in Sources */,
 				0737ED892074A33600A89CC0 /* AppDelegate.m in Sources */,
 				54DD931920DCDD1E0016C563 /* CBLiveGiftViewVC.m in Sources */,
+				548DE14420FD9C6D0079D31A /* CBRechargeViewCell.m in Sources */,
 				54A76AF620B7DEF00034D5A2 /* EditViewController.m in Sources */,
+				548DE13F20FD9BDE0079D31A /* CBRechargeView.m in Sources */,
 				540F3F2020F8A89500BD1920 /* CBPersonalHomePageVideoCell.m in Sources */,
 				07CF5FC0207AFDB10087A5E2 /* ViewController.m in Sources */,
 				548C5CBE20B50C2400A6FF53 /* CBLiveUser.m in Sources */,
 				07B668AA208DD19700AA5B62 /* CBAccountVC.m in Sources */,
+				54025EA120FDF44B0000567C /* chatsmallview.m in Sources */,
 				5442F72720EC68E90001C238 /* StickerScrollView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -6001,7 +6119,7 @@
 					"$(PROJECT_DIR)/ProApp/ThirdParty/Faceunity/FaceUnity-SDK-iOS-lite",
 					"$(PROJECT_DIR)/ProApp/ThirdParty/Faceunity/FaceUnity-SDK-iOS",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.fengwotv.app;
+				PRODUCT_BUNDLE_IDENTIFIER = com.fengwo.ProApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -6041,7 +6159,7 @@
 					"$(PROJECT_DIR)/ProApp/ThirdParty/Faceunity/FaceUnity-SDK-iOS-lite",
 					"$(PROJECT_DIR)/ProApp/ThirdParty/Faceunity/FaceUnity-SDK-iOS",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.fengwotv.app;
+				PRODUCT_BUNDLE_IDENTIFIER = com.fengwo.ProApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";

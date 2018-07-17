@@ -164,11 +164,15 @@ static NSString * chatSystemMsgId = @"TSCSystemMsgId";
         [self.bottomView addSubview:self.directMessagesBtn];
         [self.bottomView addSubview:self.shareBtn];
         
+        [self.bottomView addSubview:self.menuBtn];
+        
         self.sendTextBtn.frame = CGRectMake(10, 8, 34, 34);
         self.roseBtn.frame = CGRectMake(self.sendTextBtn.right+10, 8, 34, 34);
         self.giftBtn.frame  = CGRectMake(self.roseBtn.right+10, 8, 34, 34);
         self.directMessagesBtn.frame = CGRectMake(self.giftBtn.right+10, 8, 34, 34);
         self.shareBtn.frame = CGRectMake(self.directMessagesBtn.right+10, 8, 34, 34);
+        
+        self.menuBtn.frame = CGRectMake(kScreenWidth-44, 8, 34, 34);
     }
 }
 

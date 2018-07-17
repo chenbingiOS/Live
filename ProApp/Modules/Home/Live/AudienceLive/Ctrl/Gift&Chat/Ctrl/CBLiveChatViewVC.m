@@ -28,6 +28,8 @@
 #import "CBLiveAnchorGuardianListVC.h"
 #import "CBNVC.h"
 #import "CBPersonalHomePageVC.h"
+#import "CBGuardView.h"
+#import "CBRechargeView.h"
 // Delegate
 #import "CBActionLiveDelegate.h"
 // Category
@@ -64,6 +66,7 @@
 @property (nonatomic, strong) LiveGiftShowCustom *customGiftShow;   ///< 显示普通礼物
 @property (nonatomic, strong) YYAnimatedImageView *showGifImageView; ///< 显示Gif礼物
 @property (nonatomic, strong) CBLiveAnchorGiftRecordPopView *giftRecordPopView; ///< 礼物记录
+@property (nonatomic, strong) CBRechargePopView *rechargeView;         ///< 充值
 
 // 键盘关闭功能
 @property (nonatomic, strong) UIWindow *window;
@@ -167,8 +170,12 @@
 
 // 开通守护
 - (void)actionLiveOpenGuard {
-    CBGuardVC *vc = [CBGuardVC new];
-    [self presentViewController:vc animated:YES completion:nil];
+//    CBGuardVC *vc = [CBGuardVC new];
+//    [self presentViewController:vc animated:YES completion:nil];
+    UIWindow *window = [UIApplication sharedApplication].keyWindow;
+    CBGuardView *v = [[CBGuardView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight*0.75)];
+    [v loadRequestWithAnchorId:self.liveVO.ID];
+    [v showIn:window];
 }
 
 // 显示在线用户列表
@@ -247,8 +254,7 @@
     }
 }
 
-- (void)easeChatViewDidChangeFrameToHeight:(CGFloat)toHeight
-{
+- (void)easeChatViewDidChangeFrameToHeight:(CGFloat)toHeight {
     if ([self.window isKeyWindow]) {
         return;
     }
@@ -269,14 +275,12 @@
     }
 }
 
-- (void)didReceivePraiseWithCMDMessage:(EMMessage *)message
-{
+- (void)didReceivePraiseWithCMDMessage:(EMMessage *)message {
     [self showTheLoveAction];
 }
 
 // 选择用户，某一条消息
-- (void)didSelectUserWithMessage:(EMMessage *)message
-{
+- (void)didSelectUserWithMessage:(EMMessage *)message {
     [self.view endEditing:YES];
     BOOL isOwner = self.chatroom.permissionType == EMChatroomPermissionTypeOwner;
     BOOL ret = self.chatroom.permissionType == EMChatroomPermissionTypeAdmin || isOwner;
@@ -290,8 +294,7 @@
 }
 
 // 选择管理员按钮
-- (void)didSelectAdminButton:(BOOL)isOwner
-{
+- (void)didSelectAdminButton:(BOOL)isOwner {
     EaseAdminView *adminView = [[EaseAdminView alloc] initWithChatroomId:self.liveVO.leancloud_room isOwner:isOwner];
     adminView.delegate = self;
     [adminView showFromParentView:self.view];
@@ -306,6 +309,7 @@
 // 选择礼物按钮
 - (void)chatView:(EaseChatView *)chatView actionTouchGiftBtn:(UIButton *)sender {
     if (self.isAnchor) {
+        // 主播显示礼物赠送记录
         UIWindow *window = [UIApplication sharedApplication].keyWindow;
         [self.giftRecordPopView showIn:window];
     } else {
@@ -317,7 +321,8 @@
 
 // 选择菜单按钮
 - (void)chatView:(EaseChatView *)chatView actionTouchMenuBtn:(UIButton *)sender {
-   
+    UIWindow *window = [UIApplication sharedApplication].keyWindow;
+    [self.rechargeView showIn:window];
 }
 
 // 美颜按钮
@@ -596,6 +601,16 @@
     }
     return _sharePopView;
 }
+
+- (CBRechargePopView *)rechargeView {
+    if (!_rechargeView) {
+        CGFloat height = 295;
+        if (iPhoneX) { height += 35;}
+        _rechargeView = [[CBRechargePopView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, height)];
+    }
+    return _rechargeView;
+}
+
 
 - (CBLiveGiftViewVC *)liveGiftView {
     if (!_liveGiftView) {

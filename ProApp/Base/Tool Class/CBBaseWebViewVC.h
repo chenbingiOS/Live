@@ -13,6 +13,7 @@
 @interface CBBaseWebViewVC : UIViewController
 
 @property (nonatomic, strong) WKWebView *wkWebView;
+- (void)resetWebViewFrame:(CGRect)frame;
 - (void)webViewloadRequestWithURLString:(NSString *)URLSting;
 - (void)backViewCtrl;
 

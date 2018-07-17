@@ -28,11 +28,6 @@ static void *XFWkwebBrowserContext = &XFWkwebBrowserContext;
 
 @implementation CBBaseWebViewVC
 
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-    [self deleteWebCache];
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor bgColor];
@@ -72,6 +67,7 @@ static void *XFWkwebBrowserContext = &XFWkwebBrowserContext;
     [self.wkWebView loadRequest:Request_zsj];
 }
 
+// 设置导航条
 - (void)updateNavigationItems{
     if (self.wkWebView.canGoBack) {
         UIBarButtonItem *spaceButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
@@ -83,6 +79,7 @@ static void *XFWkwebBrowserContext = &XFWkwebBrowserContext;
     }
 }
 
+// 删除缓存
 - (void)deleteWebCache {
     if ([[UIDevice currentDevice].systemVersion floatValue] >= 9.0) {
         NSSet *websiteDataTypes = [NSSet setWithArray:@[
@@ -118,6 +115,12 @@ static void *XFWkwebBrowserContext = &XFWkwebBrowserContext;
         /* iOS7.0 WebView Cache的存放路径 */
         [[NSFileManager defaultManager] removeItemAtPath:webKitFolderInCachesfs error:&error];
     }
+}
+
+// 如果是WebView，重新设置frame
+- (void)resetWebViewFrame:(CGRect)frame {
+    _wkWebView.frame = frame;
+    [self loadViewIfNeeded];
 }
 
 //请求链接处理
@@ -315,7 +318,7 @@ static void *XFWkwebBrowserContext = &XFWkwebBrowserContext;
         if (iPhoneX) height -= SafeAreaBottomHeight;
         _wkWebView = [[WKWebView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, height) configuration:configuration];
         _wkWebView.backgroundColor = [UIColor bgColor];
-        _wkWebView.scrollView.bounces = NO;
+//        _wkWebView.scrollView.bounces = NO;   ///< 允许滚动
         _wkWebView.allowsBackForwardNavigationGestures = YES;   //开启手势触摸 // 设置 可以前进 和 后退
         // 设置代理
         _wkWebView.navigationDelegate = self;
@@ -379,7 +382,6 @@ static void *XFWkwebBrowserContext = &XFWkwebBrowserContext;
     [self.wkWebView setNavigationDelegate:nil];
     [self.wkWebView setUIDelegate:nil];
     [self.wkWebView removeObserver:self forKeyPath:NSStringFromSelector(@selector(estimatedProgress))];
-    [self deleteWebCache];
 }
 
 @end
