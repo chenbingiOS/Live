@@ -37,6 +37,8 @@
     }];
 }
 
+
+
 - (void)httpGetInfo {
     NSString *url = urlGetRechargePackage;
     NSDictionary *param = @{@"token":[CBLiveUserConfig getOwnToken]};

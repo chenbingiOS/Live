@@ -15,6 +15,7 @@
 @protocol AnchorInfoViewDelegate <NSObject>
 
 - (void)anchorInfoXibView:(CBAnchorInfoXibView *)infoXibView actionTouchHomeBtn:(UIButton *)btn;
+- (void)anchorInfoXibView:(CBAnchorInfoXibView *)infoXibView actionTouchMessageBtn:(UIButton *)btn;
 
 @end
 

@@ -30,6 +30,8 @@
 #import "CBPersonalHomePageVC.h"
 #import "CBGuardView.h"
 #import "CBRechargeView.h"
+#import "huanxinsixinview.h"
+#import "CBPrivateMessageView.h"
 // Delegate
 #import "CBActionLiveDelegate.h"
 // Category
@@ -66,8 +68,10 @@
 @property (nonatomic, strong) LiveGiftShowCustom *customGiftShow;   ///< 显示普通礼物
 @property (nonatomic, strong) YYAnimatedImageView *showGifImageView; ///< 显示Gif礼物
 @property (nonatomic, strong) CBLiveAnchorGiftRecordPopView *giftRecordPopView; ///< 礼物记录
-@property (nonatomic, strong) CBRechargePopView *rechargeView;         ///< 充值
-
+@property (nonatomic, strong) CBRechargePopView *rechargeView;      ///< 充值
+@property (nonatomic, strong) huanxinsixinview *huanxinviews;       ///< 私信
+@property (nonatomic, strong) chatsmallview *chatsmall;             ///< 私信
+//@property (nonatomic, strong) CBPrivateMessageView *huanxinviews;       ///< 私信
 // 键盘关闭功能
 @property (nonatomic, strong) UIWindow *window;
 @property (nonatomic, strong) UITapGestureRecognizer *singleTapGR;
@@ -149,10 +153,32 @@
 }
 
 #pragma mark - AnchorInfoViewDelegate
+// 主播页面点击主页
 - (void)anchorInfoXibView:(CBAnchorInfoXibView *)infoXibView actionTouchHomeBtn:(UIButton *)btn {
     CBPersonalHomePageVC *vc = [[CBPersonalHomePageVC alloc] initWithLiveVO:self.liveVO];
     CBNVC *nvc = [[CBNVC alloc] initWithRootViewController:vc];
     [self presentViewController:nvc animated:YES completion:nil];
+}
+
+// 主播页面点击私信
+- (void)anchorInfoXibView:(CBAnchorInfoXibView *)infoXibView actionTouchMessageBtn:(UIButton *)btn {
+    if (!_chatsmall) {
+        _chatsmall = [[chatsmallview alloc]init];
+        _chatsmall.view.frame = CGRectMake(0, kScreenHeight*5, kScreenWidth, kScreenHeight*0.4);
+        [self.view addSubview:_chatsmall.view];
+        _chatsmall.view.hidden = YES;
+    }
+    _chatsmall.view.hidden = NO;
+    @weakify(self);
+    [UIView animateWithDuration:1.0 animations:^{
+        @strongify(self);
+        self.chatsmall.view.frame = CGRectMake(0, kScreenHeight-kScreenHeight*0.4, kScreenWidth, kScreenHeight*0.4);
+    }];
+    _chatsmall.chatID = @"chat";
+    _chatsmall.chatname = @"sss";
+    _chatsmall.icon = @"ddd";
+    NSDictionary *subdic = [NSDictionary dictionaryWithObject:[CBLiveUserConfig getOwnID] forKey:@"uid"];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"chatsmall" object:nil userInfo:subdic];
 }
 
 #pragma mark - CBActionLiveDelegate
@@ -344,6 +370,22 @@
     if (self.delegate && [self.delegate respondsToSelector:@selector(liveChatViewVC:actionTouchChangeCameraBtn:)]) {
         [self.delegate liveChatViewVC:self actionTouchChangeCameraBtn:sender];
     }
+}
+
+// 私信按钮
+- (void)chatView:(EaseChatView *)chatView actionTouchDirectMessageBtn:(UIButton *)sender {
+    if (!_huanxinviews) {
+                _huanxinviews = [[huanxinsixinview alloc]init];
+                _huanxinviews.view.frame = CGRectMake(0, kScreenHeight*5, kScreenWidth, kScreenHeight*0.4);
+                [self.view addSubview:_huanxinviews.view];
+//        _huanxinviews = [[CBPrivateMessageView alloc]initWithFrame:CGRectMake(0, kScreenHeight, kScreenWidth, kScreenHeight*0.4)];
+//        [self.view addSubview:_huanxinviews];
+    }
+    @weakify(self);
+    [UIView animateWithDuration:0.5 animations:^{
+        @strongify(self);
+        self.huanxinviews.view.frame = CGRectMake(0, kScreenHeight - kScreenHeight*0.4,kScreenWidth, kScreenHeight*0.4);
+    }];
 }
 
 #pragma mark - CBLiveGiftViewDelegate
@@ -660,4 +702,5 @@
     }
     return _onlineUserView;
 }
+
 @end

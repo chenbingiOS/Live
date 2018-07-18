@@ -42,6 +42,14 @@
                 [self hide];
             }
         }];
+        
+        [_acnchorInfoXibView.messageBtn addBlockForControlEvents:UIControlEventTouchUpInside block:^(id  _Nonnull sender) {
+            @strongify(self);
+            if (self.delelgate && [self.delelgate respondsToSelector:@selector(anchorInfoXibView:actionTouchMessageBtn:)]) {
+                [self.delelgate anchorInfoXibView:self->_acnchorInfoXibView actionTouchMessageBtn:self->_acnchorInfoXibView.homeBtn];
+                [self hide];
+            }
+        }];
     }
     return _acnchorInfoXibView;
 }
