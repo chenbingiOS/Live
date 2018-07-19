@@ -148,11 +148,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ProApp/Modules/Home/Live/AudienceLive/Ctrl/Gift&amp;Chat/View/ChatView/EaseChatView.m"
-            timestampString = "553601037.827567"
+            timestampString = "553660698.399296"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "722"
-            endingLineNumber = "722"
+            startingLineNumber = "727"
+            endingLineNumber = "727"
             landmarkName = "-sendText"
             landmarkType = "7">
          </BreakpointContent>
@@ -164,11 +164,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ProApp/Modules/Home/Live/AudienceLive/Ctrl/Gift&amp;Chat/View/ChatView/EaseChatView.m"
-            timestampString = "553601037.82765"
+            timestampString = "553660698.3994091"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "611"
-            endingLineNumber = "611"
+            startingLineNumber = "616"
+            endingLineNumber = "616"
             landmarkName = "-sendGiftWithId:"
             landmarkType = "7">
          </BreakpointContent>
@@ -180,11 +180,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ProApp/Modules/Home/Live/AudienceLive/Ctrl/Gift&amp;Chat/View/ChatView/EaseChatView.m"
-            timestampString = "553601037.82771"
+            timestampString = "553660698.399479"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "629"
-            endingLineNumber = "629"
+            startingLineNumber = "634"
+            endingLineNumber = "634"
             landmarkName = "-sendGiftDict:"
             landmarkType = "7">
          </BreakpointContent>
@@ -196,11 +196,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ProApp/Modules/Home/Live/AudienceLive/Ctrl/Gift&amp;Chat/View/ChatView/EaseChatView.m"
-            timestampString = "553601037.827767"
+            timestampString = "553660698.399551"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "766"
-            endingLineNumber = "766"
+            startingLineNumber = "771"
+            endingLineNumber = "771"
             landmarkName = "-praiseAction"
             landmarkType = "7">
          </BreakpointContent>
@@ -240,31 +240,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ProApp/Modules/Home/Live/AudienceLive/Ctrl/Gift&amp;Chat/View/ChatView/EaseChatView.m"
-            timestampString = "553601037.827868"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "183"
-            endingLineNumber = "183"
-            landmarkName = "-messagesDidReceive:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ProApp/Modules/Home/Live/AudienceLive/Ctrl/Gift&amp;Chat/Ctrl/CBLiveChatViewVC.m"
-            timestampString = "553601322.877431"
+            timestampString = "553660698.399725"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "177"
-            endingLineNumber = "177"
+            startingLineNumber = "178"
+            endingLineNumber = "178"
             landmarkName = "-anchorInfoXibView:actionTouchMessageBtn:"
             landmarkType = "7">
          </BreakpointContent>
@@ -272,43 +256,11 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ProApp/Modules/Home/Live/AudienceLive/View/PrivateMessage/huanxinsixinview.m"
-            timestampString = "553601322.87752"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "271"
-            endingLineNumber = "271"
-            landmarkName = "-change:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ProApp/Modules/Home/Live/AudienceLive/View/PrivateMessage/huanxinsixinview.m"
-            timestampString = "553601322.877893"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "252"
-            endingLineNumber = "252"
-            landmarkName = "-tableView:didSelectRowAtIndexPath:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ProApp/Modules/Home/Live/AudienceLive/View/PrivateMessage/huanxinsixinview.m"
-            timestampString = "553601322.878135"
+            timestampString = "553660698.399808"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "19"
@@ -323,29 +275,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "ProApp/Modules/Home/Live/AudienceLive/View/PrivateMessage/huanxinsixinview.m"
-            timestampString = "553601322.878371"
+            filePath = "ProApp/Modules/Home/Live/AudienceLive/View/PrivateMessage/chatsmallview.m"
+            timestampString = "553660698.399899"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "182"
-            endingLineNumber = "182"
-            landmarkName = "-forMessage"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ProApp/Modules/Home/Live/AudienceLive/View/PrivateMessage/huanxinsixinview.m"
-            timestampString = "553601322.878599"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "183"
-            endingLineNumber = "183"
-            landmarkName = "-forMessage"
+            startingLineNumber = "69"
+            endingLineNumber = "69"
+            landmarkName = "-formessage"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

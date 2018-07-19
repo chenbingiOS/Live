@@ -570,16 +570,21 @@ static NSString * chatSystemMsgId = @"TSCSystemMsgId";
                     [self.bottomView addSubview:self.adminButton];
                     [self layoutSubviews];
                 }
-            }            
-            NSArray *msgAry = responseObject[@"data"][@"msg"];
-            for (NSDictionary *dictMsg in msgAry) {
-                NSDictionary *dictDate = @{@"name":dictMsg[@"title"],
-                                           @"context":dictMsg[@"msg"],
-                                           @"type":@1};
-                TSCChatModel *model = [[TSCChatModel alloc] initWithDictinary:dictDate];
-                [self.datasource addObject:model];
             }
-            [self.tableView reloadData];
+            NSDictionary *dictData = responseObject[@"data"];
+            if (dictData) {
+                NSArray *msgAry = dictData[@"msg"];
+                if (msgAry) {
+                    for (NSDictionary *dictMsg in msgAry) {
+                        NSDictionary *dictDate = @{@"name":dictMsg[@"title"],
+                                                   @"context":dictMsg[@"msg"],
+                                                   @"type":@1};
+                        TSCChatModel *model = [[TSCChatModel alloc] initWithDictinary:dictDate];
+                        [self.datasource addObject:model];
+                    }
+                    [self.tableView reloadData];
+                }
+            }
         }
         aCompletion(ret);
     }];

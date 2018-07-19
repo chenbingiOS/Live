@@ -90,6 +90,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillChangeFrame:) name:UIKeyboardWillChangeFrameNotification object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(forsixin:) name:@"sixinok" object:nil];
 }
 
 - (void)setLiveVO:(CBAppLiveVO *)liveVO {
@@ -178,6 +179,26 @@
     _chatsmall.chatname = infoXibView.infoVO.user.user_nicename;
     _chatsmall.icon = infoXibView.infoVO.user.avatar;
     NSDictionary *subdic = [NSDictionary dictionaryWithObject:infoXibView.infoVO.user.hx_uid forKey:@"uid"];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"chatsmall" object:nil userInfo:subdic];
+}
+
+//点击用户聊天
+-(void)forsixin:(NSNotification *)ns{
+    if (!_chatsmall) {
+        _chatsmall = [[chatsmallview alloc]init];
+        _chatsmall.view.frame = CGRectMake(0, kScreenHeight*5, kScreenWidth, kScreenHeight*0.4);
+        [self.view addSubview:_chatsmall.view];
+        _chatsmall.view.hidden = YES;
+    }
+    _chatsmall.view.hidden = NO;
+    [UIView animateWithDuration:1.0 animations:^{
+        self.chatsmall.view.frame = CGRectMake(0, kScreenHeight-kScreenHeight*0.4, kScreenWidth, kScreenHeight*0.4);
+    }];
+    NSDictionary *dic = [ns userInfo];
+    _chatsmall.chatID = [dic valueForKey:@"id"];
+    _chatsmall.chatname = [dic valueForKey:@"name"];
+    _chatsmall.icon = [dic valueForKey:@"icon"];
+    NSDictionary *subdic = [NSDictionary dictionaryWithObject:[dic valueForKey:@"id"] forKey:@"uid"];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"chatsmall" object:nil userInfo:subdic];
 }
 
@@ -650,7 +671,6 @@
     }
     return _rechargeView;
 }
-
 
 - (CBLiveGiftViewVC *)liveGiftView {
     if (!_liveGiftView) {

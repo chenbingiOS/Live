@@ -47,21 +47,11 @@
     [bigBTN addTarget:self action:@selector(doReturn) forControlEvents:UIControlEventTouchUpInside];
     [navtion addSubview:bigBTN];
     returnBtn.frame = CGRectMake(10,10,30,20);[returnBtn.imageView setContentMode:UIViewContentModeScaleAspectFit];
-    [returnBtn setImage:[UIImage imageNamed:@"me_jiantou"] forState:UIControlStateNormal];
+    [returnBtn setImage:[UIImage imageNamed:@"backItemImage_hl"] forState:UIControlStateNormal];
     [returnBtn addTarget:self action:@selector(doReturn) forControlEvents:UIControlEventTouchUpInside];
     [navtion addSubview:returnBtn];
     self.allArray = [NSMutableArray array];
-    NSString *space = @" ";
-    NSArray *array = @[@"已关注",space,@"未关注"];
-    segmentC = [[UISegmentedControl alloc]initWithItems:array];
-    [segmentC addTarget:self action:@selector(change:) forControlEvents:UIControlEventValueChanged];
-    segmentC.tintColor = [UIColor clearColor];
-    NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:fontMT(13),NSFontAttributeName,[UIColor grayColor], NSForegroundColorAttributeName, nil];
-    [segmentC setTitleTextAttributes:attributes forState:UIControlStateNormal];
-    NSDictionary *highlightedAttributes = [NSDictionary dictionaryWithObjectsAndKeys:fontMT(14),NSFontAttributeName,[UIColor blackColor], NSForegroundColorAttributeName, nil];
-    [segmentC setTitleTextAttributes:highlightedAttributes forState:UIControlStateSelected];
-    segmentC.selectedSegmentIndex = 0;
-    [navtion addSubview:segmentC];
+    
     self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0,40, kScreenWidth,kScreenHeight*0.4 - 40) style:UITableViewStylePlain];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.delegate = self;
@@ -69,37 +59,36 @@
     [self.view addSubview:self.tableView];
     self.tableView.backgroundColor = [UIColor whiteColor];
     
-    segmentC.frame = CGRectMake(kScreenWidth/6.5/2,27,125,30);
-    segmentC.center = CGPointMake(navtion.center.x, navtion.center.y );
-    [segmentC setWidth:55 forSegmentAtIndex:0];
-    [segmentC setWidth:20 forSegmentAtIndex:1];
-    [segmentC setWidth:55 forSegmentAtIndex:2];
-    //标记未读消息
-    label1 = [[UILabel alloc]initWithFrame:CGRectMake(48,0, 15, 15)];
-    label1.backgroundColor = [UIColor redColor];
-    label1.layer.masksToBounds = YES;
-    label1.layer.cornerRadius = 7.5;
-    label1.textColor = [UIColor whiteColor];
-    label2 = [[UILabel alloc]initWithFrame:CGRectMake(120, 0, 15, 15)];
-    label2.backgroundColor = [UIColor redColor];
-    label2.layer.masksToBounds = YES;
-    label2.layer.cornerRadius = 7.5;
-    label2.textColor = [UIColor whiteColor];
-    label2.hidden = YES;
-    label1.hidden = YES;
-    [segmentC addSubview:label2];
-    [segmentC addSubview:label1];
-    
-    
-    line1 = [[UILabel alloc]initWithFrame:CGRectMake(11,30,36, 3)];
-    line1.backgroundColor = [UIColor blackColor];
-    line2 = [[UILabel alloc]initWithFrame:CGRectMake(87,30,37, 3)];
-    line2.backgroundColor = [UIColor blackColor];
-    line2.hidden = YES;
-    line1.hidden = NO;
-    [segmentC addSubview:line2];
-    [segmentC addSubview:line1];
-
+    UILabel *lab = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 40)];
+    lab.textAlignment = NSTextAlignmentCenter;
+    lab.center = navtion.center;
+    lab.font = fontMT(13);
+    lab.text = @"联系人";
+    [navtion addSubview:lab];
+//    navtion
+//
+//    NSArray *array = @[@"联系人"];
+//    segmentC = [[UISegmentedControl alloc]initWithItems:array];
+//    [segmentC addTarget:self action:@selector(change:) forControlEvents:UIControlEventValueChanged];
+//    segmentC.tintColor = [UIColor clearColor];
+//    NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:fontMT(13),NSFontAttributeName,[UIColor grayColor], NSForegroundColorAttributeName, nil];
+//    [segmentC setTitleTextAttributes:attributes forState:UIControlStateNormal];
+//    NSDictionary *highlightedAttributes = [NSDictionary dictionaryWithObjectsAndKeys:fontMT(14),NSFontAttributeName,[UIColor blackColor], NSForegroundColorAttributeName, nil];
+//    [segmentC setTitleTextAttributes:highlightedAttributes forState:UIControlStateSelected];
+//    segmentC.selectedSegmentIndex = 0;
+//    [navtion addSubview:segmentC];
+//
+//
+//    segmentC.frame = CGRectMake(kScreenWidth/6.5/2,27,125,30);
+//    segmentC.center = CGPointMake(navtion.center.x, navtion.center.y );
+//    [segmentC setWidth:55 forSegmentAtIndex:0];
+//    //标记未读消息
+//    label1 = [[UILabel alloc]initWithFrame:CGRectMake(48,0, 15, 15)];
+//    label1.backgroundColor = [UIColor redColor];
+//    label1.layer.masksToBounds = YES;
+//    label1.layer.cornerRadius = 7.5;
+//    label1.textColor = [UIColor whiteColor];
+//    [segmentC addSubview:label2];
 }
 -(void)doReturn{
     [[NSNotificationCenter defaultCenter]postNotificationName:@"gengxinweidu" object:nil];
@@ -141,9 +130,9 @@
     for (EMConversation *conversation  in arraychat) {
         if (![self->em.conversationId isEqual:[CBLiveUserConfig getHXuid]]){
                         
-            NSString *from = conversation.latestMessage.from;
-            NSString *to = conversation.latestMessage.to;
-            NSDictionary *ext = conversation.latestMessage.ext;
+            NSString *from = conversation.lastReceivedMessage.from;
+            NSString *to = conversation.lastReceivedMessage.to;
+            NSDictionary *ext = conversation.lastReceivedMessage.ext;
             NSLog(@"%@ %@ %@", from, to, ext);
             NSMutableDictionary *subDic = [NSMutableDictionary dictionaryWithDictionary:ext];
             NSDate *lastTime =[NSDate dateWithTimeIntervalSince1970:conversation.latestMessage.timestamp/1000];
@@ -171,8 +160,6 @@
             [subDic setObject:self->lastMessage forKey:@"lastMessage"];
             
             [self.allArray addObject:subDic];
-            
-            
         }
     }
 
@@ -213,25 +200,24 @@
     self.allArray = nil;
     self.allArray = [NSMutableArray array];
     [self forMessage];
-    
-    
 }
--(void)haha{
-    
+
+- (void)haha{
     [self forMessage];
 }
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 60;
-    
 }
+
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    
     return 1;
 }
+
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.models.count;
 }
+
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     messageCellcell *cell = [messageCellcell cellWithTableView:tableView];
     @try {
@@ -263,12 +249,11 @@
     chat.chatID = [NSString stringWithFormat:@"%@",model.uid];
     chat.chatname = [NSString stringWithFormat:@"%@",model.userName];
     chat.icon = [NSString stringWithFormat:@"%@",model.imageIcon];
-    NSDictionary *dic = [NSDictionary dictionaryWithObjects:@[[NSString stringWithFormat:@"%@",model.userName],[NSString stringWithFormat:@"%@",model.uid],[NSString stringWithFormat:@"%@",model.imageIcon]] forKeys:@[@"name",@"id",@"icon"]];
+    NSDictionary *dic = @{@"name": model.userName,
+                          @"icon": model.imageIcon,
+                          @"id": model.uid };
     [[NSNotificationCenter defaultCenter]postNotificationName:@"sixinok" object:nil userInfo:dic];
 }
-//segment事件
--(void)change:(UISegmentedControl *)segment{
-    
-   
-}
+
+
 @end

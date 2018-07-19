@@ -126,8 +126,7 @@ static int newHeight;
     //获取历史纪录
     conversation =  [[EMClient sharedClient].chatManager getConversation:self.chatID type:EMConversationTypeChat createIfNotExist:YES];
     [conversation markAllMessagesAsRead:nil];
-    [conversation loadMessagesStartFromId:nil count:40 searchDirection:EMMessageSearchDirectionUp completion:^(NSArray *aMessages, EMError *aError) {
-        
+    [conversation loadMessagesStartFromId:nil count:30 searchDirection:EMMessageSearchDirectionUp completion:^(NSArray *aMessages, EMError *aError) {
         for (EMMessage *emm in aMessages) {
             EMMessageBody *msgBody = emm.body;
             switch (msgBody.type) {
@@ -145,14 +144,11 @@ static int newHeight;
                     }
                     else
                     {
-                        
-//                        LiveUser *user = [Config myProfile];
                         CBLiveUser *user = [CBLiveUserConfig myProfile];
                         direction =0;
                         NSDictionary *dic = [NSDictionary dictionaryWithObjects:@[user.avatar,txt,[NSString stringWithFormat:@"%d",direction]] forKeys:@[@"avatar",@"text",@"type"]];
                         [self.allArray addObject:dic];
                     }
-                    
                     [self.tableView reloadData];
                     [self jumpLast];
                 }
@@ -346,7 +342,7 @@ static int newHeight;
     UIButton *returnBtn = [UIButton buttonWithType:UIButtonTypeSystem];
     returnBtn.tintColor = [UIColor blackColor];
     returnBtn.frame = CGRectMake(10,10,30,20);[returnBtn.imageView setContentMode:UIViewContentModeScaleAspectFit];
-    [returnBtn setImage:[UIImage imageNamed:@"me_jiantou"] forState:UIControlStateNormal];
+    [returnBtn setImage:[UIImage imageNamed:@"backItemImage_hl"] forState:UIControlStateNormal];
     
     [returnBtn addTarget:self action:@selector(doReturn) forControlEvents:UIControlEventTouchUpInside];
     
@@ -446,11 +442,19 @@ static int newHeight;
 
 -(void)pushMessage{
     NSLog(@"-----环信发送消息-----");
+    
     NSString *text = _textField.text;
+    
+    if (text.length == 0) {
+        return;
+    }
+    
+    CBLiveUser *user = [CBLiveUserConfig myProfile];
     NSDictionary *userExt = @{
-                              @"userName":[CBLiveUserConfig myProfile].user_nicename,
-                              @"userLevel":[CBLiveUserConfig myProfile].user_level,
-                              @"avatar": [CBLiveUserConfig myProfile].avatar,
+                              @"user_nicename":user.user_nicename,
+                              @"userLevel":user.user_level,
+                              @"avatar": user.avatar,
+                              @"id": user.hx_uid,
                               @"context" : text,
                               @"type": @"0"
                               };
