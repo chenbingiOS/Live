@@ -27,9 +27,12 @@
     self.countLable.text = gift.needcoin;
     self.giftName.text = gift.giftname;
     [self.giftImage sd_setImageWithURL:[NSURL URLWithString:gift.gifticon] placeholderImage:[UIImage imageNamed:@"placeholder_head"]];
-    if (![gift.continuous isEqualToString:@"1"]){
+    if ([gift.continuous isEqualToString:@"1"]){
+        self.typeImage.hidden = NO;
+    } else {
         self.typeImage.hidden = YES;
     }
+    
     if (_gift.isSelected == YES){
         [self showAnimation];
     } else {
@@ -38,8 +41,7 @@
 }
 
 - (void)showAnimation {
-    
-    self.layer.borderWidth = 0.5;
+    self.layer.borderWidth = 2;
     self.layer.borderColor = [UIColor mainColor].CGColor;
     
     self.timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, dispatch_get_main_queue());
@@ -60,14 +62,11 @@
     
     //执行
     dispatch_resume(self.timer);
-    
 }
 
 - (void)stopAnimation {
-    
-    self.layer.borderWidth = 0.3;
+    self.layer.borderWidth = 0.5;
     self.layer.borderColor = [UIColor colorWithRed:43.0/225.0 green:43.0/255.0 blue:59.0/225.0 alpha:1].CGColor;
-    
     if (self.timer !=nil){
         dispatch_source_cancel(self.timer);
         self.timer = nil;

@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "gift_sent_btn.png",
+      "filename" : "gift_left_btn.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "gift_sent_btn@2x.png",
+      "filename" : "gift_left_btn@2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "gift_sent_btn@3x.png",
+      "filename" : "gift_left_btn@3x.png",
       "scale" : "3x"
     }
   ],

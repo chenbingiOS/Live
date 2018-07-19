@@ -187,7 +187,7 @@
                 <outlet property="userNickNameLab" destination="LQW-6r-Wj3" id="KMa-Hf-wss"/>
                 <outlet property="vipLevelImageView" destination="YnW-fg-g6F" id="97m-FS-VqO"/>
             </connections>
-            <point key="canvasLocation" x="98" y="97"/>
+            <point key="canvasLocation" x="-444" y="-76"/>
         </view>
     </objects>
     <resources>

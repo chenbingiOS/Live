@@ -170,8 +170,8 @@
 #define urlGetGiftList          purl@"Api/Gift/getGiftList"
 // 赠送礼物接口
 #define urlSendGiftToAnchor     purl@"Api/Gift/sendGiftToAnchor"
-// 仓库礼物列表
-#define urlGetWareHouseList     purl@"Api/Gift/getWareHouseList"
+// 获取我的所有仓库礼物
+#define urlGetMyWareHouseList   purl@"Api/Gift/getMyWareHouseList"
 //------------------------------------------------------------------
 // VIP/钻石模块
 // 获取钻石充值套餐详情

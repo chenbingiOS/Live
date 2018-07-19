@@ -12,7 +12,7 @@
 @interface CBGiftCell : UICollectionViewCell
 
 @property (nonatomic,strong) CBGiftVO *gift;
-- (void) showAnimation;
-- (void) stopAnimation;
+- (void)showAnimation;
+- (void)stopAnimation;
 
 @end

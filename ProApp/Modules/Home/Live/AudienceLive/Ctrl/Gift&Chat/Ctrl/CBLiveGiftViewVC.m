@@ -34,20 +34,18 @@
 @property (weak, nonatomic) IBOutlet UICollectionView *giftCollectionView;
 @property (weak, nonatomic) IBOutlet UICollectionViewFlowLayout *collectionViewLayout;
 @property (weak, nonatomic) IBOutlet UIPageControl *pageControl;
-@property (weak, nonatomic) IBOutlet UIButton *countABtn;
-@property (weak, nonatomic) IBOutlet UIButton *countBBtn;
-@property (weak, nonatomic) IBOutlet UIButton *countCBtn;
-@property (weak, nonatomic) IBOutlet UIButton *countDBtn;
-@property (weak, nonatomic) IBOutlet UIButton *countEBtn;
-@property (nonatomic, strong) NSArray <UIButton *> *countBtnAry;
-@property (nonatomic, assign) NSNumber *countNum;
 @property (weak, nonatomic) IBOutlet UILabel *moneyCountLab;
-@property (weak, nonatomic) IBOutlet UIButton *sentGiftBtn;
-
+@property (nonatomic, assign) NSNumber *countNum;
+@property (weak, nonatomic) IBOutlet UIButton *leftBtn;
+@property (weak, nonatomic) IBOutlet UIButton *rightBtn;
+@property (weak, nonatomic) IBOutlet UIButton *doubleBtn;
+@property (weak, nonatomic) IBOutlet UIImageView *doubleImageView;
 @property (nonatomic, strong) CBGiftTypeVO *saveGiftAry;
 @property (nonatomic, strong) NSArray <CBGiftVO *> *giftAry;
 @property (nonatomic, strong) CBGiftVO *selectGiftVO;
-
+@property (weak, nonatomic) IBOutlet UIView *bgBtnView;
+@property (nonatomic, strong) NSTimer *counddownTimer;
+@property (nonatomic, assign) NSInteger authCodeTime;
 @end
 
 static NSString *const KReuseIdGiftCell = @"KReuseIdGiftCell";
@@ -61,11 +59,22 @@ static NSString *const KReuseIdGiftCell = @"KReuseIdGiftCell";
     [self httpGetGiftList];
 }
 
+- (void)_UI_setup{
+    self.doubleBtn.titleLabel.numberOfLines = 2;
+    self.moneyCountLab.text = [CBLiveUserConfig myProfile].balance;
+    self.countNum = @1;
+    self.collectionViewLayout.itemSize = CGSizeMake(kScreenWidth/4-0.25, 95);
+    [self.giftCollectionView registerNib:[UINib nibWithNibName:@"CBGiftCell" bundle:nil] forCellWithReuseIdentifier:KReuseIdGiftCell];
+    
+    self.giftTypeBtnAry = @[self.giftTypeABtn, self.giftTypeBBtn, self.giftTypeCBtn, self.giftTypeDBtn];
+}
+
 - (void)updateViewConstraints {
     [super updateViewConstraints];
     self.bottomConstraint.constant = self.bottomConstraint.constant - SafeAreaBottomHeight;
 }
 
+#pragma mark - HTTP
 - (void)httpGetGiftList{
     NSString *url = urlGetGiftList;
     NSDictionary *param = @{@"token": [CBLiveUserConfig getOwnToken]};
@@ -93,28 +102,14 @@ static NSString *const KReuseIdGiftCell = @"KReuseIdGiftCell";
     }];
 }
 
-- (void)_UI_setup{
-    
-    self.moneyCountLab.text = [CBLiveUserConfig myProfile].balance;
-    self.countNum = @1;
-    self.collectionViewLayout.itemSize = CGSizeMake(kScreenWidth/4-0.25, 110);
-    [self.giftCollectionView registerNib:[UINib nibWithNibName:@"CBGiftCell" bundle:nil] forCellWithReuseIdentifier:KReuseIdGiftCell];
-    
-    self.countBtnAry = @[self.countABtn, self.countBBtn, self.countCBtn, self.countDBtn, self.countEBtn];
-    self.giftTypeBtnAry = @[self.giftTypeABtn, self.giftTypeBBtn, self.giftTypeCBtn, self.giftTypeDBtn];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-}
-
-- (IBAction)actionBtnSendGift:(UIButton *)sender {
+- (void)httpSendGiftToAnchor {
     NSString *url = urlSendGiftToAnchor;
+    NSNumber *countNum = [self.selectGiftVO.continuous isEqualToString:@"1"] ? self.countNum : @1;
     NSDictionary *param = @{
                             @"token":[CBLiveUserConfig getOwnToken],
                             @"room_id": self.superController.liveVO.room_id,
                             @"giftid": self.selectGiftVO.giftid,
-                            @"number": self.countNum
+                            @"number": countNum
                             };
     @weakify(self);
     [MBProgressHUD showHUDAddedTo:self.giftView animated:YES];
@@ -164,16 +159,22 @@ static NSString *const KReuseIdGiftCell = @"KReuseIdGiftCell";
     }
 }
 
-- (IBAction)actionCountBtn:(UIButton *)sender {
-    [self.countBtnAry enumerateObjectsUsingBlock:^(UIButton * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        obj.selected = NO;
-    }];
-    sender.selected = YES;
-    self.countNum = sender.titleLabel.text.numberValue;
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+}
+
+#pragma mark - Action
+- (IBAction)actionBtnSendGift:(UIButton *)sender {
+    if ([self.selectGiftVO.continuous isEqualToString:@"1"]) {
+        [self countdownBtnByRelay];
+//        [self httpSendGiftToAnchor];
+    } else {
+//        [self httpSendGiftToAnchor];
+    }
 }
 
 - (IBAction)actionGiftTypeBtn:(UIButton *)sender {
-    
+    [self hideBgBtnView];
     [self.giftTypeBtnAry enumerateObjectsUsingBlock:^(UIButton * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         obj.selected = NO;
     }];
@@ -188,21 +189,7 @@ static NSString *const KReuseIdGiftCell = @"KReuseIdGiftCell";
     } else if (sender.tag == 44) {
 //        [self httpLoad]
     }
-
-    [self.countBtnAry enumerateObjectsUsingBlock:^(UIButton * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        if (sender.tag == 11) {
-            obj.alpha = 1;
-        } else {
-            obj.alpha = 0;
-        }
-        obj.selected = NO;
-        if (idx == 0) {
-            obj.alpha = 1;
-            obj.selected = YES;
-        }
-    }];
-    
-    @weakify(self);
+        @weakify(self);
     [self.giftAry enumerateObjectsUsingBlock:^(CBGiftVO * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         if (idx == 0) {
             @strongify(self);
@@ -216,9 +203,120 @@ static NSString *const KReuseIdGiftCell = @"KReuseIdGiftCell";
     [self.giftCollectionView reloadData];
 }
 
+- (IBAction)actionLeftBtn:(UIButton *)sender {
+    if (self.bgBtnView.hidden) {
+        self.bgBtnView.hidden = NO;
+        self.bgBtnView.alpha = 0;
+        @weakify(self);
+        [UIView animateWithDuration:0.35 animations:^{
+            @strongify(self);
+            self.bgBtnView.alpha = 1;
+        }];
+    } else {
+        [self hideBgBtnView];
+    }
+}
+
+- (IBAction)actionCountNumBtn:(UIButton *)sender {
+    [self hideBgBtnView];
+    [self.leftBtn setTitle:@(sender.tag).stringValue forState:UIControlStateNormal];
+    self.countNum = @(sender.tag);
+    if (sender.tag == 0) {
+        
+    } else if (sender.tag == 1) {
+        
+    } else if (sender.tag == 10) {
+        
+    } else if (sender.tag == 30) {
+        
+    } else if (sender.tag == 66) {
+        
+    } else if (sender.tag == 188) {
+        
+    } else if (sender.tag == 520) {
+        
+    } else if (sender.tag == 1314) {
+        
+    }
+}
+
+- (IBAction)actionDoubleBtn:(id)sender {
+    [self countdownBtnByRelay];
+}
+
+- (void)hideBgBtnView {
+    if (!self.bgBtnView.hidden) {
+        self.bgBtnView.alpha = 1;
+        @weakify(self);
+        [UIView animateWithDuration:0.35 animations:^{
+            @strongify(self);
+            self.bgBtnView.alpha = 0;
+        } completion:^(BOOL finished) {
+            @strongify(self);
+            self.bgBtnView.hidden = YES;
+        }];
+    }
+}
+
+- (void)resetLeftRightBtnWithCont:(NSString *)continuous {
+    if ([continuous isEqualToString:@"1"]) {
+        self.leftBtn.hidden = NO;
+        [self.leftBtn setBackgroundImage:[UIImage imageNamed:@"gift_left_btn"] forState:UIControlStateNormal];
+        [self.rightBtn setBackgroundImage:[UIImage imageNamed:@"gift_right_btn"] forState:UIControlStateNormal];
+    } else {
+        self.leftBtn.hidden = YES;
+        [self.rightBtn setBackgroundImage:[UIImage imageNamed:@"gift_single_btn"] forState:UIControlStateNormal];
+    }
+}
+
+- (void)countdownBtnByRelay {
+    self.leftBtn.hidden = YES;
+    self.rightBtn.hidden = YES;
+    self.doubleBtn.hidden = NO;
+    self.doubleImageView.hidden = NO;
+    [self.counddownTimer invalidate];
+    self.counddownTimer = nil;
+    self.authCodeTime = 3;
+    NSString *title = [NSString stringWithFormat:@"%d", (int)self.authCodeTime];
+    [self.doubleBtn setTitle:title forState:UIControlStateNormal];
+    if (self.counddownTimer == nil) {
+        self.counddownTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(actionTimeCountDown) userInfo:nil repeats:YES];
+        [self.counddownTimer fire];
+        [self imageAnimation];
+    }
+}
+
+//获取验证码倒计时
+-(void)actionTimeCountDown {
+    NSString *title = [NSString stringWithFormat:@"%d", (int)self.authCodeTime];
+    [self.doubleBtn setTitle:title forState:UIControlStateNormal];
+    if (self.authCodeTime <= 0) {
+        self.leftBtn.hidden = NO;
+        self.rightBtn.hidden = NO;
+        self.doubleBtn.hidden = YES;
+        self.doubleImageView.hidden = YES;
+        [self.counddownTimer invalidate];
+        self.counddownTimer = nil;
+        self.authCodeTime = 3;
+    }
+    self.authCodeTime -= 1;
+}
+
+- (void)imageAnimation {
+    CABasicAnimation *animation =  [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
+    //默认是顺时针效果，若将fromValue和toValue的值互换，则为逆时针效果
+    animation.fromValue = [NSNumber numberWithFloat:0.f];
+    animation.toValue =  [NSNumber numberWithFloat: M_PI *2];
+    animation.duration = 1;
+    animation.autoreverses = NO;
+    animation.fillMode = kCAFillModeForwards;
+    animation.repeatCount = 3; //如果这里想设置成一直自旋转，可以设置为MAXFLOAT，否则设置具体的数值则代表执行多少次
+    [self.doubleImageView.layer addAnimation:animation forKey:nil];
+}
+
 #pragma mark 手势事件
 
--(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     CGPoint point = [[touches anyObject] locationInView:self.view];
     if(CGRectContainsPoint(self.giftView.frame, point)){
         NSLog(@"范围内");
@@ -241,12 +339,14 @@ static NSString *const KReuseIdGiftCell = @"KReuseIdGiftCell";
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     [collectionView deselectItemAtIndexPath:indexPath animated:YES];
+    [self hideBgBtnView];
     for (CBGiftVO *vo in self.giftAry) {
         vo.selected = NO;
     }
     CBGiftVO *giftVO = self.giftAry[indexPath.row];
     giftVO.selected = YES;
     self.selectGiftVO = giftVO;
+    [self resetLeftRightBtnWithCont:giftVO.continuous];
     [self.giftCollectionView reloadData];
 }
 
