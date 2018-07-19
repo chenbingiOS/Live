@@ -15,6 +15,7 @@
 #import "CBGuardVC.h"
 // VO
 #import "CBAppLiveVO.h"
+#import "CBAnchorInfoVO.h"
 // View
 #import "CBLiveAnchorGiftRecordView.h"
 #import "EaseChatView.h"
@@ -31,7 +32,7 @@
 #import "CBGuardView.h"
 #import "CBRechargeView.h"
 #import "huanxinsixinview.h"
-#import "CBPrivateMessageView.h"
+#import "CBAnchorInfoXibView.h"
 // Delegate
 #import "CBActionLiveDelegate.h"
 // Category
@@ -71,7 +72,6 @@
 @property (nonatomic, strong) CBRechargePopView *rechargeView;      ///< 充值
 @property (nonatomic, strong) huanxinsixinview *huanxinviews;       ///< 私信
 @property (nonatomic, strong) chatsmallview *chatsmall;             ///< 私信
-//@property (nonatomic, strong) CBPrivateMessageView *huanxinviews;       ///< 私信
 // 键盘关闭功能
 @property (nonatomic, strong) UIWindow *window;
 @property (nonatomic, strong) UITapGestureRecognizer *singleTapGR;
@@ -174,10 +174,10 @@
         @strongify(self);
         self.chatsmall.view.frame = CGRectMake(0, kScreenHeight-kScreenHeight*0.4, kScreenWidth, kScreenHeight*0.4);
     }];
-    _chatsmall.chatID = @"chat";
-    _chatsmall.chatname = @"sss";
-    _chatsmall.icon = @"ddd";
-    NSDictionary *subdic = [NSDictionary dictionaryWithObject:[CBLiveUserConfig getOwnID] forKey:@"uid"];
+    _chatsmall.chatID = infoXibView.infoVO.user.hx_uid;
+    _chatsmall.chatname = infoXibView.infoVO.user.user_nicename;
+    _chatsmall.icon = infoXibView.infoVO.user.avatar;
+    NSDictionary *subdic = [NSDictionary dictionaryWithObject:infoXibView.infoVO.user.hx_uid forKey:@"uid"];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"chatsmall" object:nil userInfo:subdic];
 }
 
@@ -375,11 +375,9 @@
 // 私信按钮
 - (void)chatView:(EaseChatView *)chatView actionTouchDirectMessageBtn:(UIButton *)sender {
     if (!_huanxinviews) {
-                _huanxinviews = [[huanxinsixinview alloc]init];
-                _huanxinviews.view.frame = CGRectMake(0, kScreenHeight*5, kScreenWidth, kScreenHeight*0.4);
-                [self.view addSubview:_huanxinviews.view];
-//        _huanxinviews = [[CBPrivateMessageView alloc]initWithFrame:CGRectMake(0, kScreenHeight, kScreenWidth, kScreenHeight*0.4)];
-//        [self.view addSubview:_huanxinviews];
+        _huanxinviews = [[huanxinsixinview alloc]init];
+        _huanxinviews.view.frame = CGRectMake(0, kScreenHeight*5, kScreenWidth, kScreenHeight*0.4);
+        [self.view addSubview:_huanxinviews.view];
     }
     @weakify(self);
     [UIView animateWithDuration:0.5 animations:^{
@@ -427,8 +425,8 @@
 
 - (void)didDismissFromChatroom:(EMChatroom *)aChatroom
                         reason:(EMChatroomBeKickedReason)aReason {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"被踢出直播聊天室" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
-    [alert show];
+//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"被踢出直播聊天室" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+//    [alert show];
     [self actionCloseButton];
 }
 

@@ -91,7 +91,6 @@
     [segmentC addSubview:label1];
     
     
-    
     line1 = [[UILabel alloc]initWithFrame:CGRectMake(11,30,36, 3)];
     line1.backgroundColor = [UIColor blackColor];
     line2 = [[UILabel alloc]initWithFrame:CGRectMake(87,30,37, 3)];
@@ -122,165 +121,81 @@
 -(void)forMessage{
     // 处理耗时操作的代码块...
     self.allArray = nil;
-    self.guanzhuArray = nil;
     self.allArray = [NSMutableArray array];
-    self.guanzhuArray = [NSMutableArray array];
     self.conversations = [[EMClient sharedClient].chatManager getAllConversations];
     
+    NSMutableArray *arraychat = [NSMutableArray arrayWithArray:self.conversations];
+    NSArray* sorted = [arraychat sortedArrayUsingComparator:
+                       ^(EMConversation *obj1, EMConversation* obj2){
+                           EMMessage *message1 = [obj1 latestMessage];
+                           EMMessage *message2 = [obj2 latestMessage];
+                           if(message1.timestamp > message2.timestamp) {
+                               return(NSComparisonResult)NSOrderedAscending;
+                           }else {
+                               return(NSComparisonResult)NSOrderedDescending;
+                           }
+                       }];
+    [arraychat removeAllObjects];
+    [arraychat addObjectsFromArray:sorted];
+    
+    for (EMConversation *conversation  in arraychat) {
+        if (![self->em.conversationId isEqual:[CBLiveUserConfig getHXuid]]){
+                        
+            NSString *from = conversation.latestMessage.from;
+            NSString *to = conversation.latestMessage.to;
+            NSDictionary *ext = conversation.latestMessage.ext;
+            NSLog(@"%@ %@ %@", from, to, ext);
+            NSMutableDictionary *subDic = [NSMutableDictionary dictionaryWithDictionary:ext];
+            NSDate *lastTime =[NSDate dateWithTimeIntervalSince1970:conversation.latestMessage.timestamp/1000];
+            NSDateFormatter *objDateformat = [[NSDateFormatter alloc] init];
+            [objDateformat setDateFormat:@"yyyy-MM-dd HH:mm"];
+            NSString * timeStr = [NSString stringWithFormat:@"%@",[objDateformat stringFromDate: lastTime]];
+            NSString *dateString=[NSString stringWithString:[timeStr description]];
+            NSString *substring3  =  [dateString substringWithRange:NSMakeRange(5, 11)];//选择某一区域截取
+            [subDic setObject:substring3 forKey:@"time"];
+            NSString *uRead = [NSString stringWithFormat:@"%d",conversation.unreadMessagesCount];
+            if (!uRead) {
+                uRead = @"0";
+            }
+            [subDic setObject:uRead forKey:@"unRead"];
+            
+            
+            EMMessage *messages = conversation.latestMessage;
+            EMMessageBody *msgBody = messages.body;
+            EMTextMessageBody *textBody = (EMTextMessageBody *)msgBody;
+            self->lastMessage = textBody.text;
+            
+            if (self->lastMessage == nil ||lastMessage.length == 0) {
+                self->lastMessage = @" ";
+            }
+            [subDic setObject:self->lastMessage forKey:@"lastMessage"];
+            
+            [self.allArray addObject:subDic];
+            
+            
+        }
+    }
 
+    NSMutableArray *ray = [NSMutableArray array];
+    for (int i=0;i<self.allArray.count;i++) {
+        NSDictionary *dic = self.allArray[i];
+        messageModel *model = [messageModel modelWithDic:dic];
+        [ray addObject:model];
+    }
+    self.models = ray;
+
+    [self.tableView reloadData];
+    
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
         // 处理耗时操作的代码块...
-        NSMutableArray *arraychat = [NSMutableArray arrayWithArray:self.conversations];
-        NSArray* sorted = [arraychat sortedArrayUsingComparator:
-                           ^(EMConversation *obj1, EMConversation* obj2){
-                               EMMessage *message1 = [obj1 latestMessage];
-                               EMMessage *message2 = [obj2 latestMessage];
-                               if(message1.timestamp > message2.timestamp) {
-                                   return(NSComparisonResult)NSOrderedAscending;
-                               }else {
-                                   return(NSComparisonResult)NSOrderedDescending;
-                               }
-                           }];
-        [arraychat removeAllObjects];
-        [arraychat addObjectsFromArray:sorted];
-        
-        for (EMConversation *conversation  in arraychat) {
-            if (![self->em.conversationId isEqual:[CBLiveUserConfig getOwnID]]){
-                NSString *url = [purl stringByAppendingFormat:@"?service=User.getPmUserInfo&touid=%@&uid=%@",conversation.conversationId,[CBLiveUserConfig getOwnID]];
-                NSString *fdata = [NSString stringWithContentsOfURL:[NSURL URLWithString:url] encoding:NSUTF8StringEncoding error:nil];
-                NSDictionary *dic = [self parseJSONStringToNSDictionary:fdata];
-                NSNumber *number = [dic valueForKey:@"ret"] ;
-                if([number isEqualToNumber:[NSNumber numberWithInt:200]])
-                {
-                    NSArray *data = [dic valueForKey:@"data"];
-                    NSNumber *code = [data valueForKey:@"code"];
-                    if([code isEqualToNumber:[NSNumber numberWithInt:0]])
-                    {
-                        NSMutableDictionary *subDic = [NSMutableDictionary dictionaryWithDictionary:[[data valueForKey:@"info"] firstObject]];
-                        NSDate *lastTime =[NSDate dateWithTimeIntervalSince1970:conversation.latestMessage.timestamp/1000];
-                        NSDateFormatter *objDateformat = [[NSDateFormatter alloc] init];
-                        [objDateformat setDateFormat:@"yyyy-MM-dd HH:mm"];
-                        NSString * timeStr = [NSString stringWithFormat:@"%@",[objDateformat stringFromDate: lastTime]];
-                        NSString *dateString=[NSString stringWithString:[timeStr description]];
-                        NSString *substring3  =  [dateString substringWithRange:NSMakeRange(5, 11)];//选择某一区域截取
-                        [subDic setObject:substring3 forKey:@"time"];
-                        NSString *uRead = [NSString stringWithFormat:@"%d",conversation.unreadMessagesCount];
-                        if (!uRead) {
-                            uRead = @"0";
-                        }
-                        [subDic setObject:uRead forKey:@"unRead"];
-                        
-                        
-                        EMMessage *messages = conversation.latestMessage;
-                        EMMessageBody *msgBody = messages.body;
-                        EMTextMessageBody *textBody = (EMTextMessageBody *)msgBody;
-                        self->lastMessage = textBody.text;
-                        
-                        if (self->lastMessage == nil ||lastMessage.length == 0) {
-                            self->lastMessage = @" ";
-                        }
-                        [subDic setObject:self->lastMessage forKey:@"lastMessage"];
-                        
-                        if ([[subDic valueForKey:@"isattention"] isEqual:@"1"]){
-                            [self.allArray addObject:subDic];
-                        }
-                        else
-                        {
-                            [self.guanzhuArray addObject:subDic];
-                        }
-                        
-                        
-                        
-                        
-                    }
-                }
-            }
-        }
+       
         //通知主线程刷新
         dispatch_async(dispatch_get_main_queue(), ^{
-            [self.tableView reloadData];
+            
         });
     });
 }
--(NSArray *)models{
-    
-    NSString *unreadmessages1;
-    NSString *unreadmessages2;
-    
-    NSMutableArray *array = [NSMutableArray array];
-    
-    
-    if (segmentC.selectedSegmentIndex == 0) {
-        
-        
-        NSDictionary *subDics;
-        for (NSDictionary *subdic in self.allArray) {
-            if ([[subdic valueForKey:@"id"] isEqual:[NSNull null]] || [subdic valueForKey:@"id"] == nil) {
-                
-                subDics = subdic;
-            }
-        }
-        
-        if (subDics !=nil) {
-            [self.allArray removeObject:subDics];
-        }
-        
-        for (int i=0;i<self.allArray.count;i++) {
-            NSDictionary *dic = self.allArray[i];
-            messageModel *model = [messageModel modelWithDic:dic];
-            unreadmessages1  = model.unReadMessage;
-            [array addObject:model];
-        }
-    }
-    else
-    {
-        
-        NSDictionary *subDics;
-        for (NSDictionary *subdic in self.guanzhuArray) {
-            if ([[subdic valueForKey:@"id"] isEqual:[NSNull null]] || [subdic valueForKey:@"id"] == nil) {
-                
-                subDics = subdic;
-            }
-        }
-        if (subDics !=nil) {
-            [self.guanzhuArray removeObject:subDics];
-        }
-        
-        for (int i=0;i<self.guanzhuArray.count;i++) {
-            NSDictionary *dic = self.guanzhuArray[i];
-            messageModel *model = [messageModel modelWithDic:dic];
-            unreadmessages2  = model.unReadMessage ;
-            [array addObject:model];
-        }
-    }
-    
-    
-    for (NSDictionary *subdics in self.guanzhuArray) {
-        unreadmessages2 = [subdics valueForKey:@"unRead"];
-        if ([unreadmessages2 isEqual:@"0"]) {
-            label2.hidden = YES;
-        }
-        else{
-            label2.hidden = NO;
-            break;
-        }
-    }
-    
-    for (NSDictionary *subdics in self.allArray) {
-        unreadmessages1 = [subdics valueForKey:@"unRead"];
-        if ([unreadmessages1 isEqual:@"0"]) {
-            label1.hidden = YES;
-        }
-        else{
-            label1.hidden = NO;
-            break;
-        }
-    }
-    
-    
-    _models = array;
-    return _models;
-}
+
 //忽略未读
 -(void)weidu:(UIButton *)sender{
     sender.enabled = NO;
@@ -295,9 +210,7 @@
     }
     UIAlertView *alerts = [[UIAlertView alloc]initWithTitle:@"已经忽略未读消息" message:nil delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
     [alerts show];
-    self.guanzhuArray = nil;
     self.allArray = nil;
-    self.guanzhuArray = [NSMutableArray array];
     self.allArray = [NSMutableArray array];
     [self forMessage];
     
@@ -356,22 +269,6 @@
 //segment事件
 -(void)change:(UISegmentedControl *)segment{
     
-    if (segment.selectedSegmentIndex == 0) {
-        line1.hidden = NO;
-        line2.hidden = YES;
-        [self.tableView reloadData];
-        
-    }
-    else if (segmentC.selectedSegmentIndex == 1){
-        line1.hidden = NO;
-        line2.hidden = YES;
-        [self.tableView reloadData];
-    }
-    else if (segment.selectedSegmentIndex == 2){
-        line1.hidden = YES;
-        line2.hidden = NO;
-        [self.tableView reloadData];
-    }
-    
+   
 }
 @end

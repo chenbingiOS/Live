@@ -13,7 +13,7 @@
         
         self.userName = [dic valueForKey:@"user_nicename"];
         self.sex = [dic valueForKey:@"sex"];
-        self.level = [dic valueForKey:@"level"];
+        self.level = [dic valueForKey:@"userLevel"];
         self.imageIcon = [dic valueForKey:@"avatar"];
         self.uid = [dic valueForKey:@"id"];
         

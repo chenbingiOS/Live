@@ -429,30 +429,62 @@ static int newHeight;
     }
     
 }
+
+- (EMMessage *)_sendTextMessage:(NSString *)text
+                             to:(NSString *)toUser
+                    messageType:(EMChatType)messageType
+                     messageExt:(NSDictionary *)messageExt
+
+{
+    EMTextMessageBody *body = [[EMTextMessageBody alloc] initWithText:text];
+    NSString *from = [[EMClient sharedClient] currentUsername];
+    EMMessage *message = [[EMMessage alloc] initWithConversationID:toUser from:from to:toUser body:body ext:messageExt];
+    message.chatType = messageType;
+    
+    return message;
+}
+
 -(void)pushMessage{
-    
-    
-    EMTextMessageBody *body = [[EMTextMessageBody alloc] initWithText:content];
-    //生成Message
-    NSDictionary *iconDic = [NSDictionary dictionaryWithObject:self.chatothsersattention forKey:@"isfollow"];
-    NSString *chatIDstr = [NSString stringWithFormat:@"%@",self.chatID];
-    EMMessage *message = [[EMMessage alloc] initWithConversationID:chatIDstr from:[CBLiveUserConfig getOwnID] to:chatIDstr body:body ext:iconDic];
-    message.chatType = EMChatTypeChat;// 设置为单聊消息
-    message.direction = EMMessageDirectionSend;//方向
+    NSLog(@"-----环信发送消息-----");
+    NSString *text = _textField.text;
+    NSDictionary *userExt = @{
+                              @"userName":[CBLiveUserConfig myProfile].user_nicename,
+                              @"userLevel":[CBLiveUserConfig myProfile].user_level,
+                              @"avatar": [CBLiveUserConfig myProfile].avatar,
+                              @"context" : text,
+                              @"type": @"0"
+                              };
+    EMMessage *message = [self _sendTextMessage:text to:self.chatID messageType:EMChatTypeChat messageExt:userExt];
     [[EMClient sharedClient].chatManager sendMessage:message progress:nil completion:^(EMMessage *message, EMError *error) {
-        NSLog(@"%@",error.errorDescription);
         NSDate* date = [NSDate date];
         NSDateFormatter* dateFormat = [[NSDateFormatter alloc] init];
         [dateFormat setDateFormat:@"MM-dd HH:mm"];
         NSString* dateStr = [dateFormat stringFromDate:date];
-        //                        LiveUser *user = [Config myProfile];
         CBLiveUser *user = [CBLiveUserConfig myProfile];
-        NSDictionary *dic = [NSDictionary dictionaryWithObjects:@[user.avatar,content,@"0",dateStr] forKeys:@[@"avatar",@"text",@"type",@"time"]];
+        NSDictionary *dic = [NSDictionary dictionaryWithObjects:@[user.avatar,text,@"0",dateStr] forKeys:@[@"avatar",@"text",@"type",@"time"]];
         [self.allArray addObject:dic];
         [self.tableView reloadData];
         [self jumpLast];
+        
+        _textField.text = nil;
     }];
     
+//    [[EMClient sharedClient].chatManager sendMessage:message progress:^(int progress) {
+//        NSLog(@"%@", @(progress));
+//    } completion:^(EMMessage *message, EMError *error) {
+//        NSLog(@"%@",error.errorDescription);
+//        NSDate* date = [NSDate date];
+//        NSDateFormatter* dateFormat = [[NSDateFormatter alloc] init];
+//        [dateFormat setDateFormat:@"MM-dd HH:mm"];
+//        NSString* dateStr = [dateFormat stringFromDate:date];
+//        //                        LiveUser *user = [Config myProfile];
+//        CBLiveUser *user = [CBLiveUserConfig myProfile];
+//        NSDictionary *dic = [NSDictionary dictionaryWithObjects:@[user.avatar,content,@"0",dateStr] forKeys:@[@"avatar",@"text",@"type",@"time"]];
+//        [self.allArray addObject:dic];
+//        [self.tableView reloadData];
+//        [self jumpLast];
+//    }];
+//
     
 //    AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
 //    NSString *userBaseUrl = [purl stringByAppendingFormat:@"?service=User.checkBlack&uid=%@&touid=%@",[CBLiveUserConfig getHXuid],self.chatID];

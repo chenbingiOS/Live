@@ -35,8 +35,6 @@
 
 @property(nonatomic,strong)NSMutableArray *allArray;//未关注好友
 
-@property(nonatomic,strong)NSMutableArray *guanzhuArray;//关注好友
-
 @property(nonatomic,strong)UITableView *tableView;
 
 @property(nonatomic,strong)NSNumber *guanzhu;//是否关注
