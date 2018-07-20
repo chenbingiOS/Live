@@ -16,6 +16,7 @@
 #import "CBAppLiveVO.h"
 #import "CBChatGiftMessageVO.h"
 #import "CBGiftTypeVO.h"
+#import "NSDictionary+SafeValue.h"
 // View
 #import "CBGiftCell.h"
 #import "TSCGifts.h"
@@ -132,13 +133,14 @@ static NSString *const KReuseIdGiftCell = @"KReuseIdGiftCell";
         countNum = @1;
     }
     NSString *url = urlSendGiftToAnchor;
-
-    NSDictionary *param = @{
-                            @"token":[CBLiveUserConfig getOwnToken],
-                            @"room_id": self.superController.liveVO.room_id,
-                            @"giftid": giftVO.giftid,
-                            @"number": countNum
-                            };
+    
+    NSMutableDictionary *param = @{@"token":[CBLiveUserConfig getOwnToken],
+                                   @"room_id": self.superController.liveVO.room_id,
+                                   @"giftid": giftVO.giftid,
+                                   @"number": countNum}.mutableCopy;
+    if (giftVO.storeid.length > 0) {
+        [param addEntriesFromDictionary:@{@"storeid":giftVO.storeid}];
+    }
     @weakify(self);
     [PPNetworkHelper POST:url parameters:param success:^(id responseObject) {
         @strongify(self);
@@ -157,15 +159,23 @@ static NSString *const KReuseIdGiftCell = @"KReuseIdGiftCell";
                                       @"giftImageURL": giftVO.gifticon,
                                       @"giftNum": countNum,
                                       @"giftSwf": giftVO.giftswf};
-            user.balance = responseObject[@"data"][@"balance"];
-            user.user_level = responseObject[@"data"][@"user_level"];
+            
+            NSDictionary *dataDict = responseObject[@"data"];            
+            user.balance =  [dataDict safeStringValueForKey:@"balance"];
+            user.user_level = [dataDict safeStringValueForKey:@"user_level"];
             [CBLiveUserConfig saveProfile:user];
             self.moneyCountLab.text = user.balance;
             [self _EMClient_SendGiftMessage:dictExt];
             
-            NSString *award = responseObject[@"data"][@"award"];
+            NSString *award = [dataDict safeStringValueForKey:@"award"];
             if (award.length > 0) {
                 [MBProgressHUD showAutoMessage:award];
+            }
+            
+            NSString *store = [dataDict safeStringValueForKey:@"store"];
+            if (store) {
+                giftVO.num = store;
+                [self.giftCollectionView reloadData];
             }
         } else {
             NSString *descrp = responseObject[@"descrp"];

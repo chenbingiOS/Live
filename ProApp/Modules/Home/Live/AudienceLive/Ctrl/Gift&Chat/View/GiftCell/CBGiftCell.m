@@ -17,6 +17,8 @@
 @property (weak, nonatomic) IBOutlet UIImageView *countType;
 @property (weak, nonatomic) IBOutlet UILabel *giftName;
 @property (nonatomic, strong) dispatch_source_t timer;
+@property (weak, nonatomic) IBOutlet UIView *giftCountView;
+@property (weak, nonatomic) IBOutlet UILabel *giftCountLab;
 
 @end
 
@@ -26,6 +28,12 @@
     _gift = gift;
     self.countLable.text = gift.needcoin;
     self.giftName.text = gift.giftname;
+    if (gift.num) {
+        self.giftCountView.hidden = NO;
+        self.giftCountLab.text = gift.num;
+    } else {
+        self.giftCountView.hidden = YES;
+    }
     [self.giftImage sd_setImageWithURL:[NSURL URLWithString:gift.gifticon] placeholderImage:[UIImage imageNamed:@"placeholder_head"]];
     if ([gift.continuous isEqualToString:@"1"]){
         self.typeImage.hidden = NO;

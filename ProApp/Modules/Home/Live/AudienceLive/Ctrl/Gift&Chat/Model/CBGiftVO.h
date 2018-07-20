@@ -19,6 +19,8 @@
 @property (nonatomic, copy) NSString *giftname;       ///< 礼物名    字符串(string)
 @property (nonatomic, copy) NSString *gifttype;       ///< 礼物类型    字符串(string)        礼物类型，默认0普通礼物，1贵族礼物，2幸运礼物，3其他礼物
 @property (nonatomic, copy) NSString *needcoin;       ///< 礼物价格    字符串(string)
+@property (nonatomic, copy) NSString *num;            ///< 礼物数量    字符串(string)
+@property (nonatomic, copy) NSString *storeid;        ///< 仓库礼物ID    字符串(string)
 
 @property (nonatomic, getter=isSelected) BOOL selected; ///< 是否选中
 

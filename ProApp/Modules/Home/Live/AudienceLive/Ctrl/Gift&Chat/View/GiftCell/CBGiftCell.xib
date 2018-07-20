@@ -69,10 +69,56 @@
                                     <constraint firstAttribute="height" constant="18" id="vaD-eg-McO"/>
                                 </constraints>
                             </imageView>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BRI-7M-MQe">
+                                <rect key="frame" x="62" y="4" width="37" height="18"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o17-sW-pEz">
+                                        <rect key="frame" x="0.0" y="0.0" width="37" height="18"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hfZ-GT-sa6">
+                                                <rect key="frame" x="0.0" y="0.0" width="4" height="18"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="4" id="t0G-b8-7OH"/>
+                                                </constraints>
+                                            </view>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="8888" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cn0-fG-med">
+                                                <rect key="frame" x="4" y="0.0" width="29" height="18"/>
+                                                <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="12"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vzp-4S-C7Y">
+                                                <rect key="frame" x="33" y="0.0" width="4" height="18"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="4" id="3sg-Ym-MiX"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" red="0.92156862750000001" green="0.31764705879999999" blue="0.67450980390000004" alpha="1" colorSpace="deviceRGB"/>
+                                <constraints>
+                                    <constraint firstItem="o17-sW-pEz" firstAttribute="leading" secondItem="BRI-7M-MQe" secondAttribute="leading" id="XtT-cY-5zF"/>
+                                    <constraint firstAttribute="bottom" secondItem="o17-sW-pEz" secondAttribute="bottom" id="bOI-05-SYm"/>
+                                    <constraint firstAttribute="height" constant="18" id="ikR-bV-ugx"/>
+                                    <constraint firstAttribute="trailing" secondItem="o17-sW-pEz" secondAttribute="trailing" id="oIo-dy-bwr"/>
+                                    <constraint firstItem="o17-sW-pEz" firstAttribute="top" secondItem="BRI-7M-MQe" secondAttribute="top" id="pAg-Ez-GFO"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.maskToBounds" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="k6O-pw-9v3" firstAttribute="top" secondItem="f5n-OF-24v" secondAttribute="top" constant="4" id="9oh-0D-usW"/>
+                            <constraint firstAttribute="trailing" secondItem="BRI-7M-MQe" secondAttribute="trailing" constant="4" id="C6K-gh-54c"/>
+                            <constraint firstItem="BRI-7M-MQe" firstAttribute="top" secondItem="f5n-OF-24v" secondAttribute="top" constant="4" id="Ssa-Zs-61W"/>
                             <constraint firstItem="k6O-pw-9v3" firstAttribute="leading" secondItem="f5n-OF-24v" secondAttribute="leading" id="egx-wz-98e"/>
                         </constraints>
                     </view>
@@ -99,11 +145,13 @@
             <connections>
                 <outlet property="countLable" destination="EMT-SC-uGA" id="4hl-2c-0R4"/>
                 <outlet property="countType" destination="Htm-2D-on5" id="JEA-Fe-Y7y"/>
+                <outlet property="giftCountLab" destination="Cn0-fG-med" id="tXA-eY-jpD"/>
+                <outlet property="giftCountView" destination="BRI-7M-MQe" id="GIf-MP-Hv7"/>
                 <outlet property="giftImage" destination="fno-Rf-f9c" id="OQg-2m-rMi"/>
                 <outlet property="giftName" destination="sbe-Oh-zxL" id="5Ku-hU-4n2"/>
                 <outlet property="typeImage" destination="k6O-pw-9v3" id="M6v-h0-2yu"/>
             </connections>
-            <point key="canvasLocation" x="-242" y="-66"/>
+            <point key="canvasLocation" x="-260" y="-66"/>
         </collectionViewCell>
     </objects>
     <resources>
