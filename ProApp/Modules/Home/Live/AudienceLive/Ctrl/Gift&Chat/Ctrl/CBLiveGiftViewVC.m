@@ -32,7 +32,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *giftListBtn;
 @property (weak, nonatomic) IBOutlet UIButton *warehouseListBtn;
 @property (weak, nonatomic) IBOutlet UICollectionView *giftCollectionView;
-@property (weak, nonatomic) IBOutlet UICollectionViewFlowLayout *collectionViewLayout;
 @property (weak, nonatomic) IBOutlet UIPageControl *pageControl;
 @property (weak, nonatomic) IBOutlet UILabel *moneyCountLab;
 @property (nonatomic, assign) NSNumber *countNum;
@@ -63,7 +62,6 @@ static NSString *const KReuseIdGiftCell = @"KReuseIdGiftCell";
     self.doubleBtn.titleLabel.numberOfLines = 2;
     self.moneyCountLab.text = [CBLiveUserConfig myProfile].balance;
     self.countNum = @1;
-    self.collectionViewLayout.itemSize = CGSizeMake(kScreenWidth/4-0.25, 95);
     [self.giftCollectionView registerNib:[UINib nibWithNibName:@"CBGiftCell" bundle:nil] forCellWithReuseIdentifier:KReuseIdGiftCell];
     
     self.giftTypeBtnAry = @[self.giftTypeABtn, self.giftTypeBBtn, self.giftTypeCBtn, self.giftTypeDBtn];
@@ -75,7 +73,27 @@ static NSString *const KReuseIdGiftCell = @"KReuseIdGiftCell";
 }
 
 #pragma mark - HTTP
-- (void)httpGetGiftList{
+// 获取仓库数据
+- (void)httpGetMyWareHouseList {
+    self.saveGiftAry.changku = [NSArray array];
+    NSString *url = urlGetMyWareHouseList;
+    NSDictionary *param = @{@"token": [CBLiveUserConfig getOwnToken]};
+    @weakify(self);
+    [PPNetworkHelper POST:url parameters:param responseCache:^(id responseCache) {
+        @strongify(self);
+        NSArray *ary = [NSArray modelArrayWithClass:[CBGiftVO class] json:responseCache[@"data"]];
+        self.saveGiftAry.changku = ary;
+    } success:^(id responseObject) {
+        @strongify(self);
+        NSArray *ary = [NSArray modelArrayWithClass:[CBGiftVO class] json:responseObject[@"data"]];
+        self.saveGiftAry.changku = ary;
+    } failure:^(NSError *error) {
+        
+    }];
+}
+
+// 获取礼物列表
+- (void)httpGetGiftList {
     NSString *url = urlGetGiftList;
     NSDictionary *param = @{@"token": [CBLiveUserConfig getOwnToken]};
     @weakify(self);
@@ -88,6 +106,7 @@ static NSString *const KReuseIdGiftCell = @"KReuseIdGiftCell";
         [self.giftCollectionView reloadData];
         self.selectGiftVO = vo;
         self.pageControl.numberOfPages = (int)ceilf(self.giftAry.count/8.0);
+        [self httpGetMyWareHouseList];
     } success:^(id responseObject) {
         @strongify(self);
         self.saveGiftAry = [CBGiftTypeVO modelWithJSON:responseObject[@"data"]];
@@ -97,11 +116,13 @@ static NSString *const KReuseIdGiftCell = @"KReuseIdGiftCell";
         [self.giftCollectionView reloadData];
         self.selectGiftVO = vo;
         self.pageControl.numberOfPages = (int)ceilf(self.giftAry.count/8.0);
+        [self httpGetMyWareHouseList];
     } failure:^(NSError *error) {
         
     }];
 }
 
+// 发送礼物数据给后台
 - (void)httpSendGiftToAnchor {
     NSString *url = urlSendGiftToAnchor;
     NSNumber *countNum = [self.selectGiftVO.continuous isEqualToString:@"1"] ? self.countNum : @1;
@@ -141,7 +162,6 @@ static NSString *const KReuseIdGiftCell = @"KReuseIdGiftCell";
                 [MBProgressHUD showAutoMessage:award];
             }
         } else {
-            
             NSString *descrp = responseObject[@"descrp"];
             [MBProgressHUD showAutoMessage:descrp];
         }
@@ -153,6 +173,7 @@ static NSString *const KReuseIdGiftCell = @"KReuseIdGiftCell";
     }];
 }
 
+// 送礼物走环信发消息
 - (void)_EMClient_SendGiftMessage:(NSDictionary *)dictExt {
     if (self.delegate && [self.delegate respondsToSelector:@selector(actionLiveSentGiftDict:)]) {
         [self.delegate actionLiveSentGiftDict:dictExt];
@@ -164,6 +185,7 @@ static NSString *const KReuseIdGiftCell = @"KReuseIdGiftCell";
 }
 
 #pragma mark - Action
+// 发送礼物
 - (IBAction)actionBtnSendGift:(UIButton *)sender {
     if ([self.selectGiftVO.continuous isEqualToString:@"1"]) {
         [self countdownBtnByRelay];
@@ -173,6 +195,7 @@ static NSString *const KReuseIdGiftCell = @"KReuseIdGiftCell";
     }
 }
 
+// 选择礼物类别
 - (IBAction)actionGiftTypeBtn:(UIButton *)sender {
     [self hideBgBtnView];
     [self.giftTypeBtnAry enumerateObjectsUsingBlock:^(UIButton * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -187,7 +210,7 @@ static NSString *const KReuseIdGiftCell = @"KReuseIdGiftCell";
     } else if (sender.tag == 33) {
         self.giftAry = self.saveGiftAry.xingyun;
     } else if (sender.tag == 44) {
-//        [self httpLoad]
+        self.giftAry = self.saveGiftAry.changku;
     }
         @weakify(self);
     [self.giftAry enumerateObjectsUsingBlock:^(CBGiftVO * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -201,8 +224,10 @@ static NSString *const KReuseIdGiftCell = @"KReuseIdGiftCell";
     }];
     self.pageControl.numberOfPages = (int)ceilf(self.giftAry.count/8.0);
     [self.giftCollectionView reloadData];
+    [self resetLeftRightBtnWithCont:self.giftAry.firstObject.continuous];
 }
 
+// 选择不同连送数量
 - (IBAction)actionLeftBtn:(UIButton *)sender {
     if (self.bgBtnView.hidden) {
         self.bgBtnView.hidden = NO;
@@ -217,6 +242,7 @@ static NSString *const KReuseIdGiftCell = @"KReuseIdGiftCell";
     }
 }
 
+// 不同连送数量
 - (IBAction)actionCountNumBtn:(UIButton *)sender {
     [self hideBgBtnView];
     [self.leftBtn setTitle:@(sender.tag).stringValue forState:UIControlStateNormal];
@@ -240,10 +266,12 @@ static NSString *const KReuseIdGiftCell = @"KReuseIdGiftCell";
     }
 }
 
+// 连送功能
 - (IBAction)actionDoubleBtn:(id)sender {
     [self countdownBtnByRelay];
 }
 
+// 隐藏多选项视图
 - (void)hideBgBtnView {
     if (!self.bgBtnView.hidden) {
         self.bgBtnView.alpha = 1;
@@ -258,6 +286,7 @@ static NSString *const KReuseIdGiftCell = @"KReuseIdGiftCell";
     }
 }
 
+// UI倒计时功能
 - (void)resetLeftRightBtnWithCont:(NSString *)continuous {
     if ([continuous isEqualToString:@"1"]) {
         self.leftBtn.hidden = NO;
@@ -269,6 +298,7 @@ static NSString *const KReuseIdGiftCell = @"KReuseIdGiftCell";
     }
 }
 
+//倒计时UI重绘
 - (void)countdownBtnByRelay {
     self.leftBtn.hidden = YES;
     self.rightBtn.hidden = YES;
@@ -286,7 +316,7 @@ static NSString *const KReuseIdGiftCell = @"KReuseIdGiftCell";
     }
 }
 
-//获取验证码倒计时
+//连送功能点击
 -(void)actionTimeCountDown {
     NSString *title = [NSString stringWithFormat:@"%d", (int)self.authCodeTime];
     [self.doubleBtn setTitle:title forState:UIControlStateNormal];
