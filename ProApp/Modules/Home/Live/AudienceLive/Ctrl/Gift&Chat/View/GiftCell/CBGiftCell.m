@@ -28,11 +28,10 @@
     _gift = gift;
     self.countLable.text = gift.needcoin;
     self.giftName.text = gift.giftname;
-    if (gift.num) {
+    self.giftCountView.hidden = YES;
+    if (gift.num.length > 0 || gift.num) {
         self.giftCountView.hidden = NO;
         self.giftCountLab.text = gift.num;
-    } else {
-        self.giftCountView.hidden = YES;
     }
     [self.giftImage sd_setImageWithURL:[NSURL URLWithString:gift.gifticon] placeholderImage:[UIImage imageNamed:@"placeholder_head"]];
     if ([gift.continuous isEqualToString:@"1"]){

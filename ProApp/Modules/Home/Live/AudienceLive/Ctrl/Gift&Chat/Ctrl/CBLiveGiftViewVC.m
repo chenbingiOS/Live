@@ -173,7 +173,7 @@ static NSString *const KReuseIdGiftCell = @"KReuseIdGiftCell";
             }
             
             NSString *store = [dataDict safeStringValueForKey:@"store"];
-            if (store) {
+            if (store.length > 0) {
                 giftVO.num = store;
                 [self.giftCollectionView reloadData];
             }
