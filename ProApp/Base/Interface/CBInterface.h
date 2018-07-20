@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 // 域名
+//#define purl @"http://fwtv.gttead.cn/"
 #define purl @"http://fengwo.gttead.cn/"
 #define h5purl @"http://app.zhibo.gttead.cn/"
 

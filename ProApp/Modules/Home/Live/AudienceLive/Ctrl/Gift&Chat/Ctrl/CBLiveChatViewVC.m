@@ -685,7 +685,7 @@
     if (!_customGiftShow) {
         _customGiftShow = [LiveGiftShowCustom addToView:self.view];
         _customGiftShow.addMode = LiveGiftAddModeAdd;
-        [_customGiftShow setMaxGiftCount:3];
+        [_customGiftShow setMaxGiftCount:2];
         [_customGiftShow setShowMode:LiveGiftShowModeFromTopToBottom];
         [_customGiftShow setAppearModel:LiveGiftAppearModeLeft];
         [_customGiftShow setHiddenModel:LiveGiftHiddenModeNone];

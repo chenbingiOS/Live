@@ -59,7 +59,7 @@
 }
 
 - (void)loadRequestWithAnchorId:(NSString *)anchorId {
-    NSString *url = [NSString stringWithFormat:@"%@?id=%@&token=%@", H5_add_guard, anchorId, [CBLiveUserConfig getOwnToken]];
+    NSString *url = [NSString stringWithFormat:@"%@?userid=%@&token=%@", H5_add_guard, anchorId, [CBLiveUserConfig getOwnToken]];
     [self.webView webViewloadRequestWithURLString:url];
 }
 
