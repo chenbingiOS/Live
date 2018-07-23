@@ -133,7 +133,6 @@ static NSString *const KReuseIdGiftCell = @"KReuseIdGiftCell";
         countNum = @1;
     }
     NSString *url = urlSendGiftToAnchor;
-    
     NSMutableDictionary *param = @{@"token":[CBLiveUserConfig getOwnToken],
                                    @"room_id": self.superController.liveVO.room_id,
                                    @"giftid": giftVO.giftid,
@@ -162,7 +161,10 @@ static NSString *const KReuseIdGiftCell = @"KReuseIdGiftCell";
                                       @"giftName": giftName,
                                       @"giftImageURL": giftVO.gifticon_25,
                                       @"giftNum": countNum,
-                                      @"giftSwf": giftVO.giftswf};
+                                      @"giftSwf": giftVO.giftswf,
+                                      @"swftime": giftVO.swftime,
+                                      @"swfplay": giftVO.swfplay,
+                                      };
             
             NSDictionary *dataDict = responseObject[@"data"];            
             user.balance =  [dataDict safeStringValueForKey:@"balance"];

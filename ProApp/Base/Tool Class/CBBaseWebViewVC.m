@@ -358,7 +358,7 @@ static void *XFWkwebBrowserContext = &XFWkwebBrowserContext;
         _progressView.frame = CGRectMake(0, 0, kScreenWidth, 2);
         // 设置进度条的色彩
         [_progressView setTrackTintColor:[UIColor clearColor]];
-        _progressView.progressTintColor = [UIColor blueColor];
+        _progressView.progressTintColor = [UIColor mainColor];
     }
     return _progressView;
 }

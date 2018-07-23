@@ -41,9 +41,11 @@
 //个人入驻：
 #define H5_enter_sociaty        h5purl@"enter_sociaty.html"
 // 加入守护
-#define H5_add_guard            h5purl@"add-guard.html"
+#define H5_add_guard            h5purl@"add_guard.html"
 // 加入Vip
 #define H5_add_vip              h5purl@"add_vip.html"
+// 个人中心-守护列表
+#define H5_mine_guard           h5purl@"mine_guard.html"
 // 关于我们
 #define urlH5AboutUs            h5purl@"download.html"
 // 网页分享直播

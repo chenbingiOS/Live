@@ -217,8 +217,6 @@
 
 // 开通守护
 - (void)actionLiveOpenGuard {
-//    CBGuardVC *vc = [CBGuardVC new];
-//    [self presentViewController:vc animated:YES completion:nil];
     UIWindow *window = [UIApplication sharedApplication].keyWindow;
     CBGuardView *v = [[CBGuardView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight*0.75)];
     [v loadRequestWithAnchorId:self.liveVO.ID];
@@ -280,6 +278,9 @@
     if (msgVO.giftSwf.length > 0) {
         self.showGifImageView.hidden = NO;
         [self.view addSubview:self.showGifImageView];
+        if ([msgVO.swfplay isEqualToString:@"2"]) {
+            self.showGifImageView.frame = CGRectMake(0, SafeAreaTopHeight, kScreenWidth, kScreenHeight-SafeAreaTopHeight-SafeAreaBottomHeight);
+        }
         @weakify(self);
         [self.showGifImageView setImageWithURL:[NSURL URLWithString:msgVO.giftSwf] placeholder:nil options:YYWebImageOptionShowNetworkActivity completion:^(UIImage * _Nullable image, NSURL * _Nonnull url, YYWebImageFromType from, YYWebImageStage stage, NSError * _Nullable error) {
             @strongify(self);

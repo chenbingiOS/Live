@@ -156,6 +156,8 @@
 		5403B86B20CFAD85000BE8B1 /* CBShareView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5403B86A20CFAD85000BE8B1 /* CBShareView.m */; };
 		5403B86F20CFAEF0000BE8B1 /* CBShareView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5403B86E20CFAEF0000BE8B1 /* CBShareView.xib */; };
 		540CCCD720D8F1D200CAA312 /* CBOccupantsCountView.m in Sources */ = {isa = PBXBuildFile; fileRef = 540CCCD620D8F1D200CAA312 /* CBOccupantsCountView.m */; };
+		540D987121057D29002B04E1 /* CBGuardListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 540D987021057D29002B04E1 /* CBGuardListVC.m */; };
+		540D987521058214002B04E1 /* CBJoinVipVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 540D987421058214002B04E1 /* CBJoinVipVC.m */; };
 		540F3ED820F7450900BD1920 /* CBPersonalHomePageNavView.m in Sources */ = {isa = PBXBuildFile; fileRef = 540F3ED720F7450900BD1920 /* CBPersonalHomePageNavView.m */; };
 		540F3EDA20F7451300BD1920 /* CBPersonalHomePageNavView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 540F3ED920F7451300BD1920 /* CBPersonalHomePageNavView.xib */; };
 		540F3EDD20F746AE00BD1920 /* CBPersonalHomePageBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 540F3EDC20F746AE00BD1920 /* CBPersonalHomePageBottomView.m */; };
@@ -1098,6 +1100,10 @@
 		5403B86E20CFAEF0000BE8B1 /* CBShareView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CBShareView.xib; sourceTree = "<group>"; };
 		540CCCD520D8F1D200CAA312 /* CBOccupantsCountView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBOccupantsCountView.h; sourceTree = "<group>"; };
 		540CCCD620D8F1D200CAA312 /* CBOccupantsCountView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBOccupantsCountView.m; sourceTree = "<group>"; };
+		540D986F21057D29002B04E1 /* CBGuardListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CBGuardListVC.h; path = ProApp/Modules/Profile/GuardList/CBGuardListVC.h; sourceTree = SOURCE_ROOT; };
+		540D987021057D29002B04E1 /* CBGuardListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = CBGuardListVC.m; path = ProApp/Modules/Profile/GuardList/CBGuardListVC.m; sourceTree = SOURCE_ROOT; };
+		540D987321058214002B04E1 /* CBJoinVipVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBJoinVipVC.h; sourceTree = "<group>"; };
+		540D987421058214002B04E1 /* CBJoinVipVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBJoinVipVC.m; sourceTree = "<group>"; };
 		540F3ED620F7450900BD1920 /* CBPersonalHomePageNavView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBPersonalHomePageNavView.h; sourceTree = "<group>"; };
 		540F3ED720F7450900BD1920 /* CBPersonalHomePageNavView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBPersonalHomePageNavView.m; sourceTree = "<group>"; };
 		540F3ED920F7451300BD1920 /* CBPersonalHomePageNavView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CBPersonalHomePageNavView.xib; sourceTree = "<group>"; };
@@ -3052,6 +3058,8 @@
 		07F6EF4620872E3C0035C6BD /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				540D9872210581FB002B04E1 /* JoinVip */,
+				540D986E21057D0A002B04E1 /* GuardList */,
 				07B668A6208DD16A00AA5B62 /* Account */,
 				0750561E2092AEE400F0679B /* GiftPackage */,
 				07B6688C208D6A0600AA5B62 /* Profile */,
@@ -3230,6 +3238,24 @@
 				5403B86E20CFAEF0000BE8B1 /* CBShareView.xib */,
 			);
 			path = ShareView;
+			sourceTree = "<group>";
+		};
+		540D986E21057D0A002B04E1 /* GuardList */ = {
+			isa = PBXGroup;
+			children = (
+				540D986F21057D29002B04E1 /* CBGuardListVC.h */,
+				540D987021057D29002B04E1 /* CBGuardListVC.m */,
+			);
+			path = GuardList;
+			sourceTree = "<group>";
+		};
+		540D9872210581FB002B04E1 /* JoinVip */ = {
+			isa = PBXGroup;
+			children = (
+				540D987321058214002B04E1 /* CBJoinVipVC.h */,
+				540D987421058214002B04E1 /* CBJoinVipVC.m */,
+			);
+			path = JoinVip;
 			sourceTree = "<group>";
 		};
 		540F3EBE20F7089500BD1920 /* PersonalHomePage */ = {
@@ -4936,9 +4962,9 @@
 			isa = PBXGroup;
 			children = (
 				546E848820DB43B30044DCC6 /* CBActionLiveDelegate.h */,
+				54DD931720DCDD1E0016C563 /* CBLiveGiftViewVC.h */,
 				54DD931A20DCE02F0016C563 /* CBLiveChatViewVC.h */,
 				54DD931B20DCE02F0016C563 /* CBLiveChatViewVC.m */,
-				54DD931720DCDD1E0016C563 /* CBLiveGiftViewVC.h */,
 				54DD931820DCDD1E0016C563 /* CBLiveGiftViewVC.m */,
 				54FD10CD20E0C20100C74C92 /* CBLiveGiftViewVC.xib */,
 				54C17E7F2101722D004FB867 /* CBGiftHorizontalLayout.h */,
@@ -5719,6 +5745,7 @@
 				54FD10C120E0970400C74C92 /* TSCResourceExtra.m in Sources */,
 				07AB0BB7209300C9007A25A8 /* CBDiamondInfoVC.m in Sources */,
 				07558C2820945675007E41C2 /* CBAnchorInfoView.m in Sources */,
+				540D987521058214002B04E1 /* CBJoinVipVC.m in Sources */,
 				5422E9E020BEAB810087FB91 /* CBUploadVideoView.m in Sources */,
 				072DC599209183EC00F693E8 /* CBSettingVC.m in Sources */,
 				540F3F1B20F8939400BD1920 /* CBPersonalHomePageVC.m in Sources */,
@@ -5744,6 +5771,7 @@
 				5463451E20E5E4BD00C23F87 /* TSCChatViewCell.m in Sources */,
 				54A76AE720B7DEDE0034D5A2 /* PLSFilterGroup.m in Sources */,
 				5467016D20C1300900519860 /* CBSexMenuView.m in Sources */,
+				540D987121057D29002B04E1 /* CBGuardListVC.m in Sources */,
 				07359D8F20A419E900FEEA4E /* CBLivePlayerVC.m in Sources */,
 				5451EC9120EDFCFC00F182E0 /* ANCircleProgressView.m in Sources */,
 				545494A320C7CC2500E96C0A /* CBOpenLiveVC.m in Sources */,

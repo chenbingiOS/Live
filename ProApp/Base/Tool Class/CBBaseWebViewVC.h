@@ -16,5 +16,6 @@
 - (void)resetWebViewFrame:(CGRect)frame;
 - (void)webViewloadRequestWithURLString:(NSString *)URLSting;
 - (void)backViewCtrl;
+- (void)deleteWebCache;
 
 @end

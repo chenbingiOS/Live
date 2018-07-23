@@ -8,10 +8,12 @@
 
 #import "CBGuardView.h"
 #import "CBBaseWebViewVC.h"
+#import "WebViewJavascriptBridge.h"
 
 @interface CBGuardView ()
 
 @property (nonatomic, strong) CBBaseWebViewVC *webView;
+@property WebViewJavascriptBridge *bridge;
 
 @end
 
@@ -48,17 +50,46 @@
         CBBaseWebViewVC *webVC = [CBBaseWebViewVC new];
         webVC.view.frame = _contentView.frame;
         [webVC resetWebViewFrame:_contentView.frame];
-//        [webVC webViewloadRequestWithURLString:H5_add_guard];
         _webView = webVC;
-//        WKWebView *webView = [WKWebView new];
-//        webView.frame = _contentView.frame;
-//        [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:H5_add_guard]]];
-//        [_contentView addSubview:webView];
     }
     return _webView;
 }
 
 - (void)loadRequestWithAnchorId:(NSString *)anchorId {
+    [self.webView deleteWebCache];
+    self.bridge = [WebViewJavascriptBridge bridgeForWebView:self.webView.wkWebView];
+    [self.bridge setWebViewDelegate:self];
+    @weakify(self);
+    [self.bridge registerHandler:@"openGuardCallBack" handler:^(id data, WVJBResponseCallback responseCallback) {
+        @strongify(self);
+        NSDictionary *dictData = data;
+        NSNumber *code = dictData[@"code"];
+        if ([code isEqualToNumber:@200]) {
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [self hide];
+            });
+        } else {
+            NSString *descrp = dictData[@"descrp"];
+            [MBProgressHUD showAutoMessage:descrp];
+        }
+        responseCallback(data);
+    }];
+    [self.bridge registerHandler:@"nsfCallBack" handler:^(id data, WVJBResponseCallback responseCallback) {
+        @strongify(self);
+        NSDictionary *dictData = data;
+        NSNumber *code = dictData[@"code"];
+        if ([code isEqualToNumber:@200]) {
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                NSLog(@"余额不足");
+            });
+        } else {
+            NSString *descrp = dictData[@"descrp"];
+            [MBProgressHUD showAutoMessage:descrp];
+        }
+        responseCallback(data);
+    }];
+    
+    
     NSString *url = [NSString stringWithFormat:@"%@?userid=%@&token=%@", H5_add_guard, anchorId, [CBLiveUserConfig getOwnToken]];
     [self.webView webViewloadRequestWithURLString:url];
 }

@@ -18,7 +18,8 @@
 #import "CBEditUserInfoVC.h"
 #import "CBMyVideoVC.h"
 #import "CBCurrencyVC.h"
-
+#import "CBGuardListVC.h"
+#import "CBJoinVipVC.h"
 // config
 #import "CBLiveSettingConfig.h"
 #import "CBLiveUserConfig.h"
@@ -58,7 +59,7 @@
 
 - (void)updateViewConstraints {
     [super updateViewConstraints];
-    self.contentHeightConstraint.constant = 750;
+    self.contentHeightConstraint.constant = 685;
 }
 
 - (void)setupUI {
@@ -103,9 +104,14 @@
     CBMyFansVC *vc = [CBMyFansVC new];
     [self.navigationController pushViewController:vc animated:YES];
 }
+- (IBAction)actionJoinVip:(id)sender {
+    CBJoinVipVC *vc = [CBJoinVipVC new];
+    [self.navigationController pushViewController:vc animated:YES];
+}
 
 - (IBAction)actionGuardian:(id)sender {
-    NSLog(@"守护");
+    CBGuardListVC *vc = [CBGuardListVC new];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (IBAction)actionDiamond:(id)sender {
