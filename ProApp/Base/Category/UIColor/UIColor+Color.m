@@ -46,4 +46,7 @@
     return UIColorHex(333333);
 }
 
++ (UIColor *)coinColor {
+    return UIColorHex(FFEA00);
+}
 @end

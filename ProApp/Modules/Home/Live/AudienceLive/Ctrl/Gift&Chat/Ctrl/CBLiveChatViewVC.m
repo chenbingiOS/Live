@@ -296,7 +296,7 @@
         }];
     } else {
         LiveGiftShowModel *model = [LiveGiftShowModel instancetypeGiftVOByGiftMessage:msgVO];
-        model.toNumber = msgVO.giftNum.integerValue;
+//        model.toNumber = msgVO.giftNum.integerValue;
         [self.customGiftShow animatedWithGiftModel:model];
     }
 }

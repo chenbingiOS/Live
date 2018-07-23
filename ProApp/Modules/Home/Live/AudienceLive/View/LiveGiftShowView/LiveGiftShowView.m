@@ -12,11 +12,11 @@
 #import "UIImageView+WebCache.h"
 #import "Masonry.h"
 
-static CGFloat const kNameLabelFont = 12.0;//送礼者
+static CGFloat const kNameLabelFont = 14.0;//送礼者
 #define kNameLabelTextColor [UIColor whiteColor]//送礼者颜色
 
-static CGFloat const kGiftLabelFont = 10.0;//送出礼物寄语  字体大小
-#define kGiftLabelTextColor [UIColor orangeColor]//礼物寄语 字体颜色
+static CGFloat const kGiftLabelFont = 11.0;//送出礼物寄语  字体大小
+#define kGiftLabelTextColor [UIColor coinColor]//礼物寄语 字体颜色
 
 static CGFloat const kGiftNumberWidth = 15.0;
 
@@ -71,7 +71,11 @@ static CGFloat const kGiftNumberWidth = 15.0;
     
     [self.iconIV sd_setImageWithURL:[NSURL URLWithString:model.user.iconUrl] placeholderImage:[UIImage imageNamed:@"LiveDefaultIcon"]];
     
-    self.sendLabel.text = model.giftModel.rewardMsg;
+    NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:model.giftModel.rewardMsg];
+    NSRange range = NSMakeRange(0, 2);
+    NSArray *colors = [NSArray arrayWithObjects:[UIColor whiteColor],kGiftLabelTextColor,nil];
+    [string addAttribute:NSForegroundColorAttributeName value:colors.firstObject range:range];
+    self.sendLabel.attributedText = string;
     [self.giftIV sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",model.giftModel.picUrl]] placeholderImage:nil];
     
 }
@@ -135,18 +139,19 @@ static CGFloat const kGiftNumberWidth = 15.0;
 - (void)handleNumber:(NSInteger )number{
     self.liveTimerForSecond = 0;
     //根据数字修改self.giftIV的约束 比如 1 占 10 的宽度，10 占 20的宽度
-    NSString * numStr = [NSString stringWithFormat:@"%zi",number];
-    CGFloat giftRight = numStr.length * kGiftNumberWidth + kGiftNumberWidth;
-    
+//    NSString * numStr = [NSString stringWithFormat:@"%zi",number];
+//    CGFloat giftRight = numStr.length * kGiftNumberWidth + kGiftNumberWidth;
+//    [self.giftIV mas_updateConstraints:^(MASConstraintMaker *make) {
+//        make.right.equalTo(self.mas_right).offset(-kGiftNumberWidth - giftRight);
+//    }];
     [self.giftIV mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(self.mas_right).offset(-kGiftNumberWidth - giftRight);
+        make.right.equalTo(self.mas_right);
     }];
-    
-    if (numStr.length >= 4) {
-        [self.giftIV mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.right.equalTo(self.mas_right).offset(-kGiftNumberWidth * 6);
-        }];
-    }
+//    if (numStr.length >= 4) {
+//        [self.giftIV mas_updateConstraints:^(MASConstraintMaker *make) {
+//            make.right.equalTo(self.mas_right).offset(-kGiftNumberWidth * 6);
+//        }];
+//    }
     if (!CGAffineTransformIsIdentity(self.numberView.transform)) {
         [self.numberView.layer removeAllAnimations];
     }
@@ -219,21 +224,21 @@ static CGFloat const kGiftNumberWidth = 15.0;
     }];
     
     [self.nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.mas_top).offset(9);
-        make.left.equalTo(self.iconIV.mas_right).offset(6);
-        make.width.equalTo(@86);
+        make.top.equalTo(self.mas_top).offset(4);
+        make.left.equalTo(self.mas_left).offset(16);
+        make.width.equalTo(@130);
     }];
     
     [self.sendLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(self.mas_bottom).offset(-9);
+        make.top.equalTo(self.nameLabel.mas_bottom).offset(2);
         make.left.equalTo(self.nameLabel);
     }];
     
     [self.giftIV mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.nameLabel.mas_right).offset(5).priority(750);
-        make.width.equalTo(@32);
-        make.height.equalTo(@24);
-        make.centerY.equalTo(self);
+        make.width.equalTo(@55);
+        make.height.equalTo(@55);
+        make.bottom.equalTo(self.backIV.mas_bottom);
+
     }];
     
     [self.numberView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -242,6 +247,7 @@ static CGFloat const kGiftNumberWidth = 15.0;
     }];
 }
 
+// 底部背景
 - (UIImageView *)backIV{
     if (!_backIV) {
         _backIV = [self creatIV];
@@ -250,16 +256,19 @@ static CGFloat const kGiftNumberWidth = 15.0;
     return _backIV;
 }
 
-- (UIImageView *)iconIViconIV{
+// 头像
+- (UIImageView *)iconIV{
     if (!_iconIV) {
         _iconIV = [self creatIV];
         _iconIV.image = [UIImage imageNamed:@"LiveDefaultIcon"];
         _iconIV.layer.cornerRadius = 15;
         _iconIV.layer.masksToBounds = YES;
+        _iconIV.hidden = YES; // 产品上不需要
     }
     return _iconIV;
 }
 
+// 名称
 - (UILabel *)nameLabel{
     if (!_nameLabel) {
         _nameLabel = [self creatLabel];
@@ -269,6 +278,7 @@ static CGFloat const kGiftNumberWidth = 15.0;
     return _nameLabel;
 }
 
+// 赠送礼物名称
 - (UILabel *)sendLabel{
     if (!_sendLabel) {
         _sendLabel = [self creatLabel];
@@ -278,6 +288,7 @@ static CGFloat const kGiftNumberWidth = 15.0;
     return _sendLabel;
 }
 
+// 礼物图标
 - (UIImageView *)giftIV{
     if (!_giftIV) {
         _giftIV = [self creatIV];

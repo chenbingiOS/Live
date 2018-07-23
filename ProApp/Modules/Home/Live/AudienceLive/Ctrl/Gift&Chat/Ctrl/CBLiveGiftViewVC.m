@@ -151,12 +151,16 @@ static NSString *const KReuseIdGiftCell = @"KReuseIdGiftCell";
                 [self.superController closeGiftView];
             }
             CBLiveUser *user = [CBLiveUserConfig myProfile];
+            NSString *giftName = giftVO.giftname;
+            if (countNum.integerValue > 1) {
+                giftName = [NSString stringWithFormat:@"%@ x%@",giftName, countNum];
+            }
             NSDictionary *dictExt = @{@"senderUID": user.ID,
                                       @"senderName": user.user_nicename,
                                       @"senderAvater": user.avatar,
                                       @"giftID": giftVO.giftid,
-                                      @"giftName": giftVO.giftname,
-                                      @"giftImageURL": giftVO.gifticon,
+                                      @"giftName": giftName,
+                                      @"giftImageURL": giftVO.gifticon_25,
                                       @"giftNum": countNum,
                                       @"giftSwf": giftVO.giftswf};
             

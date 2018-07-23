@@ -18,5 +18,6 @@
 + (UIColor *)btnSelectColor;
 + (UIColor *)shadowColor;
 + (UIColor *)shortVideoSelectBtnColor;
++ (UIColor *)coinColor;
 
 @end

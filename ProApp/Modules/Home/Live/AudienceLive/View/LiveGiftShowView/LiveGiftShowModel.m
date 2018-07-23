@@ -25,7 +25,7 @@
     giftListModel.type = giftMessage.giftID;
     giftListModel.name = giftMessage.giftName;
     giftListModel.picUrl = giftMessage.giftImageURL;
-    giftListModel.rewardMsg = [NSString stringWithFormat:@"送了%@", giftMessage.giftName];
+    giftListModel.rewardMsg = [NSString stringWithFormat:@"赠送 %@", giftMessage.giftName];
     
     LiveUserModel *userModel = [LiveUserModel new];
     userModel.iconUrl = giftMessage.senderAvater;

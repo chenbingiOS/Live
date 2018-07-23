@@ -135,7 +135,7 @@
             make.right.equalTo(self.digitIV.mas_left);
             make.centerY.equalTo(self.digitIV);
         }];
-    }else {
+    } else {
         length = 1;
         [self.thousandIV removeFromSuperview];
         [self.hundredIV removeFromSuperview];
