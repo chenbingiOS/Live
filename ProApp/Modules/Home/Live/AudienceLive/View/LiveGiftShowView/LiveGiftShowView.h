@@ -11,8 +11,8 @@
 #import "LiveGiftShowNumberView.h"
 #import "LiveGiftShowCustom.h"
 
-static CGFloat const kViewWidth = 240.0;//背景宽
-static CGFloat const kViewHeight = 44.0;//背景高
+static CGFloat const kViewWidth = 191.0;//背景宽
+static CGFloat const kViewHeight = 40.0;//背景高
 
 @interface LiveGiftShowView : UIView
 

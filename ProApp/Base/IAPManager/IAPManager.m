@@ -31,7 +31,7 @@
     return iapManager;
 }
 
-- (void)requestProductID:(NSString *)productID success:(Success)successBlock failure:(Failure)failureBlock                   finish:(Finish)finishBlock {
+- (void)requestProductID:(NSString *)productID success:(Success)successBlock failure:(Failure)failureBlock finish:(Finish)finishBlock {
     if (_successBlock != successBlock) {
         _successBlock = successBlock;
     }
@@ -59,7 +59,7 @@
     if (_receiptBlock != receiptBlock) {
         _receiptBlock = receiptBlock;
     }
-    [self requestProductID:productID success:successBlock failure:failureBlock finish:failureBlock];
+    [self requestProductID:productID success:successBlock failure:failureBlock finish:finishBlock];
 }
 
 // 去苹果服务器请求商品

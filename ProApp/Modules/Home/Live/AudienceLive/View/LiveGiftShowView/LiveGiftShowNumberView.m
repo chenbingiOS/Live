@@ -145,7 +145,7 @@
     [self addSubview:self.xIV];
     
     [self.xIV mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(self.mas_right).offset(-15*length);
+        make.right.equalTo(self.mas_right).offset(-20*length);
         make.centerY.equalTo(self).offset(2);
         make.width.equalTo(@15);
     }];

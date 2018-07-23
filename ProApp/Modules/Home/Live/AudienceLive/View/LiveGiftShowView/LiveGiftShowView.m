@@ -153,7 +153,7 @@ static CGFloat const kGiftNumberWidth = 15.0;
     self.numberView.transform = CGAffineTransformIdentity;
     
     [UIView animateWithDuration:self.kNumberAnimationTime animations:^{
-        self.numberView.transform = CGAffineTransformMakeScale(1.5, 1.5);
+        self.numberView.transform = CGAffineTransformMakeScale(1.8, 1.8);
     } completion:^(BOOL finished) {
         if (finished) {
             self.numberView.transform = CGAffineTransformIdentity;
@@ -237,7 +237,7 @@ static CGFloat const kGiftNumberWidth = 15.0;
     }];
     
     [self.numberView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(self.mas_right).offset(-kGiftNumberWidth);
+        make.right.equalTo(self.mas_right).offset(38);
         make.centerY.height.equalTo(self);
     }];
 }
@@ -250,7 +250,7 @@ static CGFloat const kGiftNumberWidth = 15.0;
     return _backIV;
 }
 
-- (UIImageView *)iconIV{
+- (UIImageView *)iconIViconIV{
     if (!_iconIV) {
         _iconIV = [self creatIV];
         _iconIV.image = [UIImage imageNamed:@"LiveDefaultIcon"];
@@ -277,7 +277,6 @@ static CGFloat const kGiftNumberWidth = 15.0;
     }
     return _sendLabel;
 }
-
 
 - (UIImageView *)giftIV{
     if (!_giftIV) {
@@ -306,7 +305,6 @@ static CGFloat const kGiftNumberWidth = 15.0;
     [self addSubview:label];
     return label;
 }
-
 
 - (NSTimer *)liveTimer{
     if (!_liveTimer) {

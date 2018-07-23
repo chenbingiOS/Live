@@ -686,11 +686,13 @@
         _customGiftShow = [LiveGiftShowCustom addToView:self.view];
         _customGiftShow.addMode = LiveGiftAddModeAdd;
         [_customGiftShow setMaxGiftCount:2];
-        [_customGiftShow setShowMode:LiveGiftShowModeFromTopToBottom];
+        [_customGiftShow setShowMode:LiveGiftShowModeFromBottomToTop];
         [_customGiftShow setAppearModel:LiveGiftAppearModeLeft];
         [_customGiftShow setHiddenModel:LiveGiftHiddenModeNone];
 //        [_customGiftShow enableInterfaceDebug:YES];
         _customGiftShow.delegate = self;
+        
+        _customGiftShow.backgroundColor = [UIColor redColor];
     }
     return _customGiftShow;
 }

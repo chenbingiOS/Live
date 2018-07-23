@@ -17,7 +17,7 @@ typedef NS_ENUM(NSInteger,IAPPaymentTransactionFailState) {
 typedef void (^Failure)(IAPPaymentTransactionFailState state, NSString *failDesc);
 typedef void (^Success)(NSString *productID, NSData *receiptData);
 typedef void (^Receipt)(NSDictionary *checkoutReceipt);
-typedef void (^Finish)();
+typedef void (^Finish)(void);
 
 @interface IAPManager : NSObject
 

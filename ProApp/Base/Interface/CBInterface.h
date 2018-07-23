@@ -8,14 +8,13 @@
 
 #import <Foundation/Foundation.h>
 // 域名
-#define purl @"http://47.99.52.31/"
-//#define purl @"http://fwtv.gttead.cn/"
+//#define purl @"http://47.99.52.31/"
+#define purl @"http://fwtv.gttead.cn/"
 //#define purl @"http://fengwo.gttead.cn/"
 #define h5purl @"http://app.zhibo.gttead.cn/"
 
 
 //------------------------------------------------------------------
-
 //提现：
 //提现(有绑定银行卡)：
 #define H5_draw_money           h5purl@"draw_money.html"

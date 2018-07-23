@@ -4879,8 +4879,8 @@
 				54C1964C20E2382A00E8853D /* LiveUserModel.m */,
 				54C1965520E2382A00E8853D /* LiveGiftShowView.h */,
 				54C1964D20E2382A00E8853D /* LiveGiftShowView.m */,
-				54C1964E20E2382A00E8853D /* LiveGiftShowModel.m */,
 				54C1965320E2382A00E8853D /* LiveGiftShowModel.h */,
+				54C1964E20E2382A00E8853D /* LiveGiftShowModel.m */,
 			);
 			path = LiveGiftShowView;
 			sourceTree = "<group>";

@@ -204,9 +204,9 @@
     }
     
     switch (user.gender) {
-        case SSDKGenderMale: [paramDict setObject:@"1" forKey:@"userSex"]; break;
-        case SSDKGenderFemale: [paramDict setObject:@"2" forKey:@"userSex"]; break;
-        case SSDKGenderUnknown: [paramDict setObject:@"0" forKey:@"userSex"]; break;
+        case SSDKGenderMale: [paramDict setObject:@"1" forKey:@"sex"]; break;
+        case SSDKGenderFemale: [paramDict setObject:@"2" forKey:@"sex"]; break;
+        case SSDKGenderUnknown: [paramDict setObject:@"0" forKey:@"sex"]; break;
         default: break;
     }
     

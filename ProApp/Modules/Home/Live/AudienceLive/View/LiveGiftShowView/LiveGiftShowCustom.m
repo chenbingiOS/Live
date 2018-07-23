@@ -9,7 +9,7 @@
 #import "LiveGiftShowCustom.h"
 #import "LiveGiftShowView.h"
 
-static CGFloat const kGiftViewMargin = 50.0;/**< 两个弹幕之间的高度差 */
+static CGFloat const kGiftViewMargin = 20.0;/**< 两个弹幕之间的高度差 */
 static NSString * const kGiftViewRemoved = @"kGiftViewRemoved";/**< 弹幕已移除的key */
 
 static NSInteger live_maxGiftShowCount = 3;
@@ -39,10 +39,10 @@ static LiveGiftAppearMode live_appearModel = LiveGiftAppearModeLeft;
     [superView addSubview:v];
     //布局
     [v mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.width.equalTo(@244);//这个改动之后要注意修改LiveGiftShowView.h的kViewWidth
+        make.width.equalTo(@191);//这个改动之后要注意修改LiveGiftShowView.h的kViewWidth
         make.height.equalTo(@0.01);
-        make.left.equalTo(superView.mas_left);//这个可以任意修改
-        make.top.equalTo(superView.mas_top).offset(100);//这个参数在的设定应该注意最大礼物数量时不要超出屏幕边界
+        make.left.equalTo(superView.mas_left).offset(10);//这个可以任意修改
+        make.top.equalTo(superView.mas_top).offset(kScreenHeight-345-20-SafeAreaBottomHeight);//这个参数在的设定应该注意最大礼物数量时不要超出屏幕边界
     }];
     v.backgroundColor = [UIColor clearColor];
     return v;
@@ -102,6 +102,7 @@ static LiveGiftAppearMode live_appearModel = LiveGiftAppearModeLeft;
         if (live_appearModel == LiveGiftAppearModeLeft) {
             frame = CGRectMake(-[UIScreen mainScreen].bounds.size.width, showViewY, 0, 0);
         }
+        NSLog(@"%@", NSStringFromCGRect(frame));
         LiveGiftShowView * newShowView = [[LiveGiftShowView alloc]initWithFrame:frame];
         //赋值
         newShowView.model = showModel;
@@ -404,6 +405,5 @@ static LiveGiftAppearMode live_appearModel = LiveGiftAppearModeLeft;
         WLog(@"Delloc LiveGiftShowCustom !!  %@",self);
     }
 }
-
 
 @end
